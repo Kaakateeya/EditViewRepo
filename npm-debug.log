@@ -1,0 +1,2321 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@2.15.9
+3 info using node@v4.6.0
+4 verbose readDependencies loading dependencies from D:\EditViewRepo\package.json
+5 verbose install where, deps [ 'D:\\EditViewRepo',
+5 verbose install   [ 'angular',
+5 verbose install     'angular-route',
+5 verbose install     'angular-ui-router',
+5 verbose install     'ng-numbers-only',
+5 verbose install     'bootstrap',
+5 verbose install     'font-awesome',
+5 verbose install     'jquery',
+5 verbose install     'angular-date-time-input',
+5 verbose install     'moment',
+5 verbose install     'underscore',
+5 verbose install     'multi-select',
+5 verbose install     'angular-animate',
+5 verbose install     'angular-module-sanitize',
+5 verbose install     'angular-multi-select',
+5 verbose install     'angular-touch',
+5 verbose install     'angular-ui-bootstrap',
+5 verbose install     'bootstrap-multiselect',
+5 verbose install     'express',
+5 verbose install     'grunt',
+5 verbose install     'grunt-contrib-cssmin',
+5 verbose install     'grunt-contrib-jshint',
+5 verbose install     'grunt-contrib-less',
+5 verbose install     'grunt-contrib-uglify',
+5 verbose install     'grunt-contrib-watch',
+5 verbose install     'grunt-dev-prod-switch',
+5 verbose install     'grunt-scriptlinker',
+5 verbose install     'jshint-stylish' ] ]
+6 verbose install where, peers [ 'D:\\EditViewRepo', [] ]
+7 verbose installManyTop reading for lifecycle D:\EditViewRepo\package.json
+8 info preinstall editandview@1.0.0
+9 verbose readDependencies loading dependencies from D:\EditViewRepo\package.json
+10 silly cache add args [ 'angular-ui-router@latest', null ]
+11 verbose cache add spec angular-ui-router@latest
+12 silly cache add args [ 'ng-numbers-only@latest', null ]
+13 verbose cache add spec ng-numbers-only@latest
+14 silly cache add args [ 'bootstrap@latest', null ]
+15 verbose cache add spec bootstrap@latest
+16 silly cache add args [ 'font-awesome@latest', null ]
+17 verbose cache add spec font-awesome@latest
+18 silly cache add args [ 'jquery@latest', null ]
+19 verbose cache add spec jquery@latest
+20 silly cache add args [ 'angular-date-time-input@latest', null ]
+21 verbose cache add spec angular-date-time-input@latest
+22 silly cache add args [ 'moment@latest', null ]
+23 verbose cache add spec moment@latest
+24 silly cache add args [ 'underscore@latest', null ]
+25 verbose cache add spec underscore@latest
+26 silly cache add args [ 'multi-select@*', null ]
+27 verbose cache add spec multi-select@*
+28 silly cache add parsed spec Result {
+28 silly cache add   raw: 'multi-select@*',
+28 silly cache add   scope: null,
+28 silly cache add   name: 'multi-select',
+28 silly cache add   rawSpec: '*',
+28 silly cache add   spec: '*',
+28 silly cache add   type: 'range' }
+29 silly addNamed multi-select@*
+30 verbose addNamed "*" is a valid semver range for multi-select
+31 silly addNameRange { name: 'multi-select', range: '*', hasData: false }
+32 silly mapToRegistry name multi-select
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npmjs.org/
+35 silly mapToRegistry data Result {
+35 silly mapToRegistry   raw: 'multi-select',
+35 silly mapToRegistry   scope: null,
+35 silly mapToRegistry   name: 'multi-select',
+35 silly mapToRegistry   rawSpec: '',
+35 silly mapToRegistry   spec: 'latest',
+35 silly mapToRegistry   type: 'tag' }
+36 silly mapToRegistry uri https://registry.npmjs.org/multi-select
+37 verbose addNameRange registry:https://registry.npmjs.org/multi-select not in flight; fetching
+38 silly cache add args [ 'angular-animate@^1.5.8', null ]
+39 verbose cache add spec angular-animate@^1.5.8
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'angular-animate@^1.5.8',
+40 silly cache add   scope: null,
+40 silly cache add   name: 'angular-animate',
+40 silly cache add   rawSpec: '^1.5.8',
+40 silly cache add   spec: '>=1.5.8 <2.0.0',
+40 silly cache add   type: 'range' }
+41 silly addNamed angular-animate@>=1.5.8 <2.0.0
+42 verbose addNamed ">=1.5.8 <2.0.0" is a valid semver range for angular-animate
+43 silly addNameRange { name: 'angular-animate',
+43 silly addNameRange   range: '>=1.5.8 <2.0.0',
+43 silly addNameRange   hasData: false }
+44 silly mapToRegistry name angular-animate
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry data Result {
+47 silly mapToRegistry   raw: 'angular-animate',
+47 silly mapToRegistry   scope: null,
+47 silly mapToRegistry   name: 'angular-animate',
+47 silly mapToRegistry   rawSpec: '',
+47 silly mapToRegistry   spec: 'latest',
+47 silly mapToRegistry   type: 'tag' }
+48 silly mapToRegistry uri https://registry.npmjs.org/angular-animate
+49 verbose addNameRange registry:https://registry.npmjs.org/angular-animate not in flight; fetching
+50 silly cache add args [ 'angular-module-sanitize@^1.2.19', null ]
+51 verbose cache add spec angular-module-sanitize@^1.2.19
+52 silly cache add parsed spec Result {
+52 silly cache add   raw: 'angular-module-sanitize@^1.2.19',
+52 silly cache add   scope: null,
+52 silly cache add   name: 'angular-module-sanitize',
+52 silly cache add   rawSpec: '^1.2.19',
+52 silly cache add   spec: '>=1.2.19 <2.0.0',
+52 silly cache add   type: 'range' }
+53 silly addNamed angular-module-sanitize@>=1.2.19 <2.0.0
+54 verbose addNamed ">=1.2.19 <2.0.0" is a valid semver range for angular-module-sanitize
+55 silly addNameRange { name: 'angular-module-sanitize',
+55 silly addNameRange   range: '>=1.2.19 <2.0.0',
+55 silly addNameRange   hasData: false }
+56 silly mapToRegistry name angular-module-sanitize
+57 silly mapToRegistry using default registry
+58 silly mapToRegistry registry https://registry.npmjs.org/
+59 silly mapToRegistry data Result {
+59 silly mapToRegistry   raw: 'angular-module-sanitize',
+59 silly mapToRegistry   scope: null,
+59 silly mapToRegistry   name: 'angular-module-sanitize',
+59 silly mapToRegistry   rawSpec: '',
+59 silly mapToRegistry   spec: 'latest',
+59 silly mapToRegistry   type: 'tag' }
+60 silly mapToRegistry uri https://registry.npmjs.org/angular-module-sanitize
+61 verbose addNameRange registry:https://registry.npmjs.org/angular-module-sanitize not in flight; fetching
+62 silly cache add args [ 'angular-multi-select@^7.4.6', null ]
+63 verbose cache add spec angular-multi-select@^7.4.6
+64 silly cache add parsed spec Result {
+64 silly cache add   raw: 'angular-multi-select@^7.4.6',
+64 silly cache add   scope: null,
+64 silly cache add   name: 'angular-multi-select',
+64 silly cache add   rawSpec: '^7.4.6',
+64 silly cache add   spec: '>=7.4.6 <8.0.0',
+64 silly cache add   type: 'range' }
+65 silly addNamed angular-multi-select@>=7.4.6 <8.0.0
+66 verbose addNamed ">=7.4.6 <8.0.0" is a valid semver range for angular-multi-select
+67 silly addNameRange { name: 'angular-multi-select',
+67 silly addNameRange   range: '>=7.4.6 <8.0.0',
+67 silly addNameRange   hasData: false }
+68 silly mapToRegistry name angular-multi-select
+69 silly mapToRegistry using default registry
+70 silly mapToRegistry registry https://registry.npmjs.org/
+71 silly mapToRegistry data Result {
+71 silly mapToRegistry   raw: 'angular-multi-select',
+71 silly mapToRegistry   scope: null,
+71 silly mapToRegistry   name: 'angular-multi-select',
+71 silly mapToRegistry   rawSpec: '',
+71 silly mapToRegistry   spec: 'latest',
+71 silly mapToRegistry   type: 'tag' }
+72 silly mapToRegistry uri https://registry.npmjs.org/angular-multi-select
+73 verbose addNameRange registry:https://registry.npmjs.org/angular-multi-select not in flight; fetching
+74 silly cache add args [ 'angular-touch@^1.5.8', null ]
+75 verbose cache add spec angular-touch@^1.5.8
+76 silly cache add parsed spec Result {
+76 silly cache add   raw: 'angular-touch@^1.5.8',
+76 silly cache add   scope: null,
+76 silly cache add   name: 'angular-touch',
+76 silly cache add   rawSpec: '^1.5.8',
+76 silly cache add   spec: '>=1.5.8 <2.0.0',
+76 silly cache add   type: 'range' }
+77 silly addNamed angular-touch@>=1.5.8 <2.0.0
+78 verbose addNamed ">=1.5.8 <2.0.0" is a valid semver range for angular-touch
+79 silly addNameRange { name: 'angular-touch',
+79 silly addNameRange   range: '>=1.5.8 <2.0.0',
+79 silly addNameRange   hasData: false }
+80 silly mapToRegistry name angular-touch
+81 silly mapToRegistry using default registry
+82 silly mapToRegistry registry https://registry.npmjs.org/
+83 silly mapToRegistry data Result {
+83 silly mapToRegistry   raw: 'angular-touch',
+83 silly mapToRegistry   scope: null,
+83 silly mapToRegistry   name: 'angular-touch',
+83 silly mapToRegistry   rawSpec: '',
+83 silly mapToRegistry   spec: 'latest',
+83 silly mapToRegistry   type: 'tag' }
+84 silly mapToRegistry uri https://registry.npmjs.org/angular-touch
+85 verbose addNameRange registry:https://registry.npmjs.org/angular-touch not in flight; fetching
+86 silly cache add args [ 'angular-ui-bootstrap@^2.1.4', null ]
+87 verbose cache add spec angular-ui-bootstrap@^2.1.4
+88 silly cache add parsed spec Result {
+88 silly cache add   raw: 'angular-ui-bootstrap@^2.1.4',
+88 silly cache add   scope: null,
+88 silly cache add   name: 'angular-ui-bootstrap',
+88 silly cache add   rawSpec: '^2.1.4',
+88 silly cache add   spec: '>=2.1.4 <3.0.0',
+88 silly cache add   type: 'range' }
+89 silly addNamed angular-ui-bootstrap@>=2.1.4 <3.0.0
+90 verbose addNamed ">=2.1.4 <3.0.0" is a valid semver range for angular-ui-bootstrap
+91 silly addNameRange { name: 'angular-ui-bootstrap',
+91 silly addNameRange   range: '>=2.1.4 <3.0.0',
+91 silly addNameRange   hasData: false }
+92 silly mapToRegistry name angular-ui-bootstrap
+93 silly mapToRegistry using default registry
+94 silly mapToRegistry registry https://registry.npmjs.org/
+95 silly mapToRegistry data Result {
+95 silly mapToRegistry   raw: 'angular-ui-bootstrap',
+95 silly mapToRegistry   scope: null,
+95 silly mapToRegistry   name: 'angular-ui-bootstrap',
+95 silly mapToRegistry   rawSpec: '',
+95 silly mapToRegistry   spec: 'latest',
+95 silly mapToRegistry   type: 'tag' }
+96 silly mapToRegistry uri https://registry.npmjs.org/angular-ui-bootstrap
+97 verbose addNameRange registry:https://registry.npmjs.org/angular-ui-bootstrap not in flight; fetching
+98 silly cache add args [ 'bootstrap-multiselect@^0.9.13-1', null ]
+99 verbose cache add spec bootstrap-multiselect@^0.9.13-1
+100 silly cache add parsed spec Result {
+100 silly cache add   raw: 'bootstrap-multiselect@^0.9.13-1',
+100 silly cache add   scope: null,
+100 silly cache add   name: 'bootstrap-multiselect',
+100 silly cache add   rawSpec: '^0.9.13-1',
+100 silly cache add   spec: '>=0.9.13-1 <0.10.0',
+100 silly cache add   type: 'range' }
+101 silly addNamed bootstrap-multiselect@>=0.9.13-1 <0.10.0
+102 verbose addNamed ">=0.9.13-1 <0.10.0" is a valid semver range for bootstrap-multiselect
+103 silly addNameRange { name: 'bootstrap-multiselect',
+103 silly addNameRange   range: '>=0.9.13-1 <0.10.0',
+103 silly addNameRange   hasData: false }
+104 silly mapToRegistry name bootstrap-multiselect
+105 silly mapToRegistry using default registry
+106 silly mapToRegistry registry https://registry.npmjs.org/
+107 silly mapToRegistry data Result {
+107 silly mapToRegistry   raw: 'bootstrap-multiselect',
+107 silly mapToRegistry   scope: null,
+107 silly mapToRegistry   name: 'bootstrap-multiselect',
+107 silly mapToRegistry   rawSpec: '',
+107 silly mapToRegistry   spec: 'latest',
+107 silly mapToRegistry   type: 'tag' }
+108 silly mapToRegistry uri https://registry.npmjs.org/bootstrap-multiselect
+109 verbose addNameRange registry:https://registry.npmjs.org/bootstrap-multiselect not in flight; fetching
+110 silly cache add args [ 'express@latest', null ]
+111 verbose cache add spec express@latest
+112 silly cache add args [ 'grunt@~0.4.4', null ]
+113 verbose cache add spec grunt@~0.4.4
+114 silly cache add parsed spec Result {
+114 silly cache add   raw: 'grunt@~0.4.4',
+114 silly cache add   scope: null,
+114 silly cache add   name: 'grunt',
+114 silly cache add   rawSpec: '~0.4.4',
+114 silly cache add   spec: '>=0.4.4 <0.5.0',
+114 silly cache add   type: 'range' }
+115 silly addNamed grunt@>=0.4.4 <0.5.0
+116 verbose addNamed ">=0.4.4 <0.5.0" is a valid semver range for grunt
+117 silly addNameRange { name: 'grunt', range: '>=0.4.4 <0.5.0', hasData: false }
+118 silly mapToRegistry name grunt
+119 silly mapToRegistry using default registry
+120 silly mapToRegistry registry https://registry.npmjs.org/
+121 silly mapToRegistry data Result {
+121 silly mapToRegistry   raw: 'grunt',
+121 silly mapToRegistry   scope: null,
+121 silly mapToRegistry   name: 'grunt',
+121 silly mapToRegistry   rawSpec: '',
+121 silly mapToRegistry   spec: 'latest',
+121 silly mapToRegistry   type: 'tag' }
+122 silly mapToRegistry uri https://registry.npmjs.org/grunt
+123 verbose addNameRange registry:https://registry.npmjs.org/grunt not in flight; fetching
+124 silly cache add args [ 'grunt-contrib-cssmin@latest', null ]
+125 verbose cache add spec grunt-contrib-cssmin@latest
+126 silly cache add args [ 'grunt-contrib-jshint@latest', null ]
+127 verbose cache add spec grunt-contrib-jshint@latest
+128 silly cache add args [ 'grunt-contrib-less@latest', null ]
+129 verbose cache add spec grunt-contrib-less@latest
+130 silly cache add args [ 'grunt-contrib-uglify@latest', null ]
+131 verbose cache add spec grunt-contrib-uglify@latest
+132 silly cache add args [ 'grunt-contrib-watch@latest', null ]
+133 verbose cache add spec grunt-contrib-watch@latest
+134 silly cache add args [ 'grunt-dev-prod-switch@^0.1.8', null ]
+135 verbose cache add spec grunt-dev-prod-switch@^0.1.8
+136 silly cache add parsed spec Result {
+136 silly cache add   raw: 'grunt-dev-prod-switch@^0.1.8',
+136 silly cache add   scope: null,
+136 silly cache add   name: 'grunt-dev-prod-switch',
+136 silly cache add   rawSpec: '^0.1.8',
+136 silly cache add   spec: '>=0.1.8 <0.2.0',
+136 silly cache add   type: 'range' }
+137 silly addNamed grunt-dev-prod-switch@>=0.1.8 <0.2.0
+138 verbose addNamed ">=0.1.8 <0.2.0" is a valid semver range for grunt-dev-prod-switch
+139 silly addNameRange { name: 'grunt-dev-prod-switch',
+139 silly addNameRange   range: '>=0.1.8 <0.2.0',
+139 silly addNameRange   hasData: false }
+140 silly mapToRegistry name grunt-dev-prod-switch
+141 silly mapToRegistry using default registry
+142 silly mapToRegistry registry https://registry.npmjs.org/
+143 silly mapToRegistry data Result {
+143 silly mapToRegistry   raw: 'grunt-dev-prod-switch',
+143 silly mapToRegistry   scope: null,
+143 silly mapToRegistry   name: 'grunt-dev-prod-switch',
+143 silly mapToRegistry   rawSpec: '',
+143 silly mapToRegistry   spec: 'latest',
+143 silly mapToRegistry   type: 'tag' }
+144 silly mapToRegistry uri https://registry.npmjs.org/grunt-dev-prod-switch
+145 verbose addNameRange registry:https://registry.npmjs.org/grunt-dev-prod-switch not in flight; fetching
+146 silly cache add args [ 'grunt-scriptlinker@^0.1.1', null ]
+147 verbose cache add spec grunt-scriptlinker@^0.1.1
+148 silly cache add parsed spec Result {
+148 silly cache add   raw: 'grunt-scriptlinker@^0.1.1',
+148 silly cache add   scope: null,
+148 silly cache add   name: 'grunt-scriptlinker',
+148 silly cache add   rawSpec: '^0.1.1',
+148 silly cache add   spec: '>=0.1.1 <0.2.0',
+148 silly cache add   type: 'range' }
+149 silly addNamed grunt-scriptlinker@>=0.1.1 <0.2.0
+150 verbose addNamed ">=0.1.1 <0.2.0" is a valid semver range for grunt-scriptlinker
+151 silly addNameRange { name: 'grunt-scriptlinker',
+151 silly addNameRange   range: '>=0.1.1 <0.2.0',
+151 silly addNameRange   hasData: false }
+152 silly mapToRegistry name grunt-scriptlinker
+153 silly mapToRegistry using default registry
+154 silly mapToRegistry registry https://registry.npmjs.org/
+155 silly mapToRegistry data Result {
+155 silly mapToRegistry   raw: 'grunt-scriptlinker',
+155 silly mapToRegistry   scope: null,
+155 silly mapToRegistry   name: 'grunt-scriptlinker',
+155 silly mapToRegistry   rawSpec: '',
+155 silly mapToRegistry   spec: 'latest',
+155 silly mapToRegistry   type: 'tag' }
+156 silly mapToRegistry uri https://registry.npmjs.org/grunt-scriptlinker
+157 verbose addNameRange registry:https://registry.npmjs.org/grunt-scriptlinker not in flight; fetching
+158 silly cache add args [ 'jshint-stylish@latest', null ]
+159 verbose cache add spec jshint-stylish@latest
+160 silly cache add args [ 'angular@1.5.8', null ]
+161 verbose cache add spec angular@1.5.8
+162 silly cache add parsed spec Result {
+162 silly cache add   raw: 'angular@1.5.8',
+162 silly cache add   scope: null,
+162 silly cache add   name: 'angular',
+162 silly cache add   rawSpec: '1.5.8',
+162 silly cache add   spec: '1.5.8',
+162 silly cache add   type: 'version' }
+163 silly addNamed angular@1.5.8
+164 verbose addNamed "1.5.8" is a plain semver version for angular
+165 silly mapToRegistry name angular
+166 silly mapToRegistry using default registry
+167 silly mapToRegistry registry https://registry.npmjs.org/
+168 silly mapToRegistry data Result {
+168 silly mapToRegistry   raw: 'angular',
+168 silly mapToRegistry   scope: null,
+168 silly mapToRegistry   name: 'angular',
+168 silly mapToRegistry   rawSpec: '',
+168 silly mapToRegistry   spec: 'latest',
+168 silly mapToRegistry   type: 'tag' }
+169 silly mapToRegistry uri https://registry.npmjs.org/angular
+170 verbose addNameVersion registry:https://registry.npmjs.org/angular not in flight; fetching
+171 silly cache add args [ 'angular-route@latest', null ]
+172 verbose cache add spec angular-route@latest
+173 silly cache add parsed spec Result {
+173 silly cache add   raw: 'angular-ui-router@latest',
+173 silly cache add   scope: null,
+173 silly cache add   name: 'angular-ui-router',
+173 silly cache add   rawSpec: 'latest',
+173 silly cache add   spec: 'latest',
+173 silly cache add   type: 'tag' }
+174 silly addNamed angular-ui-router@latest
+175 verbose addNamed "latest" is being treated as a dist-tag for angular-ui-router
+176 info addNameTag [ 'angular-ui-router', 'latest' ]
+177 silly mapToRegistry name angular-ui-router
+178 silly mapToRegistry using default registry
+179 silly mapToRegistry registry https://registry.npmjs.org/
+180 silly mapToRegistry data Result {
+180 silly mapToRegistry   raw: 'angular-ui-router',
+180 silly mapToRegistry   scope: null,
+180 silly mapToRegistry   name: 'angular-ui-router',
+180 silly mapToRegistry   rawSpec: '',
+180 silly mapToRegistry   spec: 'latest',
+180 silly mapToRegistry   type: 'tag' }
+181 silly mapToRegistry uri https://registry.npmjs.org/angular-ui-router
+182 verbose addNameTag registry:https://registry.npmjs.org/angular-ui-router not in flight; fetching
+183 silly cache add parsed spec Result {
+183 silly cache add   raw: 'ng-numbers-only@latest',
+183 silly cache add   scope: null,
+183 silly cache add   name: 'ng-numbers-only',
+183 silly cache add   rawSpec: 'latest',
+183 silly cache add   spec: 'latest',
+183 silly cache add   type: 'tag' }
+184 silly addNamed ng-numbers-only@latest
+185 verbose addNamed "latest" is being treated as a dist-tag for ng-numbers-only
+186 info addNameTag [ 'ng-numbers-only', 'latest' ]
+187 silly mapToRegistry name ng-numbers-only
+188 silly mapToRegistry using default registry
+189 silly mapToRegistry registry https://registry.npmjs.org/
+190 silly mapToRegistry data Result {
+190 silly mapToRegistry   raw: 'ng-numbers-only',
+190 silly mapToRegistry   scope: null,
+190 silly mapToRegistry   name: 'ng-numbers-only',
+190 silly mapToRegistry   rawSpec: '',
+190 silly mapToRegistry   spec: 'latest',
+190 silly mapToRegistry   type: 'tag' }
+191 silly mapToRegistry uri https://registry.npmjs.org/ng-numbers-only
+192 verbose addNameTag registry:https://registry.npmjs.org/ng-numbers-only not in flight; fetching
+193 silly cache add parsed spec Result {
+193 silly cache add   raw: 'bootstrap@latest',
+193 silly cache add   scope: null,
+193 silly cache add   name: 'bootstrap',
+193 silly cache add   rawSpec: 'latest',
+193 silly cache add   spec: 'latest',
+193 silly cache add   type: 'tag' }
+194 silly addNamed bootstrap@latest
+195 verbose addNamed "latest" is being treated as a dist-tag for bootstrap
+196 info addNameTag [ 'bootstrap', 'latest' ]
+197 silly mapToRegistry name bootstrap
+198 silly mapToRegistry using default registry
+199 silly mapToRegistry registry https://registry.npmjs.org/
+200 silly mapToRegistry data Result {
+200 silly mapToRegistry   raw: 'bootstrap',
+200 silly mapToRegistry   scope: null,
+200 silly mapToRegistry   name: 'bootstrap',
+200 silly mapToRegistry   rawSpec: '',
+200 silly mapToRegistry   spec: 'latest',
+200 silly mapToRegistry   type: 'tag' }
+201 silly mapToRegistry uri https://registry.npmjs.org/bootstrap
+202 verbose addNameTag registry:https://registry.npmjs.org/bootstrap not in flight; fetching
+203 silly cache add parsed spec Result {
+203 silly cache add   raw: 'font-awesome@latest',
+203 silly cache add   scope: null,
+203 silly cache add   name: 'font-awesome',
+203 silly cache add   rawSpec: 'latest',
+203 silly cache add   spec: 'latest',
+203 silly cache add   type: 'tag' }
+204 silly addNamed font-awesome@latest
+205 verbose addNamed "latest" is being treated as a dist-tag for font-awesome
+206 info addNameTag [ 'font-awesome', 'latest' ]
+207 silly mapToRegistry name font-awesome
+208 silly mapToRegistry using default registry
+209 silly mapToRegistry registry https://registry.npmjs.org/
+210 silly mapToRegistry data Result {
+210 silly mapToRegistry   raw: 'font-awesome',
+210 silly mapToRegistry   scope: null,
+210 silly mapToRegistry   name: 'font-awesome',
+210 silly mapToRegistry   rawSpec: '',
+210 silly mapToRegistry   spec: 'latest',
+210 silly mapToRegistry   type: 'tag' }
+211 silly mapToRegistry uri https://registry.npmjs.org/font-awesome
+212 verbose addNameTag registry:https://registry.npmjs.org/font-awesome not in flight; fetching
+213 silly cache add parsed spec Result {
+213 silly cache add   raw: 'jquery@latest',
+213 silly cache add   scope: null,
+213 silly cache add   name: 'jquery',
+213 silly cache add   rawSpec: 'latest',
+213 silly cache add   spec: 'latest',
+213 silly cache add   type: 'tag' }
+214 silly addNamed jquery@latest
+215 verbose addNamed "latest" is being treated as a dist-tag for jquery
+216 info addNameTag [ 'jquery', 'latest' ]
+217 silly mapToRegistry name jquery
+218 silly mapToRegistry using default registry
+219 silly mapToRegistry registry https://registry.npmjs.org/
+220 silly mapToRegistry data Result {
+220 silly mapToRegistry   raw: 'jquery',
+220 silly mapToRegistry   scope: null,
+220 silly mapToRegistry   name: 'jquery',
+220 silly mapToRegistry   rawSpec: '',
+220 silly mapToRegistry   spec: 'latest',
+220 silly mapToRegistry   type: 'tag' }
+221 silly mapToRegistry uri https://registry.npmjs.org/jquery
+222 verbose addNameTag registry:https://registry.npmjs.org/jquery not in flight; fetching
+223 silly cache add parsed spec Result {
+223 silly cache add   raw: 'angular-date-time-input@latest',
+223 silly cache add   scope: null,
+223 silly cache add   name: 'angular-date-time-input',
+223 silly cache add   rawSpec: 'latest',
+223 silly cache add   spec: 'latest',
+223 silly cache add   type: 'tag' }
+224 silly addNamed angular-date-time-input@latest
+225 verbose addNamed "latest" is being treated as a dist-tag for angular-date-time-input
+226 info addNameTag [ 'angular-date-time-input', 'latest' ]
+227 silly mapToRegistry name angular-date-time-input
+228 silly mapToRegistry using default registry
+229 silly mapToRegistry registry https://registry.npmjs.org/
+230 silly mapToRegistry data Result {
+230 silly mapToRegistry   raw: 'angular-date-time-input',
+230 silly mapToRegistry   scope: null,
+230 silly mapToRegistry   name: 'angular-date-time-input',
+230 silly mapToRegistry   rawSpec: '',
+230 silly mapToRegistry   spec: 'latest',
+230 silly mapToRegistry   type: 'tag' }
+231 silly mapToRegistry uri https://registry.npmjs.org/angular-date-time-input
+232 verbose addNameTag registry:https://registry.npmjs.org/angular-date-time-input not in flight; fetching
+233 silly cache add parsed spec Result {
+233 silly cache add   raw: 'moment@latest',
+233 silly cache add   scope: null,
+233 silly cache add   name: 'moment',
+233 silly cache add   rawSpec: 'latest',
+233 silly cache add   spec: 'latest',
+233 silly cache add   type: 'tag' }
+234 silly addNamed moment@latest
+235 verbose addNamed "latest" is being treated as a dist-tag for moment
+236 info addNameTag [ 'moment', 'latest' ]
+237 silly mapToRegistry name moment
+238 silly mapToRegistry using default registry
+239 silly mapToRegistry registry https://registry.npmjs.org/
+240 silly mapToRegistry data Result {
+240 silly mapToRegistry   raw: 'moment',
+240 silly mapToRegistry   scope: null,
+240 silly mapToRegistry   name: 'moment',
+240 silly mapToRegistry   rawSpec: '',
+240 silly mapToRegistry   spec: 'latest',
+240 silly mapToRegistry   type: 'tag' }
+241 silly mapToRegistry uri https://registry.npmjs.org/moment
+242 verbose addNameTag registry:https://registry.npmjs.org/moment not in flight; fetching
+243 silly cache add parsed spec Result {
+243 silly cache add   raw: 'underscore@latest',
+243 silly cache add   scope: null,
+243 silly cache add   name: 'underscore',
+243 silly cache add   rawSpec: 'latest',
+243 silly cache add   spec: 'latest',
+243 silly cache add   type: 'tag' }
+244 silly addNamed underscore@latest
+245 verbose addNamed "latest" is being treated as a dist-tag for underscore
+246 info addNameTag [ 'underscore', 'latest' ]
+247 silly mapToRegistry name underscore
+248 silly mapToRegistry using default registry
+249 silly mapToRegistry registry https://registry.npmjs.org/
+250 silly mapToRegistry data Result {
+250 silly mapToRegistry   raw: 'underscore',
+250 silly mapToRegistry   scope: null,
+250 silly mapToRegistry   name: 'underscore',
+250 silly mapToRegistry   rawSpec: '',
+250 silly mapToRegistry   spec: 'latest',
+250 silly mapToRegistry   type: 'tag' }
+251 silly mapToRegistry uri https://registry.npmjs.org/underscore
+252 verbose addNameTag registry:https://registry.npmjs.org/underscore not in flight; fetching
+253 verbose request uri https://registry.npmjs.org/multi-select
+254 verbose request no auth needed
+255 info attempt registry request try #1 at 4:07:49 PM
+256 verbose request id 988805512a2f92e2
+257 http request GET https://registry.npmjs.org/multi-select
+258 silly cache add parsed spec Result {
+258 silly cache add   raw: 'express@latest',
+258 silly cache add   scope: null,
+258 silly cache add   name: 'express',
+258 silly cache add   rawSpec: 'latest',
+258 silly cache add   spec: 'latest',
+258 silly cache add   type: 'tag' }
+259 silly addNamed express@latest
+260 verbose addNamed "latest" is being treated as a dist-tag for express
+261 info addNameTag [ 'express', 'latest' ]
+262 silly mapToRegistry name express
+263 silly mapToRegistry using default registry
+264 silly mapToRegistry registry https://registry.npmjs.org/
+265 silly mapToRegistry data Result {
+265 silly mapToRegistry   raw: 'express',
+265 silly mapToRegistry   scope: null,
+265 silly mapToRegistry   name: 'express',
+265 silly mapToRegistry   rawSpec: '',
+265 silly mapToRegistry   spec: 'latest',
+265 silly mapToRegistry   type: 'tag' }
+266 silly mapToRegistry uri https://registry.npmjs.org/express
+267 verbose addNameTag registry:https://registry.npmjs.org/express not in flight; fetching
+268 silly cache add parsed spec Result {
+268 silly cache add   raw: 'grunt-contrib-cssmin@latest',
+268 silly cache add   scope: null,
+268 silly cache add   name: 'grunt-contrib-cssmin',
+268 silly cache add   rawSpec: 'latest',
+268 silly cache add   spec: 'latest',
+268 silly cache add   type: 'tag' }
+269 silly addNamed grunt-contrib-cssmin@latest
+270 verbose addNamed "latest" is being treated as a dist-tag for grunt-contrib-cssmin
+271 info addNameTag [ 'grunt-contrib-cssmin', 'latest' ]
+272 silly mapToRegistry name grunt-contrib-cssmin
+273 silly mapToRegistry using default registry
+274 silly mapToRegistry registry https://registry.npmjs.org/
+275 silly mapToRegistry data Result {
+275 silly mapToRegistry   raw: 'grunt-contrib-cssmin',
+275 silly mapToRegistry   scope: null,
+275 silly mapToRegistry   name: 'grunt-contrib-cssmin',
+275 silly mapToRegistry   rawSpec: '',
+275 silly mapToRegistry   spec: 'latest',
+275 silly mapToRegistry   type: 'tag' }
+276 silly mapToRegistry uri https://registry.npmjs.org/grunt-contrib-cssmin
+277 verbose addNameTag registry:https://registry.npmjs.org/grunt-contrib-cssmin not in flight; fetching
+278 silly cache add parsed spec Result {
+278 silly cache add   raw: 'grunt-contrib-jshint@latest',
+278 silly cache add   scope: null,
+278 silly cache add   name: 'grunt-contrib-jshint',
+278 silly cache add   rawSpec: 'latest',
+278 silly cache add   spec: 'latest',
+278 silly cache add   type: 'tag' }
+279 silly addNamed grunt-contrib-jshint@latest
+280 verbose addNamed "latest" is being treated as a dist-tag for grunt-contrib-jshint
+281 info addNameTag [ 'grunt-contrib-jshint', 'latest' ]
+282 silly mapToRegistry name grunt-contrib-jshint
+283 silly mapToRegistry using default registry
+284 silly mapToRegistry registry https://registry.npmjs.org/
+285 silly mapToRegistry data Result {
+285 silly mapToRegistry   raw: 'grunt-contrib-jshint',
+285 silly mapToRegistry   scope: null,
+285 silly mapToRegistry   name: 'grunt-contrib-jshint',
+285 silly mapToRegistry   rawSpec: '',
+285 silly mapToRegistry   spec: 'latest',
+285 silly mapToRegistry   type: 'tag' }
+286 silly mapToRegistry uri https://registry.npmjs.org/grunt-contrib-jshint
+287 verbose addNameTag registry:https://registry.npmjs.org/grunt-contrib-jshint not in flight; fetching
+288 silly cache add parsed spec Result {
+288 silly cache add   raw: 'grunt-contrib-less@latest',
+288 silly cache add   scope: null,
+288 silly cache add   name: 'grunt-contrib-less',
+288 silly cache add   rawSpec: 'latest',
+288 silly cache add   spec: 'latest',
+288 silly cache add   type: 'tag' }
+289 silly addNamed grunt-contrib-less@latest
+290 verbose addNamed "latest" is being treated as a dist-tag for grunt-contrib-less
+291 info addNameTag [ 'grunt-contrib-less', 'latest' ]
+292 silly mapToRegistry name grunt-contrib-less
+293 silly mapToRegistry using default registry
+294 silly mapToRegistry registry https://registry.npmjs.org/
+295 silly mapToRegistry data Result {
+295 silly mapToRegistry   raw: 'grunt-contrib-less',
+295 silly mapToRegistry   scope: null,
+295 silly mapToRegistry   name: 'grunt-contrib-less',
+295 silly mapToRegistry   rawSpec: '',
+295 silly mapToRegistry   spec: 'latest',
+295 silly mapToRegistry   type: 'tag' }
+296 silly mapToRegistry uri https://registry.npmjs.org/grunt-contrib-less
+297 verbose addNameTag registry:https://registry.npmjs.org/grunt-contrib-less not in flight; fetching
+298 silly cache add parsed spec Result {
+298 silly cache add   raw: 'grunt-contrib-uglify@latest',
+298 silly cache add   scope: null,
+298 silly cache add   name: 'grunt-contrib-uglify',
+298 silly cache add   rawSpec: 'latest',
+298 silly cache add   spec: 'latest',
+298 silly cache add   type: 'tag' }
+299 silly addNamed grunt-contrib-uglify@latest
+300 verbose addNamed "latest" is being treated as a dist-tag for grunt-contrib-uglify
+301 info addNameTag [ 'grunt-contrib-uglify', 'latest' ]
+302 silly mapToRegistry name grunt-contrib-uglify
+303 silly mapToRegistry using default registry
+304 silly mapToRegistry registry https://registry.npmjs.org/
+305 silly mapToRegistry data Result {
+305 silly mapToRegistry   raw: 'grunt-contrib-uglify',
+305 silly mapToRegistry   scope: null,
+305 silly mapToRegistry   name: 'grunt-contrib-uglify',
+305 silly mapToRegistry   rawSpec: '',
+305 silly mapToRegistry   spec: 'latest',
+305 silly mapToRegistry   type: 'tag' }
+306 silly mapToRegistry uri https://registry.npmjs.org/grunt-contrib-uglify
+307 verbose addNameTag registry:https://registry.npmjs.org/grunt-contrib-uglify not in flight; fetching
+308 silly cache add parsed spec Result {
+308 silly cache add   raw: 'grunt-contrib-watch@latest',
+308 silly cache add   scope: null,
+308 silly cache add   name: 'grunt-contrib-watch',
+308 silly cache add   rawSpec: 'latest',
+308 silly cache add   spec: 'latest',
+308 silly cache add   type: 'tag' }
+309 silly addNamed grunt-contrib-watch@latest
+310 verbose addNamed "latest" is being treated as a dist-tag for grunt-contrib-watch
+311 info addNameTag [ 'grunt-contrib-watch', 'latest' ]
+312 silly mapToRegistry name grunt-contrib-watch
+313 silly mapToRegistry using default registry
+314 silly mapToRegistry registry https://registry.npmjs.org/
+315 silly mapToRegistry data Result {
+315 silly mapToRegistry   raw: 'grunt-contrib-watch',
+315 silly mapToRegistry   scope: null,
+315 silly mapToRegistry   name: 'grunt-contrib-watch',
+315 silly mapToRegistry   rawSpec: '',
+315 silly mapToRegistry   spec: 'latest',
+315 silly mapToRegistry   type: 'tag' }
+316 silly mapToRegistry uri https://registry.npmjs.org/grunt-contrib-watch
+317 verbose addNameTag registry:https://registry.npmjs.org/grunt-contrib-watch not in flight; fetching
+318 verbose request uri https://registry.npmjs.org/grunt-dev-prod-switch
+319 verbose request no auth needed
+320 info attempt registry request try #1 at 4:07:49 PM
+321 http request GET https://registry.npmjs.org/grunt-dev-prod-switch
+322 silly cache add parsed spec Result {
+322 silly cache add   raw: 'jshint-stylish@latest',
+322 silly cache add   scope: null,
+322 silly cache add   name: 'jshint-stylish',
+322 silly cache add   rawSpec: 'latest',
+322 silly cache add   spec: 'latest',
+322 silly cache add   type: 'tag' }
+323 silly addNamed jshint-stylish@latest
+324 verbose addNamed "latest" is being treated as a dist-tag for jshint-stylish
+325 info addNameTag [ 'jshint-stylish', 'latest' ]
+326 silly mapToRegistry name jshint-stylish
+327 silly mapToRegistry using default registry
+328 silly mapToRegistry registry https://registry.npmjs.org/
+329 silly mapToRegistry data Result {
+329 silly mapToRegistry   raw: 'jshint-stylish',
+329 silly mapToRegistry   scope: null,
+329 silly mapToRegistry   name: 'jshint-stylish',
+329 silly mapToRegistry   rawSpec: '',
+329 silly mapToRegistry   spec: 'latest',
+329 silly mapToRegistry   type: 'tag' }
+330 silly mapToRegistry uri https://registry.npmjs.org/jshint-stylish
+331 verbose addNameTag registry:https://registry.npmjs.org/jshint-stylish not in flight; fetching
+332 verbose request uri https://registry.npmjs.org/grunt-scriptlinker
+333 verbose request no auth needed
+334 info attempt registry request try #1 at 4:07:49 PM
+335 http request GET https://registry.npmjs.org/grunt-scriptlinker
+336 silly cache add parsed spec Result {
+336 silly cache add   raw: 'angular-route@latest',
+336 silly cache add   scope: null,
+336 silly cache add   name: 'angular-route',
+336 silly cache add   rawSpec: 'latest',
+336 silly cache add   spec: 'latest',
+336 silly cache add   type: 'tag' }
+337 silly addNamed angular-route@latest
+338 verbose addNamed "latest" is being treated as a dist-tag for angular-route
+339 info addNameTag [ 'angular-route', 'latest' ]
+340 silly mapToRegistry name angular-route
+341 silly mapToRegistry using default registry
+342 silly mapToRegistry registry https://registry.npmjs.org/
+343 silly mapToRegistry data Result {
+343 silly mapToRegistry   raw: 'angular-route',
+343 silly mapToRegistry   scope: null,
+343 silly mapToRegistry   name: 'angular-route',
+343 silly mapToRegistry   rawSpec: '',
+343 silly mapToRegistry   spec: 'latest',
+343 silly mapToRegistry   type: 'tag' }
+344 silly mapToRegistry uri https://registry.npmjs.org/angular-route
+345 verbose addNameTag registry:https://registry.npmjs.org/angular-route not in flight; fetching
+346 verbose request uri https://registry.npmjs.org/angular-touch
+347 verbose request no auth needed
+348 info attempt registry request try #1 at 4:07:49 PM
+349 verbose etag "B85JN5R4KAXD1GJ0GSAMTWXCJ"
+350 http request GET https://registry.npmjs.org/angular-touch
+351 verbose request uri https://registry.npmjs.org/angular-animate
+352 verbose request no auth needed
+353 info attempt registry request try #1 at 4:07:49 PM
+354 verbose etag "2NHVW9FF7TPYMWC260FGSZ5CO"
+355 http request GET https://registry.npmjs.org/angular-animate
+356 verbose request uri https://registry.npmjs.org/angular-ui-bootstrap
+357 verbose request no auth needed
+358 info attempt registry request try #1 at 4:07:49 PM
+359 verbose etag "5NRW4YK6AQ26TMNSM3GY79FL9"
+360 http request GET https://registry.npmjs.org/angular-ui-bootstrap
+361 verbose request uri https://registry.npmjs.org/bootstrap-multiselect
+362 verbose request no auth needed
+363 info attempt registry request try #1 at 4:07:49 PM
+364 verbose etag "8KQFH3SWFQEDCJURNWDXYTNKI"
+365 http request GET https://registry.npmjs.org/bootstrap-multiselect
+366 verbose request uri https://registry.npmjs.org/angular-module-sanitize
+367 verbose request no auth needed
+368 info attempt registry request try #1 at 4:07:49 PM
+369 verbose etag "D5H082E2ZQ4TLXNM042YP11G1"
+370 http request GET https://registry.npmjs.org/angular-module-sanitize
+371 verbose request uri https://registry.npmjs.org/grunt
+372 verbose request no auth needed
+373 info attempt registry request try #1 at 4:07:49 PM
+374 verbose etag "A79X4LK64AMSJAI1GE47WB937"
+375 http request GET https://registry.npmjs.org/grunt
+376 verbose request uri https://registry.npmjs.org/ng-numbers-only
+377 verbose request no auth needed
+378 info attempt registry request try #1 at 4:07:49 PM
+379 verbose etag "E9BIARCJSQB4DEYNKLRNC9OKT"
+380 http request GET https://registry.npmjs.org/ng-numbers-only
+381 verbose request uri https://registry.npmjs.org/bootstrap
+382 verbose request no auth needed
+383 info attempt registry request try #1 at 4:07:49 PM
+384 verbose etag "3KWU3AI59SG2FNRLCG9DA44EZ"
+385 http request GET https://registry.npmjs.org/bootstrap
+386 verbose request uri https://registry.npmjs.org/angular-ui-router
+387 verbose request no auth needed
+388 info attempt registry request try #1 at 4:07:49 PM
+389 verbose etag "8FOUG69DEM3HT01B8WBKQFUW3"
+390 http request GET https://registry.npmjs.org/angular-ui-router
+391 verbose request uri https://registry.npmjs.org/underscore
+392 verbose request no auth needed
+393 info attempt registry request try #1 at 4:07:49 PM
+394 verbose etag "6QO41G0ZCGJ1L1LUA5LMN55WV"
+395 http request GET https://registry.npmjs.org/underscore
+396 verbose request uri https://registry.npmjs.org/angular-date-time-input
+397 verbose request no auth needed
+398 info attempt registry request try #1 at 4:07:49 PM
+399 verbose etag "EBNF7AVDHNQKSRG7PLYNQSUJW"
+400 http request GET https://registry.npmjs.org/angular-date-time-input
+401 verbose request uri https://registry.npmjs.org/jquery
+402 verbose request no auth needed
+403 info attempt registry request try #1 at 4:07:49 PM
+404 verbose etag "8TN2046E8T2VFJLQ1ONDXSUFU"
+405 http request GET https://registry.npmjs.org/jquery
+406 verbose request uri https://registry.npmjs.org/angular
+407 verbose request no auth needed
+408 info attempt registry request try #1 at 4:07:49 PM
+409 verbose etag "A69STDQKX1UMA8W36N1X7O8LN"
+410 http request GET https://registry.npmjs.org/angular
+411 verbose request uri https://registry.npmjs.org/grunt-contrib-cssmin
+412 verbose request no auth needed
+413 info attempt registry request try #1 at 4:07:49 PM
+414 verbose etag "CB3GZILZAA6SWWULTXIG7SNSO"
+415 http request GET https://registry.npmjs.org/grunt-contrib-cssmin
+416 verbose request uri https://registry.npmjs.org/moment
+417 verbose request no auth needed
+418 info attempt registry request try #1 at 4:07:49 PM
+419 verbose etag "FKUV9LBKPRQQF0G66WMH4NGT"
+420 http request GET https://registry.npmjs.org/moment
+421 verbose request uri https://registry.npmjs.org/grunt-contrib-uglify
+422 verbose request no auth needed
+423 info attempt registry request try #1 at 4:07:49 PM
+424 verbose etag "2EYJO3UIEOCG8C41APC7VR07M"
+425 http request GET https://registry.npmjs.org/grunt-contrib-uglify
+426 verbose request uri https://registry.npmjs.org/grunt-contrib-watch
+427 verbose request no auth needed
+428 info attempt registry request try #1 at 4:07:49 PM
+429 verbose etag "F4D4IMT52FUJA5ODLF8KV7O0D"
+430 http request GET https://registry.npmjs.org/grunt-contrib-watch
+431 verbose request uri https://registry.npmjs.org/grunt-contrib-less
+432 verbose request no auth needed
+433 info attempt registry request try #1 at 4:07:49 PM
+434 verbose etag "435EW3VBIR176EDGIM9NFTQM4"
+435 http request GET https://registry.npmjs.org/grunt-contrib-less
+436 verbose request uri https://registry.npmjs.org/jshint-stylish
+437 verbose request no auth needed
+438 info attempt registry request try #1 at 4:07:49 PM
+439 verbose etag "9JRS78T27507O8W3U62TX4YOL"
+440 http request GET https://registry.npmjs.org/jshint-stylish
+441 verbose request uri https://registry.npmjs.org/font-awesome
+442 verbose request no auth needed
+443 info attempt registry request try #1 at 4:07:49 PM
+444 verbose etag "2N9RV5CX8GOYV4OW6NOJPZECC"
+445 http request GET https://registry.npmjs.org/font-awesome
+446 verbose request uri https://registry.npmjs.org/angular-multi-select
+447 verbose request no auth needed
+448 info attempt registry request try #1 at 4:07:49 PM
+449 verbose etag "765OEZH73J581ON6E0GD9Q8T7"
+450 http request GET https://registry.npmjs.org/angular-multi-select
+451 verbose request uri https://registry.npmjs.org/express
+452 verbose request no auth needed
+453 info attempt registry request try #1 at 4:07:50 PM
+454 verbose etag "4R5JCQ9SPPZ3J1R1FATBSWVAF"
+455 http request GET https://registry.npmjs.org/express
+456 verbose request uri https://registry.npmjs.org/grunt-contrib-jshint
+457 verbose request no auth needed
+458 info attempt registry request try #1 at 4:07:50 PM
+459 verbose etag "RCUVB4N53TAYMA7429KSI2DH"
+460 http request GET https://registry.npmjs.org/grunt-contrib-jshint
+461 verbose request uri https://registry.npmjs.org/angular-route
+462 verbose request no auth needed
+463 info attempt registry request try #1 at 4:07:50 PM
+464 verbose etag "5BJGCKPCEABJZVYJYF102LASE"
+465 http request GET https://registry.npmjs.org/angular-route
+466 http 200 https://registry.npmjs.org/grunt-scriptlinker
+467 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+467 verbose headers   etag: '"3F4T5THRR3GAT4DYMUB0N2434"',
+467 verbose headers   'content-type': 'application/json',
+467 verbose headers   'content-encoding': 'gzip',
+467 verbose headers   'cache-control': 'max-age=300',
+467 verbose headers   'content-length': '2332',
+467 verbose headers   'accept-ranges': 'bytes',
+467 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+467 verbose headers   via: '1.1 varnish',
+467 verbose headers   age: '0',
+467 verbose headers   connection: 'keep-alive',
+467 verbose headers   'x-served-by': 'cache-cdg8735-CDG',
+467 verbose headers   'x-cache': 'MISS',
+467 verbose headers   'x-cache-hits': '0',
+467 verbose headers   'x-timer': 'S1475923070.558134,VS0,VE107',
+467 verbose headers   vary: 'Accept-Encoding' }
+468 silly get cb [ 200,
+468 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+468 silly get     etag: '"3F4T5THRR3GAT4DYMUB0N2434"',
+468 silly get     'content-type': 'application/json',
+468 silly get     'content-encoding': 'gzip',
+468 silly get     'cache-control': 'max-age=300',
+468 silly get     'content-length': '2332',
+468 silly get     'accept-ranges': 'bytes',
+468 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+468 silly get     via: '1.1 varnish',
+468 silly get     age: '0',
+468 silly get     connection: 'keep-alive',
+468 silly get     'x-served-by': 'cache-cdg8735-CDG',
+468 silly get     'x-cache': 'MISS',
+468 silly get     'x-cache-hits': '0',
+468 silly get     'x-timer': 'S1475923070.558134,VS0,VE107',
+468 silly get     vary: 'Accept-Encoding' } ]
+469 verbose get saving grunt-scriptlinker to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-scriptlinker\.cache.json
+470 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+471 silly addNameRange number 2 { name: 'grunt-scriptlinker',
+471 silly addNameRange   range: '>=0.1.1 <0.2.0',
+471 silly addNameRange   hasData: true }
+472 silly addNameRange versions [ 'grunt-scriptlinker', [ '0.1.0', '0.1.1' ] ]
+473 silly addNamed grunt-scriptlinker@0.1.1
+474 verbose addNamed "0.1.1" is a plain semver version for grunt-scriptlinker
+475 http 200 https://registry.npmjs.org/bootstrap
+476 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+476 verbose headers   etag: '"B7D8IPH8IKLRYXOL3QRI8WH0A"',
+476 verbose headers   'content-type': 'application/json',
+476 verbose headers   'content-encoding': 'gzip',
+476 verbose headers   'cache-control': 'max-age=300',
+476 verbose headers   'content-length': '10092',
+476 verbose headers   'accept-ranges': 'bytes',
+476 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+476 verbose headers   via: '1.1 varnish',
+476 verbose headers   age: '259',
+476 verbose headers   connection: 'keep-alive',
+476 verbose headers   'x-served-by': 'cache-cdg8720-CDG',
+476 verbose headers   'x-cache': 'HIT',
+476 verbose headers   'x-cache-hits': '1',
+476 verbose headers   'x-timer': 'S1475923070.683959,VS0,VE0',
+476 verbose headers   vary: 'Accept-Encoding' }
+477 silly get cb [ 200,
+477 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+477 silly get     etag: '"B7D8IPH8IKLRYXOL3QRI8WH0A"',
+477 silly get     'content-type': 'application/json',
+477 silly get     'content-encoding': 'gzip',
+477 silly get     'cache-control': 'max-age=300',
+477 silly get     'content-length': '10092',
+477 silly get     'accept-ranges': 'bytes',
+477 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+477 silly get     via: '1.1 varnish',
+477 silly get     age: '259',
+477 silly get     connection: 'keep-alive',
+477 silly get     'x-served-by': 'cache-cdg8720-CDG',
+477 silly get     'x-cache': 'HIT',
+477 silly get     'x-cache-hits': '1',
+477 silly get     'x-timer': 'S1475923070.683959,VS0,VE0',
+477 silly get     vary: 'Accept-Encoding' } ]
+478 verbose get saving bootstrap to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\bootstrap\.cache.json
+479 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+480 silly mapToRegistry name grunt-scriptlinker
+481 silly mapToRegistry using default registry
+482 silly mapToRegistry registry https://registry.npmjs.org/
+483 silly mapToRegistry data Result {
+483 silly mapToRegistry   raw: 'grunt-scriptlinker',
+483 silly mapToRegistry   scope: null,
+483 silly mapToRegistry   name: 'grunt-scriptlinker',
+483 silly mapToRegistry   rawSpec: '',
+483 silly mapToRegistry   spec: 'latest',
+483 silly mapToRegistry   type: 'tag' }
+484 silly mapToRegistry uri https://registry.npmjs.org/grunt-scriptlinker
+485 verbose addRemoteTarball https://registry.npmjs.org/grunt-scriptlinker/-/grunt-scriptlinker-0.1.1.tgz not in flight; adding
+486 verbose addRemoteTarball [ 'https://registry.npmjs.org/grunt-scriptlinker/-/grunt-scriptlinker-0.1.1.tgz',
+486 verbose addRemoteTarball   '6312d77918a094d9dd506e5e953ff4040282e9e1' ]
+487 silly addNameTag next cb for bootstrap with tag latest
+488 silly addNamed bootstrap@3.3.7
+489 verbose addNamed "3.3.7" is a plain semver version for bootstrap
+490 info retry fetch attempt 1 at 4:07:50 PM
+491 info attempt registry request try #1 at 4:07:50 PM
+492 http fetch GET https://registry.npmjs.org/grunt-scriptlinker/-/grunt-scriptlinker-0.1.1.tgz
+493 silly cache afterAdd bootstrap@3.3.7
+494 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\bootstrap\3.3.7\package\package.json not in flight; writing
+495 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+496 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\bootstrap\3.3.7\package\package.json written
+497 http 200 https://registry.npmjs.org/jquery
+498 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+498 verbose headers   etag: '"DDTTGKVQ4GCR5860CT5PL5PFS"',
+498 verbose headers   'content-type': 'application/json',
+498 verbose headers   'content-encoding': 'gzip',
+498 verbose headers   'cache-control': 'max-age=300',
+498 verbose headers   'content-length': '11891',
+498 verbose headers   'accept-ranges': 'bytes',
+498 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+498 verbose headers   via: '1.1 varnish',
+498 verbose headers   age: '255',
+498 verbose headers   connection: 'keep-alive',
+498 verbose headers   'x-served-by': 'cache-cdg8726-CDG',
+498 verbose headers   'x-cache': 'HIT',
+498 verbose headers   'x-cache-hits': '2',
+498 verbose headers   'x-timer': 'S1475923070.697950,VS0,VE0',
+498 verbose headers   vary: 'Accept-Encoding' }
+499 silly get cb [ 200,
+499 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+499 silly get     etag: '"DDTTGKVQ4GCR5860CT5PL5PFS"',
+499 silly get     'content-type': 'application/json',
+499 silly get     'content-encoding': 'gzip',
+499 silly get     'cache-control': 'max-age=300',
+499 silly get     'content-length': '11891',
+499 silly get     'accept-ranges': 'bytes',
+499 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+499 silly get     via: '1.1 varnish',
+499 silly get     age: '255',
+499 silly get     connection: 'keep-alive',
+499 silly get     'x-served-by': 'cache-cdg8726-CDG',
+499 silly get     'x-cache': 'HIT',
+499 silly get     'x-cache-hits': '2',
+499 silly get     'x-timer': 'S1475923070.697950,VS0,VE0',
+499 silly get     vary: 'Accept-Encoding' } ]
+500 verbose get saving jquery to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\jquery\.cache.json
+501 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+502 http 304 https://registry.npmjs.org/grunt-contrib-uglify
+503 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+503 verbose headers   via: '1.1 varnish',
+503 verbose headers   'cache-control': 'max-age=300',
+503 verbose headers   etag: '"2EYJO3UIEOCG8C41APC7VR07M"',
+503 verbose headers   age: '172',
+503 verbose headers   connection: 'keep-alive',
+503 verbose headers   'x-served-by': 'cache-cdg8733-CDG',
+503 verbose headers   'x-cache': 'HIT',
+503 verbose headers   'x-cache-hits': '2',
+503 verbose headers   'x-timer': 'S1475923070.716663,VS0,VE0',
+503 verbose headers   vary: 'Accept-Encoding' }
+504 silly get cb [ 304,
+504 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+504 silly get     via: '1.1 varnish',
+504 silly get     'cache-control': 'max-age=300',
+504 silly get     etag: '"2EYJO3UIEOCG8C41APC7VR07M"',
+504 silly get     age: '172',
+504 silly get     connection: 'keep-alive',
+504 silly get     'x-served-by': 'cache-cdg8733-CDG',
+504 silly get     'x-cache': 'HIT',
+504 silly get     'x-cache-hits': '2',
+504 silly get     'x-timer': 'S1475923070.716663,VS0,VE0',
+504 silly get     vary: 'Accept-Encoding' } ]
+505 verbose etag https://registry.npmjs.org/grunt-contrib-uglify from cache
+506 verbose get saving grunt-contrib-uglify to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-contrib-uglify\.cache.json
+507 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+508 silly addNameTag next cb for jquery with tag latest
+509 silly addNamed jquery@3.1.1
+510 verbose addNamed "3.1.1" is a plain semver version for jquery
+511 silly addNameTag next cb for grunt-contrib-uglify with tag latest
+512 silly addNamed grunt-contrib-uglify@2.0.0
+513 verbose addNamed "2.0.0" is a plain semver version for grunt-contrib-uglify
+514 http 200 https://registry.npmjs.org/underscore
+515 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+515 verbose headers   etag: '"8I5FTB69HB4TKARUHB4LXCDHD"',
+515 verbose headers   'content-type': 'application/json',
+515 verbose headers   'content-encoding': 'gzip',
+515 verbose headers   'cache-control': 'max-age=300',
+515 verbose headers   'content-length': '7986',
+515 verbose headers   'accept-ranges': 'bytes',
+515 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+515 verbose headers   via: '1.1 varnish',
+515 verbose headers   age: '46',
+515 verbose headers   connection: 'keep-alive',
+515 verbose headers   'x-served-by': 'cache-cdg8724-CDG',
+515 verbose headers   'x-cache': 'HIT',
+515 verbose headers   'x-cache-hits': '1',
+515 verbose headers   'x-timer': 'S1475923070.724537,VS0,VE0',
+515 verbose headers   vary: 'Accept-Encoding' }
+516 silly get cb [ 200,
+516 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+516 silly get     etag: '"8I5FTB69HB4TKARUHB4LXCDHD"',
+516 silly get     'content-type': 'application/json',
+516 silly get     'content-encoding': 'gzip',
+516 silly get     'cache-control': 'max-age=300',
+516 silly get     'content-length': '7986',
+516 silly get     'accept-ranges': 'bytes',
+516 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+516 silly get     via: '1.1 varnish',
+516 silly get     age: '46',
+516 silly get     connection: 'keep-alive',
+516 silly get     'x-served-by': 'cache-cdg8724-CDG',
+516 silly get     'x-cache': 'HIT',
+516 silly get     'x-cache-hits': '1',
+516 silly get     'x-timer': 'S1475923070.724537,VS0,VE0',
+516 silly get     vary: 'Accept-Encoding' } ]
+517 verbose get saving underscore to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\underscore\.cache.json
+518 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+519 http 200 https://registry.npmjs.org/grunt
+520 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+520 verbose headers   etag: '"ARIESP0YT6HZPBJ35QAX5SNMZ"',
+520 verbose headers   'content-type': 'application/json',
+520 verbose headers   'content-encoding': 'gzip',
+520 verbose headers   'cache-control': 'max-age=300',
+520 verbose headers   'content-length': '13274',
+520 verbose headers   'accept-ranges': 'bytes',
+520 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+520 verbose headers   via: '1.1 varnish',
+520 verbose headers   age: '172',
+520 verbose headers   connection: 'keep-alive',
+520 verbose headers   'x-served-by': 'cache-cdg8724-CDG',
+520 verbose headers   'x-cache': 'HIT',
+520 verbose headers   'x-cache-hits': '1',
+520 verbose headers   'x-timer': 'S1475923070.710365,VS0,VE0',
+520 verbose headers   vary: 'Accept-Encoding' }
+521 silly get cb [ 200,
+521 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+521 silly get     etag: '"ARIESP0YT6HZPBJ35QAX5SNMZ"',
+521 silly get     'content-type': 'application/json',
+521 silly get     'content-encoding': 'gzip',
+521 silly get     'cache-control': 'max-age=300',
+521 silly get     'content-length': '13274',
+521 silly get     'accept-ranges': 'bytes',
+521 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+521 silly get     via: '1.1 varnish',
+521 silly get     age: '172',
+521 silly get     connection: 'keep-alive',
+521 silly get     'x-served-by': 'cache-cdg8724-CDG',
+521 silly get     'x-cache': 'HIT',
+521 silly get     'x-cache-hits': '1',
+521 silly get     'x-timer': 'S1475923070.710365,VS0,VE0',
+521 silly get     vary: 'Accept-Encoding' } ]
+522 verbose get saving grunt to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt\.cache.json
+523 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+524 http 304 https://registry.npmjs.org/grunt-contrib-cssmin
+525 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+525 verbose headers   via: '1.1 varnish',
+525 verbose headers   'cache-control': 'max-age=300',
+525 verbose headers   etag: '"CB3GZILZAA6SWWULTXIG7SNSO"',
+525 verbose headers   age: '147',
+525 verbose headers   connection: 'keep-alive',
+525 verbose headers   'x-served-by': 'cache-cdg8721-CDG',
+525 verbose headers   'x-cache': 'HIT',
+525 verbose headers   'x-cache-hits': '1',
+525 verbose headers   'x-timer': 'S1475923070.733836,VS0,VE0',
+525 verbose headers   vary: 'Accept-Encoding' }
+526 silly get cb [ 304,
+526 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+526 silly get     via: '1.1 varnish',
+526 silly get     'cache-control': 'max-age=300',
+526 silly get     etag: '"CB3GZILZAA6SWWULTXIG7SNSO"',
+526 silly get     age: '147',
+526 silly get     connection: 'keep-alive',
+526 silly get     'x-served-by': 'cache-cdg8721-CDG',
+526 silly get     'x-cache': 'HIT',
+526 silly get     'x-cache-hits': '1',
+526 silly get     'x-timer': 'S1475923070.733836,VS0,VE0',
+526 silly get     vary: 'Accept-Encoding' } ]
+527 verbose etag https://registry.npmjs.org/grunt-contrib-cssmin from cache
+528 verbose get saving grunt-contrib-cssmin to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-contrib-cssmin\.cache.json
+529 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+530 http 304 https://registry.npmjs.org/jshint-stylish
+531 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+531 verbose headers   via: '1.1 varnish',
+531 verbose headers   'cache-control': 'max-age=300',
+531 verbose headers   etag: '"9JRS78T27507O8W3U62TX4YOL"',
+531 verbose headers   age: '147',
+531 verbose headers   connection: 'keep-alive',
+531 verbose headers   'x-served-by': 'cache-cdg8734-CDG',
+531 verbose headers   'x-cache': 'HIT',
+531 verbose headers   'x-cache-hits': '2',
+531 verbose headers   'x-timer': 'S1475923070.741989,VS0,VE0',
+531 verbose headers   vary: 'Accept-Encoding' }
+532 silly get cb [ 304,
+532 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+532 silly get     via: '1.1 varnish',
+532 silly get     'cache-control': 'max-age=300',
+532 silly get     etag: '"9JRS78T27507O8W3U62TX4YOL"',
+532 silly get     age: '147',
+532 silly get     connection: 'keep-alive',
+532 silly get     'x-served-by': 'cache-cdg8734-CDG',
+532 silly get     'x-cache': 'HIT',
+532 silly get     'x-cache-hits': '2',
+532 silly get     'x-timer': 'S1475923070.741989,VS0,VE0',
+532 silly get     vary: 'Accept-Encoding' } ]
+533 verbose etag https://registry.npmjs.org/jshint-stylish from cache
+534 verbose get saving jshint-stylish to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\jshint-stylish\.cache.json
+535 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+536 http 200 https://registry.npmjs.org/font-awesome
+537 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+537 verbose headers   etag: '"6ALFSGFEKLO24I4JPA43P46JT"',
+537 verbose headers   'content-type': 'application/json',
+537 verbose headers   'content-encoding': 'gzip',
+537 verbose headers   'cache-control': 'max-age=300',
+537 verbose headers   'content-length': '4637',
+537 verbose headers   'accept-ranges': 'bytes',
+537 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+537 verbose headers   via: '1.1 varnish',
+537 verbose headers   age: '72',
+537 verbose headers   connection: 'keep-alive',
+537 verbose headers   'x-served-by': 'cache-cdg8722-CDG',
+537 verbose headers   'x-cache': 'HIT',
+537 verbose headers   'x-cache-hits': '1',
+537 verbose headers   'x-timer': 'S1475923070.745708,VS0,VE0',
+537 verbose headers   vary: 'Accept-Encoding' }
+538 silly get cb [ 200,
+538 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+538 silly get     etag: '"6ALFSGFEKLO24I4JPA43P46JT"',
+538 silly get     'content-type': 'application/json',
+538 silly get     'content-encoding': 'gzip',
+538 silly get     'cache-control': 'max-age=300',
+538 silly get     'content-length': '4637',
+538 silly get     'accept-ranges': 'bytes',
+538 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+538 silly get     via: '1.1 varnish',
+538 silly get     age: '72',
+538 silly get     connection: 'keep-alive',
+538 silly get     'x-served-by': 'cache-cdg8722-CDG',
+538 silly get     'x-cache': 'HIT',
+538 silly get     'x-cache-hits': '1',
+538 silly get     'x-timer': 'S1475923070.745708,VS0,VE0',
+538 silly get     vary: 'Accept-Encoding' } ]
+539 verbose get saving font-awesome to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\font-awesome\.cache.json
+540 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+541 silly cache afterAdd jquery@3.1.1
+542 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\jquery\3.1.1\package\package.json not in flight; writing
+543 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+544 silly addNameTag next cb for underscore with tag latest
+545 silly addNamed underscore@1.8.3
+546 verbose addNamed "1.8.3" is a plain semver version for underscore
+547 http 304 https://registry.npmjs.org/angular-date-time-input
+548 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+548 verbose headers   via: '1.1 varnish',
+548 verbose headers   'cache-control': 'max-age=300',
+548 verbose headers   etag: '"EBNF7AVDHNQKSRG7PLYNQSUJW"',
+548 verbose headers   age: '0',
+548 verbose headers   connection: 'keep-alive',
+548 verbose headers   'x-served-by': 'cache-cdg8729-CDG',
+548 verbose headers   'x-cache': 'MISS',
+548 verbose headers   'x-cache-hits': '0',
+548 verbose headers   'x-timer': 'S1475923070.679644,VS0,VE105',
+548 verbose headers   vary: 'Accept-Encoding' }
+549 silly get cb [ 304,
+549 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+549 silly get     via: '1.1 varnish',
+549 silly get     'cache-control': 'max-age=300',
+549 silly get     etag: '"EBNF7AVDHNQKSRG7PLYNQSUJW"',
+549 silly get     age: '0',
+549 silly get     connection: 'keep-alive',
+549 silly get     'x-served-by': 'cache-cdg8729-CDG',
+549 silly get     'x-cache': 'MISS',
+549 silly get     'x-cache-hits': '0',
+549 silly get     'x-timer': 'S1475923070.679644,VS0,VE105',
+549 silly get     vary: 'Accept-Encoding' } ]
+550 verbose etag https://registry.npmjs.org/angular-date-time-input from cache
+551 verbose get saving angular-date-time-input to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-date-time-input\.cache.json
+552 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+553 silly addNameTag next cb for grunt-contrib-cssmin with tag latest
+554 silly addNamed grunt-contrib-cssmin@1.0.2
+555 verbose addNamed "1.0.2" is a plain semver version for grunt-contrib-cssmin
+556 silly addNameRange number 2 { name: 'grunt', range: '>=0.4.4 <0.5.0', hasData: true }
+557 silly addNameRange versions [ 'grunt',
+557 silly addNameRange   [ '0.1.0',
+557 silly addNameRange     '0.1.1',
+557 silly addNameRange     '0.1.2',
+557 silly addNameRange     '0.2.0',
+557 silly addNameRange     '0.2.1',
+557 silly addNameRange     '0.2.2',
+557 silly addNameRange     '0.2.3',
+557 silly addNameRange     '0.2.4',
+557 silly addNameRange     '0.2.5',
+557 silly addNameRange     '0.2.6',
+557 silly addNameRange     '0.2.7',
+557 silly addNameRange     '0.2.8',
+557 silly addNameRange     '0.2.9',
+557 silly addNameRange     '0.2.10',
+557 silly addNameRange     '0.2.11',
+557 silly addNameRange     '0.2.12',
+557 silly addNameRange     '0.2.13',
+557 silly addNameRange     '0.2.14',
+557 silly addNameRange     '0.2.15',
+557 silly addNameRange     '0.3.0',
+557 silly addNameRange     '0.3.1',
+557 silly addNameRange     '0.3.2',
+557 silly addNameRange     '0.3.3',
+557 silly addNameRange     '0.3.4',
+557 silly addNameRange     '0.3.5',
+557 silly addNameRange     '0.3.6',
+557 silly addNameRange     '0.3.7',
+557 silly addNameRange     '0.3.8',
+557 silly addNameRange     '0.3.9',
+557 silly addNameRange     '0.3.10',
+557 silly addNameRange     '0.3.11',
+557 silly addNameRange     '0.3.12',
+557 silly addNameRange     '0.3.13',
+557 silly addNameRange     '0.3.14',
+557 silly addNameRange     '0.3.15',
+557 silly addNameRange     '0.3.16',
+557 silly addNameRange     '0.3.17',
+557 silly addNameRange     '0.4.0',
+557 silly addNameRange     '0.4.1',
+557 silly addNameRange     '0.4.2',
+557 silly addNameRange     '0.4.3',
+557 silly addNameRange     '0.4.4',
+557 silly addNameRange     '0.4.5',
+557 silly addNameRange     '1.0.0-rc1',
+557 silly addNameRange     '1.0.0',
+557 silly addNameRange     '1.0.1',
+557 silly addNameRange     '0.3.13-a',
+557 silly addNameRange     '0.4.0-a',
+557 silly addNameRange     '0.4.0-rc1',
+557 silly addNameRange     '0.4.0-rc2',
+557 silly addNameRange     '0.4.0-rc3',
+557 silly addNameRange     '0.4.0-rc4',
+557 silly addNameRange     '0.4.0-rc5',
+557 silly addNameRange     '0.4.0-rc6',
+557 silly addNameRange     '0.4.0-rc7',
+557 silly addNameRange     '0.4.0-rc8' ] ]
+558 silly addNamed grunt@0.4.5
+559 verbose addNamed "0.4.5" is a plain semver version for grunt
+560 silly addNameTag next cb for jshint-stylish with tag latest
+561 silly addNamed jshint-stylish@2.2.1
+562 verbose addNamed "2.2.1" is a plain semver version for jshint-stylish
+563 silly cache afterAdd grunt-contrib-uglify@2.0.0
+564 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-uglify\2.0.0\package\package.json not in flight; writing
+565 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+566 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\jquery\3.1.1\package\package.json written
+567 silly addNameTag next cb for font-awesome with tag latest
+568 silly addNamed font-awesome@4.6.3
+569 verbose addNamed "4.6.3" is a plain semver version for font-awesome
+570 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-uglify\2.0.0\package\package.json written
+571 silly cache afterAdd jshint-stylish@2.2.1
+572 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\jshint-stylish\2.2.1\package\package.json not in flight; writing
+573 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+574 silly addNameTag next cb for angular-date-time-input with tag latest
+575 silly addNamed angular-date-time-input@1.2.1
+576 verbose addNamed "1.2.1" is a plain semver version for angular-date-time-input
+577 silly cache afterAdd underscore@1.8.3
+578 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\underscore\1.8.3\package\package.json not in flight; writing
+579 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+580 silly cache afterAdd grunt@0.4.5
+581 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt\0.4.5\package\package.json not in flight; writing
+582 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+583 silly cache afterAdd font-awesome@4.6.3
+584 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\font-awesome\4.6.3\package\package.json not in flight; writing
+585 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+586 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\jshint-stylish\2.2.1\package\package.json written
+587 silly cache afterAdd angular-date-time-input@1.2.1
+588 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-date-time-input\1.2.1\package\package.json not in flight; writing
+589 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+590 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\underscore\1.8.3\package\package.json written
+591 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt\0.4.5\package\package.json written
+592 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\font-awesome\4.6.3\package\package.json written
+593 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-date-time-input\1.2.1\package\package.json written
+594 http 200 https://registry.npmjs.org/grunt-contrib-jshint
+595 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+595 verbose headers   etag: '"99AQWU1TAWTK4VFO1CTD85ZPS"',
+595 verbose headers   'content-type': 'application/json',
+595 verbose headers   'content-encoding': 'gzip',
+595 verbose headers   'cache-control': 'max-age=300',
+595 verbose headers   'content-length': '10399',
+595 verbose headers   'accept-ranges': 'bytes',
+595 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+595 verbose headers   via: '1.1 varnish',
+595 verbose headers   age: '0',
+595 verbose headers   connection: 'keep-alive',
+595 verbose headers   'x-served-by': 'cache-cdg8734-CDG',
+595 verbose headers   'x-cache': 'HIT',
+595 verbose headers   'x-cache-hits': '1',
+595 verbose headers   'x-timer': 'S1475923070.737194,VS0,VE99',
+595 verbose headers   vary: 'Accept-Encoding' }
+596 silly get cb [ 200,
+596 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+596 silly get     etag: '"99AQWU1TAWTK4VFO1CTD85ZPS"',
+596 silly get     'content-type': 'application/json',
+596 silly get     'content-encoding': 'gzip',
+596 silly get     'cache-control': 'max-age=300',
+596 silly get     'content-length': '10399',
+596 silly get     'accept-ranges': 'bytes',
+596 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+596 silly get     via: '1.1 varnish',
+596 silly get     age: '0',
+596 silly get     connection: 'keep-alive',
+596 silly get     'x-served-by': 'cache-cdg8734-CDG',
+596 silly get     'x-cache': 'HIT',
+596 silly get     'x-cache-hits': '1',
+596 silly get     'x-timer': 'S1475923070.737194,VS0,VE99',
+596 silly get     vary: 'Accept-Encoding' } ]
+597 verbose get saving grunt-contrib-jshint to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-contrib-jshint\.cache.json
+598 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+599 http fetch 200 https://registry.npmjs.org/grunt-scriptlinker/-/grunt-scriptlinker-0.1.1.tgz
+600 http 304 https://registry.npmjs.org/angular-touch
+601 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+601 verbose headers   via: '1.1 varnish',
+601 verbose headers   'cache-control': 'max-age=300',
+601 verbose headers   etag: '"B85JN5R4KAXD1GJ0GSAMTWXCJ"',
+601 verbose headers   age: '0',
+601 verbose headers   connection: 'keep-alive',
+601 verbose headers   'x-served-by': 'cache-cdg8732-CDG',
+601 verbose headers   'x-cache': 'MISS',
+601 verbose headers   'x-cache-hits': '0',
+601 verbose headers   'x-timer': 'S1475923070.663229,VS0,VE191',
+601 verbose headers   vary: 'Accept-Encoding' }
+602 silly get cb [ 304,
+602 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+602 silly get     via: '1.1 varnish',
+602 silly get     'cache-control': 'max-age=300',
+602 silly get     etag: '"B85JN5R4KAXD1GJ0GSAMTWXCJ"',
+602 silly get     age: '0',
+602 silly get     connection: 'keep-alive',
+602 silly get     'x-served-by': 'cache-cdg8732-CDG',
+602 silly get     'x-cache': 'MISS',
+602 silly get     'x-cache-hits': '0',
+602 silly get     'x-timer': 'S1475923070.663229,VS0,VE191',
+602 silly get     vary: 'Accept-Encoding' } ]
+603 verbose etag https://registry.npmjs.org/angular-touch from cache
+604 verbose get saving angular-touch to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-touch\.cache.json
+605 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+606 silly cache afterAdd grunt-contrib-cssmin@1.0.2
+607 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-cssmin\1.0.2\package\package.json not in flight; writing
+608 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+609 silly fetchAndShaCheck shasum 6312d77918a094d9dd506e5e953ff4040282e9e1
+610 http 304 https://registry.npmjs.org/angular-module-sanitize
+611 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+611 verbose headers   via: '1.1 varnish',
+611 verbose headers   'cache-control': 'max-age=300',
+611 verbose headers   etag: '"D5H082E2ZQ4TLXNM042YP11G1"',
+611 verbose headers   age: '0',
+611 verbose headers   connection: 'keep-alive',
+611 verbose headers   'x-served-by': 'cache-cdg8720-CDG',
+611 verbose headers   'x-cache': 'MISS',
+611 verbose headers   'x-cache-hits': '0',
+611 verbose headers   'x-timer': 'S1475923070.675294,VS0,VE183',
+611 verbose headers   vary: 'Accept-Encoding' }
+612 silly get cb [ 304,
+612 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+612 silly get     via: '1.1 varnish',
+612 silly get     'cache-control': 'max-age=300',
+612 silly get     etag: '"D5H082E2ZQ4TLXNM042YP11G1"',
+612 silly get     age: '0',
+612 silly get     connection: 'keep-alive',
+612 silly get     'x-served-by': 'cache-cdg8720-CDG',
+612 silly get     'x-cache': 'MISS',
+612 silly get     'x-cache-hits': '0',
+612 silly get     'x-timer': 'S1475923070.675294,VS0,VE183',
+612 silly get     vary: 'Accept-Encoding' } ]
+613 verbose etag https://registry.npmjs.org/angular-module-sanitize from cache
+614 verbose get saving angular-module-sanitize to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-module-sanitize\.cache.json
+615 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+616 silly addNameTag next cb for grunt-contrib-jshint with tag latest
+617 silly addNamed grunt-contrib-jshint@1.0.0
+618 verbose addNamed "1.0.0" is a plain semver version for grunt-contrib-jshint
+619 verbose addTmpTarball C:\Users\Admin\AppData\Local\Temp\npm-9660-99eb73d2\registry.npmjs.org\grunt-scriptlinker\-\grunt-scriptlinker-0.1.1.tgz not in flight; adding
+620 verbose addTmpTarball already have metadata; skipping unpack for grunt-scriptlinker@0.1.1
+621 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+622 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-cssmin\1.0.2\package\package.json written
+623 silly cache afterAdd grunt-scriptlinker@0.1.1
+624 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-scriptlinker\0.1.1\package\package.json not in flight; writing
+625 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+626 silly addNameRange number 2 { name: 'angular-module-sanitize',
+626 silly addNameRange   range: '>=1.2.19 <2.0.0',
+626 silly addNameRange   hasData: true }
+627 silly addNameRange versions [ 'angular-module-sanitize',
+627 silly addNameRange   [ '1.2.15', '1.2.16', '1.2.17', '1.2.18', '1.2.19' ] ]
+628 silly addNamed angular-module-sanitize@1.2.19
+629 verbose addNamed "1.2.19" is a plain semver version for angular-module-sanitize
+630 silly addNameRange number 2 { name: 'angular-touch', range: '>=1.5.8 <2.0.0', hasData: true }
+631 silly addNameRange versions [ 'angular-touch',
+631 silly addNameRange   [ '1.3.0-rc.5',
+631 silly addNameRange     '1.3.0',
+631 silly addNameRange     '1.3.1',
+631 silly addNameRange     '1.3.2',
+631 silly addNameRange     '1.3.3',
+631 silly addNameRange     '1.3.4-build.3587',
+631 silly addNameRange     '1.2.27',
+631 silly addNameRange     '1.3.4',
+631 silly addNameRange     '1.3.5',
+631 silly addNameRange     '1.3.6',
+631 silly addNameRange     '1.3.7',
+631 silly addNameRange     '1.2.28',
+631 silly addNameRange     '1.3.8',
+631 silly addNameRange     '1.4.0-beta.0',
+631 silly addNameRange     '1.3.9',
+631 silly addNameRange     '1.3.10',
+631 silly addNameRange     '1.4.0-beta.1',
+631 silly addNameRange     '1.4.0-beta.2',
+631 silly addNameRange     '1.3.11',
+631 silly addNameRange     '1.4.0-beta.3',
+631 silly addNameRange     '1.3.12',
+631 silly addNameRange     '1.3.13',
+631 silly addNameRange     '1.4.0-beta.4',
+631 silly addNameRange     '1.3.14',
+631 silly addNameRange     '1.4.0-beta.5',
+631 silly addNameRange     '1.4.0-beta.6',
+631 silly addNameRange     '1.3.15',
+631 silly addNameRange     '1.4.0-rc.0',
+631 silly addNameRange     '1.4.0-rc.1',
+631 silly addNameRange     '1.4.0-rc.2',
+631 silly addNameRange     '1.4.0',
+631 silly addNameRange     '1.3.16',
+631 silly addNameRange     '1.4.1',
+631 silly addNameRange     '1.4.2',
+631 silly addNameRange     '1.3.17',
+631 silly addNameRange     '1.4.3',
+631 silly addNameRange     '1.4.4',
+631 silly addNameRange     '1.3.18',
+631 silly addNameRange     '1.4.5',
+631 silly addNameRange     '1.3.19',
+631 silly addNameRange     '1.4.6',
+631 silly addNameRange     '1.5.0-beta.0',
+631 silly addNameRange     '1.2.29',
+631 silly addNameRange     '1.3.20',
+631 silly addNameRange     '1.4.7',
+631 silly addNameRange     '1.5.0-beta.2',
+631 silly addNameRange     '1.4.8',
+631 silly addNameRange     '1.5.0-rc.0',
+631 silly addNameRange     '1.5.0-rc.1',
+631 silly addNameRange     '1.4.9',
+631 silly addNameRange     '1.5.0-rc.2',
+631 silly addNameRange     '1.5.0',
+631 silly addNameRange     '1.5.1',
+631 silly addNameRange     '1.4.10',
+631 silly addNameRange     '1.5.2',
+631 silly addNameRange     '1.5.3',
+631 silly addNameRange     '1.5.5',
+631 silly addNameRange     '1.4.11',
+631 silly addNameRange     '1.5.6',
+631 silly addNameRange     '1.4.12',
+631 silly addNameRange     '1.5.7',
+631 silly addNameRange     '1.2.30',
+631 silly addNameRange     '1.5.8' ] ]
+632 silly addNamed angular-touch@1.5.8
+633 verbose addNamed "1.5.8" is a plain semver version for angular-touch
+634 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-scriptlinker\0.1.1\package\package.json written
+635 silly cache afterAdd angular-module-sanitize@1.2.19
+636 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-module-sanitize\1.2.19\package\package.json not in flight; writing
+637 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+638 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-module-sanitize\1.2.19\package\package.json written
+639 http 200 https://registry.npmjs.org/grunt-contrib-watch
+640 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+640 verbose headers   etag: '"9VESBW6BNBAJRC2HLCIMOH4M9"',
+640 verbose headers   'content-type': 'application/json',
+640 verbose headers   'content-encoding': 'gzip',
+640 verbose headers   'cache-control': 'max-age=300',
+640 verbose headers   'content-length': '14745',
+640 verbose headers   'accept-ranges': 'bytes',
+640 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+640 verbose headers   via: '1.1 varnish',
+640 verbose headers   age: '261',
+640 verbose headers   connection: 'keep-alive',
+640 verbose headers   'x-served-by': 'cache-cdg8730-CDG',
+640 verbose headers   'x-cache': 'HIT',
+640 verbose headers   'x-cache-hits': '1',
+640 verbose headers   'x-timer': 'S1475923070.731357,VS0,VE0',
+640 verbose headers   vary: 'Accept-Encoding' }
+641 silly get cb [ 200,
+641 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+641 silly get     etag: '"9VESBW6BNBAJRC2HLCIMOH4M9"',
+641 silly get     'content-type': 'application/json',
+641 silly get     'content-encoding': 'gzip',
+641 silly get     'cache-control': 'max-age=300',
+641 silly get     'content-length': '14745',
+641 silly get     'accept-ranges': 'bytes',
+641 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+641 silly get     via: '1.1 varnish',
+641 silly get     age: '261',
+641 silly get     connection: 'keep-alive',
+641 silly get     'x-served-by': 'cache-cdg8730-CDG',
+641 silly get     'x-cache': 'HIT',
+641 silly get     'x-cache-hits': '1',
+641 silly get     'x-timer': 'S1475923070.731357,VS0,VE0',
+641 silly get     vary: 'Accept-Encoding' } ]
+642 verbose get saving grunt-contrib-watch to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-contrib-watch\.cache.json
+643 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+644 http 200 https://registry.npmjs.org/angular
+645 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+645 verbose headers   etag: '"3HPJMEWIKUI66XIHQATTISR63"',
+645 verbose headers   'content-type': 'application/json',
+645 verbose headers   'content-encoding': 'gzip',
+645 verbose headers   'cache-control': 'max-age=300',
+645 verbose headers   'content-length': '16268',
+645 verbose headers   'accept-ranges': 'bytes',
+645 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+645 verbose headers   via: '1.1 varnish',
+645 verbose headers   age: '25',
+645 verbose headers   connection: 'keep-alive',
+645 verbose headers   'x-served-by': 'cache-cdg8726-CDG',
+645 verbose headers   'x-cache': 'HIT',
+645 verbose headers   'x-cache-hits': '1',
+645 verbose headers   'x-timer': 'S1475923070.734305,VS0,VE0',
+645 verbose headers   vary: 'Accept-Encoding' }
+646 silly get cb [ 200,
+646 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+646 silly get     etag: '"3HPJMEWIKUI66XIHQATTISR63"',
+646 silly get     'content-type': 'application/json',
+646 silly get     'content-encoding': 'gzip',
+646 silly get     'cache-control': 'max-age=300',
+646 silly get     'content-length': '16268',
+646 silly get     'accept-ranges': 'bytes',
+646 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+646 silly get     via: '1.1 varnish',
+646 silly get     age: '25',
+646 silly get     connection: 'keep-alive',
+646 silly get     'x-served-by': 'cache-cdg8726-CDG',
+646 silly get     'x-cache': 'HIT',
+646 silly get     'x-cache-hits': '1',
+646 silly get     'x-timer': 'S1475923070.734305,VS0,VE0',
+646 silly get     vary: 'Accept-Encoding' } ]
+647 verbose get saving angular to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular\.cache.json
+648 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+649 silly cache afterAdd grunt-contrib-jshint@1.0.0
+650 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-jshint\1.0.0\package\package.json not in flight; writing
+651 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+652 silly addNameTag next cb for grunt-contrib-watch with tag latest
+653 silly addNamed grunt-contrib-watch@1.0.0
+654 verbose addNamed "1.0.0" is a plain semver version for grunt-contrib-watch
+655 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-jshint\1.0.0\package\package.json written
+656 silly cache afterAdd grunt-contrib-watch@1.0.0
+657 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-watch\1.0.0\package\package.json not in flight; writing
+658 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+659 silly cache afterAdd angular-touch@1.5.8
+660 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-touch\1.5.8\package\package.json not in flight; writing
+661 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+662 silly mapToRegistry name angular
+663 silly mapToRegistry using default registry
+664 silly mapToRegistry registry https://registry.npmjs.org/
+665 silly mapToRegistry data Result {
+665 silly mapToRegistry   raw: 'angular',
+665 silly mapToRegistry   scope: null,
+665 silly mapToRegistry   name: 'angular',
+665 silly mapToRegistry   rawSpec: '',
+665 silly mapToRegistry   spec: 'latest',
+665 silly mapToRegistry   type: 'tag' }
+666 silly mapToRegistry uri https://registry.npmjs.org/angular
+667 verbose addRemoteTarball https://registry.npmjs.org/angular/-/angular-1.5.8.tgz not in flight; adding
+668 verbose addRemoteTarball [ 'https://registry.npmjs.org/angular/-/angular-1.5.8.tgz',
+668 verbose addRemoteTarball   '925a5392b8c212d09572dc446db7e01264e094cb' ]
+669 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-watch\1.0.0\package\package.json written
+670 info retry fetch attempt 1 at 4:07:50 PM
+671 info attempt registry request try #1 at 4:07:50 PM
+672 http fetch GET https://registry.npmjs.org/angular/-/angular-1.5.8.tgz
+673 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-touch\1.5.8\package\package.json written
+674 http 200 https://registry.npmjs.org/grunt-dev-prod-switch
+675 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+675 verbose headers   etag: '"CS7CJ7CBWRUC81VB3DRWHC0D9"',
+675 verbose headers   'content-type': 'application/json',
+675 verbose headers   'content-encoding': 'gzip',
+675 verbose headers   'cache-control': 'max-age=300',
+675 verbose headers   'content-length': '3570',
+675 verbose headers   'accept-ranges': 'bytes',
+675 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+675 verbose headers   via: '1.1 varnish',
+675 verbose headers   age: '0',
+675 verbose headers   connection: 'keep-alive',
+675 verbose headers   'x-served-by': 'cache-cdg8726-CDG',
+675 verbose headers   'x-cache': 'MISS',
+675 verbose headers   'x-cache-hits': '0',
+675 verbose headers   'x-timer': 'S1475923070.558991,VS0,VE427',
+675 verbose headers   vary: 'Accept-Encoding' }
+676 silly get cb [ 200,
+676 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+676 silly get     etag: '"CS7CJ7CBWRUC81VB3DRWHC0D9"',
+676 silly get     'content-type': 'application/json',
+676 silly get     'content-encoding': 'gzip',
+676 silly get     'cache-control': 'max-age=300',
+676 silly get     'content-length': '3570',
+676 silly get     'accept-ranges': 'bytes',
+676 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+676 silly get     via: '1.1 varnish',
+676 silly get     age: '0',
+676 silly get     connection: 'keep-alive',
+676 silly get     'x-served-by': 'cache-cdg8726-CDG',
+676 silly get     'x-cache': 'MISS',
+676 silly get     'x-cache-hits': '0',
+676 silly get     'x-timer': 'S1475923070.558991,VS0,VE427',
+676 silly get     vary: 'Accept-Encoding' } ]
+677 verbose get saving grunt-dev-prod-switch to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-dev-prod-switch\.cache.json
+678 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+679 silly addNameRange number 2 { name: 'grunt-dev-prod-switch',
+679 silly addNameRange   range: '>=0.1.8 <0.2.0',
+679 silly addNameRange   hasData: true }
+680 silly addNameRange versions [ 'grunt-dev-prod-switch',
+680 silly addNameRange   [ '0.1.0',
+680 silly addNameRange     '0.1.1',
+680 silly addNameRange     '0.1.2',
+680 silly addNameRange     '0.1.3',
+680 silly addNameRange     '0.1.4',
+680 silly addNameRange     '0.1.5',
+680 silly addNameRange     '0.1.6',
+680 silly addNameRange     '0.1.7',
+680 silly addNameRange     '0.1.8' ] ]
+681 silly addNamed grunt-dev-prod-switch@0.1.8
+682 verbose addNamed "0.1.8" is a plain semver version for grunt-dev-prod-switch
+683 silly mapToRegistry name grunt-dev-prod-switch
+684 silly mapToRegistry using default registry
+685 silly mapToRegistry registry https://registry.npmjs.org/
+686 silly mapToRegistry data Result {
+686 silly mapToRegistry   raw: 'grunt-dev-prod-switch',
+686 silly mapToRegistry   scope: null,
+686 silly mapToRegistry   name: 'grunt-dev-prod-switch',
+686 silly mapToRegistry   rawSpec: '',
+686 silly mapToRegistry   spec: 'latest',
+686 silly mapToRegistry   type: 'tag' }
+687 silly mapToRegistry uri https://registry.npmjs.org/grunt-dev-prod-switch
+688 verbose addRemoteTarball https://registry.npmjs.org/grunt-dev-prod-switch/-/grunt-dev-prod-switch-0.1.8.tgz not in flight; adding
+689 verbose addRemoteTarball [ 'https://registry.npmjs.org/grunt-dev-prod-switch/-/grunt-dev-prod-switch-0.1.8.tgz',
+689 verbose addRemoteTarball   '48dff7cd817ca76caf666920860d9e4ed4f83031' ]
+690 info retry fetch attempt 1 at 4:07:50 PM
+691 info attempt registry request try #1 at 4:07:50 PM
+692 http fetch GET https://registry.npmjs.org/grunt-dev-prod-switch/-/grunt-dev-prod-switch-0.1.8.tgz
+693 http 200 https://registry.npmjs.org/multi-select
+694 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+694 verbose headers   etag: '"B5N30GO71W0QIVVKMC0I61HAU"',
+694 verbose headers   'content-type': 'application/json',
+694 verbose headers   'content-encoding': 'gzip',
+694 verbose headers   'cache-control': 'max-age=300',
+694 verbose headers   'content-length': '7287',
+694 verbose headers   'accept-ranges': 'bytes',
+694 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+694 verbose headers   via: '1.1 varnish',
+694 verbose headers   age: '0',
+694 verbose headers   connection: 'keep-alive',
+694 verbose headers   'x-served-by': 'cache-cdg8729-CDG',
+694 verbose headers   'x-cache': 'MISS',
+694 verbose headers   'x-cache-hits': '0',
+694 verbose headers   'x-timer': 'S1475923070.564594,VS0,VE430',
+694 verbose headers   vary: 'Accept-Encoding' }
+695 silly get cb [ 200,
+695 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+695 silly get     etag: '"B5N30GO71W0QIVVKMC0I61HAU"',
+695 silly get     'content-type': 'application/json',
+695 silly get     'content-encoding': 'gzip',
+695 silly get     'cache-control': 'max-age=300',
+695 silly get     'content-length': '7287',
+695 silly get     'accept-ranges': 'bytes',
+695 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+695 silly get     via: '1.1 varnish',
+695 silly get     age: '0',
+695 silly get     connection: 'keep-alive',
+695 silly get     'x-served-by': 'cache-cdg8729-CDG',
+695 silly get     'x-cache': 'MISS',
+695 silly get     'x-cache-hits': '0',
+695 silly get     'x-timer': 'S1475923070.564594,VS0,VE430',
+695 silly get     vary: 'Accept-Encoding' } ]
+696 verbose get saving multi-select to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\multi-select\.cache.json
+697 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+698 silly addNameRange number 2 { name: 'multi-select', range: '*', hasData: true }
+699 silly addNameRange versions [ 'multi-select',
+699 silly addNameRange   [ '0.0.1',
+699 silly addNameRange     '0.0.2',
+699 silly addNameRange     '0.0.3',
+699 silly addNameRange     '0.0.4',
+699 silly addNameRange     '0.1.0',
+699 silly addNameRange     '0.1.1',
+699 silly addNameRange     '0.1.2',
+699 silly addNameRange     '0.2.0',
+699 silly addNameRange     '0.2.1',
+699 silly addNameRange     '0.2.2',
+699 silly addNameRange     '0.2.3',
+699 silly addNameRange     '0.2.4',
+699 silly addNameRange     '0.2.5',
+699 silly addNameRange     '0.2.6',
+699 silly addNameRange     '0.2.7',
+699 silly addNameRange     '0.2.8',
+699 silly addNameRange     '0.2.11',
+699 silly addNameRange     '0.2.12',
+699 silly addNameRange     '0.2.13',
+699 silly addNameRange     '0.2.14',
+699 silly addNameRange     '0.2.15',
+699 silly addNameRange     '0.2.16',
+699 silly addNameRange     '0.2.17',
+699 silly addNameRange     '0.2.18',
+699 silly addNameRange     '0.2.19',
+699 silly addNameRange     '0.2.20',
+699 silly addNameRange     '0.3.0',
+699 silly addNameRange     '0.3.1',
+699 silly addNameRange     '0.3.2',
+699 silly addNameRange     '0.3.3',
+699 silly addNameRange     '0.3.4' ] ]
+700 silly addNamed multi-select@0.3.4
+701 verbose addNamed "0.3.4" is a plain semver version for multi-select
+702 silly mapToRegistry name multi-select
+703 silly mapToRegistry using default registry
+704 silly mapToRegistry registry https://registry.npmjs.org/
+705 silly mapToRegistry data Result {
+705 silly mapToRegistry   raw: 'multi-select',
+705 silly mapToRegistry   scope: null,
+705 silly mapToRegistry   name: 'multi-select',
+705 silly mapToRegistry   rawSpec: '',
+705 silly mapToRegistry   spec: 'latest',
+705 silly mapToRegistry   type: 'tag' }
+706 silly mapToRegistry uri https://registry.npmjs.org/multi-select
+707 verbose addRemoteTarball https://registry.npmjs.org/multi-select/-/multi-select-0.3.4.tgz not in flight; adding
+708 verbose addRemoteTarball [ 'https://registry.npmjs.org/multi-select/-/multi-select-0.3.4.tgz',
+708 verbose addRemoteTarball   '23b5cd787e05d430da716f33afe80a4809567e72' ]
+709 info retry fetch attempt 1 at 4:07:50 PM
+710 info attempt registry request try #1 at 4:07:50 PM
+711 http fetch GET https://registry.npmjs.org/multi-select/-/multi-select-0.3.4.tgz
+712 http 200 https://registry.npmjs.org/express
+713 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+713 verbose headers   etag: '"7C6K6LM7H6SFUK44NT1OVTGUA"',
+713 verbose headers   'content-type': 'application/json',
+713 verbose headers   'content-encoding': 'gzip',
+713 verbose headers   'cache-control': 'max-age=300',
+713 verbose headers   'content-length': '56450',
+713 verbose headers   'accept-ranges': 'bytes',
+713 verbose headers   date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+713 verbose headers   via: '1.1 varnish',
+713 verbose headers   age: '275',
+713 verbose headers   connection: 'keep-alive',
+713 verbose headers   'x-served-by': 'cache-cdg8735-CDG',
+713 verbose headers   'x-cache': 'HIT',
+713 verbose headers   'x-cache-hits': '2',
+713 verbose headers   'x-timer': 'S1475923070.723947,VS0,VE0',
+713 verbose headers   vary: 'Accept-Encoding' }
+714 silly get cb [ 200,
+714 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+714 silly get     etag: '"7C6K6LM7H6SFUK44NT1OVTGUA"',
+714 silly get     'content-type': 'application/json',
+714 silly get     'content-encoding': 'gzip',
+714 silly get     'cache-control': 'max-age=300',
+714 silly get     'content-length': '56450',
+714 silly get     'accept-ranges': 'bytes',
+714 silly get     date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+714 silly get     via: '1.1 varnish',
+714 silly get     age: '275',
+714 silly get     connection: 'keep-alive',
+714 silly get     'x-served-by': 'cache-cdg8735-CDG',
+714 silly get     'x-cache': 'HIT',
+714 silly get     'x-cache-hits': '2',
+714 silly get     'x-timer': 'S1475923070.723947,VS0,VE0',
+714 silly get     vary: 'Accept-Encoding' } ]
+715 verbose get saving express to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\express\.cache.json
+716 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+717 http fetch 200 https://registry.npmjs.org/angular/-/angular-1.5.8.tgz
+718 silly addNameTag next cb for express with tag latest
+719 silly addNamed express@4.14.0
+720 verbose addNamed "4.14.0" is a plain semver version for express
+721 silly cache afterAdd express@4.14.0
+722 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\express\4.14.0\package\package.json not in flight; writing
+723 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+724 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\express\4.14.0\package\package.json written
+725 http 304 https://registry.npmjs.org/angular-route
+726 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+726 verbose headers   via: '1.1 varnish',
+726 verbose headers   'cache-control': 'max-age=300',
+726 verbose headers   etag: '"5BJGCKPCEABJZVYJYF102LASE"',
+726 verbose headers   age: '0',
+726 verbose headers   connection: 'keep-alive',
+726 verbose headers   'x-served-by': 'cache-cdg8720-CDG',
+726 verbose headers   'x-cache': 'HIT',
+726 verbose headers   'x-cache-hits': '1',
+726 verbose headers   'x-timer': 'S1475923070.724408,VS0,VE396',
+726 verbose headers   vary: 'Accept-Encoding' }
+727 silly get cb [ 304,
+727 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+727 silly get     via: '1.1 varnish',
+727 silly get     'cache-control': 'max-age=300',
+727 silly get     etag: '"5BJGCKPCEABJZVYJYF102LASE"',
+727 silly get     age: '0',
+727 silly get     connection: 'keep-alive',
+727 silly get     'x-served-by': 'cache-cdg8720-CDG',
+727 silly get     'x-cache': 'HIT',
+727 silly get     'x-cache-hits': '1',
+727 silly get     'x-timer': 'S1475923070.724408,VS0,VE396',
+727 silly get     vary: 'Accept-Encoding' } ]
+728 verbose etag https://registry.npmjs.org/angular-route from cache
+729 verbose get saving angular-route to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-route\.cache.json
+730 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+731 silly addNameTag next cb for angular-route with tag latest
+732 silly addNamed angular-route@1.5.8
+733 verbose addNamed "1.5.8" is a plain semver version for angular-route
+734 silly cache afterAdd angular-route@1.5.8
+735 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-route\1.5.8\package\package.json not in flight; writing
+736 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+737 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-route\1.5.8\package\package.json written
+738 http 304 https://registry.npmjs.org/bootstrap-multiselect
+739 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+739 verbose headers   via: '1.1 varnish',
+739 verbose headers   'cache-control': 'max-age=300',
+739 verbose headers   etag: '"8KQFH3SWFQEDCJURNWDXYTNKI"',
+739 verbose headers   age: '0',
+739 verbose headers   connection: 'keep-alive',
+739 verbose headers   'x-served-by': 'cache-cdg8729-CDG',
+739 verbose headers   'x-cache': 'MISS',
+739 verbose headers   'x-cache-hits': '0',
+739 verbose headers   'x-timer': 'S1475923070.690031,VS0,VE464',
+739 verbose headers   vary: 'Accept-Encoding' }
+740 silly get cb [ 304,
+740 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+740 silly get     via: '1.1 varnish',
+740 silly get     'cache-control': 'max-age=300',
+740 silly get     etag: '"8KQFH3SWFQEDCJURNWDXYTNKI"',
+740 silly get     age: '0',
+740 silly get     connection: 'keep-alive',
+740 silly get     'x-served-by': 'cache-cdg8729-CDG',
+740 silly get     'x-cache': 'MISS',
+740 silly get     'x-cache-hits': '0',
+740 silly get     'x-timer': 'S1475923070.690031,VS0,VE464',
+740 silly get     vary: 'Accept-Encoding' } ]
+741 verbose etag https://registry.npmjs.org/bootstrap-multiselect from cache
+742 verbose get saving bootstrap-multiselect to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\bootstrap-multiselect\.cache.json
+743 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+744 http fetch 200 https://registry.npmjs.org/grunt-dev-prod-switch/-/grunt-dev-prod-switch-0.1.8.tgz
+745 http 304 https://registry.npmjs.org/angular-animate
+746 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+746 verbose headers   via: '1.1 varnish',
+746 verbose headers   'cache-control': 'max-age=300',
+746 verbose headers   etag: '"2NHVW9FF7TPYMWC260FGSZ5CO"',
+746 verbose headers   age: '0',
+746 verbose headers   connection: 'keep-alive',
+746 verbose headers   'x-served-by': 'cache-cdg8732-CDG',
+746 verbose headers   'x-cache': 'HIT',
+746 verbose headers   'x-cache-hits': '1',
+746 verbose headers   'x-timer': 'S1475923070.724032,VS0,VE431',
+746 verbose headers   vary: 'Accept-Encoding' }
+747 silly get cb [ 304,
+747 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+747 silly get     via: '1.1 varnish',
+747 silly get     'cache-control': 'max-age=300',
+747 silly get     etag: '"2NHVW9FF7TPYMWC260FGSZ5CO"',
+747 silly get     age: '0',
+747 silly get     connection: 'keep-alive',
+747 silly get     'x-served-by': 'cache-cdg8732-CDG',
+747 silly get     'x-cache': 'HIT',
+747 silly get     'x-cache-hits': '1',
+747 silly get     'x-timer': 'S1475923070.724032,VS0,VE431',
+747 silly get     vary: 'Accept-Encoding' } ]
+748 verbose etag https://registry.npmjs.org/angular-animate from cache
+749 verbose get saving angular-animate to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-animate\.cache.json
+750 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+751 http 304 https://registry.npmjs.org/angular-ui-bootstrap
+752 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+752 verbose headers   via: '1.1 varnish',
+752 verbose headers   'cache-control': 'max-age=300',
+752 verbose headers   etag: '"5NRW4YK6AQ26TMNSM3GY79FL9"',
+752 verbose headers   age: '0',
+752 verbose headers   connection: 'keep-alive',
+752 verbose headers   'x-served-by': 'cache-cdg8720-CDG',
+752 verbose headers   'x-cache': 'HIT',
+752 verbose headers   'x-cache-hits': '1',
+752 verbose headers   'x-timer': 'S1475923070.696433,VS0,VE458',
+752 verbose headers   vary: 'Accept-Encoding' }
+753 silly get cb [ 304,
+753 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+753 silly get     via: '1.1 varnish',
+753 silly get     'cache-control': 'max-age=300',
+753 silly get     etag: '"5NRW4YK6AQ26TMNSM3GY79FL9"',
+753 silly get     age: '0',
+753 silly get     connection: 'keep-alive',
+753 silly get     'x-served-by': 'cache-cdg8720-CDG',
+753 silly get     'x-cache': 'HIT',
+753 silly get     'x-cache-hits': '1',
+753 silly get     'x-timer': 'S1475923070.696433,VS0,VE458',
+753 silly get     vary: 'Accept-Encoding' } ]
+754 verbose etag https://registry.npmjs.org/angular-ui-bootstrap from cache
+755 verbose get saving angular-ui-bootstrap to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-ui-bootstrap\.cache.json
+756 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+757 http fetch 200 https://registry.npmjs.org/multi-select/-/multi-select-0.3.4.tgz
+758 silly addNameRange number 2 { name: 'bootstrap-multiselect',
+758 silly addNameRange   range: '>=0.9.13-1 <0.10.0',
+758 silly addNameRange   hasData: true }
+759 silly addNameRange versions [ 'bootstrap-multiselect', [ '0.9.13', '0.9.13-1' ] ]
+760 silly addNamed bootstrap-multiselect@0.9.13-1
+761 verbose addNamed "0.9.13-1" is a plain semver version for bootstrap-multiselect
+762 silly addNameRange number 2 { name: 'angular-ui-bootstrap',
+762 silly addNameRange   range: '>=2.1.4 <3.0.0',
+762 silly addNameRange   hasData: true }
+763 silly addNameRange versions [ 'angular-ui-bootstrap',
+763 silly addNameRange   [ '0.12.1',
+763 silly addNameRange     '0.13.0',
+763 silly addNameRange     '0.13.1',
+763 silly addNameRange     '0.13.2',
+763 silly addNameRange     '0.13.3',
+763 silly addNameRange     '0.13.4',
+763 silly addNameRange     '0.14.0',
+763 silly addNameRange     '0.14.1',
+763 silly addNameRange     '0.14.2',
+763 silly addNameRange     '0.14.3',
+763 silly addNameRange     '1.0.0',
+763 silly addNameRange     '1.0.1',
+763 silly addNameRange     '1.0.3',
+763 silly addNameRange     '1.1.0',
+763 silly addNameRange     '1.1.1',
+763 silly addNameRange     '1.1.2',
+763 silly addNameRange     '1.2.0',
+763 silly addNameRange     '1.2.1',
+763 silly addNameRange     '1.2.2',
+763 silly addNameRange     '1.2.4',
+763 silly addNameRange     '1.2.5',
+763 silly addNameRange     '1.3.0',
+763 silly addNameRange     '1.3.1',
+763 silly addNameRange     '1.3.2',
+763 silly addNameRange     '1.3.3',
+763 silly addNameRange     '2.0.0',
+763 silly addNameRange     '2.0.1',
+763 silly addNameRange     '2.0.2',
+763 silly addNameRange     '2.1.0',
+763 silly addNameRange     '2.1.1',
+763 silly addNameRange     '2.1.2',
+763 silly addNameRange     '2.1.3',
+763 silly addNameRange     '2.1.4' ] ]
+764 silly addNamed angular-ui-bootstrap@2.1.4
+765 verbose addNamed "2.1.4" is a plain semver version for angular-ui-bootstrap
+766 silly fetchAndShaCheck shasum 48dff7cd817ca76caf666920860d9e4ed4f83031
+767 silly addNameRange number 2 { name: 'angular-animate',
+767 silly addNameRange   range: '>=1.5.8 <2.0.0',
+767 silly addNameRange   hasData: true }
+768 silly addNameRange versions [ 'angular-animate',
+768 silly addNameRange   [ '0.0.1',
+768 silly addNameRange     '0.0.2',
+768 silly addNameRange     '1.2.19-build.256',
+768 silly addNameRange     '1.2.16',
+768 silly addNameRange     '1.2.23',
+768 silly addNameRange     '1.3.0-rc.5',
+768 silly addNameRange     '1.3.0',
+768 silly addNameRange     '1.3.1',
+768 silly addNameRange     '1.3.2',
+768 silly addNameRange     '1.3.3',
+768 silly addNameRange     '1.3.4-build.3588',
+768 silly addNameRange     '1.2.27',
+768 silly addNameRange     '1.3.4',
+768 silly addNameRange     '1.3.5',
+768 silly addNameRange     '1.3.6',
+768 silly addNameRange     '1.3.7',
+768 silly addNameRange     '1.2.28',
+768 silly addNameRange     '1.3.8',
+768 silly addNameRange     '1.4.0-beta.0',
+768 silly addNameRange     '1.3.9',
+768 silly addNameRange     '1.3.10',
+768 silly addNameRange     '1.4.0-beta.1',
+768 silly addNameRange     '1.4.0-beta.2',
+768 silly addNameRange     '1.3.11',
+768 silly addNameRange     '1.4.0-beta.3',
+768 silly addNameRange     '1.3.12',
+768 silly addNameRange     '1.3.13',
+768 silly addNameRange     '1.4.0-beta.4',
+768 silly addNameRange     '1.3.14',
+768 silly addNameRange     '1.4.0-beta.5',
+768 silly addNameRange     '1.4.0-beta.6',
+768 silly addNameRange     '1.3.15',
+768 silly addNameRange     '1.4.0-rc.0',
+768 silly addNameRange     '1.4.0-rc.1',
+768 silly addNameRange     '1.4.0-rc.2',
+768 silly addNameRange     '1.4.0',
+768 silly addNameRange     '1.3.16',
+768 silly addNameRange     '1.4.1',
+768 silly addNameRange     '1.4.2',
+768 silly addNameRange     '1.3.17',
+768 silly addNameRange     '1.4.3',
+768 silly addNameRange     '1.4.4',
+768 silly addNameRange     '1.3.18',
+768 silly addNameRange     '1.4.5',
+768 silly addNameRange     '1.3.19',
+768 silly addNameRange     '1.4.6',
+768 silly addNameRange     '1.5.0-beta.0',
+768 silly addNameRange     '1.2.29',
+768 silly addNameRange     '1.3.20',
+768 silly addNameRange     '1.4.7',
+768 silly addNameRange     '1.5.0-beta.2',
+768 silly addNameRange     '1.4.8',
+768 silly addNameRange     '1.5.0-rc.0',
+768 silly addNameRange     '1.5.0-rc.1',
+768 silly addNameRange     '1.4.9',
+768 silly addNameRange     '1.5.0-rc.2',
+768 silly addNameRange     '1.5.0',
+768 silly addNameRange     '1.5.1',
+768 silly addNameRange     '1.4.10',
+768 silly addNameRange     '1.5.2',
+768 silly addNameRange     '1.5.3',
+768 silly addNameRange     '1.5.5',
+768 silly addNameRange     '1.4.11',
+768 silly addNameRange     '1.5.6',
+768 silly addNameRange     '1.4.12',
+768 silly addNameRange     '1.5.7',
+768 silly addNameRange     '1.2.30',
+768 silly addNameRange     '1.5.8' ] ]
+769 silly addNamed angular-animate@1.5.8
+770 verbose addNamed "1.5.8" is a plain semver version for angular-animate
+771 verbose addTmpTarball C:\Users\Admin\AppData\Local\Temp\npm-9660-99eb73d2\registry.npmjs.org\grunt-dev-prod-switch\-\grunt-dev-prod-switch-0.1.8.tgz not in flight; adding
+772 verbose addTmpTarball already have metadata; skipping unpack for grunt-dev-prod-switch@0.1.8
+773 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+774 silly cache afterAdd grunt-dev-prod-switch@0.1.8
+775 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-dev-prod-switch\0.1.8\package\package.json not in flight; writing
+776 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+777 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-dev-prod-switch\0.1.8\package\package.json written
+778 silly cache afterAdd angular-animate@1.5.8
+779 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-animate\1.5.8\package\package.json not in flight; writing
+780 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+781 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-animate\1.5.8\package\package.json written
+782 silly cache afterAdd angular-ui-bootstrap@2.1.4
+783 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-ui-bootstrap\2.1.4\package\package.json not in flight; writing
+784 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+785 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-ui-bootstrap\2.1.4\package\package.json written
+786 silly cache afterAdd bootstrap-multiselect@0.9.13-1
+787 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\bootstrap-multiselect\0.9.13-1\package\package.json not in flight; writing
+788 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+789 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\bootstrap-multiselect\0.9.13-1\package\package.json written
+790 http 304 https://registry.npmjs.org/angular-ui-router
+791 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+791 verbose headers   via: '1.1 varnish',
+791 verbose headers   'cache-control': 'max-age=300',
+791 verbose headers   etag: '"8FOUG69DEM3HT01B8WBKQFUW3"',
+791 verbose headers   age: '0',
+791 verbose headers   connection: 'keep-alive',
+791 verbose headers   'x-served-by': 'cache-cdg8724-CDG',
+791 verbose headers   'x-cache': 'HIT',
+791 verbose headers   'x-cache-hits': '1',
+791 verbose headers   'x-timer': 'S1475923070.692110,VS0,VE708',
+791 verbose headers   vary: 'Accept-Encoding' }
+792 silly get cb [ 304,
+792 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+792 silly get     via: '1.1 varnish',
+792 silly get     'cache-control': 'max-age=300',
+792 silly get     etag: '"8FOUG69DEM3HT01B8WBKQFUW3"',
+792 silly get     age: '0',
+792 silly get     connection: 'keep-alive',
+792 silly get     'x-served-by': 'cache-cdg8724-CDG',
+792 silly get     'x-cache': 'HIT',
+792 silly get     'x-cache-hits': '1',
+792 silly get     'x-timer': 'S1475923070.692110,VS0,VE708',
+792 silly get     vary: 'Accept-Encoding' } ]
+793 verbose etag https://registry.npmjs.org/angular-ui-router from cache
+794 verbose get saving angular-ui-router to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-ui-router\.cache.json
+795 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+796 silly addNameTag next cb for angular-ui-router with tag latest
+797 silly addNamed angular-ui-router@0.3.1
+798 verbose addNamed "0.3.1" is a plain semver version for angular-ui-router
+799 http 304 https://registry.npmjs.org/ng-numbers-only
+800 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+800 verbose headers   via: '1.1 varnish',
+800 verbose headers   'cache-control': 'max-age=300',
+800 verbose headers   etag: '"E9BIARCJSQB4DEYNKLRNC9OKT"',
+800 verbose headers   age: '0',
+800 verbose headers   connection: 'keep-alive',
+800 verbose headers   'x-served-by': 'cache-cdg8726-CDG',
+800 verbose headers   'x-cache': 'MISS',
+800 verbose headers   'x-cache-hits': '0',
+800 verbose headers   'x-timer': 'S1475923070.717723,VS0,VE739',
+800 verbose headers   vary: 'Accept-Encoding' }
+801 silly get cb [ 304,
+801 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+801 silly get     via: '1.1 varnish',
+801 silly get     'cache-control': 'max-age=300',
+801 silly get     etag: '"E9BIARCJSQB4DEYNKLRNC9OKT"',
+801 silly get     age: '0',
+801 silly get     connection: 'keep-alive',
+801 silly get     'x-served-by': 'cache-cdg8726-CDG',
+801 silly get     'x-cache': 'MISS',
+801 silly get     'x-cache-hits': '0',
+801 silly get     'x-timer': 'S1475923070.717723,VS0,VE739',
+801 silly get     vary: 'Accept-Encoding' } ]
+802 verbose etag https://registry.npmjs.org/ng-numbers-only from cache
+803 verbose get saving ng-numbers-only to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\ng-numbers-only\.cache.json
+804 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+805 silly addNameTag next cb for ng-numbers-only with tag latest
+806 silly addNamed ng-numbers-only@1.1.4
+807 verbose addNamed "1.1.4" is a plain semver version for ng-numbers-only
+808 silly cache afterAdd angular-ui-router@0.3.1
+809 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-ui-router\0.3.1\package\package.json not in flight; writing
+810 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+811 http 200 https://registry.npmjs.org/moment
+812 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+812 verbose headers   etag: '"ADEA08DGF3PSPSDGU932P5K84"',
+812 verbose headers   'content-type': 'application/json',
+812 verbose headers   'content-encoding': 'gzip',
+812 verbose headers   'cache-control': 'max-age=300',
+812 verbose headers   'content-length': '13050',
+812 verbose headers   'accept-ranges': 'bytes',
+812 verbose headers   date: 'Sat, 08 Oct 2016 10:37:51 GMT',
+812 verbose headers   via: '1.1 varnish',
+812 verbose headers   age: '0',
+812 verbose headers   connection: 'keep-alive',
+812 verbose headers   'x-served-by': 'cache-cdg8734-CDG',
+812 verbose headers   'x-cache': 'HIT',
+812 verbose headers   'x-cache-hits': '1',
+812 verbose headers   'x-timer': 'S1475923070.718842,VS0,VE739',
+812 verbose headers   vary: 'Accept-Encoding' }
+813 silly get cb [ 200,
+813 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+813 silly get     etag: '"ADEA08DGF3PSPSDGU932P5K84"',
+813 silly get     'content-type': 'application/json',
+813 silly get     'content-encoding': 'gzip',
+813 silly get     'cache-control': 'max-age=300',
+813 silly get     'content-length': '13050',
+813 silly get     'accept-ranges': 'bytes',
+813 silly get     date: 'Sat, 08 Oct 2016 10:37:51 GMT',
+813 silly get     via: '1.1 varnish',
+813 silly get     age: '0',
+813 silly get     connection: 'keep-alive',
+813 silly get     'x-served-by': 'cache-cdg8734-CDG',
+813 silly get     'x-cache': 'HIT',
+813 silly get     'x-cache-hits': '1',
+813 silly get     'x-timer': 'S1475923070.718842,VS0,VE739',
+813 silly get     vary: 'Accept-Encoding' } ]
+814 verbose get saving moment to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\moment\.cache.json
+815 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+816 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-ui-router\0.3.1\package\package.json written
+817 silly cache afterAdd ng-numbers-only@1.1.4
+818 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\ng-numbers-only\1.1.4\package\package.json not in flight; writing
+819 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+820 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\ng-numbers-only\1.1.4\package\package.json written
+821 silly addNameTag next cb for moment with tag latest
+822 silly addNamed moment@2.15.1
+823 verbose addNamed "2.15.1" is a plain semver version for moment
+824 http 304 https://registry.npmjs.org/grunt-contrib-less
+825 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+825 verbose headers   via: '1.1 varnish',
+825 verbose headers   'cache-control': 'max-age=300',
+825 verbose headers   etag: '"435EW3VBIR176EDGIM9NFTQM4"',
+825 verbose headers   age: '0',
+825 verbose headers   connection: 'keep-alive',
+825 verbose headers   'x-served-by': 'cache-cdg8726-CDG',
+825 verbose headers   'x-cache': 'HIT',
+825 verbose headers   'x-cache-hits': '1',
+825 verbose headers   'x-timer': 'S1475923070.718325,VS0,VE793',
+825 verbose headers   vary: 'Accept-Encoding' }
+826 silly get cb [ 304,
+826 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+826 silly get     via: '1.1 varnish',
+826 silly get     'cache-control': 'max-age=300',
+826 silly get     etag: '"435EW3VBIR176EDGIM9NFTQM4"',
+826 silly get     age: '0',
+826 silly get     connection: 'keep-alive',
+826 silly get     'x-served-by': 'cache-cdg8726-CDG',
+826 silly get     'x-cache': 'HIT',
+826 silly get     'x-cache-hits': '1',
+826 silly get     'x-timer': 'S1475923070.718325,VS0,VE793',
+826 silly get     vary: 'Accept-Encoding' } ]
+827 verbose etag https://registry.npmjs.org/grunt-contrib-less from cache
+828 verbose get saving grunt-contrib-less to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\grunt-contrib-less\.cache.json
+829 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+830 silly addNameTag next cb for grunt-contrib-less with tag latest
+831 silly addNamed grunt-contrib-less@1.4.0
+832 verbose addNamed "1.4.0" is a plain semver version for grunt-contrib-less
+833 silly cache afterAdd moment@2.15.1
+834 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\moment\2.15.1\package\package.json not in flight; writing
+835 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+836 http 304 https://registry.npmjs.org/angular-multi-select
+837 verbose headers { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+837 verbose headers   via: '1.1 varnish',
+837 verbose headers   'cache-control': 'max-age=300',
+837 verbose headers   etag: '"765OEZH73J581ON6E0GD9Q8T7"',
+837 verbose headers   age: '0',
+837 verbose headers   connection: 'keep-alive',
+837 verbose headers   'x-served-by': 'cache-cdg8720-CDG',
+837 verbose headers   'x-cache': 'MISS',
+837 verbose headers   'x-cache-hits': '0',
+837 verbose headers   'x-timer': 'S1475923070.745956,VS0,VE791',
+837 verbose headers   vary: 'Accept-Encoding' }
+838 silly get cb [ 304,
+838 silly get   { date: 'Sat, 08 Oct 2016 10:37:50 GMT',
+838 silly get     via: '1.1 varnish',
+838 silly get     'cache-control': 'max-age=300',
+838 silly get     etag: '"765OEZH73J581ON6E0GD9Q8T7"',
+838 silly get     age: '0',
+838 silly get     connection: 'keep-alive',
+838 silly get     'x-served-by': 'cache-cdg8720-CDG',
+838 silly get     'x-cache': 'MISS',
+838 silly get     'x-cache-hits': '0',
+838 silly get     'x-timer': 'S1475923070.745956,VS0,VE791',
+838 silly get     vary: 'Accept-Encoding' } ]
+839 verbose etag https://registry.npmjs.org/angular-multi-select from cache
+840 verbose get saving angular-multi-select to C:\Users\Admin\AppData\Roaming\npm-cache\registry.npmjs.org\angular-multi-select\.cache.json
+841 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+842 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\moment\2.15.1\package\package.json written
+843 silly addNameRange number 2 { name: 'angular-multi-select',
+843 silly addNameRange   range: '>=7.4.6 <8.0.0',
+843 silly addNameRange   hasData: true }
+844 silly addNameRange versions [ 'angular-multi-select',
+844 silly addNameRange   [ '4.0.1',
+844 silly addNameRange     '4.0.2',
+844 silly addNameRange     '5.0.2',
+844 silly addNameRange     '5.0.3',
+844 silly addNameRange     '5.0.4',
+844 silly addNameRange     '5.0.5',
+844 silly addNameRange     '5.0.6',
+844 silly addNameRange     '5.0.7',
+844 silly addNameRange     '5.0.8',
+844 silly addNameRange     '5.0.9',
+844 silly addNameRange     '5.1.0',
+844 silly addNameRange     '5.1.1',
+844 silly addNameRange     '5.1.2',
+844 silly addNameRange     '5.1.3',
+844 silly addNameRange     '5.1.4',
+844 silly addNameRange     '5.1.5',
+844 silly addNameRange     '5.2.0',
+844 silly addNameRange     '5.2.1',
+844 silly addNameRange     '5.3.0',
+844 silly addNameRange     '5.3.1',
+844 silly addNameRange     '5.3.2',
+844 silly addNameRange     '5.3.3',
+844 silly addNameRange     '5.3.4',
+844 silly addNameRange     '5.3.5',
+844 silly addNameRange     '5.3.6',
+844 silly addNameRange     '5.3.7',
+844 silly addNameRange     '5.3.8',
+844 silly addNameRange     '5.3.9',
+844 silly addNameRange     '5.3.10',
+844 silly addNameRange     '5.3.11',
+844 silly addNameRange     '5.3.12',
+844 silly addNameRange     '5.3.13',
+844 silly addNameRange     '5.3.14',
+844 silly addNameRange     '5.3.15',
+844 silly addNameRange     '5.3.16',
+844 silly addNameRange     '5.3.17',
+844 silly addNameRange     '5.3.18',
+844 silly addNameRange     '5.3.19',
+844 silly addNameRange     '5.3.20',
+844 silly addNameRange     '5.3.21',
+844 silly addNameRange     '5.4.0',
+844 silly addNameRange     '5.4.1',
+844 silly addNameRange     '5.5.3',
+844 silly addNameRange     '5.5.4',
+844 silly addNameRange     '5.5.5',
+844 silly addNameRange     '5.5.6',
+844 silly addNameRange     '5.5.7',
+844 silly addNameRange     '5.5.8',
+844 silly addNameRange     '6.0.0',
+844 silly addNameRange     '6.0.1',
+844 silly addNameRange     '6.0.2',
+844 silly addNameRange     '6.0.3',
+844 silly addNameRange     '6.0.4',
+844 silly addNameRange     '6.0.5',
+844 silly addNameRange     '6.0.6',
+844 silly addNameRange     '6.0.7',
+844 silly addNameRange     '6.1.0',
+844 silly addNameRange     '6.2.0',
+844 silly addNameRange     '6.2.1',
+844 silly addNameRange     '6.3.0',
+844 silly addNameRange     '6.3.1',
+844 silly addNameRange     '6.3.2',
+844 silly addNameRange     '6.3.3',
+844 silly addNameRange     '7.0.0',
+844 silly addNameRange     '7.0.1',
+844 silly addNameRange     '7.0.2',
+844 silly addNameRange     '7.0.3',
+844 silly addNameRange     '7.0.4',
+844 silly addNameRange     '7.1.0',
+844 silly addNameRange     '7.1.1',
+844 silly addNameRange     '7.1.2',
+844 silly addNameRange     '7.2.0',
+844 silly addNameRange     '7.2.1',
+844 silly addNameRange     '7.3.0',
+844 silly addNameRange     '7.3.1',
+844 silly addNameRange     '7.3.2',
+844 silly addNameRange     '7.4.0',
+844 silly addNameRange     '7.4.1',
+844 silly addNameRange     '7.4.3',
+844 silly addNameRange     '7.4.5',
+844 silly addNameRange     '7.4.6' ] ]
+845 silly addNamed angular-multi-select@7.4.6
+846 verbose addNamed "7.4.6" is a plain semver version for angular-multi-select
+847 silly cache afterAdd grunt-contrib-less@1.4.0
+848 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-less\1.4.0\package\package.json not in flight; writing
+849 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+850 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\grunt-contrib-less\1.4.0\package\package.json written
+851 silly cache afterAdd angular-multi-select@7.4.6
+852 verbose afterAdd C:\Users\Admin\AppData\Roaming\npm-cache\angular-multi-select\7.4.6\package\package.json not in flight; writing
+853 verbose correctMkdir C:\Users\Admin\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+854 warn retry will retry, error on last attempt: Error: EBUSY: resource busy or locked, rename 'C:\Users\Admin\AppData\Local\Temp\npm-9660-99eb73d2\registry.npmjs.org\multi-select\-\multi-select-0.3.4.tgz.4254974897' -> 'C:\Users\Admin\AppData\Local\Temp\npm-9660-99eb73d2\registry.npmjs.org\multi-select\-\multi-select-0.3.4.tgz'
+855 verbose stack TypeError: tarball.destroy is not a function
+855 verbose stack     at WriteStreamAtomic.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-remote-tarball.js:85:15)
+855 verbose stack     at emitOne (events.js:82:20)
+855 verbose stack     at WriteStreamAtomic.emit (events.js:169:7)
+855 verbose stack     at WriteStreamAtomic.emit (C:\Program Files\nodejs\node_modules\npm\node_modules\fs-write-stream-atomic\index.js:60:34)
+855 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\fs-write-stream-atomic\index.js:89:19
+855 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+856 verbose cwd D:\EditViewRepo
+857 error Windows_NT 10.0.14393
+858 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+859 error node v4.6.0
+860 error npm  v2.15.9
+861 error tarball.destroy is not a function
+862 error If you need help, you may report this error at:
+862 error     <https://github.com/npm/npm/issues>
+863 verbose exit [ 1, true ]

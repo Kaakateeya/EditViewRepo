@@ -1,0 +1,4 @@
+editviewapp.controller("astroCtrl", function () {
+
+
+});

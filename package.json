@@ -1,0 +1,50 @@
+{
+  "name": "editandview",
+  "version": "1.0.0",
+  "description": "Edit and View Repository used both for Employee and Customer \r # steps to include this repoistory  \r   <b>1</b>.include below line in pacake.json in depencies section",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaakateeya/EditViewRepo.git"
+  },
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-route": "latest",
+    "angular-ui-router": "latest",
+    "ng-numbers-only": "latest",
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "jquery": "latest",
+    "angular-date-time-input": "latest",
+    "moment": "latest",
+    "underscore": "latest",
+    "multi-select": "*"
+  },
+  "devDependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-module-sanitize": "^1.2.19",
+    "angular-multi-select": "^7.4.6",
+    "angular-touch": "^1.5.8",
+    "angular-ui-bootstrap": "^2.1.4",
+    "bootstrap-multiselect": "^0.9.13-1",
+    "express": "latest",
+    "grunt": "~0.4.4",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-dev-prod-switch": "^0.1.8",
+    "grunt-scriptlinker": "^0.1.1",
+    "jshint-stylish": "latest"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaakateeya/EditViewRepo/issues"
+  },
+  "homepage": "https://github.com/Kaakateeya/EditViewRepo#readme"
+}

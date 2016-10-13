@@ -1,0 +1,668 @@
+<div class="edit_pages_content_main clearfix"  ng-controller="parentCtrl">
+
+
+
+<div class="edit_page_item" id="divlnkaddparents" >
+    <div class="edit_page_item_head clearfix">
+        <h4>Parents Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" id="spanEduModID" visible="false">ModifiedBy :<asp:label id="lblParentsDetailsmodby" forecolor="#08CFD2"></asp:label></span>
+        </h4>
+        <div class="edit_page_item_ui clearfix">
+
+            <a id="lnkaddparents" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Parents Details" class="edit_page_add_button">Add</a>
+
+        </div>
+    </div>
+    <div class="edit_page_details_item">
+        <div id="listparents">
+            <div id="reviewdiv">
+
+                <div>
+                    <div>
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lfathername"></label>
+                                Father Name</h6>
+                            <h5>
+                                <label id="LBfathername">
+                                </label>
+                            </h5>
+                            <label id="lblFatherEducat" visible="false"></label>
+                            <label id="lblFatherEducGroup" visible="false"></label>
+                            <label id="lblFatherEduSpl" visible="false"></label>
+
+                            <label id="lblmodifiedparentsBy" visible="false"></label>
+                        </div>
+
+                        <a id="LinkButton1dfd" data-placement="bottom" data-toggle="tooltip" data-original-title="Edit Parents Details" class="edit_page_edit_button" onclick="return AllowWebUser('Parents Details');">Edit</a>
+
+                        <label id="lblreveiw" visible="false"></label>
+                    </div>
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblfathereducation" font-bold="true">Education</label>
+                        </h6>
+
+                        <h5>
+                            <label id="lblfathereducationdetails">
+                            </label>
+                        </h5>
+
+                    </div>
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblFatherprofession" font-bold="true">Profession</label>
+                        </h6>
+
+                        <h5>
+                            <label id="lblfatherprofessiondetails">
+                            </label>
+                        </h5>
+                    </div>
+
+
+                    <div class="edit_page_details_item_desc clearfix" id="fathercompnay">
+
+                        <h6>
+                            <label id="lblfatherprofessionloc" font-bold="true">Company & JobLocation</label>
+                        </h6>
+                        <h5>
+                            <label id="lblfatherprofandloc">
+                            </label>
+                        </h5>
+
+                    </div>
+
+                    <div id="ownerdiv0">
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lblfathernumber" font-bold="true">Father contact nos</label>
+                            </h6>
+                            <h5>
+                                <label id="lblfathermobile">
+                                </label>
+                            </h5>
+                            <label id="lblfathermobilenum" visible="false"></label>
+                            <label id="lblFatherLandNumber" visible="false"></label>
+                        </div>
+
+
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="fatheremail" font-bold="true">Father Email</label>
+                            </h6>
+                            <h5>
+                                <label id="lblFatherEmail">
+                                </label>
+                            </h5>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblfathersfather">Father's Father Name</label></h6>
+                        <h5>
+                            <label id="lblfathersfath">
+                            </label>
+                        </h5>
+                    </div>
+
+                    <div id="ownerdiv1">
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="FFContactNos">FF contact nos</label></h6>
+                            <h5>
+                                <label id="lblFFContactNos">
+                                </label>
+                            </h5>
+                        </div>
+
+                    </div>
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="FnativePlace" font-bold="true">Native Place</label>
+                        </h6>
+                        <h5>
+                            <label id="lblFnativePlace">
+                            </label>
+                        </h5>
+                    </div>
+
+
+
+
+                </div>
+
+                <div>
+                    <hr />
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblmothername" font-bold="true"
+                                forecolor="Red">
+                                Mother Name
+                            </label>
+                        </h6>
+
+                        <h5>
+                            <label id="lblmothernameandedu">
+                            </label>
+                        </h5>
+
+
+                        <label id="lblmothernamea" visible="false"></label>
+                        <label id="lblMotherEducGroup" visible="false"></label>
+                        <label id="lblMotherEduSpl" visible="false"></label>
+
+                    </div>
+
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lbleducationmother">Education</label></h6>
+
+                        <h5>
+                            <label id="lblmotherducation">
+                            </label>
+                        </h5>
+                    </div>
+
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblprofessionmotherr" font-bold="true">Profession</label>
+                        </h6>
+
+                        <h5>
+                            <label id="lblmotherprofdetails">
+                            </label>
+                        </h5>
+                    </div>
+
+                    <div id="mothercompany" class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblmotherprofession">Company & JobLocation</label></h6>
+                        <h5>
+                            <label id="lblmotherprofandloc"></label>
+                        </h5>
+                    </div>
+
+                    <div id="ownerdiv2">
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblmothercontacts">Mother contact nos</label></h6>
+                            <h5>
+                                <label id="lblmompmobile">
+                                </label>
+                            </h5>
+
+
+                            <label id="lblMotherMobilenumber" visible="false"></label>
+                            <label id="lblMotherLandNumber" visible="false"></label>
+
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblmotheremail" font-bold="true">Mother Email</label>
+                            </h6>
+                            <h5>
+                                <label id="lblmomemail">
+                                </label>
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="lblmotherfatherupp" font-bold="true">Mother's Father Name</label>
+                        </h6>
+                        <h5>
+                            <label id="lblMotherFatherName">
+                            </label>
+                        </h5>
+
+                        <label id="lblmotherlastname" visible="false"></label>
+                        <label id="lblMotherFname"
+                            visible="false">
+                        </label>
+                    </div>
+
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="MotherFatherLastName" font-bold="true">Mother's Father SurName</label>
+                        </h6>
+                        <h5>
+                            <label id="lblMotherFatherLastName">
+                            </label>
+                        </h5>
+                    </div>
+
+                    <div id="ownerdiv3">
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="mContactNos" font-bold="true">MF Contact nos</label>
+                            </h6>
+                            <h5>
+                                <label id="lblmContactNos">
+                                </label>
+                            </h5>
+                        </div>
+
+                    </div>
+
+                    <div class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="MNativePlace" font-bold="true">Native Place</label>
+                        </h6>
+                        <h5>
+                            <label id="lblMNativePlace">
+                            </label>
+                        </h5>
+                    </div>
+
+                    <div id="FatherBackendFields" style="display: none;">
+                        <label id="lblFatherName"></label>
+                        <label id="lblFatherEducationCategoryID"></label>
+                        <label id="lblFatherEducationgroupID"></label>
+                        <label id="lblFatherEducationSpecializationID"></label>
+                        <label id="lblFatherEmployedInID"></label>
+                        <label id="lblFatherProfessionGroupID"></label>
+                        <label id="lblFatherProfessionID"></label>
+                        <label id="lblFatherCasteID"></label>
+                        <label id="lblFatherLandCountryCodeId"></label>
+                        <label id="lblFatherLandAreaCodeId"></label>
+                        <label id="lblFatherMobileCountryCodeId"></label>
+                        <label id="lblFatherFathercellnumer"></label>
+                        <label id="lblFatherFatherMobilennumber"></label>
+                        <label id="lblAboutFatherFather"></label>
+                        <label id="lblFatherCust_family_id"></label>
+                        <label id="lblFatherIntercaste"></label>
+                        <label id="lblFathercompanyName" visible="false"></label>
+                        <label id="lblFatherJoblocation" visible="false"></label>
+                        <label id="lblEmployedin" visible="false"></label>
+                        <label id="lblFatherProfGroup" visible="false"></label>
+                        <label id="blFatherProfession" visible="false"></label>
+
+                        <label id="lblFatherDistrictID" visible="false"></label>
+                        <label id="lblFatherStateID" visible="false"></label>
+                        <label id="lblFatherfatherMobileCountryID" visible="false"></label>
+                        <label id="lblFatherfatherLandCountryCodeID" visible="false"></label>
+                        <label id="lblFatherFatherMobileNumber" visible="false"></label>
+                        <label id="lblFatherFatherLandAreaCode" visible="false"></label>
+                        <label id="lblFatherFatherLandNumber" visible="false"></label>
+                        <label id="lblFatherCity" visible="false"></label>
+                        <label id="lblFatherNativeplace" visible="false"></label>
+
+                    </div>
+                    <div id="MotherBackendFields" style="display: none;">
+                        <label id="lblMName"></label>
+                        <label id="lblMotherEducationCategoryID"></label>
+                        <label id="lblMotherEducationgroupID"></label>
+                        <label id="lblMotherEducationSpecializationID"></label>
+                        <label id="lblMotherEmployedInID"></label>
+                        <label id="lblMotherProfessionGroupID"></label>
+                        <label id="lblMotherProfessionID"></label>
+                        <label id="lblMotherCasteID"></label>
+                        <label id="lblMotherLandCountryCodeId"></label>
+                        <label id="lblMotherLandAreaCodeId"></label>
+                        <label id="lblMotherMobileCountryCodeId"></label>
+                        <label id="lblMotherCust_family_id"></label>
+                        <label id="lblMotherIntercaste"></label>
+
+                        <label id="lblMotherFatherMobile"></label>
+                        <label id="lblMothercompanyId"></label>
+                        <label id="lblFathercompanyID"></label>
+
+                        <label id="lblFatherLandNumberID"></label>
+                        <label id="lblFathermobilenumberID"></label>
+                        <label id="lblMotherLandNumberID"></label>
+                        <label id="lblMotherMobilenumberID"></label>
+                        <label id="lblMothercompanyName" visible="false"></label>
+                        <label id="Label2" visible="false"></label>
+                        <label id="lblMotherProfGroup" visible="false"></label>
+
+                        <label id="lblmotherDistricID" visible="false"></label>
+                        <label id="lblmotherStateID" visible="false"></label>
+                        <label id="lblMotherfatherMobileCountryID"></label>
+                        <label id="lblmotherfatherLandCountryID"></label>
+                        <label id="lblMotherFatherMobileNumber" visible="false"></label>
+                        <label id="lblMotherFatherLandAreaCode" visible="false"></label>
+                        <label id="lblMotherFatherLandNumber" visible="false"></label>
+                        <label id="lblMotherCity" visible="false"></label>
+                        <label id="lblMotherNativeplace" visible="false"></label>
+                    </div>
+                </div>
+                <div>
+                    <div id="divParentIntercasteHide">
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="ParentsInterCaste">Are Parents InterCaste</label></h6>
+                            <h5>
+                                <label id="lblParentsInterCaste"></label>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lFatherCaste">Father Caste</label></h6>
+                            <h5>
+                                <label id="lblFatherCaste"></label>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lMotherCaste"></label>
+                            </h6>
+                            <h5>
+                                <label id="lblMotherCaste"></label>
+                            </h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+
+    </div>
+</div>
+<div class="edit_page_item" id="divlnkAddcontactaddress">
+    <div class="edit_page_item_head clearfix">
+        <h4>Contact Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" id="spanContactAdd" visible="false">ModifiedBy :<asp:label id="lblContactAddressmodBY" forecolor="#08CFD2"></asp:label></span>
+        </h4>
+        <div class="edit_page_item_ui clearfix">
+
+            <a id="lnkAddcontactaddress" text="Add" onclick="lnkaddparents_Click" data-toggle="tooltip"
+                data-original-title="Add Contact Address" cssclass="edit_page_add_button"></a>
+
+        </div>
+    </div>
+    <div class="edit_page_details_item">
+
+        <div id="lstContactAddress" onitemcommand="lstContactAddress_ItemCommand" onitemdatabound="listparents_ItemDataBound">
+
+            <div id="Div1" class="edit_page_details_item_desc clearfix">
+
+                <div class="edit_page_details_item_desc clearfix">
+                    l
+                                        <h6>
+                                            <label id="lblhousenum" text="House/Flat No" font-bold="true"></label>
+                                        </h6>
+                    <h5>
+                        <label id="lblhouseflat">
+                        </label>
+                    </h5>
+                </div>
+
+                <div id="divapartment" class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lblapartmentname" text="Apt Name" font-bold="true"></label>
+                    </h6>
+                    <h5>
+                        <label id="lblapartment">
+                        </label>
+                    </h5>
+                </div>
+
+                <a id="lnkcontact" class="edit_page_edit_button" onclientclick="return AllowWebUser('Contact Address');">Edit</a>
+                <label id="lblmodifiedContAddBy" visible="false"></label>
+
+                <div id="divareaname" class="edit_page_details_item_desc clearfix">
+
+                    <h6>
+                        <label id="lblareaname" font-bold="true">Area Name</label>
+                    </h6>
+                    <h5>
+                        <label id="lblareanamee">
+                        </label>
+                    </h5>
+
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+
+                    <h6>
+                        <label id="lblstreet" font-bold="true">Street Name</label>
+                    </h6>
+                    <h5>
+                        <label id="lblstreetname">
+                        </label>
+                        <label id="Label3" visible="false"></label>
+                    </h5>
+
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+
+                    <h6>
+                        <label id="lblland" font-bold="true">Land Mark</label>
+                    </h6>
+                    <h5>
+                        <label id="lbllandmark">
+                        </label>
+                    </h5>
+
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+
+                    <h6>
+                        <label id="lblcityy" font-bold="true">City</label>
+                    </h6>
+                    <h5>
+                        <label id="lblcityname">
+                        </label>
+                    </h5>
+                    <label id="lblcontactcity" visible="false"></label>
+                    <label id="lblcontactstate" visible="false"></label>
+                    <label id="lblcontry" visible="false"></label>
+                    <label id="lblpincode" visible="false"></label>
+
+
+                </div>
+
+
+
+                <div id="ContactBackendFields" style="display: none;">
+                    <label id="lblParentCityid" visible="false"></label>
+                    <label id="lblParentStateid" visible="false"></label>
+                    <label id="lblParentCountryId" visible="false"></label>
+                    <label id="lblParentDistrictId" visible="false"></label>
+                    <label id="lblParentAddresstypeid" visible="false"></label>
+                    <label id="lblCust_Family_ID" visible="false"></label>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+<div class="edit_page_item" id="divlnkAddphsysicall">
+    <div class="edit_page_item_head clearfix">
+        <h4>Physical Attribute & Health Details of Candidate &nbsp;&nbsp;<span style="color: #08CFD2" id="spanPAHD" visible="false">ModifiedBy :<asp:label id="lblPAHD" forecolor="#08CFD2"></asp:label></span></h4>
+        <div class="edit_page_item_ui clearfix">
+
+            <a id="lnkAddphsysicall" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
+
+        </div>
+    </div>
+    <div class="edit_page_details_item">
+
+        <div id="lstPhysicalAttribute" onitemcommand="lstPhysicalAttribute_ItemCommand" onitemdatabound="listparents_ItemDataBound">
+
+            <div id="Div2" class="edit_page_details_item_desc clearfix">
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lbllDiet" font-bold="true">Diet</label></h6>
+                    <h5>
+                        <label id="lblDiet"></label>
+                    </h5>
+                </div>
+
+
+
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lbllDrink">Drink</label></h6>
+                    <h5>
+                        <label id="lblDrink"></label>
+                        <label id="lblmodifiedPAHDBy" visible="false"></label>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lbllSmoke"></label>
+                    </h6>
+                    <h5>
+                        <label id="lblSmoke"></label>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lbllBodyType">Body Type</label></h6>
+                    <h5>
+                        <label id="lblBodyType"></label>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+
+                    <h6>
+                        <label id="lblbodyweight" font-bold="true">Body Weight</label>
+                    </h6>
+                    <h5>
+                        <label id="lblweight">
+                        </label>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lblbloodgroup" font-bold="true">Blood Group</label>
+                    </h6>
+                    <h5>
+                        <label id="lblbloodgrop">
+                        </label>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lblhealthconditions" font-bold="true">Health Conditions</label>
+                    </h6>
+                    <h5>
+                        <label id="lblhealthcondition">
+                        </label>
+                    </h5>
+                </div>
+
+                <a id="lnkphysical" data-toggle="tooltip" data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" onclientclick="return AllowWebUser('Physical Attribute');">Edit</a>
+
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <label id="lblhealthdescription" font-bold="true">Health Condition Description</label>
+                    </h6>
+                    <h5>
+                        <label id="lblhealthdescriptions">
+                        </label>
+                    </h5>
+                </div>
+
+
+
+                <div id="PhysicalBackendFields" style="display: none;">
+                    <label id="lblHealthConditionID"></label>
+                    <label id="lblBloodGroupID"></label>
+                    <label id="Label4" visible="false"></label>
+
+                    <label id="lblbDietID" visible="false"></label>
+                    <label id="lblbDrinkID" visible="false"></label>
+                    <label id="lblbSmokeID" visible="false"></label>
+                    <label id="lblbBodyTypeID" visible="false"></label>
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="edit_page_item" id="divlnkaboutt">
+    <div class="edit_page_item_head clearfix">
+        <h4>About My Family
+        </h4>
+        <div class="edit_page_item_ui clearfix">
+            <a id="lnkaboutt" text="Add" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add About My Family" cssclass="edit_page_add_button"></a>
+        </div>
+    </div>
+    <div class="edit_page_details_item">
+        <div id="lstAboutMyFamily" onitemdatabound="listparents_ItemDataBound">
+
+            <div id="Div3" class="edit_page_details_item_desc clearfix">
+                <div>
+                    <div>
+                        <h5>
+                            <label id="lblAboutMyFamily"></label>
+                        </h5>
+                        <label id="Label5" visible="false"></label>
+                    </div>
+
+
+                    <a id="lnkaboutmyfamilyyy" onclick="lnkaboutmyfamilyyy_Click" class="edit_page_edit_button" onclientclick="return AllowWebUser('About My Family');"
+                        data-toggle="tooltip" data-original-title="Edit About My Family">Edit</a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  </div>

@@ -1,0 +1,5 @@
+
+editviewapp.controller("parentCtrl", function () {
+
+
+});

@@ -1,0 +1,279 @@
+<div class="edit_pages_content_main clearfix" ng-controller="partnerPreferenceCtrl">
+
+    <script type="text/javascript">
+    function CharacterCount() {
+        var txtCharacters = document.getElementById("txtPartnerDescription");
+        var chars = txtCharacters.value.length;
+        document.getElementById("lblpartnerdesccount").innerHTML = "Number of characters entered :" + chars;
+        if (chars > 500) {
+            txtCharacters.value = txtCharacters.value.substring(0, 500);
+            document.getElementById("lblpartnerdesccount").innerHTML = "Number of characters entered :" + 500;
+        }
+    }
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="edit_page_item">
+        <div class="edit_page_item_head clearfix">
+            <h4>PartnerPreference Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </h4>
+            <div class="edit_page_item_ui clearfix">
+                <div id="updatepanellnkaddpartnerpreference">
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="edit_page_details_item">
+            <div id="uppartner">
+
+
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+
+                    <div id="UpdatePanel21" class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <span id="partnergen" style="color:Red;font-weight:bold;">Gender</span></h6>
+                        <h5>
+                            <span id="lblpartnergen" style="color:Red;">Female</span></h5>
+
+
+
+                    </div>
+                    <div id="UpdatePanellnkpartneredit" class="edit_page_item_ui clearfix">
+
+                        <a onclick="return AllowWebUser('PartnerPreference Details');" id="lnkpartneredit" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$listpartner$ctrl0$lnkpartneredit','')">Edit</a>
+
+                    </div>
+
+                    <div id="UpdatePanel10" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
+                            <h5>
+                                <span id="lblagegap">1 to  5</span></h5>
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel13" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+                            <h6>
+                                <span id="height" style="font-weight:bold;">Height</span></h6>
+                            <h5>
+                                <span id="lblheight">5'4 in - 162 cms to 5'9 in - 175 cms</span></h5>
+                        </div>
+
+
+                    </div>
+                    <div id="UpdatePanel15" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+                            <h6>
+                                <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
+
+                            <h5>
+                                <span id="lblmothertongue">Telugu</span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel16" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <span id="Religion" style="font-weight:bold;">Religion</span></h6>
+                            <h5>
+                                <span id="lblReligion">Hindu</span></h5>
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel17" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+                            <h6>
+                                <span id="caste" style="font-weight:bold;">caste</span></h6>
+                            <h5>
+                                <span id="lblcaste">Reddy</span></h5>
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel1" class="edit_page_details_item_desc clearfix">
+
+
+                        <div>
+
+                            <h6>
+                                <span id="subcaste" style="font-weight:bold;">subcaste</span></h6>
+                            <h5>
+                                <span id="lblsubcaste"></span></h5>
+                        </div>
+
+
+                    </div>
+                    <div id="UpdatePanel2" class="edit_page_details_item_desc clearfix">
+
+
+                        <div>
+
+                            <h6>
+                                <span id="maritalstatus" style="font-weight:bold;">marital status</span></h6>
+                            <h5>
+                                <span id="lblmaritalstatus">Unmarried</span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="updateeducationgroup" class="edit_page_details_item_desc clearfix">
+
+
+                        <div>
+
+                            <h6>
+                                <span id="Education" style="font-weight:bold;">Education</span></h6>
+                            <h5>
+                                <span id="lblEducation"></span></h5>
+
+                        </div>
+
+
+                    </div>
+
+                    <div id="UpdatePanel5" class="edit_page_details_item_desc clearfix">
+
+
+
+                        <h6>
+                            <span id="profession" style="font-weight:bold;">profession</span></h6>
+                        <h5>
+                            <span id="lblprofession"></span></h5>
+
+                    </div>
+
+                    <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
+
+
+                        <div>
+
+                            <h6>
+                                <span id="MangalikKujadosham" style="font-weight:bold;">Manglik/Kujadosham</span></h6>
+                            <h5>
+                                <span id="lblMangalikKujadosham"></span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel7" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+                            <h6>
+                                <span id="preferredstarLanguage" style="font-weight:bold;">preferred star Language</span></h6>
+                            <h5>
+                                <span id="lblpreferredstarLanguage"></span></h5>
+                        </div>
+
+
+                    </div>
+
+                    <div id="UpdatePanel8" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
+                            <h5>
+                                <span id="lblpreferredstar"></span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel12" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+
+                            <h6>
+                                <span id="Diet" style="font-weight:bold;">Diet</span></h6>
+                            <h5>
+                                <span id="lblDiet"></span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel18" class="edit_page_details_item_desc clearfix">
+
+
+                        <div>
+
+                            <h6>
+                                <span id="preferredCountry" style="font-weight:bold;">preferred Country</span></h6>
+                            <h5>
+                                <span id="lblpreferredCountry"></span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel19" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+
+                            <h6>
+                                <span id="preferredState" style="font-weight:bold;">preferred State</span></h6>
+                            <h5>
+                                <span id="lblpreferredState"></span></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanel36" class="edit_page_details_item_desc clearfix">
+                    </div>
+                    <div id="UpdatePanel40" class="edit_page_details_item_desc clearfix">
+                    </div>
+                    <div style="display: none;" id="backendfields">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="edit_page_item">
+        <div class="edit_page_item_head clearfix">
+            <h4>Partner Description ( Describe qualities you are looking for in your partner)</h4>
+            <div class="edit_page_item_ui clearfix">
+                <div id="updatepanel24">
+
+                    <a id="lnkpartnerdesc" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$lnkpartnerdesc','')">Add</a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="edit_page_details_item">
+
+            <div>
+                <div id="UpdatePanel9" class="edit_page_details_item_desc clearfix">
+
+                    <div class="edit_page_details_item_desc clearfix">
+                        <h5>
+                            <span id="lblpartnerdesc"></span></h5>
+                    </div>
+
+                </div>
+                <div id="sdfsd" class="edit_page_item_ui clearfix">
+
+                    <div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+

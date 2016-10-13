@@ -1,0 +1,377 @@
+<div class="edit_pages_content_main clearfix" ng-controller="eduAndProfCtrl" ng-init="getdata({ ICustID: '91022'})">
+
+	<div class="edit_page_item" id="divEducation">
+		<div class="edit_page_item_head clearfix">
+			<h4>Education Details</h4>
+			<div class="edit_page_item_ui clearfix">
+				<a id="EducationAdd" class="edit_page_add_button" href="javascript:void();" ng-click="open()">Add</a>
+			</div>
+		</div>
+		<label id="identityid" visible="false"></label>
+		<div class="edit_page_details_item">
+			<div id="UpdatePanelfulleducation">
+
+				<div id="ListView1" ng-repeat="item in educationSelectArray" ng-style="{'font-weight':'0'}">
+
+					<div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+						<div id="UpdatePanellbleducationgroup" class="edit_page_details_item_desc clearfix">
+
+							<h6>
+								<label id="lbleducationgroup" ng-style="{color: item.EduHighestDegree==1?'Red':'Black'}">{{item.EducationCategory!=null?(item.EducationCategory=="Below Graduation"?"Under Graduation":"Education"):"Education"}}</label>
+							</h6>
+							<h5>
+								<label id="edgoup" ng-style="{color: item.EduHighestDegree==1?'Red':''}">{{item.EducationGroup+" "+((item.EducationSpecialization!=null?"(" +item.EducationSpecialization+")":""))+" "+((item.EduPassOfYear!=null?",Completed"+"-"+item.EduPassOfYear:""))}} </label>
+							</h5>
+							<!--<label id="educationgroup" visible="false"></label>
+							<label id="lbleducat" visible="false"></label>
+							<label id="lblEduPassOfYear" visible="false"></label>
+							<label id="lblmodifiedBy" visible="false"></label>-->
+
+						</div>
+
+						<div id="UpdatePanelediteducationbutton" class="edit_page_item_ui clearfix">
+
+							<a id="LinkButton1dfd" class="edit_page_edit_button" text="Edit"></a>
+							<a id="lnkdeleteEdu" commandname="modify" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Education Details"
+								class="edit_page_del_button" text="Delete"></a>
+
+						</div>
+						<!--<label id="index" visible="false"></label>-->
+
+						<div id="divuniversityhiding" class="edit_page_details_item_desc clearfix" ng-hide="{{item.EduUniversity!=null?false:true}}">
+							<h6>
+								<span id="Label1">University</span>
+							</h6>
+
+							<h5>
+								<span id="lblTuniversity">{{item.EduUniversity}}</span>
+							</h5>
+						</div>
+
+						<div id="divCollege" class="edit_page_details_item_desc clearfix" ng-hide="{{item.EduCollege!=null?false:true}}">
+							<h6>
+								<span id="Label9">College</span>
+							</h6>
+							<h5>
+								<span id="lblTcollege">{{item.EduCollege}}</span>
+							</h5>
+						</div>
+
+						<div class="edit_page_details_item_desc clearfix" id="divcityviewhiding" ng-hide="{{item.EduCityIn!=null?false:true}}">
+							<h6>
+								<span id="Label3" font-bold="true">City Study In</span>
+							</h6>
+							<h5>
+								<span id="lblcountry">{{item.EduCityIn+","+item.EduDistrictIn+","+item.EduStateIn+","+item.EduCountryIn}}</span>
+							</h5>
+						</div>
+						<div id="divmerit" class="edit_page_details_item_desc clearfix" ng-hide="{{item.Educationdesc!=null?false:true}}">
+							<h6>
+								<span id="Label5" font-bold="true">Education Merits</span>
+							</h6>
+							<h5>
+								<span id="lblmerits">{{item.Educationdesc}}</span>
+							</h5>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div class="edit_page_item">
+		<div id="divlnkAddProfession" class="edit_page_item_head clearfix">
+			<h4>Professional Details
+			</h4>
+			<div class="edit_page_item_ui clearfix">
+				<div id="updapanellnkAddProfession">
+				</div>
+			</div>
+		</div>
+
+		<div class="edit_page_details_item">
+			<div id="lstProfession" ng-repeat="item in ProfessionSelectArray">
+				<div id="reviewdiv">
+					<div class="edit_page_details_item_desc clearfix">
+						<h6>
+							<span id="lblprofession" style="font-weight:bold;">Profession</span></h6>
+						<h5>
+							<span id="txtProfession">{{item.Professional+" "+(item.CompanyName !=null && item.CompanyName !=""?"in"+" "+item.CompanyName:item.CompanyName)}}</span></h5>
+					</div>
+					<div class="edit_page_item_ui clearfix">
+						<a id="Linkedit" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editcustomerprofession$lstProfession$ctrl0$Linkedit','')">Edit</a>
+					</div>
+					<div id="divcitywork" class="edit_page_details_item_desc clearfix" ng-hide="{{item.CityWorkingIn!=null?false:true}}">
+						<h6>
+							<span id="lblcitywork" style="font-weight:bold;">City working in </span></h6>
+						<h5>
+							<span id="lblcityworkingg">{{(item.CityWorkingIn!=null?" "+item.CityWorkingIn:" ")+ " " +(item.StateWorkingIn!=null && item.StateWorkingIn!=" "?","+item.StateWorkingIn:"")+" "+(item.CountryWorkingIn!=null && item.CountryWorkingIn!=""? ", "+item.CountryWorkingIn:" ")}}</span></h5>
+					</div>
+					<div id="Div1">
+						<div class="edit_page_details_item_desc clearfix" ng-hide="{{item.Salary!=null?false:true}}">
+							<h6>
+								<span id="lblsal" style="font-weight:bold;">Monthly salary</span></h6>
+							<h5>
+								<span id="lblsalaryy">{{item.Currency+" "+(item.Salary!=null && item.Salary!=""?" "+item.Salary+"/-":"")}}</span></h5>
+						</div>
+
+						<div id="Div2" class="edit_page_details_item_desc clearfix" ng-hide="{{item.WorkingFromDate!=null?false:true}}">
+							<h6>
+								<span id="lblworkfrom" style="font-weight:bold;">Working from date</span></h6>
+							<h5>
+								<span id="lblworkingfrom">{{item.WorkingFromDate}}</span></h5>
+						</div>
+					</div>
+
+
+
+					<div id="Div3" class="edit_page_details_item_desc clearfix" ng-hide="{{item.VisaStatus!=null?false:true}}">
+						<h6>
+							<label id="lblvisa">visa status</label>
+						</h6>
+						<h5>
+							<span id="txtvisa">{{item.VisaStatus}}</span>
+						</h5>
+					</div>
+					<div id="Div4" class="edit_page_details_item_desc clearfix" ng-hide="{{item.ResidingSince!=null?false:true}}">
+
+						<h6>
+							<span id="lblsincedate">Since date</span>
+						</h6>
+						<h5>
+							<span id="txtsincedate">{{item.ResidingSince}}</span>
+						</h5>
+					</div>
+
+					<div id="Div5" class="edit_page_details_item_desc clearfix" ng-hide="{{item.ArrivingDate!=null?false:true}}">
+
+						<h6>
+							<span id="lblarrival">Arrival Date</span>
+						</h6>
+						<h5>
+							<span id="txtarrival" >{{item.ArrivingDate}}</span>
+						</h5>
+					</div>
+					<div id="Div6" class="edit_page_details_item_desc clearfix" ng-hide="{{item.DepartureDate!=null?false:true}}">
+
+						<h6>
+							<span id="lbldepartture">Departure Date</span>
+						</h6>
+						<h5>
+							<span id="txtdaparture"> {{item.DepartureDate}}</span>
+						</h5>
+					</div>
+					<div id="Div7" class="edit_page_details_item_desc clearfix" ng-hide="{{item.OccupationDetails!=null?false:true}}">
+
+						<h6>
+							<span id="lblOccupation" style="font-weight:bold;">Occupation Details</span></h6>
+						<h5>
+							<span id="txtOccupation">{{item.OccupationDetails}} </span></h5>
+					</div>
+					<div id="Backend_Fields" style="display: none;">
+						<span id="lblProfessionCategoryID">1</span>
+						<span id="lblProfessionGroupID">23</span>
+						<span id="lbProfessionID">179</span>
+						<span id="lblCountryID">1</span>
+						<span id="lblStateID">1</span>
+						<span id="lblDistrictID">20</span>
+						<span id="lblCityID">21038</span>
+						<span id="lblSalaryCurrency">107</span>
+						<span id="lblVisaTypeID"></span>
+						<span id="lblcompanyid">ICICI</span>
+						<span id="lblCust_Profession_ID">200149</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="divlnkadd" class="edit_page_item">
+		<div class="edit_page_item_head clearfix">
+			<h4>Mention your goals, interests and hobbies etc</h4>
+			<div class="edit_page_item_ui clearfix">
+				<div id="upAboutAdd">
+				</div>
+			</div>
+		</div>
+		<div class="edit_page_details_item">
+			<div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+				<div class="form-group">
+					<div id="uplblAbout" class="edit_page_details_item_desc clearfix">
+
+						<h5 style="float: none; width: 92%; display: block;">
+							<span id="lblabouturself">Loves singing,painting ,Carrom player</span>
+						</h5>
+					</div>
+					<div id="uplnkAboutURSelf" class="edit_page_item_ui clearfix">
+						<a id="lnkAboutURSelf" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editcustomerprofession$lstabouturself$ctrl0$lnkAboutURSelf','')">Edit</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div id="popupdiv">
+
+		<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+
+
+            <ul id="uleducation">
+        <li class="clearfix">
+            <label for="lblIsHighestDegree" class="pop_label_left">Is Highest Degree<span style="color: red; margin-left: 3px;">*</span></label>
+
+            <div class="pop_controls_right pop_radios_list">
+
+                <label>
+                    <input name="EmpType" value="1" type="radio"><span>&nbsp;Yes</span>
+                </label>
+                <label class="">
+                    <input name="EmpType" value="0" type="radio"><span>&nbsp;No</span>
+                </label>
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lbleducationGroup" class="pop_label_left">Education category<span style="color: red; margin-left: 3px;">*</span></label>
+
+            <div class="pop_controls_right select-box-my">
+                <select id="lstGEducatgory" ng-class="chosen">
+                     <option>--select--</option>
+                </select>
+                
+               
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lbleducationGroup" class="pop_label_left">Education group<span style="color: red; margin-left: 3px;">*</span></label>
+
+
+            <div class="pop_controls_right select-box-my">
+                <div class="select-box-my">
+                    <select id="lstGEdugroup" class="chosen">
+                         <option>--select--</option>
+                    </select>
+                
+                    
+                </div>
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lbleducationGroup" class="pop_label_left">Edu specialization<span style="color: red; margin-left: 3px;">*</span></label>
+
+            <div class="pop_controls_right select-box-my">
+
+                <div class="select-box-my">
+
+                    <select id="ddlEduspecialization" class="chosen">
+                         <option>--select--</option>
+                    </select>
+               
+
+                </div>
+            </div>
+        </li>
+        <li class="clearfix" id="divuniversity">
+            <label for="lbluniversity" class="pop_label_left">University</label>
+
+            <div class="pop_controls_right">
+                <input type="text" id="txtuniversity" maxlength="100" class="form-control" />
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lblcollege" class="pop_label_left">College</label>
+            <div class="pop_controls_right">
+                <input type="text" id="txtcollege" maxlength="150" class="form-control" />
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lblPassOfYear" class="pop_label_left">Pass of year</label>
+
+            <div class="pop_controls_right select-box-my">
+                <select id="ddlpassofyear" class="chosen" style="width: 100%; height: 31px;">
+                     <option>--select--</option>
+                </select>
+            </div>
+        </li>
+
+
+        <li class="clearfix">
+            <label for="lblCountry" class="pop_label_left">Country</label>
+
+            <div class="pop_controls_right select-box-my">
+                <select id="ddlCountry" class="chosen" style="width: 100%; height: 31px;">
+                     <option>--select--</option>
+                </select>
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="State" class="pop_label_left">State</label>
+
+            <div class="pop_controls_right select-box-my">
+                <select id="ddlState" class="chosen" style="width: 100%; height: 31px;">
+                     <option>--select--</option>
+                </select>
+
+            </div>
+        </li>
+        <li class="clearfix">
+
+            <div id="divEduDistric">
+                <label for="lblDistrict" class="pop_label_left">District</label>
+                <div class="pop_controls_right select-box-my">
+                    <select id="ddlDistrict" class="chosen" style="width: 100%; height: 31px;">
+                         <option>--select--</option>
+                        </select>
+                </div>
+            </div>
+
+        </li>
+        <li class="clearfix">
+            <label for="lblCityworking" class="pop_label_left">City Studying in</label>
+
+            <div class="pop_controls_right select-box-my">
+
+                <select id="ddlcityworking" class="chosen" tabindex="11">
+                     <option>--select--</option>
+                </select>
+                <input id="txtcity" style="display: none; width: 100%;" maxlength="100" />
+
+                <a id="lnkCity">Not in List</a>
+
+            </div>
+        </li>
+        <li class="clearfix">
+            <label for="lblEduMerits" class="pop_label_left">Educational merits</label>
+            <div class="">
+
+                <textarea id="txtEdumerits" maxlength="500" rows="4" tabindex="12"
+                    onkeydown="return CharacterCountedu()" onkeyup="return CharacterCountedu()"></textarea>
+            </div>
+        </li>
+    </ul>
+
+     
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+
+
+
+
+	</div>
+</div>

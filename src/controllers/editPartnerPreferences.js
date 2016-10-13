@@ -1,0 +1,6 @@
+
+
+editviewapp.controller("partnerPreferenceCtrl", function () {
+
+
+});

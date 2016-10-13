@@ -1,0 +1,658 @@
+<div ng-controller="sibblingCtrl" class="edit_pages_content_main clearfix">
+
+
+
+    <div class="edit_page_item">
+        <div class="edit_page_item_head clearfix">
+            <h4>Sibling Details
+            </h4>
+            <div class="edit_page_item_ui clearfix">
+
+                <a id="lnksiblings" text="Add" onclick="lnksiblings_Click" cssclass="edit_page_add_button"></a>
+
+            </div>
+        </div>
+        <label id="noOfSibIdentitybro" visible="false"></label>
+        <label id="noOfSibidentitySis" visible="false"></label>
+
+        <div id="upnoofSibblings" class="edit_page_details_item">
+
+            <div id="lstnoofbros" onitemcommand="lstnoofbros_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
+
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                    <div>
+                        <div>
+                            <div class="form-group">
+                                <div id="uplNoOfBrothers" class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="NoOfBrothers" text="No of Brothers" font-bold="true"></label>
+                                    </h6>
+                                    <h5>
+                                        <label id="lblNoOfBrothers">
+                                    </label>
+                                    </h5>
+
+                                </div>
+                                <div id="brotherHide">
+
+                                    <div id="uplnoofelderbrother" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="noofelderbrother" font-bold="true">No of elder brothers</label></h6>
+                                        <h5>
+                                            <label id="lblnoofelderbrother">
+                                        </label>
+                                        </h5>
+
+
+                                    </div>
+                                    <div id="uplNoofyoungerbrother" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="Noofyoungerbrother" text="No of younger brother" font-bold="true"></label>
+                                        </h6>
+                                        <h5>
+                                            <label id="lblnofyoungbro">
+                                        </label>
+                                        </h5>
+
+
+
+                                    </div>
+                                </div>
+                                <div id="upLinkeditsibnob" class="edit_page_item_ui clearfix">
+
+                                    <a id="Linkedit" class="edit_page_edit_button" onclientclick="return  AllowWebUser('Sibling Details');">Edit</a>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <div id="uplNoofsisters" class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="Noofsisters" font-bold="true">No of sisters</label></h6>
+                                    <h5>
+                                        <label id="lblNoofsisters">
+                                    </label>
+                                    </h5>
+
+
+                                </div>
+                                <div id="sisterHideDiv">
+                                    <div id="uplNoofeldersisters" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="Noofeldersisters" font-bold="true">No of elder sisters</label></h6>
+                                        <h5>
+                                            <label id="lblNoofeldersisters">
+                                        </label>
+                                        </h5>
+
+
+                                    </div>
+                                    <div id="uplNoofyoungersisters" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="Noofyoungersisters" font-bold="true">No of younger sisters</label></h6>
+                                        <h5>
+                                            <label id="lblNoofyoungersisters">
+                                        </label>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                                <label id="lblreveiw" visible="false"></label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="edit_page_item_head clearfix">
+            <h4>Brother Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2"
+                    id="spanEduModID" visible="false">ModifiedBy :<label id="lblmodifiedbyEmapName" forecolor="#08CFD2"></label></span>
+            </h4>
+            <div class="edit_page_item_ui clearfix">
+                <div id="uplnkbrotherdetails">
+
+                    <a id="lnkbrotherdetails" onclick="lnkbrotherdetails_Click" class="edit_page_add_button">Add
+                </a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="uplstSibbling" class="edit_page_details_item">
+
+            <div id="lstSibbling" onitemcommand="lstSibbling_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
+
+                <div>
+                    <div id="Div1" class="edit_page_details_item_desc clearfix">
+                        <div>
+                            <div>
+                                <div id="uplElderbrotherName" class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="ElderbrotherName" font-bold="true" forecolor="Red">
+                                        Brother Name</label></h6>
+                                    <h5>
+                                        <label id="lblElderbrotherName" forecolor="Red">
+                                    </label>
+                                    </h5>
+
+                                </div>
+                                <div id="upllnkbrodetailseb" class="edit_page_item_ui clearfix">
+
+                                    <a id="lnkbrodetails" onclick="lnkbrodetails_Click" class="edit_page_edit_button" onclientclick="return AllowWebUser('Brother Details');">Edit</a>
+                                    <a id="lnkBrotherDel" class="edit_page_del_button" commandname="modifysiblingsbrother" title="" data-placement="bottom" data-toggle="tooltip"
+                                        data-original-title="Delete Brother Details">Delete</a>
+
+                                </div>
+
+                            </div>
+                            <div id="UpdatePanelbrothereducation" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <label id="lblEducationbrother" font-bold="true">Education</label></h6>
+                                    <h5>
+                                        <label id="lblBrotherEducationDetails">
+                                    </label>
+                                    </h5>
+                                </div>
+
+                            </div>
+                            <div id="UpdatePanelprofessionbrother" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+                                    <h6>
+                                        <label id="Label2" font-bold="true">Profession</label></h6>
+                                    <h5>
+                                        <label id="lblBrotherprofessionDetails">
+                                    </label>
+                                    </h5>
+                                </div>
+
+                            </div>
+                            <div id="uplprofessioneb" class="edit_page_details_item_desc clearfix">
+
+                                <div id="professiondiv">
+                                    <h6>
+                                        <label id="profession" font-bold="true">Company&JobLocation</label></h6>
+                                    <h5>
+                                        <label id="lblprofession">
+                                    </label>
+                                    </h5>
+                                </div>
+
+                            </div>
+
+
+                            <div id="update0">
+
+                                <div id="ownerdiv0">
+                                    <div id="uplConactNoeb" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+
+                                            <h6>
+                                                <label id="ConactNo" font-bold="true">Conact Nos</label></h6>
+                                            <h5>
+                                                <label id="lblConactNo">
+                                            </label>
+                                            </h5>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div id="UpdatePanelbrotheremail" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+
+                                            <h6>
+                                                <label id="brotheremail" font-bold="true">Email</label></h6>
+                                            <h5>
+                                                <label id="lblbrotheremail">
+                                            </label>
+                                            </h5>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="uuuuuuuppp" updatemode="Always">
+
+                                <div id="BROTHERDIV">
+                                    <div id="uplWifeNameeb" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divWifeNamenew">
+
+                                            <h6>
+                                                <label id="SpouseName" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
+                                                Spouse Name</label></h6>
+                                            <h5>
+                                                <label id="lblWifeName">
+                                            </label>
+                                            </h5>
+
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanellblbrotherwifeeducationdetails" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divlblbrotherwifeeducation">
+
+                                            <h6>
+                                                <label id="lblbrotherwifeeducation" font-bold="true">Education</label></h6>
+                                            <h5>
+                                                <label id="lblbrotherwifeeducationdetails">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanellblbrotherwifeprofessiondetails" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divlblbrotherwifeprofession">
+
+                                            <h6>
+                                                <label id="lblbrotherwifeprofession" font-bold="true">Profession</label></h6>
+                                            <h5>
+                                                <label id="lblbrotherwifeprofessiondetails">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="uplwifeprofessioneb" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divcompany">
+
+                                            <h6>
+                                                <label id="wifeprofession" font-bold="true">Company&JobLocation</label></h6>
+                                            <h5>
+                                                <label id="lblwifeprofession">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="update1">
+
+                                        <div id="ownerdiv1">
+                                            <div id="UpdatePanelwifenumbers" class="edit_page_details_item_desc clearfix">
+
+                                                <div id="divspousecontactnumbers">
+
+                                                    <h6>
+                                                        <label id="lblbrotherwife" font-bold="true">Contact Nos</label></h6>
+                                                    <h5>
+                                                        <label id="lblbrotherwifemobnumbers">
+                                                    </label>
+                                                    </h5>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div id="UpdatePanelBrotherwife" class="edit_page_details_item_desc clearfix">
+
+                                                <div>
+
+                                                    <h6>
+                                                        <label id="brotherwifeemail" font-bold="true">Email</label></h6>
+                                                    <h5>
+                                                        <label id="lblbrotherwifeemail">
+                                                    </label>
+                                                    </h5>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="uplWifeFatherfirstnameeb" class="edit_page_details_item_desc clearfix">
+
+
+                                        <div id="divlWifeFatherfirstname">
+
+                                            <h6>
+                                                <label id="lWifeFatherfirstname" font-bold="true">Spouse Father's Name</label></h6>
+                                            <h5>
+                                                <label id="lblWifeFatherfirstname">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanelbrotherspusefathercaste" class="edit_page_details_item_desc clearfix">
+
+
+                                        <div id="divbrotherspousefathercaste">
+
+                                            <h6>
+                                                <label id="botherwifefathercaste" font-bold="true">Spouse Father Caste</label></h6>
+                                            <h5>
+                                                <label id="lblbotherwifefathercaste">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="upBroSpouseFatherNativePlace" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+
+                                            <h6>
+                                                <label id="BroSpouseFatherNativePlace" font-bold="true">Native Place</label></h6>
+                                            <h5>
+                                                <label id="lblBroSpouseFatherNativePlace">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr />
+
+            </div>
+
+        </div>
+
+        <div class="edit_page_item_head clearfix">
+            <h4>Sister Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2"
+                    id="spanSister" visible="false">ModifiedBy :<label id="lblSysterDetailsMod" forecolor="#08CFD2"></label></span>
+            </h4>
+            <div class="edit_page_item_ui clearfix">
+                <div id="uplnksisterdet">
+
+                    <a id="lnksisterdet" onclick="lnksisterdet_Click" data-toggle="tooltip" data-original-title="Add Sister Details" class="edit_page_add_button">Add
+                </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="uplistsister" class="edit_page_details_item">
+
+            <div id="listsister" onitemcommand="listsister_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
+
+                <div>
+                    <div id="Div2" class="edit_page_details_item_desc clearfix">
+                        <label id="Label3" visible="false"></label>
+
+                        <div>
+                            <div>
+                                <div id="uplsisnamees" class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="sisname" text="Sister Name" font-bold="true" forecolor="Red">
+                                    </label>
+                                    </h6>
+                                    <h5>
+                                        <label id="lblsisname" forecolor="Red">
+                                    </label>
+                                    </h5>
+
+
+
+                                </div>
+                                <div id="upllnksisteredites" class="edit_page_item_ui clearfix">
+
+                                    <a id="lnksisteredit" class="edit_page_edit_button" data-toggle="tooltip" data-original-title="Edit Sister Details" onclientclick="return AllowWebUser('Sister Details');">Edit
+                                </a>
+                                    <a id="lnkSisterDelete" class="edit_page_del_button" commandname="modifysiblingssister" title="" data-placement="bottom"
+                                        data-toggle="tooltip" data-original-title="Delete Sister Details">Delete</a>
+
+                                </div>
+                            </div>
+
+                            <div id="UpdatePanelsistereducationdetails" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <label id="lblsistereducation" font-bold="true">Education</label></h6>
+                                    <h5>
+                                        <label id="lblsistereducationdetails">
+                                    </label>
+                                    </h5>
+                                </div>
+
+                            </div>
+                            <div id="UpdatePanellblsisterprofessiondetails" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <label id="lblsisterprofession" font-bold="true">Profession</label></h6>
+                                    <h5>
+                                        <label id="lblsisterprofessiondetails">
+                                    </label>
+                                    </h5>
+                                </div>
+
+                            </div>
+                            <div id="uplsisprofes" class="edit_page_details_item_desc clearfix">
+
+                                <div id="divsisprof">
+
+                                    <h6>
+                                        <label id="sisprof" font-bold="true">Company & Job Location</label></h6>
+                                    <h5>
+                                        <label id="lblsisprof">
+                                    </label>
+                                    </h5>
+                                </div>
+
+
+                            </div>
+                            <div id="update2">
+
+                                <div id="ownerdiv2">
+
+                                    <div id="uplsisnumbers" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+
+                                            <h6>
+                                                <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
+                                            <h5>
+                                                <label id="lblsisnumbers">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanelsisterwifeemail" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+
+                                            <h6>
+                                                <label id="sisteremail" font-bold="true">Email</label></h6>
+                                            <h5>
+                                                <label id="lblsisteremail">
+                                            </label>
+                                            </h5>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="pqw">
+
+                                <div id="Sisterspousedetails">
+                                    <div id="uplhusnamees" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divhusname">
+
+                                            <h6>
+                                                <label id="husname" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
+                                                Husband Name</label></h6>
+                                            <h5>
+                                                <label id="lblhusname">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="UpdatePanellblsisterspouseeducation" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divlblsisterspouseeducation">
+
+                                            <h6>
+                                                <label id="lblsisterspouseeducation" font-bold="true">Education</label></h6>
+                                            <h5>
+                                                <label id="lbllblsisterspouseeducationdetails">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanellblsisterspouseprofession" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divlblsisterspouseprofession">
+
+                                            <h6>
+                                                <label id="lblsisterspouseprofession" font-bold="true">Profession</label></h6>
+                                            <h5>
+                                                <label id="lblsisterspouseprofessiondetails">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="uplhusprofes" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divlblsisterspousecmpy">
+
+                                            <h6>
+                                                <label id="husprof" font-bold="true">Company&JobLocation</label></h6>
+                                            <h5>
+                                                <label id="lblhusprof">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="update3">
+
+                                        <div id="ownerdiv3">
+                                            <div id="UpdatePanelhusbandnumbers" class="edit_page_details_item_desc clearfix">
+
+                                                <div id="divmobilesisterhus">
+
+                                                    <h6>
+                                                        <label id="lblsisterhusband" font-bold="true">Conact Nos</label></h6>
+                                                    <h5>
+                                                        <label id="lblhusbandnumbers">
+                                                    </label>
+                                                    </h5>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div id="UpdatePanellblsisterspouseemail" class="edit_page_details_item_desc clearfix">
+
+                                                <div>
+
+                                                    <h6>
+                                                        <label id="sisterspouseemail" font-bold="true">Email</label></h6>
+                                                    <h5>
+                                                        <label id="lblsisterspouseemail" text='<%# Eval("SpouseEmail") %>'>
+                                                    </label>
+                                                    </h5>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="uplhusfathernamees" class="edit_page_details_item_desc clearfix">
+
+                                        <div id="divhusfathernames">
+
+                                            <h6>
+                                                <label id="husfathernames" font-bold="true">Husband Father Name</label></h6>
+                                            <h5>
+                                                <label id="lblhusfathername">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="UpdatePanelsisterspousefathercaste" class="edit_page_details_item_desc clearfix">
+
+
+                                        <div id="divsisterspousefathercaste">
+
+                                            <h6>
+                                                <label id="sisterhusbandfathercaste" font-bold="true">Husband Father Caste</label></h6>
+                                            <h5>
+                                                <label id="lblsisterSpousefathercaste">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                    <div id="upSisNativePlace" class="edit_page_details_item_desc clearfix">
+
+                                        <div>
+                                            <h6>
+                                                <label id="SisSpouseFatherNativePlace" text="Native Place" font-bold="true"></label>
+                                            </h6>
+                                            <h5>
+                                                <label id="lblSisSpouseFatherNativePlace">
+                                            </label>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+            </div>
+
+        </div>
+    </div>
+</div>
