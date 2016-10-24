@@ -8,18 +8,17 @@
  */
 
 var editviewapp = angular.module('Kaakateeya', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
-editviewapp.apipath='http://183.82.0.58:8010/Api/';
+editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 /**
  * Configure the Routes
  */
 editviewapp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     // Home
-.when("/", { templateUrl: "src/views/educationAndProfession.html",controller:'eduAndProfCtrl' })
+    //.when("/", { templateUrl: "src/views/educationAndProfession.html",controller:'ModalControlleraa' })
 
-    
     // Pages
-    //.when("/mobileVerification", { templateUrl: "app/modules/mobileverification/mobileVerification.html", controller: "PageCtrl" })
+    .when("/", { templateUrl: "src/popupDemo/modelDemo.html", controller: "ModalControlleraa" })
     // .when("/faq", { templateUrl: "partials/faq.html", controller: "PageCtrl" })
     // .when("/pricing", { templateUrl: "partials/pricing.html", controller: "PageCtrl" })
     // .when("/services", { templateUrl: "partials/services.html", controller: "PageCtrl" })
@@ -46,65 +45,40 @@ editviewapp.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 
-editviewapp.controller('headctrl', ['$scope', function (scope) {
-  scope.divloginblock = function () {
-    $('.login_block_header').toggle();
-  }
+editviewapp.controller('personalCtrl', ['$scope','personalDetailsService', function (scope,personalDetailsService) {
 
-scope.data=[];
-  scope.login = function (log) {
-    $(document).ready(function () {
-      var user = {};
-      user.Username = "011046091";
-      user.Password = "XowIvsTkzINyyKyJrPlmgg==";
-      $.ajax({
-        url: 'http://183.82.0.58:8010/Api/DB/userLogin/user',
-        type: 'POST',
-        crossDomain: true,
-        data: JSON.stringify(user),
-        contentType: 'application/json',
-        success: function (data, textStatus, xhr) {
-          alert(JSON.stringify(data));
-          scope.data=data;
-          window.location.href = '#/mobileVerification';
-        },
-        error: function (xhr, textStatus, errorThrown) {
-          console.log(xhr);
-        }
-      });
+personalDetailsService.personalDetails().then(function(response){
+  console.log(response.data);
+scope.PersonalObj=response.data;
+});
 
-    });
-  }
-  scope.vali = function (log) {
-    var txtUserNames = log.txtUserName;
-    if (txtUserNames.indexOf("@") != -1) {
-
-      if (!ValidateEmail(txtUserNames)) {
-        log.txtUserName = '';
-        //$("#ctl00_txtUserName").focus;
-        alert(" Please enter valid ProfileID/Email");
-        return false;
-      }
-    }
-    else {
-      if (!Validatnumber(txtUserNames) || txtUserNames.length != "9") {
-        alert("Please enter valid ProfileID/Email");
-        log.txtUserName = '';
-      }
-      return false;
-
-    }
-    //});
-  }
-  function ValidateEmail(email) {
-    var expr = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return expr.test(email);
-  };
-  function Validatnumber(num) {
-    var expr1 = /[0-9 -()+]+$/;
-    return expr1.test(num);
-  };
-
+  // scope.PersonalObj = {
+  //   Cust_ID: '91035',
+  //   ProfileID: '210910352',//
+  //   FirstName: '',
+  //   LastName: '',
+  //   Name: 'Anil S',//
+  //   Borncountry: 'India',//
+  //   Age: '26',//
+  //   DateofBirth: '22 Aug 1990',
+  //   Caste: 'Reddy',//
+  //   SubCaste: '',//
+  //   Religion: 'Hindu ',//
+  //   Complexion: 'Fair',//
+  //   Height: "6'0 in - 183",//
+  //   IsBornCountry: '',
+  //   MartialStatus: 'Unmarried ',//
+  //   ProfileStatusID: '',
+  //   HeightInCentimeters: '',
+  //   ComplexionID: '',
+  //   CountryID: '',
+  //   DateOfBirth: '',//
+  //   SubCasteID: '',
+  //   CasteID: '',
+  //   ReligionID: '',
+  //   MaritalStatusID: '',
+  //   Mothertongue: 'Telugu'//
+  // };
 
 
 

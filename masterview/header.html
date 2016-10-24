@@ -1,4 +1,4 @@
-<div class="header_inner" id="divInnerMaster" ng-controller='headctrl'>
+<div class="header_inner" id="divInnerMaster" >
 
     <div class="container_my clearfix">
 
@@ -199,20 +199,20 @@
             <span id="lblcust_Id" style="display: none;"></span>
         </div>
 
-        <div class="edit_pages_sidebar_profile_details">
+        <div class="edit_pages_sidebar_profile_details" ng-controller='personalCtrl'>
             <h6>
-                <span id="lstPersolnalDetails_ctrl0_lblCustNamewithProfileID">Anil S (210910352)</span></h6>
+                <span id="lstPersolnalDetails_ctrl0_lblCustNamewithProfileID">{{PersonalObj.Name+" ("+PersonalObj.ProfileID+")"}}</span></h6>
             <div class="edit_pages_sidebar_profile_details_in">
 
                 <p>
-                    <span id="lstPersolnalDetails_ctrl0_lblMaritalDOBHeight">Unmarried ,22 Aug 1990 (26) ,6'0 in - 183  ,Fair</span>
+                    <span id="lstPersolnalDetails_ctrl0_lblMaritalDOBHeight">{{PersonalObj.MartialStatus+" ,"+PersonalObj.DateofBirth+((PersonalObj.Age!="" && PersonalObj.Age!=null)?" ("+PersonalObj.Age+")":PersonalObj.Age)+((PersonalObj.Height!="" && PersonalObj.Height!=null)?" ,"+PersonalObj.Height:PersonalObj.Height)+((PersonalObj.Complexion!="")?" ,"+PersonalObj.Complexion:PersonalObj.Complexion)}}</span>
                 </p>
                 <p>
-                    <span id="lstPersolnalDetails_ctrl0_lblReligionMTCaste">Hindu ,Telugu, Reddy</span>
+                    <span id="lstPersolnalDetails_ctrl0_lblReligionMTCaste">{{PersonalObj.Religion+" ,"+PersonalObj.Mothertongue+", "+PersonalObj.Caste+((PersonalObj.SubCaste!="" && PersonalObj.SubCaste!=null)? " ("+SubCaste+")":SubCaste)}}</span>
                 </p>
                 <p>
                     <span>
-                <span id="lstPersolnalDetails_ctrl0_lblcitizen" style="font-weight:bold;"> Born Citizen:India</span>
+                <span id="lstPersolnalDetails_ctrl0_lblcitizen" style="font-weight:bold;"> {{(PersonalObj.Borncountry!=null && PersonalObj.Borncountry!="")?" Born Citizen:"+PersonalObj.Borncountry:Borncountry}}</span>
                     </span>
                 </p>
             </div>

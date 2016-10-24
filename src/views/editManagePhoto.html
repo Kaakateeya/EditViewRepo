@@ -1,237 +1,182 @@
-<div class="edit_pages_content_main clearfix" ng-controller="managePhotoCtrl">
+<div class="edit_pages_content_main clearfix">
 
-
-    <input name="photoordersave" id="photoordersave" type="hidden">
-    <input name="pathofimage" id="pathofimage" type="hidden">
-    <input name="newimagepath" id="newimagepath" type="hidden">
-
-    <div>
-        <input name="btnTemp" value="" id="btnTemp" style="display: none;" type="submit">
-
-        <div id="panelupload" class="modalPopup clearfix" style="display: none; width: 400px; position: fixed; z-index: 100001;">
-
-
-            <div class="margin_l_20 float_l">
-                <label class="text">
-                    Choose Photos
-                </label>
-            </div>
-            <div id="Div1" class="margin_l_20 float_l">
-                <label class="choose">
-                    <input name="fuBrowsePhoto" id="fuBrowsePhoto" class="fileupload fileupload-new" type="file">
-                </label>
-            </div>
-
-            <input name="btnupload" value="Upload" onclick="return checkFileExt();" id="btnupload" class="button_custom pull-left" type="submit">
-            <input name="btncancel" value="Cancel" onclick="return HideModalPopup();" id="btncancel" class="button_custom button_custom_reset pull-left"
-                style="margin-left: 25px;" type="submit">
-
-            <div>
-                <label style="color: #f05d31; font-size: 10px;">
-                    (must be less than 4 MB and in jpg, gif, png or jpeg formats)</label>
-            </div>
-
-        </div>
-
-        <div id="photo_backgroundElement" style="display: none; position: fixed; left: 0px; top: 0px; z-index: 10000;" class="modalBackground"></div>
-    </div>
-
-    <!--/ Main Block 1 -->
-
-    <div class="register_page_main">
-
-        <div class="my_photos_main my_photos_main_edit">
-
-            <h6 id="hfalse">Upload your recent Photos for better response</h6>
-            <div class="clear">&nbsp;</div>
-            <br>
-            <div class="dragzone">
-                <div class="pics_selected_list_main clearfix">
-                    <div class="pics_selected_list_main_lt clearfix">
-                        <p id="Puploadfalse" class="clearfix"><span>Upload your three different photos</span></p>
-                        <table id="dtimagephoto" class="clearfix" style="border-collapse:collapse;" cellspacing="0">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div id="dtimagephoto_ctl00_updatecontent">
-
-                                            <div class="photos">
-                                                <div class="pics_selected_list_item">
-
-                                                    <div id="dtimagephoto_ctl00_maskdiv">
-                                                        <img id="dtimagephoto_ctl00_imgpath" src="img1.jpg" style="display: none;">
-                                                        <img id="dtimagephoto_ctl00_imgPhotoName" src="../../access/Images/ProfilePics/KMPL_91035_Images/img1_images/210910352_ApplicationPhoto.jpg">
-                                                    </div>
-                                                    <div class="pics_selected_list_item_ui clearfix">
-                                                        <div class="photos_icon">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div id="dtimagephoto_ctl01_updatecontent">
-
-                                            <div class="photos">
-                                                <div class="pics_selected_list_item">
-
-                                                    <div id="dtimagephoto_ctl01_maskdiv">
-                                                        <img id="dtimagephoto_ctl01_imgpath" src="" style="display: none;">
-                                                        <img id="dtimagephoto_ctl01_imgPhotoName" src="../../Customer_new/CutomerImages/List%20page/Mnoimage.jpg">
-                                                    </div>
-                                                    <div class="pics_selected_list_item_ui clearfix">
-                                                        <div class="photos_icon">
-
-                                                            <input name="dtimagephoto$ctl01$imgAdd" id="dtimagephoto_ctl01_imgAdd" src="../CutomerImages/Managephotos/Add-image.png"
-                                                                type="image">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div id="dtimagephoto_ctl02_updatecontent">
-
-                                            <div class="photos">
-                                                <div class="pics_selected_list_item">
-
-                                                    <div id="dtimagephoto_ctl02_maskdiv">
-                                                        <img id="dtimagephoto_ctl02_imgpath" src="img3.jpg" style="display: none;">
-                                                        <img id="dtimagephoto_ctl02_imgPhotoName" src="../../access/Images/ProfilePics/KMPL_91035_Images/img3_images/210910352_ApplicationPhoto.jpg">
-                                                    </div>
-                                                    <div class="pics_selected_list_item_ui clearfix">
-                                                        <div class="photos_icon">
+	<div class="register_page_main">
 
 
 
+		<div class="my_photos_main my_photos_main_edit">
+			<h6>Upload your recent Photos for better response</h6>
+			<a id="lnkbtnn" class="skip_button" onclick="lnkskip_Click">skip this page</a>
 
-                                                            <input name="dtimagephoto$ctl02$lnkdelete" id="dtimagephoto_ctl02_lnkdelete" title="Delete Image" src="../images/delete2_hover.png"
-                                                                onclick="deleteimage(&quot;3&quot;);" type="image">
+			<div class="clear">&nbsp;</div>
+
+			<br />
+			<div class="dragzone">
+				<div class="pics_selected_list_main clearfix">
+					<div class="pics_selected_list_main_lt clearfix">
+						<p class="clearfix"><span>Upload your three different photos</span></p>
+						<div id="dtimagephoto" class="clearfix">
+							<div class="photos">
+								<div class="pics_selected_list_item">
+									<div id="maskdiv">
+										<img id="imgpath" style="display: none;" />
+										<img id="imgPhotoName" />
+									</div>
+									<div class="pics_selected_list_item_ui clearfix">
+										<div class="photos_icon">
+											<input type="image" id="imgAdd" alt="add" ng-click="AddImage();" />
+											<label id="lblISProfilePic" visible="false"></label>
+											<label id="PhotoPassword" visible="false"></label>
+											<input type="image" title="Delete Image" id="lnkdelete" alt="delete" />
+
+											<label id="lblphotoOrder" visible="false"></label>
+											<input type="image" id="lnksetasprofile" alt="Set as Profilepic" class="set_pic" onclick="lnksetasprofile_Click" visible='<%#Eval("IsMain").ToString()=="1"?false:(Eval("PhotoName")!=null?true:false) %>'></input>
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
 
 
-                                                            <input name="dtimagephoto$ctl02$lnksetasprofile" id="dtimagephoto_ctl02_lnksetasprofile" class="set_pic" src="" alt="Set as Profilepic"
-                                                                type="image">
-                                                        </div>
-                                                    </div>
+						</div>
 
-                                                </div>
+						<div class="clear"></div>
+						<div class="edit_page_photo_manage_submit">
+							<div class="edit_page_photo_manage_protect pull-left clearfix" id="divPassword">
+								<label class="checkbox checkbox_my pull-left">
+                                    <!-- <asp:radiobutton id="rdbutton" text="Protect with Password" cssclass="radio" oncheckedchanged="rdbutton_CheckedChanged"
+                                        autopostback="true" visible="false" />-->
+                                    <div id="UpdatePanel5" class="radio_my2 clearfix">
 
-                                            </div>
+                                        <label class="pull-left" style="font-size: 14px; font-weight: 400;" id="lblProtected" text=" Protect with Password :"></label>
+								<!-- <asp:RadioButtonList  ID="rbtProtectPassword" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdbutton_CheckedChanged" AutoPostBack="true" class="radio pull-right">
+                                                <asp:ListItem Value="1">Yes</asp:ListItem>
+                                                <asp:ListItem Value="0" Selected="True">No</asp:ListItem>
+                                            </asp:RadioButtonList>-->
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="clear"></div>
-                        <div class="edit_page_photo_manage_submit">
-
-                        </div>
-                    </div>
-                    <div class="photo_upload_instrctns_list clearfix">
-                        <a onclick="PhotoGuideLine();" id="phtoguide" href="javascript:__doPostBack('phtoguide','')">Photo guidelines
+							</div>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="photo_upload_instrctns_list clearfix">
+					<a onclick="PhotoGuideLine();" id="phtoguide" href="javascript:__doPostBack('phtoguide','')">Photo guidelines
                         </a>
-                        <a onclick="PhotoFaq();" id="photofaq" href="javascript:__doPostBack('photofaq','')">Photo faq’s
+					<a onclick="PhotoFaq();" id="photofaq" href="javascript:__doPostBack('photofaq','')">Photo faq’s
                         </a>
-                        <a id="photoupload" href="../../Employee/PhotoFAQ.aspx" target="_blank">Photo upload tips
+					<a id="photoupload" href="../../Employee/PhotoFAQ.aspx" target="_blank">Photo upload tips
                         </a>
-                    </div>
-                </div>
+				</div>
+			</div>
 
-            </div>
-
-            <div class="my_photos_main_block2 clearfix">
-                <div class="clearfix pics_incorrect_list">
-                    <h3>Such Photos cannot be Uploaded</h3>
-                    <table id="DataList3" class="clearfix" style="border-collapse:collapse;" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <img id="DataList3_ctl00_images" src="../CutomerImages/Managephotos/Side-face.png">
-                                    <p>
-                                        Side Face
-                                    </p>
-
-                                </td>
-                                <td>
-                                    <img id="DataList3_ctl01_images" src="../CutomerImages/Managephotos/Blir.png">
-                                    <p>
-                                        Blur
-                                    </p>
-
-                                </td>
-                                <td>
-                                    <img id="DataList3_ctl02_images" src="../CutomerImages/Managephotos/Group-photos.png">
-                                    <p>
-                                        Group Photo
-                                    </p>
-
-                                </td>
-                                <td>
-                                    <img id="DataList3_ctl03_images" src="../CutomerImages/Managephotos/Water-mark.png">
-                                    <p>
-                                        Watermark
-                                    </p>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="pics_selected_list_main_rt clearfix pics_correct_list">
-                    <h3>Photos that can be uploaded</h3>
-                    <table id="DataList2" class="clearfix" style="border-collapse:collapse;" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <img id="DataList2_ctl00_images" src="../CutomerImages/Managephotos/Close-up.png">
-                                    <p>
-                                        Close Up
-                                    </p>
-                                </td>
-                                <td>
-                                    <img id="DataList2_ctl01_images" src="../CutomerImages/Managephotos/Fulsize.png">
-                                    <p>
-                                        Full Size
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="clear">&nbsp;</div>
-            </div>
-            <div class="my_photos_main_block3">
-
-                <p>
-                    <img src="../images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
-                    <span>91-9848535373</span> - Kindly mention your Profile ID and name
-                </p>
-                <p>
-                    <img src="../images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span>                    - Kindly mention your Profile ID and name
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <br>
-    <br>
+		</div>
 
 
-    <!-- Main Block 1 /-->
 
 
+		<div class="my_photos_main_block2 clearfix">
+			<div class="clearfix pics_incorrect_list">
+				<h3>Such Photos cannot be Uploaded</h3>
+				<table id="DataList3" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+					<tbody>
+						<tr>
+							<td>
+								<img id="DataList3_ctl00_images" src="../CutomerImages/Managephotos/Side-face.png">
+								<p>
+									Side Face
+								</p>
+
+							</td>
+							<td>
+								<img id="DataList3_ctl01_images" src="../CutomerImages/Managephotos/Blir.png">
+								<p>
+									Blur
+								</p>
+
+							</td>
+							<td>
+								<img id="DataList3_ctl02_images" src="../CutomerImages/Managephotos/Group-photos.png">
+								<p>
+									Group Photo
+								</p>
+
+							</td>
+							<td>
+								<img id="DataList3_ctl03_images" src="../CutomerImages/Managephotos/Water-mark.png">
+								<p>
+									Watermark
+								</p>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="pics_selected_list_main_rt clearfix pics_correct_list">
+				<h3>Photos that can be uploaded</h3>
+				<table id="DataList2" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+					<tbody>
+						<tr>
+							<td>
+								<img id="DataList2_ctl00_images" src="../CutomerImages/Managephotos/Close-up.png">
+								<p>
+									Close Up
+								</p>
+							</td>
+							<td>
+								<img id="DataList2_ctl01_images" src="../CutomerImages/Managephotos/Fulsize.png">
+								<p>
+									Full Size
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="clear">&nbsp;</div>
+		</div>
+		<div class="my_photos_main_block3">
+
+			<p>
+				<img src="../images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
+				<span>91-9848535373</span> - Kindly mention your Profile ID and name
+			</p>
+			<p>
+				<img src="../images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span>				- Kindly mention your Profile ID and name
+			</p>
+
+		</div>
+
+
+
+
+
+	</div>
+
+
+
+</div>
+
+
+
+
+<script type="text/ng-template" id="AddimagePopup.html">
+        <div class="modal-header">
+	<h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+</div>	
+<div class="modal-body" id="modal-body">
+	<ul id="ulprofession">
+				
+				</ul>
+
+</div>
+<div class="modal-footer">
+<input name="btnEduCancel" value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" data-dismiss="modal"
+		type="submit">
+	<input name="btnEduSubmit" value="Upload" id="btnEduSubmit" class="button_custom" type="button">
+</div>
+    </script>
 </div>

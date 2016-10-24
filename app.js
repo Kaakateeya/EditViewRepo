@@ -1,5 +1,5 @@
 var express = require('express');
-//var app = express();
+var editviewapp = express();
 var path = require('path');
 editviewapp.use(express.static(path.join(__dirname)));
 

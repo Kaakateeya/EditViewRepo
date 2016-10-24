@@ -2,12 +2,12 @@
 
     <script type="text/javascript">
     function CharacterCount() {
-        var txtCharacters = document.getElementById("txtPartnerDescription");
+        var txtCharacters = document.getElementById("txtPartnerDescription;
         var chars = txtCharacters.value.length;
-        document.getElementById("lblpartnerdesccount").innerHTML = "Number of characters entered :" + chars;
+        document.getElementById("lblpartnerdesccount.innerHTML = "Number of characters entered :" + chars;
         if (chars > 500) {
             txtCharacters.value = txtCharacters.value.substring(0, 500);
-            document.getElementById("lblpartnerdesccount").innerHTML = "Number of characters entered :" + 500;
+            document.getElementById("lblpartnerdesccount.innerHTML = "Number of characters entered :" + 500;
         }
     }
 </script>
@@ -15,7 +15,7 @@
 
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>PartnerPreference Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4>PartnerPreference Details 
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="updatepanellnkaddpartnerpreference">
@@ -26,9 +26,7 @@
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="uppartner">
-
-
+            <div id="uppartner" ng-repeat="item in partnerprefArr">
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
 
                     <div id="UpdatePanel21" class="edit_page_details_item_desc clearfix">
@@ -36,7 +34,7 @@
                         <h6>
                             <span id="partnergen" style="color:Red;font-weight:bold;">Gender</span></h6>
                         <h5>
-                            <span id="lblpartnergen" style="color:Red;">Female</span></h5>
+                            <span id="lblpartnergen" style="color:Red;">{{ item.Gender}}</span></h5>
 
 
 
@@ -54,7 +52,7 @@
                             <h6>
                                 <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
                             <h5>
-                                <span id="lblagegap">1 to  5</span></h5>
+                                <span id="lblagegap">{{ item.AgeGap}}</span></h5>
                         </div>
 
                     </div>
@@ -64,7 +62,7 @@
                             <h6>
                                 <span id="height" style="font-weight:bold;">Height</span></h6>
                             <h5>
-                                <span id="lblheight">5'4 in - 162 cms to 5'9 in - 175 cms</span></h5>
+                                <span id="lblheight">{{ item.Height}}</span></h5>
                         </div>
 
 
@@ -76,7 +74,7 @@
                                 <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
 
                             <h5>
-                                <span id="lblmothertongue">Telugu</span></h5>
+                                <span id="lblmothertongue">{{ item.Mothertongue }}</span></h5>
 
                         </div>
 
@@ -88,7 +86,7 @@
                             <h6>
                                 <span id="Religion" style="font-weight:bold;">Religion</span></h6>
                             <h5>
-                                <span id="lblReligion">Hindu</span></h5>
+                                <span id="lblReligion">{{ item.Religion}}</span></h5>
                         </div>
 
                     </div>
@@ -98,7 +96,7 @@
                             <h6>
                                 <span id="caste" style="font-weight:bold;">caste</span></h6>
                             <h5>
-                                <span id="lblcaste">Reddy</span></h5>
+                                <span id="lblcaste">{{ item.Caste}}</span></h5>
                         </div>
 
                     </div>
@@ -110,7 +108,7 @@
                             <h6>
                                 <span id="subcaste" style="font-weight:bold;">subcaste</span></h6>
                             <h5>
-                                <span id="lblsubcaste"></span></h5>
+                                <span id="lblsubcaste">{{ item.Subcaste}}</span></h5>
                         </div>
 
 
@@ -123,7 +121,7 @@
                             <h6>
                                 <span id="maritalstatus" style="font-weight:bold;">marital status</span></h6>
                             <h5>
-                                <span id="lblmaritalstatus">Unmarried</span></h5>
+                                <span id="lblmaritalstatus">{{ item.MaritalStatus}}</span></h5>
 
                         </div>
 
@@ -136,7 +134,7 @@
                             <h6>
                                 <span id="Education" style="font-weight:bold;">Education</span></h6>
                             <h5>
-                                <span id="lblEducation"></span></h5>
+                                <span id="lblEducation">{{ item.EducationGroup!=null?item.EducationGroup:item.EducationCategory}}</span></h5>
 
                         </div>
 
@@ -150,7 +148,7 @@
                         <h6>
                             <span id="profession" style="font-weight:bold;">profession</span></h6>
                         <h5>
-                            <span id="lblprofession"></span></h5>
+                            <span id="lblprofession">{{ item.ProfessionGroup}}</span></h5>
 
                     </div>
 
@@ -162,7 +160,7 @@
                             <h6>
                                 <span id="MangalikKujadosham" style="font-weight:bold;">Manglik/Kujadosham</span></h6>
                             <h5>
-                                <span id="lblMangalikKujadosham"></span></h5>
+                                <span id="lblMangalikKujadosham">{{ item.Kujadosham}}</span></h5>
 
                         </div>
 
@@ -173,7 +171,7 @@
                             <h6>
                                 <span id="preferredstarLanguage" style="font-weight:bold;">preferred star Language</span></h6>
                             <h5>
-                                <span id="lblpreferredstarLanguage"></span></h5>
+                                <span id="lblpreferredstarLanguage">{{ item.StarLanguage}}</span></h5>
                         </div>
 
 
@@ -186,7 +184,7 @@
                             <h6>
                                 <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
                             <h5>
-                                <span id="lblpreferredstar"></span></h5>
+                                <span id="lblpreferredstar">{{ item.Stars}}</span></h5>
 
                         </div>
 
@@ -199,43 +197,48 @@
                             <h6>
                                 <span id="Diet" style="font-weight:bold;">Diet</span></h6>
                             <h5>
-                                <span id="lblDiet"></span></h5>
+                                <span id="lblDiet">{{ item.Diet}}</span></h5>
 
                         </div>
 
                     </div>
                     <div id="UpdatePanel18" class="edit_page_details_item_desc clearfix">
-
-
                         <div>
 
                             <h6>
                                 <span id="preferredCountry" style="font-weight:bold;">preferred Country</span></h6>
                             <h5>
-                                <span id="lblpreferredCountry"></span></h5>
+                                <span id="lblpreferredCountry">{{ item.CountryName}}</span></h5>
 
                         </div>
 
                     </div>
                     <div id="UpdatePanel19" class="edit_page_details_item_desc clearfix">
-
                         <div>
-
-
                             <h6>
                                 <span id="preferredState" style="font-weight:bold;">preferred State</span></h6>
                             <h5>
-                                <span id="lblpreferredState"></span></h5>
-
+                                <span id="lblpreferredState">{{ item.StateName}}</span></h5>
                         </div>
 
                     </div>
                     <div id="UpdatePanel36" class="edit_page_details_item_desc clearfix">
+                        <div>
+                            <h6>
+                                <span id="RegionName" style="font-weight:bold;">Region</span></h6>
+                            <h5>
+                                <span id="lblRegionName">{{ item.RegionName}}</span></h5>
+                        </div>
                     </div>
                     <div id="UpdatePanel40" class="edit_page_details_item_desc clearfix">
+                        <div>
+                            <h6>
+                                <span id="BranchName" style="font-weight:bold;">Branch</span></h6>
+                            <h5>
+                                <span id="lblBranchName">{{ item.BranchName}}</span></h5>
+                        </div>
                     </div>
-                    <div style="display: none;" id="backendfields">
-                    </div>
+                    
                 </div>
 
             </div>
@@ -262,7 +265,7 @@
 
                     <div class="edit_page_details_item_desc clearfix">
                         <h5>
-                            <span id="lblpartnerdesc"></span></h5>
+                            <span id="lblpartnerdesc">{{ item.PartnerDescripition}}</span></h5>
                     </div>
 
                 </div>

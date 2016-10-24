@@ -2,13 +2,13 @@
 <div class="edit_pages_content_main clearfix"  ng-controller="referenceCtrl">
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Reference Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4>Reference Details 
             </h4>
 
             <div class="edit_page_item_ui clearfix">
-                <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_uplnkrefrenceadd">
+                <div id="uplnkrefrenceadd">
 
-                    <a id="ctl00_ContentPlaceHolder1_EditCustomerReference_lnkrefrenceadd" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerReference$lnkrefrenceadd','')"
+                    <a id="lnkrefrenceadd" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerReference$lnkrefrenceadd','')"
                         tabindex="0">Add</a>
 
                 </div>
@@ -17,151 +17,119 @@
 
 
         <div class="edit_page_details_item">
-            <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_fullupdate">
+            <div id="fullupdate">
 
-                <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_reviewdiv" class="edit_page_details_item_desc clearfix"
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix"
                     style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
-                        <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplRelationShipType">
+                        <div id="uplRelationShipType">
 
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
-                                    <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_RelationShipType" style="font-weight:bold;">RelationShip Type</span></h6>
+                                    <span id="RelationShipType" style="font-weight:bold;">RelationShip Type</span></h6>
                                 <h5>
-                                    <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblRelationShipType">Friend</span></h5>
+                                    <span id="lblRelationShipType">{{item.Relatioshiptype }}</span></h5>
 
                             </div>
 
                         </div>
-                        <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplreferenceEditdgdf" class="edit_page_item_ui clearfix">
+                        <div id="uplreferenceEditdgdf" class="edit_page_item_ui clearfix">
 
-                            <a onclick="return AllowWebUser('Reference Details');" id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lnkreferencefgbf"
+                            <a onclick="return AllowWebUser('Reference Details');" id="lnkreferencefgbf"
                                 class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerReference$lstReference$ctrl0$lnkreferencefgbf','')">Edit</a>
-
-
-
                         </div>
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplName">
+                    <div id="uplName">
 
                         <div class="edit_page_details_item_desc clearfix">
 
                             <h6>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_Name" style="font-weight:bold;">Name</span></h6>
+                                <span id="Name" style="font-weight:bold;">Name</span></h6>
                             <h5>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblName">ssss aaaa</span></h5>
+                                <span id="lblName">{{item.RefrenceName }}</span></h5>
 
                         </div>
 
                     </div>
 
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplEducationRef">
+                    <div id="uplEducationRef">
 
 
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplProfessionDetails">
+                    <div id="uplProfessionDetails">
 
                         <div class="edit_page_details_item_desc clearfix">
                             <h6>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_ProfessionDetails" style="font-weight:bold;">Profession</span></h6>
+                                <span id="ProfessionDetails" style="font-weight:bold;">Profession</span></h6>
                             <h5>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblProfessionDetails">adadadad</span>
+                                <span id="lblProfessionDetails">{{item.RefrenceProfessionDetails }}</span>
                             </h5>
                         </div>
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplNativePlace">
+                    <div id="uplNativePlace">
 
                         <div class="edit_page_details_item_desc clearfix">
                             <h6>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_NativePlace" style="font-weight:bold;">Native Place</span></h6>
+                                <span id="NativePlace" style="font-weight:bold;">Native Place</span></h6>
                             <h5>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblNativePlace">ggggg,Telangana,Hyderabad,India</span></h5>
+                                <span id="lblNativePlace">{{item.RefrenceNativePlace }}</span></h5>
                         </div>
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplCurrentLocation">
+                    <div id="uplCurrentLocation">
 
                         <div class="edit_page_details_item_desc clearfix">
 
                             <h6>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_CurrentLocation" style="font-weight:bold;">Current Location</span></h6>
+                                <span id="CurrentLocation" style="font-weight:bold;">Current Location</span></h6>
                             <h5>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblCurrentLocation">dfdfdf</span></h5>
+                                <span id="lblCurrentLocation">{{item.RefenceCurrentLocation }}</span></h5>
 
                         </div>
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_update0">
+                    <div id="update0">
 
-                        <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_ownerdiv0">
+                        <div id="ownerdiv0">
 
-                            <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplContacts">
+                            <div id="uplContacts">
 
                                 <div class="edit_page_details_item_desc clearfix">
                                     <h6>
-                                        <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_Contacts" style="font-weight:bold;">Contacts</span></h6>
+                                        <span id="Contacts" style="font-weight:bold;">Contacts</span></h6>
                                     <h5>
-                                        <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblContacts">91-3453453543&amp;91-40-34534535</span></h5>
+                                        <span id="lblContacts">{{item.RefrenceMobileNumberWithcode+(item.RefrenceLandNumberwithCode!=null&&item.RefrenceLandNumberwithCode!=""?"&"+item.RefrenceLandNumberwithCode:"") }}</span></h5>
                                 </div>
 
                             </div>
-                            <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplEmail">
+                            <div id="uplEmail">
 
                                 <div class="edit_page_details_item_desc clearfix">
                                     <h6>
-                                        <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_Email" style="font-weight:bold;">Email</span></h6>
+                                        <span id="Email" style="font-weight:bold;">Email</span></h6>
                                     <h5>
-                                        <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblEmail"></span></h5>
+                                        <span id="lblEmail">{{item.RefrenceEmail }}</span></h5>
                                 </div>
 
                             </div>
                         </div>
 
                     </div>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplNarration">
+                    <div id="uplNarration">
 
                         <div class="edit_page_details_item_desc clearfix">
                             <h6>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_Narration" style="font-weight:bold;">Narration</span></h6>
+                                <span id="Narration" style="font-weight:bold;">Narration</span></h6>
                             <h5>
-                                <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblNarration">erterertgdfgdfgdfgdfgdfgdgdgdfg</span></h5>
+                                <span id="lblNarration">{{item.RefrenceNarration }}</span></h5>
                         </div>
 
                     </div>
                     <hr>
-                    <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_uplBackendFieldsref" class="edit_page_details_item_desc clearfix">
-
-                        <div id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_BackendFields" style="display: none;">
-
-
-
-                            <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblRefrenceNativePlace">ggggg</span>
-
-
-                            <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblRefrenceStateID">3772</span>
-
-                            <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblRefrenceLandCountryId">1</span>
-
-
-
-
-
-
-                            <span id="ctl00_ContentPlaceHolder1_EditCustomerReference_lstReference_ctrl0_lblRefrencePRofessionGroupID"></span>
-
-
-
-
-
-
-
-
-                        </div>
-
-                    </div>
+                   
                 </div>
 
             </div>

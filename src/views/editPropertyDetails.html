@@ -17,10 +17,7 @@
 
         </div>
         <div class="edit_page_details_item">
-
-            <div id="UpdatePanelfullproperty">
-
-
+            <div id="fullproperty">
                 <div>
                     <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
 
@@ -31,7 +28,7 @@
                                     <h6>
                                         <span id="lblfamilystatus" style="font-weight:bold;">Family Status</span></h6>
                                     <h5>
-                                        <span id="lblfmstatus">Not Specified</span></h5>
+                                        <span id="lblfmstatus">{{(item.FamilyStatus!=null && item.FamilyStatus.ToString()!="?item.FamilyStatus:"Not Specified" }}</span></h5>
 
 
                                 </div>
@@ -47,22 +44,20 @@
                                     <h6>
                                         <span id="lblproperty" style="font-weight:bold;">Property Value</span></h6>
                                     <h5>
-
-
-                                        <span id="lblpropertyval"></span>
+                                        <span id="lblpropertyval">{{((item.PropertyValue!=null && item.PropertyValue!="?item.PropertyValue+" Lakhs":"}}</span>
                                     </h5>
 
                                 </div>
 
                             </div>
 
-                            <div id="UpdatePanelisproperty" class="edit_page_details_item_desc clearfix">
+                            <div id="isproperty" class="edit_page_details_item_desc clearfix">
 
                                 <div>
                                     <h6>
                                         <span id="lblpropertysharedproperty" style="font-weight:bold;">Property Type</span></h6>
                                     <h5>
-                                        <span id="lblisProperty">Family</span></h5>
+                                        <span id="lblisProperty">{{((item.isProperty!=null && (item.isProperty!="?item.isProperty:"Not Specified) }}</span></h5>
                                 </div>
 
                             </div>
@@ -74,27 +69,13 @@
                                         <span id="lblpropdet" style="font-weight:bold;">Property Details</span></h6>
 
                                     <h5>
-                                        <span id="lblpropertydetails">OWN HOUSE AT KADAPA</span></h5>
+                                        <span id="lblpropertydetails">{{((item.PropertyDetails!=null && (item.PropertyDetails!="?item.PropertyDetails: }}</span></h5>
 
                                 </div>
 
 
                             </div>
-                            <div id="BackendFields" style="display: none;">
-                                <span id="lblProperTypeID">281</span>
-                                <span id="lblPropertyValueCurrencyID"></span>
-                                <span id="lblQuantityTypeID"></span>
-                                <span id="lblProCountry"></span>
-                                <span id="lblProState"></span>
-                                <span id="lblProDistrict"></span>
-                                <span id="lblProCity"></span>
-                                <span id="PropertyID"></span>
-                                <span id="Custpropertyid">35128</span>
-                                <span id="FamilyValuesID"></span>
-                                <span id="lblSharedPropertyID">False</span>
-                                <span id="lblShowInViewProfileID">False</span>
-
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
