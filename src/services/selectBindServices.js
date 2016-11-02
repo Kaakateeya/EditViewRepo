@@ -1,6 +1,7 @@
 editviewapp.factory('SelectBindService', ["$http", function (http) {
     return {
         countrySelect: function (obj) {
+            debugger;
             return http.get(editviewapp.apipath + 'Dependency/getCountryDependency', { params: { dependencyName: "", dependencyValue: "" } });
         },
         stateSelect: function (dependencyVal) {

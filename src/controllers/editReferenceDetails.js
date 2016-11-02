@@ -1,25 +1,22 @@
-
-
-editviewapp.controller('referenceCtrl', function ($uibModal, $log, $scope) {
-
-    $scope.items = ['item1', 'item2', 'item3'];
-
-
-    $scope.animationsEnabled = true;
-    $scope.open = function (size) {
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
+editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', function(uibModal, scope, referenceServices) {
+    scope.ReferenceArr = [];
+    scope.open = function(url) {
+        scope.modalInstance = uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'referenceContent.html',
-            controller: 'ModalInstanceCtrl',
-            controllerAs: '$scope',
-            size: size,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
+            templateUrl: url,
+            scope: scope
         });
     };
-});
+
+    scope.referencePopulate = function() {
+        scope.open('referenceContent.html');
+
+    }
+
+    referenceServices.getReferenceData().then(function(response) {
+        scope.ReferenceArr = response.data;
+        console.log(response);
+    });
+
+}]);

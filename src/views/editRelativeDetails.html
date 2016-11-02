@@ -1,23 +1,19 @@
-<div class="edit_pages_content_main clearfix" ng-controller="relativeCtrl">
+<div class="edit_pages_content_main clearfix">
 
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Father's Brother Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4>Father's Brother Details
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="UpdatePanelFatherDetailsadd">
 
-                    <a id="lnkrelativesbrother" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativesbrother','')"
-                        tabindex="0">Add</a>
+                    <a id="lnkrelativesbrother" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativesbrother','')" tabindex="0">Add</a>
 
                 </div>
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="fullupdatefatherbrother">
-
-
-
+            <div id="fullupdatefatherbrother" ng-repeat="item in FBArr">
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
                         <div>
@@ -114,19 +110,18 @@
     </div>
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Father's Sister Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4>Father's Sister Details
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="UpdatePanellnkrelativefathersis">
 
-                    <a id="lnkrelativefathersis" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativefathersis','')"
-                        tabindex="0">Add</a>
+                    <a id="lnkrelativefathersis" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativefathersis','')" tabindex="0">Add</a>
 
                 </div>
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="fullupdatefathersister">
+            <div id="fullupdatefathersister" ng-repeat="item in FSArr">
 
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
@@ -142,8 +137,7 @@
                             </div>
                             <div id="UpdatePanellnkFatherSister" class="edit_page_item_ui clearfix">
 
-                                <a onclick="return AllowWebUser('Father Sister Details');" id="lnkFatherSister" class="edit_page_edit_button"
-                                    href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lstFatherSister$ctrl0$lnkFatherSister','')">Edit</a>
+                                <a onclick="return AllowWebUser('Father Sister Details');" id="lnkFatherSister" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lstFatherSister$ctrl0$lnkFatherSister','')">Edit</a>
 
 
 
@@ -261,14 +255,13 @@
             <div class="edit_page_item_ui clearfix">
                 <div id="UpdatePanellnkrelativemotherbroadd">
 
-                    <a id="lnkrelativemotherbro" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativemotherbro','')"
-                        tabindex="0">Add</a>
+                    <a id="lnkrelativemotherbro" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativemotherbro','')" tabindex="0">Add</a>
 
                 </div>
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="fullupdatemotherbrother">
+            <div id="fullupdatemotherbrother" ng-repeat="item in MBrr">
 
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
@@ -285,8 +278,7 @@
                             </div>
                             <div id="UpdatePanellnkMotherBrotheredit" class="edit_page_item_ui clearfix">
 
-                                <a onclick="return AllowWebUser('Mother Brother Details');" id="lnkMotherBrother" class="edit_page_edit_button"
-                                    href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lstMotherBrother$ctrl0$lnkMotherBrother','')">Edit</a>
+                                <a onclick="return AllowWebUser('Mother Brother Details');" id="lnkMotherBrother" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lstMotherBrother$ctrl0$lnkMotherBrother','')">Edit</a>
 
 
 
@@ -369,19 +361,18 @@
     </div>
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Mother's Sister Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4>Mother's Sister Details
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="UpdatePanellnkrelativemothersisadd">
 
-                    <a id="lnkrelativemothersis" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativemothersis','')"
-                        tabindex="0">Add</a>
+                    <a id="lnkrelativemothersis" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lnkrelativemothersis','')" tabindex="0">Add</a>
 
                 </div>
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="fullupdatemothersister">
+            <div id="fullupdatemothersister" ng-repeat="item in MSArr">
 
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
@@ -398,8 +389,7 @@
                             </div>
                             <div id="UpdatePanellnkMotherSisteredit" class="edit_page_item_ui clearfix">
 
-                                <a onclick="return AllowWebUser('Mother Sister Details');" id="lnkMotherSister" class="edit_page_edit_button"
-                                    href="javascript:void(0);">Edit</a>
+                                <a onclick="return AllowWebUser('Mother Sister Details');" id="lnkMotherSister" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                             </div>
                         </div>
                         <div id="UpdatePanelMshName" class="edit_page_details_item_desc clearfix">
@@ -502,4 +492,4 @@
             </div>
         </div>
     </div>
-
+</div>

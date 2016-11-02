@@ -1,7 +1,7 @@
 editviewapp.factory('personalDetailsService', ["$http", function (http) {
     return {
         personalDetails: function (obj) {
-            return http.get(editviewapp.apipath + 'CustomerPersonal/CgetpersonalMenuDetails', { params: {  CustID: "91035"  } });
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getpersonalMenuDetails', { params: {  CustID: "91035"  } });
         }
     }
 }]);

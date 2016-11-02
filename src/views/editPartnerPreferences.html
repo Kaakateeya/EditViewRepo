@@ -1,282 +1,470 @@
-<div class="edit_pages_content_main clearfix" ng-controller="partnerPreferenceCtrl">
+<div class="edit_pages_content_main clearfix">
 
-    <script type="text/javascript">
-    function CharacterCount() {
-        var txtCharacters = document.getElementById("txtPartnerDescription;
-        var chars = txtCharacters.value.length;
-        document.getElementById("lblpartnerdesccount.innerHTML = "Number of characters entered :" + chars;
-        if (chars > 500) {
-            txtCharacters.value = txtCharacters.value.substring(0, 500);
-            document.getElementById("lblpartnerdesccount.innerHTML = "Number of characters entered :" + 500;
-        }
-    }
+
+    <div ng-repeat="item in partnerPrefArr">
+
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>PartnerPreference Details
+                </h4>
+                <div class="edit_page_item_ui clearfix">
+                    <a ng-click="partnerprefPopulate();" class="edit_page_add_button" href="javascript:void(0);">Add</a>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+                <div id="uppartner">
+                    <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+
+                        <div id="UpdatePanel21" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="partnergen" style="color:Red;font-weight:bold;">Gender</span></h6>
+                            <h5>
+                                <span id="lblpartnergen" style="color:Red;">{{ item.Gender}}</span></h5>
+                        </div>
+                        <div id="UpdatePanellnkpartneredit" class="edit_page_item_ui clearfix">
+
+                            <a ng-click="partnerprefPopulate();" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                        </div>
+                        <div id="UpdatePanel10" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
+                                <h5>
+                                    <span id="lblagegap">{{ item.AgeGap}}</span></h5>
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel13" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+                                <h6>
+                                    <span id="height" style="font-weight:bold;">Height</span></h6>
+                                <h5>
+                                    <span id="lblheight">{{ item.Height}}</span></h5>
+                            </div>
+
+
+                        </div>
+                        <div id="UpdatePanel15" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+                                <h6>
+                                    <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
+
+                                <h5>
+                                    <span id="lblmothertongue">{{ item.Mothertongue }}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel16" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Religion" style="font-weight:bold;">Religion</span></h6>
+                                <h5>
+                                    <span id="lblReligion">{{ item.Religion}}</span></h5>
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel17" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+                                <h6>
+                                    <span id="caste" style="font-weight:bold;">caste</span></h6>
+                                <h5>
+                                    <span id="lblcaste">{{ item.Caste}}</span></h5>
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel1" class="edit_page_details_item_desc clearfix">
+
+
+                            <div>
+
+                                <h6>
+                                    <span id="subcaste" style="font-weight:bold;">subcaste</span></h6>
+                                <h5>
+                                    <span id="lblsubcaste">{{ item.Subcaste}}</span></h5>
+                            </div>
+
+
+                        </div>
+                        <div id="UpdatePanel2" class="edit_page_details_item_desc clearfix">
+
+
+                            <div>
+
+                                <h6>
+                                    <span id="maritalstatus" style="font-weight:bold;">marital status</span></h6>
+                                <h5>
+                                    <span id="lblmaritalstatus">{{ item.MaritalStatus}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="updateeducationgroup" class="edit_page_details_item_desc clearfix">
+
+
+                            <div>
+
+                                <h6>
+                                    <span id="Education" style="font-weight:bold;">Education</span></h6>
+                                <h5>
+                                    <span id="lblEducation">{{ item.EducationGroup!=null?item.EducationGroup:item.EducationCategory}}</span></h5>
+
+                            </div>
+
+
+                        </div>
+
+                        <div id="UpdatePanel5" class="edit_page_details_item_desc clearfix">
+
+
+
+                            <h6>
+                                <span id="profession" style="font-weight:bold;">profession</span></h6>
+                            <h5>
+                                <span id="lblprofession">{{ item.ProfessionGroup}}</span></h5>
+
+                        </div>
+
+                        <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
+
+
+                            <div>
+
+                                <h6>
+                                    <span id="MangalikKujadosham" style="font-weight:bold;">Manglik/Kujadosham</span></h6>
+                                <h5>
+                                    <span id="lblMangalikKujadosham">{{ item.Kujadosham}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel7" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+                                <h6>
+                                    <span id="preferredstarLanguage" style="font-weight:bold;">preferred star Language</span></h6>
+                                <h5>
+                                    <span id="lblpreferredstarLanguage">{{ item.StarLanguage}}</span></h5>
+                            </div>
+
+
+                        </div>
+
+                        <div id="UpdatePanel8" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
+                                <h5>
+                                    <span id="lblpreferredstar">{{ item.Stars}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel12" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+
+                                <h6>
+                                    <span id="Diet" style="font-weight:bold;">Diet</span></h6>
+                                <h5>
+                                    <span id="lblDiet">{{ item.Diet}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel18" class="edit_page_details_item_desc clearfix">
+                            <div>
+
+                                <h6>
+                                    <span id="preferredCountry" style="font-weight:bold;">preferred Country</span></h6>
+                                <h5>
+                                    <span id="lblpreferredCountry">{{ item.CountryName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel19" class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span id="preferredState" style="font-weight:bold;">preferred State</span></h6>
+                                <h5>
+                                    <span id="lblpreferredState">{{ item.StateName}}</span></h5>
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanel36" class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span id="RegionName" style="font-weight:bold;">Region</span></h6>
+                                <h5>
+                                    <span id="lblRegionName">{{ item.RegionName}}</span></h5>
+                            </div>
+                        </div>
+                        <div id="UpdatePanel40" class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span id="BranchName" style="font-weight:bold;">Branch</span></h6>
+                                <h5>
+                                    <span id="lblBranchName">{{ item.BranchName}}</span></h5>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>Partner Description ( Describe qualities you are looking for in your partner)</h4>
+                <div class="edit_page_item_ui clearfix">
+                    <div id="updatepanel24">
+
+                        <a id="lnkpartnerdesc" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$lnkpartnerdesc','')">Add</a>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+
+                <div>
+                    <div id="UpdatePanel9" class="edit_page_details_item_desc clearfix">
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h5>
+                                <span id="lblpartnerdesc">{{ item.PartnerDescripition}}</span></h5>
+                        </div>
+
+                    </div>
+                    <div id="sdfsd" class="edit_page_item_ui clearfix">
+
+                        <div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script type="text/ng-template" id="partnerPrefContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" id="modal-title">Partnerprefernece details </h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+
+        <ul id="divclear" class='modal-body clearfix pop_content_my'>
+            <li class="clearfix">
+                <label for="lblGender" class="pop_label_left">Gender</label>
+                <div class="pop_controls_right pop_radios_list clearfix">
+
+                    <label>
+                <input ng-model="rbtlGender" value="1" type="radio"><span>&nbsp;Male</span></label>
+                    <label>
+                <input ng-model="rbtlGender" value="2" type="radio"><span>&nbsp;Female</span></label>
+                </div>
+            </li>
+            <li class="clearfix">
+                <label for="lblagegapp" class="pop_label_left">Age Gap<span style="color: red; margin-left: 3px;">*</span></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown ng-model="ddlFromAge"></select>
+                    <select multiselectdropdown ng-model="ddlToAge"></select>
+                </div>
+
+
+            </li>
+            <li class="clearfix">
+                <label for="lblpatnerheight" class="pop_label_left">Height<span style="color: red; margin-left: 3px;">*</span></label>
+
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown ng-model="ddlFromheight"></select>
+                    <select multiselectdropdown ng-model="ddltoHeight"></select>
+                </div>
+
+
+            </li>
+            <li class="clearfix">
+                <label for="lblReligion" class="pop_label_left">Religion<span style="color: red; margin-left: 3px;">*</span></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstReligion"></select>
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblmothertongue" class="pop_label_left">Mother tongue<span style="color: red; margin-left: 3px;">*</span></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstMothertongue"></select>
+                </div>
+
+
+            </li>
+            <li class="clearfix">
+                <label for="lblpartnerCaste" class="pop_label_left">Caste<span style="color: red; margin-left: 3px;">*</span></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstCaste"></select>
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblSubcaste" class="pop_label_left">Subcaste</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstSubcaste"></select>
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblMaritalstatus" class="pop_label_left">Marital status<span style="color: red; margin-left: 3px;">*</span></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstMaritalstatus"></select>
+                </div>
+
+            </li>
+
+
+
+            <li class="clearfix">
+                <label for="lblEducationcategory" class="pop_label_left">Education category</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstEducationcategory"></select>
+                </div>
+
+
+            </li>
+            <li class="clearfix">
+                <label for="lblEducationgroup" class="pop_label_left">Education group</label>
+
+                <div class="pop_controls_right select-box-my select-box-my-double">
+
+                    <select multiselectdropdown class="multiple" ng-model="lstEducationgroup"></select>
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblEmployedin" class="pop_label_left">Employed in</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstEmployedin"></select>
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblProfessiongroup" class="pop_label_left">Profession group </label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstProfessiongroup"></select>
+
+                </div>
+
+            </li>
+
+            <li class="clearfix">
+                <label for="lblPreferredcountry" class="pop_label_left">Preferred country 	</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstPreferredcountry"></select>
+
+                </div>
+
+            </li>
+            <li class="clearfix">
+                <label for="lblPreferredstate" class="pop_label_left">Preferred state</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstPreferredstate"></select>
+                </div>
+            </li>
+            <li class="clearfix" id="divRegioncontrol">
+                <label for="lblRegion" class="pop_label_left">Region</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstRegion" typeofdata="region"></select>
+                </div>
+            </li>
+            <li class="clearfix" id="divBranchcontrol">
+                <label for="lblBranch" class="pop_label_left">Branch</label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstBranch"></select>
+
+                </div>
+            </li>
+            <li class="clearfix">
+                <label for="lblDiet" class="pop_label_left">Diet</label>
+                <div class="pop_controls_right pop_radios_list clearfix">
+                    <label>
+                <input ng-model="rbtDiet" value="27" type="radio"><span>&nbsp;Veg</span></label>
+                    <label>
+                <input ng-model="rbtDiet" value="28" type="radio"><span>&nbsp;Non Veg</span></label>
+                    <label>
+                <input ng-model="rbtDiet" value="29" type="radio"><span>&nbsp;Both</span></label>
+                </div>
+            </li>
+
+            <li class="clearfix">
+                <label for="lblManglik" class="pop_label_left">Manglik/Kuja dosham</label>
+                <div class="pop_controls_right pop_radios_list clearfix">
+                    <label>
+                <input ng-model="rbtManglikKujadosham" value="0" type="radio"><span>&nbsp;Yes</span></label>
+                    <label>
+                <input ng-model="rbtManglikKujadosham" value="1" type="radio"><span>&nbsp;No</span></label>
+                    <label>
+                <input ng-model="rbtManglikKujadosham" value="2" type="radio"><span>&nbsp;Does Not Matter</span></label>
+                </div>
+
+
+            </li>
+            <li class="clearfix">
+                <label for="lblPreferredstar" class="pop_label_left">Preferred star Language</label>
+                <div class="pop_controls_right pop_radios_list clearfix">
+                    <label>
+                <input ng-model="rbtPreferredstarLanguage" value="1" type="radio"><span>&nbsp;Telugu</span></label>
+                    <label>
+                <input ng-model="rbtPreferredstarLanguage" value="2" type="radio"><span>&nbsp;Tamil</span></label>
+                    <label>
+                <input ng-model="rbtPreferredstarLanguage" value="3" type="radio"><span>&nbsp;Kannada</span></label>
+
+                </div>
+
+            </li>
+            <li class="clearfix">
+
+                <label for="" class="pop_label_left">Star Preference</label>
+
+                <div class="pop_controls_right pop_radios_list clearfix">
+                    <label>
+                <input ng-model="rbtPreferredstars" value="0" type="radio" aria-selected><span>&nbsp;Preferredstars</span></label>
+                    <label>
+                <input ng-model="rbtPreferredstars" value="1" type="radio"><span>&nbsp;NonPreferredstars</span></label>
+                </div>
+            </li>
+            <li class="clearfix">
+                <label for="" class="pop_label_left"></label>
+                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <select multiselectdropdown class="multiple" ng-model="lstpreferedstars"></select>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
+    <div class="modal-footer">
+        <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
+        <input value="Submit" id="btnEduSubmit" class="button_custom" type="button">
+    </div>
 </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <div class="edit_page_item">
-        <div class="edit_page_item_head clearfix">
-            <h4>PartnerPreference Details 
-            </h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="updatepanellnkaddpartnerpreference">
-
-
-
-                </div>
-            </div>
-        </div>
-        <div class="edit_page_details_item">
-            <div id="uppartner" ng-repeat="item in partnerprefArr">
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
-
-                    <div id="UpdatePanel21" class="edit_page_details_item_desc clearfix">
-
-                        <h6>
-                            <span id="partnergen" style="color:Red;font-weight:bold;">Gender</span></h6>
-                        <h5>
-                            <span id="lblpartnergen" style="color:Red;">{{ item.Gender}}</span></h5>
-
-
-
-                    </div>
-                    <div id="UpdatePanellnkpartneredit" class="edit_page_item_ui clearfix">
-
-                        <a onclick="return AllowWebUser('PartnerPreference Details');" id="lnkpartneredit" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$listpartner$ctrl0$lnkpartneredit','')">Edit</a>
-
-                    </div>
-
-                    <div id="UpdatePanel10" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-
-                            <h6>
-                                <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
-                            <h5>
-                                <span id="lblagegap">{{ item.AgeGap}}</span></h5>
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel13" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-                            <h6>
-                                <span id="height" style="font-weight:bold;">Height</span></h6>
-                            <h5>
-                                <span id="lblheight">{{ item.Height}}</span></h5>
-                        </div>
-
-
-                    </div>
-                    <div id="UpdatePanel15" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-                            <h6>
-                                <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
-
-                            <h5>
-                                <span id="lblmothertongue">{{ item.Mothertongue }}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel16" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-
-                            <h6>
-                                <span id="Religion" style="font-weight:bold;">Religion</span></h6>
-                            <h5>
-                                <span id="lblReligion">{{ item.Religion}}</span></h5>
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel17" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-                            <h6>
-                                <span id="caste" style="font-weight:bold;">caste</span></h6>
-                            <h5>
-                                <span id="lblcaste">{{ item.Caste}}</span></h5>
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel1" class="edit_page_details_item_desc clearfix">
-
-
-                        <div>
-
-                            <h6>
-                                <span id="subcaste" style="font-weight:bold;">subcaste</span></h6>
-                            <h5>
-                                <span id="lblsubcaste">{{ item.Subcaste}}</span></h5>
-                        </div>
-
-
-                    </div>
-                    <div id="UpdatePanel2" class="edit_page_details_item_desc clearfix">
-
-
-                        <div>
-
-                            <h6>
-                                <span id="maritalstatus" style="font-weight:bold;">marital status</span></h6>
-                            <h5>
-                                <span id="lblmaritalstatus">{{ item.MaritalStatus}}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="updateeducationgroup" class="edit_page_details_item_desc clearfix">
-
-
-                        <div>
-
-                            <h6>
-                                <span id="Education" style="font-weight:bold;">Education</span></h6>
-                            <h5>
-                                <span id="lblEducation">{{ item.EducationGroup!=null?item.EducationGroup:item.EducationCategory}}</span></h5>
-
-                        </div>
-
-
-                    </div>
-
-                    <div id="UpdatePanel5" class="edit_page_details_item_desc clearfix">
-
-
-
-                        <h6>
-                            <span id="profession" style="font-weight:bold;">profession</span></h6>
-                        <h5>
-                            <span id="lblprofession">{{ item.ProfessionGroup}}</span></h5>
-
-                    </div>
-
-                    <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
-
-
-                        <div>
-
-                            <h6>
-                                <span id="MangalikKujadosham" style="font-weight:bold;">Manglik/Kujadosham</span></h6>
-                            <h5>
-                                <span id="lblMangalikKujadosham">{{ item.Kujadosham}}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel7" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-                            <h6>
-                                <span id="preferredstarLanguage" style="font-weight:bold;">preferred star Language</span></h6>
-                            <h5>
-                                <span id="lblpreferredstarLanguage">{{ item.StarLanguage}}</span></h5>
-                        </div>
-
-
-                    </div>
-
-                    <div id="UpdatePanel8" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-
-                            <h6>
-                                <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
-                            <h5>
-                                <span id="lblpreferredstar">{{ item.Stars}}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel12" class="edit_page_details_item_desc clearfix">
-
-                        <div>
-
-
-                            <h6>
-                                <span id="Diet" style="font-weight:bold;">Diet</span></h6>
-                            <h5>
-                                <span id="lblDiet">{{ item.Diet}}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel18" class="edit_page_details_item_desc clearfix">
-                        <div>
-
-                            <h6>
-                                <span id="preferredCountry" style="font-weight:bold;">preferred Country</span></h6>
-                            <h5>
-                                <span id="lblpreferredCountry">{{ item.CountryName}}</span></h5>
-
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel19" class="edit_page_details_item_desc clearfix">
-                        <div>
-                            <h6>
-                                <span id="preferredState" style="font-weight:bold;">preferred State</span></h6>
-                            <h5>
-                                <span id="lblpreferredState">{{ item.StateName}}</span></h5>
-                        </div>
-
-                    </div>
-                    <div id="UpdatePanel36" class="edit_page_details_item_desc clearfix">
-                        <div>
-                            <h6>
-                                <span id="RegionName" style="font-weight:bold;">Region</span></h6>
-                            <h5>
-                                <span id="lblRegionName">{{ item.RegionName}}</span></h5>
-                        </div>
-                    </div>
-                    <div id="UpdatePanel40" class="edit_page_details_item_desc clearfix">
-                        <div>
-                            <h6>
-                                <span id="BranchName" style="font-weight:bold;">Branch</span></h6>
-                            <h5>
-                                <span id="lblBranchName">{{ item.BranchName}}</span></h5>
-                        </div>
-                    </div>
-                    
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="edit_page_item">
-        <div class="edit_page_item_head clearfix">
-            <h4>Partner Description ( Describe qualities you are looking for in your partner)</h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="updatepanel24">
-
-                    <a id="lnkpartnerdesc" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$lnkpartnerdesc','')">Add</a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="edit_page_details_item">
-
-            <div>
-                <div id="UpdatePanel9" class="edit_page_details_item_desc clearfix">
-
-                    <div class="edit_page_details_item_desc clearfix">
-                        <h5>
-                            <span id="lblpartnerdesc">{{ item.PartnerDescripition}}</span></h5>
-                    </div>
-
-                </div>
-                <div id="sdfsd" class="edit_page_item_ui clearfix">
-
-                    <div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-

@@ -1,32 +1,21 @@
+editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices', function(uibModal, scope, propertyServices) {
+    scope.propertyArr = [];
 
-
-  editviewapp.controller('propertyCtrl', function ($uibModal, $log, $scope) {
-
-  $scope.items = ['item1', 'item2', 'item3'];
-
- 
-  $scope.animationsEnabled = true;
-  $scope.open = function (size) {
-    var modalInstance = $uibModal.open({
-      animation: $scope.animationsEnabled,
-      ariaLabelledBy: 'modal-title',
-      ariaDescribedBy: 'modal-body',
-      templateUrl: 'propertyContent.html',
-      controller: 'ModalInstanceCtrl',
-      controllerAs: '$scope',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
+    scope.open = function(url) {
+        scope.modalInstance = uibModal.open({
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: url,
+            scope: scope
+        });
+    };
+    propertyServices.getPropertyData().then(function(response) {
+        scope.propertyArr = response.data;
+        console.log(response);
     });
 
-  };
+    scope.populateProperty = function() {
+        scope.open('propertyContent.html');
+    }
 
-
-});
-
-
-
-
+}]);

@@ -1,26 +1,23 @@
-
-<div class="edit_pages_content_main clearfix"  ng-controller="referenceCtrl">
+<div class="edit_pages_content_main clearfix">
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Reference Details 
+            <h4>Reference Details
             </h4>
 
             <div class="edit_page_item_ui clearfix">
                 <div id="uplnkrefrenceadd">
 
-                    <a id="lnkrefrenceadd" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerReference$lnkrefrenceadd','')"
-                        tabindex="0">Add</a>
+                    <a id="lnkrefrenceadd" class="edit_page_add_button" href="javascript:void(0)" ng-click="referencePopulate();">Add</a>
 
                 </div>
             </div>
         </div>
 
 
-        <div class="edit_page_details_item">
+        <div class="edit_page_details_item" ng-repeat="item in ReferenceArr">
             <div id="fullupdate">
 
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix"
-                    style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
                     <div>
                         <div id="uplRelationShipType">
 
@@ -29,14 +26,12 @@
                                     <span id="RelationShipType" style="font-weight:bold;">RelationShip Type</span></h6>
                                 <h5>
                                     <span id="lblRelationShipType">{{item.Relatioshiptype }}</span></h5>
-
                             </div>
 
                         </div>
                         <div id="uplreferenceEditdgdf" class="edit_page_item_ui clearfix">
 
-                            <a onclick="return AllowWebUser('Reference Details');" id="lnkreferencefgbf"
-                                class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerReference$lstReference$ctrl0$lnkreferencefgbf','')">Edit</a>
+                            <a onclick="return AllowWebUser('Reference Details');" id="lnkreferencefgbf" class="edit_page_edit_button" href="javascript:void(0);" ng-click="referencePopulate();">Edit</a>
                         </div>
 
                     </div>
@@ -129,89 +124,209 @@
 
                     </div>
                     <hr>
-                   
+
                 </div>
 
             </div>
         </div>
     </div>
 
-        <script type="text/ng-template" id="referenceContent.html">
+    <script type="text/ng-template" id="referenceContent.html">
         <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Property Details</h3>
+            <h3 class="modal-title text-center">Reference Details </h3>
         </div>
         <div class="modal-body" id="modal-body">
 
-<ul id="ulproperty">
-    <li class="clearfix">
-        <label for="lblfamilyStatus" class="pop_label_left">Family Status</label>
-        <div class="pop_controls_right select-box-my">
+            <ul id="ulreference" class='modal-body clearfix pop_content_my'>
+                <li class="clearfix">
+                    <label for="Relationshiptype" class="pop_label_left">Relationship type<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
 
-            <select id="ddlFamilyStatus"></select>
-            <label id="lblPropertyIDV" visible="false"></label>
-            <label id="lblCustpropertyidV" visible="false"></label>
-            <label id="lblIsSharedPropertyV" visible="false"></label>
-            <label id="lblShowInViewProfileV" visible="false"></label>
-        </div>
-    </li>
-    <li class="clearfix">
-        <label for="lblSharedProperty" class="pop_label_left">Is shared property</label>
-        <div class="pop_controls_right pop_radios_list">
+                        <select multiselectdropdown ng-model="ddlRelationshiptype"></select>
 
-            <label class="">
-                <input name="SharedProperty" value="1" type="radio" checked><span>&nbsp;Yes</span>
-            </label>
-            &nbsp;<label class=""><input name="SharedProperty" value="0" type="radio"><span>&nbsp;No</span>
-            </label>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="Firstname" class="pop_label_left">First name<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtFname" class="form-control" tabindex="2" maxlength="100" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="Lastname" class="pop_label_left">Last name<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtLname" class="form-control" tabindex="3" maxlength="50" />
+                    </div>
 
-        </div>
-    </li>
-    <li class="clearfix" style="display: none;">
-        <label for="lblQuantity" class="pop_label_left">Quantity</label>
-        <div class="pop_controls_right select-box-my">
-            <input id="txtQuantity" class="form-control col-lg-3" />
-        </div>
-    </li>
-    <li class="clearfix">
-        <label for="lblValueofproperty" class="pop_label_left">Value of property</label>
-        <div class="pop_controls_right select-box-my select-box-my-double">
-            <input id="txtValueofproperty" class="form-control" maxlength="5" tabindex="3" />
-            <label id="txtlakfhs" font-bold="true">Lakhs</label>
+                </li>
+                <li id="Li1" visible="false" class="clearfix">
+                    <label for="lblEducation" class="pop_label_left">Education</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtEducation" class="form-control" maxlength="150" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="Professiondetails" class="pop_label_left">Profession</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtProfessiondetails" class="form-control" tabindex="4" maxlength="200" />
+                    </div>
 
-        </div>
+                </li>
+                <li class="clearfix">
+                    <label for="lblCountry" class="pop_label_left">Country<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="ddlCountry"></select>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="lblState" class="pop_label_left">State<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
 
-    </li>
+                        <select multiselectdropdown ng-model="ddlState"></select>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div id="divdistrict">
+                        <label for="lblDistrict" class="pop_label_left">District</label>
+                        <div class="pop_controls_right select-box-my">
 
-    <li class="clearfix">
+                            <select multiselectdropdown ng-model="ddlDistrict"></select>
+                        </div>
+                    </div>
 
-        <label for="lblQuantity" class="pop_label_left">Property description</label>
-        <div class="">
-            <textarea id="txtPropertydesc" t maxlength="500" rows="5" width="515"
-                onkeydown="return CharacterCount()" onkeyup="return CharacterCount()"></textarea>
-            <label id="lblpropertydesccount" style="color: #1e1c1c; font-size: 13px;"></label>
-        </div>
-    </li>
-    <li class="clearfix">
-        <div style="display: none;">
-            <label for="lblShowingviewprofile" class="pop_label_left">Showing view profile</label>
-            <div class="pop_controls_right pop_radios_list">
-                <label class="">
-                    <input name="rbtShowViewProfile" value="1" type="radio" checked><span>&nbsp;Yes</span>
-                </label>
-                &nbsp;<label class=""><input name="rbtShowViewProfile" value="0" type="radio"><span>&nbsp;No</span>
-                </label>
-            </div>
-        </div>
-    </li>
-</ul>
-         
+
+                </li>
+                <li class="clearfix">
+                    <label for="NativePlace" class="pop_label_left">Native place<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <input id="txtNativePlace" class="form-control" tabindex="8" maxlength="100" />
+
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="lblPresentlocation" class="pop_label_left">Present location </label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <input id="txtPresentlocation" class="form-control" tabindex="9" maxlength="100" />
+
+
+                    </div>
+
+                </li>
+
+
+                <div id="ownerdiv1">
+
+                    <li class="clearfix" id="referencenumbersdiv">
+                        <label for="lblContactNumbersReference" class="pop_label_left">Contact Numbers</label>
+                        <div class="pop_controls_right">
+
+                            <a id="lnlmobileereference" data-toggle="tooltip" data-original-title="Add Mobile NUmber" tabindex="10">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </a>
+
+
+                            <a id="lnklandlinereference" data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="11">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </a>
+
+
+                            <a id="lnkreferenceemail" data-toggle="tooltip" data-original-title="Add  Email ID" tabindex="12">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="mobilerefDiv">
+                            <label for="lblMobile" class="pop_label_left">Mobile #</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+                                <select multiselectdropdown ng-model="ddlMobileCountryID"></select>
+                                <input id="txtMobileNumber" maxlength="10" tabindex="14" onkeydown="return validatemobilecode('ddlMobileCountryID','txtMobileNumber','','#ctl00_ContentPlaceHolder1_EditCustomerReference_');" />
+                                <label id="lblOwnerReferenceMobileNumber" text="" visible="false"></label>
+
+                            </div>
+                        </div>
+
+
+                    </li>
+
+
+
+
+                    <div id="divalternativemob">
+                        <li class="clearfix">
+                            <label for="lblMobileref" class="pop_label_left">Altenate Number</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+                                <select multiselectdropdown ng-model="ddlMobileCountryID2"></select>
+                                <input id="txtMobileNumber2" text="" class="form-control" onkeydown="return validatemobilecode('ddlMobileCountryID2',
+                                                    'txtMobileNumber2','','#ctl00_ContentPlaceHolder1_EditCustomerReference_');" maxlength="10" tabindex="16" />
+
+                            </div>
+                        </li>
+                    </div>
+
+                    <div id="landLineRefDiv">
+                        <li class="clearfix">
+                            <label for="lblLandLine" class="pop_label_left">Land line #  </label>
+                            <div class="pop_controls_right select-box-my select-box-my-trible">
+
+
+                                <select multiselectdropdown ng-model="ddlLandLineCountryID"></select>
+
+                                <input id="txtAreCode" text="" class="form-control " maxlength="4" tabindex="18" onkeydown="return validatemobilecode('ddlLandLineCountryID',
+                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerReference_');" />
+
+                                <label id="lblOwnerReferenceLandcode" text="" visible="false"></label>
+
+                                <asp:filteredtextboxextender validchars="1234567890" id="FilteredTextBoxExtendertxtAreCode" targetcontrolid="txtAreCode" filtertype="Custom" filtermode="ValidChars">
+                                </asp:filteredtextboxextender>
+                                <input id="txtLandNumber" text="" class="form-control" maxlength="8" tabindex="19" onkeydown="return validatemobilecode('ddlLandLineCountryID',
+                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerReference_');" />
+
+                            </div>
+                        </li>
+                    </div>
+
+
+                    <li class="clearfix">
+
+
+                        <div id="divemailreference" style="display: none;">
+
+                            <label for="lblEmail" class="pop_label_left">Email</label>
+                            <div class="pop_controls_right select-box-my">
+
+                                <input id="txtEmails" class="form-control" tabindex="20" />
+                                <label id="lblOwnerReferenceEmail" text="" visible="false"></label>
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                </div>
+
+
+                <li class="clearfix">
+                    <label for="lblNarration" class="pop_label_left">Narration</label>
+                    <div class="">
+                        <textarea id="txtNarrations" class="form-control" textmode="MultiLine" tabindex="21" rows="4" width="515" maxlength="500" onkeydown="return CharacterCount()" onkeyup="return CharacterCount()"></textarea>
+
+                        <label id="lblnarrationcount" style="color: #1e1c1c; font-size: 13px;"></label>
+                    </div>
+                </li>
+            </ul>
+
+
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input type="submit" value="Submit" ng-click="ProfSubmit(profObj);" class="button_custom" type="button">
         </div>
     </script>
 </div>
-
-
-

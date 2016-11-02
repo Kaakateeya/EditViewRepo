@@ -1,7 +1,7 @@
 // AngularJS: 1.3.15
 // bootstrap-multiselect: 0.9.6
 //var statticdata=require('./staticArrayBindings.json');
-editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindService', function (cons, service) {
+editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindService', function(cons, service) {
     return {
         require: 'ng-model',
         scope: {
@@ -9,11 +9,12 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
             typeofdata: "=",
             parentVal: "="
         },
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             scope.options = [];
 
-            scope.databind = function (data) {
+            scope.databind = function(data) {
                 element.multiselect('dataprovider', data);
+                element.multiselect('select', scope.ngModel);
             }
 
             switch (scope.typeofdata) {
@@ -45,14 +46,17 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                     scope.databind(cons.stars);
                     break;
 
-                case 'stars':
-                    scope.databind(cons.stars);
+                case 'region':
+                    scope.databind(cons.region);
                     break;
-
+                case 'starLanguage':
+                    scope.databind(cons.starLanguage);
+                    break;
                 case 'Country':
-                    service.countrySelect().then(function (response) {
+                    service.countrySelect().then(function(response) {
                         var option = [];
-                        _.each(response.data, function (item) {
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
                         scope.databind(option);
@@ -60,9 +64,12 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                     break;
 
                 case 'ProfCatgory':
-                    service.ProfessionCatgory().then(function (response) {
+
+
+                    service.ProfessionCatgory().then(function(response) {
                         var option = [];
-                        _.each(response.data, function (item) {
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
                         scope.databind(option);
@@ -70,9 +77,12 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                     break;
 
                 case 'ProfGroup':
-                    service.ProfessionGroup().then(function (response) {
+
+
+                    service.ProfessionGroup().then(function(response) {
                         var option = [];
-                        _.each(response.data, function (item) {
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
                         scope.databind(option);
@@ -80,7 +90,6 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                     break;
 
             }
-
 
             element.multiselect({
                 buttonClass: 'btn',
@@ -94,21 +103,21 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 enableFiltering: true,
                 enableCaseInsensitiveFiltering: true,
                 filterPlaceholder: 'Type To Search',
-                buttonContainer: '<div class="btn-group" />'
+                buttonContainer: '<div class="btn-group" />',
                 // maxHeight: false,
-                //select: ['1', '2']
             });
-            //element.multiselect('setOptions', secondConfigurationSet);
-            //element.multiselect('rebuild');
-            // Watch for any changes to the length of our select element
-            scope.$watch(function () {
+            // element.multiselect('setOptions', secondConfigurationSet);
+            // element.multiselect('rebuild');
+            //Watch for any changes to the length of our select element 
+            scope.$watch(function() {
                 return element[0].length;
-            }, function () {
+            }, function() {
                 scope.$applyAsync(element.multiselect('rebuild'));
+                element.multiselect('select', scope.ngModel);
             });
 
             // Watch for any changes from outside the directive and refresh
-            scope.$watch(attrs.ngModel, function () {
+            scope.$watch(attrs.ngModel, function() {
                 element.multiselect('refresh');
             });
         }

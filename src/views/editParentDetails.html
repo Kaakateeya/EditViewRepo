@@ -1,4 +1,4 @@
-<div class="edit_pages_content_main clearfix" ng-controller="parentCtrl">
+<div class="edit_pages_content_main clearfix">
     <div class="edit_page_item" id="divlnkaddparents">
         <div class="edit_page_item_head clearfix">
             <h4>Parents Details
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="listparents" ng-repeat="item in ParentArr">
+            <div id="listparents" ng-repeat="item in parentArr">
                 <div id="reviewdiv">
                     <div>
                         <div>
@@ -19,15 +19,14 @@
                                 <h6>
                                     <label id="lfathername"></label> Father Name</h6>
                                 <h5>
-                                    <label id="LBfathername">{{item.FatherName}}</label>
+                                    <span id="LBfathername">{{item.FatherName}}</span>
                                 </h5>
 
                             </div>
+                            <div class="edit_page_item_ui clearfix">
+                                <a id="LinkButton1dfd" href="javascript:void(0):" data-original-title="Edit Parents Details" class="edit_page_edit_button" ng-click="populateParentModel();">Edit</a>
 
-                            <a id="LinkButton1dfd" data-placement="bottom" data-toggle="tooltip" data-original-title="Edit Parents Details" class="edit_page_edit_button"
-                                onclick="return AllowWebUser('Parents Details');">Edit</a>
-
-
+                            </div>
                         </div>
 
                         <div class="edit_page_details_item_desc clearfix">
@@ -37,9 +36,9 @@
                             </h6>
 
                             <h5>
-                                <label id="lblfathereducationdetails">
-                                    {{(item.FatherEducationDetails=null && item.FatherEducationDetails!="?item.FatherEducationDetails:""}}
-                            </label>
+                                <span id="lblfathereducationdetails">
+                                    {{((item.FatherEducationDetails.ToString()!=null && (item.FatherEducationDetails.ToString()!="")?item.FatherEducationDetails:"")) }}
+                            </span>
                             </h5>
 
                         </div>
@@ -51,9 +50,9 @@
                             </h6>
 
                             <h5>
-                                <label id="lblfatherprofessiondetails">
-                                    {{((item.FatherProfDetails.ToString()!=null && (item.FatherProfDetails.ToString()!="?item.FatherProfDetails:") }}
-                            </label>
+                                <span id="lblfatherprofessiondetails">
+                                   {{((item.FatherProfDetails.ToString()!=null && (item.FatherProfDetails.ToString()!="")?item.FatherProfDetails:"")) }}
+                            </span>
                             </h5>
                         </div>
 
@@ -64,12 +63,11 @@
                                 <label id="lblfatherprofessionloc" font-bold="true">Company & JobLocation</label>
                             </h6>
                             <h5>
-                                <label id="lblfatherprofandloc">
-                                    {{((item.FathercompanyName.ToString()!=null && (item.FathercompanyName.ToString()!="?item.FathercompanyName:"NotSpecified)
-                                        +" "+((item.FatherJoblocation.ToString()!=null && (item.FatherJoblocation.ToString()!="?"," +" "+item.FatherJoblocation:item.FatherJoblocation))}}
-                            </label>
+                                <span id="lblfatherprofandloc">
+                                   {{((item.FathercompanyName.ToString()!=null && (item.FathercompanyName.ToString()!="")?item.FathercompanyName:"NotSpecified"))
+                                        +" "+((item.FatherJoblocation.ToString()!=null && (item.FatherJoblocation.ToString()!="")?"," +" "+item.FatherJoblocation:item.FatherJoblocation))}}
+                            </span>
                             </h5>
-
                         </div>
 
                         <div id="ownerdiv0">
@@ -79,10 +77,10 @@
                                     <label id="lblfathernumber" font-bold="true">Father contact nos</label>
                                 </h6>
                                 <h5>
-                                    <label id="lblfathermobile">
-                                        <%#((item.FatherMobilenumber.ToString()!=null && (item.FatherMobilenumber.ToString()!="?item.FatherMobilenumber:")
-                                        +" "+((item.FatherLandNumber.ToString()!=null && (item.FatherLandNumber.ToString()!="?"&"+" "+item.FatherLandNumber:") }}
-                                </label>
+                                    <span id="lblfathermobile">
+                                       {{((item.FatherMobilenumber.ToString()!=null && (item.FatherMobilenumber.ToString()!="")?item.FatherMobilenumber:""))
+                                        +" "+((item.FatherLandNumber.ToString()!=null && (item.FatherLandNumber.ToString()!="")?"&"+" "+item.FatherLandNumber:"")) }}
+                                </span>
                                 </h5>
 
                             </div>
@@ -94,9 +92,9 @@
                                     <label id="fatheremail" font-bold="true">Father Email</label>
                                 </h6>
                                 <h5>
-                                    <label id="lblFatherEmail">
-                                        {{ item.FatherEmail }}
-                                </label>
+                                    <span id="lblFatherEmail">
+                                       {{ item.FatherEmail }}
+                                </span>
                                 </h5>
                             </div>
 
@@ -109,10 +107,10 @@
                             <h6>
                                 <label id="lblfathersfather">Father's Father Name</label></h6>
                             <h5>
-                                <label id="lblfathersfath">
-                                    {{  ((item.FatherFathername.ToString()!=null && (item.FatherFathername.ToString()!="?item.FatherFathername:")
+                                <span id="lblfathersfath">
+                                  {{  ((item.FatherFathername.ToString()!=null && (item.FatherFathername.ToString()!="")?item.FatherFathername:""))
                                         }}
-                            </label>
+                            </span>
                             </h5>
                         </div>
 
@@ -123,10 +121,10 @@
                                 <h6>
                                     <label id="FFContactNos">FF contact nos</label></h6>
                                 <h5>
-                                    <label id="lblFFContactNos">
-                                        {{((item.FFMobileNumberWithcode.ToString()!=null && (item.FFMobileNumberWithcode.ToString()!="?item.FFMobileNumberWithcode:")
-                                       + ((item.FFLandNumberwithCode!=null && item.FFLandNumberwithCode.ToString()!="?" & "+item.FFLandNumberwithCode:" }}
-                                </label>
+                                    <span id="lblFFContactNos">
+                                       {{((item.FFMobileNumberWithcode.ToString()!=null && (item.FFMobileNumberWithcode.ToString()!="")?item.FFMobileNumberWithcode:""))
+                                       + ((item.FFLandNumberwithCode!=null && item.FFLandNumberwithCode.ToString()!="")?" & "+item.FFLandNumberwithCode:"") }}
+                                </span>
                                 </h5>
                             </div>
 
@@ -138,13 +136,13 @@
                                 <label id="FnativePlace" font-bold="true">Native Place</label>
                             </h6>
                             <h5>
-                                <label id="lblFnativePlace">
-                                    {{
-                                        ((item.FatherNativeplace!=null && item.FatherNativeplace.ToString()!="?item.FatherNativeplace:"" )+
-                                        ((item.FatherDistric!=null && item.FatherDistric.ToString()!="?" ,"+item.FatherDistric:"+
-                                        ((item.FatherState!=null && item.FatherState.ToString()!="?" ,"+item.FatherState:"" )+
-                                        ((item.FatherCountry!=null && item.FatherCountry.ToString()!="?" ,"+item.FatherCountry:"" )}}
-                            </label>
+                                <span id="lblFnativePlace">
+                                   {{
+                                        ((item.FatherNativeplace!=null && item.FatherNativeplace.ToString()!="")?item.FatherNativeplace:"" )+
+                                        ((item.FatherDistric!=null && item.FatherDistric.ToString()!="")?" ,"+item.FatherDistric:"")+
+                                        ((item.FatherState!=null && item.FatherState.ToString()!="")?" ,"+item.FatherState:"" )+
+                                        ((item.FatherCountry!=null && item.FatherCountry.ToString()!="")?" ,"+item.FatherCountry:"" )}}
+                            </span>
                             </h5>
                         </div>
 
@@ -165,9 +163,9 @@
                             </h6>
 
                             <h5>
-                                <label id="lblmothernameandedu">
+                                <span id="lblmothernameandedu">
                                     {{item.MotherName}}
-                            </label>
+                            </span>
                             </h5>
                         </div>
 
@@ -178,9 +176,9 @@
                                 <label id="lbleducationmother">Education</label></h6>
 
                             <h5>
-                                <label id="lblmotherducation">
-                                    {{ ((item.MotherEducationDetails!=null && item.MotherEducationDetails.ToString()!="?item.MotherEducationDetails:"" )}}
-                            </label>
+                                <span id="lblmotherducation">
+                                   {{ ((item.MotherEducationDetails!=null && item.MotherEducationDetails.ToString()!="")?item.MotherEducationDetails:"" )}}
+                            </span>
                             </h5>
                         </div>
 
@@ -192,10 +190,10 @@
                             </h6>
 
                             <h5>
-                                <label id="lblmotherprofdetails">
-                                    {{((item.MotherProfedetails!=null && item.MotherProfedetails.ToString()!="?
+                                <span id="lblmotherprofdetails">
+                                  {{((item.MotherProfedetails!=null && item.MotherProfedetails.ToString()!="")?
                                                 item.MotherProfedetails:"" )}}
-                            </label>
+                            </span>
                             </h5>
                         </div>
 
@@ -204,11 +202,11 @@
                             <h6>
                                 <label id="lblmotherprofession">Company & JobLocation</label></h6>
                             <h5>
-                                <label id="lblmotherprofandloc">
-                                    {{((item.MothercompanyName.ToString()!=null && (item.MothercompanyName.ToString()!="?item.MothercompanyName:")+" "+
-                                            ((item.MotherJoblocation.ToString()!=null && (item.MotherJoblocation.ToString()!="?", "+" "+
+                                <span id="lblmotherprofandloc">
+                                   {{((item.MothercompanyName.ToString()!=null && (item.MothercompanyName.ToString()!="")?item.MothercompanyName:""))+" "+
+                                            ((item.MotherJoblocation.ToString()!=null && (item.MotherJoblocation.ToString()!="")?", "+" "+
                                             item.MotherJoblocation:item.MotherJoblocation))}}
-                                </label>
+                                </span>
                             </h5>
                         </div>
 
@@ -219,9 +217,9 @@
                                 <h6>
                                     <label id="lblmothercontacts">Mother contact nos</label></h6>
                                 <h5>
-                                    <label id="lblmompmobile">
-                                        {{((item.MotherMobilenumber!=null && item.MotherMobilenumber.ToString()!="?item.MotherMobilenumber:"" )+" "+((item.MotherLandNumber.ToString()!=null && (item.MotherLandNumber.ToString()!="?"&"+" "+item.MotherLandNumber:")}}
-                                </label>
+                                    <span id="lblmompmobile">
+                                       {{((item.MotherMobilenumber!=null && item.MotherMobilenumber.ToString()!="")?item.MotherMobilenumber:"" )+" "+((item.MotherLandNumber.ToString()!=null && (item.MotherLandNumber.ToString()!="")?"&"+" "+item.MotherLandNumber:""))}}
+                                </span>
                                 </h5>
                             </div>
 
@@ -231,9 +229,9 @@
                                     <label id="lblmotheremail" font-bold="true">Mother Email</label>
                                 </h6>
                                 <h5>
-                                    <label id="lblmomemail">
+                                    <span id="lblmomemail">
                                         {{ item.MotherEmail }}
-                                </label>
+                                </span>
                                 </h5>
 
                             </div>
@@ -246,9 +244,9 @@
                                 <label id="lblmotherfatherupp" font-bold="true">Mother's Father Name</label>
                             </h6>
                             <h5>
-                                <label id="lblMotherFatherName">
-                                    {{item.MotherFatherName }}
-                            </label>
+                                <span id="lblMotherFatherName">
+                                   {{item.MotherFatherName }}
+                            </span>
                             </h5>
                             </label>
                         </div>
@@ -260,9 +258,9 @@
                                 <label id="MotherFatherLastName" font-bold="true">Mother's Father SurName</label>
                             </h6>
                             <h5>
-                                <label id="lblMotherFatherLastName">
-                                    {{item.MotherFatherLastName}}
-                            </label>
+                                <span id="lblMotherFatherLastName">
+                                  {{item.MotherFatherLastName}}
+                            </span>
                             </h5>
                         </div>
 
@@ -274,10 +272,10 @@
                                     <label id="mContactNos" font-bold="true">MF Contact nos</label>
                                 </h6>
                                 <h5>
-                                    <label id="lblmContactNos">
-                                        {{ item.MMMobileNumberWithcode+
-                                        ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode.ToString()!="?" & "+item.MMLandNumberwithCode:" }}
-                                </label>
+                                    <span id="lblmContactNos">
+                                       {{ item.MMMobileNumberWithcode+
+                                        ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode.ToString()!="")?" & "+item.MMLandNumberwithCode:"") }}
+                                </span>
                                 </h5>
                             </div>
 
@@ -289,12 +287,12 @@
                                 <label id="MNativePlace" font-bold="true">Native Place</label>
                             </h6>
                             <h5>
-                                <label id="lblMNativePlace">
-                                    {{((item.MotherNativeplace!=null && item.MotherNativeplace.ToString()!="?item.MotherNativeplace:" +
-                                        ((item.MotherDistric!=null && item.MotherDistric.ToString()!="?" ,"+item.MotherDistric:"" )+
-                                        ((item.MotherState!=null && item.MotherState.ToString()!="?" ,"+item.MotherState:"" )+
-                                        ((item.MotherCountry!=null && item.MotherCountry.ToString()!="?" ,"+item.MotherCountry:"" )}}
-                            </label>
+                                <span id="lblMNativePlace">
+                                   {{((item.MotherNativeplace!=null && item.MotherNativeplace.ToString()!="")?item.MotherNativeplace:"") +
+                                        ((item.MotherDistric!=null && item.MotherDistric.ToString()!="")?" ,"+item.MotherDistric:"" )+
+                                        ((item.MotherState!=null && item.MotherState.ToString()!="")?" ,"+item.MotherState:"" )+
+                                        ((item.MotherCountry!=null && item.MotherCountry.ToString()!="")?" ,"+item.MotherCountry:"" )}}
+                            </span>
                             </h5>
                         </div>
 
@@ -307,7 +305,7 @@
                                 <h6>
                                     <label id="ParentsInterCaste">Are Parents InterCaste</label></h6>
                                 <h5>
-                                    <label id="lblParentsInterCaste">{{item.Intercaste }}</label>
+                                    <span id="lblParentsInterCaste">{{item.Intercaste }}</span>
                                 </h5>
                             </div>
 
@@ -316,7 +314,7 @@
                                 <h6>
                                     <label id="lFatherCaste">Father Caste</label></h6>
                                 <h5>
-                                    <label id="lblFatherCaste">{{item.FatherCaste }}</label>
+                                    <span id="lblFatherCaste">{{item.FatherCaste }}</span>
                                 </h5>
                             </div>
 
@@ -326,7 +324,7 @@
                                     <label id="lMotherCaste"></label>
                                 </h6>
                                 <h5>
-                                    <label id="lblMotherCaste">{{item.MotherCaste }}</label>
+                                    <span id="lblMotherCaste">{{item.MotherCaste }}</span>
                                 </h5>
                             </div>
 
@@ -342,56 +340,55 @@
     <div class="edit_page_item" id="divlnkAddcontactaddress">
         <div class="edit_page_item_head clearfix">
             <h4>Contact Address
-               
+
             </h4>
             <div class="edit_page_item_ui clearfix">
 
-                <a id="lnkAddcontactaddress" text="Add" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Contact Address"
-                    cssclass="edit_page_add_button"></a>
+                <a id="lnkAddcontactaddress" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Contact Address" cssclass="edit_page_add_button">Add</a>
 
             </div>
         </div>
         <div class="edit_page_details_item">
 
-            <div id="lstContactAddress" onitemcommand="lstContactAddress_ItemCommand" onitemdatabound="listparents_ItemDataBound">
+            <div ng-repeat="item in addressArr">
 
                 <div id="Div1" class="edit_page_details_item_desc clearfix">
 
                     <div class="edit_page_details_item_desc clearfix">
-                        l
+
                         <h6>
-                            <label id="lblhousenum" text="House/Flat No" font-bold="true"></label>
+                            <label id="lblhousenum" font-bold="true">House/Flat No</label>
                         </h6>
                         <h5>
-                            <label id="lblhouseflat">
+                            <span id="lblhouseflat">
                                 {{ item.FlatNumber}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
 
                     <div id="divapartment" class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <label id="lblapartmentname" text="Apt Name" font-bold="true"></label>
+                            <label id="lblapartmentname" font-bold="true">Apt Name</label>
                         </h6>
                         <h5>
-                            <label id="lblapartment">
+                            <span id="lblapartment">
                                 {{ item.ApartmentName}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
+                    <div class="edit_page_item_ui clearfix">
+                        <a id="lnkcontact" class="edit_page_edit_button" onclientclick="return AllowWebUser('Contact Address');">Edit</a>
 
-                    <a id="lnkcontact" class="edit_page_edit_button" onclientclick="return AllowWebUser('Contact Address');">Edit</a>
-
-
+                    </div>
                     <div id="divareaname" class="edit_page_details_item_desc clearfix">
 
                         <h6>
                             <label id="lblareaname" font-bold="true">Area Name</label>
                         </h6>
                         <h5>
-                            <label id="lblareanamee">
+                            <span id="lblareanamee">
                                 {{ item.AreaName}}
-                        </label>
+                        </span>
                         </h5>
 
                     </div>
@@ -402,9 +399,9 @@
                             <label id="lblstreet" font-bold="true">Street Name</label>
                         </h6>
                         <h5>
-                            <label id="lblstreetname">
+                            <span id="lblstreetname">
                                 {{ item.StreetName}}
-                        </label>
+                        </span>
                         </h5>
 
                     </div>
@@ -415,9 +412,9 @@
                             <label id="lblland" font-bold="true">Land Mark</label>
                         </h6>
                         <h5>
-                            <label id="lbllandmark">
+                            <span id="lbllandmark">
                                 {{ item.LandMark}}
-                        </label>
+                        </span>
                         </h5>
 
                     </div>
@@ -428,9 +425,9 @@
                             <label id="lblcityy" font-bold="true">City</label>
                         </h6>
                         <h5>
-                            <label id="lblcityname">
-                                {{ item.CityName+" "+(item.DistrictName!=null?","+ item.DistrictName:"+(item.StateName!=null?","+ item.StateName:"+(item.CountryName!=null?","+item.CountryName:"+(item.Zip!=null?"-"+item.Zip:" }}
-                        </label>
+                            <span id="lblcityname">
+                                {{ item.CityName+" "+(item.DistrictName!=null?","+ item.DistrictName:"")+(item.StateName!=null?","+ item.StateName:"")+(item.CountryName!=null?","+item.CountryName:"")+(item.Zip!=null?"-"+item.Zip:"") }}
+                        </span>
                         </h5>
                     </div>
                 </div>
@@ -442,13 +439,12 @@
             <h4>Physical Attribute & Health Details of Candidate</h4>
             <div class="edit_page_item_ui clearfix">
 
-                <a id="lnkAddphsysicall" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Physical Attribute & Health Details"
-                    class="edit_page_add_button">Add</a>
+                <a id="lnkAddphsysicall" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
 
-            <div id="lstPhysicalAttribute" onitemcommand="lstPhysicalAttribute_ItemCommand" onitemdatabound="listparents_ItemDataBound">
+            <div ng-repeat="item in physicalArr">
 
                 <div id="Div2" class="edit_page_details_item_desc clearfix">
 
@@ -456,29 +452,29 @@
                         <h6>
                             <label id="lbllDiet" font-bold="true">Diet</label></h6>
                         <h5>
-                            <label id="lblDiet">
+                            <span id="lblDiet">
                                 {{ item.Diet}}
-                            </label>
+                            </span>
                         </h5>
                     </div>
                     <div class="edit_page_details_item_desc clearfix">
                         <h6>
                             <label id="lbllDrink">Drink</label></h6>
                         <h5>
-                            <label id="lblDrink">
+                            <span id="lblDrink">
                                 {{ item.Drink}}
-                            </label>
+                            </span>
                         </h5>
                     </div>
 
                     <div class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <label id="lbllSmoke"></label>
+                            <label id="lbllSmoke">Smoke</label>
                         </h6>
                         <h5>
-                            <label id="lblSmoke">
+                            <span id="lblSmoke">
                                 {{ item.Smoke}}
-                            </label>
+                            </span>
                         </h5>
                     </div>
 
@@ -486,9 +482,9 @@
                         <h6>
                             <label id="lbllBodyType">Body Type</label></h6>
                         <h5>
-                            <label id="lblBodyType">
+                            <span id="lblBodyType">
                                 {{ item.BodyType}}
-                            </label>
+                            </span>
                         </h5>
                     </div>
 
@@ -498,9 +494,9 @@
                             <label id="lblbodyweight" font-bold="true">Body Weight</label>
                         </h6>
                         <h5>
-                            <label id="lblweight">
+                            <span id="lblweight">
                                 {{ item.BodyWeight}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
 
@@ -509,9 +505,9 @@
                             <label id="lblbloodgroup" font-bold="true">Blood Group</label>
                         </h6>
                         <h5>
-                            <label id="lblbloodgrop">
+                            <span id="lblbloodgrop">
                                 {{ item.BloodGroupName}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
 
@@ -520,28 +516,27 @@
                             <label id="lblhealthconditions" font-bold="true">Health Conditions</label>
                         </h6>
                         <h5>
-                            <label id="lblhealthcondition">
+                            <span id="lblhealthcondition">
                                 {{ item.Healthcondition}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
+                    <div class="edit_page_item_ui clearfix">
+                        <a id="lnkphysical" data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
 
-                    <a id="lnkphysical" data-toggle="tooltip" data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button"
-                        onclientclick="return AllowWebUser('Physical Attribute');">Edit</a>
+                    </div>
 
                     <div class="edit_page_details_item_desc clearfix">
                         <h6>
                             <label id="lblhealthdescription" font-bold="true">Health Condition Description</label>
                         </h6>
                         <h5>
-                            <label id="lblhealthdescriptions">
+                            <span id="lblhealthdescriptions">
                                 {{ item.HealthConditionDescription}}
-                        </label>
+                        </span>
                         </h5>
                     </div>
                 </div>
-
-
             </div>
 
         </div>
@@ -550,8 +545,8 @@
         <div class="edit_page_item_head clearfix">
             <h4>About My Family </h4>
             <div class="edit_page_item_ui clearfix">
-                <a id="lnkaboutt" text="Add" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add About My Family"
-                    cssclass="edit_page_add_button"></a>
+
+                <a id="lnkaboutt" data-original-title="Add About My Family" cssclass="edit_page_add_button">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -568,10 +563,9 @@
                             <label id="Label5" visible="false"></label>
                         </div>
 
-
-                        <a id="lnkaboutmyfamilyyy" onclick="lnkaboutmyfamilyyy_Click" class="edit_page_edit_button" onclientclick="return AllowWebUser('About My Family');"
-                            data-toggle="tooltip" data-original-title="Edit About My Family">Edit</a>
-
+                        <div class="edit_page_item_ui clearfix">
+                            <a id="lnkaboutmyfamilyyy" class="edit_page_edit_button" data-toggle="tooltip" data-original-title="Edit About My Family">Edit</a>
+                        </div>
 
                     </div>
                 </div>
@@ -580,3 +574,592 @@
         </div>
     </div>
 </div>
+
+<div id="popupDiv">
+
+    <script type="text/ng-template" id="parentModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Parent details</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul class='modal-body clearfix pop_content_my'>
+                <li>
+                    <h6>Father Details</h6>
+                </li>
+                <li class="clearfix">
+                    <label for="lbleducationGroup" class="pop_label_left" style="color: red;">Father Name<span style="color: red; margin-left: 3px;">*</span></label>
+
+                    <div class="pop_controls_right">
+                        <input type="text" id="txtFathername" class="form-control" maxlength="100" tabindex="1" />
+                    </div>
+                </li>
+
+                <li class="clearfix">
+                    <label for="lblFEducation" class="pop_label_left">Education</label>
+                    <div class="pop_controls_right">
+                        <input id="txtFEducation" class="form-control" maxlength="150" tabindex="2" />
+                    </div>
+                </li>
+
+                <li class="clearfix">
+                    <label for="lblFProfession" class="pop_label_left">Profession</label>
+                    <div class="pop_controls_right">
+                        <input id="txtFProfession" class="form-control" maxlength="200" tabindex="3" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="lblCompanyName" class="pop_label_left">Company Name </label>
+                    <div class="pop_controls_right">
+                        <input id="txtCompany" class="form-control" maxlength="100" tabindex="4" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="lblJobLocation" class="pop_label_left">Job Location</label>
+                    <div class="pop_controls_right">
+                        <input id="txtJobLocation" class="form-control" maxlength="100" tabindex="5" />
+                    </div>
+                </li>
+
+
+                <div id="ownerdiv4">
+
+                    <li id="divfathernumbersowner" class="clearfix">
+                        <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
+                        <div class="pop_controls_right">
+
+                            <a id="lnlmobilee" data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="6">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </a>
+
+                            <a id="lnklandline" data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="7">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </a>
+
+                            <a id="lnkFatherEmail" data-toggle="tooltip" data-original-title="Add  Email ID" tabindex="8">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix">
+
+
+                        <div id="divfathermobile">
+                            <label for="lblMobile" class="pop_label_left">Mobile #  </label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlMobile" class="chosen" tabindex="9">
+                                </asp:dropdownlist>
+                                <input id="txtMobile" text="" maxlength="10" tabindex="10" />
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="divfathermobile2">
+                            <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlfathermobile2" tabindex="11" class="chosen">
+                                </asp:dropdownlist>
+                                <input id="txtfathermobile2" maxlength="10" tabindex="12" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="divfatherlandnumber">
+                            <label for="lblLandLine" class="pop_label_left">Land line #  </label>
+                            <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                <asp:dropdownlist id="ddlLandLineCountry" tabindex="13" class="chosen" onchange="return validatemobilecode('ddlLandLineCountry',
+                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtAreCode" maxlength="4" tabindex="14" onkeydown="return validatemobilecode('ddlLandLineCountry',
+                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                                <input id="txtLandNumber" maxlength="8" tabindex="15" onkeydown="return validatemobilecode('ddlLandLineCountry',
+                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                            </div>
+                        </div>
+
+
+                    </li>
+
+                    <li id="fatheradeemail" style="display: none;" class="clearfix">
+                        <label for="lblEmail" class="pop_label_left">Email  </label>
+                        <div class="pop_controls_right">
+
+
+                            <input id="txtEmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
+
+                        </div>
+                    </li>
+                </div>
+
+
+                <li class="clearfix">
+                    <label for="lblFatherFname" class="pop_label_left">Father's father name </label>
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtFatherFname" class="form-control" placeholder="Enter Father's father name" maxlength="100" tabindex="17" />
+
+                    </div>
+                </li>
+
+
+
+                <div id="ownerdiv5">
+                    <li id="fathersfatehrnumbers" class="clearfix">
+                        <label for="lblContactNumbersfatherFather" class="pop_label_left">Contact Numbers</label>
+                        <div class="pop_controls_right">
+
+                            <a id="lnkFFmobile" data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="18">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </a>
+
+
+                            <a id="lnlFFLand" data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="19">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </a>
+                        </div>
+
+                    </li>
+
+                    <li class="clearfix">
+
+
+                        <div id="divffMobile">
+                            <label for="lblMobileGrandfather" class="pop_label_left">Mobile Number</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlFatherfatherMobileCountryCode" tabindex="20" class="chosen" onchange="return validatemobilecode('ddlFatherfatherMobileCountryCode',
+                                                    'txtMobileFatherfather','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtMobileFatherfather" text="" maxlength="10" tabindex="21" onkeydown="return validatemobilecode('ddlFatherfatherMobileCountryCode',
+                                                    'txtMobileFatherfather','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="divfatherfatherAlternative">
+                            <label for="fatherfatherAlternative" class="pop_label_left">Altenate Number</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlfatherfatherAlternative" tabindex="22" class="chosen">
+                                </asp:dropdownlist>
+                                <input id="txtfatherfatherAlternative" maxlength="10" tabindex="23" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+
+                    <li class="clearfix">
+
+
+                        <div id="divFFland">
+                            <label for="lblGrandFatherLandLine" class="pop_label_left">Land line #  </label>
+
+
+                            <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                <asp:dropdownlist id="ddlFatherFatherLandLineCode" class="chosen" tabindex="24" onchange="return validatemobilecode('ddlFatherFatherLandLineCode',
+                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtGrandFatherArea" maxlength="4" tabindex="25" onkeydown="return validatemobilecode('ddlFatherFatherLandLineCode',
+                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                                <input id="txtGrandFatherLandLinenum" width="30%" text="" class="col-lg-2 form-control" maxlength="8" tabindex="26" onkeydown="return validatemobilecode('ddlFatherFatherLandLineCode',
+                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                </div>
+
+
+
+                <li class="clearfix">
+                    <label for="FState" class="pop_label_left">State</label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <asp:dropdownlist id="ddlFState" class="chosen" enableviewstate="true" onselectedindexchanged="ddlCountry_SelectedIndexChanged" tabindex="27"></asp:dropdownlist>
+
+
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="FDistrict" class="pop_label_left">District</label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <asp:dropdownlist id="ddlFDistric" class="chosen" tabindex="28"></asp:dropdownlist>
+
+
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="FNativePlace" class="pop_label_left">Native Place</label>
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtFNativePlace" class="form-control" maxlength="100" tabindex="29" />
+
+
+                    </div>
+                </li>
+                <li>
+                    <h6>Mother Details</h6>
+                </li>
+                <li class="clearfix">
+                    <label for="lblMotherName" class="pop_label_left" style="color: red;">Mother Name<span style="color: red; margin-left: 3px;">*</span></label>
+
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtMName" class="form-control" maxlength="100" tabindex="30" />
+
+
+                    </div>
+
+                </li>
+
+                <li class="clearfix">
+                    <label for="lblMEducation" class="pop_label_left">Education</label>
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtMEducation" class="form-control" maxlength="150" tabindex="31" />
+
+
+                    </div>
+                </li>
+
+                <li class="clearfix">
+                    <label for="lblMProfession" class="pop_label_left">Profession</label>
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtMProfession" class="form-control" maxlength="200" tabindex="32" />
+
+                        <label class="checkbox-inline checkbox_my" style="padding: 5px 0 0 0;">
+                <asp:checkbox id="chkbox" text="HouseWife" tabindex="33" oncheckedchanged="chkbox_CheckedChanged" />
+            </label>
+
+
+                    </div>
+
+                </li>
+
+
+
+                <div id="divmotherprofesseion">
+                    <li id="divComLocation" class="clearfix">
+
+                        <label for="lblMCompanyName" class="pop_label_left">Company Name </label>
+                        <div class="pop_controls_right">
+
+
+                            <input id="txtMCompanyName" class="form-control" maxlength="100" tabindex="34" />
+
+
+                        </div>
+                    </li>
+
+                    <li class="clearfix">
+                        <label for="lblMJobLocation" class="pop_label_left">Job Location</label>
+                        <div class="pop_controls_right">
+
+
+                            <input id="txtMJobLocation" class="form-control" maxlength="100" tabindex="35" />
+
+                        </div>
+                    </li>
+                </div>
+
+
+                <div style="height: 15px;"></div>
+
+
+                <div id="ownerdiv6">
+                    <li id="divmothernumberowner" class="clearfix">
+                        <label for="lblContactNumbersMother" class="pop_label_left">Contact Numbers</label>
+                        <div class="pop_controls_right">
+                            <a id="LnkMotherMobile" data-original-title="Add Mobile Number" tabindex="36">
+                                <span class="glyphicon glyphicon-phone"></span>
+
+                            </a>
+
+                            <a id="lnkMotherLandNum" data-original-title="Add  Land Number" tabindex="37">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </a>
+
+                            <a id="lnkMotherEmail" data-original-title="Add  Email ID" tabindex="38">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="mothermobilediv">
+                            <label for="lblMMobile" class="pop_label_left">Mobile # </label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlMMobileCounCodeID" class="chosen" tabindex="39" onchange="return validatemobilecode('ddlMMobileCounCodeID',
+                                                    'txtMMobileNum','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtMMobileNum" maxlength="10" tabindex="40" onkeydown="return validatemobilecode('ddlMMobileCounCodeID',
+                                                    'txtMMobileNum','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+
+                    <li class="clearfix">
+
+
+                        <div id="divMotherMobile2">
+                            <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlMMobileCounCodeID2" class="chosen" tabindex="41" onchange="return validatemobilecode('ddlMMobileCounCodeID2',
+                                                    'txtMMobileNum2','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtMMobileNum2" maxlength="10" tabindex="42" onkeydown="return validatemobilecode('ddlMMobileCounCodeID2',
+                                                    'txtMMobileNum2','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="motherlandnumber" style="display: none;">
+                            <label for="lblMLandLine" class="pop_label_left">Land line #  </label>
+                            <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                <asp:dropdownlist id="ddlMLandLineCounCode" class="chosen" tabindex="43" onchange="return validatemobilecode('ddlMLandLineCounCode',
+                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtmAreaCode" text="" maxlength="4" tabindex="44" onkeydown="return validatemobilecode('ddlMLandLineCounCode',
+                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                                <input id="txtMLandLineNum" text="" maxlength="8" tabindex="45" onkeydown="return validatemobilecode('ddlMLandLineCounCode',
+                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li id="divmothermails" style="display: none;" class="clearfix">
+                        <label for="lblMEmail" class="pop_label_left">Email  </label>
+                        <div class="pop_controls_right">
+
+
+                            <input id="txtMEmail" class="form-control" placeholder="Enter Email" tabindex="46" />
+
+                        </div>
+                    </li>
+                </div>
+
+
+                <li class="clearfix">
+                    <label for="lblMotherFname" class="pop_label_left">Mother's Father Name </label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <input id="txtMFatherFname" class="form-control" placeholder="FIRST NAME" tabindex="47" maxlength="100" />
+                </li>
+                <li class="clearfix">
+                    <label for="lblMotherFname" class="pop_label_left">Mother's Last Name </label>
+                    <div class="pop_controls_right select-box-my">
+
+
+                        <input id="txtMFatherLname" class="form-control" placeholder="LAST NAME" tabindex="48" maxlength="50" />
+
+                    </div>
+                </li>
+
+
+                <div id="ownerdiv7">
+                    <li id="motherfathercontactDiv" class="clearfix">
+                        <label for="lblContactNumbersMotherFather" class="pop_label_left">Contact Numbers</label>
+                        <div class="pop_controls_right">
+
+                            <a id="lnkMfMpobile" onclientclick="return showhidetextboxsalerts('txtMotherfatheMobilenumber', 'txtmotherfatheralternative', 'txtMotherFatherLandLinenum', 'mobile', 'dlvmotherfatheralternative', 
+                                            'divmfLand','txtMotherFatherLandLineareacode','ddlMotherFatherLandLineCode','divmfMobile','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_')" data-toggle="tooltip" data-original-title="Add Mobile Number"
+                                tabindex="49">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </a>
+
+                            <a id="lnkMFLand" onclientclick="return showhidetextboxsalerts('txtMotherfatheMobilenumber', 'txtmotherfatheralternative',
+                                             'txtMotherFatherLandLinenum', 'landnumber', 'dlvmotherfatheralternative', 'divmfLand', 'txtMotherFatherLandLineareacode', 'ddlmotherfatheralternative','divmfMobile','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');"
+                                data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="50">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </a>
+                        </div>
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="divmfMobile">
+                            <label for="lblMobileMGrandfather" class="pop_label_left">Mobile Number</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlMotherfatheMobileCountryCode" class="chosen" tabindex="51" onchange="return validatemobilecode('ddlMotherfatheMobileCountryCode',
+                                                    'txtMotherfatheMobilenumber','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtMotherfatheMobilenumber" onkeydown="return validatemobilecode('ddlMotherfatheMobileCountryCode',
+                                                    'txtMotherfatheMobilenumber','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" maxlength="10" tabindex="52" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="dlvmotherfatheralternative">
+                            <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                <asp:dropdownlist id="ddlmotherfatheralternative" class="chosen" tabindex="53" onchange="return validatemobilecode('ddlmotherfatheralternative',
+                                                    'txtmotherfatheralternative','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtmotherfatheralternative" maxlength="10" tabindex="54" onkeydown="return validatemobilecode('ddlmotherfatheralternative',
+                                                    'txtmotherfatheralternative','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    <li class="clearfix">
+
+
+                        <div id="divmfLand">
+                            <label for="lblMotherFatherLandLine" class="pop_label_left">Land line #  </label>
+                            <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                <asp:dropdownlist id="ddlMotherFatherLandLineCode" tabindex="55" class="chosen" onchange="return validatemobilecode('ddlMotherFatherLandLineCode',
+                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
+                                </asp:dropdownlist>
+                                <input id="txtMotherFatherLandLineareacode" maxlength="4" tabindex="56" onkeydown="return validatemobilecode('ddlMotherFatherLandLineCode',
+                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+
+                                <input id="txtMotherFatherLandLinenum" text="" class="col-lg-2 form-control" maxlength="8" tabindex="57" onkeydown="return validatemobilecode('ddlMotherFatherLandLineCode',
+                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
+                            </div>
+                        </div>
+                    </li>
+                </div>
+
+
+                <li class="clearfix">
+                    <label for="MState" class="pop_label_left">State</label>
+                    <div class="pop_controls_right select-box-my">
+                        <asp:dropdownlist id="ddlMState" class="chosen" onselectedindexchanged="ddlCountry_SelectedIndexChanged" tabindex="58">
+                        </asp:dropdownlist>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="MDistrict" class="pop_label_left">District</label>
+                    <div class="pop_controls_right select-box-my">
+                        <asp:dropdownlist id="ddlMDistrict" class="chosen" tabindex="59"></asp:dropdownlist>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="MNativePlace" class="pop_label_left">Native Place</label>
+                    <div class="pop_controls_right">
+
+
+                        <input id="txtMNativePlace" class="form-control" maxlength="150" tabindex="60" />
+
+
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? </label>
+                    <div class="pop_controls_right pop_radios_list">
+
+
+                        <asp:radiobuttonlist id="rbtlParentIntercaste" repeatdirection="Horizontal" class="radio" onselectedindexchanged="rbtlParentIntercaste_SelectedIndexChanged1" tabindex="61">
+                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                            <asp:ListItem Value="0">No</asp:ListItem>
+                        </asp:radiobuttonlist>
+
+
+                    </div>
+                </li>
+
+
+
+                <div id="ParentCasteDiv">
+
+                    <li id="divddlFatherCaste" class="clearfix">
+
+                        <label for="lblFCaste" class="pop_label_left">Father Caste</label>
+                        <div class="pop_controls_right select-box-my">
+
+
+
+                            <asp:dropdownlist id="ddlFatherCaste" onchange="return parentCasteSame();" class="chosen" tabindex="62"></asp:dropdownlist>
+
+
+
+                        </div>
+                    </li>
+                    <li id="divddlMotherCaste" class="clearfix">
+                        <label for="lblMCaste" class="pop_label_left">Mother Caste</label>
+                        <div class="pop_controls_right select-box-my">
+                            <asp:dropdownlist id="ddlMotherCaste" onchange="return parentCasteSame();" class="chosen" tabindex="63"></asp:dropdownlist>
+                        </div>
+                    </li>
+                </div>
+
+
+
+            </ul>
+
+            </div>
+            <div class="modal-footer">
+                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
+                <input value="Submit" id="btnEduSubmit" class="button_custom" type="button">
+            </div>
+    </script>
+    </div>

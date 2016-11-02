@@ -1,4 +1,4 @@
-<div ng-controller="sibblingCtrl" class="edit_pages_content_main clearfix">
+<div class="edit_pages_content_main clearfix">
 
 
 
@@ -12,52 +12,50 @@
 
             </div>
         </div>
-        <label id="noOfSibIdentitybro" visible="false"></label>
-        <label id="noOfSibidentitySis" visible="false"></label>
 
         <div id="upnoofSibblings" class="edit_page_details_item">
 
             <div id="lstnoofbros" onitemcommand="lstnoofbros_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
 
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix" ng-repeat="item in sibblingCountArr">
                     <div>
                         <div>
                             <div class="form-group">
                                 <div id="uplNoOfBrothers" class="edit_page_details_item_desc clearfix">
 
                                     <h6>
-                                        <label id="NoOfBrothers" text="No of Brothers" font-bold="true"></label>
+                                        <label id="NoOfBrothers" font-bold="true">No of Brothers</label>
                                     </h6>
                                     <h5>
-                                        <label id="lblNoOfBrothers">
+                                        <span id="lblNoOfBrothers">
                                             {{ item.NoOfBrothers }}
-                                    </label>
+                                    </span>
                                     </h5>
 
                                 </div>
                                 <div id="brotherHide">
 
-                                    <div id="uplnoofelderbrother" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfElderBrothers===null" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
                                             <label id="noofelderbrother" font-bold="true">No of elder brothers</label></h6>
                                         <h5>
-                                            <label id="lblnoofelderbrother">
+                                            <span id="lblnoofelderbrother">
                                                 {{ item.NoOfElderBrothers }}
-                                        </label>
+                                        </span>
                                         </h5>
 
 
                                     </div>
-                                    <div id="uplNoofyoungerbrother" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfYoungerBrothers===null" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
-                                            <label id="Noofyoungerbrother" text="No of younger brother" font-bold="true"></label>
+                                            <label id="Noofyoungerbrother" font-bold="true">No of younger brother</label>
                                         </h6>
                                         <h5>
-                                            <label id="lblnofyoungbro">
+                                            <span id="lblnofyoungbro">
                                                 {{ item.NoOfYoungerBrothers }}
-                                        </label>
+                                        </span>
                                         </h5>
 
 
@@ -73,44 +71,44 @@
                             </div>
                             <div class="form-group">
 
-                                <div id="uplNoofsisters" class="edit_page_details_item_desc clearfix">
+                                <div ng-hide="item.NoOfSisters===null" class="edit_page_details_item_desc clearfix">
 
                                     <h6>
-                                        <label id="Noofsisters" font-bold="true">No of sisters</label></h6>
+                                        <label font-bold="true">No of sisters</label></h6>
                                     <h5>
-                                        <label id="lblNoofsisters">
+                                        <span id="lblNoofsisters">
                                             {{ item.NoOfSisters }}
-                                    </label>
+                                    </span>
                                     </h5>
 
 
                                 </div>
                                 <div id="sisterHideDiv">
-                                    <div id="uplNoofeldersisters" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfElderSisters===null" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
-                                            <label id="Noofeldersisters" font-bold="true">No of elder sisters</label></h6>
+                                            <label font-bold="true">No of elder sisters</label></h6>
                                         <h5>
-                                            <label id="lblNoofeldersisters">
+                                            <span id="lblNoofeldersisters">
                                                 {{ item.NoOfElderSisters }}
-                                        </label>
+                                        </span>
                                         </h5>
 
 
                                     </div>
-                                    <div id="uplNoofyoungersisters" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfYoungerSisters===null" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
-                                            <label id="Noofyoungersisters" font-bold="true">No of younger sisters</label></h6>
+                                            <label font-bold="true">No of younger sisters</label></h6>
                                         <h5>
-                                            <label id="lblNoofyoungersisters">
+                                            <span>
                                                 {{ item.NoOfYoungerSisters }}
-                                        </label>
+                                        </span>
                                         </h5>
 
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                         </div>
@@ -122,7 +120,7 @@
         </div>
 
         <div class="edit_page_item_head clearfix">
-            <h4>Brother 
+            <h4>Brother
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="uplnkbrotherdetails">
@@ -138,7 +136,7 @@
 
         <div id="uplstSibbling" class="edit_page_details_item">
 
-            <div id="lstSibbling" onitemcommand="lstSibbling_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
+            <div id="lstSibbling" ng-repeat="item in BrotherArr">
 
                 <div>
                     <div id="Div1" class="edit_page_details_item_desc clearfix">
@@ -150,17 +148,16 @@
                                         <label id="ElderbrotherName" font-bold="true" forecolor="Red">
                                         Brother Name</label></h6>
                                     <h5>
-                                        <label id="lblElderbrotherName" forecolor="Red">
-                                            {{ item.SibilingName+" ("+item.brotherYoungerORelder+" }}
-                                    </label>
+                                        <span id="lblElderbrotherName" forecolor="Red">
+                                            {{ item.SibilingName+" ("+item.brotherYoungerORelder+")" }}
+                                    </span>
                                     </h5>
 
                                 </div>
                                 <div id="upllnkbrodetailseb" class="edit_page_item_ui clearfix">
 
                                     <a id="lnkbrodetails" onclick="lnkbrodetails_Click" class="edit_page_edit_button" onclientclick="return AllowWebUser('Brother Details');">Edit</a>
-                                    <a id="lnkBrotherDel" class="edit_page_del_button" commandname="modifysiblingsbrother" title="" data-placement="bottom" data-toggle="tooltip"
-                                        data-original-title="Delete Brother Details">Delete</a>
+                                    <a id="lnkBrotherDel" class="edit_page_del_button" commandname="modifysiblingsbrother" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Brother Details">Delete</a>
 
                                 </div>
 
@@ -172,9 +169,9 @@
                                     <h6>
                                         <label id="lblEducationbrother" font-bold="true">Education</label></h6>
                                     <h5>
-                                        <label id="lblBrotherEducationDetails">
+                                        <span id="lblBrotherEducationDetails">
                                             {{ item.SibilingEducationDetails}}
-                                    </label>
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -185,9 +182,9 @@
                                     <h6>
                                         <label id="Label2" font-bold="true">Profession</label></h6>
                                     <h5>
-                                        <label id="lblBrotherprofessionDetails">
+                                        <span id="lblBrotherprofessionDetails">
                                             {{ item.SibilingProfessionDetails}}
-                                    </label>
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -198,9 +195,9 @@
                                     <h6>
                                         <label id="profession" font-bold="true">Company&JobLocation</label></h6>
                                     <h5>
-                                        <label id="lblprofession">
-                                            {{ item.SibilingCompany+" "+(item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null?","+item.SibilingJobPLace:" }}
-                                    </label>
+                                        <span id="lblprofession">
+                                            {{ item.SibilingCompany+" "+(item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null?","+item.SibilingJobPLace:"") }}
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -217,10 +214,10 @@
                                             <h6>
                                                 <label id="ConactNo" font-bold="true">Conact Nos</label></h6>
                                             <h5>
-                                                <label id="lblConactNo">
+                                                <span id="lblConactNo">
                                                     {{ item.SibilingMobileNumberWithCode+
-                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"}}
-                                            </label>
+                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
+                                            </span>
                                             </h5>
 
                                         </div>
@@ -235,9 +232,9 @@
                                             <h6>
                                                 <label id="brotheremail" font-bold="true">Email</label></h6>
                                             <h5>
-                                                <label id="lblbrotheremail">
+                                                <span id="lblbrotheremail">
                                                     {{ item.SibilingEmail }}
-                                            </label>
+                                            </span>
                                             </h5>
 
                                         </div>
@@ -258,9 +255,9 @@
                                                 <label id="SpouseName" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
                                                 Spouse Name</label></h6>
                                             <h5>
-                                                <label id="lblWifeName">
+                                                <span id="lblWifeName">
                                                     {{ item.SibilingSpouseName}}
-                                            </label>
+                                            </span>
                                             </h5>
 
                                         </div>
@@ -273,9 +270,9 @@
                                             <h6>
                                                 <label id="lblbrotherwifeeducation" font-bold="true">Education</label></h6>
                                             <h5>
-                                                <label id="lblbrotherwifeeducationdetails">
+                                                <span id="lblbrotherwifeeducationdetails">
                                                     {{ item.SibilingSpouseEducationDetails}}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -287,9 +284,9 @@
                                             <h6>
                                                 <label id="lblbrotherwifeprofession" font-bold="true">Profession</label></h6>
                                             <h5>
-                                                <label id="lblbrotherwifeprofessiondetails">
+                                                <span id="lblbrotherwifeprofessiondetails">
                                                     {{ item.SibilingSpouseProfessionDetails}}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -301,10 +298,10 @@
                                             <h6>
                                                 <label id="wifeprofession" font-bold="true">Company&JobLocation</label></h6>
                                             <h5>
-                                                <label id="lblwifeprofession">
-                                                    {{ ((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?item.spoucecompanyName:"+((item.spoucejobloc.ToString()!=""
-                                                    && item.spoucejobloc!=null)?","+item.spoucejobloc:" }}
-                                            </label>
+                                                <span id="lblwifeprofession">
+                                                    {{ ((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?item.spoucecompanyName:"")+((item.spoucejobloc.ToString()!=""
+                                                    && item.spoucejobloc!=null)?","+item.spoucejobloc:"") }}
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -319,10 +316,10 @@
                                                     <h6>
                                                         <label id="lblbrotherwife" font-bold="true">Contact Nos</label></h6>
                                                     <h5>
-                                                        <label id="lblbrotherwifemobnumbers">
-                                                            {{ item.SibilingSpouceMobileNumberWithCode
-                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","+item.SibilingSpouceLandNumberWithCode:" }}
-                                                    </label>
+                                                        <span id="lblbrotherwifemobnumbers">
+                                                           {{ item.SibilingSpouceMobileNumberWithCode
+                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","+item.SibilingSpouceLandNumberWithCode:"") }}
+                                                    </span>
                                                     </h5>
 
                                                 </div>
@@ -331,17 +328,16 @@
                                             </div>
                                             <div id="Brotherwife" class="edit_page_details_item_desc clearfix">
 
-                                                <div>
 
-                                                    <h6>
-                                                        <label id="brotherwifeemail" font-bold="true">Email</label></h6>
-                                                    <h5>
-                                                        <label id="lblbrotherwifeemail">
+
+                                                <h6>
+                                                    <label id="brotherwifeemail" font-bold="true">Email</label></h6>
+                                                <h5>
+                                                    <span id="lblbrotherwifeemail">
                                                             {{ item.SpouseEmail }}
-                                                    </label>
-                                                    </h5>
+                                                    </span>
+                                                </h5>
 
-                                                </div>
 
 
                                             </div>
@@ -350,49 +346,42 @@
                                     </div>
                                     <div id="uplWifeFatherfirstnameeb" class="edit_page_details_item_desc clearfix">
 
-
-                                        <div id="divlWifeFatherfirstname">
-
-                                            <h6>
-                                                <label id="lWifeFatherfirstname" font-bold="true">Spouse Father's Name</label></h6>
-                                            <h5>
-                                                <label id="lblWifeFatherfirstname">
+                                        <h6>
+                                            <label id="lWifeFatherfirstname" font-bold="true">Spouse Father's Name</label></h6>
+                                        <h5>
+                                            <span id="lblWifeFatherfirstname">
                                                     {{ item.SibilingSpouseFatherName }}
-                                            </label>
-                                            </h5>
-                                        </div>
+                                            </span>
+                                        </h5>
+
 
                                     </div>
                                     <div id="brotherspusefathercaste" class="edit_page_details_item_desc clearfix">
 
-
-                                        <div id="divbrotherspousefathercaste">
-
-                                            <h6>
-                                                <label id="botherwifefathercaste" font-bold="true">Spouse Father Caste</label></h6>
-                                            <h5>
-                                                <label id="lblbotherwifefathercaste">
+                                        <h6>
+                                            <label id="botherwifefathercaste" font-bold="true">Spouse Father Caste</label></h6>
+                                        <h5>
+                                            <span id="lblbotherwifefathercaste">
                                                     {{ item.SibilingSpouseFatherCaste }}
-                                            </label>
-                                            </h5>
-                                        </div>
+                                            </span>
+                                        </h5>
+
 
                                     </div>
                                     <div id="upBroSpouseFatherNativePlace" class="edit_page_details_item_desc clearfix">
 
-                                        <div>
 
-                                            <h6>
-                                                <label id="BroSpouseFatherNativePlace" font-bold="true">Native Place</label></h6>
-                                            <h5>
-                                                <label id="lblBroSpouseFatherNativePlace">
-                                                    {{((item.BroSpouseFatherCity!=null && item.BroSpouseFatherCity.ToString()!="?item.BroSpouseFatherCity:" +
-                                        ((item.BroSpouseFatherDistrictname!=null && item.BroSpouseFatherDistrictname.ToString()!="?" ,"+item.BroSpouseFatherDistrictname:"" )+
-                                        ((item.BroSpouseFatherStatename!=null && item.BroSpouseFatherStatename.ToString()!="?" ,"+item.BroSpouseFatherStatename:"" )+
-                                        ((item.BroSpouseFatherCountryname!=null && item.BroSpouseFatherCountryname.ToString()!="?" ,"+item.BroSpouseFatherCountryname:"" )}}
-                                            </label>
-                                            </h5>
-                                        </div>
+
+                                        <h6>
+                                            <label id="BroSpouseFatherNativePlace" font-bold="true">Native Place</label></h6>
+                                        <h5>
+                                            <span id="lblBroSpouseFatherNativePlace">
+                                                   {{((item.BroSpouseFatherCity!=null && item.BroSpouseFatherCity.ToString()!="")?item.BroSpouseFatherCity:"") +
+                                        ((item.BroSpouseFatherDistrictname!=null && item.BroSpouseFatherDistrictname.ToString()!="")?" ,"+item.BroSpouseFatherDistrictname:"" )+
+                                        ((item.BroSpouseFatherStatename!=null && item.BroSpouseFatherStatename.ToString()!="")?" ,"+item.BroSpouseFatherStatename:"" )+
+                                        ((item.BroSpouseFatherCountryname!=null && item.BroSpouseFatherCountryname.ToString()!="")?" ,"+item.BroSpouseFatherCountryname:"" )}}
+                                            </span>
+                                        </h5>
 
                                     </div>
                                 </div>
@@ -412,7 +401,7 @@
 
         <div class="edit_page_item_head clearfix">
             <h4>Sister Details
-                
+
             </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="uplnksisterdet">
@@ -426,7 +415,7 @@
 
         <div id="uplistsister" class="edit_page_details_item">
 
-            <div id="listsister" onitemcommand="listsister_ItemCommand" onitemdatabound="lstSibbling_ItemDataBound">
+            <div id="listsister" ng-repeat="item in sisterCountArr">
 
                 <div>
                     <div id="Div2" class="edit_page_details_item_desc clearfix">
@@ -437,13 +426,13 @@
                                 <div id="uplsisnamees" class="edit_page_details_item_desc clearfix">
 
                                     <h6>
-                                        <label id="sisname" text="Sister Name" font-bold="true" forecolor="Red">
+                                        <label id="sisname" font-bold="true" style="color:red;">Sister Name
                                     </label>
                                     </h6>
                                     <h5>
-                                        <label id="lblsisname" forecolor="Red">
-                                            {{ item.SibilingName+" ("+item.SisterElderORyounger+"}}
-                                    </label>
+                                        <span id="lblsisname" style="color:red;">
+                                            {{ item.SibilingName+" ("+item.SisterElderORyounger+")"}}
+                                    </span>
                                     </h5>
 
 
@@ -453,8 +442,7 @@
 
                                     <a id="lnksisteredit" class="edit_page_edit_button" data-toggle="tooltip" data-original-title="Edit Sister Details" onclientclick="return AllowWebUser('Sister Details');">Edit
                                 </a>
-                                    <a id="lnkSisterDelete" class="edit_page_del_button" commandname="modifysiblingssister" title="" data-placement="bottom"
-                                        data-toggle="tooltip" data-original-title="Delete Sister Details">Delete</a>
+                                    <a id="lnkSisterDelete" class="edit_page_del_button" commandname="modifysiblingssister" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Sister Details">Delete</a>
 
                                 </div>
                             </div>
@@ -466,9 +454,9 @@
                                     <h6>
                                         <label id="lblsistereducation" font-bold="true">Education</label></h6>
                                     <h5>
-                                        <label id="lblsistereducationdetails">
+                                        <span id="lblsistereducationdetails">
                                             {{ item.SibilingEducationDetails}}
-                                    </label>
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -480,9 +468,9 @@
                                     <h6>
                                         <label id="lblsisterprofession" font-bold="true">Profession</label></h6>
                                     <h5>
-                                        <label id="lblsisterprofessiondetails">
+                                        <span id="lblsisterprofessiondetails">
                                             {{ item.SibilingProfessionDetails}}
-                                    </label>
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -494,9 +482,9 @@
                                     <h6>
                                         <label id="sisprof" font-bold="true">Company & Job Location</label></h6>
                                     <h5>
-                                        <label id="lblsisprof">
-                                            {{ ((item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:")}}
-                                    </label>
+                                        <span id="lblsisprof">
+                                            {{ (item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:"")}}
+                                    </span>
                                     </h5>
                                 </div>
 
@@ -513,10 +501,10 @@
                                             <h6>
                                                 <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
                                             <h5>
-                                                <label id="lblsisnumbers">
+                                                <span id="lblsisnumbers">
                                                     {{ item.SibilingMobileNumberWithCode+
-                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"}}
-                                            </label>
+                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -528,9 +516,9 @@
                                             <h6>
                                                 <label id="sisteremail" font-bold="true">Email</label></h6>
                                             <h5>
-                                                <label id="lblsisteremail">
+                                                <span id="lblsisteremail">
                                                     {{ item.SibilingEmail }}
-                                            </label>
+                                            </span>
                                             </h5>
 
                                         </div>
@@ -551,9 +539,9 @@
                                                 <label id="husname" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
                                                 Husband Name</label></h6>
                                             <h5>
-                                                <label id="lblhusname">
+                                                <span id="lblhusname">
                                                     {{ item.SibilingSpouseName}}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -566,9 +554,9 @@
                                             <h6>
                                                 <label id="lblsisterspouseeducation" font-bold="true">Education</label></h6>
                                             <h5>
-                                                <label id="lbllblsisterspouseeducationdetails">
+                                                <span id="lbllblsisterspouseeducationdetails">
                                                     {{ item.SibilingSpouseEducationDetails}}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -580,9 +568,9 @@
                                             <h6>
                                                 <label id="lblsisterspouseprofession" font-bold="true">Profession</label></h6>
                                             <h5>
-                                                <label id="lblsisterspouseprofessiondetails">
+                                                <span id="lblsisterspouseprofessiondetails">
                                                     {{ item.SibilingSpouseProfessionDetails}}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -594,9 +582,9 @@
                                             <h6>
                                                 <label id="husprof" font-bold="true">Company&JobLocation</label></h6>
                                             <h5>
-                                                <label id="lblhusprof">
-                                                    {{((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?" "+item.spoucecompanyName:"+((item.spoucejobloc.ToString()!="" && item.spoucejobloc!=null)?","+item.spoucejobloc:" }}
-                                            </label>
+                                                <span id="lblhusprof">
+                                                    {{((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?" "+item.spoucecompanyName:"")+((item.spoucejobloc.ToString()!="" && item.spoucejobloc!=null)?","+item.spoucejobloc:"") }}
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -611,10 +599,10 @@
                                                     <h6>
                                                         <label id="lblsisterhusband" font-bold="true">Conact Nos</label></h6>
                                                     <h5>
-                                                        <label id="lblhusbandnumbers">
-                                                            {{ item.SibilingSpouceMobileNumberWithCode+((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","
-                                                            +item.SibilingSpouceLandNumberWithCode:"}}
-                                                    </label>
+                                                        <span id="lblhusbandnumbers">
+                                                          {{ item.SibilingSpouceMobileNumberWithCode+((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","
+                                                            +item.SibilingSpouceLandNumberWithCode:"")}}
+                                                    </span>
                                                     </h5>
 
                                                 </div>
@@ -628,8 +616,8 @@
                                                     <h6>
                                                         <label id="sisterspouseemail" font-bold="true">Email</label></h6>
                                                     <h5>
-                                                        <label id="lblsisterspouseemail" >{{ item.SpouseEmail }}
-                                                    </label>
+                                                        <span id="lblsisterspouseemail">{{ item.SpouseEmail }}
+                                                    </span>
                                                     </h5>
 
                                                 </div>
@@ -646,9 +634,9 @@
                                             <h6>
                                                 <label id="husfathernames" font-bold="true">Husband Father Name</label></h6>
                                             <h5>
-                                                <label id="lblhusfathername">
+                                                <span id="lblhusfathername">
                                                     {{ item.SibilingSpouseFatherName }}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -661,9 +649,9 @@
                                             <h6>
                                                 <label id="sisterhusbandfathercaste" font-bold="true">Husband Father Caste</label></h6>
                                             <h5>
-                                                <label id="lblsisterSpousefathercaste">
+                                                <span id="lblsisterSpousefathercaste">
                                                     {{ item.SibilingSpouseFatherCaste }}
-                                            </label>
+                                            </span>
                                             </h5>
                                         </div>
 
@@ -672,15 +660,15 @@
 
                                         <div>
                                             <h6>
-                                                <label id="SisSpouseFatherNativePlace" text="Native Place" font-bold="true"></label>
+                                                <label id="SisSpouseFatherNativePlace" font-bold="true">Native Place</label>
                                             </h6>
                                             <h5>
-                                                <label id="lblSisSpouseFatherNativePlace">
-                                                    {{((item.SisSpousefatherCity!=null && item.SisSpousefatherCity.ToString()!="?item.SisSpousefatherCity:" +
-                                        ((item.SisSpouseFatherDistrictname!=null && item.SisSpouseFatherDistrictname.ToString()!="?" ,"+item.SisSpouseFatherDistrictname:"" )+
-                                        ((item.SisSpouseFatherStatename!=null && item.SisSpouseFatherStatename.ToString()!="?" ,"+item.SisSpouseFatherStatename:"" )+
-                                        ((item.SisSpouseFatherCountryname!=null && item.SisSpouseFatherCountryname.ToString()!="?" ,"+item.SisSpouseFatherCountryname:"" )}}
-                                            </label>
+                                                <span id="lblSisSpouseFatherNativePlace">
+                                                   {{((item.SisSpousefatherCity!=null && item.SisSpousefatherCity.ToString()!="")?item.SisSpousefatherCity:"") +
+                                        ((item.SisSpouseFatherDistrictname!=null && item.SisSpouseFatherDistrictname.ToString()!="")?" ,"+item.SisSpouseFatherDistrictname:"" )+
+                                        ((item.SisSpouseFatherStatename!=null && item.SisSpouseFatherStatename.ToString()!="")?" ,"+item.SisSpouseFatherStatename:"" )+
+                                        ((item.SisSpouseFatherCountryname!=null && item.SisSpouseFatherCountryname.ToString()!="")?" ,"+item.SisSpouseFatherCountryname:"" )}}
+                                            </span>
                                             </h5>
                                         </div>
 
