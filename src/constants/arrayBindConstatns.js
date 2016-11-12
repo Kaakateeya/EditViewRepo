@@ -7,7 +7,7 @@ editviewapp.constant('arrayConstants', {
         { "label": "Separated", "title": "Separated", "value": 46 }
     ],
     "height": [
-        { "label": "--Select--", "title": "--select--", "value": "0" },
+        { "label": "--Select--", "title": "--select--", "value": "" },
         { "label": "4'0 in - 122 cms", "title": "4'0 in - 122 cms", "value": 1 }, { "label": "4'1 in - 124 cms", "title": "4'1 in - 124 cms", "value": 2 },
         { "label": "4'2 in - 127 cms", "title": "4'2 in - 127 cms", "value": 3 },
         { "label": "4'3 in - 130 cms", "title": "4'3 in - 130 cms", "value": 4 }, { "label": "4'4 in - 132 cms", "title": "4'4 in - 132 cms", "value": 5 },
@@ -146,7 +146,91 @@ editviewapp.constant('arrayConstants', {
         { "label": "--Select--", "title": "--Select--", "value": 0 },
         { "label": "AP", "title": "AP", "value": 408 },
         { "label": "TN", "title": "TN", "value": 409 },
-        { "label": "KT", "title": "KT", "value": 410 },
+        { "label": "KT", "title": "KT", "value": 410 }
+    ],
+    'bodyType': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "Athletic", "title": "Athletic", "value": 21 },
+        { "label": "Average", "title": "Average", "value": 22 },
+        { "label": "Slim", "title": "Slim", "value": 23 },
+        { "label": "Heavy", "title": "Heavy", "value": 24 },
+        { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 37 }
+    ],
+    'bloodGroup': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "O+", "title": "O+", "value": 61 },
+        { "label": "A+", "title": "A+", "value": 63 },
+        { "label": "B+", "title": "B+", "value": 64 },
+        { "label": "AB+", "title": "AB+", "value": 65 },
+        { "label": "O-", "title": "O-", "value": 66 },
+        { "label": "A-", "title": "A-", "value": 67 },
+        { "label": "B-", "title": "B-", "value": 68 }
+    ],
+    'healthCondition': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "No Health Problems", "title": "No Health Problems", "value": 220 },
+        { "label": "HIV", "title": "HIV", "value": 222 },
+        { "label": "Diabetes", "title": "Diabetes", "value": 223 },
+        { "label": "LowBP", "title": "LowBP", "value": 224 },
+        { "label": "HighBP", "title": "HighBP", "value": 225 },
+        { "label": "Heart Ailments", "title": "Heart Ailments", "value": 226 }
+    ],
+    'lagnam': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "Dhansu", "title": "Dhansu", "value": 1 },
+        { "label": "Kanya", "title": "Kanya", "value": 2 },
+        { "label": "Karkatakam", "title": "Karkatakam", "value": 3 },
+        { "label": "Khumbam", "title": "Khumbam", "value": 4 },
+        { "label": "Makhram", "title": "Makhram", "value": 5 },
+        { "label": "Meenam", "title": "Meenam", "value": 6 },
+        { "label": "Mesham", "title": "Mesham", "value": 7 },
+        { "label": "Midhunam", "title": "Midhunam", "value": 8 },
+        { "label": "Simham", "title": "Simham", "value": 9 },
+        { "label": "Thula", "title": "Thula", "value": 10 },
+        { "label": "Vrichikam", "title": "Vrichikam", "value": 11 },
+        { "label": "Vrushabam", "title": "Vrushabam", "value": 12 }
+    ],
+    'ZodaicSign': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "mesha", "title": "mesha", "value": 527 },
+        { "label": "vrushaba", "title": "vrushaba", "value": 528 },
+        { "label": "midhuna", "title": "midhuna", "value": 529 },
+        { "label": "karkataka", "title": "karkataka", "value": 530 },
+        { "label": "Simha", "title": "Simha", "value": 531 },
+        { "label": "Kanya", "title": "Kanya", "value": 532 },
+        { "label": "Thula", "title": "Thula", "value": 533 },
+        { "label": "Vruchika", "title": "Vruchika", "value": 534 },
+        { "label": "Dhanu", "title": "Dhanu", "value": 535 },
+        { "label": "Makara", "title": "Makara", "value": 536 },
+        { "label": "Kumbha", "title": "Kumbha", "value": 537 },
+        { "label": "Meena", "title": "Meena", "value": 538 },
+    ],
+    'paadam': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "1", "title": "1", "value": 304 },
+        { "label": "2", "title": "2", "value": 305 },
+        { "label": "3", "title": "3", "value": 306 },
+        { "label": "4", "title": "4", "value": 539 },
+
+    ],
+    'familyStatus': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "Lower Middle Class", "title": "Lower Middle Class", "value": 290 },
+        { "label": "Middle Class", "title": "Middle Class", "value": 291 },
+        { "label": "Upper Middle Class", "title": "Upper Middle Class", "value": 292 },
+        { "label": "Rich", "title": "Rich", "value": 293 },
+        { "label": "Affluent", "title": "Affluent", "value": 294 },
+        { "label": "Others", "title": "Others", "value": 516 },
+        { "label": "High Class", "title": "High Class", "value": 517 }
+    ],
+    'RelationshipType': [
+        { "label": "--Select--", "title": "--Select--", "value": 0 },
+        { "label": "Friend", "title": "Friend", "value": 318 },
+        { "label": "Relative", "title": "Relative", "value": 319 },
+        { "label": "Not Given", "title": "Not Given", "value": 549 },
+
     ]
+
+
 
 });

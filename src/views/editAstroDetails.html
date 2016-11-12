@@ -4,6 +4,7 @@
             <h4>Astro Details </h4>
             <div class="edit_page_item_ui clearfix">
                 <div id="UpdatePanelfullastro" cssclass="edit_page_add_button">
+                    <a ng-click="populateAstro();" class="edit_page_add_button" href="javascript:void(0);">Add</a>
                 </div>
             </div>
         </div>
@@ -28,8 +29,8 @@
                         <h6>
                             <span id="Telugustar" style="font-weight:bold;">Star Language</span></h6>
                         <h5>
-                            <span id="lblTelugustar">{{ item.TypeofStar+((item.StarName.ToString()!="" &&  item.StarName!=null)?" - "+
-                                            item.StarName:"")+((item.Paadam.ToString()!="" &&  item.Paadam!=null)?" ("+item.Paadami+")":"") }}</span></h5>
+                            <span id="lblTelugustar">{{ item.TypeofStar+((item.StarName!="" &&  item.StarName!=null)?" - "+
+                                            item.StarName:"")+((item.Paadam!="" &&  item.Paadam!=null)?" ("+item.Paadam+")":"") }}</span></h5>
 
                     </div>
                     <div ng-hide="item.Rassi===null" class="edit_page_details_item_desc clearfix">
@@ -37,36 +38,36 @@
                         <h6>
                             <span id="raasimoonsign" style="font-weight:bold;">Raasi/moon sign</span></h6>
                         <h5>
-                            <span id="lblraasimoonsign">{{ item.Rassii}}</span></h5>
+                            <span id="lblraasimoonsign">{{ item.Rassi}}</span></h5>
                     </div>
                     <div ng-hide="item.Lagnam===null" class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <span id="Lagnam" style="font-weight:bold;">{{ item.Lagnami }}</span></h6>
+                            <span id="Lagnam" style="font-weight:bold;">Lagnam</span></h6>
                         <h5>
-                            <span id="lblLagnam">Dhansu</span></h5>
+                            <span id="lblLagnam">  {{ item.Lagnam }}</span></h5>
                     </div>
                     <div ng-hide="item.Gothram===null" class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <span id="GothramGotra" style="font-weight:bold;">{{ item.Gothrami}}</span></h6>
+                            <span id="GothramGotra" style="font-weight:bold;">Gothram/Gotra</span></h6>
                         <h5>
-                            <span id="lblGothramGotra">erfef</span></h5>
+                            <span id="lblGothramGotra">  {{ item.Gothram}}</span></h5>
                     </div>
                     <div ng-hide="item.MeternalGothramID===null" class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <span id="MaternalGothram" style="font-weight:bold;">{{ item.MeternalGothramIDi }}</span></h6>
+                            <span id="MaternalGothram" style="font-weight:bold;">Maternal Gothram</span></h6>
                         <h5>
-                            <span id="lblMaternalGothram">sfsdfdsfs</span></h5>
+                            <span id="lblMaternalGothram">{{ item.MeternalGothramID }}</span></h5>
                     </div>
                     <div ng-hide="item.manglikkujadosham===null" class="edit_page_details_item_desc clearfix">
                         <h6>
-                            <span id="manglikkujadosham" style="font-weight:bold;">{{ item.manglikkujadoshami }}</span></h6>
+                            <span id="manglikkujadosham" style="font-weight:bold;">manglik/kuja dosham</span></h6>
                         <h5>
-                            <span id="lblmanglikkujadosham">Doesn't matter</span></h5>
+                            <span id="lblmanglikkujadosham">{{ item.manglikkujadosham }}</span></h5>
                     </div>
                 </div>
                 <div class="edit_page_item_ui clearfix">
 
-                    <a ng-click="populateAstro();" id="LinkButton2" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                    <a ng-click="populateAstro(item);" id="LinkButton2" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
 
                 </div>
 
@@ -94,142 +95,147 @@
 
 
 <script type="text/ng-template" id="astroContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title text-center" id="modal-title">Mail Preview </h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <ul id="ulastro">
-            <li class="clearfix">
-                <label for="lbltimebirth" class="pop_label_left">Time of Birth<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3">
+    <form name="astroForm" novalidate role="form" ng-submit="astroSubmit(atroObj)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Astro details </h3>
+        </div>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
+            <ul id="ulastro">
+                <li class="clearfix form-group">
+                    <label for="lbltimebirth" class="pop_label_left">Time of Birth<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3">
 
-                    <select multiselectdropdown ng-model="ddlFromHours"></select>
-                    <select multiselectdropdown ng-model="ddlFromMinutes"></select>
-                    <select multiselectdropdown ng-model="ddlFromSeconds"></select>
-                </div>
-            </li>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromHours" ng-options="item.value as item.label for item in hrsbindArr"></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromMinutes" ng-options="item.value as item.label for item in minbindArr"></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromSeconds" ng-options="item.value as item.label for item in secbindArr"></select>
+                    </div>
+                </li>
 
-            <li class="clearfix">
-                <label for="lblCounrtyofbirth" class="pop_label_left">Country of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my">
 
-                    <select multiselectdropdown ng-model="ddlCountryOfBirthID"></select>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblstateofbirth" class="pop_label_left">State of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my">
 
-                    <select multiselectdropdown ng-model="ddlStateOfBirthID"></select>
-                </div>
-            </li>
 
-            <li class="clearfix">
-                <div id="divdistrict">
-                    <label for="lbldistrictofbirth" class="pop_label_left">District of birth<span style="color: red; margin-left: 3px;">*</span></label>
+                <!--<li class="clearfix form-group">
+                    <label for="lblCounrtyofbirth" class="pop_label_left">Country of birth<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlCountryOfBirthID" ng-change="changeBind('Country',atroObj.ddlCountryOfBirthID);" typeofdata="Country"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblstateofbirth" class="pop_label_left">State of birth<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right select-box-my">
 
-                        <select multiselectdropdown ng-model="ddlDistrictOfBirthID"></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlStateOfBirthID" ng-options="item.value as item.label for item in stateArr" ng-change="changeBind('State',atroObj.ddlStateOfBirthID);"></select>
+                    </div>
+                </li>
+
+                <li class="clearfix form-group">
+                    <div id="divdistrict">
+                        <label for="lbldistrictofbirth" class="pop_label_left">District of birth<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right select-box-my">
+
+                            <select multiselectdropdown ng-model="atroObj.ddlDistrictOfBirthID" ng-options="item.value as item.label for item in districtArr" ng-change="changeBind('District',atroObj.ddlDistrictOfBirthID);"></select>
+
+                        </div>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblcityofbirth" class="pop_label_left">City of birth<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlcity" ng-options="item.value as item.label for item in cityeArr"></select>
+                    </div>
+                </li>-->
+
+                <country-directive countryshow="true" cityshow="true" othercity="false" dcountry="atroObj.ddlCountryOfBirthID" dstate="atroObj.ddlStateOfBirthID" ddistrict="atroObj.ddlDistrictOfBirthID" dcity="atroObj.ddlcity"></country-directive>
+
+                <li class="clearfix form-group">
+                    <label for="lblstarlan" class="pop_label_left">Star language</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlstarlanguage" typeofdata="starLanguage" ng-change="changeBind('star',atroObj.ddlstarlanguage);"></select>
+                    </div>
+                </li>
+
+                <li class="clearfix form-group">
+                    <label for="lblstar" class="pop_label_left">Star</label>
+                    <div class="pop_controls_right select-box-my">
+
+                        <select multiselectdropdown ng-model="atroObj.ddlstar" ng-options="item.value as item.label for item in starArr"></select>
 
                     </div>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblcityofbirth" class="pop_label_left">City of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my">
-                    <select multiselectdropdown ng-model="ddlcity"></select>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblstarlan" class="pop_label_left">Star language</label>
-                <div class="pop_controls_right select-box-my">
-                    <select multiselectdropdown ng-model="ddlstarlanguage" typeofdata="starLanguage"></select>
-                </div>
-            </li>
-
-            <li class="clearfix">
-                <label for="lblstar" class="pop_label_left">Star</label>
-                <div class="pop_controls_right select-box-my">
-
-                    <select multiselectdropdown ng-model="ddlstar"></select>
-
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblpaadam" class="pop_label_left">Paadam</label>
-                <div class="pop_controls_right select-box-my">
-                    <select multiselectdropdown ng-model="ddlpaadam"></select>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblLagnam" class="pop_label_left">Lagnam</label>
-                <div class="pop_controls_right select-box-my">
-                    <select multiselectdropdown ng-model="ddlLagnam"></select>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblRaasiMoonsign" class="pop_label_left">Raasi/Moon sign</label>
-                <div class="pop_controls_right select-box-my" <select multiselectdropdown ng-model="ddlRaasiMoonsign">
-                    </select>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblGothramGotra" class="pop_label_left">Gothram/Gotra</label>
-                <div class="pop_controls_right select-box-my">
-                    <input id="txtGothramGotra" class="form-control" tabindex="13" maxlength="100" />
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblMaternalgothram" class="pop_label_left">Maternal gothram</label>
-                <div class="pop_controls_right select-box-my">
-                    <input id="txtMaternalgothram" class="form-control" tabindex="14" maxlength="100" />
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblManglikKuja dosham" class="pop_label_left">Manglik/Kuja dosham</label>
-                <div class="pop_controls_right pop_radios_list clearfix">
-                    <label>
-                    <input ng-model="rdlkujaDosham" value="0" type="radio"><span>&nbsp;Yes</span>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblpaadam" class="pop_label_left">Paadam</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlpaadam" typeofdata="paadam"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblLagnam" class="pop_label_left">Lagnam</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlLagnam" typeofdata="lagnam"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblRaasiMoonsign" class="pop_label_left">Raasi/Moon sign</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown ng-model="atroObj.ddlRaasiMoonsign" typeofdata="ZodaicSign"></select>
+                        </select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblGothramGotra" class="pop_label_left">Gothram/Gotra</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input ng-model="atroObj.txtGothramGotra" class="form-control" tabindex="13" maxlength="100" />
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblMaternalgothram" class="pop_label_left">Maternal gothram</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input ng-model="atroObj.txtMaternalgothram" class="form-control" tabindex="14" maxlength="100" />
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblManglikKuja dosham" class="pop_label_left">Manglik/Kuja dosham</label>
+                    <div class="pop_controls_right pop_radios_list clearfix form-group">
+                        <label>
+                    <input ng-model="atroObj.rdlkujaDosham" value="0" type="radio"><span>&nbsp;Yes</span>
                 </label>
-                    <label class="">
-                    <input ng-model="rdlkujaDosham" value="1" type="radio"><span>&nbsp;No</span>
+                        <label class="">
+                    <input ng-model="atroObj.rdlkujaDosham" value="1" type="radio"><span>&nbsp;No</span>
                 </label>
-                    <label class="">
-                    <input ng-model="rdlkujaDosham" value="2" type="radio"><span>&nbsp;Dont't Know</span>
+                        <label class="">
+                    <input ng-model="atroObj.rdlkujaDosham" value="2" type="radio"><span>&nbsp;Dont't Know</span>
                 </label>
 
-                </div>
-            </li>
+                    </div>
+                </li>
 
-            <li class="clearfix" style="display: none;">
-                <label for="lbllongitude" class="pop_label_left">Place of birth longitude</label>
-                <div class="pop_controls_right select-box-my">
-                    <input id="txtlogitude" class="form-control" />
+                <li class="clearfix form-group" style="display: none;">
+                    <label for="lbllongitude" class="pop_label_left">Place of birth longitude</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtlogitude" class="form-control" />
 
-                    <select multiselectdropdown ng-model="ddllongitude"></select>
-                </div>
-            </li>
-            <li class="clearfix" style="display: none;">
-                <label for="lbllatitude" class="pop_label_left">Place of birth latitude</label>
-                <div class="pop_controls_right select-box-my">
-                    <input id="txtlatitude" class="form-control col-lg-3" />
-                    <select multiselectdropdown ng-model="ddllatitude"></select>
+                        <select multiselectdropdown ng-model="atroObj.ddllongitude"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group" style="display: none;">
+                    <label for="lbllatitude" class="pop_label_left">Place of birth latitude</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input id="txtlatitude" class="form-control col-lg-3" />
+                        <select multiselectdropdown ng-model="atroObj.ddllatitude"></select>
 
-                </div>
-            </li>
-            <li class="clearfix" style="display: none;">
-                <label for="lbllatitude">Place of birth latitude</label>
-                <div class="pop_controls_right select-box-my">
-                    <input type="checkbox" id="Chkgenertehoro" value="Generate HoroScope" />
-                </div>
-            </li>
-
-
-
-        </ul>
-    </div>
-    <div class="modal-footer">
-        <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
-        <input value="Submit" id="btnEduSubmit" class="button_custom" type="button">
-    </div>
+                    </div>
+                </li>
+                <li class="clearfix form-group" style="display: none;">
+                    <label for="lbllatitude">Place of birth latitude</label>
+                    <div class="pop_controls_right select-box-my">
+                        <input type="checkbox" ng-model="atroObj.Chkgenertehoro" value="Generate HoroScope" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Submit" class="button_custom" type="submit">
+        </div>
+    </form>
 </script>

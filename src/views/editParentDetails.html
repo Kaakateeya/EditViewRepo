@@ -3,11 +3,11 @@
         <div class="edit_page_item_head clearfix">
             <h4>Parents Details
                 <span style="color: #08CFD2" id="spanEduModID" visible="false">
-                    <asp:label id="lblParentsDetailsmodby" forecolor="#08CFD2"></asp:label>
+                    <label id="lblParentsDetailsmodby" forecolor="#08CFD2"></label>
                     </span>
             </h4>
             <div class="edit_page_item_ui clearfix">
-                <a id="lnkaddparents" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Parents Details" class="edit_page_add_button">Add</a>
+                <a data-toggle="tooltip" data-original-title="Add Parents Details" class="edit_page_add_button" href="javascript:void(0);" ng-click="populateModel('parent');">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -24,7 +24,7 @@
 
                             </div>
                             <div class="edit_page_item_ui clearfix">
-                                <a id="LinkButton1dfd" href="javascript:void(0):" data-original-title="Edit Parents Details" class="edit_page_edit_button" ng-click="populateParentModel();">Edit</a>
+                                <a id="LinkButton1dfd" href="javascript:void(0):" data-original-title="Edit Parents Details" class="edit_page_edit_button" ng-click="populateModel('parent',item);">Edit</a>
 
                             </div>
                         </div>
@@ -37,7 +37,7 @@
 
                             <h5>
                                 <span id="lblfathereducationdetails">
-                                    {{((item.FatherEducationDetails.ToString()!=null && (item.FatherEducationDetails.ToString()!="")?item.FatherEducationDetails:"")) }}
+                                    {{item.FatherEducationDetails }}
                             </span>
                             </h5>
 
@@ -51,7 +51,7 @@
 
                             <h5>
                                 <span id="lblfatherprofessiondetails">
-                                   {{((item.FatherProfDetails.ToString()!=null && (item.FatherProfDetails.ToString()!="")?item.FatherProfDetails:"")) }}
+                                   {{item.FatherProfDetails }}
                             </span>
                             </h5>
                         </div>
@@ -64,8 +64,8 @@
                             </h6>
                             <h5>
                                 <span id="lblfatherprofandloc">
-                                   {{((item.FathercompanyName.ToString()!=null && (item.FathercompanyName.ToString()!="")?item.FathercompanyName:"NotSpecified"))
-                                        +" "+((item.FatherJoblocation.ToString()!=null && (item.FatherJoblocation.ToString()!="")?"," +" "+item.FatherJoblocation:item.FatherJoblocation))}}
+                                   {{((item.FathercompanyName!=null && (item.FathercompanyName!="")?item.FathercompanyName:"NotSpecified"))
+                                        +" "+((item.FatherJoblocation!=null && (item.FatherJoblocation!="")?"," +" "+item.FatherJoblocation:item.FatherJoblocation))}}
                             </span>
                             </h5>
                         </div>
@@ -78,8 +78,8 @@
                                 </h6>
                                 <h5>
                                     <span id="lblfathermobile">
-                                       {{((item.FatherMobilenumber.ToString()!=null && (item.FatherMobilenumber.ToString()!="")?item.FatherMobilenumber:""))
-                                        +" "+((item.FatherLandNumber.ToString()!=null && (item.FatherLandNumber.ToString()!="")?"&"+" "+item.FatherLandNumber:"")) }}
+                                       {{((item.FatherMobilenumber!=null && (item.FatherMobilenumber!="")?item.FatherMobilenumber:""))
+                                        +" "+((item.FatherLandNumber!=null && (item.FatherLandNumber!="")?"&"+" "+item.FatherLandNumber:"")) }}
                                 </span>
                                 </h5>
 
@@ -108,7 +108,7 @@
                                 <label id="lblfathersfather">Father's Father Name</label></h6>
                             <h5>
                                 <span id="lblfathersfath">
-                                  {{  ((item.FatherFathername.ToString()!=null && (item.FatherFathername.ToString()!="")?item.FatherFathername:""))
+                                  {{  ((item.FatherFathername!=null && (item.FatherFathername!="")?item.FatherFathername:""))
                                         }}
                             </span>
                             </h5>
@@ -122,8 +122,8 @@
                                     <label id="FFContactNos">FF contact nos</label></h6>
                                 <h5>
                                     <span id="lblFFContactNos">
-                                       {{((item.FFMobileNumberWithcode.ToString()!=null && (item.FFMobileNumberWithcode.ToString()!="")?item.FFMobileNumberWithcode:""))
-                                       + ((item.FFLandNumberwithCode!=null && item.FFLandNumberwithCode.ToString()!="")?" & "+item.FFLandNumberwithCode:"") }}
+                                       {{((item.FFMobileNumberWithcode!=null && (item.FFMobileNumberWithcode!="")?item.FFMobileNumberWithcode:""))
+                                       + ((item.FFLandNumberwithCode!=null && item.FFLandNumberwithCode!="")?" & "+item.FFLandNumberwithCode:"") }}
                                 </span>
                                 </h5>
                             </div>
@@ -138,10 +138,10 @@
                             <h5>
                                 <span id="lblFnativePlace">
                                    {{
-                                        ((item.FatherNativeplace!=null && item.FatherNativeplace.ToString()!="")?item.FatherNativeplace:"" )+
-                                        ((item.FatherDistric!=null && item.FatherDistric.ToString()!="")?" ,"+item.FatherDistric:"")+
-                                        ((item.FatherState!=null && item.FatherState.ToString()!="")?" ,"+item.FatherState:"" )+
-                                        ((item.FatherCountry!=null && item.FatherCountry.ToString()!="")?" ,"+item.FatherCountry:"" )}}
+                                        ((item.FatherNativeplace!=null && item.FatherNativeplace!="")?item.FatherNativeplace:"" )+
+                                        ((item.FatherDistric!=null && item.FatherDistric!="")?" ,"+item.FatherDistric:"")+
+                                        ((item.FatherState!=null && item.FatherState!="")?" ,"+item.FatherState:"" )+
+                                        ((item.FatherCountry!=null && item.FatherCountry!="")?" ,"+item.FatherCountry:"" )}}
                             </span>
                             </h5>
                         </div>
@@ -177,7 +177,7 @@
 
                             <h5>
                                 <span id="lblmotherducation">
-                                   {{ ((item.MotherEducationDetails!=null && item.MotherEducationDetails.ToString()!="")?item.MotherEducationDetails:"" )}}
+                                   {{ ((item.MotherEducationDetails!=null && item.MotherEducationDetails!="")?item.MotherEducationDetails:"" )}}
                             </span>
                             </h5>
                         </div>
@@ -191,7 +191,7 @@
 
                             <h5>
                                 <span id="lblmotherprofdetails">
-                                  {{((item.MotherProfedetails!=null && item.MotherProfedetails.ToString()!="")?
+                                  {{((item.MotherProfedetails!=null && item.MotherProfedetails!="")?
                                                 item.MotherProfedetails:"" )}}
                             </span>
                             </h5>
@@ -203,8 +203,8 @@
                                 <label id="lblmotherprofession">Company & JobLocation</label></h6>
                             <h5>
                                 <span id="lblmotherprofandloc">
-                                   {{((item.MothercompanyName.ToString()!=null && (item.MothercompanyName.ToString()!="")?item.MothercompanyName:""))+" "+
-                                            ((item.MotherJoblocation.ToString()!=null && (item.MotherJoblocation.ToString()!="")?", "+" "+
+                                   {{((item.MothercompanyName!=null && (item.MothercompanyName!="")?item.MothercompanyName:""))+" "+
+                                            ((item.MotherJoblocation!=null && (item.MotherJoblocation!="")?", "+" "+
                                             item.MotherJoblocation:item.MotherJoblocation))}}
                                 </span>
                             </h5>
@@ -218,7 +218,7 @@
                                     <label id="lblmothercontacts">Mother contact nos</label></h6>
                                 <h5>
                                     <span id="lblmompmobile">
-                                       {{((item.MotherMobilenumber!=null && item.MotherMobilenumber.ToString()!="")?item.MotherMobilenumber:"" )+" "+((item.MotherLandNumber.ToString()!=null && (item.MotherLandNumber.ToString()!="")?"&"+" "+item.MotherLandNumber:""))}}
+                                       {{((item.MotherMobilenumber!=null && item.MotherMobilenumber!="")?item.MotherMobilenumber:"" )+" "+((item.MotherLandNumber!=null && (item.MotherLandNumber!="")?"&"+" "+item.MotherLandNumber:""))}}
                                 </span>
                                 </h5>
                             </div>
@@ -274,7 +274,7 @@
                                 <h5>
                                     <span id="lblmContactNos">
                                        {{ item.MMMobileNumberWithcode+
-                                        ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode.ToString()!="")?" & "+item.MMLandNumberwithCode:"") }}
+                                        ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode!="")?" & "+item.MMLandNumberwithCode:"") }}
                                 </span>
                                 </h5>
                             </div>
@@ -288,10 +288,10 @@
                             </h6>
                             <h5>
                                 <span id="lblMNativePlace">
-                                   {{((item.MotherNativeplace!=null && item.MotherNativeplace.ToString()!="")?item.MotherNativeplace:"") +
-                                        ((item.MotherDistric!=null && item.MotherDistric.ToString()!="")?" ,"+item.MotherDistric:"" )+
-                                        ((item.MotherState!=null && item.MotherState.ToString()!="")?" ,"+item.MotherState:"" )+
-                                        ((item.MotherCountry!=null && item.MotherCountry.ToString()!="")?" ,"+item.MotherCountry:"" )}}
+                                   {{((item.MotherNativeplace!=null && item.MotherNativeplace!="")?item.MotherNativeplace:"") +
+                                        ((item.MotherDistric!=null && item.MotherDistric!="")?" ,"+item.MotherDistric:"" )+
+                                        ((item.MotherState!=null && item.MotherState!="")?" ,"+item.MotherState:"" )+
+                                        ((item.MotherCountry!=null && item.MotherCountry!="")?" ,"+item.MotherCountry:"" )}}
                             </span>
                             </h5>
                         </div>
@@ -321,7 +321,7 @@
                             <div class="edit_page_details_item_desc clearfix">
 
                                 <h6>
-                                    <label id="lMotherCaste"></label>
+                                    <label id="lMotherCaste">Mother Caste</label>
                                 </h6>
                                 <h5>
                                     <span id="lblMotherCaste">{{item.MotherCaste }}</span>
@@ -344,7 +344,7 @@
             </h4>
             <div class="edit_page_item_ui clearfix">
 
-                <a id="lnkAddcontactaddress" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Contact Address" cssclass="edit_page_add_button">Add</a>
+                <a ng-click="populateModel('Address',item);" href="javascript:void(0);" data-original-title="Add Contact Address" class="edit_page_add_button">Add</a>
 
             </div>
         </div>
@@ -377,7 +377,7 @@
                         </h5>
                     </div>
                     <div class="edit_page_item_ui clearfix">
-                        <a id="lnkcontact" class="edit_page_edit_button" onclientclick="return AllowWebUser('Contact Address');">Edit</a>
+                        <a ng-click="populateModel('Address',item);" href="javascript:void(0);">Edit</a>
 
                     </div>
                     <div id="divareaname" class="edit_page_details_item_desc clearfix">
@@ -439,7 +439,7 @@
             <h4>Physical Attribute & Health Details of Candidate</h4>
             <div class="edit_page_item_ui clearfix">
 
-                <a id="lnkAddphsysicall" onclick="lnkaddparents_Click" data-toggle="tooltip" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
+                <a href="javascript:void(0);" ng-click="populateModel('physicalAttributes',item);" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -522,7 +522,7 @@
                         </h5>
                     </div>
                     <div class="edit_page_item_ui clearfix">
-                        <a id="lnkphysical" data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                        <a data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" href="javascript:void(0);" ng-click="populateModel('physicalAttributes',item);">Edit</a>
 
                     </div>
 
@@ -546,7 +546,7 @@
             <h4>About My Family </h4>
             <div class="edit_page_item_ui clearfix">
 
-                <a id="lnkaboutt" data-original-title="Add About My Family" cssclass="edit_page_add_button">Add</a>
+                <a data-original-title="Add About My Family" class="edit_page_add_button" href="javascript:void(0);" ng-click="populateModel('AboutFamily');">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -556,15 +556,15 @@
                     <div>
                         <div>
                             <h5>
-                                <label id="lblAboutMyFamily">
-                                    {{item.aboutmyfamily }}
-                                </label>
+                                <span id="lblAboutMyFamily">
+                                    {{lblaboutMyfamily}}
+                                </span>
                             </h5>
                             <label id="Label5" visible="false"></label>
                         </div>
 
                         <div class="edit_page_item_ui clearfix">
-                            <a id="lnkaboutmyfamilyyy" class="edit_page_edit_button" data-toggle="tooltip" data-original-title="Edit About My Family">Edit</a>
+                            <a href="javascript:void(0);" class="edit_page_edit_button" data-original-title="Edit About My Family" ng-click="populateModel('AboutFamily',lblaboutMyfamily);">Edit</a>
                         </div>
 
                     </div>
@@ -576,590 +576,670 @@
 </div>
 
 <div id="popupDiv">
-
     <script type="text/ng-template" id="parentModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Parent details</h3>
-        </div>
-        <div class="modal-body" id="modal-body">
-            <ul class='modal-body clearfix pop_content_my'>
-                <li>
-                    <h6>Father Details</h6>
-                </li>
-                <li class="clearfix">
-                    <label for="lbleducationGroup" class="pop_label_left" style="color: red;">Father Name<span style="color: red; margin-left: 3px;">*</span></label>
+        <form name="parentForm" novalidate role="form" ng-submit="ParentSubmit(parent)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Parent details</h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class='modal-body clearfix pop_content_my'>
+                    <ul>
+                        <li>
+                            <h6>Father Details</h6>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lbleducationGroup" class="pop_label_left" style="color: red;">Father Name<span style="color: red; margin-left: 3px;">*</span></label>
 
-                    <div class="pop_controls_right">
-                        <input type="text" id="txtFathername" class="form-control" maxlength="100" tabindex="1" />
-                    </div>
-                </li>
-
-                <li class="clearfix">
-                    <label for="lblFEducation" class="pop_label_left">Education</label>
-                    <div class="pop_controls_right">
-                        <input id="txtFEducation" class="form-control" maxlength="150" tabindex="2" />
-                    </div>
-                </li>
-
-                <li class="clearfix">
-                    <label for="lblFProfession" class="pop_label_left">Profession</label>
-                    <div class="pop_controls_right">
-                        <input id="txtFProfession" class="form-control" maxlength="200" tabindex="3" />
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="lblCompanyName" class="pop_label_left">Company Name </label>
-                    <div class="pop_controls_right">
-                        <input id="txtCompany" class="form-control" maxlength="100" tabindex="4" />
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="lblJobLocation" class="pop_label_left">Job Location</label>
-                    <div class="pop_controls_right">
-                        <input id="txtJobLocation" class="form-control" maxlength="100" tabindex="5" />
-                    </div>
-                </li>
-
-
-                <div id="ownerdiv4">
-
-                    <li id="divfathernumbersowner" class="clearfix">
-                        <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-
-                            <a id="lnlmobilee" data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="6">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-                            <a id="lnklandline" data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="7">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-
-                            <a id="lnkFatherEmail" data-toggle="tooltip" data-original-title="Add  Email ID" tabindex="8">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-                        </div>
-                    </li>
-
-
-                    <li class="clearfix">
-
-
-                        <div id="divfathermobile">
-                            <label for="lblMobile" class="pop_label_left">Mobile #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlMobile" class="chosen" tabindex="9">
-                                </asp:dropdownlist>
-                                <input id="txtMobile" text="" maxlength="10" tabindex="10" />
+                            <div class="pop_controls_right form-group">
+                                <input type="text" ng-model="parent.txtFathername" class="form-control" tabindex="1" required/>
                             </div>
-                        </div>
+                        </li>
 
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="divfathermobile2">
-                            <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlfathermobile2" tabindex="11" class="chosen">
-                                </asp:dropdownlist>
-                                <input id="txtfathermobile2" maxlength="10" tabindex="12" />
-
-
+                        <li class="clearfix form-group">
+                            <label for="lblFEducation" class="pop_label_left">Education</label>
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="parent.txtFEducation" class="form-control" maxlength="150" tabindex="2" />
                             </div>
-                        </div>
+                        </li>
 
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="divfatherlandnumber">
-                            <label for="lblLandLine" class="pop_label_left">Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-
-                                <asp:dropdownlist id="ddlLandLineCountry" tabindex="13" class="chosen" onchange="return validatemobilecode('ddlLandLineCountry',
-                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtAreCode" maxlength="4" tabindex="14" onkeydown="return validatemobilecode('ddlLandLineCountry',
-                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-                                <input id="txtLandNumber" maxlength="8" tabindex="15" onkeydown="return validatemobilecode('ddlLandLineCountry',
-                                                    'txtLandNumber','txtAreCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
+                        <li class="clearfix form-group">
+                            <label for="lblFProfession" class="pop_label_left">Profession</label>
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="parent.txtFProfession" class="form-control" maxlength="200" tabindex="3" />
                             </div>
-                        </div>
-
-
-                    </li>
-
-                    <li id="fatheradeemail" style="display: none;" class="clearfix">
-                        <label for="lblEmail" class="pop_label_left">Email  </label>
-                        <div class="pop_controls_right">
-
-
-                            <input id="txtEmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
-
-                        </div>
-                    </li>
-                </div>
-
-
-                <li class="clearfix">
-                    <label for="lblFatherFname" class="pop_label_left">Father's father name </label>
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtFatherFname" class="form-control" placeholder="Enter Father's father name" maxlength="100" tabindex="17" />
-
-                    </div>
-                </li>
-
-
-
-                <div id="ownerdiv5">
-                    <li id="fathersfatehrnumbers" class="clearfix">
-                        <label for="lblContactNumbersfatherFather" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-
-                            <a id="lnkFFmobile" data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="18">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-
-                            <a id="lnlFFLand" data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="19">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-                        </div>
-
-                    </li>
-
-                    <li class="clearfix">
-
-
-                        <div id="divffMobile">
-                            <label for="lblMobileGrandfather" class="pop_label_left">Mobile Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlFatherfatherMobileCountryCode" tabindex="20" class="chosen" onchange="return validatemobilecode('ddlFatherfatherMobileCountryCode',
-                                                    'txtMobileFatherfather','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtMobileFatherfather" text="" maxlength="10" tabindex="21" onkeydown="return validatemobilecode('ddlFatherfatherMobileCountryCode',
-                                                    'txtMobileFatherfather','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblCompanyName" class="pop_label_left">Company Name </label>
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="parent.txtCompany" class="form-control" maxlength="100" tabindex="4" />
                             </div>
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="divfatherfatherAlternative">
-                            <label for="fatherfatherAlternative" class="pop_label_left">Altenate Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlfatherfatherAlternative" tabindex="22" class="chosen">
-                                </asp:dropdownlist>
-                                <input id="txtfatherfatherAlternative" maxlength="10" tabindex="23" />
-
-
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblJobLocation" class="pop_label_left">Job Location</label>
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="parent.txtJobLocation" class="form-control" maxlength="100" tabindex="5" />
                             </div>
-                        </div>
+                        </li>
+
+                        <!--<div id="ownerdiv4">
+
+                            <li id="divfathernumbersowner" class="clearfix form-group">
+                                <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
+                                <div class="pop_controls_right">
+
+                                    <a data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
+                                        <span class="glyphicon glyphicon-phone"></span>
+                                    </a>
+
+                                    <a data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
+                                        <span class="glyphicon glyphicon-phone-alt"></span>
+                                    </a>
+
+                                    <a data-toggle="tooltip" data-original-title="Add  Email ID" tabindex="8" ng-click="showhidemob($event,'mail');" href=javascript:void(0);>
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                    </a>
+                                </div>
+                            </li>
 
 
-                    </li>
+                            <li class="clearfix form-group" ng-show="pmob">
+                                <div>
+                                    <label for="lblMobile" class="pop_label_left">Mobile #  </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+                                        <select multiselectdropdown ng-model="parent.ddlMobile" typeofdata="countryCode"></select>
+                                        <input type=text ng-model="parent.txtMobile" class="form-control" maxlength="10" tabindex="10" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group" ng-show="mob">
+                                <div>
+                                    <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+                                        <select multiselectdropdown ng-model="parent.ddlfathermobile2" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtfathermobile2" maxlength="10" tabindex="12" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group" ng-show="land">
+                                <div>
+                                    <label for="lblLandLine" class="pop_label_left">Land line #  </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-trible">
+                                        <select multiselectdropdown ng-model="parent.ddlLandLineCountry" typeofdata="countryCode"></select>
+                                        <input type=text ng-model="parent.txtAreCode" maxlength="4" tabindex="14" />
+                                        <input type=text ng-model="parent.txtLandNumber" maxlength="8" tabindex="15" />
+                                    </div>
+                                </div>
 
-                    <li class="clearfix">
 
+                            </li>
 
-                        <div id="divFFland">
-                            <label for="lblGrandFatherLandLine" class="pop_label_left">Land line #  </label>
-
-
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-
-                                <asp:dropdownlist id="ddlFatherFatherLandLineCode" class="chosen" tabindex="24" onchange="return validatemobilecode('ddlFatherFatherLandLineCode',
-                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtGrandFatherArea" maxlength="4" tabindex="25" onkeydown="return validatemobilecode('ddlFatherFatherLandLineCode',
-                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-                                <input id="txtGrandFatherLandLinenum" width="30%" text="" class="col-lg-2 form-control" maxlength="8" tabindex="26" onkeydown="return validatemobilecode('ddlFatherFatherLandLineCode',
-                                                    'txtGrandFatherLandLinenum','txtGrandFatherArea','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
+                            <li class="clearfix form-group" ng-show="mail">
+                                <label for="lblEmail" class="pop_label_left">Email  </label>
+                                <div class="pop_controls_right">
+                                    <input type=text ng-model="parent.txtEmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
+                                </div>
+                            </li>
+                        </div>-->
+                        <contact-directive emailhide="true" dmobile="parent.ddlMobile" strmobile="parent.txtMobile" dalternative="parent.ddlfathermobile2" stralternative="parent.txtfathermobile2" dland="parent.ddlLandLineCountry" strareacode="parent.txtAreCode" strland="parent.txtLandNumber"
+                            strmail="parent.txtEmail"></contact-directive>
+                        <li class="clearfix form-group">
+                            <label for="lblFatherFname" class="pop_label_left">Father's father name </label>
+                            <div class="pop_controls_right">
+                                <input type=text ng-model="parent.txtFatherFname" class="form-control" placeholder="Enter Father's father name" maxlength="100" tabindex="17" />
                             </div>
-                        </div>
+                        </li>
 
 
-                    </li>
-                </div>
+                        <!--<div id="ownerdiv5">
+                            <li class="clearfix form-group">
+                                <label for="lblContactNumbersfatherFather" class="pop_label_left">Contact Numbers</label>
+                                <div class="pop_controls_right">
+
+                                    <a data-original-title="Add Mobile Number" tabindex="18">
+                                        <span class="glyphicon glyphicon-phone"></span>
+                                    </a>
+                                    <a data-original-title="Add  Land Number" tabindex="19">
+                                        <span class="glyphicon glyphicon-phone-alt"></span>
+                                    </a>
+                                </div>
+
+                            </li>
+
+                            <li class="clearfix form-group">
+                                <div id="divffMobile">
+                                    <label for="lblMobileGrandfather" class="pop_label_left">Mobile Number</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                        <select multiselectdropdown ng-model="parent.ddlFatherfatherMobileCountryCode" typeofdata="countryCode"></select>
+
+                                        <input type=text class=form-control ng-model="parent.txtMobileFatherfather" text="" maxlength="10" tabindex="21" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <div id="divfatherfatherAlternative">
+                                    <label for="fatherfatherAlternative" class="pop_label_left">Altenate Number</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                        <select multiselectdropdown ng-model="parent.ddlfatherfatherAlternative" typeofdata="countryCode"></select>
+                                        <input type=text class=form-control ng-model="parent.txtfatherfatherAlternative" maxlength="10" tabindex="23" />
+
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix form-group">
+                                <div id="divFFland">
+                                    <label for="lblGrandFatherLandLine" class="pop_label_left">Land line #  </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                        <select multiselectdropdown ng-model="parent.ddlFatherFatherLandLineCode" typeofdata="countryCode"></select>
+                                        <input type=text ng-model="parent.txtGrandFatherArea" maxlength="4" tabindex="25" />
+
+                                        <input type=text ng-model="parent.txtGrandFatherLandLinenum" width="30%" text="" class="col-lg-2 form-control" maxlength="8" tabindex="26" />
+
+                                    </div>
+                                </div>
+                            </li>
+                        </div>-->
+
+                        <contact-directive emailhide="false" dmobile="parent.ddlFatherfatherMobileCountryCode" strmobile="parent.txtMobileFatherfather" dalternative="parent.ddlfatherfatherAlternative" stralternative="parent.txtfatherfatherAlternative" dland="parent.ddlFatherFatherLandLineCode"
+                            strareacode="parent.txtGrandFatherArea" strland="parent.txtGrandFatherLandLinenum"></contact-directive>
+
+
+                        <!--<li class="clearfix form-group">
+                            <label for="FState" class="pop_label_left">State</label>
+                            <div class="pop_controls_right select-box-my">
+                                <select multiselectdropdown ng-model="parent.ddlFState" typeofdata="indiaStates" ng-change="changeBind('fStates',parent.ddlFState);"></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="FDistrict" class="pop_label_left">District</label>
+                            <div class="pop_controls_right select-box-my">
+                                <select multiselectdropdown ng-model="parent.ddlFDistric" ng-options="item.value as item.label for item in fDistrictArr"></select>
+                            </div>
+                        </li>-->
+
+
+                        <country-directive countryshow="false" cityshow="false" othercity="false" dstate="parent.ddlFState" ddistrict="parent.ddlFDistric"></country-directive>
 
 
 
-                <li class="clearfix">
-                    <label for="FState" class="pop_label_left">State</label>
-                    <div class="pop_controls_right select-box-my">
 
+                        <li class="clearfix form-group">
+                            <label for="FNativePlace" class="pop_label_left">Native Place</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="parent.txtFNativePlace" class="form-control" maxlength="100" tabindex="29" />
+                            </div>
+                        </li>
+                        <li>
+                            <h6>Mother Details</h6>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblMotherName" class="pop_label_left" style="color: red;">Mother Name<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="pop_controls_right form-group">
+                                <input ng-model="parent.txtMName" class="form-control" maxlength="100" tabindex="30" required/>
+                            </div>
+                        </li>
 
-                        <asp:dropdownlist id="ddlFState" class="chosen" enableviewstate="true" onselectedindexchanged="ddlCountry_SelectedIndexChanged" tabindex="27"></asp:dropdownlist>
+                        <li class="clearfix form-group">
+                            <label for="lblMEducation" class="pop_label_left">Education</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="parent.txtMEducation" class="form-control" maxlength="150" tabindex="31" />
+                            </div>
+                        </li>
 
-
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="FDistrict" class="pop_label_left">District</label>
-                    <div class="pop_controls_right select-box-my">
-
-
-                        <asp:dropdownlist id="ddlFDistric" class="chosen" tabindex="28"></asp:dropdownlist>
-
-
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="FNativePlace" class="pop_label_left">Native Place</label>
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtFNativePlace" class="form-control" maxlength="100" tabindex="29" />
-
-
-                    </div>
-                </li>
-                <li>
-                    <h6>Mother Details</h6>
-                </li>
-                <li class="clearfix">
-                    <label for="lblMotherName" class="pop_label_left" style="color: red;">Mother Name<span style="color: red; margin-left: 3px;">*</span></label>
-
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtMName" class="form-control" maxlength="100" tabindex="30" />
-
-
-                    </div>
-
-                </li>
-
-                <li class="clearfix">
-                    <label for="lblMEducation" class="pop_label_left">Education</label>
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtMEducation" class="form-control" maxlength="150" tabindex="31" />
-
-
-                    </div>
-                </li>
-
-                <li class="clearfix">
-                    <label for="lblMProfession" class="pop_label_left">Profession</label>
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtMProfession" class="form-control" maxlength="200" tabindex="32" />
-
-                        <label class="checkbox-inline checkbox_my" style="padding: 5px 0 0 0;">
-                <asp:checkbox id="chkbox" text="HouseWife" tabindex="33" oncheckedchanged="chkbox_CheckedChanged" />
+                        <li class="clearfix form-group">
+                            <label for="lblMProfession" class="pop_label_left">Profession</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="parent.txtMProfession" class="form-control" maxlength="200" tabindex="32" />
+                                <label class="checkbox-inline checkbox_my" style="padding: 5px 0 0 0;">
+                <input type=checkbox ng-model="parent.chkbox"  tabindex="33"  /><span>&nbsp;HouseWife</span>
             </label>
+                            </div>
+
+                        </li>
+                        <div id="divmotherprofesseion">
+                            <li id="divComLocation" class="clearfix form-group">
+
+                                <label for="lblMCompanyName" class="pop_label_left">Company Name </label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="parent.txtMCompanyName" class="form-control" maxlength="100" tabindex="34" />
+                                </div>
+                            </li>
+
+                            <li class="clearfix form-group">
+                                <label for="lblMJobLocation" class="pop_label_left">Job Location</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="parent.txtMJobLocation" class="form-control" maxlength="100" tabindex="35" />
+                                </div>
+                            </li>
+                        </div>
+                        <div style="height: 15px;"></div>
 
 
+                        <!--<div id="ownerdiv6">
+                            <li id="divmothernumberowner" class="clearfix form-group">
+                                <label for="lblContactNumbersMother" class="pop_label_left">Contact Numbers</label>
+                                <div class="pop_controls_right">
+                                    <a data-original-title="Add Mobile Number" tabindex="36">
+                                        <span class="glyphicon glyphicon-phone"></span>
+                                    </a>
+
+                                    <a data-original-title="Add  Land Number" tabindex="37">
+                                        <span class="glyphicon glyphicon-phone-alt"></span>
+                                    </a>
+
+                                    <a data-original-title="Add  Email ID" tabindex="38">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <div id="mothermobilediv">
+                                    <label for="lblMMobile" class="pop_label_left">Mobile # </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+                                        <select multiselectdropdown ng-model="parent.ddlMMobileCounCodeID" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtMMobileNum" maxlength="10" tabindex="40" />
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix form-group">
+
+
+                                <div id="divMotherMobile2">
+                                    <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+                                        <select multiselectdropdown ng-model="parent.ddlMMobileCounCodeID2" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtMMobileNum2" maxlength="10" tabindex="42" />
+                                    </div>
+                                </div>
+
+
+                            </li>
+                            <li class="clearfix form-group">
+
+
+                                <div id="motherlandnumber" style="display: none;">
+                                    <label for="lblMLandLine" class="pop_label_left">Land line #  </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                        <select multiselectdropdown ng-model="parent.ddlMLandLineCounCode" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtmAreaCode" text="" maxlength="4" tabindex="44" />
+                                        <input type=text class="form-control" ng-model="parent.txtMLandLineNum" text="" maxlength="8" tabindex="45" />
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="divmothermails" class="clearfix form-group">
+                                <label for="lblMEmail" class="pop_label_left">Email  </label>
+                                <div class="pop_controls_right">
+                                    <input type=text ng-model="parent.txtMEmail" class="form-control" placeholder="Enter Email" tabindex="46" />
+
+                                </div>
+                            </li>
+                        </div>-->
+
+                        <contact-directive emailhide="true" dmobile="parent.ddlMMobileCounCodeID" strmobile="parent.txtMMobileNum" dalternative="parent.ddlMMobileCounCodeID2" stralternative="parent.txtMMobileNum2" dland="parent.ddlMLandLineCounCode" strareacode="parent.txtmAreaCode"
+                            strland="parent.txtMLandLineNum" strmail="parent.txtMEmail"></contact-directive>
+
+
+                        <li class="clearfix form-group">
+                            <label for="lblMotherFname" class="pop_label_left">Mother's Father Name </label>
+                            <div class="pop_controls_right select-box-my">
+                                <input type=text ng-model="parent.txtMFatherFname" class="form-control" placeholder="FIRST NAME" tabindex="47" maxlength="100" />
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblMotherFname" class="pop_label_left">Mother's Last Name </label>
+                            <div class="pop_controls_right select-box-my">
+                                <input type=text ng-model="parent.txtMFatherLname" class="form-control" placeholder="LAST NAME" tabindex="48" maxlength="50" />
+
+                            </div>
+                        </li>
+
+
+                        <!--<div id="ownerdiv7">
+                            <li id="motherfathercontactDiv" class="clearfix form-group">
+                                <label for="lblContactNumbersMotherFather" class="pop_label_left">Contact Numbers</label>
+                                <div class="pop_controls_right">
+
+                                    <a data-original-title="Add Mobile Number" tabindex="49">
+                                        <span class="glyphicon glyphicon-phone"></span>
+                                    </a>
+
+                                    <a data-original-title="Add  Land Number" tabindex="50">
+                                        <span class="glyphicon glyphicon-phone-alt"></span>
+                                    </a>
+                                </div>
+
+                            </li>
+                            <li class="clearfix form-group">
+                                <div id="divmfMobile">
+                                    <label for="lblMobileMGrandfather" class="pop_label_left">Mobile Number</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+
+                                        <select multiselectdropdown ng-model="parent.ddlMotherfatheMobileCountryCode" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtMotherfatheMobilenumber" maxlength="10" tabindex="52" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <div id="dlvmotherfatheralternative">
+                                    <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
+                                    <div class="pop_controls_right select-box-my select-box-my-double">
+                                        <select multiselectdropdown ng-model="parent.ddlmotherfatheralternative" typeofdata="countryCode"></select>
+                                        <input type=text class="form-control" ng-model="parent.txtmotherfatheralternative" maxlength="10" tabindex="54" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <div id="divmfLand">
+                                    <label for="lblMotherFatherLandLine" class="pop_label_left">Land line #  </label>
+                                    <div class="pop_controls_right select-box-my select-box-my-trible">
+
+                                        <select multiselectdropdown ng-model="parent.ddlMotherFatherLandLineCode" typeofdata="countryCode"></select>
+                                        <input type=text ng-model="parent.txtMotherFatherLandLineareacode" maxlength="4" tabindex="56" />
+
+                                        <input type=text class="form-control" ng-model="parent.txtMotherFatherLandLinenum" class="col-lg-2 form-control" maxlength="8" tabindex="57" />
+                                    </div>
+                                </div>
+                            </li>
+                        </div>-->
+
+
+
+                        <contact-directive emailhide="false" dmobile="parent.ddlMotherfatheMobileCountryCode" strmobile="parent.txtMotherfatheMobilenumber" dalternative="parent.ddlmotherfatheralternative" stralternative="parent.txtmotherfatheralternative" dland="parent.ddlMotherFatherLandLineCode"
+                            strareacode="parent.txtMotherFatherLandLineareacode" strland="parent.txtMotherFatherLandLinenum"></contact-directive>
+
+                        <!--<li class="clearfix form-group">
+                            <label for="MState" class="pop_label_left">State</label>
+                            <div class="pop_controls_right select-box-my">
+
+                                <select multiselectdropdown ng-model="parent.ddlMState" typeofdata="indiaStates" ng-change="changeBind('mStates',parent.ddlMState);"></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="MDistrict" class="pop_label_left">District</label>
+                            <div class="pop_controls_right select-box-my">
+
+                                <select multiselectdropdown ng-model="parent.ddlMDistrict" ng-options="item.value as item.label for item in mDistrictArr"></select>
+                            </div>
+                        </li>-->
+
+
+
+                        <country-directive countryshow="false" cityshow="false" othercity="false" dstate="parent.ddlMState" ddistrict="parent.ddlMDistrict"></country-directive>
+
+
+
+                        <li class="clearfix form-group">
+                            <label for="MNativePlace" class="pop_label_left">Native Place</label>
+                            <div class="pop_controls_right">
+                                <input type=text ng-model="parent.txtMNativePlace" class="form-control" maxlength="150" tabindex="60" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? </label>
+                            <div class="pop_controls_right pop_radios_list">
+                                <label>
+                    <input ng-model="parent.rbtlParentIntercaste" value="1" type="radio"><span>&nbsp;Yes</span>
+                </label>
+                                <label class="">
+                    <input ng-model="parent.rbtlParentIntercaste" value="0" type="radio"><span>&nbsp;No</span>
+                </label>
+                            </div>
+                        </li>
+
+                        <div id="ParentCasteDiv">
+
+                            <li id="divddlFatherCaste" class="clearfix form-group">
+
+                                <label for="lblFCaste" class="pop_label_left">Father Caste</label>
+                                <div class="pop_controls_right select-box-my">
+
+                                    <select multiselectdropdown ng-model="parent.ddlFatherCaste" typeofdata="caste"></select>
+                                </div>
+                            </li>
+                            <li id="divddlMotherCaste" class="clearfix form-group">
+                                <label for="lblMCaste" class="pop_label_left">Mother Caste</label>
+                                <div class="pop_controls_right select-box-my">
+                                    <select multiselectdropdown ng-model="parent.ddlMotherCaste" typeofdata="caste"></select>
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
                     </div>
-
-                </li>
-
-
-
-                <div id="divmotherprofesseion">
-                    <li id="divComLocation" class="clearfix">
-
-                        <label for="lblMCompanyName" class="pop_label_left">Company Name </label>
-                        <div class="pop_controls_right">
-
-
-                            <input id="txtMCompanyName" class="form-control" maxlength="100" tabindex="34" />
-
-
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <label for="lblMJobLocation" class="pop_label_left">Job Location</label>
-                        <div class="pop_controls_right">
-
-
-                            <input id="txtMJobLocation" class="form-control" maxlength="100" tabindex="35" />
-
-                        </div>
-                    </li>
                 </div>
-
-
-                <div style="height: 15px;"></div>
-
-
-                <div id="ownerdiv6">
-                    <li id="divmothernumberowner" class="clearfix">
-                        <label for="lblContactNumbersMother" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-                            <a id="LnkMotherMobile" data-original-title="Add Mobile Number" tabindex="36">
-                                <span class="glyphicon glyphicon-phone"></span>
-
-                            </a>
-
-                            <a id="lnkMotherLandNum" data-original-title="Add  Land Number" tabindex="37">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-
-                            <a id="lnkMotherEmail" data-original-title="Add  Email ID" tabindex="38">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="mothermobilediv">
-                            <label for="lblMMobile" class="pop_label_left">Mobile # </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlMMobileCounCodeID" class="chosen" tabindex="39" onchange="return validatemobilecode('ddlMMobileCounCodeID',
-                                                    'txtMMobileNum','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtMMobileNum" maxlength="10" tabindex="40" onkeydown="return validatemobilecode('ddlMMobileCounCodeID',
-                                                    'txtMMobileNum','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-
-                            </div>
-                        </div>
-
-
-                    </li>
-
-                    <li class="clearfix">
-
-
-                        <div id="divMotherMobile2">
-                            <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlMMobileCounCodeID2" class="chosen" tabindex="41" onchange="return validatemobilecode('ddlMMobileCounCodeID2',
-                                                    'txtMMobileNum2','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtMMobileNum2" maxlength="10" tabindex="42" onkeydown="return validatemobilecode('ddlMMobileCounCodeID2',
-                                                    'txtMMobileNum2','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="motherlandnumber" style="display: none;">
-                            <label for="lblMLandLine" class="pop_label_left">Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-
-                                <asp:dropdownlist id="ddlMLandLineCounCode" class="chosen" tabindex="43" onchange="return validatemobilecode('ddlMLandLineCounCode',
-                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtmAreaCode" text="" maxlength="4" tabindex="44" onkeydown="return validatemobilecode('ddlMLandLineCounCode',
-                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-                                <input id="txtMLandLineNum" text="" maxlength="8" tabindex="45" onkeydown="return validatemobilecode('ddlMLandLineCounCode',
-                                                    'txtMLandLineNum','txtmAreaCode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                    <li id="divmothermails" style="display: none;" class="clearfix">
-                        <label for="lblMEmail" class="pop_label_left">Email  </label>
-                        <div class="pop_controls_right">
-
-
-                            <input id="txtMEmail" class="form-control" placeholder="Enter Email" tabindex="46" />
-
-                        </div>
-                    </li>
+                <div class="modal-footer">
+                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+                    <button type="submit" class="button_custom">Submit</button>
                 </div>
+        </form>
+    </script>
+    <script type="text/ng-template" id="AddressModalContent.html">
+        <form name="addressForm" novalidate role="form" ng-submit="contactAddressSubmit(AdrrObj)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Contact Details</h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="modal-body clearfix pop_content_my">
+                    <ul>
+                        <li class="clearfix form-group">
+                            <label for="lblHouse_flat" class="pop_label_left">House/Flat number<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="pop_controls_right form-group">
+                                <input ng-model="AdrrObj.txtHouse_flat" class="form-control" maxlength="50" tabindex="1" required/>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblApartmentName" class="pop_label_left">Apartment name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="AdrrObj.txtApartmentName" class="form-control" maxlength="150" tabindex="2" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblStreetName" class="pop_label_left">Street name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="AdrrObj.txtStreetName" class="form-control" maxlength="150" tabindex="3" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblAreaName" class="pop_label_left">Area Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="AdrrObj.txtAreaName" class="form-control" maxlength="150" tabindex="4" />
+                            </div>
 
 
-                <li class="clearfix">
-                    <label for="lblMotherFname" class="pop_label_left">Mother's Father Name </label>
-                    <div class="pop_controls_right select-box-my">
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lbleducationGroup" class="pop_label_left">Landmark</label>
+                            <div class="pop_controls_right">
 
 
-                        <input id="txtMFatherFname" class="form-control" placeholder="FIRST NAME" tabindex="47" maxlength="100" />
-                </li>
-                <li class="clearfix">
-                    <label for="lblMotherFname" class="pop_label_left">Mother's Last Name </label>
-                    <div class="pop_controls_right select-box-my">
+                                <input ng-model="AdrrObj.txtLandmark" class="form-control" maxlength="150" tabindex="5" />
+                            </div>
+                        </li>
 
 
-                        <input id="txtMFatherLname" class="form-control" placeholder="LAST NAME" tabindex="48" maxlength="50" />
+                        <country-directive countryshow="true" cityshow="false" othercity="false" dcountry="AdrrObj.ddlCountryContact" dstate="AdrrObj.ddlStateContact" ddistrict="AdrrObj.ddlDistricContact"></country-directive>
 
-                    </div>
-                </li>
-
-
-                <div id="ownerdiv7">
-                    <li id="motherfathercontactDiv" class="clearfix">
-                        <label for="lblContactNumbersMotherFather" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-
-                            <a id="lnkMfMpobile" onclientclick="return showhidetextboxsalerts('txtMotherfatheMobilenumber', 'txtmotherfatheralternative', 'txtMotherFatherLandLinenum', 'mobile', 'dlvmotherfatheralternative', 
-                                            'divmfLand','txtMotherFatherLandLineareacode','ddlMotherFatherLandLineCode','divmfMobile','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_')" data-toggle="tooltip" data-original-title="Add Mobile Number"
-                                tabindex="49">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-                            <a id="lnkMFLand" onclientclick="return showhidetextboxsalerts('txtMotherfatheMobilenumber', 'txtmotherfatheralternative',
-                                             'txtMotherFatherLandLinenum', 'landnumber', 'dlvmotherfatheralternative', 'divmfLand', 'txtMotherFatherLandLineareacode', 'ddlmotherfatheralternative','divmfMobile','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');"
-                                data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="50">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-                        </div>
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="divmfMobile">
-                            <label for="lblMobileMGrandfather" class="pop_label_left">Mobile Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlMotherfatheMobileCountryCode" class="chosen" tabindex="51" onchange="return validatemobilecode('ddlMotherfatheMobileCountryCode',
-                                                    'txtMotherfatheMobilenumber','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtMotherfatheMobilenumber" onkeydown="return validatemobilecode('ddlMotherfatheMobileCountryCode',
-                                                    'txtMotherfatheMobilenumber','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" maxlength="10" tabindex="52" />
-
+                        <li class="clearfix form-group">
+                            <label for="lblCityParentContactPopupgroup" class="pop_label_left">City<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="pop_controls_right">
+                                <input ng-model="AdrrObj.txtCity" class="form-control" tabindex="9" maxlength="100" />
 
                             </div>
-                        </div>
+
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblZip_pin" class="pop_label_left">Zip/Pin 	</label>
+                            <div class="pop_controls_right">
 
 
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="dlvmotherfatheralternative">
-                            <label for="lblMMobile2" class="pop_label_left">Altenate NUmber</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <asp:dropdownlist id="ddlmotherfatheralternative" class="chosen" tabindex="53" onchange="return validatemobilecode('ddlmotherfatheralternative',
-                                                    'txtmotherfatheralternative','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtmotherfatheralternative" maxlength="10" tabindex="54" onkeydown="return validatemobilecode('ddlmotherfatheralternative',
-                                                    'txtmotherfatheralternative','','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
+                                <input ng-model="AdrrObj.txtZip_no" class="form-control" maxlength="8" tabindex="10" />
 
                             </div>
-                        </div>
+                        </li>
+                    </ul>
 
-
-                    </li>
-                    <li class="clearfix">
-
-
-                        <div id="divmfLand">
-                            <label for="lblMotherFatherLandLine" class="pop_label_left">Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-
-                                <asp:dropdownlist id="ddlMotherFatherLandLineCode" tabindex="55" class="chosen" onchange="return validatemobilecode('ddlMotherFatherLandLineCode',
-                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');">
-                                </asp:dropdownlist>
-                                <input id="txtMotherFatherLandLineareacode" maxlength="4" tabindex="56" onkeydown="return validatemobilecode('ddlMotherFatherLandLineCode',
-                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-
-                                <input id="txtMotherFatherLandLinenum" text="" class="col-lg-2 form-control" maxlength="8" tabindex="57" onkeydown="return validatemobilecode('ddlMotherFatherLandLineCode',
-                                                    'txtMotherFatherLandLinenum','txtMotherFatherLandLineareacode','#ctl00_ContentPlaceHolder1_EditCustomerParentsDetails_');" />
-                            </div>
-                        </div>
-                    </li>
                 </div>
-
-
-                <li class="clearfix">
-                    <label for="MState" class="pop_label_left">State</label>
-                    <div class="pop_controls_right select-box-my">
-                        <asp:dropdownlist id="ddlMState" class="chosen" onselectedindexchanged="ddlCountry_SelectedIndexChanged" tabindex="58">
-                        </asp:dropdownlist>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="MDistrict" class="pop_label_left">District</label>
-                    <div class="pop_controls_right select-box-my">
-                        <asp:dropdownlist id="ddlMDistrict" class="chosen" tabindex="59"></asp:dropdownlist>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="MNativePlace" class="pop_label_left">Native Place</label>
-                    <div class="pop_controls_right">
-
-
-                        <input id="txtMNativePlace" class="form-control" maxlength="150" tabindex="60" />
-
-
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? </label>
-                    <div class="pop_controls_right pop_radios_list">
-
-
-                        <asp:radiobuttonlist id="rbtlParentIntercaste" repeatdirection="Horizontal" class="radio" onselectedindexchanged="rbtlParentIntercaste_SelectedIndexChanged1" tabindex="61">
-                            <asp:ListItem Value="1">Yes</asp:ListItem>
-                            <asp:ListItem Value="0">No</asp:ListItem>
-                        </asp:radiobuttonlist>
-
-
-                    </div>
-                </li>
-
-
-
-                <div id="ParentCasteDiv">
-
-                    <li id="divddlFatherCaste" class="clearfix">
-
-                        <label for="lblFCaste" class="pop_label_left">Father Caste</label>
-                        <div class="pop_controls_right select-box-my">
-
-
-
-                            <asp:dropdownlist id="ddlFatherCaste" onchange="return parentCasteSame();" class="chosen" tabindex="62"></asp:dropdownlist>
-
-
-
-                        </div>
-                    </li>
-                    <li id="divddlMotherCaste" class="clearfix">
-                        <label for="lblMCaste" class="pop_label_left">Mother Caste</label>
-                        <div class="pop_controls_right select-box-my">
-                            <asp:dropdownlist id="ddlMotherCaste" onchange="return parentCasteSame();" class="chosen" tabindex="63"></asp:dropdownlist>
-                        </div>
-                    </li>
-                </div>
-
-
-
-            </ul>
 
             </div>
             <div class="modal-footer">
-                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
-                <input value="Submit" id="btnEduSubmit" class="button_custom" type="button">
+                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+                <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
             </div>
+        </form>
     </script>
+
+    <script type="text/ng-template" id="PhysicalAttributeModalContent.html">
+        <form name="PhysicalForm" novalidate role="form" ng-submit="physicalAtrrSubmit(physicalObj)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Physical Attributes & Health Details of Candidate </h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="modal-body clearfix pop_content_my">
+                    <ul id="HealthDivClear">
+                        <li class="clearfix form-group">
+                            <label for="lblpDiet" class="pop_label_left">Diet</label>
+                            <div class="pop_controls_right">
+
+                                <label>
+                    <input ng-model="physicalObj.rbtlDiet" value="27" type="radio"><span>&nbsp;Veg</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlDiet" value="28" type="radio"><span>&nbsp;Non Veg</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlDiet" value="29" type="radio"><span>&nbsp;Both</span>
+                </label>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblpDrink" class="pop_label_left">Drink</label>
+                            <div class="pop_controls_right">
+
+                                <label>
+                    <input ng-model="physicalObj.rbtlDrink" value="30" type="radio"><span>&nbsp;Yes</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlDrink" value="31" type="radio"><span>&nbsp;No</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlDrink" value="32" type="radio"><span>&nbsp;Occasional</span>
+                </label>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblpSmoke" class="pop_label_left">Smoke</label>
+                            <div class="pop_controls_right">
+
+                                <label>
+                    <input ng-model="physicalObj.rbtlSmoke" value="30" type="radio"><span>&nbsp;Yes</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlSmoke" value="31" type="radio"><span>&nbsp;No</span>
+                </label>
+                                <label class="">
+                    <input ng-model="physicalObj.rbtlSmoke" value="32" type="radio"><span>&nbsp;Occasional</span>
+                </label>
+
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblpBodyType" class="pop_label_left">Body Type</label>
+                            <div class="pop_controls_right  select-box-my">
+                                <select multiselectdropdown ng-model="physicalObj.ddlBodyType" typeofdata="bodyType"></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblBodtWeight" class="pop_label_left">Body weight</label>
+                            <div class="pop_controls_right select-box-my select-box-my-double">
+                                <label id="lblkgs" text="kgs" font-size="14px"></label>
+                                <input ng-model="physicalObj.txtBWKgs" class="form-control" tabindex="5" width="200px" />
+
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label id="lbllbs" class="pop_label_left" text="lbs"></label>
+                            <div class="pop_controls_right">
+                                <div>
+                                    <input ng-model="physicalObj.txtlbs" class="form-control" text="" onkeyup="converttokgs(this.id);" onkeydown="return checkwhitespace(event,this.id);" onblur="validateLbs(this)" tabindex="6" />
+
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblBloodGroup" class="pop_label_left">Blood Group</label>
+                            <div class="pop_controls_right select-box-my">
+                                <select multiselectdropdown ng-model="physicalObj.ddlBloodGroup" typeofdata="bloodGroup"></select>
+                            </div>
+
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblHealthConditions" class="pop_label_left">Health Conditions</label>
+                            <div class="pop_controls_right">
+                                <div class="select-box-my">
+                                    <select multiselectdropdown ng-model="physicalObj.ddlHealthConditions" typeofdata="healthCondition"></select>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblHealthCondition" class="pop_label_left">Health Condition Description</label>
+                            <div class="">
+                                <textarea ng-model="physicalObj.txtHealthCondition" class="form-control" tabindex="9" rows="4" style="width: 515px;" maxlength="200"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+                <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+            </div>
+        </form>
+    </script>
+    <script type="text/ng-template" id="AboutFamilyModalContent.html">
+        <form name="AboutForm" novalidate role="form" ng-submit="AboutMyfamilySubmit(aboutFamilyObj)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">About My Family </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+
+                <div class="form-group">
+                    <label class="control-label">(Do Not Mention Any Contact Information Phone Numbers, Email Id’s or your Profile May be Rejected.)</label>
+                    <textarea class="form-control" ng-model="aboutFamilyObj.txtAboutUs" required="required" type="text"> </textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
+                <button type="submit" class="button_custom">Submit</button>
+            </div>
+        </form>
+    </script>
+
     </div>
+
+    <style>
+        /*.has-feedback .form-control-feedback {
+            position: absolute;
+            margin: 0 0 0 0 !important;
+            right: 0;
+            display: block;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+        }*/
+        /*.pop_content_my ul .select-box-my-double .btn-group {
+            float: left;
+            width: 49% !important;
+            margin: 0 1% 0 0 !important;
+        }*/
+        
+        .md-dialog-container {
+            z-index: 99999999999;
+        }
+    </style>

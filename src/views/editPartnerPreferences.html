@@ -22,42 +22,34 @@
                                 <span id="lblpartnergen" style="color:Red;">{{ item.Gender}}</span></h5>
                         </div>
                         <div id="UpdatePanellnkpartneredit" class="edit_page_item_ui clearfix">
-
-                            <a ng-click="partnerprefPopulate();" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                            <a ng-click="partnerprefPopulate(item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                         </div>
                         <div id="UpdatePanel10" class="edit_page_details_item_desc clearfix">
 
-                            <div>
 
-                                <h6>
-                                    <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
-                                <h5>
-                                    <span id="lblagegap">{{ item.AgeGap}}</span></h5>
-                            </div>
+                            <h6>
+                                <span id="agegap" style="font-weight:bold;">Age Gap</span></h6>
+                            <h5>
+                                <span id="lblagegap">{{ item.AgeGap}}</span></h5>
 
                         </div>
                         <div id="UpdatePanel13" class="edit_page_details_item_desc clearfix">
 
-                            <div>
-                                <h6>
-                                    <span id="height" style="font-weight:bold;">Height</span></h6>
-                                <h5>
-                                    <span id="lblheight">{{ item.Height}}</span></h5>
-                            </div>
 
+                            <h6>
+                                <span id="height" style="font-weight:bold;">Height</span></h6>
+                            <h5>
+                                <span id="lblheight">{{ item.Height}}</span></h5>
 
                         </div>
                         <div id="UpdatePanel15" class="edit_page_details_item_desc clearfix">
 
-                            <div>
-                                <h6>
-                                    <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
 
-                                <h5>
-                                    <span id="lblmothertongue">{{ item.Mothertongue }}</span></h5>
+                            <h6>
+                                <span id="mothertongue" style="font-weight:bold;">mother tongue</span></h6>
 
-                            </div>
-
+                            <h5>
+                                <span id="lblmothertongue">{{ item.Mothertongue }}</span></h5>
                         </div>
                         <div id="UpdatePanel16" class="edit_page_details_item_desc clearfix">
 
@@ -225,14 +217,13 @@
             </div>
         </div>
 
-
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Partner Description ( Describe qualities you are looking for in your partner)</h4>
                 <div class="edit_page_item_ui clearfix">
                     <div id="updatepanel24">
 
-                        <a id="lnkpartnerdesc" class="edit_page_add_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$Editpartnerpreference$lnkpartnerdesc','')">Add</a>
+                        <a id="lnkpartnerdesc" class="edit_page_add_button" href="javascript:void(0);" ng-click="partnerdescPopulate();"> Add</a>
 
                     </div>
 
@@ -252,7 +243,7 @@
                     <div id="sdfsd" class="edit_page_item_ui clearfix">
 
                         <div>
-
+                            <a id="lnkpartnerdesc" class="edit_page_edit_button" href="javascript:void(0);" ng-click="partnerdescPopulate(item);"> Edit</a>
                         </div>
 
                     </div>
@@ -263,208 +254,213 @@
 </div>
 
 
-
-
-
-
 <script type="text/ng-template" id="partnerPrefContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title text-center" id="modal-title">Partnerprefernece details </h3>
-    </div>
-    <div class="modal-body" id="modal-body">
 
+    <form name="PhysicalForm" novalidate role="form" ng-submit="partnerPrefSubmit(partnerObj)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Partnerprefernece details </h3>
+        </div>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
 
-        <ul id="divclear" class='modal-body clearfix pop_content_my'>
-            <li class="clearfix">
-                <label for="lblGender" class="pop_label_left">Gender</label>
-                <div class="pop_controls_right pop_radios_list clearfix">
+            <ul id="divclear">
+                <li class="clearfix form-group">
+                    <label for="lblGender" class="pop_label_left">Gender</label>
+                    <div class="pop_controls_right pop_radios_list clearfix">
+                        <label>
+                <input ng-model="partnerObj.rbtlGender" value="1" type="radio"><span>&nbsp;Male</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtlGender" value="2" type="radio"><span>&nbsp;Female</span></label>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblagegapp" class="pop_label_left">Age Gap<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my select-box-my-double">
+                        <select multiselectdropdown ng-model="partnerObj.ddlFromAge" ng-options="item.value as item.label for item in ageGapArr"></select>
+                        <select multiselectdropdown ng-model="partnerObj.ddlToAge" ng-options="item.value as item.label for item in ageGapArr"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblpatnerheight" class="pop_label_left">Height<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my select-box-my-double form-group">
+                        <select multiselectdropdown required ng-model="partnerObj.ddlFromheight" typeofdata=height></select>
+                        <select multiselectdropdown required ng-model="partnerObj.ddltoHeight" typeofdata=height></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblReligion" class="pop_label_left">Religion<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstReligion" typeofdata=Religion ng-change="changeBind('caste',partnerObj.lstReligion,partnerObj.lstMothertongue);"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblmothertongue" class="pop_label_left">Mother tongue<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my ">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstMothertongue" typeofdata=Mothertongue ng-change="changeBind('caste',partnerObj.lstReligion,partnerObj.lstMothertongue);"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblpartnerCaste" class="pop_label_left">Caste<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my ">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstCaste" ng-options="item.value as item.label for item in casteArr" ng-change="changeBind('subCaste',partnerObj.lstCaste);"></select>
+                    </div>
 
-                    <label>
-                <input ng-model="rbtlGender" value="1" type="radio"><span>&nbsp;Male</span></label>
-                    <label>
-                <input ng-model="rbtlGender" value="2" type="radio"><span>&nbsp;Female</span></label>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblagegapp" class="pop_label_left">Age Gap<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown ng-model="ddlFromAge"></select>
-                    <select multiselectdropdown ng-model="ddlToAge"></select>
-                </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblSubcaste" class="pop_label_left">Subcaste</label>
+                    <div class="pop_controls_right select-box-my ">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstSubcaste" ng-options="item.value as item.label for item in subCasteArr"></select>
+                    </div>
 
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblMaritalstatus" class="pop_label_left">Marital status<span style="color: red; margin-left: 3px;">*</span></label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstMaritalstatus" typeofdata=MaritalStatus></select>
+                    </div>
 
-            </li>
-            <li class="clearfix">
-                <label for="lblpatnerheight" class="pop_label_left">Height<span style="color: red; margin-left: 3px;">*</span></label>
-
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown ng-model="ddlFromheight"></select>
-                    <select multiselectdropdown ng-model="ddltoHeight"></select>
-                </div>
-
-
-            </li>
-            <li class="clearfix">
-                <label for="lblReligion" class="pop_label_left">Religion<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstReligion"></select>
-                </div>
-
-            </li>
-            <li class="clearfix">
-                <label for="lblmothertongue" class="pop_label_left">Mother tongue<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstMothertongue"></select>
-                </div>
-
-
-            </li>
-            <li class="clearfix">
-                <label for="lblpartnerCaste" class="pop_label_left">Caste<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstCaste"></select>
-                </div>
-
-            </li>
-            <li class="clearfix">
-                <label for="lblSubcaste" class="pop_label_left">Subcaste</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstSubcaste"></select>
-                </div>
-
-            </li>
-            <li class="clearfix">
-                <label for="lblMaritalstatus" class="pop_label_left">Marital status<span style="color: red; margin-left: 3px;">*</span></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstMaritalstatus"></select>
-                </div>
-
-            </li>
+                </li>
 
 
 
-            <li class="clearfix">
-                <label for="lblEducationcategory" class="pop_label_left">Education category</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstEducationcategory"></select>
-                </div>
+                <li class="clearfix form-group">
+                    <label for="lblEducationcategory" class="pop_label_left">Education category</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstEducationcategory" typeofdata=educationcategory ng-change="changeBind('EducationCatgory',partnerObj.lstEducationcategory);"></select>
+                    </div>
 
 
-            </li>
-            <li class="clearfix">
-                <label for="lblEducationgroup" class="pop_label_left">Education group</label>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblEducationgroup" class="pop_label_left">Education group</label>
 
-                <div class="pop_controls_right select-box-my select-box-my-double">
+                    <div class="pop_controls_right select-box-my">
 
-                    <select multiselectdropdown class="multiple" ng-model="lstEducationgroup"></select>
-                </div>
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstEducationgroup" ng-options="item.value as item.label for item in eduGroupArr"></select>
+                    </div>
 
-            </li>
-            <li class="clearfix">
-                <label for="lblEmployedin" class="pop_label_left">Employed in</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstEmployedin"></select>
-                </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblEmployedin" class="pop_label_left">Employed in</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstEmployedin" typeofdata="ProfCatgory"></select>
+                    </div>
 
-            </li>
-            <li class="clearfix">
-                <label for="lblProfessiongroup" class="pop_label_left">Profession group </label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstProfessiongroup"></select>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblProfessiongroup" class="pop_label_left">Profession group </label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstProfessiongroup" typeofdata="ProfGroup"></select>
 
-                </div>
+                    </div>
 
-            </li>
+                </li>
 
-            <li class="clearfix">
-                <label for="lblPreferredcountry" class="pop_label_left">Preferred country 	</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstPreferredcountry"></select>
+                <li class="clearfix form-group">
+                    <label for="lblPreferredcountry" class="pop_label_left">Preferred country 	</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstPreferredcountry" typeofdata=Country ng-change="changeBind('Country',partnerObj.lstPreferredcountry);"></select>
+                    </div>
 
-                </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblPreferredstate" class="pop_label_left">Preferred state</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstPreferredstate" ng-options="item.value as item.label for item in stateArr"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group" id="divRegioncontrol">
+                    <label for="lblRegion" class="pop_label_left">Region</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstRegion" typeofdata="region" ng-change="changeBind('region',partnerObj.lstRegion);"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblBranch" class="pop_label_left">Branch</label>
+                    <div class="pop_controls_right select-box-my">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstBranch" ng-options="item.value as item.label for item in branchArr"></select>
 
-            </li>
-            <li class="clearfix">
-                <label for="lblPreferredstate" class="pop_label_left">Preferred state</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstPreferredstate"></select>
-                </div>
-            </li>
-            <li class="clearfix" id="divRegioncontrol">
-                <label for="lblRegion" class="pop_label_left">Region</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstRegion" typeofdata="region"></select>
-                </div>
-            </li>
-            <li class="clearfix" id="divBranchcontrol">
-                <label for="lblBranch" class="pop_label_left">Branch</label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstBranch"></select>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblDiet" class="pop_label_left">Diet</label>
+                    <div class="pop_controls_right pop_radios_list clearfix">
+                        <label>
+                <input ng-model="partnerObj.rbtDiet" value="27" type="radio"><span>&nbsp;Veg</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtDiet" value="28" type="radio"><span>&nbsp;Non Veg</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtDiet" value="29" type="radio"><span>&nbsp;Both</span></label>
+                    </div>
+                </li>
 
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="lblDiet" class="pop_label_left">Diet</label>
-                <div class="pop_controls_right pop_radios_list clearfix">
-                    <label>
-                <input ng-model="rbtDiet" value="27" type="radio"><span>&nbsp;Veg</span></label>
-                    <label>
-                <input ng-model="rbtDiet" value="28" type="radio"><span>&nbsp;Non Veg</span></label>
-                    <label>
-                <input ng-model="rbtDiet" value="29" type="radio"><span>&nbsp;Both</span></label>
-                </div>
-            </li>
-
-            <li class="clearfix">
-                <label for="lblManglik" class="pop_label_left">Manglik/Kuja dosham</label>
-                <div class="pop_controls_right pop_radios_list clearfix">
-                    <label>
-                <input ng-model="rbtManglikKujadosham" value="0" type="radio"><span>&nbsp;Yes</span></label>
-                    <label>
-                <input ng-model="rbtManglikKujadosham" value="1" type="radio"><span>&nbsp;No</span></label>
-                    <label>
-                <input ng-model="rbtManglikKujadosham" value="2" type="radio"><span>&nbsp;Does Not Matter</span></label>
-                </div>
-
-
-            </li>
-            <li class="clearfix">
-                <label for="lblPreferredstar" class="pop_label_left">Preferred star Language</label>
-                <div class="pop_controls_right pop_radios_list clearfix">
-                    <label>
-                <input ng-model="rbtPreferredstarLanguage" value="1" type="radio"><span>&nbsp;Telugu</span></label>
-                    <label>
-                <input ng-model="rbtPreferredstarLanguage" value="2" type="radio"><span>&nbsp;Tamil</span></label>
-                    <label>
-                <input ng-model="rbtPreferredstarLanguage" value="3" type="radio"><span>&nbsp;Kannada</span></label>
-
-                </div>
-
-            </li>
-            <li class="clearfix">
-
-                <label for="" class="pop_label_left">Star Preference</label>
-
-                <div class="pop_controls_right pop_radios_list clearfix">
-                    <label>
-                <input ng-model="rbtPreferredstars" value="0" type="radio" aria-selected><span>&nbsp;Preferredstars</span></label>
-                    <label>
-                <input ng-model="rbtPreferredstars" value="1" type="radio"><span>&nbsp;NonPreferredstars</span></label>
-                </div>
-            </li>
-            <li class="clearfix">
-                <label for="" class="pop_label_left"></label>
-                <div class="pop_controls_right select-box-my select-box-my-double">
-                    <select multiselectdropdown class="multiple" ng-model="lstpreferedstars"></select>
-                </div>
-            </li>
-
-        </ul>
+                <li class="clearfix form-group">
+                    <label for="lblManglik" class="pop_label_left">Manglik/Kuja dosham</label>
+                    <div class="pop_controls_right pop_radios_list clearfix">
+                        <label>
+                <input ng-model="partnerObj.rbtManglikKujadosham" value="0" type="radio"><span>&nbsp;Yes</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtManglikKujadosham" value="1" type="radio"><span>&nbsp;No</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtManglikKujadosham" value="2" type="radio"><span>&nbsp;Does Not Matter</span></label>
+                    </div>
 
 
-    </div>
-    <div class="modal-footer">
-        <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
-        <input value="Submit" id="btnEduSubmit" class="button_custom" type="button">
-    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="lblPreferredstar" class="pop_label_left">Preferred star Language</label>
+                    <div class="pop_controls_right pop_radios_list clearfix">
+                        <label>
+                <input ng-model="partnerObj.rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" value="1" type="radio"><span>&nbsp;Telugu</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" value="2" type="radio"><span>&nbsp;Tamil</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" value="3" type="radio"><span>&nbsp;Kannada</span></label>
+
+                    </div>
+
+                </li>
+                <li class="clearfix form-group">
+
+                    <label for="" class="pop_label_left">Star Preference</label>
+
+                    <div class="pop_controls_right pop_radios_list clearfix">
+                        <label>
+                <input ng-model="partnerObj.rbtPreferredstars" value="0" type="radio" aria-selected><span>&nbsp;Preferredstars</span></label>
+                        <label>
+                <input ng-model="partnerObj.rbtPreferredstars" value="1" type="radio"><span>&nbsp;NonPreferredstars</span></label>
+                    </div>
+                </li>
+                <li class="clearfix form-group">
+                    <label for="" class="pop_label_left"></label>
+                    <div class="pop_controls_right select-box-my select-box-my-double">
+                        <select multiselectdropdown multiple ng-model="partnerObj.lstpreferedstars" ng-options="item.value as item.label for item in starArr"></select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Submit" class="button_custom" type="submit">
+        </div>
+    </form>
+</script>
+
+
+<script type="text/ng-template" id="partnerDescContent.html">
+    <form name="aboutForm" novalidate role="form" ng-submit="partnerDescriptionSubmit(partnerDescObj)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Partner Description </h3>
+        </div>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
+            <ul>
+                <li class="clearfix form-group">
+                    <textarea ng-model="partnerDescObj.txtpartnerdescription" style="width: 500px; height: 150px;" class="col-lg-10" maxlength="1000" required ng-class="aboutForm.$invalid==true && aboutForm.gg?'form-control danger':''" />
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Submit" class="button_custom" type="submit">
+        </div>
+    </form>
 </script>

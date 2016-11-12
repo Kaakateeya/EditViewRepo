@@ -1,14 +1,29 @@
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
+    var modalpopupopen;
+
     return {
         open: function(url, scope, uibModal) {
-            uibModal.open({
+            modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
                 scope: scope
             });
         },
-
+        closepopup: function() {
+            modalpopupopen.close();
+        },
+        listSelectedVal: function(val) {
+            var str = null;
+            if (val != null) {
+                if (angular.isString(val)) {
+                    str = val === '' ? null : val;
+                } else {
+                    str = val.join(',');
+                }
+            }
+            return str;
+        },
         StateBind: function(parentval) {
             var stateArr = [];
             stateArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
@@ -72,8 +87,84 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
                 });
             });
             return educationSpecialArr;
-        }
+        },
 
+        numbersBind: function(str, from, to) {
+            var numArr = [];
+            debugger;
+            numArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            for (var i = from; i <= to; i++) {
+                numArr.push({ "label": i + " " + str, "title": i + " " + str, "value": i });
+            }
+            return numArr;
+        },
+        numberBindWithZeros: function(str, from, to) {
+            var numArr = [];
+            var y;
+            numArr.push({ "label": str, "title": str, "value": 0 });
+            for (var x = from; x <= to; x++) {
+                if (x < 10)
+                    y = ("0" + x);
+                else
+                    y = x;
+                numArr.push({ "label": y, "title": y, "value": parseInt(y) });
+            }
+            return numArr;
+        },
+        starBind: function(parentval) {
+            var starArr = [];
+            starArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            SelectBindService.stars(parentval).then(function(response) {
+                _.each(response.data, function(item) {
+                    starArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return starArr;
+        },
+        casteDepedency: function(parentval1, parentval2) {
+            var casteArr = [];
+            casteArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            SelectBindService.castedependency(parentval1, parentval2).then(function(response) {
+                _.each(response.data, function(item) {
+                    casteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return casteArr;
+        },
+        subCaste: function(parentval1) {
+            var subcasteArr = [];
+            subcasteArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            SelectBindService.subCasteBind(parentval1).then(function(response) {
+                _.each(response.data, function(item) {
+                    subcasteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return subcasteArr;
+        },
+        branch: function(parentval1) {
+            var branchArr = [];
+            branchArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            SelectBindService.branch(parentval1).then(function(response) {
+                _.each(response.data, function(item) {
+                    branchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return branchArr;
+        },
+        showConfirm: function(ev, mdDialog, header, okTxt, cancelTxt) {
+            debugger;
+            var status = false;
+            var confirm = mdDialog.confirm()
+                .title(header)
+                //.textContent('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Lucky day')
+                //.targetEvent(ev)
+                .cancel(cancelTxt)
+                .ok(okTxt);
+
+            return confirm;
+
+        }
     }
 
 }]);

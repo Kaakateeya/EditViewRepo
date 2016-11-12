@@ -1,4 +1,4 @@
-editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectBindService', 'commonFactory', function(uibModal, scope, editviewServices, SelectBindService, commonFactory) {
+editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter) {
 
     scope.stateArr = [];
     scope.districtArr = [];
@@ -11,34 +11,31 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
     scope.educationcategory = 'educationcategory';
     scope.ProfCatgory = 'ProfCatgory';
     scope.ProfGroup = 'ProfGroup';
+    scope.currency = 'currency';
     scope.ProfstateArr = [];
     scope.ProfdistrictArr = [];
     scope.ProfcityeArr = [];
     scope.profObj = {};
     scope.edoObj = {};
-
-    scope.open = function(url) {
-        scope.modalInstance = uibModal.open({
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: url,
-            scope: scope
-        });
-    };
+    scope.aboutObj = {};
+    var custID = '91035';
 
     scope.cancel = function() {
-        scope.modalInstance.close();
+        commonFactory.closepopup();
     };
 
     scope.showpopup = function(type, item) {
+        debugger;
         switch (type) {
             case 'showEduModal':
+                // scope.edoObj.EducationID = null;
+                // scope.edoObj = {};
                 if (item != undefined) {
                     scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
                     scope.stateArr = commonFactory.StateBind(item.CountryID);
                     scope.districtArr = commonFactory.districtBind(item.StateID);
-                    scope.citySelect = commonFactory.cityBind(item.DistrictID);
+                    scope.cityeArr = commonFactory.cityBind(item.DistrictID);
 
                     scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                     scope.edoObj.ddlEduCatgory = item.EducationCategoryID;
@@ -57,11 +54,13 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
                     scope.edoObj.EducationID = item.EducationID;
                 }
 
-                scope.open('EduModalContent.html');
+
+                commonFactory.open('EduModalContent.html', scope, uibModal);
                 break;
 
             case 'showProfModal':
-
+                scope.profObj.Cust_Profession_ID = null;
+                scope.profObj = {};
                 if (item != undefined) {
                     scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
                     scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
@@ -78,21 +77,25 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
                     scope.profObj.ddlStateProf = item.StateID;
                     scope.profObj.ddlDistrictProf = item.DistrictID;
                     scope.profObj.ddlcityworkingprofession = item.CityID;
-                    scope.profObj.txtcityprofession = '';
-                    scope.profObj.txtworkingfrom = item.WorkingFromDate;
+                    scope.profObj.txtcityprofession = item.CityWorkingIn;
+                    scope.profObj.txtworkingfrom = moment(item.WorkingFromDate, 'DD-MM-YYYY').format() // item.WorkingFromDate;
                     scope.profObj.ddlvisastatus = item.VisaTypeID;
-                    scope.profObj.txtssincedate = item.ResidingSince;
-                    scope.profObj.txtarrivaldate = item.ArrivingDate;
-                    scope.profObj.txtdeparture = item.DepartureDate;
+                    scope.profObj.txtssincedate = moment(item.ResidingSince, 'DD-MM-YYYY').format();
+                    scope.profObj.txtarrivaldate = moment(item.ArrivingDate, 'DD-MM-YYYY').format();
+                    scope.profObj.txtdeparture = moment(item.DepartureDate, 'DD-MM-YYYY').format();
                     scope.profObj.txtoccupation = item.OccupationDetails;
                     scope.profObj.Cust_Profession_ID = item.Cust_Profession_ID;
-
                 }
-                scope.open('profModalContent.html');
+
+                commonFactory.open('profModalContent.html', scope, uibModal);
                 break;
 
             case 'showAboutModal':
-                scope.open('AboutModalContent.html');
+
+                if (item != undefined) {
+                    scope.aboutObj.txtAboutUS = item;
+                }
+                commonFactory.open('AboutModalContent.html', scope, uibModal);
                 break;
         }
 
@@ -105,28 +108,34 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
         editviewServices.getEducationData(obj).then(function(response) {
 
             scope.educationSelectArray = response.data;
-            console.log(response.data[0]);
+
         });
         editviewServices.getProfessionData(obj).then(function(response) {
             scope.ProfessionSelectArray = response.data;
+
+        });
+        scope.lblaboutUrself = null;
+        editviewServices.getAboutData(obj.ICustID).then(function(response) {
+            scope.lblaboutUrself = response.data;
+            console.log(response);
         });
     }
-
+    scope.getdata();
 
     scope.ProfchangeBind = function(type, parentval) {
 
         switch (type) {
-            case 'Country':
-                scope.ProfstateArr = commonFactory.StateBind(parentval);
-                break;
+            // case 'Country':
+            //     scope.ProfstateArr = commonFactory.StateBind(parentval);
+            //     break;
 
-            case 'State':
-                scope.ProfdistrictArr = commonFactory.districtBind(parentval);
-                break;
+            // case 'State':
+            //     scope.ProfdistrictArr = commonFactory.districtBind(parentval);
+            //     break;
 
-            case 'District':
-                scope.ProfcityeArr = commonFactory.cityBind(parentval);
-                break;
+            // case 'District':
+            //     scope.ProfcityeArr = commonFactory.cityBind(parentval);
+            //     break;
 
             case 'ProfessionGroup':
                 scope.ProfSpecialisationArr = commonFactory.professionBind(parentval);
@@ -136,23 +145,20 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
         }
     }
 
-
-
-
     scope.changeBind = function(type, parentval) {
         switch (type) {
-            case 'Country':
-                scope.stateArr = commonFactory.StateBind(parentval);
-                break;
+            // case 'Country':
+            //     scope.stateArr = commonFactory.StateBind(parentval);
+            //     break;
 
-            case 'State':
-                scope.districtArr = commonFactory.districtBind(parentval);
-                break;
+            // case 'State':
+            //     scope.districtArr = commonFactory.districtBind(parentval);
+            //     break;
 
-            case 'District':
+            // case 'District':
 
-                scope.citySelect = commonFactory.cityBind(parentval);
-                break;
+            //     scope.cityeArr = commonFactory.cityBind(parentval);
+            //     break;
 
             case 'EducationCatgory':
 
@@ -171,19 +177,17 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
         var yr = 1;
         scope.passOfyearArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
         for (var i = maxyr; i >= no_year; i--) {
-            scope.passOfyearArr.push({ "label": i, "title": i, "value": yr });
+            scope.passOfyearArr.push({ "label": i, "title": i, "value": i });
             yr += 1;
         }
     }
     scope.passOfYear(2020, 1975);
 
-    scope.ShowCity = function() {
-        scope.cityinput = true;
 
-    }
 
     scope.eduSubmit = function(objitem) {
-        var passOfyearText = (_.where(scope.passOfyearArr, { value: parseInt(objitem.ddlpassOfyear) }))[0].title;
+        alert(objitem.ddlpassOfyear);
+        //var passOfyearText = (_.where(scope.passOfyearArr, { value: parseInt(objitem.ddlpassOfyear) }))[0].title;
 
         scope.myData = {
             customerEducation: {
@@ -194,7 +198,7 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
                 EducationSpecialization: objitem.ddlEduspecialization,
                 University: objitem.txtuniversity,
                 College: objitem.txtcollege,
-                Passofyear: passOfyearText,
+                Passofyear: objitem.ddlpassOfyear,
                 Countrystudyin: objitem.ddlCountry,
                 Statestudyin: objitem.ddlState,
                 Districtstudyin: objitem.ddlDistrict,
@@ -215,10 +219,17 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
 
         editviewServices.submitEducationData(scope.myData).then(function(response) {
             console.log(response);
+            commonFactory.closepopup();
+            if (response.data === 1) {
+                alert('submitted Succesfully');
+            } else {
+                alert('Updation failed');
+            }
         });
 
-        scope.modalInstance.close();
+
     };
+
 
 
     scope.ProfSubmit = function(objitem) {
@@ -237,13 +248,13 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
                 StateID: objitem.ddlStateProf,
                 DistrictID: objitem.ddlDistrictProf,
                 CityID: objitem.ddlcityworkingprofession,
-                OtherCity: null,
-                Workingfromdate: objitem.txtworkingfrom,
+                OtherCity: objitem.txtcityprofession,
+                Workingfromdate: filter('date')(objitem.txtworkingfrom, 'yyyy-MM-dd'),
                 OccupationDetails: objitem.txtoccupation,
                 visastatus: objitem.ddlvisastatus,
-                Sincedate: objitem.txtssincedate,
-                ArrivalDate: objitem.txtarrivaldate,
-                DepartureDate: objitem.txtdeparture,
+                Sincedate: filter('date')(objitem.txtssincedate, 'yyyy-MM-dd'),
+                ArrivalDate: filter('date')(objitem.txtarrivaldate, 'yyyy-MM-dd'),
+                DepartureDate: filter('date')(objitem.txtdeparture, 'yyyy-MM-dd'),
                 profGridID: scope.profObj.Cust_Profession_ID,
                 ProfessionID: scope.profObj.Cust_Profession_ID,
             },
@@ -253,17 +264,32 @@ editviewapp.controller('eduAndProfCtrl', ['$scope', 'editviewServices', 'SelectB
                 Admin: null
             }
         }
-
-
+        console.log(JSON.stringify(scope.myprofData));
+        debugger;
         editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
             console.log(response);
+            commonFactory.closepopup();
+            if (response.data === 1) {
+                alert('submitted Succesfully');
+            } else {
+                alert('Updation failed');
+            }
         });
 
-        scope.modalInstance.close();
     };
 
+    scope.AboutUrselfSubmit = function(obj) {
 
-
+        editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
+            console.log(response);
+            commonFactory.closepopup();
+            if (response.data === '1') {
+                alert('submitted Succesfully');
+            } else {
+                alert('Updation failed');
+            }
+        });
+    }
 
 
 }]);

@@ -18,6 +18,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
             }
 
             switch (scope.typeofdata) {
+
                 case 'MaritalStatus':
                     scope.databind(cons.MaritalStatus);
                     break;
@@ -49,9 +50,43 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'region':
                     scope.databind(cons.region);
                     break;
+
+                case 'bodyType':
+                    scope.databind(cons.bodyType);
+                    break;
+
+                case 'bloodGroup':
+                    scope.databind(cons.bloodGroup);
+                    break;
+
+                case 'healthCondition':
+                    scope.databind(cons.healthCondition);
+                    break;
+
                 case 'starLanguage':
                     scope.databind(cons.starLanguage);
                     break;
+
+                case 'lagnam':
+                    scope.databind(cons.lagnam);
+                    break;
+
+                case 'ZodaicSign':
+                    scope.databind(cons.ZodaicSign);
+                    break;
+
+                case 'paadam':
+                    scope.databind(cons.paadam);
+                    break;
+
+                case 'familyStatus':
+                    scope.databind(cons.familyStatus);
+                    break;
+
+                case 'RelationshipType':
+                    scope.databind(cons.RelationshipType);
+                    break;
+
                 case 'Country':
                     service.countrySelect().then(function(response) {
                         var option = [];
@@ -65,7 +100,6 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
 
                 case 'ProfCatgory':
 
-
                     service.ProfessionCatgory().then(function(response) {
                         var option = [];
                         option.push({ "label": "--select--", "title": "--select--", "value": 0 });
@@ -77,9 +111,48 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                     break;
 
                 case 'ProfGroup':
-
-
                     service.ProfessionGroup().then(function(response) {
+                        var option = [];
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                        scope.databind(option);
+                    });
+                    break;
+
+                case 'indiaStates':
+                    service.stateSelect('1').then(function(response) {
+                        var option = [];
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                        scope.databind(option);
+                    });
+                    break;
+                case 'countryCode':
+                    service.countryCodeselect().then(function(response) {
+                        var option = [];
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                        scope.databind(option);
+                    });
+                    break;
+                case 'caste':
+                    service.casteselect().then(function(response) {
+                        var option = [];
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                        scope.databind(option);
+                    });
+                    break;
+                case 'currency':
+                    service.currency().then(function(response) {
                         var option = [];
                         option.push({ "label": "--select--", "title": "--select--", "value": 0 });
                         _.each(response.data, function(item) {
@@ -113,7 +186,6 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 return element[0].length;
             }, function() {
                 scope.$applyAsync(element.multiselect('rebuild'));
-                element.multiselect('select', scope.ngModel);
             });
 
             // Watch for any changes from outside the directive and refresh
