@@ -10,7 +10,7 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
             othercity: '=',
             strothercity: '='
         },
-        templateUrl: 'src/views/countryTemplate.html',
+        templateUrl: 'app/views/countryTemplate.html',
         link: function(scope, element, attr) {
 
             console.log(scope.strothercity);

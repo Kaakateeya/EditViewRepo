@@ -15,21 +15,15 @@ editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 
 editviewapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    // Home
-    //.when("/", { templateUrl: "src/views/educationAndProfession.html",controller:'ModalControlleraa' })
-
-    // Pages
-        .when("/", { templateUrl: "src/popupDemo/modelDemo.html", controller: "ModalControlleraa" })
-
-    .when("/editEducationAndProfession", { templateUrl: "src/views/educationAndProfession.html", controller: "eduAndProfCtrl" })
-        .when("/editManagePhoto", { templateUrl: "src/views/editManagePhoto.html", controller: "managePhotoCtrl" })
-        .when("/editparent", { templateUrl: "src/views/editParentDetails.html", controller: "parentCtrl" })
-        .when("/editPartnerPreferences", { templateUrl: "src/views/editPartnerPreferences.html", controller: "partnerPreferenceCtrl" })
-        .when("/editSiblingDetails", { templateUrl: "src/views/editSibblingDetails.html", controller: "sibblingCtrl" })
-        .when("/editAstro", { templateUrl: "src/views/editAstroDetails.html", controller: "astroCtrl" })
-        .when("/editProperty", { templateUrl: "src/views/editPropertyDetails.html", controller: "propertyCtrl" })
-        .when("/editRelative", { templateUrl: "src/views/editRelativeDetails.html", controller: "relativeCtrl" })
-        .when("/editReferences", { templateUrl: "src/views/editReferenceDetails.html", controller: "referenceCtrl" })
+        .when("/editEducationAndProfession", { templateUrl: "app/views/educationAndProfession.html", controller: "eduAndProfCtrl" })
+        .when("/editManagePhoto", { templateUrl: "app/views/editManagePhoto.html", controller: "managePhotoCtrl" })
+        .when("/editparent", { templateUrl: "app/views/editParentDetails.html", controller: "parentCtrl" })
+        .when("/editPartnerPreferences", { templateUrl: "app/views/editPartnerPreferences.html", controller: "partnerPreferenceCtrl" })
+        .when("/editSiblingDetails", { templateUrl: "app/views/editSibblingDetails.html", controller: "sibblingCtrl" })
+        .when("/editAstro", { templateUrl: "app/views/editAstroDetails.html", controller: "astroCtrl" })
+        .when("/editProperty", { templateUrl: "app/views/editPropertyDetails.html", controller: "propertyCtrl" })
+        .when("/editRelative", { templateUrl: "app/views/editRelativeDetails.html", controller: "relativeCtrl" })
+        .when("/editReferences", { templateUrl: "app/views/editReferenceDetails.html", controller: "referenceCtrl" })
 
     // Blog
     .when("/blog", { templateUrl: "partials/blog.html", controller: "BlogCtrl" })

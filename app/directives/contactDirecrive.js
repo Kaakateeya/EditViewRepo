@@ -11,7 +11,7 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             strmail: '=',
             emailhide: '='
         },
-        templateUrl: 'src/views/contacttemplate.html',
+        templateUrl: 'app/views/contacttemplate.html',
         link: function(scope, element, attr) {
 
             scope.amob = (scope.stralternative != null && scope.stralternative != '' && scope.stralternative != undefined) ? true : false;
