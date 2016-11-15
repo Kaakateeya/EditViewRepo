@@ -14,7 +14,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
     scope.partnerDescObj = {};
 
-    var custID = '91035';
+    var custID = '104613';
 
     // scope.listSelectedVal = function(val) {
     //     var str = null;
@@ -29,7 +29,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
     // }
 
 
-    partnerPreferenceServices.getPartnerPreferenceData().then(function(response) {
+    partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
         scope.partnerPrefArr = response.data;
         console.log(scope.partnerPrefArr);
     });

@@ -3,7 +3,7 @@
         <div class="edit_page_item_head clearfix">
             <h4>Astro Details </h4>
             <div class="edit_page_item_ui clearfix">
-                <div id="UpdatePanelfullastro" cssclass="edit_page_add_button">
+                <div ng-if="AstroArr.length==0" cssclass="edit_page_add_button">
                     <a ng-click="populateAstro();" class="edit_page_add_button" href="javascript:void(0);">Add</a>
                 </div>
             </div>
@@ -65,16 +65,10 @@
                             <span id="lblmanglikkujadosham">{{ item.manglikkujadosham }}</span></h5>
                     </div>
                 </div>
-                <div class="edit_page_item_ui clearfix">
-
-                    <a ng-click="populateAstro(item);" id="LinkButton2" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
-
+                <div class="edit_page_item_ui clearfix" ng-if="AstroArr.length>0">
+                    <a ng-click="populateAstro(item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                 </div>
-
                 <br>
-
-
-
             </div>
         </div>
 
@@ -111,41 +105,7 @@
                     </div>
                 </li>
 
-
-
-
-                <!--<li class="clearfix form-group">
-                    <label for="lblCounrtyofbirth" class="pop_label_left">Country of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="atroObj.ddlCountryOfBirthID" ng-change="changeBind('Country',atroObj.ddlCountryOfBirthID);" typeofdata="Country"></select>
-                    </div>
-                </li>
-                <li class="clearfix form-group">
-                    <label for="lblstateofbirth" class="pop_label_left">State of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right select-box-my">
-
-                        <select multiselectdropdown ng-model="atroObj.ddlStateOfBirthID" ng-options="item.value as item.label for item in stateArr" ng-change="changeBind('State',atroObj.ddlStateOfBirthID);"></select>
-                    </div>
-                </li>
-
-                <li class="clearfix form-group">
-                    <div id="divdistrict">
-                        <label for="lbldistrictofbirth" class="pop_label_left">District of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                        <div class="pop_controls_right select-box-my">
-
-                            <select multiselectdropdown ng-model="atroObj.ddlDistrictOfBirthID" ng-options="item.value as item.label for item in districtArr" ng-change="changeBind('District',atroObj.ddlDistrictOfBirthID);"></select>
-
-                        </div>
-                    </div>
-                </li>
-                <li class="clearfix form-group">
-                    <label for="lblcityofbirth" class="pop_label_left">City of birth<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="atroObj.ddlcity" ng-options="item.value as item.label for item in cityeArr"></select>
-                    </div>
-                </li>-->
-
-                <country-directive countryshow="true" cityshow="true" othercity="false" dcountry="atroObj.ddlCountryOfBirthID" dstate="atroObj.ddlStateOfBirthID" ddistrict="atroObj.ddlDistrictOfBirthID" dcity="atroObj.ddlcity"></country-directive>
+                <country-directive require="true" countryshow="true" cityshow="true" othercity="false" dcountry="atroObj.ddlCountryOfBirthID" dstate="atroObj.ddlStateOfBirthID" ddistrict="atroObj.ddlDistrictOfBirthID" dcity="atroObj.ddlcity"></country-directive>
 
                 <li class="clearfix form-group">
                     <label for="lblstarlan" class="pop_label_left">Star language</label>

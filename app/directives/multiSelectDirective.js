@@ -90,7 +90,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'Country':
                     service.countrySelect().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -102,7 +102,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
 
                     service.ProfessionCatgory().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -113,7 +113,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'ProfGroup':
                     service.ProfessionGroup().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -124,7 +124,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'indiaStates':
                     service.stateSelect('1').then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -134,7 +134,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'countryCode':
                     service.countryCodeselect().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -144,7 +144,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'caste':
                     service.casteselect().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
@@ -154,7 +154,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
                 case 'currency':
                     service.currency().then(function(response) {
                         var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
                         _.each(response.data, function(item) {
                             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });

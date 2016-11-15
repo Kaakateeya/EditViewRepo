@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     // Target-specific file lists and/or options go here. 
-                    'index.html': [plugins, 'index.js', 'dist/js/*.js']
+                    'index.html': ['dist/js/*.js']
                 },
             },
         },
@@ -110,25 +110,37 @@ module.exports = function(grunt) {
                 // separator: ';'
             },
             js: { //target
-                src: ['app/**/*.js'],
+                src: ['index.js', 'app/**/*.js', 'dist/html/templates.js'],
                 dest: 'dist/src/main.js'
             },
             css: {
                 src: css,
                 dest: 'dist/src/main.css'
             }
+        },
+        ngtemplates: {
+            myapp: {
+                options: {
+                    base: "web",
+                    module: "KaakateeyaEdit",
+                    prefix: 'editview/',
+                },
+                src: ['app/**/*.html', 'masterView/*.html'],
+                dest: "dist/html/templates.js"
+            }
         }
 
 
 
+
     });
-    grunt.registerTask('default', ['jshint', 'cssmin', 'concat', 'scriptlinker:dev']);
+    grunt.registerTask('default', ['jshint', 'concat', 'cssmin', 'scriptlinker:dev']);
 
     // this task will only run the dev configuration 
-    grunt.registerTask('dev', ['jshint', 'cssmin', 'concat', 'scriptlinker:dev']);
+    grunt.registerTask('dev', ['cssmin', 'scriptlinker:dev']);
 
     // only run production configuration 
-    grunt.registerTask('prod', ['jshint', 'concat', 'uglify', 'cssmin', 'scriptlinker:prod']);
+    grunt.registerTask('prod', ['ngtemplates', 'concat', 'cssmin', 'uglify', 'scriptlinker:prod']);
 
     // ===========================================================================
     // LOAD GRUNT PLUGINS ========================================================
@@ -143,5 +155,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-dev-prod-switch');
     grunt.loadNpmTasks('grunt-scriptlinker');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-angular-templates');
 
 };

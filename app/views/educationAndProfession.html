@@ -2,7 +2,7 @@
 
     <div class="edit_page_item" id="divEducation">
         <div class="edit_page_item_head clearfix">
-            <h4>Education Details</h4>
+            <h4>Education Details </h4>
             <div class="edit_page_item_ui clearfix">
                 <a class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showEduModal');">Add</a>
             </div>
@@ -76,8 +76,8 @@
             <h4>Professional Details
             </h4>
             <div class="edit_page_item_ui clearfix">
-                <div id="updapanellnkAddProfession">
-                    <a id="ProfesionAdd" class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showProfModal')">Add</a>
+                <div ng-if="ProfessionSelectArray.length==0">
+                    <a class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showProfModal')">Add</a>
                 </div>
             </div>
         </div>
@@ -91,8 +91,7 @@
                         <h5>
                             <span id="txtProfession">{{item.Professional+" "+(item.CompanyName !=null && item.CompanyName !=""?"in"+" "+item.CompanyName:item.CompanyName)}}</span></h5>
                     </div>
-                    <div class="edit_page_item_ui clearfix">
-                        <!--<a id="" class="edit_page_edit_button" ng-click="showProfModal = true" href="javascript:void(0);">Edit</a>-->
+                    <div class="edit_page_item_ui clearfix" ng-if="ProfessionSelectArray.length>0">
 
                         <a id="Linkedit" class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showProfModal',item)">Edit</a>
                     </div>
@@ -170,9 +169,8 @@
         <div class="edit_page_item_head clearfix">
             <h4>Mention your goals, interests and hobbies etc</h4>
             <div class="edit_page_item_ui clearfix">
-                <div id="upAboutAdd">
-                    <a id="lnkAddAboutURSelf" class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal')">Add</a>
-
+                <div id="upAboutAdd" ng-if="lblaboutUrself===''">
+                    <a class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal')">Add</a>
                 </div>
             </div>
         </div>
@@ -185,8 +183,8 @@
                             <span id="lblabouturself">{{lblaboutUrself}}</span>
                         </h5>
                     </div>
-                    <div id="uplnkAboutURSelf" class="edit_page_item_ui clearfix">
-                        <a id="lnkAboutURSelf" class="edit_page_edit_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal',lblaboutUrself)">Edit</a>
+                    <div ng-if="lblaboutUrself!=''" class="edit_page_item_ui clearfix">
+                        <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal',lblaboutUrself)">Edit</a>
                     </div>
 
                 </div>
@@ -196,97 +194,84 @@
 
     <div id="edupopupdiv">
         <script type="text/ng-template" id="EduModalContent.html">
-            <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Education Details </h3>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <ul id="uleducation" class='modal-body clearfix pop_content_my'>
-                    <li class="clearfix form-group">
-                        <label for="lblIsHighestDegree" class="pop_label_left">Is Highest Degree<span style="color: red; margin-left: 3px;">*</span></label>
+            <form name="eduForm" novalidate role="form" ng-submit="eduSubmit(edoObj);">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center" id="modal-title">Education Details </h3>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <ul id="uleducation" class='modal-body clearfix pop_content_my'>
+                        <li class="clearfix form-group">
+                            <label for="lblIsHighestDegree" class="pop_label_left">Is Highest Degree<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="radio-group-my input-group">
+                                <label><input ng-model="edoObj.IsHighestDegree" value="1" type="radio"><span>&nbsp;Yes</span> </label>
+                                <label class=""><input ng-model="edoObj.IsHighestDegree" value="0" type="radio"><span>&nbsp;No</span></label>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lbleducationGroup" class="pop_label_left">Education category<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="edoObj.ddlEduCatgory" typeofdata="educationcategory" ng-change="changeBind('EducationCatgory',edoObj.ddlEduCatgory);" required></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lbleducationGroup" class="pop_label_left">Education group<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="pop_controls_right select-box-my input-group">
 
-                        <div class="radio-group-my">
-                            <label>
-                    <input ng-model="edoObj.IsHighestDegree" value="1" type="radio"><span>&nbsp;Yes</span>
-                </label>
-                            <label class="">
-                    <input ng-model="edoObj.IsHighestDegree" value="0" type="radio"><span>&nbsp;No</span>
-                </label>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <label for="lbleducationGroup" class="pop_label_left">Education category<span style="color: red; margin-left: 3px;">*</span></label>
-                        <div class="pop_controls_right select-box-my">
+                                <select multiselectdropdown ng-model="edoObj.ddlEdugroup" ng-options="item.value as item.label for item in eduGroupArr" ng-change="changeBind('EducationGroup',edoObj.ddlEdugroup);" required></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lbleducationGroup" class="pop_label_left">Edu specialization<span style="color: red; margin-left: 3px;">*</span></label>
 
-                            <select multiselectdropdown ng-model="edoObj.ddlEduCatgory" typeofdata="educationcategory" ng-change="changeBind('EducationCatgory',edoObj.ddlEduCatgory);">    
-</select>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <label for="lbleducationGroup" class="pop_label_left">Education group<span style="color: red; margin-left: 3px;">*</span></label>
-                        <div class="pop_controls_right select-box-my">
-                            <div class="select-box-my">
+                            <div class="pop_controls_right select-box-my input-group">
 
-                                <select multiselectdropdown ng-model="edoObj.ddlEdugroup" ng-options="item.value as item.label for item in eduGroupArr" ng-change="changeBind('EducationGroup',edoObj.ddlEdugroup);">    
-                      </select>
+                                <select multiselectdropdown ng-model="edoObj.ddlEduspecialization" typeofdata="" ng-options="item.value as item.label for item in eduSpecialisationArr" required></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group" id="divuniversity">
+                            <label for="lbluniversity" class="pop_label_left">University</label>
+
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="edoObj.txtuniversity" maxlength="100" class="form-control" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblcollege" class="pop_label_left">College</label>
+                            <div class="pop_controls_right">
+                                <input type="text" ng-model="edoObj.txtcollege" maxlength="150" class="form-control" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblPassOfYear" class="pop_label_left">Pass of year</label>
+
+                            <div class="pop_controls_right select-box-my">
+                                <select multiselectdropdown ng-model="edoObj.ddlpassOfyear" ng-options="item1.value as item1.label for item1 in passOfyearArr"></select>
+                            </div>
+                        </li>
+
+                        <country-directive countryshow="true" cityshow="true" othercity="true" dcountry="edoObj.ddlCountry" dstate="edoObj.ddlState" ddistrict="edoObj.ddlDistrict" dcity="edoObj.ddlcity" strothercity="edoObj.txtcity"></country-directive>
+
+                        <li class="clearfix form-group">
+                            <label for="lblEduMerits" class="pop_label_left">Educational merits</label>
+                            <div class="">
+
+                                <textarea ng-model="edoObj.txtEdumerits" maxlength="500" rows="4" cols="20" style="width:515px;" tabindex="12" onkeydown="return CharacterCountedu()" onkeyup="return CharacterCountedu()"></textarea>
 
                             </div>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <label for="lbleducationGroup" class="pop_label_left">Edu specialization<span style="color: red; margin-left: 3px;">*</span></label>
-
-                        <div class="pop_controls_right select-box-my">
-
-                            <div class="select-box-my">
-                                <select multiselectdropdown ng-model="edoObj.ddlEduspecialization" typeofdata="" ng-options="item.value as item.label for item in eduSpecialisationArr">    
-</select>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group" id="divuniversity">
-                        <label for="lbluniversity" class="pop_label_left">University</label>
-
-                        <div class="pop_controls_right">
-                            <input type="text" ng-model="edoObj.txtuniversity" maxlength="100" class="form-control" />
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <label for="lblcollege" class="pop_label_left">College</label>
-                        <div class="pop_controls_right">
-                            <input type="text" ng-model="edoObj.txtcollege" maxlength="150" class="form-control" />
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <label for="lblPassOfYear" class="pop_label_left">Pass of year</label>
-
-                        <div class="pop_controls_right select-box-my">
-                            <select multiselectdropdown ng-model="edoObj.ddlpassOfyear" ng-options="item1.value as item1.label for item1 in passOfyearArr"></select>
-                        </div>
-                    </li>
-
-                    <country-directive countryshow="true" cityshow="true" othercity="true" dcountry="edoObj.ddlCountry" dstate="edoObj.ddlState" ddistrict="edoObj.ddlDistrict" dcity="edoObj.ddlcity" strothercity="edoObj.txtcity"></country-directive>
-
-                    <li class="clearfix form-group">
-                        <label for="lblEduMerits" class="pop_label_left">Educational merits</label>
-                        <div class="">
-
-                            <textarea ng-model="edoObj.txtEdumerits" maxlength="500" rows="4" cols="20" style="width:515px;" tabindex="12" onkeydown="return CharacterCountedu()" onkeyup="return CharacterCountedu()"></textarea>
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <input name="btnEduCancel" value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="submit">
-                <input name="btnEduSubmit" value="Submit" class="button_custom" type="button" ng-click="eduSubmit(edoObj);">
-
-            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+                    <input value="Submit" class="button_custom" type="submit">
+                </div>
+            </form>
         </script>
+
     </div>
     <div id=profpopupdiv>
-
         <script type="text/ng-template" id="profModalContent.html">
-            <form name="eduForm">
+            <form name="profForm" novalidate role="form" ng-submit="ProfSubmit(profObj);">
                 <div class="modal-header">
                     <h3 class="modal-title text-center" id="modal-title">Profession details</h3>
                 </div>
@@ -294,24 +279,21 @@
                     <ul>
                         <li class="clearfix form-group">
                             <label for="lblempin" class="pop_label_left">Employed In<span style="color: red; margin-left: 3px;">*</span></label>
-                            <div class="pop_controls_right select-box-my">
-
-                                <select multiselectdropdown ng-model="profObj.ddlemployedin" typeofdata="ProfCatgory"></select>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="profObj.ddlemployedin" typeofdata="ProfCatgory" required></select>
                             </div>
                         </li>
                         <li class="clearfix form-group">
                             <label for="lblprofessiongroup" class="pop_label_left">Professional group<span style="color: red; margin-left: 3px;">*</span></label>
-                            <div class="pop_controls_right select-box-my">
-
-                                <select multiselectdropdown ng-model="profObj.ddlprofgroup" typeofdata="ProfGroup" ng-change="ProfchangeBind('ProfessionGroup',profObj.ddlprofgroup);"></select>
-
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="profObj.ddlprofgroup" typeofdata="ProfGroup" ng-change="ProfchangeBind('ProfessionGroup',profObj.ddlprofgroup);" required></select>
                             </div>
                         </li>
 
                         <li class="clearfix form-group">
                             <label for="lblprofession" class="pop_label_left">Profession<span style="color: red; margin-left: 3px;">*</span></label>
-                            <div class="pop_controls_right select-box-my">
-                                <select multiselectdropdown ng-model="profObj.ddlprofession" ng-options="item.value as item.label for item in ProfSpecialisationArr"></select>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="profObj.ddlprofession" ng-options="item.value as item.label for item in ProfSpecialisationArr" required></select>
                             </div>
                         </li>
 
@@ -331,45 +313,6 @@
                             </div>
                         </li>
 
-                        <!--<li class="clearfix form-group">
-                            <label for="lblCountryProf" class="pop_label_left">Country</label>
-                            <div class="pop_controls_right select-box-my">
-
-                                <select multiselectdropdown ng-model="profObj.ddlCountryProf" typeofdata="Country" ng-change="ProfchangeBind('Country',profObj.ddlCountryProf);"></select>
-
-                            </div>
-                        </li>
-                        <li class="clearfix form-group">
-                            <label for="StateProf" class="pop_label_left">State</label>
-
-                            <div class="pop_controls_right select-box-my">
-                                <select multiselectdropdown ng-model="profObj.ddlStateProf" ng-options="item.value as item.label for item in ProfstateArr" ng-change="ProfchangeBind('State',profObj.ddlStateProf);"></select>
-                            </div>
-                        </li>
-                        <li class="clearfix form-group">
-                            <div id="divDistricProf">
-                                <label for="lblDistrictProf" class="pop_label_left">District</label>
-                                <div class="pop_controls_right select-box-my">
-
-                                    <select multiselectdropdown ng-model="profObj.ddlDistrictProf" ng-options="item1.value as item1.label for item1 in ProfdistrictArr" ng-change="ProfchangeBind('District',profObj.ddlDistrictProf);"></select>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li class="clearfix form-group">
-                            <label for="lblCityworking" class="pop_label_left">City working in</label>
-                            <div class="pop_controls_right select-box-my">
-                                <div ng-show="!cityinput">
-                                    <select multiselectdropdown ng-model="profObj.ddlcityworkingprofession" ng-options="item1.value as item1.label for item1 in ProfcityeArr"></select>
-                                </div>
-                                <input ng-model="profObj.txtcityprofession" ng-show="cityinput" maxlength="100" />
-                                <a href="javascript:void(0);" ng-click="ShowCity();">Not in List</a>
-                            </div>
-                        </li>-->
-
-
-
-
                         <country-directive countryshow="true" cityshow="true" othercity="true" dcountry="profObj.ddlCountryProf" dstate="profObj.ddlStateProf" ddistrict="profObj.ddlDistrictProf" dcity="profObj.ddlcityworkingprofession" strothercity="profObj.txtcityprofession"></country-directive>
 
 
@@ -380,7 +323,7 @@
                                 <date-picker strdate="profObj.txtworkingfrom"></date-picker>
                             </div>
                         </li>
-                        <div id="divfalseVisa">
+                        <div id="divfalseVisa" ng-if="profObj.ddlCountryProf!=1">
                             <li class="clearfix form-group">
                                 <label for="lblvisastatus" class="pop_label_left">visa status</label>
                                 <div class="pop_controls_right select-box-my">
@@ -427,7 +370,7 @@
                 <div class="modal-footer">
 
                     <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                    <input type="submit" value="Submit" ng-click="ProfSubmit(profObj);" class="button_custom" type="button">
+                    <input type="submit" value="Submit" class="button_custom">
                 </div>
             </form>
         </script>
@@ -443,7 +386,7 @@
                         <li class="clearfix form-group">
                             <label id="lblabout" style="color: #9b2828; font-size: 13px;">
             				(Please don't write phone numbers/emails/any junk characters)*</label>
-                            <textarea ng-model="aboutObj.txtAboutUS" style="width: 500px; height: 150px;" class="col-lg-10" maxlength="1000" required ng-class="aboutForm.$invalid==true && aboutForm.gg?'form-control danger':''" />
+                            <textarea ng-model="aboutObj.txtAboutUS" style="width: 500px; height: 150px;" class="col-lg-10" maxlength="1000" required ng-class="form-control" required />
                             <div>
                             </div>
                             <label id="Label1" style="color: red; font-size: 13px;" class="pull-right">(max 1000 characters)</label>

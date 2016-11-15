@@ -1,12 +1,10 @@
-<div class="header_inner" id="divInnerMaster" >
+<div class="header_inner" id="divInnerMaster">
 
     <div class="container_my clearfix">
 
         <a id="IbtnLogodisplay" class="logo_inner_new pull-left" />
-        <input type="button" value="Login" id="btnLoginsubmit" class="pull-right button_custom login_show" ng-click="divloginblock();"
-        />
-        <input type="button" value="Logout" id="btnLogOut" ng-hide="true" class="pull-right button_custom" onclick="return ClearlocalStorage();"
-        />
+        <input type="button" value="Login" id="btnLoginsubmit" class="pull-right button_custom login_show" ng-click="divloginblock();" />
+        <input type="button" value="Logout" id="btnLogOut" ng-hide="true" class="pull-right button_custom" onclick="return ClearlocalStorage();" />
 
 
 
@@ -193,63 +191,61 @@
     </div>
 </div>
 
-    <div class="edit_pages_sidebar clearfix" ng-controller="editSideMenuCtrl">
-        <div class="edit_page_profile_pic">
-            <img id="imgphoto" src="../../access/Images/ProfilePics/KMPL_91035_Images/img1_Images/210910352_ApplicationPhoto.jpg">
-            <span id="lblcust_Id" style="display: none;"></span>
-        </div>
-
-        <div class="edit_pages_sidebar_profile_details" ng-controller='personalCtrl'>
-            <h6>
-                <span id="lstPersolnalDetails_ctrl0_lblCustNamewithProfileID">{{PersonalObj.Name+" ("+PersonalObj.ProfileID+")"}}</span></h6>
-            <div class="edit_pages_sidebar_profile_details_in">
-
-                <p>
-                    <span id="lstPersolnalDetails_ctrl0_lblMaritalDOBHeight">{{PersonalObj.MartialStatus+" ,"+PersonalObj.DateofBirth+((PersonalObj.Age!="" && PersonalObj.Age!=null)?" ("+PersonalObj.Age+")":PersonalObj.Age)+((PersonalObj.Height!="" && PersonalObj.Height!=null)?" ,"+PersonalObj.Height:PersonalObj.Height)+((PersonalObj.Complexion!="")?" ,"+PersonalObj.Complexion:PersonalObj.Complexion)}}</span>
-                </p>
-                <p>
-                    <span id="lstPersolnalDetails_ctrl0_lblReligionMTCaste">{{PersonalObj.Religion+" ,"+PersonalObj.Mothertongue+", "+PersonalObj.Caste+((PersonalObj.SubCaste!="" && PersonalObj.SubCaste!=null)? " ("+SubCaste+")":SubCaste)}}</span>
-                </p>
-                <p>
-                    <span>
-                <span id="lstPersolnalDetails_ctrl0_lblcitizen" style="font-weight:bold;"> {{(PersonalObj.Borncountry!=null && PersonalObj.Borncountry!="")?" Born Citizen:"+PersonalObj.Borncountry:Borncountry}}</span>
-                    </span>
-                </p>
-            </div>
-        </div>
-
-        <div class="clear"></div>
-
-        <div class="edit_pages_sidebar_menu clearfix">
-            <ul>
-                <li>
-                    <a id="lnkeducationandprof" href="#/editEducationAndProfession">Education & Profession</a></li>
-                <li>
-                    <a id="lnkmanagephoto" href="#/editManagePhoto">Manage Photo</a></li>
-                <li>
-                    <a id="lnkparents" href="#/editparent">Parent Details</a></li>
-                <li>
-                    <a id="lnkpartner" href="#/editPartnerPreferences">Partner Preferences</a></li>
-                <li>
-                    <a id="lnksiblings" href="#/editSiblingDetails">Sibling Details</a></li>
-                <li>
-                    <a id="lnkastro" href="#/editAstro">Astro Details</a></li>
-                <li>
-                    <a id="lnkproperty" href="#/editProperty">Property Details</a>
-                </li>
-                <li>
-                    <a id="lnkrelatives" href="#/editRelative">Relative Details</a>
-                </li>
-                <li>
-                    <a id="lnkreference" href="#/editReferences">References</a>
-                </li>
-                <li>
-
-                </li>
-
-            </ul>
-        </div>
-
+<div class="edit_pages_sidebar clearfix" ng-controller="editSideMenuCtrl">
+    <div class="edit_page_profile_pic">
+        <img id="imgphoto" src="../../access/Images/ProfilePics/KMPL_91035_Images/img1_Images/210910352_ApplicationPhoto.jpg">
+        <span id="lblcust_Id" style="display: none;"></span>
     </div>
 
+    <div class="edit_pages_sidebar_profile_details" ng-controller='personalCtrl'>
+        <h6>
+            <span id="lstPersolnalDetails_ctrl0_lblCustNamewithProfileID">{{PersonalObj.Name+" ("+PersonalObj.ProfileID+")"}}</span></h6>
+        <div class="edit_pages_sidebar_profile_details_in">
 
+            <p>
+                <span id="lstPersolnalDetails_ctrl0_lblMaritalDOBHeight">{{PersonalObj.MartialStatus+" ,"+PersonalObj.DateofBirth+((PersonalObj.Age!="" && PersonalObj.Age!=null)?" ("+PersonalObj.Age+")":PersonalObj.Age)+((PersonalObj.Height!="" && PersonalObj.Height!=null)?" ,"+PersonalObj.Height:PersonalObj.Height)+((PersonalObj.Complexion!="")?" ,"+PersonalObj.Complexion:PersonalObj.Complexion)}}</span>
+            </p>
+            <p>
+                <span id="lstPersolnalDetails_ctrl0_lblReligionMTCaste">{{PersonalObj.Religion+" ,"+PersonalObj.Mothertongue+", "+PersonalObj.Caste+((PersonalObj.SubCaste!="" && PersonalObj.SubCaste!=null)? " ("+SubCaste+")":SubCaste)}}</span>
+            </p>
+            <p>
+                <span>
+                <span id="lstPersolnalDetails_ctrl0_lblcitizen" style="font-weight:bold;"> {{(PersonalObj.Borncountry!=null && PersonalObj.Borncountry!="")?" Born Citizen:"+PersonalObj.Borncountry:Borncountry}}</span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="edit_pages_sidebar_menu clearfix">
+        <ul>
+            <li>
+                <a id="lnkeducationandprof" href="#/editEducationAndProfession">Education & Profession</a></li>
+            <li>
+                <a id="lnkmanagephoto" href="#/editview/editManagePhoto">Manage Photo</a></li>
+            <li>
+                <a id="lnkparents" href="#/editview/editparent">Parent Details</a></li>
+            <li>
+                <a id="lnkpartner" href="#/editview/editPartnerPreferences">Partner Preferences</a></li>
+            <li>
+                <a id="lnksiblings" href="#/editview/editSiblingDetails">Sibling Details</a></li>
+            <li>
+                <a id="lnkastro" href="#/editview/editAstro">Astro Details</a></li>
+            <li>
+                <a id="lnkproperty" href="#/editview/editProperty">Property Details</a>
+            </li>
+            <li>
+                <a id="lnkrelatives" href="#/editview/editRelative">Relative Details</a>
+            </li>
+            <li>
+                <a id="lnkreference" href="#/editview/editReferences">References</a>
+            </li>
+            <li>
+
+            </li>
+
+        </ul>
+    </div>
+
+</div>

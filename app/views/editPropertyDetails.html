@@ -6,7 +6,7 @@
 
             <div class="edit_page_item_head clearfix">
                 <h4>Property Details</h4>
-                <div class="edit_page_item_ui clearfix">
+                <div class="edit_page_item_ui clearfix" ng-if="propertyArr.length===0">
                     <a class="edit_page_add_button" href="javascript:void(0);" ng-click="populateProperty()">Add</a>
                 </div>
             </div>
@@ -26,8 +26,7 @@
                         <h5>
                             <span id="lblfmstatus">{{(item.FamilyStatus!=null && item.FamilyStatus!="")?item.FamilyStatus:"Not Specified" }}</span></h5>
                     </div>
-                    <div id="uplLinkedit" class="edit_page_item_ui clearfix">
-
+                    <div ng-if="propertyArr.length>0" class="edit_page_item_ui clearfix">
                         <a id="lnkedittt" class="edit_page_edit_button" href="javascript:void(0);" ng-click="populateProperty(item)">Edit</a>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         StateBind: function(parentval) {
             var stateArr = [];
-            stateArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            stateArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.stateSelect(parentval).then(function(response) {
                 _.each(response.data, function(item) {
                     stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -36,7 +36,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         districtBind: function(parentval) {
             var disttrictArr = [];
-            disttrictArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            disttrictArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
             SelectBindService.districtSelect(parentval).then(function(response) {
                 _.each(response.data, function(item) {
@@ -47,7 +47,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         cityBind: function(parentval) {
             var cityeArr = [];
-            cityeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            cityeArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
             SelectBindService.citySelect(parentval).then(function(response) {
                 _.each(response.data, function(item) {
@@ -59,7 +59,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
 
         professionBind: function(parentval) {
             var professionArr = [];
-            professionArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            professionArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
             SelectBindService.ProfessionSpecialisation(parentval).then(function(response) {
                 _.each(response.data, function(item) {
@@ -70,7 +70,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         educationGroupBind: function(parentval) {
             var educationGroupArr = [];
-            educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.EducationGroup(parentval).then(function(response) {
                 _.each(response.data, function(item) {
                     educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -80,7 +80,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         educationSpeciakisationBind: function(parentval) {
             var educationSpecialArr = [];
-            educationSpecialArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            educationSpecialArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.EducationSpecialisation(parentval).then(function(response) {
                 _.each(response.data, function(item) {
                     educationSpecialArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -92,7 +92,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         numbersBind: function(str, from, to) {
             var numArr = [];
             debugger;
-            numArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            numArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             for (var i = from; i <= to; i++) {
                 numArr.push({ "label": i + " " + str, "title": i + " " + str, "value": i });
             }
@@ -101,7 +101,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         numberBindWithZeros: function(str, from, to) {
             var numArr = [];
             var y;
-            numArr.push({ "label": str, "title": str, "value": 0 });
+            numArr.push({ "label": str, "title": str, "value": "" });
             for (var x = from; x <= to; x++) {
                 if (x < 10)
                     y = ("0" + x);
@@ -113,7 +113,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         starBind: function(parentval) {
             var starArr = [];
-            starArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            starArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.stars(parentval).then(function(response) {
                 _.each(response.data, function(item) {
                     starArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -123,7 +123,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         casteDepedency: function(parentval1, parentval2) {
             var casteArr = [];
-            casteArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            casteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.castedependency(parentval1, parentval2).then(function(response) {
                 _.each(response.data, function(item) {
                     casteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -133,7 +133,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         subCaste: function(parentval1) {
             var subcasteArr = [];
-            subcasteArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            subcasteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.subCasteBind(parentval1).then(function(response) {
                 _.each(response.data, function(item) {
                     subcasteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -143,7 +143,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         branch: function(parentval1) {
             var branchArr = [];
-            branchArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+            branchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.branch(parentval1).then(function(response) {
                 _.each(response.data, function(item) {
                     branchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });

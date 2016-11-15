@@ -10,8 +10,11 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     scope.indiaStates = 'indiaStates';
     scope.sibCountsBindArr = commonFactory.numbersBind('', 0, 10);
     scope.SibCountObj = {};
+    scope.BroCount = null;
+    scope.SisCount = null;
+    scope.CountryVal = '1';
 
-    var custID = '91035';
+    var custID = '104613';
 
     scope.sibblingPopulatePopulate = function(type, item) {
 
@@ -26,134 +29,155 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.SibCountObj.ddlnoofyoungersisters = item.NoOfYoungerSisters;
                 }
                 commonFactory.open('SibblingCountPopup.html', scope, uibModal);
+
+
                 break;
 
             case 'brother':
-                scope.broObj.SibilingCustfamilyID = null;
-                scope.broObj = {};
 
-                if (item != undefined) {
-                    scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                if (item != undefined && scope.BrotherArr.length <= parseInt(scope.BroCount)) {
+                    scope.broObj.SibilingCustfamilyID = null;
+                    scope.broObj = {};
+                    if (item != undefined) {
+                        scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
 
-                    scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
-                    scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
-                    scope.broObj.txtBName = item.SibilingName;
-                    scope.broObj.txtbrotherreducation = item.SibilingEducationDetails;
-                    scope.broObj.txtbrotherprofession = item.SibilingProfessionDetails;
-                    scope.broObj.txtBCompanyname = item.SibilingCompany;
-                    scope.broObj.txtBJoblocation = item.SibilingJobPLace;
+                        scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
+                        scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
+                        scope.broObj.txtBName = item.SibilingName;
+                        scope.broObj.txtbrotherreducation = item.SibilingEducationDetails;
+                        scope.broObj.txtbrotherprofession = item.SibilingProfessionDetails;
+                        scope.broObj.txtBCompanyname = item.SibilingCompany;
+                        scope.broObj.txtBJoblocation = item.SibilingJobPLace;
 
-                    scope.broObj.ddlBMObileCountryID = item.SibilingMobileCode;
-                    scope.broObj.txtBmobilenumber = item.SibilingLandNumber;
+                        scope.broObj.ddlBMObileCountryID = item.SibilingMobileCode;
+                        scope.broObj.txtBmobilenumber = item.SibilingLandNumber;
 
-                    if (item.SibilingLandaraecode != '' && item.SibilingLandaraecode != null) {
-                        scope.broObj.ddlBLandLineCountryID = item.SibilngLandCountryCode;
-                        scope.broObj.txtBAreCode = item.SibilingLandaraecode;
-                        scope.broObj.txtBLandNumber = item.SibilingLandNumber;
-                    } else {
-                        scope.broObj.ddlBMObileCountryID2 = item.SibilngLandCountryCode;
-                        scope.broObj.txtBmobilenumber2 = item.SibilingLandNumber;
+                        if (item.SibilingLandaraecode != '' && item.SibilingLandaraecode != null) {
+                            scope.broObj.ddlBLandLineCountryID = item.SibilngLandCountryCode;
+                            scope.broObj.txtBAreCode = item.SibilingLandaraecode;
+                            scope.broObj.txtBLandNumber = item.SibilingLandNumber;
+                        } else {
+                            scope.broObj.ddlBMObileCountryID2 = item.SibilngLandCountryCode;
+                            scope.broObj.txtBmobilenumber2 = item.SibilingLandNumber;
+
+                        }
+
+                        scope.broObj.txtBEmails = item.SibilingEmail;
+
+                        scope.broObj.rdlBIsMarried = item.SibilingMarried;
+                        scope.broObj.txtBWifeName = item.SibilingSpouseName;
+                        scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
+                        scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
+                        //scope.broObj.chkboxbrotherwifeprofession = item.;
+                        scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
+                        scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
+
+                        scope.broObj.ddlBWMobileCode = item.SibilingSpouseMobileCode;
+
+                        scope.broObj.txtBWifeMobileNumber = item.SibilingSpouceMobileNumber;
+
+                        if (item.SibilingSpouseLandareCode != '' && item.SibilingSpouseLandareCode != null) {
+                            scope.broObj.ddlBWifeLandLineCountryCode = item.SibilingSpouseLandCode;
+                            scope.broObj.txtBWifeLandLineAreaCode = item.SibilingSpouseLandareCode;
+                            scope.broObj.txtBWifeLandLineNumber = item.SibilngSpouseLandnumber;
+                        } else {
+                            scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
+                            scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
+
+                        }
+
+                        scope.broObj.txtwifeEmail = item.SpouseEmail;
+                        scope.broObj.txtBWifeFatherSurName = item.SFsurname;
+                        scope.broObj.txtBWWifeFatherName = item.SFname;
+                        scope.broObj.ddlborherspousefathercaste = item.SibilingSpouseFatherCasteID;
+                        scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
+                        scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
+                        scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
+
 
                     }
-
-                    scope.broObj.txtBEmails = item.SibilingEmail;
-
-                    scope.broObj.rdlBIsMarried = item.SibilingMarried;
-                    scope.broObj.txtBWifeName = item.SibilingSpouseName;
-                    scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
-                    scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
-                    //scope.broObj.chkboxbrotherwifeprofession = item.;
-                    scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
-                    scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
-
-                    scope.broObj.ddlBWMobileCode = item.SibilingSpouseMobileCode;
-
-                    scope.broObj.txtBWifeMobileNumber = item.SibilingSpouceMobileNumber;
-
-                    if (item.SibilingSpouseLandareCode != '' && item.SibilingSpouseLandareCode != null) {
-                        scope.broObj.ddlBWifeLandLineCountryCode = item.SibilingSpouseLandCode;
-                        scope.broObj.txtBWifeLandLineAreaCode = item.SibilingSpouseLandareCode;
-                        scope.broObj.txtBWifeLandLineNumber = item.SibilngSpouseLandnumber;
-                    } else {
-                        scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
-                        scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
-
-                    }
-
-                    scope.broObj.txtwifeEmail = item.SpouseEmail;
-                    scope.broObj.txtBWifeFatherSurName = item.SFsurname;
-                    scope.broObj.txtBWWifeFatherName = item.SFname;
-                    scope.broObj.ddlborherspousefathercaste = item.SibilingSpouseFatherCasteID;
-                    scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
-                    scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
-                    scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
-
-
+                    commonFactory.open('brotherModalContent.html', scope, uibModal);
+                } else if (item === undefined && scope.BrotherArr.length < parseInt(scope.BroCount)) {
+                    scope.broObj.SibilingCustfamilyID = null;
+                    scope.broObj = {};
+                    commonFactory.open('brotherModalContent.html', scope, uibModal);
+                } else {
+                    alert('Cannot add more brothers');
                 }
-                commonFactory.open('brotherModalContent.html', scope, uibModal);
                 break;
 
             case 'sister':
-                scope.sisObj.SibilingCustfamilyID = null;
-                scope.sisObj = {};
-                if (item != undefined) {
-                    debugger;
-                    scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                if (item != undefined && scope.sisterArr.length <= parseInt(scope.SisCount)) {
 
-                    scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
-                    scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
-                    scope.sisObj.txtSisterName = item.SibilingName;
-                    scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
-                    scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
-                    //scopsisroObj.chksisProfession = item.;
-                    scope.sisObj.txtSCompanyName = item.SibilingCompany;
-                    scope.sisObj.txtSjobloc = item.SibilingJobPLace;
+                    scope.sisObj.SibilingCustfamilyID = null;
+                    scope.sisObj = {};
 
-                    scope.sisObj.ddlSMobileCountyCodeID = item.SibilingMobileCode;
-                    scope.sisObj.txtSMobileNumber = item.SibilingMobileNumber;
+                    if (item != undefined) {
+                        debugger;
+                        scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+
+                        scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
+                        scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
+                        scope.sisObj.txtSisterName = item.SibilingName;
+                        scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
+                        scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
+                        //scopsisroObj.chksisProfession = item.;
+                        scope.sisObj.txtSCompanyName = item.SibilingCompany;
+                        scope.sisObj.txtSjobloc = item.SibilingJobPLace;
+
+                        scope.sisObj.ddlSMobileCountyCodeID = item.SibilingMobileCode;
+                        scope.sisObj.txtSMobileNumber = item.SibilingMobileNumber;
 
 
-                    if (item.SibilingLandaraecode != '' && item.SibilingLandaraecode != null) {
-                        scope.sisObj.ddlSLandLineCountryCodeID = item.SibilngLandCountryCode;
-                        scope.sisObj.txtSAreacoude = item.SibilingLandaraecode;
-                        scope.sisObj.txtSNumber = item.SibilingLandNumber;
-                    } else {
-                        scope.sisObj.ddlSMobileCountyCodeID2 = item.SibilngLandCountryCode;
-                        scope.sisObj.txtSMobileNumber2 = item.SibilingLandNumber;
+                        if (item.SibilingLandaraecode != '' && item.SibilingLandaraecode != null) {
+                            scope.sisObj.ddlSLandLineCountryCodeID = item.SibilngLandCountryCode;
+                            scope.sisObj.txtSAreacoude = item.SibilingLandaraecode;
+                            scope.sisObj.txtSNumber = item.SibilingLandNumber;
+                        } else {
+                            scope.sisObj.ddlSMobileCountyCodeID2 = item.SibilngLandCountryCode;
+                            scope.sisObj.txtSMobileNumber2 = item.SibilingLandNumber;
+
+                        }
+
+                        scope.sisObj.txtSEmails = item.SibilingEmail;
+                        scope.sisObj.rdlSIsMarried = item.SibilingMarried;
+                        scope.sisObj.txtShusName = item.SibilingName;
+                        scope.sisObj.txtHusbandEducation = item.SibilingSpouseEducationDetails;
+                        scope.sisObj.txtHusbandProfession = item.SibilingSpouseProfessionDetails;
+                        scope.sisObj.txtShusCompanyName = item.spoucecompanyName;
+                        scope.sisObj.txtShusjobloc = item.spoucejobloc;
+
+                        scope.sisObj.ddlSHusMobileCountryID = item.sisterspousemobilecode;
+                        scope.sisObj.txtSHusMobileNumber = item.SibilingSpouceMobileNumber;
+
+                        if (item.SibilingSpouseLandareCode != '' && item.SibilingSpouseLandareCode != null) {
+                            scope.sisObj.ddlSHusLandCountryID = item.SpousesisterLandCode;
+                            scope.sisObj.txtSHusLandNumber = item.SibilngSpouseLandnumber;
+                            scope.sisObj.txtSHusLandArea = item.SibilingSpouseLandareCode;
+                        } else {
+                            scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
+                            scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
+
+                        }
+
+                        scope.sisObj.txtHusbandEmail = item.SpouseEmail;
+                        scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
+                        scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
+                        scope.sisObj.ddlsisterspusefathercaste = item.SibilingSpouseFatherCasteId;
+                        scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
+                        scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
+                        scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
 
                     }
+                    commonFactory.open('sisterModalContent.html', scope, uibModal);
+                } else if (item === undefined && scope.sisterArr.length < parseInt(scope.SisCount)) {
 
-                    scope.sisObj.txtSEmails = item.SibilingEmail;
-                    scope.sisObj.rdlSIsMarried = item.SibilingMarried;
-                    scope.sisObj.txtShusName = item.SibilingName;
-                    scope.sisObj.txtHusbandEducation = item.SibilingSpouseEducationDetails;
-                    scope.sisObj.txtHusbandProfession = item.SibilingSpouseProfessionDetails;
-                    scope.sisObj.txtShusCompanyName = item.spoucecompanyName;
-                    scope.sisObj.txtShusjobloc = item.spoucejobloc;
-
-                    scope.sisObj.ddlSHusMobileCountryID = item.sisterspousemobilecode;
-                    scope.sisObj.txtSHusMobileNumber = item.SibilingSpouceMobileNumber;
-
-                    if (item.SibilingSpouseLandareCode != '' && item.SibilingSpouseLandareCode != null) {
-                        scope.sisObj.ddlSHusLandCountryID = item.SpousesisterLandCode;
-                        scope.sisObj.txtSHusLandNumber = item.SibilngSpouseLandnumber;
-                        scope.sisObj.txtSHusLandArea = item.SibilingSpouseLandareCode;
-                    } else {
-                        scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
-                        scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
-
-                    }
-
-                    scope.sisObj.txtHusbandEmail = item.SpouseEmail;
-                    scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
-                    scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
-                    scope.sisObj.ddlsisterspusefathercaste = item.SibilingSpouseFatherCasteId;
-                    scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
-                    scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
-                    scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
-
+                    scope.sisObj.SibilingCustfamilyID = null;
+                    scope.sisObj = {};
+                    commonFactory.open('sisterModalContent.html', scope, uibModal);
+                } else {
+                    alert('Cannot add more sisters');
                 }
-                commonFactory.open('sisterModalContent.html', scope, uibModal);
                 break;
         }
 
@@ -163,7 +187,12 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         scope.sibblingCountArr = JSON.parse(response.data[0]);
         scope.BrotherArr = JSON.parse(response.data[1]);
         scope.sisterArr = JSON.parse(response.data[2]);
-        console.log(scope.sisterArr);
+        console.log(scope.sibblingCountArr);
+
+        scope.BroCount = scope.sibblingCountArr[0].NoOfBrothers;
+        scope.SisCount = scope.sibblingCountArr[0].NoOfSisters;
+
+
     });
 
 
@@ -328,27 +357,50 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         }
     }
 
+
+
+    scope.checkVal = function(val) {
+        return (val != '' && val != undefined) ? val : 0;
+
+    }
     scope.sibblingCountsSubmit = function(obj) {
-        var obj = {
-            CustID: custID,
-            NoOfBrothers: obj.ddlnoofsiblings,
-            NoOfSisters: obj.ddlnoofsisters,
-            NoOfYoungerBrothers: obj.ddlnoofyoungerbrother,
-            NoOfElderBrothers: obj.ddlnoofelderrother,
-            NoOfElderSisters: obj.ddlnoofeldersisters,
-            NoOfYoungerSisters: obj.ddlnoofyoungersisters
-        };
 
-        sibblingServices.submitSibCountsData(obj).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
-                alert('submitted Succesfully');
-            } else {
-                alert('Updation failed');
-            }
-        });
+        var totalnofBrothers = parseInt(scope.checkVal(obj.ddlnoofsiblings));
+        var elderBrotherCount = parseInt(scope.checkVal(obj.ddlnoofelderrother));
+        var youngerBrotherCount = parseInt(scope.checkVal(obj.ddlnoofyoungerbrother));
 
+        var totalnoFSister = parseInt(scope.checkVal(obj.ddlnoofsisters));
+        var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
+        var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
+
+        if ((totalnofBrothers == (elderBrotherCount + youngerBrotherCount) && totalnoFSister == (elderSisterCount + youngerSisterCount))) {
+
+            var obj = {
+                CustID: custID,
+                NoOfBrothers: obj.ddlnoofsiblings,
+                NoOfSisters: obj.ddlnoofsisters,
+                NoOfYoungerBrothers: obj.ddlnoofyoungerbrother,
+                NoOfElderBrothers: obj.ddlnoofelderrother,
+                NoOfElderSisters: obj.ddlnoofeldersisters,
+                NoOfYoungerSisters: obj.ddlnoofyoungersisters
+            };
+            scope.BroCount = obj.ddlnoofsiblings;
+            scope.SisCount = obj.ddlnoofsisters;
+
+            debugger;
+            sibblingServices.submitSibCountsData(obj).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
+                    alert('submitted Succesfully');
+                } else {
+                    alert('Updation failed');
+                }
+            });
+        } else {
+            alert('Please enter Correct Sibling count');
+
+        }
 
     }
 

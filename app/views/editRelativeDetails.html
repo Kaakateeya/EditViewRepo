@@ -4,12 +4,8 @@
         <div class="edit_page_item_head clearfix">
             <h4>Father's Brother Details
             </h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="UpdatePanelFatherDetailsadd">
-
-                    <a href="javascript:void(0);" ng-click="relativePopulatePopulate('FB');" class="edit_page_add_button" tabindex="0">Add</a>
-
-                </div>
+            <div class="edit_page_item_ui clearfix" ng-if="FBArr.length===0">
+                <a href="javascript:void(0);" ng-click="relativePopulatePopulate('FB');" class="edit_page_add_button" tabindex="0">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -24,7 +20,7 @@
                                 <h5>
                                     <span id="lblFBName">{{item.FatherbrotherName+"("+item.FatherBrotherElderyounger+")"}}</span></h5>
                             </div>
-                            <div id="UpdatePanellnkFatherBrother" class="edit_page_item_ui clearfix">
+                            <div ng-if="FBArr.length>0" class="edit_page_item_ui clearfix">
 
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('FB',item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                             </div>
@@ -109,15 +105,12 @@
         <div class="edit_page_item_head clearfix">
             <h4>Father's Sister Details
             </h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="UpdatePanellnkrelativefathersis">
-                    <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('FS');" tabindex="0">Add</a>
-                </div>
+            <div class="edit_page_item_ui clearfix" ng-if="FSArr.length===0">
+                <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('FS');" tabindex="0">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
             <div id="fullupdatefathersister" ng-repeat="item in FSArr">
-
                 <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
                     <div>
                         <div>
@@ -130,13 +123,8 @@
                                 </h5>
 
                             </div>
-                            <div id="UpdatePanellnkFatherSister" class="edit_page_item_ui clearfix">
-
-                                <a ng-click="relativePopulatePopulate('FS',item);" class="edit_page_edit_button" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$EditCustomerRelative$lstFatherSister$ctrl0$lnkFatherSister','')">Edit</a>
-
-
-
-
+                            <div ng-if="FSArr.length>0" class="edit_page_item_ui clearfix">
+                                <a ng-click="relativePopulatePopulate('FS',item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                             </div>
 
                         </div>
@@ -236,23 +224,14 @@
 
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
     <div class="edit_page_item">
         <div class="edit_page_item_head clearfix">
-            <h4>Mother's Brother Details
-
-            </h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="UpdatePanellnkrelativemotherbroadd">
-
-                    <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('MB');" tabindex="0">Add</a>
-
-                </div>
+            <h4>Mother's Brother Details</h4>
+            <div class="edit_page_item_ui clearfix" ng-if="MBrr.length===0">
+                <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('MB');" tabindex="0">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -269,13 +248,11 @@
                                     <span id="lblMBName">{{item.MotherBrotherName+"("+item.MotherBrotherElderyounger+")" }}</span>
                                 </h5>
                             </div>
-                            <div id="UpdatePanellnkMotherBrotheredit" class="edit_page_item_ui clearfix">
-
+                            <div ng-if="MBrr.length>0" class="edit_page_item_ui clearfix">
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('MB',item);" class="edit_page_edit_button">Edit</a>
-
                             </div>
 
-                            <div id="UpdatePanellblMotherbrithereducationdetails" class="edit_page_details_item_desc clearfix">
+                            <div class="edit_page_details_item_desc clearfix">
 
                                 <div>
 
@@ -287,7 +264,7 @@
                                 </div>
 
                             </div>
-                            <div id="UpdatePanelMBProfessionDetails" class="edit_page_details_item_desc clearfix">
+                            <div class="edit_page_details_item_desc clearfix">
 
                                 <div>
 
@@ -299,7 +276,7 @@
                                 </div>
 
                             </div>
-                            <div id="UpdatePanelMBCurrentLocation" class="edit_page_details_item_desc clearfix">
+                            <div class="edit_page_details_item_desc clearfix">
 
                                 <div>
 
@@ -354,12 +331,8 @@
         <div class="edit_page_item_head clearfix">
             <h4>Mother's Sister Details
             </h4>
-            <div class="edit_page_item_ui clearfix">
-                <div id="UpdatePanellnkrelativemothersisadd">
-
-                    <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('MS');" tabindex="0">Add</a>
-
-                </div>
+            <div class="edit_page_item_ui clearfix" ng-if="MSArr.length===0">
+                <a class="edit_page_add_button" href="javascript:void(0);" ng-click="relativePopulatePopulate('MS');" tabindex="0">Add</a>
             </div>
         </div>
         <div class="edit_page_details_item">
@@ -375,114 +348,100 @@
                                 <h5>
                                     <span id="lblMsName">{{item.MotherSisterName+"("+item.MotherSisterElderyounger+")" }}</span>
                                 </h5>
-
-
                             </div>
-                            <div id="UpdatePanellnkMotherSisteredit" class="edit_page_item_ui clearfix">
-
+                            <div ng-if="MSArr.length>0" class="edit_page_item_ui clearfix">
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('MS',item);" class="edit_page_edit_button">Edit</a>
                             </div>
                         </div>
-                        <div id="UpdatePanelMshName" class="edit_page_details_item_desc clearfix">
-
-                            <div>
-
-                                <h6>
-                                    <span id="MshName" style="font-weight:bold;">Msh Name</span></h6>
-                                <h5>
-                                    <span id="lblMshName">{{item.MotherSisterSpouseName}}</span></h5>
-                            </div>
-
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="MshName" style="font-weight:bold;">Msh Name</span></h6>
+                            <h5>
+                                <span id="lblMshName">{{item.MotherSisterSpouseName}}</span></h5>
                         </div>
+                    </div>
 
-                        <div id="UpdatePanelmothersisteredu" class="edit_page_details_item_desc clearfix">
+                    <div class="edit_page_details_item_desc clearfix">
 
-                            <div>
-
-                                <h6>
-                                    <span id="lblMshEducation" style="font-weight:bold;">Msh Education</span></h6>
-                                <h5>
-                                    <span id="lblMshEducationdetails">{{item.MothersisterspouseEducationdetails }}</span></h5>
-                            </div>
-
+                        <h6>
+                            <span id="lblMshEducation" style="font-weight:bold;">Msh Education</span></h6>
+                        <h5>
+                            <span id="lblMshEducationdetails">{{item.MothersisterspouseEducationdetails }}</span></h5>
+                    </div>
+                    <div class="edit_page_details_item_desc clearfix">
+                        <div>
+                            <h6>
+                                <span style="font-weight:bold;">Msh profession</span></h6>
+                            <h5>
+                                <span>{{item.MotherSisterProfessionDetails }}</span></h5>
                         </div>
-                        <div id="UpdatePanelMshprofessiondetails" class="edit_page_details_item_desc clearfix">
+                    </div>
 
-                            <div>
+                    <div id="UpdatePanelMshCurrentLocation" class="edit_page_details_item_desc clearfix">
 
-                                <h6>
-                                    <span id="Mshprofessiondetails" style="font-weight:bold;">Msh profession</span></h6>
-                                <h5>
-                                    <span id="lblMshprofessiondetails">{{item.MotherSisterProfessionDetails }}</span></h5>
-                            </div>
+                        <div>
 
-                        </div>
-
-                        <div id="UpdatePanelMshCurrentLocation" class="edit_page_details_item_desc clearfix">
-
-                            <div>
-
-                                <h6>
-                                    <span id="MshCurrentLocation" style="font-weight:bold;">Msh Current Location</span></h6>
-                                <h5>
-                                    <span id="lblMshCurrentLocation">{{item.MotherSisterCurrentLocation }}</span></h5>
-
-                            </div>
-
-                        </div>
-                        <div id="UpdatePanelMshNativeplace" class="edit_page_details_item_desc clearfix">
-
-                            <div>
-
-                                <h6>
-                                    <span id="MshNativeplace" style="font-weight:bold;">Msh Native Place</span></h6>
-                                <h5>
-                                    <span id="lblMshNativeplace">{{item.MotherSisterSpouseNativePlace+" "+(item.Mothersisterspousedistrict!=null && 
-                                                item.Mothersisterspousedistrict.ToString()!=""? ","+item.Mothersisterspousedistrict:"")+" "+(item.Motherssisterspousestate!=null && 
-                                                item.Motherssisterspousestate.ToString()!=""? ","+item.Motherssisterspousestate:"")+" "+(item.MothersisterspouseCountry!=null && 
-                                                item.MothersisterspouseCountry.ToString()!=""? ","+item.MothersisterspouseCountry:"")  }}    </span></h5>
-
-                            </div>
-                        </div>
-                        <div id="update3">
-
-                            <div id="ownerdiv3">
-                                <div id="UpdatePanelMshcontactnos" class="edit_page_details_item_desc clearfix">
-
-                                    <div>
-
-                                        <h6>
-                                            <span id="Mshcontactnos" style="font-weight:bold;">Msh contact nos</span></h6>
-                                        <h5>
-                                            <span id="lblMshcontactnos">{{item.MotherSisterspouseMobileNumberWithCode+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
-                                            && item.MotherSisterspouseLandnumberwithcode.ToString()!="" ?
-                                            "&"+item.MotherSisterspouseLandnumberwithcode:"") }}</span></h5>
-                                    </div>
-
-                                </div>
-                                <div id="UpdatePanelMsHEmail" class="edit_page_details_item_desc clearfix">
-
-                                    <div>
-
-                                        <h6>
-                                            <span id="MsHEmail" style="font-weight:bold;">Msh Email</span></h6>
-                                        <h5>
-                                            <span id="lblMsHEmail">{{item.MotherSisterspouseEmail }}</span></h5>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                            <h6>
+                                <span id="MshCurrentLocation" style="font-weight:bold;">Msh Current Location</span></h6>
+                            <h5>
+                                <span id="lblMshCurrentLocation">{{item.MotherSisterCurrentLocation }}</span></h5>
 
                         </div>
 
                     </div>
+                    <div id="UpdatePanelMshNativeplace" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <span id="MshNativeplace" style="font-weight:bold;">Msh Native Place</span></h6>
+                            <h5>
+                                <span id="lblMshNativeplace">{{item.MotherSisterSpouseNativePlace+" "+(item.Mothersisterspousedistrict!=null && 
+                                                item.Mothersisterspousedistrict.ToString()!=""? ","+item.Mothersisterspousedistrict:"")+" "+(item.Motherssisterspousestate!=null && 
+                                                item.Motherssisterspousestate.ToString()!=""? ","+item.Motherssisterspousestate:"")+" "+(item.MothersisterspouseCountry!=null && 
+                                                item.MothersisterspouseCountry.ToString()!=""? ","+item.MothersisterspouseCountry:"")  }}    </span></h5>
+
+                        </div>
+                    </div>
+                    <div id="update3">
+
+                        <div id="ownerdiv3">
+                            <div id="UpdatePanelMshcontactnos" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <span id="Mshcontactnos" style="font-weight:bold;">Msh contact nos</span></h6>
+                                    <h5>
+                                        <span id="lblMshcontactnos">{{item.MotherSisterspouseMobileNumberWithCode+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
+                                            && item.MotherSisterspouseLandnumberwithcode.ToString()!="" ?
+                                            "&"+item.MotherSisterspouseLandnumberwithcode:"") }}</span></h5>
+                                </div>
+
+                            </div>
+                            <div id="UpdatePanelMsHEmail" class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <span id="MsHEmail" style="font-weight:bold;">Msh Email</span></h6>
+                                    <h5>
+                                        <span id="lblMsHEmail">{{item.MotherSisterspouseEmail }}</span></h5>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-
-
             </div>
+
+
         </div>
     </div>
+</div>
 </div>
 
 <script type="text/ng-template" id="FBModalContent.html">

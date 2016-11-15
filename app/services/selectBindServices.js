@@ -48,7 +48,6 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Currency', dependencyValue: '', dependencyflagID: '' } });
         },
         stars: function(obj) {
-            alert(1);
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'StarType', dependencyValue: obj, dependencyflagID: '' } });
         },
         castedependency: function(obj1, obj2) {
