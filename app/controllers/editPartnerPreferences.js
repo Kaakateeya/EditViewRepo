@@ -14,7 +14,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
     scope.partnerDescObj = {};
 
-    var custID = '104613';
+    var custID = '104605';
 
     // scope.listSelectedVal = function(val) {
     //     var str = null;
@@ -61,60 +61,60 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 scope.branchArr = commonFactory.branch(parentval);
                 break;
         }
-    }
+    };
 
     scope.partnerprefPopulate = function(item) {
 
 
         scope.partnerObj = {};
-        if (item != undefined) {
+        if (item !== undefined) {
             scope.casteArr = commonFactory.casteDepedency(item.religionid, item.MotherTongueID);
             scope.stateArr = commonFactory.StateBind(item.CountryID);
             scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
             scope.starArr = commonFactory.starBind(item.StarLanguageID);
-            scope.partnerObj.intCusID = item.intCusID,
-                scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
+            scope.partnerObj.intCusID = item.intCusID;
+            scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
 
-            scope.partnerObj.rbtlGender = item.Gender === 'Female' ? 2 : 1,
-                scope.partnerObj.ddlFromAge = item.Agemin,
-                scope.partnerObj.ddlToAge = item.AgeMax,
-                scope.partnerObj.ddlFromheight = item.MinHeight,
-                scope.partnerObj.ddltoHeight = item.MaxHeight,
-                scope.partnerObj.lstReligion = item.religionid,
-                scope.partnerObj.lstMothertongue = item.MotherTongueID,
-                scope.partnerObj.lstCaste = item.casteid,
-                scope.partnerObj.lstSubcaste = item.subcasteid,
-                scope.partnerObj.lstMaritalstatus = item.maritalstatusid,
-                scope.partnerObj.lstEducationcategory = item.EducationCategoryID,
-                scope.partnerObj.lstEducationgroup = item.EducationGroupID,
-                scope.partnerObj.lstEmployedin = item.ProfessionCategoryID,
-                scope.partnerObj.lstProfessiongroup = item.ProfessionGroupID,
-                scope.partnerObj.lstPreferredcountry = item.CountryID,
-                scope.partnerObj.lstPreferredstate = item.StateID,
-                scope.partnerObj.lstRegion = item.regionId,
-                scope.partnerObj.lstBranch = item.branchid,
-                scope.partnerObj.rbtDiet = item.DietID,
-                scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID,
-                scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID,
-                scope.partnerObj.rbtPreferredstars = item.TypeOfStar,
-                scope.partnerObj.lstpreferedstars = item.PreferredStars
+            scope.partnerObj.rbtlGender = item.Gender === 'Female' ? 2 : 1;
+            scope.partnerObj.ddlFromAge = item.Agemin;
+            scope.partnerObj.ddlToAge = item.AgeMax;
+            scope.partnerObj.ddlFromheight = item.MinHeight;
+            scope.partnerObj.ddltoHeight = item.MaxHeight;
+            scope.partnerObj.lstReligion = item.religionid;
+            scope.partnerObj.lstMothertongue = item.MotherTongueID;
+            scope.partnerObj.lstCaste = item.casteid;
+            scope.partnerObj.lstSubcaste = item.subcasteid;
+            scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
+            scope.partnerObj.lstEducationcategory = item.EducationCategoryID;
+            scope.partnerObj.lstEducationgroup = item.EducationGroupID;
+            scope.partnerObj.lstEmployedin = item.ProfessionCategoryID;
+            scope.partnerObj.lstProfessiongroup = item.ProfessionGroupID;
+            scope.partnerObj.lstPreferredcountry = item.CountryID;
+            scope.partnerObj.lstPreferredstate = item.StateID;
+            scope.partnerObj.lstRegion = item.regionId;
+            scope.partnerObj.lstBranch = item.branchid;
+            scope.partnerObj.rbtDiet = item.DietID;
+            scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
+            scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
+            scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
+            scope.partnerObj.lstpreferedstars = item.PreferredStars;
         }
         commonFactory.open('partnerPrefContent.html', scope, uibModal);
 
-    }
+    };
 
     scope.partnerdescPopulate = function(item) {
         scope.partnerDescObj = {};
-        if (item != undefined) {
+        if (item !== undefined) {
             scope.partnerDescObj.txtpartnerdescription = item.PartnerDescripition;
         }
         commonFactory.open('partnerDescContent.html', scope, uibModal);
-    }
+    };
     scope.partnerPrefSubmit = function(objitem) {
 
         scope.partnerPrefData = {
             GetDetails: {
-                CustID: scope.partnerObj.intCusID,
+                CustID: custID,
                 AgeGapFrom: objitem.ddlFromAge,
                 AgeGapTo: objitem.ddlToAge,
                 HeightFrom: objitem.ddlFromheight,
@@ -142,12 +142,12 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 Branch: commonFactory.listSelectedVal(objitem.lstBranch),
             },
             customerpersonaldetails: {
-                intCusID: scope.partnerObj.intCusID,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
-        }
-        debugger;
+        };
+
 
         partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
             console.log(response);
@@ -158,7 +158,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 alert('Updation failed');
             }
         });
-    }
+    };
     scope.cancel = function() {
         commonFactory.closepopup();
     };
@@ -176,7 +176,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         });
 
 
-    }
+    };
 
 
 

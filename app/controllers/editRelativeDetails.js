@@ -9,17 +9,16 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
     scope.countryCode = 'countryCode';
     scope.indiaStates = 'indiaStates';
 
-    relativeServices.getRelativeeData(custid).then(function(response) {
-        scope.FBArr = JSON.parse(response.data[0]);
-        scope.FSArr = JSON.parse(response.data[1]);
-        scope.MBrr = JSON.parse(response.data[2]);
-        scope.MSArr = JSON.parse(response.data[3]);
-        console.log(scope.FBArr);
-        console.log(scope.FSArr);
-        console.log(scope.MBrr);
-        console.log(scope.MSArr);
+    scope.relativePageLoad = function(icustid) {
+        relativeServices.getRelativeeData(icustid).then(function(response) {
+            scope.FBArr = JSON.parse(response.data[0]);
+            scope.FSArr = JSON.parse(response.data[1]);
+            scope.MBrr = JSON.parse(response.data[2]);
+            scope.MSArr = JSON.parse(response.data[3]);
+        });
+    };
 
-    });
+    scope.relativePageLoad(custid);
 
     scope.relativePopulatePopulate = function(type, item) {
 
@@ -27,7 +26,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             case 'FB':
                 scope.fbObj.FatherbrotherCustfamilyID = null;
                 scope.fbObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.fbObj.FatherbrotherCustfamilyID = item.FatherbrotherCustfamilyID;
                     scope.fbObj.rdlFBElderORyounger = item.FatherBrotherElderyounger == 'Elder' ? 324 : (item.FatherBrotherElderyounger == 'Younger' ? 323 : '-1');
                     scope.fbObj.txtFatherbrothername = item.FatherbrotherName;
@@ -37,7 +36,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                     scope.fbObj.ddlFBMobileCountryID = item.FatherbrotherMobileCode;
                     scope.fbObj.txtFBMobileNumber = item.FatherbrotherMobileNumber;
 
-                    if (item.FatherbrotherLandaraecode != '' && item.FatherbrotherLandaraecode != null) {
+                    if (commonFactory.checkvals(item.FatherbrotherLandaraecode)) {
                         scope.fbObj.ddlFBLandLineCountry = item.FatherbrotherLandCountryCode;
                         scope.fbObj.txtFBAreCode = item.FatherbrotherLandaraecode;
                         scope.fbObj.txtFBLandNumber = item.FatherbrotherLandNumber;
@@ -56,7 +55,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             case 'FS':
                 scope.fsObj.FatherSisterCustfamilyID = null;
                 scope.fsObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
 
                     scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
 
@@ -74,7 +73,8 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                     scope.fsObj.ddlFSMObileCountryID = item.FatherSisterMobilecodeid;
                     scope.fsObj.txtFSMobileNumber = item.FatherSisterspouseMobileNumber;
 
-                    if (item.FatherSisterspouseLandaraecode != '' && item.FatherSisterspouseLandaraecode != null) {
+
+                    if (commonFactory.checkvals(item.FatherSisterspouseLandaraecode)) {
                         scope.fsObj.ddlFSHLandCountryID = item.FatherSisterlandcontrycodeid;
                         scope.fsObj.txtFSHAreaNumber = item.FatherSisterspouseLandaraecode;
                         scope.fsObj.txtFSHNUmber = item.FatherSisterspouseLandNumber;
@@ -94,7 +94,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             case 'MB':
                 scope.mbObj.MotherBrotherCustfamilyID = null;
                 scope.mbObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.mbObj.MotherBrotherCustfamilyID = item.MotherBrotherCustfamilyID;
                     scope.mbObj.rdlMBElderYounger = item.MotherBrotherElderyounger == 'Elder' ? 328 : (item.MotherBrotherElderyounger == 'Younger' ? 327 : '-1');
                     scope.mbObj.txtMBName = item.MotherBrotherName;
@@ -104,7 +104,8 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                     scope.mbObj.ddlMBCountriCode = item.MotherBrotherMobileCode;
                     scope.mbObj.txtMBMobileNum = item.MotherBrotherMobileNumber;
 
-                    if (item.MotherBrotherLandaraecode != '' && item.MotherBrotherLandaraecode != null) {
+
+                    if (commonFactory.checkvals(item.MotherBrotherLandaraecode)) {
                         scope.mbObj.ddlMBLandLineCountryCode = item.MotherBrotherLandCountryCode;
                         scope.mbObj.txtMBAreaCode = item.MotherBrotherLandaraecode;
                         scope.mbObj.txtMBLandLineNum = item.MotherBrotherLandNumber;
@@ -123,7 +124,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             case 'MS':
                 scope.msObj.MotherSisterCustfamilyID = null;
                 scope.msObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
 
                     scope.msDistrict = commonFactory.districtBind(item.spousestateid);
 
@@ -141,7 +142,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                     scope.msObj.ddlMSCounCodeID = item.MotherSisterMobileCodeId;
                     scope.msObj.txtMSMObileNum = item.MotherSisterspouseMobileNumber;
 
-                    if (item.MotherSisterspouseLandaraecode != '' && item.MotherSisterspouseLandaraecode != null) {
+                    if (commonFactory.checkvals(item.MotherSisterspouseLandaraecode)) {
                         scope.msObj.ddlMSLLCounCode = item.MotherSisterSpouselandcodeid;
                         scope.msObj.txtMSArea = item.MotherSisterspouseLandaraecode;
                         scope.msObj.txtLLNum = item.MotherSisterspouseLandNumber;
@@ -158,7 +159,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 break;
         }
 
-    }
+    };
 
     scope.changeBind = function(type, parentval) {
 
@@ -171,7 +172,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.msDistrict = commonFactory.districtBind(parentval);
                 break;
         }
-    }
+    };
 
     scope.FBSubmit = function(obj) {
         scope.FBData = {
@@ -185,9 +186,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 FBProfessiondetails: obj.txtFBProfessiondetails,
                 FBMobileCountryID: obj.ddlFBMobileCountryID,
                 FBMobileNumber: obj.txtFBMobileNumber,
-                FBLandLineCountryID: obj.ddlFBMobileCountryID2 != '0' && obj.ddlFBMobileCountryID2 != null ? obj.ddlFBMobileCountryID2 : (obj.ddlFBLandLineCountry != '0' && obj.ddlFBLandLineCountry != null ? obj.ddlFBLandLineCountry : null),
-                FBLandAreaCode: obj.txtFBMobileNumber2 != '' && obj.txtFBMobileNumber2 != null ? null : (obj.txtFBAreCode != '' && obj.txtFBAreCode != null ? obj.txtFBAreCode : null),
-                FBLandNumber: obj.txtFBMobileNumber2 != '' && obj.txtFBMobileNumber2 != null ? obj.txtFBMobileNumber2 : (obj.txtFBLandNumber != '' && obj.txtFBLandNumber != null ? obj.txtFBLandNumber : null),
+                FBLandLineCountryID: commonFactory.checkvals(obj.ddlFBMobileCountryID2) ? obj.ddlFBMobileCountryID2 : (commonFactory.checkvals(obj.ddlFBLandLineCountry) ? obj.ddlFBLandLineCountry : null),
+                FBLandAreaCode: commonFactory.checkvals(obj.txtFBMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFBAreCode) ? obj.txtFBAreCode : null),
+                FBLandNumber: commonFactory.checkvals(obj.txtFBMobileNumber2) ? obj.txtFBMobileNumber2 : (commonFactory.checkvals(obj.txtFBLandNumber) ? obj.txtFBLandNumber : null),
                 FBEmails: obj.txtFBEmails,
                 FBCurrentLocation: obj.txtCurrentLocation,
                 FatherbrotherCust_familyID: scope.fbObj.FatherbrotherCustfamilyID,
@@ -199,19 +200,20 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 EmpID: null,
                 Admin: null
             }
-        }
-        debugger;
+        };
+
         relativeServices.submitFBData(scope.FBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.relativePageLoad(custid);
             } else {
                 alert('Updation failed');
             }
         });
 
-    }
+    };
 
     scope.FSSubmit = function(obj) {
         scope.FSData = {
@@ -231,9 +233,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 FSHProfessiondetails: obj.txtFSProfessiondetails,
                 FSHMobileCountryID: obj.ddlFSMObileCountryID,
                 FSHMObileNumber: obj.txtFSMobileNumber,
-                FSHLandCountryID: obj.ddlFSMObileCountryID2 != '0' && obj.ddlFSMObileCountryID2 != null ? obj.ddlFSMObileCountryID2 : (obj.ddlFSHLandCountryID != '0' && obj.ddlFSHLandCountryID != null ? obj.ddlFSHLandCountryID : null),
-                FSHLandAreaCode: obj.txtFSMobileNumber2 != '' && obj.txtFSMobileNumber2 != null ? null : (obj.txtFSHAreaNumber != '' && obj.txtFSHAreaNumber != null ? obj.txtFSHAreaNumber : null),
-                FSHLandNumber: obj.txtFSMobileNumber2 != '' && obj.txtFSMobileNumber2 != null ? obj.txtFSMobileNumber2 : (obj.txtFSHNUmber != '' && obj.txtFSHNUmber != null ? obj.txtFSHNUmber : null),
+                FSHLandCountryID: commonFactory.checkvals(obj.ddlFSMObileCountryID2) ? obj.ddlFSMObileCountryID2 : (commonFactory.checkvals(obj.ddlFSHLandCountryID) ? obj.ddlFSHLandCountryID : null),
+                FSHLandAreaCode: commonFactory.checkvals(obj.txtFSMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFSHAreaNumber) ? obj.txtFSHAreaNumber : null),
+                FSHLandNumber: commonFactory.checkvals(obj.txtFSMobileNumber2) ? obj.txtFSMobileNumber2 : (commonFactory.checkvals(obj.txtFSHNUmber) ? obj.txtFSHNUmber : null),
                 FSHEmails: obj.txtFSHEmails,
                 FSCurrentLocation: obj.txtFSHCurrentLocation,
                 FatherSisterCust_familyID: scope.fsObj.FatherSisterCustfamilyID,
@@ -244,19 +246,20 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 EmpID: null,
                 Admin: null
             }
-        }
-        debugger;
+        };
+
         relativeServices.submitFSData(scope.FSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.relativePageLoad(custid);
             } else {
                 alert('Updation failed');
             }
         });
 
-    }
+    };
 
     scope.MBSubmit = function(obj) {
         scope.MBData = {
@@ -270,9 +273,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 MBProfessiondetails: obj.txtMBProfessiondetails,
                 MBMobileCountryID: obj.ddlMBCountriCode,
                 MBMObileNumber: obj.txtMBMobileNum,
-                MBLandLineCountryID: obj.ddlMBCountriCode2 != '0' && obj.ddlMBCountriCode2 != null ? obj.ddlMBCountriCode2 : (obj.ddlMBLandLineCountryCode != '0' && obj.ddlMBLandLineCountryCode != null ? obj.ddlMBLandLineCountryCode : null),
-                MBLandAreaCode: obj.txtMBMobileNum2 != '' && obj.txtMBMobileNum2 != null ? null : (obj.txtMBAreaCode != '' && obj.txtMBAreaCode != null ? obj.txtMBAreaCode : null),
-                MBLandNumber: obj.txtMBMobileNum2 != '' && obj.txtMBMobileNum2 != null ? obj.txtMBMobileNum2 : (obj.txtMBLandLineNum != '' && obj.txtMBLandLineNum != null ? obj.txtMBLandLineNum : null),
+                MBLandLineCountryID: commonFactory.checkvals(obj.ddlMBCountriCode2) ? obj.ddlMBCountriCode2 : (commonFactory.checkvals(obj.ddlMBLandLineCountryCode) ? obj.ddlMBLandLineCountryCode : null),
+                MBLandAreaCode: commonFactory.checkvals(obj.txtMBMobileNum2) ? null : (commonFactory.checkvals(obj.txtMBAreaCode) ? obj.txtMBAreaCode : null),
+                MBLandNumber: commonFactory.checkvals(obj.txtMBMobileNum2) ? obj.txtMBMobileNum2 : (commonFactory.checkvals(obj.txtMBLandLineNum) ? obj.txtMBLandLineNum : null),
                 MBEmails: obj.txtMBEmails,
                 MBCurrentLocation: obj.txtMBCurrentLocation,
                 MBMotherBrotherCust_familyID: scope.mbObj.MotherBrotherCustfamilyID,
@@ -283,19 +286,20 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 EmpID: null,
                 Admin: null
             }
-        }
-        debugger;
+        };
+
         relativeServices.submitMBData(scope.MBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.relativePageLoad(custid);
             } else {
                 alert('Updation failed');
             }
         });
 
-    }
+    };
 
     scope.MSSubmit = function(obj) {
         scope.MSData = {
@@ -314,9 +318,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 MSProfessiondetails: obj.txtMSProfessiondetails,
                 MSMSHMobileCountryID: obj.ddlMSCounCodeID,
                 MSMObileNumber: obj.txtMSMObileNum,
-                MSHLandlineCountryID: obj.ddlMSCounCodeID2 != '' && obj.ddlMSCounCodeID2 != '0' && obj.ddlMSCounCodeID2 != null ? obj.ddlMSCounCodeID2 : (obj.ddlMSLLCounCode != '' && obj.ddlMSLLCounCode != '0' && obj.ddlMSLLCounCode != null ? obj.ddlMSLLCounCode : null),
-                MSLandAreaCode: obj.txtMSMObileNum2 != '' && obj.txtMSMObileNum2 != null ? null : (obj.txtMSArea != '' && obj.txtMSArea != null ? obj.txtMSArea : null),
-                MSLandNumber: obj.txtMSMObileNum2 != '' && obj.txtMSMObileNum2 != null ? obj.txtMSMObileNum2 : (obj.txtLLNum != '' && obj.txtLLNum != null ? obj.txtLLNum : null),
+                MSHLandlineCountryID: commonFactory.checkvals(obj.ddlMSCounCodeID2) ? obj.ddlMSCounCodeID2 : (commonFactory.checkvals(obj.ddlMSLLCounCode) ? obj.ddlMSLLCounCode : null),
+                MSLandAreaCode: commonFactory.checkvals(obj.txtMSMObileNum2) ? null : (commonFactory.checkvals(obj.txtMSArea) ? obj.txtMSArea : null),
+                MSLandNumber: commonFactory.checkvals(obj.txtMSMObileNum2) ? obj.txtMSMObileNum2 : (commonFactory.checkvals(obj.txtLLNum) ? obj.txtLLNum : null),
                 MSHEmails: obj.txtMSEmail,
                 MSCurrentLocation: obj.txtMSCurrentLocation,
                 MSCust_familyID: scope.msObj.MotherSisterCustfamilyID,
@@ -327,23 +331,22 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 EmpID: null,
                 Admin: null
             }
-        }
-        debugger;
+        };
         relativeServices.submitMSData(scope.MSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.relativePageLoad(custid);
             } else {
                 alert('Updation failed');
             }
         });
 
-    }
+    };
 
     scope.cancel = function() {
         commonFactory.closepopup();
     };
-
 
 }]);

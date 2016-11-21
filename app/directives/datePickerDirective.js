@@ -20,12 +20,12 @@ editviewapp.directive('datePicker', function() {
 
         },
         controller: function($scope) {
-            $scope.strdate = new Date($scope.strdate) //moment(new Date()).format();
+            $scope.strdate = new Date($scope.strdate); //moment(new Date()).format();
             $scope.showdate = false;
 
             $scope.open2 = function() {
                 $scope.showdate = true;
             };
         }
-    }
+    };
 });

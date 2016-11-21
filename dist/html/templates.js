@@ -352,27 +352,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
+    "    <div class=\"edit_page_details_item_desc clearfix\" style=\"padding: 0 0 0 20px;\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        <div class=\"radio-group-my input-group\">\r" +
+    "\n" +
+    "            <label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
+    "\n" +
+    "            <label class=\"\"><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"1\" type=\"radio\"><span>&nbsp;Generate Horoscope</span></label>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
     "</div>\r" +
     "\n" +
     "\r" +
     "\n" +
     "\r" +
     "\n" +
-    "<div class=\"edit_page_details_item_desc clearfix\" style=\"padding: 0 0 0 20px; display: none\" id=\"divGenerateUpload\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "    <!--<asp:RadioButtonList ID=\"rdlUploadGenerate\" runat=\"server\" RepeatColumns=\"3\" OnSelectedIndexChanged=\"rdlUploadGenerate_SelectedIndexChanged\" AutoPostBack=\"true\">\r" +
-    "\n" +
-    "                    <asp:ListItem Value=\"0\" Text=\"Upload Horoscope\"></asp:ListItem>\r" +
-    "\n" +
-    "                    <asp:ListItem Value=\"1\" Text=\"Generate Horoscope\"></asp:ListItem>\r" +
-    "\n" +
-    "                </asp:RadioButtonList>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "</div>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2038,7 +2040,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <h4>About My Family </h4>\r" +
     "\n" +
-    "            <div class=\"edit_page_item_ui clearfix\" ng-if=\"lblaboutMyfamily===''\">\r" +
+    "            <div class=\"edit_page_item_ui clearfix\" ng-if=\"lblaboutMyfamily==='' || lblaboutMyfamily===null\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2076,7 +2078,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <div class=\"edit_page_item_ui clearfix\" ng-if=\"lblaboutMyfamily!=''\">\r" +
+    "                        <div class=\"edit_page_item_ui clearfix\" ng-if=\"lblaboutMyfamily!='' && lblaboutMyfamily!=null\">\r" +
     "\n" +
     "                            <a href=\"javascript:void(0);\" class=\"edit_page_edit_button\" data-original-title=\"Edit About My Family\" ng-click=\"populateModel('AboutFamily',lblaboutMyfamily);\">Edit</a>\r" +
     "\n" +
@@ -2218,7 +2220,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"parent.ddlFState\" ddistrict=\"parent.ddlFDistric\"></country-directive>\r" +
+    "                        <country-directive countryshow=\"false\" dcountry=\"dcountry\" cityshow=\"false\" othercity=\"false\" dstate=\"parent.ddlFState\" ddistrict=\"parent.ddlFDistric\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2278,7 +2280,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <label class=\"checkbox-inline checkbox_my\" style=\"padding: 5px 0 0 0;\">\r" +
     "\n" +
-    "                <input type=checkbox ng-model=\"parent.chkbox\"  tabindex=\"33\"  /><span>&nbsp;HouseWife</span>\r" +
+    "                <input type=checkbox ng-model=\"parent.chkbox\"  tabindex=\"33\"  ng-change=\"housewiseChk(parent);\"/><span>&nbsp;HouseWife</span>\r" +
     "\n" +
     "            </label>\r" +
     "\n" +
@@ -2370,7 +2372,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"parent.ddlMState\" ddistrict=\"parent.ddlMDistrict\"></country-directive>\r" +
+    "                        <country-directive countryshow=\"false\" dcountry=\"dcountry\" cityshow=\"false\" othercity=\"false\" dstate=\"parent.ddlMState\" ddistrict=\"parent.ddlMDistrict\"></country-directive>\r" +
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
@@ -2408,7 +2410,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <div id=\"ParentCasteDiv\">\r" +
+    "                        <div ng-if=\"parent.rbtlParentIntercaste==='1'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2736,11 +2738,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                                <label id=\"lblkgs\" text=\"kgs\" font-size=\"14px\"></label>\r" +
+    "                                <span>kgs</span>\r" +
     "\n" +
-    "                                <input ng-model=\"physicalObj.txtBWKgs\" class=\"form-control\" tabindex=\"5\" width=\"200px\" />\r" +
-    "\n" +
-    "\r" +
+    "                                <input ng-model=\"physicalObj.txtBWKgs\" class=\"form-control\" tabindex=\"5\" width=\"200px\" ng-keyup=\"converttolbs(physicalObj);\" />\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -2748,7 +2748,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label id=\"lbllbs\" class=\"pop_label_left\" text=\"lbs\"></label>\r" +
+    "                            <label id=\"lbllbs\" class=\"pop_label_left\">lbs</label>\r" +
     "\n" +
     "                            <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -4121,7 +4121,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "            <div class=\"edit_page_item_ui clearfix\" ng-if=\"ReferenceArr.length===0\">\r" +
+    "            <div class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
     "                <a class=\"edit_page_add_button\" href=\"javascript:void(0)\" ng-click=\"referencePopulate();\">Add</a>\r" +
     "\n" +
@@ -4165,13 +4165,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div ng-if=\"ReferenceArr.length>0\" class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            <a onclick=\"return AllowWebUser('Reference Details');\" class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"referencePopulate(item);\">Edit</a>\r" +
     "\n" +
     "                        </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8353,13 +8349,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <label>\r" +
     "\n" +
-    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
+    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"1\" type=\"radio\" ng-change=\"BIsMarried(broObj.rdlBIsMarried);\"><span>&nbsp;Yes</span>\r" +
     "\n" +
     "            </label>\r" +
     "\n" +
     "                        <label class=\"\">\r" +
     "\n" +
-    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"0\" type=\"radio\"><span>&nbsp;No</span>\r" +
+    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"0\" type=\"radio\" ng-change=\"BIsMarried(broObj.rdlBIsMarried);\"><span>&nbsp;No</span>\r" +
     "\n" +
     "            </label>\r" +
     "\n" +
@@ -8401,7 +8397,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <input ng-model=\"broObj.txtbrotherwifeprofession\" class=\"form-control\" tabindex=\"21\" maxlength=\"200\" />\r" +
     "\n" +
-    "                            <label class=\"checkbox-inline\"><input ng-model=\"broObj.chkboxbrotherwifeprofession\" type=\"checkbox\"><span>&nbsp;HouseWife</span> </label>\r" +
+    "                            <label class=\"checkbox-inline\"><input ng-model=\"broObj.chkboxbrotherwifeprofession\" type=\"checkbox\" ng-change=\"BhousewiseChk(broObj);\"><span>&nbsp;HouseWife</span> </label>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8511,7 +8507,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"broObj.ddlBroSpousefatherState\" ddistrict=\"broObj.ddlBroSpousefatherDistrict\"></country-directive>\r" +
+    "                        <country-directive countryshow=\"false\" dcountry=\"CountryVal\" cityshow=\"false\" othercity=\"false\" dstate=\"broObj.ddlBroSpousefatherState\" ddistrict=\"broObj.ddlBroSpousefatherDistrict\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8635,7 +8631,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div>\r" +
     "\n" +
-    "                        <input ng-model=\"sisObj.chksisProfession\" type=\"checkbox\" ng-change=\"housewiseChk(sisObj);\"><span>&nbsp;HouseWife</span>\r" +
+    "                        <input ng-model=\"sisObj.chksisProfession\" type=\"checkbox\" ng-change=\"ShousewiseChk(sisObj);\"><span>&nbsp;HouseWife</span>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8681,7 +8677,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <contact-directive emailhide=\"true\" dmobile=\"sisObj.ddlSMobileCountyCodeID\" strmobile=\"sisObj.txtSMobileNumber\" dalternative=\"sisObj.ddlSMobileCountyCodeID2\" stralternative=\"sisObj.txtSMobileNumber2\" dland=\"sisObj.ddlSLandLineCountryCodeID\" strareacode=\"sisObj.txtSAreacoude\"\r" +
     "\n" +
-    "                    strland=\"sisObj.txtSNumber\" strmail=\"sisObj.txtMEmail\"></contact-directive>\r" +
+    "                    strland=\"sisObj.txtSNumber\" strmail=\"sisObj.txtSEmails\"></contact-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8693,13 +8689,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <label>\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
+    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"1\" type=\"radio\" ng-change=\"SIsMarried(sisObj.rdlSIsMarried);\"><span>&nbsp;Yes</span>\r" +
     "\n" +
     "            </label>\r" +
     "\n" +
     "                        <label class=\"\">\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"0\" type=\"radio\"><span>&nbsp;No</span>\r" +
+    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"0\" type=\"radio\" ng-change=\"SIsMarried(sisObj.rdlSIsMarried);\"><span>&nbsp;No</span>\r" +
     "\n" +
     "            </label>\r" +
     "\n" +
@@ -9356,7 +9352,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
-    "                <div id=\"upAboutAdd\" ng-if=\"lblaboutUrself===''\">\r" +
+    "                <div id=\"upAboutAdd\" ng-if=\"lblaboutUrself==='' || lblaboutUrself===null\">\r" +
     "\n" +
     "                    <a class=\"edit_page_add_button\" href=\"javascript:void(0);\" ng-click=\"showpopup('showAboutModal')\">Add</a>\r" +
     "\n" +
@@ -9384,7 +9380,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </div>\r" +
     "\n" +
-    "                    <div ng-if=\"lblaboutUrself!=''\" class=\"edit_page_item_ui clearfix\">\r" +
+    "                    <div ng-if=\"lblaboutUrself!='' && lblaboutUrself!=null\" class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
     "                        <a class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"showpopup('showAboutModal',lblaboutUrself)\">Edit</a>\r" +
     "\n" +
@@ -9823,6 +9819,319 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "    </div>\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<style>\r" +
+    "\n" +
+    "    .multiselect {\r" +
+    "\n" +
+    "        border: solid 1px #ADA2A2 !important;\r" +
+    "\n" +
+    "        color: #000;\r" +
+    "\n" +
+    "        background: #fff !important;\r" +
+    "\n" +
+    "        box-shadow: none !important;\r" +
+    "\n" +
+    "        height: 34px !important;\r" +
+    "\n" +
+    "        line-height: 33px;\r" +
+    "\n" +
+    "        margin: 0 !important;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
+  );
+
+
+  $templateCache.put('editview/app/views/registration.html',
+    "<div class=\"register_page_main\">\r" +
+    "\n" +
+    "    <h4>registration</h4>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"register_page_main_in\">\r" +
+    "\n" +
+    "        <div class=\"register_page_main_steps\">\r" +
+    "\n" +
+    "            <ul>\r" +
+    "\n" +
+    "                <li><a class=\"active\" href=\"#\" style=\"text-transform: capitalize;\">Basic information</a></li>\r" +
+    "\n" +
+    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">profile details</a></li>\r" +
+    "\n" +
+    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">my photos</a></li>\r" +
+    "\n" +
+    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">my payments</a></li>\r" +
+    "\n" +
+    "            </ul>\r" +
+    "\n" +
+    "            <div class=\"clear\">&nbsp;</div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"reg_fields_entry clearfix\">\r" +
+    "\n" +
+    "            <div class=\"control-group radio-group-my\">\r" +
+    "\n" +
+    "                <div class=\"controls\">\r" +
+    "\n" +
+    "                    <div class=\"radio-group-my input-group\">\r" +
+    "\n" +
+    "                        <label><input ng-model=\"reg.rbtngender\" type=\"radio\" value=\"1\"><span>&nbsp;Male</span> </label>\r" +
+    "\n" +
+    "                        <label class=\"\"><input ng-model=\"reg.rbtngender\"  type=\"radio\" value=\"2\"><span>&nbsp;Female</span></label>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <br />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">First name</label>\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtfirstname\" class=\"input-box\" placeholder=\"First Name\" MaxLength=\"100\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"2\" />>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"control-group span4\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Last name</label>\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtlastname\" class=\"input-box\" placeholder=\"Last Name\" MaxLength=\"50\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"3\" />>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Email</label>\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtEmail\" MaxLength=\"50\" OnTextChanged=\"txtEmail_TextChanged\" class=\"input-box\" onkeypress=\"return (event.keyCode != 32&&event.which!=32)\" TabIndex=\"4\" />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"control-group span4\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Password</label>\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtpassword\" MaxLength=\"15\" class=\"input-box\" onkeypress=\"return (event.keyCode != 32&&event.which!=32)\" type=\"Password\" TabIndex=\"5\" />>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Posted by</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlpostedby\" typeofdata=\"childStayingWith\"></select>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Date of birth</label>\r" +
+    "\n" +
+    "                <div class=\"row\">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <select multiselectdropdown ng-model=\"reg.ddlDD\"></select>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\" style=\"margin-left: -10px;\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <select multiselectdropdown ng-model=\"reg.ddlMM\"></select>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\" style=\"margin-left: -10px;\">\r" +
+    "\n" +
+    "                        <select multiselectdropdown ng-model=\"reg.ddlYear\"></select>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Religion</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlreligion\"></select>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Mother Tongue</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlmothertongue\"></select>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Caste</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlcaste\"></select>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Residing At</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlcountry\"></select>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my select-box-my-double\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">Mobile no</label>\r" +
+    "\n" +
+    "                <div class=\"controls clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <select multiselectdropdown ng-model=\"reg.ddlmobilecountry\"></select>\r" +
+    "\n" +
+    "                    <input ng-model=\"reg.txtMobileNo\" MaxLength=\"10\" class=\"input-box\" onkeydown=\"return checkwhitespace(event,this.id);\" OnTextChanged=\"txtMobileNo_TextChanged\" TabIndex=\"13\" />>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"control-group span4 select-box-my select-box-my-trible\">\r" +
+    "\n" +
+    "                <label class=\"control-label\">phone no</label>\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"reg.ddllandcountry\"></select>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtArea\" placeholder=\"area code\" class=\"input-box\" MaxLength=\"8\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"15\" />>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <input ng-model=\"reg.txtlandNum\" class=\"input-box\" MaxLength=\"8\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"16\" />>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"clear\"></div>\r" +
+    "\n" +
+    "            <p class=\"accept_terms pull-left clearfix\">\r" +
+    "\n" +
+    "                <input type=\"checkbox\" ng-model=\"reg.Chkprivacy\" class=\"checkbox_my checkbox\" TabIndex=\"17\" />\r" +
+    "\n" +
+    "                <label for=\"checkbox\">\r" +
+    "\n" +
+    "                        I agree to the <span>\r" +
+    "\n" +
+    "                            <a ng-model=\"reg.lnkprivacyPolicy\" Font-Size=\"12px\" Text=\"Privacy Policy and T&C.\"  OnClientClick=\"PrivacyPolicy()\"></a>\r" +
+    "\n" +
+    "                        </span>\r" +
+    "\n" +
+    "                    </label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </p>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"clear\"></div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div class=\"reg_submit clearfix\">\r" +
+    "\n" +
+    "                <input type=\"submit\" class=\"button_custom\" value=\"SUBMIT\" TabIndex=\"18\" />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <label ID=\"lblResult\" Font-Bold=\"true\" />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "</div>"
   );

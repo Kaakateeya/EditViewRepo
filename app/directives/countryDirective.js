@@ -11,9 +11,8 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
             strothercity: '=',
             require: '='
         },
-        templateUrl: 'editview/app/views/countryTemplate.html',
+        templateUrl: editviewapp.templateroot + 'app/views/countryTemplate.html',
         link: function(scope, element, attr) {
-            debugger;
 
             if (scope.countryshow === true) {
                 SelectBindService.countrySelect().then(function(response) {
@@ -67,15 +66,15 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                         break;
                 }
 
-            }
+            };
 
             scope.ShowCity = function() {
                 scope.cityinput = true;
                 scope.dcity = '';
-            }
+            };
 
 
 
         }
-    }
+    };
 }]);

@@ -19,26 +19,26 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.edoObj = {};
     scope.aboutObj = {};
     scope.edoObj.IsHighestDegree = '';
-    var custID = '91035';
+    var custID = '104605';
 
     scope.cancel = function() {
         commonFactory.closepopup();
     };
 
     scope.showpopup = function(type, item) {
-        debugger;
+
         switch (type) {
             case 'showEduModal':
                 scope.edoObj.EducationID = null;
                 scope.edoObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
                     scope.stateArr = commonFactory.StateBind(item.CountryID);
                     scope.districtArr = commonFactory.districtBind(item.StateID);
                     scope.cityeArr = commonFactory.cityBind(item.DistrictID);
 
-                    //scope.edoObj.IsHighestDegree = item.EduHighestDegree;
+                    scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                     scope.edoObj.ddlEduCatgory = item.EducationCategoryID;
                     scope.edoObj.ddlEdugroup = item.EducationGroupID;
                     scope.edoObj.ddlEduspecialization = item.EducationSpecializationID;
@@ -62,7 +62,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             case 'showProfModal':
                 scope.profObj.Cust_Profession_ID = null;
                 scope.profObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
                     scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
                     scope.ProfcityeArr = commonFactory.cityBind(item.DistrictID);
@@ -79,7 +79,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.profObj.ddlDistrictProf = item.DistrictID;
                     scope.profObj.ddlcityworkingprofession = item.CityID;
                     scope.profObj.txtcityprofession = item.CityWorkingIn;
-                    scope.profObj.txtworkingfrom = moment(item.WorkingFromDate, 'DD-MM-YYYY').format() // item.WorkingFromDate;
+                    scope.profObj.txtworkingfrom = moment(item.WorkingFromDate, 'DD-MM-YYYY').format(); // item.WorkingFromDate;
                     scope.profObj.ddlvisastatus = item.VisaTypeID;
                     scope.profObj.txtssincedate = moment(item.ResidingSince, 'DD-MM-YYYY').format();
                     scope.profObj.txtarrivaldate = moment(item.ArrivingDate, 'DD-MM-YYYY').format();
@@ -93,33 +93,33 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
             case 'showAboutModal':
 
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.aboutObj.txtAboutUS = item;
                 }
                 commonFactory.open('AboutModalContent.html', scope, uibModal);
                 break;
         }
 
-    }
+    };
 
 
     scope.getdata = function() {
-        var obj = { ICustID: "91035" };
-        editviewServices.getEducationData(obj).then(function(response) {
+
+        editviewServices.getEducationData(custID).then(function(response) {
 
             scope.educationSelectArray = response.data;
 
         });
-        editviewServices.getProfessionData(obj).then(function(response) {
+        editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
 
         });
         scope.lblaboutUrself = null;
-        editviewServices.getAboutData(obj.ICustID).then(function(response) {
+        editviewServices.getAboutData(custID).then(function(response) {
             scope.lblaboutUrself = response.data;
             console.log(response);
         });
-    }
+    };
     scope.getdata();
 
     scope.ProfchangeBind = function(type, parentval) {
@@ -130,7 +130,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 scope.ProfSpecialisationArr = commonFactory.professionBind(parentval);
                 break;
         }
-    }
+    };
 
     scope.changeBind = function(type, parentval) {
         switch (type) {
@@ -144,7 +144,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 break;
         }
 
-    }
+    };
 
     scope.passOfYear = function(maxyr, no_year) {
         var yr = 1;
@@ -153,7 +153,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             scope.passOfyearArr.push({ "label": i, "title": i, "value": i });
             yr += 1;
         }
-    }
+    };
     scope.passOfYear(2020, 1975);
 
     scope.eduSubmit = function(objitem) {
@@ -162,7 +162,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
         scope.myData = {
             customerEducation: {
-                CustID: 91035,
+                CustID: custID,
                 // scope.edoObj.intCusID,
                 Educationcategory: objitem.ddlEduCatgory,
                 Educationgroup: objitem.ddlEdugroup,
@@ -181,18 +181,22 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 intEduID: scope.edoObj.EducationID,
             },
             customerpersonaldetails: {
-                intCusID: 91035,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
-        }
+        };
 
 
         editviewServices.submitEducationData(scope.myData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
+                editviewServices.getEducationData(custID).then(function(response) {
+                    scope.educationSelectArray = response.data;
+                });
                 alert('submitted Succesfully');
+
             } else {
                 alert('Updation failed');
             }
@@ -202,11 +206,10 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     };
 
     scope.ProfSubmit = function(objitem) {
-        debugger;
 
         scope.myprofData = {
             customerProfession: {
-                CustID: 91035,
+                CustID: custID,
                 EmployedIn: objitem.ddlemployedin,
                 Professionalgroup: objitem.ddlprofgroup,
                 Profession: objitem.ddlprofession,
@@ -221,25 +224,29 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 Workingfromdate: filter('date')(objitem.txtworkingfrom, 'yyyy-MM-dd'),
                 OccupationDetails: objitem.txtoccupation,
                 visastatus: objitem.ddlvisastatus,
-                Sincedate: filter('date')(objitem.txtssincedate, 'yyyy-MM-dd'),
-                ArrivalDate: filter('date')(objitem.txtarrivaldate, 'yyyy-MM-dd'),
-                DepartureDate: filter('date')(objitem.txtdeparture, 'yyyy-MM-dd'),
+                Sincedate: objitem.txtssincedate !== '' && objitem.txtssincedate !== 'Invalid date' ? filter('date')(objitem.txtssincedate, 'yyyy-MM-dd') : null,
+                ArrivalDate: objitem.txtarrivaldate !== '' && objitem.txtarrivaldate !== 'Invalid date' ? filter('date')(objitem.txtarrivaldate, 'yyyy-MM-dd') : null,
+                DepartureDate: objitem.txtdeparture !== '' && objitem.txtdeparture !== 'Invalid date' ? filter('date')(objitem.txtdeparture, 'yyyy-MM-dd') : null,
                 profGridID: scope.profObj.Cust_Profession_ID,
                 ProfessionID: scope.profObj.Cust_Profession_ID,
             },
             customerpersonaldetails: {
-                intCusID: 91035,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
-        }
+        };
+
         console.log(JSON.stringify(scope.myprofData));
-        debugger;
+
         editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                editviewServices.getProfessionData(custID).then(function(response) {
+                    scope.ProfessionSelectArray = response.data;
+                });
             } else {
                 alert('Updation failed');
             }
@@ -254,10 +261,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             commonFactory.closepopup();
             if (response.data === '1') {
                 alert('submitted Succesfully');
+                editviewServices.getAboutData(custID).then(function(response) {
+                    scope.lblaboutUrself = response.data;
+                    console.log(response);
+                });
             } else {
                 alert('Updation failed');
             }
         });
-    }
+    };
 
 }]);

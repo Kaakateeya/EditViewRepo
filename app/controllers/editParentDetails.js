@@ -11,23 +11,31 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.caste = 'caste';
     scope.lblaboutMyfamily = null;
     scope.aboutFamilyObj = {};
+    scope.dcountry = '1';
+    scope.parentArr = [];
 
-    var custID = '91035';
-    parentServices.getParentData(custID).then(function(response) {
-        scope.parentArr = JSON.parse(response.data[0]);
-        scope.addressArr = JSON.parse(response.data[1]);
-        scope.physicalArr = JSON.parse(response.data[2]);
+    var custID = '104605';
 
-    });
+    scope.parentBindData = function(icustID) {
+        parentServices.getParentData(icustID).then(function(response) {
+            scope.parentArr = JSON.parse(response.data[0]);
+            scope.addressArr = JSON.parse(response.data[1]);
+            scope.physicalArr = JSON.parse(response.data[2]);
+            console.log(scope.parentArr);
+        });
+    };
 
-    parentServices.getAboutFamilyData(custID).then(function(response) {
-        console.log(response);
-        scope.lblaboutMyfamily = response.data;
-    });
+    scope.AboutPageloadData = function() {
+        parentServices.getAboutFamilyData(custID).then(function(response) {
+            console.log(response);
+            scope.lblaboutMyfamily = response.data;
+        });
+    };
 
-
+    scope.parentBindData(custID);
+    scope.AboutPageloadData(custID);
     scope.changeBind = function(type, parentval) {
-        debugger;
+
         switch (type) {
             case 'fStates':
                 scope.fDistrictArr = commonFactory.districtBind(parentval);
@@ -55,11 +63,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 scope.parent.FatherCust_family_id = null;
                 scope.parent.MotherCust_family_id = null;
                 scope.parent = {};
-                scope.mob = false;
-                scope.land = false;
-                scope.mail = false;
-                if (item != undefined) {
 
+                if (item !== undefined) {
                     scope.parent = [];
                     scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
                     scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
@@ -77,7 +82,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.ddlMobile = item.FatherLandCountryCodeId;
                     scope.parent.txtMobile = item.FathermobilenumberID;
 
-                    if (item.FatherLandAreaCodeId != '' && item.FatherLandAreaCodeId != null) {
+                    if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
                         scope.parent.ddlLandLineCountry = item.FatherLandCountryCodeId;
                         scope.parent.txtAreCode = item.FatherLandAreaCodeId;
                         scope.parent.txtLandNumber = item.FatherLandNumberID;
@@ -92,7 +97,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.ddlFatherfatherMobileCountryCode = item.FatherfatherMobileCountryID;
                     scope.parent.txtMobileFatherfather = item.FatherFatherMobileNumber;
 
-                    if (item.FatherFatherLandAreaCode != '' && item.FatherFatherLandAreaCode != null) {
+                    if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
                         scope.parent.ddlFatherFatherLandLineCode = item.FatherfatherLandCountryCodeID;
                         scope.parent.txtGrandFatherArea = item.FatherFatherLandAreaCode;
                         scope.parent.txtGrandFatherLandLinenum = item.FatherFatherLandNumber;
@@ -114,7 +119,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.ddlMMobileCounCodeID = item.MotherMobileCountryCodeId;
                     scope.parent.txtMMobileNum = item.MotherMobilenumberID;
 
-                    if (item.MotherLandAreaCodeId != '' && item.MotherLandAreaCodeId != null) {
+                    if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
                         scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
                         scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
                         scope.parent.txtMLandLineNum = item.MotherLandNumber;
@@ -131,7 +136,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.ddlMotherfatheMobileCountryCode = item.MotherfatherMobileCountryID;
                     scope.parent.txtMotherfatheMobilenumber = item.MotherFatherMobileNumber;
 
-                    if (item.MotherFatherLandAreaCode != '' && item.MotherFatherLandAreaCode != null) {
+                    if (commonFactory.checkvals(item.MotherFatherLandAreaCode)) {
                         scope.parent.ddlMotherFatherLandLineCode = item.motherfatherLandCountryID;
                         scope.parent.txtMotherFatherLandLineareacode = item.MotherFatherLandAreaCode;
                         scope.parent.txtMotherFatherLandLinenum = item.MotherFatherLandNumber;
@@ -142,7 +147,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.ddlMState = item.motherStateID;
                     scope.parent.ddlMDistrict = item.motherDistricID;
                     scope.parent.txtMNativePlace = item.MotherNativeplace;
-                    scope.parent.rbtlParentIntercaste = item.Intercaste;
+                    scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
                     scope.parent.ddlFatherCaste = item.FatherCasteID;
                     scope.parent.ddlMotherCaste = item.MotherCasteID;
                 }
@@ -153,7 +158,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             case "Address":
                 scope.AdrrObj.Cust_Family_ID = null;
                 scope.AdrrObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
                     scope.districtArr = commonFactory.districtBind(item.ParentStateid);
 
@@ -177,7 +182,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
 
             case "physicalAttributes":
                 scope.physicalObj = {};
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.physicalObj.Cust_ID = item.Cust_ID;
 
                     scope.physicalObj.rbtlDiet = item.DietID;
@@ -196,7 +201,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 break;
 
             case "AboutFamily":
-                if (item != undefined) {
+                if (item !== undefined) {
                     scope.aboutFamilyObj.txtAboutUs = item;
                 }
                 commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
@@ -210,9 +215,10 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     };
 
     scope.ParentSubmit = function(objitem) {
+        alert(objitem.rbtlParentIntercaste);
         scope.myData = {
             GetDetails: {
-                CustID: scope.parent.cust_id,
+                CustID: custID,
                 FatherName: objitem.txtFathername,
                 Educationcategory: null,
                 Educationgroup: null,
@@ -225,9 +231,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 Professiondetails: objitem.txtFProfession,
                 MobileCountry: objitem.ddlMobile,
                 MobileNumber: objitem.txtMobile,
-                LandlineCountry: objitem.ddlfathermobile2 != '0' && objitem.ddlfathermobile2 != null ? objitem.ddlfathermobile2 : (objitem.ddlLandLineCountry != '0' && objitem.ddlLandLineCountry != null ? objitem.ddlLandLineCountry : null),
-                LandAreCode: objitem.txtfathermobile2 != '' && objitem.txtfathermobile2 != null ? null : (objitem.txtAreCode != '' && objitem.txtAreCode != null ? objitem.txtAreCode : null),
-                landLineNumber: objitem.txtfathermobile2 != '' && objitem.txtfathermobile2 != null ? objitem.txtfathermobile2 : (objitem.txtLandNumber != '' && objitem.txtLandNumber != null ? objitem.txtLandNumber : null),
+                LandlineCountry: commonFactory.checkvals(objitem.ddlfathermobile2) ? objitem.ddlfathermobile2 : (commonFactory.checkvals(objitem.ddlLandLineCountry) ? objitem.ddlLandLineCountry : null),
+                LandAreCode: commonFactory.checkvals(objitem.txtfathermobile2) ? null : (commonFactory.checkvals(objitem.txtAreCode) ? objitem.txtAreCode : null),
+                landLineNumber: commonFactory.checkvals(objitem.txtfathermobile2) ? objitem.txtfathermobile2 : (commonFactory.checkvals(objitem.txtLandNumber) ? objitem.txtLandNumber : null),
                 Email: objitem.txtEmail,
                 FatherFatherName: objitem.txtFatherFname,
 
@@ -243,9 +249,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 MotherProfessiondetails: objitem.txtMProfession,
                 MotherMobileCountryID: objitem.ddlMMobileCounCodeID,
                 MotherMobileNumber: objitem.txtMMobileNum,
-                MotherLandCountryID: objitem.ddlMMobileCounCodeID2 != '0' && objitem.ddlMMobileCounCodeID2 != null ? objitem.ddlMMobileCounCodeID2 : objitem.ddlMLandLineCounCode1 != '0' && objitem.ddlMLandLineCounCode1 != null ? objitem.ddlMLandLineCounCode : null,
-                MotherLandAreaCode: (objitem.txtMMobileNum2) != '' && (objitem.txtMMobileNum2) != null ? null : (objitem.txtmAreaCode != '' && objitem.txtmAreaCode != null ? objitem.txtmAreaCode : null),
-                MotherLandNumber: objitem.txtMMobileNum2 != '' && objitem.txtMMobileNum2 != null ? objitem.txtMMobileNum2 : objitem.txtMLandLineNum != '' && objitem.txtMLandLineNum != null ? objitem.txtMLandLineNum : null,
+                MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode1) ? objitem.ddlMLandLineCounCode : null,
+                MotherLandAreaCode: commonFactory.checkvals(objitem.txtMMobileNum2) ? null : (commonFactory.checkvals(objitem.txtmAreaCode) ? objitem.txtmAreaCode : null),
+                MotherLandNumber: commonFactory.checkvals(objitem.txtMMobileNum2) ? objitem.txtMMobileNum2 : commonFactory.checkvals(objitem.txtMLandLineNum) ? objitem.txtMLandLineNum : null,
                 MotherEmail: objitem.txtMEmail,
                 MotherFatherFistname: objitem.txtMFatherFname,
                 MotherFatherLastname: objitem.txtMFatherLname,
@@ -264,31 +270,32 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 AreParentsInterCaste: objitem.rbtlParentIntercaste,
                 FatherfatherMobileCountryID: objitem.ddlFatherfatherMobileCountryCode,
                 FatherFatherMobileNumber: objitem.txtMobileFatherfather,
-                FatherFatherLandCountryID: objitem.ddlfatherfatherAlternative != '0' && objitem.ddlfatherfatherAlternative != null ? objitem.ddlfatherfatherAlternative : (objitem.ddlFatherFatherLandLineCode != '0' && objitem.ddlFatherFatherLandLineCode != null ? objitem.ddlFatherFatherLandLineCode : null),
-                FatherFatherLandAreaCode: objitem.txtfatherfatherAlternative != '' && objitem.txtfatherfatherAlternative != null ? null : (objitem.txtGrandFatherArea != '' && objitem.txtGrandFatherArea != null ? objitem.txtGrandFatherArea : null),
-                FatherFatherLandNumber: objitem.txtfatherfatherAlternative != '' && objitem.txtfatherfatherAlternative != null ? objitem.txtfatherfatherAlternative : (objitem.txtGrandFatherLandLinenum != '' && objitem.txtGrandFatherLandLinenum != null ? objitem.txtGrandFatherLandLinenum : null),
+                FatherFatherLandCountryID: commonFactory.checkvals(objitem.ddlfatherfatherAlternative) ? objitem.ddlfatherfatherAlternative : (commonFactory.checkvals(objitem.ddlFatherFatherLandLineCode) ? objitem.ddlFatherFatherLandLineCode : null),
+                FatherFatherLandAreaCode: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? null : (commonFactory.checkvals(objitem.txtGrandFatherArea) ? objitem.txtGrandFatherArea : null),
+                FatherFatherLandNumber: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? objitem.txtfatherfatherAlternative : (commonFactory.checkvals(objitem.txtGrandFatherLandLinenum) ? objitem.txtGrandFatherLandLinenum : null),
                 MotherfatherMobileCountryID: objitem.ddlMotherfatheMobileCountryCode,
                 MotherFatherMobileNumber: objitem.txtMotherfatheMobilenumber,
-                MotherFatherLandCountryID: objitem.ddlmotherfatheralternative != '0' && objitem.ddlmotherfatheralternative != null ? objitem.ddlmotherfatheralternative : (objitem.ddlMotherFatherLandLineCode != '0' && objitem.ddlMotherFatherLandLineCode != null ? objitem.ddlMotherFatherLandLineCode : null),
-                MotherFatherLandAreaCode: objitem.txtmotherfatheralternative != '' && objitem.txtmotherfatheralternative != null ? null : (objitem.txtMotherFatherLandLineareacode != '' && objitem.txtMotherFatherLandLineareacode != null ? objitem.txtMotherFatherLandLineareacode : null),
-                MotherFatherLandNumber: objitem.txtmotherfatheralternative != '' && objitem.txtmotherfatheralternative != null ? objitem.txtmotherfatheralternative : (objitem.txtMotherFatherLandLinenum != '' && objitem.txtMotherFatherLandLinenum != null ? objitem.txtMotherFatherLandLinenum : null),
+                MotherFatherLandCountryID: commonFactory.checkvals(objitem.ddlmotherfatheralternative) ? objitem.ddlmotherfatheralternative : (commonFactory.checkvals(objitem.ddlMotherFatherLandLineCode) ? objitem.ddlMotherFatherLandLineCode : null),
+                MotherFatherLandAreaCode: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? null : (commonFactory.checkvals(objitem.txtMotherFatherLandLineareacode) ? objitem.txtMotherFatherLandLineareacode : null),
+                MotherFatherLandNumber: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? objitem.txtmotherfatheralternative : (commonFactory.checkvals(objitem.txtMotherFatherLandLinenum) ? objitem.txtMotherFatherLandLinenum : null),
                 FatherCaste: objitem.ddlMotherCaste,
                 MotherCaste: objitem.ddlFatherCaste
             },
             customerpersonaldetails: {
-                intCusID: scope.parent.cust_id,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
 
-        }
+        };
 
-        debugger;
+
         parentServices.submitParentData(scope.myData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.parentBindData(custID);
             } else {
                 alert('Updation failed');
             }
@@ -299,7 +306,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
 
         scope.myAddrData = {
             GetDetails: {
-                CustID: scope.AdrrObj.Cust_ID,
+                CustID: custID,
                 HouseFlateNumber: objitem.txtHouse_flat,
                 Apartmentname: objitem.txtApartmentName,
                 Streetname: objitem.txtStreetName,
@@ -314,17 +321,18 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 Cust_Family_ID: scope.AdrrObj.Cust_Family_ID
             },
             customerpersonaldetails: {
-                intCusID: scope.AdrrObj.Cust_ID,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
 
-        }
+        };
         parentServices.submitAddressData(scope.myAddrData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.parentBindData(custID);
             } else {
                 alert('Updation failed');
             }
@@ -335,7 +343,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
 
         scope.myPhysicalData = {
             GetDetails: {
-                CustID: scope.physicalObj.Cust_ID,
+                CustID: custID,
                 BWKgs: objitem.txtBWKgs,
                 BWlbs: objitem.txtlbs,
                 BloodGroup: objitem.ddlBloodGroup,
@@ -347,18 +355,19 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 BodyTypeID: objitem.ddlBodyType,
             },
             customerpersonaldetails: {
-                intCusID: scope.physicalObj.Cust_ID,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
 
-        }
+        };
 
         parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                scope.parentBindData(custID);
             } else {
                 alert('Updation failed');
             }
@@ -373,13 +382,47 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             commonFactory.closepopup();
             if (response.data === '1') {
                 alert('submitted Succesfully');
+                scope.AboutPageloadData(custID);
             } else {
                 alert('Updation failed');
             }
         });
 
-    }
+    };
 
+
+    scope.housewiseChk = function(item) {
+        if (item.chkbox === true) {
+            item.txtMProfession = 'HouseWife';
+        } else {
+            item.txtMProfession = '';
+        }
+    };
+
+    scope.roundVal = function(val) {
+        var dec = 2;
+        var result = Math.round(val * Math.pow(10, dec)) / Math.pow(10, dec);
+        return result;
+    };
+    scope.converttolbs = function(item) {
+        var value = item.txtBWKgs;
+        item.txtlbs = '';
+        if (value.length > 0) {
+            var lbs = value * 2.2;
+            lbs = scope.roundVal(lbs);
+            item.txtlbs = lbs;
+            if (lbs.toString() == 'NaN') {
+                //jAlert("", 'Alert Dialog', x);
+                alert("invalid Number");
+                item.txtlbs = '';
+                item.txtBWKgs = '';
+            }
+        } else {
+            item.txtBWKgs = '';
+            item.txtlbs = '';
+
+        }
+    };
 
 
 

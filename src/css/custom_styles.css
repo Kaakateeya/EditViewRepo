@@ -7268,3 +7268,13 @@ h5.myorders_list_main_item_heading span {
 .md-dialog-container {
     z-index: 99999999999999;
 }
+
+.multiselect {
+    border: solid 1px #ADA2A2 !important;
+    color: #000;
+    background: #fff !important;
+    box-shadow: none !important;
+    height: 34px !important;
+    line-height: 33px;
+    margin: 0 !important;
+}

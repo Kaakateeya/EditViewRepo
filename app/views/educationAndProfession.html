@@ -169,7 +169,7 @@
         <div class="edit_page_item_head clearfix">
             <h4>Mention your goals, interests and hobbies etc</h4>
             <div class="edit_page_item_ui clearfix">
-                <div id="upAboutAdd" ng-if="lblaboutUrself===''">
+                <div id="upAboutAdd" ng-if="lblaboutUrself==='' || lblaboutUrself===null">
                     <a class="edit_page_add_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal')">Add</a>
                 </div>
             </div>
@@ -183,7 +183,7 @@
                             <span id="lblabouturself">{{lblaboutUrself}}</span>
                         </h5>
                     </div>
-                    <div ng-if="lblaboutUrself!=''" class="edit_page_item_ui clearfix">
+                    <div ng-if="lblaboutUrself!='' && lblaboutUrself!=null" class="edit_page_item_ui clearfix">
                         <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="showpopup('showAboutModal',lblaboutUrself)">Edit</a>
                     </div>
 
@@ -404,3 +404,15 @@
     </div>
 
 </div>
+
+<style>
+    .multiselect {
+        border: solid 1px #ADA2A2 !important;
+        color: #000;
+        background: #fff !important;
+        box-shadow: none !important;
+        height: 34px !important;
+        line-height: 33px;
+        margin: 0 !important;
+    }
+</style>

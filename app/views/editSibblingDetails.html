@@ -797,10 +797,10 @@
                     <div class="pop_controls_right pop_radios_list">
 
                         <label>
-                <input ng-model="broObj.rdlBIsMarried" value="1" type="radio"><span>&nbsp;Yes</span>
+                <input ng-model="broObj.rdlBIsMarried" value="1" type="radio" ng-change="BIsMarried(broObj.rdlBIsMarried);"><span>&nbsp;Yes</span>
             </label>
                         <label class="">
-                <input ng-model="broObj.rdlBIsMarried" value="0" type="radio"><span>&nbsp;No</span>
+                <input ng-model="broObj.rdlBIsMarried" value="0" type="radio" ng-change="BIsMarried(broObj.rdlBIsMarried);"><span>&nbsp;No</span>
             </label>
                     </div>
                 </li>
@@ -821,7 +821,7 @@
                         <label for="lblwifescmpy" class="pop_label_left">Spouse Profession</label>
                         <div class="pop_controls_right">
                             <input ng-model="broObj.txtbrotherwifeprofession" class="form-control" tabindex="21" maxlength="200" />
-                            <label class="checkbox-inline"><input ng-model="broObj.chkboxbrotherwifeprofession" type="checkbox"><span>&nbsp;HouseWife</span> </label>
+                            <label class="checkbox-inline"><input ng-model="broObj.chkboxbrotherwifeprofession" type="checkbox" ng-change="BhousewiseChk(broObj);"><span>&nbsp;HouseWife</span> </label>
 
                         </div>
                     </li>
@@ -876,7 +876,7 @@
                                 <select multiselectdropdown ng-model="broObj.ddlborherspousefathercaste" typeofdata="caste"></select>
                             </div>
                         </li>
-                        <country-directive countryshow="false" cityshow="false" othercity="false" dstate="broObj.ddlBroSpousefatherState" ddistrict="broObj.ddlBroSpousefatherDistrict"></country-directive>
+                        <country-directive countryshow="false" dcountry="CountryVal" cityshow="false" othercity="false" dstate="broObj.ddlBroSpousefatherState" ddistrict="broObj.ddlBroSpousefatherDistrict"></country-directive>
 
                         <li class="clearfix form-group">
                             <label for="lblBroSpouseCity" class="pop_label_left">Native Place</label>
@@ -938,7 +938,7 @@
                         <input ng-model="sisObj.txtsisProfession" class="form-control" tabindex="4" maxlength="200" />
                     </div>
                     <div>
-                        <input ng-model="sisObj.chksisProfession" type="checkbox" ng-change="housewiseChk(sisObj);"><span>&nbsp;HouseWife</span>
+                        <input ng-model="sisObj.chksisProfession" type="checkbox" ng-change="ShousewiseChk(sisObj);"><span>&nbsp;HouseWife</span>
                     </div>
                 </li>
                 <div id="divsiscmpyyy">
@@ -961,16 +961,16 @@
                 <div style="height: 15px;"></div>
 
                 <contact-directive emailhide="true" dmobile="sisObj.ddlSMobileCountyCodeID" strmobile="sisObj.txtSMobileNumber" dalternative="sisObj.ddlSMobileCountyCodeID2" stralternative="sisObj.txtSMobileNumber2" dland="sisObj.ddlSLandLineCountryCodeID" strareacode="sisObj.txtSAreacoude"
-                    strland="sisObj.txtSNumber" strmail="sisObj.txtMEmail"></contact-directive>
+                    strland="sisObj.txtSNumber" strmail="sisObj.txtSEmails"></contact-directive>
 
                 <li class="clearfix form-group">
                     <label for="lblIsMarried" class="pop_label_left">Is Married<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right pop_radios_list">
                         <label>
-                <input ng-model="sisObj.rdlSIsMarried" value="1" type="radio"><span>&nbsp;Yes</span>
+                <input ng-model="sisObj.rdlSIsMarried" value="1" type="radio" ng-change="SIsMarried(sisObj.rdlSIsMarried);"><span>&nbsp;Yes</span>
             </label>
                         <label class="">
-                <input ng-model="sisObj.rdlSIsMarried" value="0" type="radio"><span>&nbsp;No</span>
+                <input ng-model="sisObj.rdlSIsMarried" value="0" type="radio" ng-change="SIsMarried(sisObj.rdlSIsMarried);"><span>&nbsp;No</span>
             </label>
                     </div>
                 </li>

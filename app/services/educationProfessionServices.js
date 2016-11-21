@@ -2,16 +2,15 @@ editviewapp.factory('editviewServices', ['$http', function(http) {
 
     return {
         getEducationData: function(obj) {
-            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerEducationdetails', { params: { CustID: "91035" } });
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerEducationdetails', { params: { CustID: obj } });
         },
         getProfessionData: function(obj) {
-            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerProfessiondetails', { params: { CustID: "91035" } });
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerProfessiondetails', { params: { CustID: obj } });
         },
         getAboutData: function(obj) {
             return http.get(editviewapp.apipath + 'CustomerPersonal/getEducationProfession_AboutYourself', { params: { CustID: obj, AboutYourself: '', flag: 0 } });
         },
         submitEducationData: function(obj1) {
-            debugger;
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerPersonalUpdateEducationdetail', JSON.stringify(obj1));
         },
         submitProfessionData: function(obj1) {

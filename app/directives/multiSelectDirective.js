@@ -15,7 +15,7 @@ editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServi
             scope.databind = function(data) {
                 element.multiselect('dataprovider', data);
                 element.multiselect('select', scope.ngModel);
-            }
+            };
 
             switch (scope.typeofdata) {
 

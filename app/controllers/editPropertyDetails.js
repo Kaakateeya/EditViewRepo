@@ -7,22 +7,21 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
 
     propertyServices.getPropertyData(custID).then(function(response) {
         scope.propertyArr = response.data;
-        console.log(response);
     });
 
     scope.populateProperty = function(item) {
         scope.proObj = {};
         scope.proObj.Custpropertyid = null;
-        if (item != undefined) {
+        if (item !== undefined) {
             scope.proObj.Custpropertyid = item.Custpropertyid;
             scope.proObj.ddlFamilyStatus = item.FamilyValuesID;
-            scope.proObj.rdlSharedProperty = item.SharedPropertyID == true ? 1 : 0;
+            scope.proObj.rdlSharedProperty = item.SharedPropertyID === true ? 1 : 0;
             scope.proObj.txtValueofproperty = item.PropertyValue;
             scope.proObj.txtPropertydesc = item.PropertyDetails;
         }
 
         commonFactory.open('propertyContent.html', scope, uibModal);
-    }
+    };
 
 
     scope.propertySubmit = function(obj) {
@@ -43,18 +42,21 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                 EmpID: null,
                 Admin: null
             }
-        }
+        };
 
         propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                propertyServices.getPropertyData(custID).then(function(response) {
+                    scope.propertyArr = response.data;
+                });
             } else {
                 alert('Updation failed');
             }
         });
-    }
+    };
 
     scope.cancel = function() {
         commonFactory.closepopup();

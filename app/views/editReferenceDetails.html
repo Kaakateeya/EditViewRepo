@@ -4,7 +4,7 @@
             <h4>Reference Details
             </h4>
 
-            <div class="edit_page_item_ui clearfix" ng-if="ReferenceArr.length===0">
+            <div class="edit_page_item_ui clearfix">
                 <a class="edit_page_add_button" href="javascript:void(0)" ng-click="referencePopulate();">Add</a>
             </div>
         </div>
@@ -26,10 +26,8 @@
 
                         </div>
                         <div ng-if="ReferenceArr.length>0" class="edit_page_item_ui clearfix">
-
                             <a onclick="return AllowWebUser('Reference Details');" class="edit_page_edit_button" href="javascript:void(0);" ng-click="referencePopulate(item);">Edit</a>
                         </div>
-
                     </div>
                     <div class="edit_page_details_item_desc clearfix">
 

@@ -12,11 +12,11 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
     scope.imgArr = [];
     scope.cancel = function() {
         commonFactory.closepopup();
-    }
+    };
 
     scope.AddImage = function() {
         commonFactory.open('AddimagePopup.html', scope, uibModal);
-    }
+    };
     editmanagePhotoServices.getPhotoData().then(function(response) {
         var StrCustID = '104084';
 
@@ -24,13 +24,11 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
         scope.manageArr = response.data;
         _.each(scope.manageArr, function(item) {
 
-            debugger;
             var imagepath = accesspathdots;
-
-            if (item.IsActive == "0" && item.PhotoName != null) {
-                var strCustDirName = "KMPL_" + StrCustID + "_Images";
-                var path = imagepath + strCustDirName + "/" + item.PhotoName;
-                item.ImageUrl = path;
+            if (item.IsActive == "0" && item.PhotoName !== null) {
+                var strCustDirName1 = "KMPL_" + StrCustID + "_Images";
+                var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
+                item.ImageUrl = path1;
                 item.addButtonvisible = false;
                 item.deleteVisibility = true;
                 //dynDiv.Attributes.Add("Class", "cssMaskdiv clearfix");
@@ -45,7 +43,6 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
                         var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var path = imagepath + strCustDirName + "/" + photoshoppath;
                         item.ImageUrl = path;
-                        alert(path);
 
                         break;
                     case 2:
@@ -60,7 +57,7 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
                         item.ImageUrl = pathneww;
                         break;
                 }
-            } else if (item.IsActive == "0" && item.PhotoName == null) {
+            } else if (item.IsActive === "0" && item.PhotoName === null) {
                 item.addButtonvisible = true;
                 item.deleteVisibility = false;
                 item.ImageUrl = Fnoimage;
@@ -68,9 +65,5 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
             }
         });
     });
-
-
-
-
 
 }]);

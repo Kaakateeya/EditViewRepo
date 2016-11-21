@@ -544,7 +544,7 @@
     <div class="edit_page_item" id="divlnkaboutt">
         <div class="edit_page_item_head clearfix">
             <h4>About My Family </h4>
-            <div class="edit_page_item_ui clearfix" ng-if="lblaboutMyfamily===''">
+            <div class="edit_page_item_ui clearfix" ng-if="lblaboutMyfamily==='' || lblaboutMyfamily===null">
 
                 <a data-original-title="Add About My Family" class="edit_page_add_button" href="javascript:void(0);" ng-click="populateModel('AboutFamily');">Add</a>
             </div>
@@ -563,7 +563,7 @@
                             <label id="Label5" visible="false"></label>
                         </div>
 
-                        <div class="edit_page_item_ui clearfix" ng-if="lblaboutMyfamily!=''">
+                        <div class="edit_page_item_ui clearfix" ng-if="lblaboutMyfamily!='' && lblaboutMyfamily!=null">
                             <a href="javascript:void(0);" class="edit_page_edit_button" data-original-title="Edit About My Family" ng-click="populateModel('AboutFamily',lblaboutMyfamily);">Edit</a>
                         </div>
 
@@ -634,7 +634,7 @@
                         <contact-directive emailhide="false" dmobile="parent.ddlFatherfatherMobileCountryCode" strmobile="parent.txtMobileFatherfather" dalternative="parent.ddlfatherfatherAlternative" stralternative="parent.txtfatherfatherAlternative" dland="parent.ddlFatherFatherLandLineCode"
                             strareacode="parent.txtGrandFatherArea" strland="parent.txtGrandFatherLandLinenum"></contact-directive>
 
-                        <country-directive countryshow="false" cityshow="false" othercity="false" dstate="parent.ddlFState" ddistrict="parent.ddlFDistric"></country-directive>
+                        <country-directive countryshow="false" dcountry="dcountry" cityshow="false" othercity="false" dstate="parent.ddlFState" ddistrict="parent.ddlFDistric"></country-directive>
 
                         <li class="clearfix form-group">
                             <label for="FNativePlace" class="pop_label_left">Native Place</label>
@@ -664,7 +664,7 @@
                             <div class="pop_controls_right">
                                 <input ng-model="parent.txtMProfession" class="form-control" maxlength="200" tabindex="32" />
                                 <label class="checkbox-inline checkbox_my" style="padding: 5px 0 0 0;">
-                <input type=checkbox ng-model="parent.chkbox"  tabindex="33"  /><span>&nbsp;HouseWife</span>
+                <input type=checkbox ng-model="parent.chkbox"  tabindex="33"  ng-change="housewiseChk(parent);"/><span>&nbsp;HouseWife</span>
             </label>
                             </div>
 
@@ -710,7 +710,7 @@
                         <contact-directive emailhide="false" dmobile="parent.ddlMotherfatheMobileCountryCode" strmobile="parent.txtMotherfatheMobilenumber" dalternative="parent.ddlmotherfatheralternative" stralternative="parent.txtmotherfatheralternative" dland="parent.ddlMotherFatherLandLineCode"
                             strareacode="parent.txtMotherFatherLandLineareacode" strland="parent.txtMotherFatherLandLinenum"></contact-directive>
 
-                        <country-directive countryshow="false" cityshow="false" othercity="false" dstate="parent.ddlMState" ddistrict="parent.ddlMDistrict"></country-directive>
+                        <country-directive countryshow="false" dcountry="dcountry" cityshow="false" othercity="false" dstate="parent.ddlMState" ddistrict="parent.ddlMDistrict"></country-directive>
                         <li class="clearfix form-group">
                             <label for="MNativePlace" class="pop_label_left">Native Place</label>
                             <div class="pop_controls_right">
@@ -729,7 +729,7 @@
                             </div>
                         </li>
 
-                        <div id="ParentCasteDiv">
+                        <div ng-if="parent.rbtlParentIntercaste==='1'">
 
                             <li id="divddlFatherCaste" class="clearfix form-group">
 
@@ -893,13 +893,12 @@
                         <li class="clearfix form-group">
                             <label for="lblBodtWeight" class="pop_label_left">Body weight</label>
                             <div class="pop_controls_right select-box-my select-box-my-double">
-                                <label id="lblkgs" text="kgs" font-size="14px"></label>
-                                <input ng-model="physicalObj.txtBWKgs" class="form-control" tabindex="5" width="200px" />
-
+                                <span>kgs</span>
+                                <input ng-model="physicalObj.txtBWKgs" class="form-control" tabindex="5" width="200px" ng-keyup="converttolbs(physicalObj);" />
                             </div>
                         </li>
                         <li class="clearfix form-group">
-                            <label id="lbllbs" class="pop_label_left" text="lbs"></label>
+                            <label id="lbllbs" class="pop_label_left">lbs</label>
                             <div class="pop_controls_right">
                                 <div>
                                     <input ng-model="physicalObj.txtlbs" class="form-control" text="" onkeyup="converttokgs(this.id);" onkeydown="return checkwhitespace(event,this.id);" onblur="validateLbs(this)" tabindex="6" />

@@ -11,13 +11,13 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             strmail: '=',
             emailhide: '='
         },
-        templateUrl: 'editview/app/views/contacttemplate.html',
+        templateUrl: editviewapp.templateroot + 'app/views/contacttemplate.html',
         link: function(scope, element, attr) {
 
-            scope.amob = (scope.stralternative != null && scope.stralternative != '' && scope.stralternative != undefined) ? true : false;
-            scope.land = (scope.strareacode != null && scope.strareacode != '' && scope.strareacode != undefined) ? true : false;
-            scope.mail = (scope.strmail != null && scope.strmail != '' && scope.strmail != undefined) ? true : false;
-            scope.pmob = (scope.strmobile != null && scope.strmobile != '' && scope.strmobile != undefined) ? true : false;
+            scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
+            scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;
+            scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
+            scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
 
             SelectBindService.countryCodeselect().then(function(response) {
                 scope.countryCodeArr = [];
@@ -28,11 +28,11 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             });
 
             scope.showhidemob = function(ev, type) {
-                debugger;
+
                 scope.confirm = null;
                 switch (type) {
                     case 'mob':
-                        if (scope.pmob == false) {
+                        if (scope.pmob === false) {
                             scope.pmob = true;
                         } else {
                             var lNaumber = scope.strland;
@@ -54,9 +54,9 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             };
 
             scope.checkMobile = function(ev, strval, type, strdisplay) {
-                debugger;
-                if (strval != "" && strval != undefined) {
-                    scope.confirm = commonFactory.showConfirm(ev, mdDialog, 'Are You Sure To Delete ' + strdisplay + ' Number', 'delete', 'cancel')
+
+                if (strval !== "" && strval !== undefined) {
+                    scope.confirm = commonFactory.showConfirm(ev, mdDialog, 'Are You Sure To Delete ' + strdisplay + ' Number', 'delete', 'cancel');
                     scope.test(type);
 
                 } else {
@@ -83,7 +83,7 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             scope.test = function(type) {
 
                 mdDialog.show(scope.confirm).then(function() {
-                    debugger;
+
                     scope.clear(type);
 
                 }, function() {
@@ -93,5 +93,5 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
 
 
         }
-    }
+    };
 }]);

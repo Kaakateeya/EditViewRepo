@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                 // separator: ';'
             },
             js: { //target
-                src: ['index.js', 'app/**/*.js', 'dist/html/templates.js'],
+                src: ['index.js', 'app/**/*.js', 'dist/html/templates.js', '!app/directives/multiSelectDirective.js'],
                 dest: 'dist/src/main.js'
             },
             css: {
@@ -130,17 +130,14 @@ module.exports = function(grunt) {
             }
         }
 
-
-
-
     });
     grunt.registerTask('default', ['jshint', 'concat', 'cssmin', 'scriptlinker:dev']);
 
     // this task will only run the dev configuration 
-    grunt.registerTask('dev', ['cssmin', 'scriptlinker:dev']);
+    grunt.registerTask('dev', ['jshint', 'cssmin', 'scriptlinker:dev']);
 
     // only run production configuration 
-    grunt.registerTask('prod', ['ngtemplates', 'concat', 'cssmin', 'uglify', 'scriptlinker:prod']);
+    grunt.registerTask('prod', ['jshint', 'ngtemplates', 'concat', 'cssmin', 'uglify', 'scriptlinker:prod']);
 
     // ===========================================================================
     // LOAD GRUNT PLUGINS ========================================================

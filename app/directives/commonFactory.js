@@ -15,7 +15,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         listSelectedVal: function(val) {
             var str = null;
-            if (val != null) {
+            if (val !== null) {
                 if (angular.isString(val)) {
                     str = val === '' ? null : val;
                 } else {
@@ -91,7 +91,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
 
         numbersBind: function(str, from, to) {
             var numArr = [];
-            debugger;
+
             numArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             for (var i = from; i <= to; i++) {
                 numArr.push({ "label": i + " " + str, "title": i + " " + str, "value": i });
@@ -152,7 +152,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
             return branchArr;
         },
         showConfirm: function(ev, mdDialog, header, okTxt, cancelTxt) {
-            debugger;
+
             var status = false;
             var confirm = mdDialog.confirm()
                 .title(header)
@@ -164,7 +164,11 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
 
             return confirm;
 
+        },
+        checkvals: function(val) {
+            return (val !== undefined && val !== null && val !== '') ? true : false;
         }
-    }
+
+    };
 
 }]);

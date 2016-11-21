@@ -4,11 +4,9 @@ editviewapp.factory('sibblingServices', ['$http', function(http) {
             return http.get(editviewapp.apipath + 'CustomerPersonal/getsiblingsDetailsDisplay', { params: { CustID: obj } });
         },
         submitSibBroData: function(obj1) {
-            debugger;
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerSibBrotherUpdatedetails', JSON.stringify(obj1));
         },
         submitSibSisData: function(obj1) {
-            debugger;
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerSibSisterUpdatedetails', JSON.stringify(obj1));
         },
         submitSibCountsData: function(obj1) {

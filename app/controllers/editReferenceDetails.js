@@ -1,6 +1,6 @@
 editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory', function(uibModal, scope, referenceServices, commonFactory) {
 
-    var custID = '91035';
+    var custID = '104605';
     scope.ReferenceArr = [];
     scope.refObj = {};
     scope.RelationshipType = 'RelationshipType';
@@ -10,7 +10,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
     scope.referencePopulate = function(item) {
         scope.refObj.RefrenceCust_Reference_ID = null;
         scope.refObj = {};
-        if (item != undefined) {
+        if (item !== undefined) {
             scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
             scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
 
@@ -31,7 +31,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
             scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
 
 
-            if (item.RefrenceAreaCode != '' && item.RefrenceAreaCode != null) {
+            if (commonFactory.checkvals(item.RefrenceAreaCode)) {
                 scope.refObj.ddlLandLineCountryID = item.RefrenceLandCountryId;
                 scope.refObj.txtAreCode = item.RefrenceAreaCode;
                 scope.refObj.txtLandNumber = item.RefrenceLandNumber;
@@ -46,13 +46,11 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
             scope.refObj.txtNarrations = item.RefrenceNarration;
         }
         commonFactory.open('referenceContent.html', scope, uibModal);
-    }
+    };
 
     referenceServices.getReferenceData(custID).then(function(response) {
         scope.ReferenceArr = response.data;
-        console.log(scope.ReferenceArr);
     });
-
 
     scope.changeBind = function(type, parentval) {
         switch (type) {
@@ -65,14 +63,12 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 break;
         }
 
-    }
-
-
+    };
 
     scope.refenceSubmit = function(obj) {
         scope.referenceData = {
             GetDetails: {
-                CustID: 91035,
+                CustID: custID,
                 RelationshiptypeID: obj.ddlRelationshiptype,
                 Firstname: obj.txtFname,
                 Lastname: obj.txtLname,
@@ -87,33 +83,34 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 Presentlocation: obj.txtPresentlocation,
                 MobileCountryID: obj.ddlMobileCountryID,
                 MobileNumber: obj.txtMobileNumber,
-                LandLineCountryID: obj.ddlMobileCountryID2 != '0' && obj.ddlMobileCountryID2 != null ? obj.ddlMobileCountryID2 : (obj.ddlLandLineCountryID != '0' && obj.ddlLandLineCountryID != null ? obj.ddlLandLineCountryID : null),
-                LandLineAreaCode: obj.txtMobileNumber2 != '' && obj.txtMobileNumber2 != null ? null : (obj.txtAreCode != '' && obj.txtAreCode != null ? obj.txtAreCode : null),
-                LandLineNumber: obj.txtMobileNumber2 != '0' && obj.txtMobileNumber2 != null ? obj.txtMobileNumber2 : (obj.txtLandNumber != '0' && obj.txtLandNumber != null ? obj.txtLandNumber : null),
+                LandLineCountryID: commonFactory.checkvals(obj.ddlMobileCountryID2) ? obj.ddlMobileCountryID2 : (commonFactory.checkvals(obj.ddlLandLineCountryID) ? obj.ddlLandLineCountryID : null),
+                LandLineAreaCode: commonFactory.checkvals(obj.txtMobileNumber2) ? null : (commonFactory.checkvals(obj.txtAreCode) ? obj.txtAreCode : null),
+                LandLineNumber: commonFactory.checkvals(obj.txtMobileNumber2) ? obj.txtMobileNumber2 : (commonFactory.checkvals(obj.txtLandNumber) ? obj.txtLandNumber : null),
                 Emails: obj.txtEmails,
                 Narration: obj.txtNarrations,
                 Cust_Reference_ID: scope.refObj.RefrenceCust_Reference_ID
             },
             customerpersonaldetails: {
-                intCusID: 91035,
+                intCusID: custID,
                 EmpID: null,
                 Admin: null
             }
-        }
-
-        debugger;
+        };
         referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
+                referenceServices.getReferenceData(custID).then(function(response) {
+                    scope.ReferenceArr = response.data;
+                });
             } else {
                 alert('Updation failed');
             }
         });
 
 
-    }
+    };
 
     scope.cancel = function() {
         commonFactory.closepopup();
