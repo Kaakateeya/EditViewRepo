@@ -13497,19 +13497,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkeditprofile\" href=\"#/EditProfile\">Edit Profile</a>\r" +
+    "                                <a id=\"linkeditprofile\" href=\"#/editview\">Edit Profile</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkmanagephoto\" href=\"#/ManagePhoto\">Manage Photo</a>\r" +
+    "                                <a id=\"linkmanagephoto\" href=\"#/editview/editManagePhoto\">Manage Photo</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkmanagehoroscope\" href=\"#/ManageHoroscope\">Manage Horoscope</a>\r" +
+    "                                <a id=\"linkmanagehoroscope\" href=\"#/editview/editAstro\">Manage Horoscope</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
@@ -13703,59 +13703,63 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "\r" +
+    "</div>\r" +
     "\n" +
-    "    <script type=\"text/ng-template\" id=\"sessionalert.html\">\r" +
-    "\n" +
-    "        <div class=\"modal-content\">\r" +
-    "\n" +
-    "            <div class=\"modal-header\">\r" +
-    "\n" +
-    "                <h3> Confirmation</h3>\r" +
-    "\n" +
-    "            </div>\r" +
+    "</div>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "            <div class=\"modal-body\">\r" +
+    "<script type=\"text/ng-template\" id=\"sessionalert.html\">\r" +
     "\n" +
-    "                <div class=\"row\">\r" +
+    "    <div class=\"modal-content\">\r" +
     "\n" +
-    "                    <h4 class=\"col-lg-offset-1\">Do you want to continue Session</h4>\r" +
+    "        <div class=\"modal-header\">\r" +
     "\n" +
-    "                </div>\r" +
-    "\n" +
-    "                <div class=\"clearfix\"></div>\r" +
-    "\n" +
-    "                <br>\r" +
-    "\n" +
-    "                <div class='row'>\r" +
-    "\n" +
-    "                    <div class='col-lg-4 col-lg-offset-2'>\r" +
-    "\n" +
-    "                        <button type='button' class='btn btn-danger' ng-click='closesession()'>close</button>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class='col-lg-5'>\r" +
-    "\n" +
-    "                        <button type='button' class='btn btn-success' ng-click='acceptcontinue()'>Continue</button>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
-    "            </div>\r" +
+    "            <h3> Confirmation</h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "    </script>\r" +
+    "        <div class=\"modal-body\">\r" +
+    "\n" +
+    "            <div class=\"row\">\r" +
+    "\n" +
+    "                <h4 class=\"col-lg-offset-1\">Do you want to continue Session</h4>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"clearfix\"></div>\r" +
+    "\n" +
+    "            <br>\r" +
+    "\n" +
+    "            <div class='row'>\r" +
+    "\n" +
+    "                <div class='col-lg-4 col-lg-offset-2'>\r" +
+    "\n" +
+    "                    <button type='button' class='btn btn-danger' ng-click='closesession()'>close</button>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class='col-lg-5'>\r" +
+    "\n" +
+    "                    <button type='button' class='btn btn-success' ng-click='acceptcontinue()'>Continue</button>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</script>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
