@@ -1,6 +1,5 @@
-editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices', 'commonFactory', function(uibModal, scope, relativeServices, commonFactory) {
+editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices', 'commonFactory', 'authSvc', function(uibModal, scope, relativeServices, commonFactory, authSvc) {
 
-    var custid = '104613';
 
     scope.fbObj = {};
     scope.fsObj = {};
@@ -8,6 +7,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
     scope.msObj = {};
     scope.countryCode = 'countryCode';
     scope.indiaStates = 'indiaStates';
+
+    var logincustid = authSvc.getCustId();
+    var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.relativePageLoad = function(icustid) {
         relativeServices.getRelativeeData(icustid).then(function(response) {

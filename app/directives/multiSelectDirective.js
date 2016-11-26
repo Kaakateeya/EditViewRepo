@@ -1,7 +1,7 @@
 // AngularJS: 1.3.15
 // bootstrap-multiselect: 0.9.6
 //var statticdata=require('./staticArrayBindings.json');
-editviewapp.directive('multiselectdropdown', ['arrayConstants', 'SelectBindService', function(cons, service) {
+editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindService', function(cons, service) {
     return {
         require: 'ng-model',
         scope: {

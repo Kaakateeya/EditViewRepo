@@ -1,8 +1,10 @@
-editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices', 'commonFactory', function(uibModal, scope, propertyServices, commonFactory) {
+editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices', 'commonFactory', 'authSvc', function(uibModal, scope, propertyServices, commonFactory, authSvc) {
     scope.propertyArr = [];
     scope.proObj = {};
     scope.familyStatus = 'familyStatus';
-    var custID = '104610';
+
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
 
     propertyServices.getPropertyData(custID).then(function(response) {

@@ -1,4 +1,4 @@
-editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter) {
+editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', 'authSvc', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter, authSvc) {
 
     scope.stateArr = [];
     scope.districtArr = [];
@@ -19,7 +19,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.edoObj = {};
     scope.aboutObj = {};
     scope.edoObj.IsHighestDegree = '';
-    var custID = '104605';
+
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.cancel = function() {
         commonFactory.closepopup();

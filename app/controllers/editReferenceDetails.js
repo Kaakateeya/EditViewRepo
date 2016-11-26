@@ -1,11 +1,16 @@
-editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory', function(uibModal, scope, referenceServices, commonFactory) {
+editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory', 'authSvc', function(uibModal, scope, referenceServices, commonFactory, authSvc) {
 
-    var custID = '104605';
+
     scope.ReferenceArr = [];
     scope.refObj = {};
     scope.RelationshipType = 'RelationshipType';
     scope.Country = 'Country';
     scope.countryCode = 'countryCode';
+
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
 
     scope.referencePopulate = function(item) {
         scope.refObj.RefrenceCust_Reference_ID = null;

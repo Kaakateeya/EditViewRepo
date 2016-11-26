@@ -615,10 +615,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "        <div class=\"my_photos_main my_photos_main_edit\">\r" +
     "\n" +
     "            <h6>Upload your recent Photos for better response</h6>\r" +
@@ -635,8 +631,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"dragzone\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                <div class=\"pics_selected_list_main clearfix\">\r" +
     "\n" +
     "                    <div class=\"pics_selected_list_main_lt clearfix\">\r" +
@@ -649,7 +643,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <div class=\"pics_selected_list_item\">\r" +
     "\n" +
-    "                                    <div id=\"maskdiv\">\r" +
+    "                                    <div ng-class=\"item.IsActive == 0 && item.PhotoName !== null?'cssMaskdiv clearfix':''\">\r" +
     "\n" +
     "                                        <img ng-model=\"imgPhotoName\" ng-src=\"{{item.ImageUrl}}\" />\r" +
     "\n" +
@@ -661,15 +655,27 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <div class=\"photos_icon\">\r" +
     "\n" +
-    "                                            <input type=\"image\" id=\"imgAdd\" alt=\"add\" ng-click=\"AddImage();\" ng-show=\"{{item.addButtonvisible}}\" />\r" +
+    "                                            <!--<input type=\"image\" id=\"imgAdd\" alt=\"add\" ng-click=\"AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);\" ng-show=\"{{item.addButtonvisible}}\" />-->\r" +
+    "\n" +
+    "                                            <a href=\"javascript:void(0);\" ng-click=\"AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);\" ng-show=\"{{item.addButtonvisible}}\">\r" +
+    "\n" +
+    "                                                <ng-md-icon icon=\"add_a_photo\" style=\"fill:#665454\" size=\"25\">Add</ng-md-icon>\r" +
+    "\n" +
+    "                                            </a>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                                            <input type=\"image\" title=\"Delete Image\" ng-show=\"{{item.deleteVisibility}}\" alt=\"delete\" />\r" +
+    "                                            <a href=\"javascript:void(0);\" ng-show=\"{{item.deleteVisibility}}\" ng-click=\"DeleteImage(item.keyname,item.Cust_Photos_ID);\">\r" +
     "\n" +
-    "\r" +
+    "                                                <ng-md-icon icon=\"delete\" style=\"fill:#665454\" size=\"25\">Delete</ng-md-icon>\r" +
     "\n" +
-    "                                            <input type=\"image\" id=\"lnksetasprofile\" alt=\"Set as Profilepic\" class=\"set_pic\" onclick=\"lnksetasprofile_Click\" ng-show='{{item.IsMain==\"1\"?false:(item.PhotoName!=null?true:false) }}'></input>\r" +
+    "                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r" +
+    "\n" +
+    "                                            <a href=\"javascript:void(0);\" class=\"set_pic\" ng-click=\"setAsProfilePic(item.Cust_Photos_ID);\" style=\"color:#665454;font-weight:bold;\" ng-show='{{item.IsMain==\"1\"?false:(item.PhotoName!=null?true:false) }}'>\r" +
+    "\n" +
+    "                                            Set as Profilepic\r" +
+    "\n" +
+    "                                            </a>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -691,27 +697,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" id=\"divPassword\">\r" +
     "\n" +
-    "                                <label class=\"checkbox checkbox_my pull-left\">\r" +
+    "                                <label class=\"\">\r" +
     "\n" +
-    "                                    <!-- <asp:radiobutton id=\"rdbutton\" text=\"Protect with Password\" cssclass=\"radio\" oncheckedchanged=\"rdbutton_CheckedChanged\"\r" +
+    "                                \r" +
     "\n" +
-    "                                        autopostback=\"true\" visible=\"false\" />-->\r" +
+    "                                <div class=\"radio_my2 clearfix\">\r" +
     "\n" +
-    "                                    <div id=\"UpdatePanel5\" class=\"radio_my2 clearfix\">\r" +
+    "                                <label style=\"font-size: 14px !important; font-weight: 400;\"> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\r" +
     "\n" +
-    "\r" +
+    "                                <md-radio-group layout=\"row\" ng-model=\"rbtProtectPassword\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\" ng-change=\"setPhotoPassword(rbtProtectPassword);\">\r" +
     "\n" +
-    "                                        <label class=\"pull-left\" style=\"font-size: 14px; font-weight: 400;\" id=\"lblProtected\" text=\" Protect with Password :\"></label>\r" +
+    "                                    <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                                <!-- <asp:RadioButtonList  ID=\"rbtProtectPassword\" RepeatDirection=\"Horizontal\" OnSelectedIndexChanged=\"rdbutton_CheckedChanged\" AutoPostBack=\"true\" class=\"radio pull-right\">\r" +
+    "                                    <md-radio-button value=\"0\"> No </md-radio-button>\r" +
     "\n" +
-    "                                                <asp:ListItem Value=\"1\">Yes</asp:ListItem>\r" +
-    "\n" +
-    "                                                <asp:ListItem Value=\"0\" Selected=\"True\">No</asp:ListItem>\r" +
-    "\n" +
-    "                                            </asp:RadioButtonList>-->\r" +
-    "\n" +
-    "\r" +
+    "                                </md-radio-group>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -720,6 +720,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                    </div>\r" +
+    "\n" +
+    "                    </br>\r" +
     "\n" +
     "                    <div class=\"photo_upload_instrctns_list clearfix\">\r" +
     "\n" +
@@ -746,12 +748,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -909,41 +905,117 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "<script type=\"text/ng-template\" id=\"AddimagePopup.html\">\r" +
     "\n" +
-    "    <div class=\"modal-header\">\r" +
+    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"upload(up);\">\r" +
     "\n" +
-    "        <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Photo </h3>\r" +
+    "        <div class=\"modal-header\">\r" +
     "\n" +
-    "    </div>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Photo </h3>\r" +
     "\n" +
-    "    <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "        </div>\r" +
     "\n" +
-    "        <ul id=\"ulprofession\">\r" +
+    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
     "\n" +
-    "\r" +
+    "            <ul id=\"ulprofession\">\r" +
     "\n" +
-    "        </ul>\r" +
+    "                <input type=\"file\" file-model=\"up.myFile\" />\r" +
     "\n" +
-    "\r" +
+    "            </ul>\r" +
     "\n" +
-    "    </div>\r" +
+    "        </div>\r" +
     "\n" +
-    "    <div class=\"modal-footer\">\r" +
+    "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "        <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "        <input name=\"btnEduSubmit\" value=\"Upload\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"button\">\r" +
+    "            <input value=\"Upload\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
-    "    </div>\r" +
+    "        </div>\r" +
+    "\n" +
+    "    </form>\r" +
     "\n" +
     "</script>\r" +
     "\n" +
-    "</div>"
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"deleteimagePopup.html\">\r" +
+    "\n" +
+    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"Delete(up);\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Delete Photo </h3>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "            <div class=\"text-center\">Are you sure to delete photo?</div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-footer\">\r" +
+    "\n" +
+    "            <input value=\"Close\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "            <input value=\"Delete\" class=\"button_custom\" type=\"submit\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </form>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<style>\r" +
+    "\n" +
+    "    .cssMaskdiv {\r" +
+    "\n" +
+    "        position: relative;\r" +
+    "\n" +
+    "        display: inline-block;\r" +
+    "\n" +
+    "        overflow: hidden;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .cssMaskdiv:after {\r" +
+    "\n" +
+    "        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;\r" +
+    "\n" +
+    "        color: #ffffff;\r" +
+    "\n" +
+    "        content: \"Under Review\";\r" +
+    "\n" +
+    "        display: block;\r" +
+    "\n" +
+    "        font-size: 14px;\r" +
+    "\n" +
+    "        /* height: 100%; */\r" +
+    "\n" +
+    "        left: 0;\r" +
+    "\n" +
+    "        padding: 50% 0;\r" +
+    "\n" +
+    "        position: absolute;\r" +
+    "\n" +
+    "        text-align: center;\r" +
+    "\n" +
+    "        top: 0;\r" +
+    "\n" +
+    "        width: 100%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
   );
 
 
@@ -9848,295 +9920,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   );
 
 
-  $templateCache.put('editview/app/views/registration.html',
-    "<div class=\"register_page_main\">\r" +
-    "\n" +
-    "    <h4>registration</h4>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    <div class=\"register_page_main_in\">\r" +
-    "\n" +
-    "        <div class=\"register_page_main_steps\">\r" +
-    "\n" +
-    "            <ul>\r" +
-    "\n" +
-    "                <li><a class=\"active\" href=\"#\" style=\"text-transform: capitalize;\">Basic information</a></li>\r" +
-    "\n" +
-    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">profile details</a></li>\r" +
-    "\n" +
-    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">my photos</a></li>\r" +
-    "\n" +
-    "                <li><a href=\"#\" style=\"text-transform: capitalize;\">my payments</a></li>\r" +
-    "\n" +
-    "            </ul>\r" +
-    "\n" +
-    "            <div class=\"clear\">&nbsp;</div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "        <div class=\"reg_fields_entry clearfix\">\r" +
-    "\n" +
-    "            <div class=\"control-group radio-group-my\">\r" +
-    "\n" +
-    "                <div class=\"controls\">\r" +
-    "\n" +
-    "                    <div class=\"radio-group-my input-group\">\r" +
-    "\n" +
-    "                        <label><input ng-model=\"reg.rbtngender\" type=\"radio\" value=\"1\"><span>&nbsp;Male</span> </label>\r" +
-    "\n" +
-    "                        <label class=\"\"><input ng-model=\"reg.rbtngender\"  type=\"radio\" value=\"2\"><span>&nbsp;Female</span></label>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <br />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">First name</label>\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtfirstname\" class=\"input-box\" placeholder=\"First Name\" MaxLength=\"100\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"2\" />>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div class=\"control-group span4\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Last name</label>\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtlastname\" class=\"input-box\" placeholder=\"Last Name\" MaxLength=\"50\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"3\" />>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Email</label>\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtEmail\" MaxLength=\"50\" OnTextChanged=\"txtEmail_TextChanged\" class=\"input-box\" onkeypress=\"return (event.keyCode != 32&&event.which!=32)\" TabIndex=\"4\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div class=\"control-group span4\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Password</label>\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtpassword\" MaxLength=\"15\" class=\"input-box\" onkeypress=\"return (event.keyCode != 32&&event.which!=32)\" type=\"Password\" TabIndex=\"5\" />>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Posted by</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlpostedby\" typeofdata=\"childStayingWith\"></select>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Date of birth</label>\r" +
-    "\n" +
-    "                <div class=\"row\">\r" +
-    "\n" +
-    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"reg.ddlDD\"></select>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\" style=\"margin-left: -10px;\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"reg.ddlMM\"></select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\" style=\"margin-left: -10px;\">\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"reg.ddlYear\"></select>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Religion</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlreligion\"></select>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Mother Tongue</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlmothertongue\"></select>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Caste</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlcaste\"></select>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Residing At</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlcountry\"></select>\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">Mobile no</label>\r" +
-    "\n" +
-    "                <div class=\"controls clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <select multiselectdropdown ng-model=\"reg.ddlmobilecountry\"></select>\r" +
-    "\n" +
-    "                    <input ng-model=\"reg.txtMobileNo\" MaxLength=\"10\" class=\"input-box\" onkeydown=\"return checkwhitespace(event,this.id);\" OnTextChanged=\"txtMobileNo_TextChanged\" TabIndex=\"13\" />>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div class=\"control-group span4 select-box-my select-box-my-trible\">\r" +
-    "\n" +
-    "                <label class=\"control-label\">phone no</label>\r" +
-    "\n" +
-    "                <select multiselectdropdown ng-model=\"reg.ddllandcountry\"></select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtArea\" placeholder=\"area code\" class=\"input-box\" MaxLength=\"8\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"15\" />>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                <input ng-model=\"reg.txtlandNum\" class=\"input-box\" MaxLength=\"8\" onkeydown=\"return checkwhitespace(event,this.id);\" TabIndex=\"16\" />>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"clear\"></div>\r" +
-    "\n" +
-    "            <p class=\"accept_terms pull-left clearfix\">\r" +
-    "\n" +
-    "                <input type=\"checkbox\" ng-model=\"reg.Chkprivacy\" class=\"checkbox_my checkbox\" TabIndex=\"17\" />\r" +
-    "\n" +
-    "                <label for=\"checkbox\">\r" +
-    "\n" +
-    "                        I agree to the <span>\r" +
-    "\n" +
-    "                            <a ng-model=\"reg.lnkprivacyPolicy\" Font-Size=\"12px\" Text=\"Privacy Policy and T&C.\"  OnClientClick=\"PrivacyPolicy()\"></a>\r" +
-    "\n" +
-    "                        </span>\r" +
-    "\n" +
-    "                    </label>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </p>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"clear\"></div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"reg_submit clearfix\">\r" +
-    "\n" +
-    "                <input type=\"submit\" class=\"button_custom\" value=\"SUBMIT\" TabIndex=\"18\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <label ID=\"lblResult\" Font-Bold=\"true\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('editview/masterView/footer.html',
     "<footer>\r" +
     "\n" +
@@ -10377,7 +10160,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\">\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller='headctrl'>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10385,41 +10168,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        <a id=\"IbtnLogodisplay\" class=\"logo_inner_new pull-left\" />\r" +
+    "        <a id=\"IbtnLogodisplay\" class=\"logo3 pull-left\" />\r" +
     "\n" +
-    "        <input type=\"button\" value=\"Login\" id=\"btnLoginsubmit\" class=\"pull-right button_custom login_show\" ng-click=\"divloginblock();\" />\r" +
+    "        <input type=\"button\" value=\"Login\" ng-show=\"loginstatus\" id=\"btnLoginsubmit\" class=\"pull-right button_custom login_show\" ng-click=\"divloginblock();\" />\r" +
     "\n" +
-    "        <input type=\"button\" value=\"Logout\" id=\"btnLogOut\" ng-hide=\"true\" class=\"pull-right button_custom\" onclick=\"return ClearlocalStorage();\" />\r" +
+    "        <input type=\"button\" value=\"Logout\" ng-show=\"loginoutstatus\" id=\"btnLogOut\" class=\"pull-right button_custom\" ng-click=\"ClearlocalStorage();\" />\r" +
     "\n" +
-    "\r" +
+    "        <div class=\"login_block_header\" ng-show=\"loginpopup\" id=\"divLogin\">\r" +
     "\n" +
-    "\r" +
+    "            <form name=\"myForm\">\r" +
     "\n" +
-    "\r" +
+    "                <input type=\"text\" id=\"txtUserName\" style=\"height: 38px;\" ng-model=\"username\" required/>\r" +
     "\n" +
-    "        <div class=\"login_block_header\" style=\"display: none;\" id=\"divLogin\">\r" +
+    "                <input type=\"password\" id=\"txtPassword\" style=\"height: 38px;\" ng-model=\"password\" required/>\r" +
     "\n" +
-    "\r" +
+    "                <span class=\"clear\">&nbsp;</span>\r" +
     "\n" +
-    "            <input type=\"text\" ng-model=\"log.txtUserName\" ng-blur=\"vali(log);\" />\r" +
+    "                <div class=\"login_help\">\r" +
     "\n" +
-    "            <input type=\"password\" ng-model=\"log.txtPassword\" />\r" +
+    "                    <a id=\"lnkForgotPassword\">Forgot Password</a>\r" +
     "\n" +
-    "            <span class=\"clear\">&nbsp;</span>\r" +
+    "                    <a href=\"#/Registration\">New User Sign Up</a>\r" +
     "\n" +
-    "            <div class=\"login_help\">\r" +
+    "                </div>\r" +
     "\n" +
-    "                <a id=\"lnkForgotPassword\" onclick=\"return ShowForgotPassword();\">Forgot Password</a>\r" +
+    "                <input type=\"button\" id=\"btnUserLogin\" ng-click=\"loginsubmit()\" ng-disabled=\"myForm.$invalid\" class=\"button_custom\" value=\"Login\" />\r" +
     "\n" +
-    "                <a href=\"CustomerRegistration.aspx\">New User Sign Up</a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <input type=\"button\" id=\"btnUserLogin\" ng-click=\"login(log);\" class=\"button_custom\" value=\"Login\" />\r" +
-    "\n" +
-    "\r" +
+    "            </form>\r" +
     "\n" +
     "            <span class=\"clear\">&nbsp;</span>\r" +
     "\n" +
@@ -10447,7 +10222,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "    <div class=\"navbar_inner\" id=\"divMemberName\">\r" +
+    "    <div class=\"navbar_inner\" id=\"divMemberName\" ng-show=\"withlogin\" set-class-when-at-top=\"fix-to-top\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10455,21 +10230,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"profile_own_name pull-left clearfix\">\r" +
     "\n" +
-    "                <input type=\"image\" id=\"IMasterpic\" style=\"height: 31px; width: 31px;\" onclick=\"IMasterpic_Click1\" />\r" +
+    "                <img id=\"IMasterpic\" ng-src=\"{{profilepic}}\" style=\"width: 31px !important; height: 31px !important; border: solid 2px #fc6a1b;border-radius: 3px;display: inline-block; float: left;\" />\r" +
     "\n" +
     "                <h2>\r" +
     "\n" +
-    "                    <label id=\"lblCustFName\"></label> &nbsp;&nbsp;\r" +
+    "                    <label id=\"lblCustFName\">{{usernamepersonal}}</label> &nbsp;&nbsp;(\r" +
     "\n" +
-    "                    <label id=\"lblcustLname\"></label> (\r" +
+    "\r" +
     "\n" +
-    "                    <label id=\"lblprofile\"></label>)\r" +
+    "                    <label id=\"lblprofile\">{{profileid}}</label>)\r" +
     "\n" +
     "                    <br />\r" +
     "\n" +
     "                    <span>Accout type :</span>\r" +
     "\n" +
-    "                    <a id=\"lblpaid\" onclick=\"lblpaid_Click\" forecolor=\"White\"></a>\r" +
+    "                    <a id=\"lblpaid\" href=\"#\" style=\"color:White;\">{{paidstatus}}</a>\r" +
     "\n" +
     "                </h2>\r" +
     "\n" +
@@ -10485,7 +10260,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li>\r" +
     "\n" +
-    "                        <a id=\"lnkMyHome\" href=\"#/home\">My Home</a>\r" +
+    "                        <a id=\"lnkMyHome\" href=\"javascript:void(0)\" ng-click=\"redirectTohome()\">My Home</a>\r" +
     "\n" +
     "                    </li>\r" +
     "\n" +
@@ -10499,7 +10274,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkviewmyprofile\" href=\"#/ViewMyProfile\">View My Profile</a>\r" +
+    "                                <a id=\"linkviewmyprofile\" href=\"javascript:void(0);\" ng-click=\"viewfullmyprofile()\">View My Profile</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
@@ -10537,25 +10312,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li>\r" +
     "\n" +
-    "                        <a id=\"lnksearch\" href=\"#/Home\">Search</a>\r" +
+    "                        <a id=\"lnksearch\" href=\"#/General\">Search</a>\r" +
     "\n" +
     "                        <ul>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkgenaralsearch\" href=\"#/GeneralSearch\">General Search</a>\r" +
+    "                                <a id=\"linkgenaralsearch\" href=\"#/General\">General Search</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkAdvancedSearch\" href=\"#/AdvancedSearch\">Advanced Search</a>\r" +
+    "                                <a id=\"linkAdvancedSearch\" href=\"#/General\">Advanced Search</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkprofileidsearch\" href=\"#/ProfileidSearch\">Profileid Search</a>\r" +
+    "                                <a id=\"linkprofileidsearch\" href=\"#/General\">Profileid Search</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
@@ -10581,19 +10356,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkmyorders\" href=\"#/MyOrdersAndStatistics\">My Orders and Statistics</a>\r" +
+    "                                <a id=\"linkmyorders\" href=\"#/myorders\">My Orders and Statistics</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkmembershipfaqs\" href=\"#/MembershipFaqsHome\">Membership Faqs</a>\r" +
+    "                                <a id=\"linkmembershipfaqs\" href=\"#/faqs\">Membership Faqs</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkAddOnPacks\" href=\"#/AddOnPacks\" visible=\"false\">Add On Packs</a>\r" +
+    "                                <a id=\"linkAddOnPacks\" href=\"#/AddOnPacks\" ng-hide=\"true\">Add On Packs</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
@@ -10629,7 +10404,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <li>\r" +
     "\n" +
-    "                                <a id=\"linkviewedbutnotexpress\" href=\"#/<home></home>\">My profile viewed by others</a>\r" +
+    "                                <a id=\"linkviewedbutnotexpress\" href=\"#/home\">My profile viewed by others</a>\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
@@ -10713,51 +10488,57 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "    <script type=\"text/ng-template\" id=\"sessionalert.html\">\r" +
     "\n" +
-    "    <div class=\"navbar_inner\" id=\"divwithoutlogin\" ng-hide=\"true\">\r" +
+    "        <div class=\"modal-content\">\r" +
     "\n" +
-    "        <div class=\"container_my clearfix\">\r" +
+    "            <div class=\"modal-header\">\r" +
     "\n" +
-    "\r" +
+    "                <h3> Confirmation</h3>\r" +
     "\n" +
-    "            <div class=\"profile_own_menu pull-right\">\r" +
-    "\n" +
-    "                <a class=\"menu_toggle pull-right\">Menu</a>\r" +
-    "\n" +
-    "                <ul class=\"pull-right\">\r" +
+    "            </div>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                    <li><a href=\"CustomerRegistration.aspx\">Register free</a></li>\r" +
+    "            <div class=\"modal-body\">\r" +
     "\n" +
-    "                    <li><a href=\"KaakateeyaCustomerProfileIDsearchNew.aspx\">Search <span></span></a></li>\r" +
+    "                <div class=\"row\">\r" +
     "\n" +
-    "                    <li><a onclick=\"return divloginblock(); return false;\" href=\"javascript:void(0)\">Upgrade</a></li>\r" +
+    "                    <h4 class=\"col-lg-offset-1\">Do you want to continue Session</h4>\r" +
     "\n" +
-    "                    <li>\r" +
+    "                </div>\r" +
     "\n" +
-    "                        <a id=\"lnkSucessstoreiesFooter\" href=\"#/Home\">success stories <span></span></a>\r" +
+    "                <div class=\"clearfix\"></div>\r" +
     "\n" +
-    "                    </li>\r" +
+    "                <br>\r" +
     "\n" +
-    "                    <li>\r" +
+    "                <div class='row'>\r" +
     "\n" +
-    "                        <a id=\"linkfooterhelp\" href=\"#/help\">Help</a>\r" +
+    "                    <div class='col-lg-4 col-lg-offset-2'>\r" +
     "\n" +
-    "                    </li>\r" +
+    "                        <button type='button' class='btn btn-danger' ng-click='closesession()'>close</button>\r" +
     "\n" +
-    "                    <li><a href=\"#/mobileVerification\">Home</a></li>\r" +
+    "                    </div>\r" +
     "\n" +
-    "\r" +
+    "                    <div class='col-lg-5'>\r" +
     "\n" +
-    "                </ul>\r" +
+    "                        <button type='button' class='btn btn-success' ng-click='acceptcontinue()'>Continue</button>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"modal-footer\">\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
-    "    </div>\r" +
+    "\r" +
+    "\n" +
+    "    </script>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
@@ -10823,7 +10604,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <li>\r" +
     "\n" +
-    "                <a id=\"lnkeducationandprof\" href=\"#/editEducationAndProfession\">Education & Profession</a></li>\r" +
+    "                <a id=\"lnkeducationandprof\" href=\"#/editview/editEducationAndProfession\">Education & Profession</a></li>\r" +
     "\n" +
     "            <li>\r" +
     "\n" +
@@ -10877,7 +10658,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "</div>"
+    "</div>\r" +
+    "\n" +
+    "<style type=\"text/css\">\r" +
+    "\n" +
+    "    .fix-to-top {\r" +
+    "\n" +
+    "        position: fixed;\r" +
+    "\n" +
+    "        margin: 0 auto;\r" +
+    "\n" +
+    "        z-index: 999999999;\r" +
+    "\n" +
+    "        top: 0;\r" +
+    "\n" +
+    "        left: 0%;\r" +
+    "\n" +
+    "        width: 100%;\r" +
+    "\n" +
+    "        padding: 20px 1%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
   );
 
 }]);

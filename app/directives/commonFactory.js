@@ -2,12 +2,13 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
     var modalpopupopen;
 
     return {
-        open: function(url, scope, uibModal) {
+        open: function(url, scope, uibModal, size) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
-                scope: scope
+                scope: scope,
+                size: size
             });
         },
         closepopup: function() {

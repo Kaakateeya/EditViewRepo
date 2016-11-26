@@ -1,4 +1,4 @@
-editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', function(scope, uibModal, sibblingServices, commonFactory) {
+editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', 'authSvc', function(scope, uibModal, sibblingServices, commonFactory, authSvc) {
 
     scope.countryCode = 'countryCode';
     scope.sibblingCountArr = [];
@@ -14,7 +14,9 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     scope.SisCount = null;
     scope.CountryVal = '1';
 
-    var custID = '104606';
+
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.sibblingPopulatePopulate = function(type, item) {
 

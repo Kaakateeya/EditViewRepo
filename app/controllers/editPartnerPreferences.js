@@ -1,4 +1,4 @@
-editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal', 'commonFactory', function(partnerPreferenceServices, scope, uibModal, commonFactory) {
+editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal', 'commonFactory', 'authSvc', function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc) {
     scope.partnerPrefArr = [];
     scope.partnerObj = {};
     scope.ageGapArr = [];
@@ -14,7 +14,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
     scope.partnerDescObj = {};
 
-    var custID = '104605';
+
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
 
     // scope.listSelectedVal = function(val) {
     //     var str = null;
@@ -153,6 +157,10 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
+                partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+                    scope.partnerPrefArr = response.data;
+                    console.log(scope.partnerPrefArr);
+                });
                 alert('submitted Succesfully');
             } else {
                 alert('Updation failed');

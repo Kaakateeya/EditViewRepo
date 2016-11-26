@@ -7,11 +7,22 @@
  * Main App Creation
  */
 
-var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'jcs-autoValidate', 'ngMaterial']);
+var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'jcs-autoValidate', 'ngMaterial', 'ngMdIcons']);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
-editviewapp.templateroot = 'editview/';
+// editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+editviewapp.templateroot = '';
+
+editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
+editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
+
+editviewapp.prefixPath = 'Imagesnew/ProfilePics/';
+editviewapp.S3PhotoPath = '';
+editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
+editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
+editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
+editviewapp.BucketName = 'angularkaknew';
+
 
 /**
  * Configure the Routes
@@ -57,9 +68,12 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', function(scope, personalDetailsService) {
+editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', function(scope, personalDetailsService, authSvc) {
 
-    personalDetailsService.personalDetails().then(function(response) {
+
+    var logincustid = authSvc.getCustId();
+    var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    personalDetailsService.personalDetails(CustID).then(function(response) {
 
         scope.PersonalObj = response.data;
     });

@@ -1,4 +1,4 @@
-editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', 'commonFactory', '$mdDialog', function(uibModal, scope, parentServices, commonFactory, mdDialog) {
+editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', 'commonFactory', '$mdDialog', 'authSvc', function(uibModal, scope, parentServices, commonFactory, mdDialog, authSvc) {
     scope.indiaStates = 'indiaStates';
     scope.Country = 'Country';
     scope.parent = {};
@@ -14,7 +14,10 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.dcountry = '1';
     scope.parentArr = [];
 
-    var custID = '104605';
+   
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
 
     scope.parentBindData = function(icustID) {
         parentServices.getParentData(icustID).then(function(response) {

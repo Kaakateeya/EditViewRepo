@@ -1,4 +1,4 @@
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', function(uibModal, scope, astroServices, commonFactory) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', function(uibModal, scope, astroServices, commonFactory, authSvc) {
     scope.starLanguage = 'starLanguage';
     scope.Country = 'Country';
     scope.ZodaicSign = 'ZodaicSign';
@@ -6,7 +6,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.paadam = 'paadam';
     scope.atroObj = [];
 
-    var custID = '104610';
+    var logincustid = authSvc.getCustId();
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.changeBind = function(type, parentval) {
 

@@ -2,8 +2,6 @@
 
     <div class="register_page_main">
 
-
-
         <div class="my_photos_main my_photos_main_edit">
             <h6>Upload your recent Photos for better response</h6>
             <a id="lnkbtnn" class="skip_button" onclick="lnkskip_Click">skip this page</a>
@@ -12,24 +10,29 @@
 
             <br />
             <div class="dragzone">
-
                 <div class="pics_selected_list_main clearfix">
                     <div class="pics_selected_list_main_lt clearfix">
                         <p class="clearfix"><span>Upload your three different photos</span></p>
                         <div id="dtimagephoto" class="clearfix" ng-repeat="item in manageArr" style="width:33%;float:left;">
                             <div class="photos">
                                 <div class="pics_selected_list_item">
-                                    <div id="maskdiv">
+                                    <div ng-class="item.IsActive == 0 && item.PhotoName !== null?'cssMaskdiv clearfix':''">
                                         <img ng-model="imgPhotoName" ng-src="{{item.ImageUrl}}" />
                                     </div>
 
                                     <div class="pics_selected_list_item_ui clearfix">
                                         <div class="photos_icon">
-                                            <input type="image" id="imgAdd" alt="add" ng-click="AddImage();" ng-show="{{item.addButtonvisible}}" />
+                                            <!--<input type="image" id="imgAdd" alt="add" ng-click="AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);" ng-show="{{item.addButtonvisible}}" />-->
+                                            <a href="javascript:void(0);" ng-click="AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);" ng-show="{{item.addButtonvisible}}">
+                                                <ng-md-icon icon="add_a_photo" style="fill:#665454" size="25">Add</ng-md-icon>
+                                            </a>
 
-                                            <input type="image" title="Delete Image" ng-show="{{item.deleteVisibility}}" alt="delete" />
-
-                                            <input type="image" id="lnksetasprofile" alt="Set as Profilepic" class="set_pic" onclick="lnksetasprofile_Click" ng-show='{{item.IsMain=="1"?false:(item.PhotoName!=null?true:false) }}'></input>
+                                            <a href="javascript:void(0);" ng-show="{{item.deleteVisibility}}" ng-click="DeleteImage(item.keyname,item.Cust_Photos_ID);">
+                                                <ng-md-icon icon="delete" style="fill:#665454" size="25">Delete</ng-md-icon>
+                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="javascript:void(0);" class="set_pic" ng-click="setAsProfilePic(item.Cust_Photos_ID);" style="color:#665454;font-weight:bold;" ng-show='{{item.IsMain=="1"?false:(item.PhotoName!=null?true:false) }}'>
+                                            Set as Profilepic
+                                            </a>
 
                                         </div>
                                     </div>
@@ -40,21 +43,19 @@
                         <div class="clear"></div>
                         <div class="edit_page_photo_manage_submit">
                             <div class="edit_page_photo_manage_protect pull-left clearfix" id="divPassword">
-                                <label class="checkbox checkbox_my pull-left">
-                                    <!-- <asp:radiobutton id="rdbutton" text="Protect with Password" cssclass="radio" oncheckedchanged="rdbutton_CheckedChanged"
-                                        autopostback="true" visible="false" />-->
-                                    <div id="UpdatePanel5" class="radio_my2 clearfix">
-
-                                        <label class="pull-left" style="font-size: 14px; font-weight: 400;" id="lblProtected" text=" Protect with Password :"></label>
-                                <!-- <asp:RadioButtonList  ID="rbtProtectPassword" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdbutton_CheckedChanged" AutoPostBack="true" class="radio pull-right">
-                                                <asp:ListItem Value="1">Yes</asp:ListItem>
-                                                <asp:ListItem Value="0" Selected="True">No</asp:ListItem>
-                                            </asp:RadioButtonList>-->
-
+                                <label class="">
+                                
+                                <div class="radio_my2 clearfix">
+                                <label style="font-size: 14px !important; font-weight: 400;"> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                <md-radio-group layout="row" ng-model="rbtProtectPassword" class="md-block" flex-gt-sm ng-disabled="manageakerts" ng-change="setPhotoPassword(rbtProtectPassword);">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No </md-radio-button>
+                                </md-radio-group>
                             </div>
                             </label>
                         </div>
                     </div>
+                    </br>
                     <div class="photo_upload_instrctns_list clearfix">
                         <a onclick="PhotoGuideLine();" id="phtoguide" href="javascript:__doPostBack('phtoguide','')">Photo guidelines
                         </a>
@@ -68,9 +69,6 @@
             </div>
 
         </div>
-
-
-
 
         <div class="my_photos_main_block2 clearfix">
             <div class="clearfix pics_incorrect_list">
@@ -149,21 +147,59 @@
 </div>
 
 
-
-
 <script type="text/ng-template" id="AddimagePopup.html">
-    <div class="modal-header">
-        <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <ul id="ulprofession">
+    <form name="uploadForm" novalidate role="form" ng-submit="upload(up);">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul id="ulprofession">
+                <input type="file" file-model="up.myFile" />
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Upload" class="button_custom" type="submit">
+        </div>
+    </form>
+</script>
 
-        </ul>
+<script type="text/ng-template" id="deleteimagePopup.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="Delete(up);">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Delete Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="text-center">Are you sure to delete photo?</div>
+        </div>
+        <div class="modal-footer">
+            <input value="Close" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Delete" class="button_custom" type="submit">
+        </div>
+    </form>
 
-    </div>
-    <div class="modal-footer">
-        <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-        <input name="btnEduSubmit" value="Upload" id="btnEduSubmit" class="button_custom" type="button">
-    </div>
 </script>
 </div>
+
+<style>
+    .cssMaskdiv {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+    
+    .cssMaskdiv:after {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        color: #ffffff;
+        content: "Under Review";
+        display: block;
+        font-size: 14px;
+        /* height: 100%; */
+        left: 0;
+        padding: 50% 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
+</style>

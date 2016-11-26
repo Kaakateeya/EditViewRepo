@@ -1,4 +1,4 @@
-editviewapp.constant('arrayConstants', {
+editviewapp.constant('arrayConstantsEdit', {
     'MaritalStatus': [
         { "label": "--Select--", "title": "--Select--", "value": "" },
         { "label": "Unmarried", "title": "Unmarried", "value": 43 },
