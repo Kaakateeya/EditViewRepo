@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                 // separator: ';'
             },
             js: { //target
-                src: ['index.js', 'app/**/*.js', 'dist/html/templates.js', '!app/directives/multiSelectDirective.js'],
+                src: ['index.js', 'app/**/*.js', 'dist/html/templates.js', '!app/directives/multiSelectDirective.js', '!app/services/authSvc.js'],
                 dest: 'dist/src/main.js'
             },
             css: {
