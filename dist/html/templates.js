@@ -10660,6 +10660,12 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<style type=\"text/css\">\r" +
     "\n" +
     "    .fix-to-top {\r" +
