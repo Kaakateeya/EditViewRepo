@@ -33,7 +33,7 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
         },
         ProfessionSpecialisation: function(dependencyVal2) {
 
-            return http.get(editviewapp.apipath + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionGroup", dependencyValue: dependencyVal2 } });
+            return http.get(editviewapp.apipath + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionSpecialisation", dependencyValue: dependencyVal2 } });
         },
         casteselect: function() {
 

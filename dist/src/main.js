@@ -7,7 +7,7 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+//editviewapp.templateroot = '';
 
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
@@ -311,16 +311,18 @@ editviewapp.constant('arrayConstantsEdit', {
 
 
 });
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', function(uibModal, scope, astroServices, commonFactory, authSvc) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload) {
     scope.starLanguage = 'starLanguage';
     scope.Country = 'Country';
     scope.ZodaicSign = 'ZodaicSign';
     scope.lagnam = 'lagnam';
     scope.paadam = 'paadam';
     scope.atroObj = [];
+    scope.generateData = [];
 
     var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    var custID = 91022;
+    //logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.changeBind = function(type, parentval) {
 
@@ -383,6 +385,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
     astroServices.getAstroData(custID).then(function(response) {
         scope.AstroArr = JSON.parse(response.data[0]);
+        scope.generateData = JSON.parse(response.data[1]);
+        console.log('test');
+        console.log(scope.generateData);
     });
 
     scope.astroSubmit = function(obj) {
@@ -433,7 +438,144 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.cancel = function() {
         commonFactory.closepopup();
     };
+
+    scope.uploadGenerateHoro = function(val) {
+
+        if (val === '0') {
+            commonFactory.open('AddHoroPopup.html', scope, uibModal, 'sm');
+        } else {
+            scope.generateHoro();
+        }
+    };
+
+
+    scope.upload = function(obj) {
+        console.log(obj.myFile);
+        var extension = ((obj.myFile.name).split('.'))[1];
+        var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
+        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+            console.log(res.status);
+            if (res.status == 200) {
+                commonFactory.closepopup();
+                scope.uploadData = {
+                    Cust_ID: custID,
+                    Horopath: '../../' + keyname,
+                    ModifiedByEmpID: '',
+                    VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
+                    Empid: '',
+                    IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
+                    i_flag: 1
+                };
+
+                console.log(JSON.stringify(scope.uploadData));
+                astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+                    console.log(response);
+                });
+            }
+        });
+
+    };
+
+    scope.generateHoro = function() {
+
+
+        // Int64 customerid = Int64CustID;
+        // int strGender = 0;
+        // string strName = string.Empty;
+        // int intDay = 0;
+        // int intMonth = 0;
+        // int intYear = 0;
+        // string strTime = string.Empty;
+        // int strcityid = 0;
+        // string cityName = string.Empty;
+        // string longitude = string.Empty;
+        // string latitude = string.Empty;
+        // Kaakateeya_procEntities db = new Kaakateeya_procEntities();
+
+
+
+
+
+
+        var strGender = (scope.generateData)[0].GenderID;
+        var strName = (scope.generateData)[0].FirstName + " " + (scope.generateData)[0].LastName;
+
+        var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
+
+        var month = check.format('M');
+        var day = check.format('D');
+        var year = check.format('YYYY');
+
+        console.log(check);
+        console.log(month);
+        console.log(day);
+        console.log(year);
+
+        var intDay = day;
+        var intMonth = month;
+        var intYear = year;
+
+        // var astrodata = from astro in db.Cust_Horoscope where astro.Cust_ID == customerid select new { astro.CityOfBirthID, astro.TimeOfBirth };
+        // foreach(var j in astrodata) {
+        //     DateTime myDate = Convert.ToDateTime((j.TimeOfBirth).ToString());
+        //     strTime = myDate.ToString("HH:mm:ss");
+        //     strcityid = Convert.ToInt32(j.CityOfBirthID);
+        // }
+
+        // if (strcityid != 0) {
+        //     var astrocitydata = (from c in db.Mst_City_Type join a in db.Astrocitydatas on c.CityName equals a.place_name where c.CityID == strcityid select new { c.CityID, c.CityName, longitud = (a.longitude_deg + "." + a.longitude_min), latitud = (a.latitude_deg + "." + a.latitude_min) });
+
+        //     foreach(var s in astrocitydata) {
+        //         longitude = s.longitud;
+        //         latitude = s.latitud;
+        //         cityName = s.CityName;
+        //     }
+
+        //     if (string.IsNullOrEmpty(cityName) && ddlAstrocity.SelectedIndex > -1) {
+        //         var astrocitydatanew = (from c in db.Astrocitydatas where c.place_id == ddlAstrocity.SelectedValue select new { c.place_id, c.place_name, longitud = (c.longitude_deg + "." + c.longitude_min), latitud = (c.latitude_deg + "." + c.latitude_min) });
+        //         foreach(var s in astrocitydatanew) {
+        //             longitude = s.longitud;
+        //             latitude = s.latitud;
+        //             cityName = s.place_name;
+        //         }
+        //     }
+
+
+        // }
+        // var olcity = (from data in db.Mst_City_Type where data.CityID == strcityid select new { data.CityName }).FirstOrDefault();
+
+        // List < geneaterhoro > li = new List < geneaterhoro > ();
+        // li.Add(new geneaterhoro { strGender = strGender, strName = strName, intDay = intDay, intMonth = intMonth, intYear = intYear, cityName = cityName, longitude = longitude, latitude = latitude, strTime = strTime, oldcityname = olcity.CityName });
+
+
+    };
+
+
+    scope.deleteHoroImage = function() {
+
+        scope.uploadData = {
+            Cust_ID: 91035,
+            i_flag: 0
+        };
+
+        astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+            console.log(response);
+        });
+    };
+
+
 }]);
+
+// var data = {
+//     "Cust_ID": 91022,
+//     "Horopath": "../../Imagesnew/HoroscopeImages/91022_HaroscopeImage/91022_HaroscopeImage.jpg",
+//     "ModifiedByEmpID": "",
+//     "VisibleToID": "",
+//     "Empid": "",
+//     "IsActive": false,
+//     "i_flag": 1
+// };
 editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
     var up = {};
@@ -636,7 +778,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.dcountry = '1';
     scope.parentArr = [];
 
-   
+
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -747,7 +889,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
                         scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
                         scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
-                        scope.parent.txtMLandLineNum = item.MotherLandNumber;
+                        scope.parent.txtMLandLineNum = item.MotherLandNumberID;
                     } else {
                         scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
                         scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
@@ -874,7 +1016,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 MotherProfessiondetails: objitem.txtMProfession,
                 MotherMobileCountryID: objitem.ddlMMobileCounCodeID,
                 MotherMobileNumber: objitem.txtMMobileNum,
-                MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode1) ? objitem.ddlMLandLineCounCode : null,
+                MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode) ? objitem.ddlMLandLineCounCode : null,
                 MotherLandAreaCode: commonFactory.checkvals(objitem.txtMMobileNum2) ? null : (commonFactory.checkvals(objitem.txtmAreaCode) ? objitem.txtmAreaCode : null),
                 MotherLandNumber: commonFactory.checkvals(objitem.txtMMobileNum2) ? objitem.txtMMobileNum2 : commonFactory.checkvals(objitem.txtMLandLineNum) ? objitem.txtMLandLineNum : null,
                 MotherEmail: objitem.txtMEmail,
@@ -914,7 +1056,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
 
         };
 
-
+        console.log(JSON.stringify(scope.myData));
         parentServices.submitParentData(scope.myData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
@@ -1045,12 +1187,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
         } else {
             item.txtBWKgs = '';
             item.txtlbs = '';
-
         }
     };
-
-
-
 
 }]);
 editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal', 'commonFactory', 'authSvc', function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc) {
@@ -2305,7 +2443,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             case 'showEduModal':
                 scope.edoObj.EducationID = null;
                 scope.edoObj = {};
-                if (item !== undefined) {
+                if (item !== undefined)     {
                     scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
                     scope.stateArr = commonFactory.StateBind(item.CountryID);
@@ -2999,6 +3137,9 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         submitAstroData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerAstrodetailsUpdatedetails', JSON.stringify(obj1));
+        },
+        uploadDeleteAstroData: function(obj1) {
+            return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
         }
     };
 }]);
@@ -3168,7 +3309,7 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
         },
         ProfessionSpecialisation: function(dependencyVal2) {
 
-            return http.get(editviewapp.apipath + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionGroup", dependencyValue: dependencyVal2 } });
+            return http.get(editviewapp.apipath + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionSpecialisation", dependencyValue: dependencyVal2 } });
         },
         casteselect: function() {
 
@@ -3575,9 +3716,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"radio-group-my input-group\">\r" +
     "\n" +
-    "            <label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
+    "            <!--<label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
     "\n" +
-    "            <label class=\"\"><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"1\" type=\"radio\"><span>&nbsp;Generate Horoscope</span></label>\r" +
+    "            <label class=\"\"><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"1\" type=\"radio\"><span>&nbsp;Generate Horoscope</span></label>-->\r" +
+    "\n" +
+    "            <md-radio-group ng-required=\"true\" name=\"rdlUploadGenerate\" layout=\"row\" ng-model=\"atroObj.rdlUploadGenerate\" ng-change=\"uploadGenerateHoro(atroObj.rdlUploadGenerate);\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                <md-radio-button value=\"0\">Upload Horoscope</md-radio-button>\r" +
+    "\n" +
+    "                <md-radio-button value=\"1\"> Generate Horoscope </md-radio-button>\r" +
+    "\n" +
+    "            </md-radio-group>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -3589,7 +3738,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "<button ng-click=\"deleteHoroImage();\">delete</button>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3814,6 +3963,40 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
     "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </form>\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"AddHoroPopup.html\">\r" +
+    "\n" +
+    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"upload(up);\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Horoscope </h3>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "            <ul id=\"ulprofession\">\r" +
+    "\n" +
+    "                <input type=\"file\" file-model=\"up.myFile\" />\r" +
+    "\n" +
+    "            </ul>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-footer\">\r" +
+    "\n" +
+    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "            <input value=\"Upload\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
     "        </div>\r" +
     "\n" +

@@ -5,6 +5,9 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         submitAstroData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerAstrodetailsUpdatedetails', JSON.stringify(obj1));
+        },
+        uploadDeleteAstroData: function(obj1) {
+            return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
         }
     };
 }]);

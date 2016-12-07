@@ -14,7 +14,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.dcountry = '1';
     scope.parentArr = [];
 
-   
+
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -125,7 +125,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
                         scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
                         scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
-                        scope.parent.txtMLandLineNum = item.MotherLandNumber;
+                        scope.parent.txtMLandLineNum = item.MotherLandNumberID;
                     } else {
                         scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
                         scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
@@ -252,7 +252,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                 MotherProfessiondetails: objitem.txtMProfession,
                 MotherMobileCountryID: objitem.ddlMMobileCounCodeID,
                 MotherMobileNumber: objitem.txtMMobileNum,
-                MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode1) ? objitem.ddlMLandLineCounCode : null,
+                MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode) ? objitem.ddlMLandLineCounCode : null,
                 MotherLandAreaCode: commonFactory.checkvals(objitem.txtMMobileNum2) ? null : (commonFactory.checkvals(objitem.txtmAreaCode) ? objitem.txtmAreaCode : null),
                 MotherLandNumber: commonFactory.checkvals(objitem.txtMMobileNum2) ? objitem.txtMMobileNum2 : commonFactory.checkvals(objitem.txtMLandLineNum) ? objitem.txtMLandLineNum : null,
                 MotherEmail: objitem.txtMEmail,
@@ -292,7 +292,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
 
         };
 
-
+        console.log(JSON.stringify(scope.myData));
         parentServices.submitParentData(scope.myData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
@@ -423,11 +423,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
         } else {
             item.txtBWKgs = '';
             item.txtlbs = '';
-
         }
     };
-
-
-
 
 }]);

@@ -358,9 +358,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"radio-group-my input-group\">\r" +
     "\n" +
-    "            <label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
+    "            <!--<label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
     "\n" +
-    "            <label class=\"\"><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"1\" type=\"radio\"><span>&nbsp;Generate Horoscope</span></label>\r" +
+    "            <label class=\"\"><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"1\" type=\"radio\"><span>&nbsp;Generate Horoscope</span></label>-->\r" +
+    "\n" +
+    "            <md-radio-group ng-required=\"true\" name=\"rdlUploadGenerate\" layout=\"row\" ng-model=\"atroObj.rdlUploadGenerate\" ng-change=\"uploadGenerateHoro(atroObj.rdlUploadGenerate);\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                <md-radio-button value=\"0\">Upload Horoscope</md-radio-button>\r" +
+    "\n" +
+    "                <md-radio-button value=\"1\"> Generate Horoscope </md-radio-button>\r" +
+    "\n" +
+    "            </md-radio-group>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -372,7 +380,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "<button ng-click=\"deleteHoroImage();\">delete</button>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -597,6 +605,40 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
     "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </form>\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"AddHoroPopup.html\">\r" +
+    "\n" +
+    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"upload(up);\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Horoscope </h3>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "            <ul id=\"ulprofession\">\r" +
+    "\n" +
+    "                <input type=\"file\" file-model=\"up.myFile\" />\r" +
+    "\n" +
+    "            </ul>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-footer\">\r" +
+    "\n" +
+    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "            <input value=\"Upload\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
     "        </div>\r" +
     "\n" +

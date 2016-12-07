@@ -56,7 +56,7 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
 
     function getUser() {
         return {
-            custid: 91035,
+            custid: 104611,
             username: getSession('cust.username'),
             profileid: getSession('cust.profileid'),
             paidstatus: getSession('cust.paidstatus'),
@@ -76,7 +76,7 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
             return !!getSession('cust.id');
         },
         getCustId: function() {
-            return 91035;
+            return 104611;
         },
         getProfileid: function() {
             return getSession('cust.profileid');
