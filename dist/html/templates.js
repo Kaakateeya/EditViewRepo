@@ -4279,7 +4279,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div ng-if=\"ReferenceArr.length>0\" class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
-    "                            <a onclick=\"return AllowWebUser('Reference Details');\" class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"referencePopulate(item);\">Edit</a>\r" +
+    "                            <a class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"referencePopulate(item);\">Edit</a>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -4477,7 +4477,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type{{refObj.ddlRelationshiptype}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
@@ -4529,7 +4529,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <country-directive require=\"true\" countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\"></country-directive>\r" +
+    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\" require=\"true\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -9612,7 +9612,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year</label>\r" +
+    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year{{edoObj.ddlpassOfyear}}</label>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10202,7 +10202,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller='headctrl'>\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10248,11 +10248,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <h3>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                <a id=\"lnkFeedbackMenu\" href=\"#/feedback\">Feedback</a>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "            </h3>\r" +
     "\n" +

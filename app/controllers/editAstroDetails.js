@@ -8,9 +8,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.generateData = [];
 
     var logincustid = authSvc.getCustId();
-    var custID = 91022;
-    //logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    //011046585
 
+    var loginpaidstatus = authSvc.getpaidstatus();
+    alert(custID);
+    alert(loginpaidstatus);
     scope.changeBind = function(type, parentval) {
 
         switch (type) {

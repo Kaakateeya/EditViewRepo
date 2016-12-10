@@ -288,7 +288,6 @@ editviewapp.constant('arrayConstantsEdit', {
         { "label": "2", "title": "2", "value": 305 },
         { "label": "3", "title": "3", "value": 306 },
         { "label": "4", "title": "4", "value": 539 },
-
     ],
     'familyStatus': [
         { "label": "--Select--", "title": "--Select--", "value": "" },
@@ -321,9 +320,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.generateData = [];
 
     var logincustid = authSvc.getCustId();
-    var custID = 91022;
-    //logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    //011046585
 
+    var loginpaidstatus = authSvc.getpaidstatus();
+    alert(custID);
+    alert(loginpaidstatus);
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -666,8 +668,7 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
         var extension = ((obj.myFile.name).split('.'))[1];
         var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
 
-
-        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+        fileUpload.uploadFileToUrl(obj.myFile, 'http://localhost:3000/photoUplad', keyname).then(function(res) {
             console.log(res.status);
             if (res.status == 200) {
                 commonFactory.closepopup();
@@ -1235,11 +1236,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
         switch (type) {
             case 'Country':
-                scope.stateArr = commonFactory.StateBind(parentval);
+                scope.stateArr = commonFactory.StateBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'EducationCatgory':
-                scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
+                scope.eduGroupArr = commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'caste':
@@ -1251,11 +1252,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 break;
 
             case 'star':
-                scope.starArr = commonFactory.starBind(parentval);
+                scope.starArr = commonFactory.starBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'region':
-                scope.branchArr = commonFactory.branch(parentval);
+                scope.branchArr = commonFactory.branch(commonFactory.listSelectedVal(parentval));
                 break;
         }
     };
@@ -1473,20 +1474,22 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
 
             scope.refObj.intCusID = custID;
             scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;
-            scope.refObj.ddlRelationshiptype = item.ReletionShipTypeID;
+            scope.refObj.ddlRelationshiptype = 318;
+
+            console.log(scope.refObj.ddlRelationshiptype);
+
             scope.refObj.txtFname = item.ReferenceFirstName;
             scope.refObj.txtLname = item.ReferenceLastName;
             scope.refObj.txtProfessiondetails = item.RefrenceProfessionDetails;
-            scope.refObj.ddlCountry = item.RefrenceCountry;
-            scope.refObj.ddlState = item.RefrenceStateID;
-            scope.refObj.ddlDistrict = item.RefrenceDistrictID;
+            scope.refObj.ddlCountry = commonFactory.checkvals(item.RefrenceCountry) ? parseInt(item.RefrenceCountry) : null;
+            scope.refObj.ddlState = commonFactory.checkvals(item.RefrenceStateID) ? parseInt(item.RefrenceStateID) : null;
+            scope.refObj.ddlDistrict = commonFactory.checkvals(item.RefrenceDistrictID) ? parseInt(item.RefrenceDistrictID) : null;
             scope.refObj.txtNativePlace = item.RefrenceNativePlaceID;
             scope.refObj.txtPresentlocation = item.RefenceCurrentLocation;
 
             scope.refObj.ddlMobileCountryID = item.RefrenceMobileCountryID;
 
             scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
-
 
             if (commonFactory.checkvals(item.RefrenceAreaCode)) {
                 scope.refObj.ddlLandLineCountryID = item.RefrenceLandCountryId;
@@ -2408,7 +2411,7 @@ editviewapp.controller("editSideMenuCtrl", function () {
 
 
 });
-editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', 'authSvc', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter, authSvc) {
+editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter, authSvc, timeout) {
 
     scope.stateArr = [];
     scope.districtArr = [];
@@ -2437,13 +2440,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         commonFactory.closepopup();
     };
 
+
     scope.showpopup = function(type, item) {
 
         switch (type) {
             case 'showEduModal':
                 scope.edoObj.EducationID = null;
                 scope.edoObj = {};
-                if (item !== undefined)     {
+                if (item !== undefined) {
                     scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
                     scope.stateArr = commonFactory.StateBind(item.CountryID);
@@ -2451,12 +2455,15 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.cityeArr = commonFactory.cityBind(item.DistrictID);
 
                     scope.edoObj.IsHighestDegree = item.EduHighestDegree;
-                    scope.edoObj.ddlEduCatgory = item.EducationCategoryID;
+                    console.log(item.EduPassOfYear);
+
+                    scope.edoObj.ddlEduCatgory = commonFactory.checkvals(item.EducationCategoryID) ? parseInt(item.EducationCategoryID) : null;
+
                     scope.edoObj.ddlEdugroup = item.EducationGroupID;
                     scope.edoObj.ddlEduspecialization = item.EducationSpecializationID;
                     scope.edoObj.txtuniversity = item.EduUniversity;
                     scope.edoObj.txtcollege = item.EduCollege;
-                    scope.edoObj.ddlpassOfyear = item.EduPassOfYear;
+                    scope.edoObj.ddlpassOfyear = commonFactory.checkvals(item.EduPassOfYear) ? parseInt(item.EduPassOfYear) : null;
                     scope.edoObj.ddlCountry = item.CountryID;
                     scope.edoObj.ddlState = item.StateID;
                     scope.edoObj.ddlDistrict = item.DistrictID;
@@ -2569,8 +2576,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.passOfYear(2020, 1975);
 
     scope.eduSubmit = function(objitem) {
-        alert(objitem.ddlpassOfyear);
-        //var passOfyearText = (_.where(scope.passOfyearArr, { value: parseInt(objitem.ddlpassOfyear) }))[0].title;
 
         scope.myData = {
             customerEducation: {
@@ -2702,7 +2707,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         listSelectedVal: function(val) {
             var str = null;
-            if (val !== null) {
+            if (val !== undefined && val !== null && val !== '') {
                 if (angular.isString(val)) {
                     str = val === '' ? null : val;
                 } else {
@@ -2756,13 +2761,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
             return professionArr;
         },
         educationGroupBind: function(parentval) {
+
             var educationGroupArr = [];
-            educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.EducationGroup(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.EducationGroup(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return educationGroupArr;
         },
         educationSpeciakisationBind: function(parentval) {
@@ -7637,7 +7645,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div ng-if=\"ReferenceArr.length>0\" class=\"edit_page_item_ui clearfix\">\r" +
     "\n" +
-    "                            <a onclick=\"return AllowWebUser('Reference Details');\" class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"referencePopulate(item);\">Edit</a>\r" +
+    "                            <a class=\"edit_page_edit_button\" href=\"javascript:void(0);\" ng-click=\"referencePopulate(item);\">Edit</a>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -7835,7 +7843,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type{{refObj.ddlRelationshiptype}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
@@ -7887,7 +7895,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <country-directive require=\"true\" countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\"></country-directive>\r" +
+    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\" require=\"true\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -12970,7 +12978,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year</label>\r" +
+    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year{{edoObj.ddlpassOfyear}}</label>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -13560,7 +13568,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller='headctrl'>\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -13606,11 +13614,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <h3>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                <a id=\"lnkFeedbackMenu\" href=\"#/feedback\">Feedback</a>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "            </h3>\r" +
     "\n" +

@@ -16,7 +16,7 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         listSelectedVal: function(val) {
             var str = null;
-            if (val !== null) {
+            if (val !== undefined && val !== null && val !== '') {
                 if (angular.isString(val)) {
                     str = val === '' ? null : val;
                 } else {
@@ -70,13 +70,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
             return professionArr;
         },
         educationGroupBind: function(parentval) {
+
             var educationGroupArr = [];
-            educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.EducationGroup(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.EducationGroup(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return educationGroupArr;
         },
         educationSpeciakisationBind: function(parentval) {

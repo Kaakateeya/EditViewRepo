@@ -42,11 +42,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
         switch (type) {
             case 'Country':
-                scope.stateArr = commonFactory.StateBind(parentval);
+                scope.stateArr = commonFactory.StateBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'EducationCatgory':
-                scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
+                scope.eduGroupArr = commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'caste':
@@ -58,11 +58,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 break;
 
             case 'star':
-                scope.starArr = commonFactory.starBind(parentval);
+                scope.starArr = commonFactory.starBind(commonFactory.listSelectedVal(parentval));
                 break;
 
             case 'region':
-                scope.branchArr = commonFactory.branch(parentval);
+                scope.branchArr = commonFactory.branch(commonFactory.listSelectedVal(parentval));
                 break;
         }
     };

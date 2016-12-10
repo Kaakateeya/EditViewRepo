@@ -26,7 +26,7 @@
 
                         </div>
                         <div ng-if="ReferenceArr.length>0" class="edit_page_item_ui clearfix">
-                            <a onclick="return AllowWebUser('Reference Details');" class="edit_page_edit_button" href="javascript:void(0);" ng-click="referencePopulate(item);">Edit</a>
+                            <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="referencePopulate(item);">Edit</a>
                         </div>
                     </div>
                     <div class="edit_page_details_item_desc clearfix">
@@ -125,7 +125,7 @@
             <div class="modal-body clearfix pop_content_my" id="modal-body">
                 <ul>
                     <li class="clearfix form-group">
-                        <label for="Relationshiptype" class="pop_label_left">Relationship type<span style="color: red; margin-left: 3px;">*</span></label>
+                        <label for="Relationshiptype" class="pop_label_left">Relationship type{{refObj.ddlRelationshiptype}}<span style="color: red; margin-left: 3px;">*</span></label>
                         <div class="pop_controls_right select-box-my">
                             <select multiselectdropdown ng-model="refObj.ddlRelationshiptype" typeofdata="RelationshipType"></select>
                         </div>
@@ -151,7 +151,7 @@
 
                     </li>
 
-                    <country-directive require="true" countryshow="true" cityshow="false" othercity="false" dcountry="refObj.ddlCountry" dstate="refObj.ddlState" ddistrict="refObj.ddlDistrict"></country-directive>
+                    <country-directive countryshow="true" cityshow="false" othercity="false" dcountry="refObj.ddlCountry" dstate="refObj.ddlState" ddistrict="refObj.ddlDistrict" require="true"></country-directive>
 
                     <li class="clearfix form-group">
                         <label for="NativePlace" class="pop_label_left">Native place<span style="color: red; margin-left: 3px;">*</span></label>

@@ -1,7 +1,7 @@
 // AngularJS: 1.3.15
 // bootstrap-multiselect: 0.9.6
 //var statticdata=require('./staticArrayBindings.json');
-editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindService', function(cons, service) {
+editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindService', '$timeout', function(cons, service, timeout) {
     return {
         require: 'ng-model',
         scope: {
@@ -14,7 +14,15 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
 
             scope.databind = function(data) {
                 element.multiselect('dataprovider', data);
-                element.multiselect('select', scope.ngModel);
+
+
+
+                timeout(function() {
+                    element.multiselect('select', scope.ngModel);
+
+                }, 500);
+
+
             };
 
             switch (scope.typeofdata) {

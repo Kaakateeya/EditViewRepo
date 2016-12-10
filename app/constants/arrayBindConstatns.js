@@ -211,7 +211,6 @@ editviewapp.constant('arrayConstantsEdit', {
         { "label": "2", "title": "2", "value": 305 },
         { "label": "3", "title": "3", "value": 306 },
         { "label": "4", "title": "4", "value": 539 },
-
     ],
     'familyStatus': [
         { "label": "--Select--", "title": "--Select--", "value": "" },

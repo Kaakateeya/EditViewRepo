@@ -1,4 +1,4 @@
-editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', 'authSvc', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter, authSvc) {
+editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService', 'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', function(uibModal, scope, editviewServices, SelectBindService, commonFactory, mdDialog, filter, authSvc, timeout) {
 
     scope.stateArr = [];
     scope.districtArr = [];
@@ -27,13 +27,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         commonFactory.closepopup();
     };
 
+
     scope.showpopup = function(type, item) {
 
         switch (type) {
             case 'showEduModal':
                 scope.edoObj.EducationID = null;
                 scope.edoObj = {};
-                if (item !== undefined)     {
+                if (item !== undefined) {
                     scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
                     scope.stateArr = commonFactory.StateBind(item.CountryID);
@@ -41,12 +42,15 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.cityeArr = commonFactory.cityBind(item.DistrictID);
 
                     scope.edoObj.IsHighestDegree = item.EduHighestDegree;
-                    scope.edoObj.ddlEduCatgory = item.EducationCategoryID;
+                    console.log(item.EduPassOfYear);
+
+                    scope.edoObj.ddlEduCatgory = commonFactory.checkvals(item.EducationCategoryID) ? parseInt(item.EducationCategoryID) : null;
+
                     scope.edoObj.ddlEdugroup = item.EducationGroupID;
                     scope.edoObj.ddlEduspecialization = item.EducationSpecializationID;
                     scope.edoObj.txtuniversity = item.EduUniversity;
                     scope.edoObj.txtcollege = item.EduCollege;
-                    scope.edoObj.ddlpassOfyear = item.EduPassOfYear;
+                    scope.edoObj.ddlpassOfyear = commonFactory.checkvals(item.EduPassOfYear) ? parseInt(item.EduPassOfYear) : null;
                     scope.edoObj.ddlCountry = item.CountryID;
                     scope.edoObj.ddlState = item.StateID;
                     scope.edoObj.ddlDistrict = item.DistrictID;
@@ -159,8 +163,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.passOfYear(2020, 1975);
 
     scope.eduSubmit = function(objitem) {
-        alert(objitem.ddlpassOfyear);
-        //var passOfyearText = (_.where(scope.passOfyearArr, { value: parseInt(objitem.ddlpassOfyear) }))[0].title;
 
         scope.myData = {
             customerEducation: {

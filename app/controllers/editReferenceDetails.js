@@ -21,20 +21,22 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
 
             scope.refObj.intCusID = custID;
             scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;
-            scope.refObj.ddlRelationshiptype = item.ReletionShipTypeID;
+            scope.refObj.ddlRelationshiptype = 318;
+
+            console.log(scope.refObj.ddlRelationshiptype);
+
             scope.refObj.txtFname = item.ReferenceFirstName;
             scope.refObj.txtLname = item.ReferenceLastName;
             scope.refObj.txtProfessiondetails = item.RefrenceProfessionDetails;
-            scope.refObj.ddlCountry = item.RefrenceCountry;
-            scope.refObj.ddlState = item.RefrenceStateID;
-            scope.refObj.ddlDistrict = item.RefrenceDistrictID;
+            scope.refObj.ddlCountry = commonFactory.checkvals(item.RefrenceCountry) ? parseInt(item.RefrenceCountry) : null;
+            scope.refObj.ddlState = commonFactory.checkvals(item.RefrenceStateID) ? parseInt(item.RefrenceStateID) : null;
+            scope.refObj.ddlDistrict = commonFactory.checkvals(item.RefrenceDistrictID) ? parseInt(item.RefrenceDistrictID) : null;
             scope.refObj.txtNativePlace = item.RefrenceNativePlaceID;
             scope.refObj.txtPresentlocation = item.RefenceCurrentLocation;
 
             scope.refObj.ddlMobileCountryID = item.RefrenceMobileCountryID;
 
             scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
-
 
             if (commonFactory.checkvals(item.RefrenceAreaCode)) {
                 scope.refObj.ddlLandLineCountryID = item.RefrenceLandCountryId;
