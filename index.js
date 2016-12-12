@@ -69,8 +69,6 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
 
 
 editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', function(scope, personalDetailsService, authSvc) {
-
-
     var logincustid = authSvc.getCustId();
     var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
     personalDetailsService.personalDetails(CustID).then(function(response) {
