@@ -13616,11 +13616,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <h3>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                <a id=\"lnkFeedbackMenu\" href=\"#/feedback\">Feedback</a>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "            </h3>\r" +
     "\n" +

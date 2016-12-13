@@ -1,4 +1,4 @@
-regApp.controller('headctrl', ['$scope', function(scope) {
+editviewapp.controller('headctrl', ['$scope', function(scope) {
 
 
 }]);
