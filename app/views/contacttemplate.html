@@ -4,20 +4,22 @@
         <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
         <div class="pop_controls_right">
 
-            <a data-toggle="tooltip" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
-                <span class="glyphicon glyphicon-phone"></span>
+            <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
+                <!--<span class="glyphicon glyphicon-phone"></span>-->
+                <ng-md-icon icon="smartphone" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
 
-            <a data-toggle="tooltip" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
-                <span class="glyphicon glyphicon-phone-alt"></span>
+            <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
+                <!--<span class="glyphicon glyphicon-phone-alt"></span>-->
+                <ng-md-icon icon="call" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
 
             <a data-toggle="tooltip" ng-show="emailhide" data-original-title="Add  Email ID" tabindex="8" ng-click="showhidemob($event,'mail');" href=javascript:void(0);>
-                <span class="glyphicon glyphicon-envelope"></span>
+                <!--<span class="glyphicon glyphicon-envelope"></span>-->
+                <ng-md-icon icon="mail" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
         </div>
     </li>
-
 
     <li class="clearfix form-group" ng-show="pmob">
         <div>

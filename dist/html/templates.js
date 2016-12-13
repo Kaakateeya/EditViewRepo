@@ -14,17 +14,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "            <a data-toggle=\"tooltip\" data-original-title=\"Add Mobile Number\" tabindex=\"6\" ng-click=\"showhidemob($event,'mob');\" href=javascript:void(0);>\r" +
+    "            <a data-toggle=\"tooltip\" style=\"padding-right:20%;\" data-original-title=\"Add Mobile Number\" tabindex=\"6\" ng-click=\"showhidemob($event,'mob');\" href=javascript:void(0);>\r" +
     "\n" +
-    "                <span class=\"glyphicon glyphicon-phone\"></span>\r" +
+    "                <!--<span class=\"glyphicon glyphicon-phone\"></span>-->\r" +
+    "\n" +
+    "                <ng-md-icon icon=\"smartphone\" style=\"fill:#337ab7\" size=\"20\"></ng-md-icon>\r" +
     "\n" +
     "            </a>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "            <a data-toggle=\"tooltip\" data-original-title=\"Add  Land Number\" tabindex=\"7\" ng-click=\"showhidemob($event,'land');\" href=javascript:void(0);>\r" +
+    "            <a data-toggle=\"tooltip\" style=\"padding-right:20%;\" data-original-title=\"Add  Land Number\" tabindex=\"7\" ng-click=\"showhidemob($event,'land');\" href=javascript:void(0);>\r" +
     "\n" +
-    "                <span class=\"glyphicon glyphicon-phone-alt\"></span>\r" +
+    "                <!--<span class=\"glyphicon glyphicon-phone-alt\"></span>-->\r" +
+    "\n" +
+    "                <ng-md-icon icon=\"call\" style=\"fill:#337ab7\" size=\"20\"></ng-md-icon>\r" +
     "\n" +
     "            </a>\r" +
     "\n" +
@@ -32,15 +36,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <a data-toggle=\"tooltip\" ng-show=\"emailhide\" data-original-title=\"Add  Email ID\" tabindex=\"8\" ng-click=\"showhidemob($event,'mail');\" href=javascript:void(0);>\r" +
     "\n" +
-    "                <span class=\"glyphicon glyphicon-envelope\"></span>\r" +
+    "                <!--<span class=\"glyphicon glyphicon-envelope\"></span>-->\r" +
+    "\n" +
+    "                <ng-md-icon icon=\"mail\" style=\"fill:#337ab7\" size=\"20\"></ng-md-icon>\r" +
     "\n" +
     "            </a>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "    </li>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10288,9 +10292,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"login_help\">\r" +
     "\n" +
-    "                    <a id=\"lnkForgotPassword\">Forgot Password</a>\r" +
+    "                    <a id=\"lnkForgotPassword\" href=\"javascript:void(0)\" ng-click=\"showforgetpasswordpopup()\">Forgot Password</a>\r" +
     "\n" +
-    "                    <a href=\"#/Registration\">New User Sign Up</a>\r" +
+    "                    <a href=\"#/registration\">New User Sign Up</a>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -10632,7 +10636,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "\r" +
+    "    <forgot-password></forgot-password>\r" +
     "\n" +
     "    <script type=\"text/ng-template\" id=\"sessionalert.html\">\r" +
     "\n" +
