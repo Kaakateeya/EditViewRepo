@@ -67,7 +67,11 @@
     <script type="text/ng-template" id="propertyContent.html">
         <form name="propertyForm" novalidate role="form" ng-submit="propertySubmit(proObj)">
             <div class="modal-header">
-                <h3 class="modal-title text-center">Property Details </h3>
+                <h3 class="modal-title text-center">Property Details
+                    <a href="javascript:void(0);" ng-click="cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                    </a>
+                </h3>
             </div>
             <div class="modal-body clearfix pop_content_my" id="modal-body">
 

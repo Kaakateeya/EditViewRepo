@@ -579,7 +579,11 @@
     <script type="text/ng-template" id="parentModalContent.html">
         <form name="parentForm" novalidate role="form" ng-submit="ParentSubmit(parent)">
             <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Parent details</h3>
+                <h3 class="modal-title text-center" id="modal-title">Parent details
+                    <a href="javascript:void(0);" ng-click="cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
             </div>
             <div class="modal-body" id="modal-body">
                 <div class='modal-body clearfix pop_content_my'>
@@ -746,19 +750,33 @@
                                 </div>
                             </li>
                         </div>
+
+
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <button type="submit" class="button_custom pull-right">Submit</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
                     </ul>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                    <button type="submit" class="button_custom">Submit</button>
+
+
                 </div>
         </form>
     </script>
     <script type="text/ng-template" id="AddressModalContent.html">
         <form name="addressForm" novalidate role="form" ng-submit="contactAddressSubmit(AdrrObj)">
             <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Contact Details</h3>
+                <h3 class="modal-title text-center" id="modal-title">Contact Details
+                    <a href="javascript:void(0);" ng-click="cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
             </div>
             <div class="modal-body" id="modal-body">
                 <div class="modal-body clearfix pop_content_my">
@@ -818,14 +836,23 @@
 
                             </div>
                         </li>
+
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <input value="Submit" class="button_custom  pull-right" type="submit">
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
                     </ul>
 
                 </div>
 
             </div>
             <div class="modal-footer">
-                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
+
             </div>
         </form>
     </script>
@@ -833,7 +860,11 @@
     <script type="text/ng-template" id="PhysicalAttributeModalContent.html">
         <form name="PhysicalForm" novalidate role="form" ng-submit="physicalAtrrSubmit(physicalObj)">
             <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Physical Attributes & Health Details of Candidate </h3>
+                <h3 class="modal-title text-center" id="modal-title">Physical Attributes & Health Details of Candidate
+                    <a href="javascript:void(0);" ng-click="cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
             </div>
             <div class="modal-body" id="modal-body">
                 <div class="modal-body clearfix pop_content_my">
@@ -929,19 +960,30 @@
                                 <textarea ng-model="physicalObj.txtHealthCondition" class="form-control" tabindex="9" rows="4" style="width: 515px;" maxlength="200"></textarea>
                             </div>
                         </li>
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <input value="Submit" class="button_custom  pull-right" type="submit">
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
             </div>
         </form>
     </script>
     <script type="text/ng-template" id="AboutFamilyModalContent.html">
         <form name="AboutForm" novalidate role="form" ng-submit="AboutMyfamilySubmit(aboutFamilyObj)">
             <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">About My Family </h3>
+                <h3 class="modal-title text-center" id="modal-title">About My Family
+                    <a href="javascript:void(0);" ng-click="cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
             </div>
             <div class="modal-body clearfix pop_content_my" id="modal-body">
 

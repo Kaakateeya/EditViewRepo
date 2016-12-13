@@ -196,7 +196,12 @@
         <script type="text/ng-template" id="EduModalContent.html">
             <form name="eduForm" novalidate role="form" ng-submit="eduSubmit(edoObj);">
                 <div class="modal-header">
-                    <h3 class="modal-title text-center" id="modal-title">Education Details </h3>
+                    <h3 class="modal-title text-center" id="modal-title">Education Details
+                        <a href="javascript:void(0);" ng-click="cancel();">
+                            <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                        </a>
+
+                    </h3>
                 </div>
                 <div class="modal-body" id="modal-body">
                     <ul id="uleducation" class='modal-body clearfix pop_content_my'>
@@ -259,11 +264,20 @@
 
                             </div>
                         </li>
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <input value="Submit" class="button_custom pull-right" type="submit">
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
+
                     </ul>
+
                 </div>
                 <div class="modal-footer">
-                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                    <input value="Submit" class="button_custom" type="submit">
+
                 </div>
             </form>
         </script>
@@ -273,7 +287,11 @@
         <script type="text/ng-template" id="profModalContent.html">
             <form name="profForm" novalidate role="form" ng-submit="ProfSubmit(profObj);">
                 <div class="modal-header">
-                    <h3 class="modal-title text-center" id="modal-title">Profession details</h3>
+                    <h3 class="modal-title text-center" id="modal-title">Profession details
+                        <a href="javascript:void(0);" ng-click="cancel();">
+                            <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25">Delete</ng-md-icon>
+                        </a>
+                    </h3>
                 </div>
                 <div class="modal-body clearfix pop_content_my" id="modal-body">
                     <ul>
@@ -364,13 +382,19 @@
                                 <label id="lbloccupationcount" style="color: #1e1c1c; font-size: 13px;"></label>
                             </div>
                         </li>
-
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <input type="submit" value="Submit" class="button_custom  pull-right">
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="modal-footer">
 
-                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                    <input type="submit" value="Submit" class="button_custom">
+
                 </div>
             </form>
         </script>
@@ -379,7 +403,11 @@
         <script type="text/ng-template" id="AboutModalContent.html">
             <form name="aboutForm" novalidate role="form" ng-submit="AboutUrselfSubmit(aboutObj)">
                 <div class="modal-header">
-                    <h3 class="modal-title text-center" id="modal-title">About your self </h3>
+                    <h3 class="modal-title text-center" id="modal-title">About your self
+                        <a href="javascript:void(0);" ng-click="cancel();">
+                            <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25">Delete</ng-md-icon>
+                        </a>
+                    </h3>
                 </div>
                 <div class="modal-body clearfix pop_content_my" id="modal-body">
                     <ul>

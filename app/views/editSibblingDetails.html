@@ -686,7 +686,11 @@
 <script type="text/ng-template" id="SibblingCountPopup.html">
     <form name="sibblingCoutForm" novalidate role="form" ng-submit="sibblingCountsSubmit(SibCountObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Sibling Details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Sibling Details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
@@ -740,7 +744,11 @@
 <script type="text/ng-template" id="brotherModalContent.html">
     <form name="brotherForm" novalidate role="form" ng-submit="sibBroSubmit(broObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Brother details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Brother details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
@@ -887,14 +895,20 @@
                         </li>
                     </div>
                 </div>
-
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
             </ul>
 
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>
@@ -902,11 +916,14 @@
 <script type="text/ng-template" id="sisterModalContent.html">
     <form name="aboutForm" novalidate role="form" ng-submit="sibSisSubmit(sisObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Sister details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Sister details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulsibilingsister">
-
                 <li class="clearfix form-group">
                     <label for="lblElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right pop_radios_list">
@@ -1048,14 +1065,20 @@
 
                     </li>
                 </div>
-
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
             </ul>
 
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>

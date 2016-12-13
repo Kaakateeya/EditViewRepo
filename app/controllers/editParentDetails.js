@@ -218,7 +218,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     };
 
     scope.ParentSubmit = function(objitem) {
-        alert(objitem.rbtlParentIntercaste);
+
         scope.myData = {
             GetDetails: {
                 CustID: custID,

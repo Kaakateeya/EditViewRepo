@@ -447,7 +447,11 @@
 <script type="text/ng-template" id="FBModalContent.html">
     <form name="FBForm" novalidate role="form" ng-submit="FBSubmit(fbObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Father's Brother Details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Father's Brother Details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulFatherBrother">
@@ -484,72 +488,7 @@
                         <input ng-model="fbObj.txtFBProfessiondetails" class="form-control" tabindex="4" maxlength="200" />
                     </div>
                 </li>
-                <!--<div>
-                    <li class="clearfix form-group">
-                        <label for="lblfatherbrother" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
 
-                            <a data-original-title="Add Mobile NUmber" tabindex="5">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-                            <a data-original-title="Add  Land Number" tabindex="6">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-
-                            <a data-original-title="Add  Email ID" tabindex="7">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div>
-                            <label for="lblMobile" class="pop_label_left">Mobile #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <select multiselectdropdown ng-model="fbObj.ddlFBMobileCountryID" typeofdata="countryCode"></select>
-                                <input ng-model="fbObj.txtFBMobileNumber" maxlength="10" tabindex="9" />
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <div>
-                            <label for="lblMobile2" class="pop_label_left">Alternate Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-
-                                <select multiselectdropdown ng-model="ddlFBMobileCountryID2" typeofdata="countryCode"></select>
-                                <input ng-model="fbObj.txtFBMobileNumber2" maxlength="10" tabindex="11" class="form-control" />
-
-                            </div>
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-                        <div id="fatherlanddiv">
-                            <label for="lblLandLine" class="pop_label_left">Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-                                <select multiselectdropdown ng-model="fbObj.ddlFBLandLineCountry" typeofdata="countryCode"></select>
-                                <input ng-model="fbObj.txtFBAreCode" maxlength="4" tabindex="13" class="form-control" />
-                                <input ng-model="fbObj.txtFBLandNumber" maxlength="8" tabindex="14" class="form-control" />
-                            </div>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <div id="fatheremailbrother">
-                            <label for="lblEmail" class="pop_label_left">Email</label>
-                            <div class="pop_controls_right select-box-my">
-                                <input ng-model="fbObj.txtFBEmails" class="form-control" tabindex="15" />
-
-                            </div>
-                        </div>
-                    </li>
-                </div>-->
 
                 <contact-directive emailhide="true" dmobile="fbObj.ddlFBMobileCountryID" strmobile="fbObj.txtFBMobileNumber" dalternative="fbObj.ddlFBMobileCountryID2" stralternative="fbObj.txtFBMobileNumber2" dland="fbObj.ddlFBLandLineCountry" strareacode="fbObj.txtFBAreCode"
                     strland="fbObj.txtFBLandNumber" strmail="fbObj.txtFBEmails"></contact-directive>
@@ -560,19 +499,30 @@
                         <input ng-model="fbObj.txtCurrentLocation" class="form-control" maxlength="150" tabindex="16" />
                     </div>
                 </li>
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom  pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
             </ul>
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>
 <script type="text/ng-template" id="FSModalContent.html">
     <form name="FSForm" novalidate role="form" ng-submit="FSSubmit(fsObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Father's Sister Details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Father's Sister Details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
@@ -622,19 +572,7 @@
                 </li>
 
 
-                <!--<li class="clearfix form-group">
-                    <label for="lblState" class="pop_label_left">FSH State</label>
-                    <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="fsObj.ddlFSHStateID" typeofdata="indiaStates" ng-change="changeBind('fs',fsObj.ddlFSHStateID);"></select>
-                    </div>
-                </li>
-                <li class="clearfix form-group">
-                    <label for="lblDistrict" class="pop_label_left">FSH District</label>
-                    <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="fsObj.ddlFSHDistrictID" ng-options="item.value as item.label for item in fsDistrict"></select>
 
-                    </div>
-                </li>-->
 
 
 
@@ -655,87 +593,6 @@
                 </li>
 
 
-                <!--<div id="ownerdiv5">
-                    <li class="clearfix form-group">
-                        <label for="lblfathersister" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-
-                            <a data-original-title="Add Mobile NUmber" tabindex="10">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-                            <a data-original-title="Add  Land Number" tabindex="11">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-                            <a data-original-title="Add  Email ID" tabindex="12">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-
-                        </div>
-                    </li>
-
-                    <li class="clearfix form-group">
-                        <div id="FsHmobilediv">
-                            <label for="lblMobile" class="pop_label_left">FSH Mobile #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <select multiselectdropdown ng-model="fsObj.ddlFSMObileCountryID" typeofdata="countryCode"></select>
-
-                                <input ng-model="fsObj.txtFSMobileNumber" maxlength="10" tabindex="14" />
-
-                            </div>
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="FsHmobilediv2">
-                            <label for="lblMobile2" class="pop_label_left">Alternate Number </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-
-                                <select multiselectdropdown ng-model="fsObj.ddlFSMObileCountryID2" typeofdata="countryCode"></select>
-                                <input ng-model="fsObj.txtFSMobileNumber2" text="" width="50%" maxlength="10" tabindex="16" />
-
-                            </div>
-
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="FsHlanddiv">
-                            <label for="lblLandLine" class="pop_label_left">FSH Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-                                <select multiselectdropdown ng-model="fsObj.ddlFSHLandCountryID" typeofdata="countryCode"></select>
-                                <input ng-model="fsObj.txtFSHAreaNumber" width="30%" maxlength="4" tabindex="18" />
-                                <input ng-model="fsObj.txtFSHNUmber" width="30%" maxlength="8" tabindex="19" />
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="FSHEmailff">
-                            <label for="lblEmail" class="pop_label_left">FSH Email</label>
-                            <div class="pop_controls_right select-box-my">
-
-                                <input ng-model="fsObj.txtFSHEmails" class="form-control" tabindex="20" />
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                </div>-->
 
 
 
@@ -749,19 +606,30 @@
 
                     </div>
                 </li>
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom  pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
             </ul>
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>
 <script type="text/ng-template" id="MBModalContent.html">
     <form name="MBForm" novalidate role="form" ng-submit="MBSubmit(mbObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Mother's Brother Details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Mother's Brother Details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulmotherbrother">
@@ -807,93 +675,6 @@
 
 
 
-                <!--<div id="ownerdiv6">
-                    <li class="clearfix form-group">
-                        <label for="lblmotherbrother" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
-                            <a data-original-title="Add Mobile NUmber" tabindex="5">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-
-
-                            <a data-original-title="Add  Land Number" tabindex="6">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-
-
-                            <a data-original-title="Add  Email ID" tabindex="7">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-                        </div>
-                    </li>
-
-
-                    <li class="clearfix form-group">
-
-
-                        <div id="divMBmobile" style="display: none;">
-                            <label for="MBMobile" class="pop_label_left">Mobile #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-
-                                <select multiselectdropdown ng-model="mbObj.ddlMBCountriCode" typeofdata="countryCode"></select>
-                                <input ng-model="mbObj.txtMBMobileNum" maxlength="10" tabindex="9" />
-
-                            </div>
-
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="divMBmobile2">
-                            <label for="MBMobile2" class="pop_label_left">Alternate Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-
-                                <select multiselectdropdown ng-model="mbObj.ddlMBCountriCode2" typeofdata="countryCode"></select>
-                                <input ng-model="mbObj.txtMBMobileNum2" maxlength="10" tabindex="11" />
-
-                            </div>
-
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-                        <div id="divMBland">
-                            <label for="MBLandLine" class="pop_label_left">Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-                                <select multiselectdropdown ng-model="mbObj.ddlMBLandLineCountryCode" typeofdata="countryCode"></select>
-                                <input ng-model="mbObj.txtMBAreaCode" maxlength="4" tabindex="13" />
-
-                                <input ng-model="mbObj.txtMBLandLineNum" maxlength="8" tabindex="14" />
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="divMBemail">
-                            <label for="MBEmail" class="pop_label_left">Email</label>
-                            <div class="pop_controls_right">
-                                <input ng-model="mbObj.txtMBEmails" class="form-control" tabindex="15" />
-
-                            </div>
-                        </div>
-
-
-                    </li>
-                </div>-->
-
 
                 <contact-directive emailhide="true" dmobile="mbObj.ddlMBCountriCode" strmobile="mbObj.txtMBMobileNum" dalternative="mbObj.ddlMBCountriCode2" stralternative="mbObj.txtMBMobileNum2" dland="mbObj.ddlMBLandLineCountryCode" strareacode="mbObj.txtMBAreaCode"
                     strland="mbObj.txtMBLandLineNum" strmail="mbObj.txtMBEmails"></contact-directive>
@@ -905,21 +686,31 @@
 
                     </div>
                 </li>
-
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom  pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
 
             </ul>
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>
 <script type="text/ng-template" id="MSModalContent.html">
     <form name="MSForm" novalidate role="form" ng-submit="MSSubmit(msObj)">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Mother's Sister Details </h3>
+            <h3 class="modal-title text-center" id="modal-title">Mother's Sister Details
+                <a href="javascript:void(0);" ng-click="cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                </a>
+            </h3>
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulmothersister">
@@ -963,25 +754,6 @@
                     </div>
                 </li>
 
-                <!--<li class="clearfix form-group">
-                    <label for="lblMsState" class="pop_label_left">MSH State</label>
-                    <div class="pop_controls_right select-box-my">
-
-                        <select multiselectdropdown ng-model="msObj.ddlMSisState" typeofdata="indiaStates" ng-change="changeBind('ms',msObj.ddlMSisState);"></select>
-
-                    </div>
-                </li>
-                <li class="clearfix form-group">
-                    <label for="lblMsDistrict" class="pop_label_left">MSH  District</label>
-                    <div class="pop_controls_right select-box-my">
-
-                        <select multiselectdropdown ng-model="msObj.ddlMsDistrict" ng-options="item.value as item.label for item in msDistrict"></select>
-
-
-                    </div>
-                </li>-->
-
-
 
 
                 <country-directive countryshow="false" cityshow="false" othercity="false" dstate="msObj.ddlMSisState" ddistrict="msObj.ddlMsDistrict"></country-directive>
@@ -1023,75 +795,7 @@
                 </li>
 
 
-                <!--<div id="ownerdiv7">
-                    <li class="clearfix form-group">
-                        <label for="lblmothersisterr" class="pop_label_left">Contact Numbers</label>
-                        <div class="pop_controls_right">
 
-                            <a data-original-title="Add Mobile NUmber" tabindex="10">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </a>
-
-                            <a data-original-title="Add  Land Number" tabindex="11">
-                                <span class="glyphicon glyphicon-phone-alt"></span>
-                            </a>
-
-                            <a data-original-title="Add  Email ID" tabindex="12">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="clearfix form-group">
-                        <div id="divMSHmobile">
-                            <label for="lblMSMobile" class="pop_label_left">MSH Mobile #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-
-                                <select multiselectdropdown ng-model="msObj.ddlMSCounCodeID" typeofdata="countryCode"></select>
-                                <input ng-model="msObj.txtMSMObileNum" maxlength="10" text="" width="50%" tabindex="14" />
-                            </div>
-                        </div>
-
-                    </li>
-
-                    <li class="clearfix form-group">
-                        <div id="divMSHmobile2">
-                            <label for="lblMSMobile2" class="pop_label_left">Alternate Number</label>
-                            <div class="pop_controls_right select-box-my select-box-my-double">
-                                <select multiselectdropdown ng-model="msObj.ddlMSCounCodeID2" typeofdata="countryCode"></select>
-                                <input ng-model="msObj.txtMSMObileNum2" text="" width="50%" maxlength="10" tabindex="16" />
-
-                            </div>
-
-
-                        </div>
-
-
-                    </li>
-                    <li class="clearfix form-group">
-
-
-                        <div id="divMSHLand" style="display: none;">
-                            <label for="lblMSLandLine" class="pop_label_left">MSH Land line #  </label>
-                            <div class="pop_controls_right select-box-my select-box-my-trible">
-                                <select multiselectdropdown ng-model="msObj.ddlMSLLCounCode" typeofdata="countryCode"></select>
-                                <input ng-model="msObj.txtMSArea" width="30%" text="" maxlength="4" tabindex="18" />
-
-                                <input ng-model="msObj.txtLLNum" width="30%" text="" maxlength="8" tabindex="19" />
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="clearfix form-group">
-                        <div id="MSHemail">
-                            <label for="lblMSEmail" class="pop_label_left">MSH Email</label>
-                            <div class="pop_controls_right">
-
-                                <input ng-model="msObj.txtMSEmail" class="form-control" tabindex="20" />
-                            </div>
-                        </div>
-                    </li>
-                </div>-->
 
                 <contact-directive emailhide="true" dmobile="msObj.ddlMSCounCodeID" strmobile="msObj.txtMSMObileNum" dalternative="msObj.ddlMSCounCodeID2" stralternative="msObj.txtMSMObileNum2" dland="msObj.ddlMSLLCounCode" strareacode="msObj.txtMSArea" strland="msObj.txtLLNum"
                     strmail="msObj.txtMSEmail"></contact-directive>
@@ -1103,14 +807,20 @@
 
                     </div>
                 </li>
-
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input value="Submit" class="button_custom  pull-right" type="submit">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
 
             </ul>
 
         </div>
         <div class="modal-footer">
-            <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" id="btnEduSubmit" class="button_custom" type="submit">
+
         </div>
     </form>
 </script>

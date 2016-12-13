@@ -426,7 +426,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Astro details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Astro details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -626,15 +634,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -2284,7 +2306,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Parent details</h3>\r" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Parent details\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -2618,6 +2648,26 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <button type=\"submit\" class=\"button_custom pull-right\">Submit</button>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
     "                    </ul>\r" +
     "\n" +
     "                    </div>\r" +
@@ -2626,9 +2676,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"modal-footer\">\r" +
     "\n" +
-    "                    <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\r" +
     "\n" +
-    "                    <button type=\"submit\" class=\"button_custom\">Submit</button>\r" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -2642,7 +2692,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Contact Details</h3>\r" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Contact Details\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -2762,6 +2820,24 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
     "                    </ul>\r" +
     "\n" +
     "\r" +
@@ -2774,9 +2850,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "                <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\r" +
     "\n" +
-    "                <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -2792,7 +2868,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Physical Attributes & Health Details of Candidate </h3>\r" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Physical Attributes & Health Details of Candidate\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -2984,6 +3068,22 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
     "                    </ul>\r" +
     "\n" +
     "                </div>\r" +
@@ -2992,9 +3092,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "                <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -3008,7 +3106,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">About My Family </h3>\r" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">About My Family\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -3587,7 +3693,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Partnerprefernece details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Partnerprefernece details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"25\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -3943,15 +4057,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -3969,7 +4097,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Partner Description </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Partner Description\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -4140,7 +4276,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\">Property Details </h3>\r" +
+    "                <h3 class=\"modal-title text-center\">Property Details\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -4527,7 +4671,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
-    "                <h3 class=\"modal-title text-center\">Reference Details </h3>\r" +
+    "                <h3 class=\"modal-title text-center\">Reference Details\r" +
+    "\n" +
+    "                    <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                        <ng-md-icon icon=\"close\" style=\"fill:#665454\" class=\"pull-right\" size=\"25\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                </h3>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -4641,6 +4793,22 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
+    "                    <li class=\"row \">\r" +
+    "\n" +
+    "                        <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                            <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                            <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
     "                </ul>\r" +
     "\n" +
     "\r" +
@@ -4649,9 +4817,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "                <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                <input type=\"submit\" value=\"Submit\" class=\"button_custom\">\r" +
+    "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -5574,7 +5740,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Father's Brother Details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Father's Brother Details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -5648,137 +5822,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <!--<div>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <label for=\"lblfatherbrother\" class=\"pop_label_left\">Contact Numbers</label>\r" +
-    "\n" +
-    "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add Mobile NUmber\" tabindex=\"5\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Land Number\" tabindex=\"6\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone-alt\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Email ID\" tabindex=\"7\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-envelope\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div>\r" +
-    "\n" +
-    "                            <label for=\"lblMobile\" class=\"pop_label_left\">Mobile #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"fbObj.ddlFBMobileCountryID\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"fbObj.txtFBMobileNumber\" maxlength=\"10\" tabindex=\"9\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div>\r" +
-    "\n" +
-    "                            <label for=\"lblMobile2\" class=\"pop_label_left\">Alternate Number</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"ddlFBMobileCountryID2\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"fbObj.txtFBMobileNumber2\" maxlength=\"10\" tabindex=\"11\" class=\"form-control\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"fatherlanddiv\">\r" +
-    "\n" +
-    "                            <label for=\"lblLandLine\" class=\"pop_label_left\">Land line #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"fbObj.ddlFBLandLineCountry\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"fbObj.txtFBAreCode\" maxlength=\"4\" tabindex=\"13\" class=\"form-control\" />\r" +
-    "\n" +
-    "                                <input ng-model=\"fbObj.txtFBLandNumber\" maxlength=\"8\" tabindex=\"14\" class=\"form-control\" />\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"fatheremailbrother\">\r" +
-    "\n" +
-    "                            <label for=\"lblEmail\" class=\"pop_label_left\">Email</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "                                <input ng-model=\"fbObj.txtFBEmails\" class=\"form-control\" tabindex=\"15\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -5800,6 +5844,22 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
     "\n" +
     "\r" +
@@ -5808,9 +5868,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -5824,7 +5882,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Father's Sister Details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Father's Sister Details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -5924,31 +5990,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <!--<li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                    <label for=\"lblState\" class=\"pop_label_left\">FSH State</label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"fsObj.ddlFSHStateID\" typeofdata=\"indiaStates\" ng-change=\"changeBind('fs',fsObj.ddlFSHStateID);\"></select>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </li>\r" +
-    "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                    <label for=\"lblDistrict\" class=\"pop_label_left\">FSH District</label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"fsObj.ddlFSHDistrictID\" ng-options=\"item.value as item.label for item in fsDistrict\"></select>\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </li>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -5990,168 +6032,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <!--<div id=\"ownerdiv5\">\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <label for=\"lblfathersister\" class=\"pop_label_left\">Contact Numbers</label>\r" +
-    "\n" +
-    "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add Mobile NUmber\" tabindex=\"10\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Land Number\" tabindex=\"11\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone-alt\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Email ID\" tabindex=\"12\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-envelope\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"FsHmobilediv\">\r" +
-    "\n" +
-    "                            <label for=\"lblMobile\" class=\"pop_label_left\">FSH Mobile #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"fsObj.ddlFSMObileCountryID\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"fsObj.txtFSMobileNumber\" maxlength=\"10\" tabindex=\"14\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"FsHmobilediv2\">\r" +
-    "\n" +
-    "                            <label for=\"lblMobile2\" class=\"pop_label_left\">Alternate Number </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"fsObj.ddlFSMObileCountryID2\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"fsObj.txtFSMobileNumber2\" text=\"\" width=\"50%\" maxlength=\"10\" tabindex=\"16\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"FsHlanddiv\">\r" +
-    "\n" +
-    "                            <label for=\"lblLandLine\" class=\"pop_label_left\">FSH Land line #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"fsObj.ddlFSHLandCountryID\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"fsObj.txtFSHAreaNumber\" width=\"30%\" maxlength=\"4\" tabindex=\"18\" />\r" +
-    "\n" +
-    "                                <input ng-model=\"fsObj.txtFSHNUmber\" width=\"30%\" maxlength=\"8\" tabindex=\"19\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"FSHEmailff\">\r" +
-    "\n" +
-    "                            <label for=\"lblEmail\" class=\"pop_label_left\">FSH Email</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"fsObj.txtFSHEmails\" class=\"form-control\" tabindex=\"20\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                </div>-->\r" +
-    "\n" +
     "\r" +
     "\n" +
     "\r" +
@@ -6178,6 +6058,22 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
     "\n" +
     "\r" +
@@ -6186,9 +6082,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -6202,7 +6096,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Mother's Brother Details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Mother's Brother Details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -6294,180 +6196,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <!--<div id=\"ownerdiv6\">\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <label for=\"lblmotherbrother\" class=\"pop_label_left\">Contact Numbers</label>\r" +
-    "\n" +
-    "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add Mobile NUmber\" tabindex=\"5\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Land Number\" tabindex=\"6\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone-alt\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Email ID\" tabindex=\"7\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-envelope\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"divMBmobile\" style=\"display: none;\">\r" +
-    "\n" +
-    "                            <label for=\"MBMobile\" class=\"pop_label_left\">Mobile #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"mbObj.ddlMBCountriCode\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"mbObj.txtMBMobileNum\" maxlength=\"10\" tabindex=\"9\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"divMBmobile2\">\r" +
-    "\n" +
-    "                            <label for=\"MBMobile2\" class=\"pop_label_left\">Alternate Number</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"mbObj.ddlMBCountriCode2\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"mbObj.txtMBMobileNum2\" maxlength=\"10\" tabindex=\"11\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"divMBland\">\r" +
-    "\n" +
-    "                            <label for=\"MBLandLine\" class=\"pop_label_left\">Land line #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"mbObj.ddlMBLandLineCountryCode\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"mbObj.txtMBAreaCode\" maxlength=\"4\" tabindex=\"13\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"mbObj.txtMBLandLineNum\" maxlength=\"8\" tabindex=\"14\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"divMBemail\">\r" +
-    "\n" +
-    "                            <label for=\"MBEmail\" class=\"pop_label_left\">Email</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "                                <input ng-model=\"mbObj.txtMBEmails\" class=\"form-control\" tabindex=\"15\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                </div>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "\r" +
     "\n" +
     "                <contact-directive emailhide=\"true\" dmobile=\"mbObj.ddlMBCountriCode\" strmobile=\"mbObj.txtMBMobileNum\" dalternative=\"mbObj.ddlMBCountriCode2\" stralternative=\"mbObj.txtMBMobileNum2\" dland=\"mbObj.ddlMBLandLineCountryCode\" strareacode=\"mbObj.txtMBAreaCode\"\r" +
@@ -6490,7 +6218,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "\r" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6502,9 +6244,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -6518,7 +6258,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Mother's Sister Details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Mother's Sister Details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -6606,44 +6354,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <!--<li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                    <label for=\"lblMsState\" class=\"pop_label_left\">MSH State</label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"msObj.ddlMSisState\" typeofdata=\"indiaStates\" ng-change=\"changeBind('ms',msObj.ddlMSisState);\"></select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </li>\r" +
-    "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                    <label for=\"lblMsDistrict\" class=\"pop_label_left\">MSH  District</label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <select multiselectdropdown ng-model=\"msObj.ddlMsDistrict\" ng-options=\"item.value as item.label for item in msDistrict\"></select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </li>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "\r" +
     "\n" +
     "\r" +
@@ -6726,143 +6436,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <!--<div id=\"ownerdiv7\">\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <label for=\"lblmothersisterr\" class=\"pop_label_left\">Contact Numbers</label>\r" +
-    "\n" +
-    "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add Mobile NUmber\" tabindex=\"10\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Land Number\" tabindex=\"11\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-phone-alt\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <a data-original-title=\"Add  Email ID\" tabindex=\"12\">\r" +
-    "\n" +
-    "                                <span class=\"glyphicon glyphicon-envelope\"></span>\r" +
-    "\n" +
-    "                            </a>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"divMSHmobile\">\r" +
-    "\n" +
-    "                            <label for=\"lblMSMobile\" class=\"pop_label_left\">MSH Mobile #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"msObj.ddlMSCounCodeID\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"msObj.txtMSMObileNum\" maxlength=\"10\" text=\"\" width=\"50%\" tabindex=\"14\" />\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"divMSHmobile2\">\r" +
-    "\n" +
-    "                            <label for=\"lblMSMobile2\" class=\"pop_label_left\">Alternate Number</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"msObj.ddlMSCounCodeID2\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"msObj.txtMSMObileNum2\" text=\"\" width=\"50%\" maxlength=\"10\" tabindex=\"16\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                        <div id=\"divMSHLand\" style=\"display: none;\">\r" +
-    "\n" +
-    "                            <label for=\"lblMSLandLine\" class=\"pop_label_left\">MSH Land line #  </label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"msObj.ddlMSLLCounCode\" typeofdata=\"countryCode\"></select>\r" +
-    "\n" +
-    "                                <input ng-model=\"msObj.txtMSArea\" width=\"30%\" text=\"\" maxlength=\"4\" tabindex=\"18\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"msObj.txtLLNum\" width=\"30%\" text=\"\" maxlength=\"8\" tabindex=\"19\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
-    "\n" +
-    "                        <div id=\"MSHemail\">\r" +
-    "\n" +
-    "                            <label for=\"lblMSEmail\" class=\"pop_label_left\">MSH Email</label>\r" +
-    "\n" +
-    "                            <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"msObj.txtMSEmail\" class=\"form-control\" tabindex=\"20\" />\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                    </li>\r" +
-    "\n" +
-    "                </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6886,7 +6460,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "\r" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6898,9 +6486,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -8301,7 +7887,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Sibling Details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Sibling Details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -8409,7 +8003,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Brother details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Brother details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -8703,7 +8305,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "\r" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
     "\n" +
     "            </ul>\r" +
     "\n" +
@@ -8715,9 +8331,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -8733,15 +8347,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Sister details </h3>\r" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Sister details\r" +
+    "\n" +
+    "                <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                    <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                </a>\r" +
+    "\n" +
+    "            </h3>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "        <div class=\"modal-body clearfix pop_content_my\" id=\"modal-body\">\r" +
     "\n" +
     "            <ul id=\"ulsibilingsister\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
@@ -9025,7 +8645,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "\r" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
     "\n" +
     "            </ul>\r" +
     "\n" +
@@ -9037,9 +8671,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -9580,7 +9212,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
-    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Education Details </h3>\r" +
+    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Education Details\r" +
+    "\n" +
+    "                        <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                        </a>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </h3>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -9706,15 +9348,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                    </ul>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
     "                <div class=\"modal-footer\">\r" +
     "\n" +
-    "                    <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -9734,7 +9394,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
-    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Profession details</h3>\r" +
+    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Profession details\r" +
+    "\n" +
+    "                        <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"25\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                        </a>\r" +
+    "\n" +
+    "                    </h3>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -9916,7 +9584,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "\r" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
     "\n" +
     "                    </ul>\r" +
     "\n" +
@@ -9926,9 +9608,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    <input type=\"submit\" value=\"Submit\" class=\"button_custom\">\r" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -9946,7 +9626,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
-    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">About your self </h3>\r" +
+    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">About your self\r" +
+    "\n" +
+    "                        <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"25\">Delete</ng-md-icon>\r" +
+    "\n" +
+    "                        </a>\r" +
+    "\n" +
+    "                    </h3>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
