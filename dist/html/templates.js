@@ -356,7 +356,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        <div class=\"radio-group-my input-group\">\r" +
+    "        <div class=\"radio-group-my input-group\" ng-show=\"ImageUrl==='' || ImageUrl===null\">\r" +
     "\n" +
     "            <!--<label><input ng-model=\"atroObj.rdlUploadGenerate\" value=\"0\" type=\"radio\"><span>&nbsp;Upload Horoscope</span> </label>\r" +
     "\n" +
@@ -376,11 +376,37 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "</div>\r" +
+    "    <div ng-hide=\"ImageUrl==='' || ImageUrl===null\">\r" +
+    "\n" +
+    "        <div class=\"edit_page_details_item\">\r" +
+    "\n" +
+    "            <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                <img ng-model=\"imghoroName\" ng-src=\"{{ImageUrl}}\" Style=\"width: 250px; height: 250px;\" />\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"edit_page_details_item_desc clearfix\" style=\"padding: 0 0 0 20px;\">\r" +
+    "\n" +
+    "            <div class=\"edit_page_item_ui clearfix  pull-left\">\r" +
     "\n" +
     "\r" +
     "\n" +
-    "<button ng-click=\"deleteHoroImage();\">delete</button>\r" +
+    "                <a ID=\"btndeletehoro\" class=\"edit_page_del_button\" href=\"javascript:void(0);\" ng-click=\"shoedeletePopup();\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Delete Astro Details\">\r" +
+    "\n" +
+    "               Delete <ng-md-icon icon=\"delete\" style=\"fill:#665454\" size=\"18\">Delete</ng-md-icon></a>\r" +
+    "\n" +
+    "                <a ID=\"btnlookhoro\" Style=\"padding-left: 100px;\" class=\"btn btn-link\">View<span class=\"glyphicon glyphicon-eye-open\"></span></a>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -644,6 +670,36 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </form>\r" +
     "\n" +
+    "</script>\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"deletehoroPopup.html\">\r" +
+    "\n" +
+    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"deleteHoroImage();\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Delete Horoscope </h3>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "            <div class=\"text-center\">Are you sure to delete horoscope?</div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"modal-footer\">\r" +
+    "\n" +
+    "            <input value=\"Close\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "            <input value=\"Delete\" class=\"button_custom\" type=\"submit\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </form>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "</script>"
   );
 
@@ -660,8 +716,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        <div class=\"my_photos_main my_photos_main_edit\">\r" +
     "\n" +
     "            <h6>Upload your recent Photos for better response</h6>\r" +
-    "\n" +
-    "            <a id=\"lnkbtnn\" class=\"skip_button\" onclick=\"lnkskip_Click\">skip this page</a>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -737,7 +791,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"edit_page_photo_manage_submit\">\r" +
     "\n" +
-    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" id=\"divPassword\">\r" +
+    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"{{loginpaidstatus===1}}\">\r" +
     "\n" +
     "                                <label class=\"\">\r" +
     "\n" +
@@ -767,15 +821,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"photo_upload_instrctns_list clearfix\">\r" +
     "\n" +
-    "                        <a onclick=\"PhotoGuideLine();\" id=\"phtoguide\" href=\"javascript:__doPostBack('phtoguide','')\">Photo guidelines\r" +
+    "\r" +
+    "\n" +
+    "                        <a ID=\"phtoguide\" href=\"javascript:void(0);\" ng-click=\"redirectPage('PhotoGuideLines');\">Photo guidelines\r" +
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "                        <a onclick=\"PhotoFaq();\" id=\"photofaq\" href=\"javascript:__doPostBack('photofaq','')\">Photo faq’s\r" +
+    "                        <a ID=\"photofaq\" href=\"javascript:void(0);\" ng-click=\"redirectPage('Faqs');\">Photo faq’s\r" +
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "                        <a id=\"photoupload\" href=\"../../Employee/PhotoFAQ.aspx\" target=\"_blank\">Photo upload tips\r" +
+    "                        <a ID=\"photoupload\" href=\"javascript:void(0);\" ng-click=\"redirectPage('uploadTips');\">Photo upload tips\r" +
     "\n" +
     "                        </a>\r" +
     "\n" +
@@ -807,7 +863,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl00_images\" src=\"../CutomerImages/Managephotos/Side-face.png\">\r" +
+    "                                <img id=\"DataList3_ctl00_images\" src=\"src\\images/Side-face.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -821,7 +877,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl01_images\" src=\"../CutomerImages/Managephotos/Blir.png\">\r" +
+    "                                <img id=\"DataList3_ctl01_images\" src=\"src\\images/Blir.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -835,7 +891,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl02_images\" src=\"../CutomerImages/Managephotos/Group-photos.png\">\r" +
+    "                                <img id=\"DataList3_ctl02_images\" src=\"src\\images/Group-photos.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -849,7 +905,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl03_images\" src=\"../CutomerImages/Managephotos/Water-mark.png\">\r" +
+    "                                <img id=\"DataList3_ctl03_images\" src=\"src\\images/Water-mark.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -883,7 +939,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList2_ctl00_images\" src=\"../CutomerImages/Managephotos/Close-up.png\">\r" +
+    "                                <img id=\"DataList2_ctl00_images\" src=\"src\\images/Close-up.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -895,7 +951,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <td>\r" +
     "\n" +
-    "                                <img id=\"DataList2_ctl01_images\" src=\"../CutomerImages/Managephotos/Fulsize.png\">\r" +
+    "                                <img id=\"DataList2_ctl01_images\" src=\"src\\images/Fulsize.png\">\r" +
     "\n" +
     "                                <p>\r" +
     "\n" +
@@ -923,7 +979,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <p>\r" +
     "\n" +
-    "                <img src=\"../images/whatsup.png\" alt=\"Mail\" style=\"width: 50px; height: 40px;\">Whatsup your photos to\r" +
+    "                <img src=\"src/images/whatsup.png\" alt=\"Mail\" style=\"width: 50px; height: 40px;\">Whatsup your photos to\r" +
     "\n" +
     "                <span>91-9848535373</span> - Kindly mention your Profile ID and name\r" +
     "\n" +
@@ -931,7 +987,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <p>\r" +
     "\n" +
-    "                <img src=\"../images/icon_email.png\" alt=\"Mail\">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name\r" +
+    "                <img src=\"src/images/icon_email.png\" alt=\"Mail\">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name\r" +
     "\n" +
     "            </p>\r" +
     "\n" +
@@ -2968,7 +3024,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "                <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"submit\">\r" +
+    "                <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
     "                <button type=\"submit\" class=\"button_custom\">Submit</button>\r" +
     "\n" +
@@ -4477,7 +4533,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type{{refObj.ddlRelationshiptype}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
@@ -10222,11 +10278,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"login_block_header\" ng-show=\"loginpopup\" id=\"divLogin\">\r" +
     "\n" +
-    "            <form name=\"myForm\">\r" +
+    "            <form name=\"myForms\">\r" +
     "\n" +
-    "                <input type=\"text\" id=\"txtUserName\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"username\" required/>\r" +
+    "                <input type=\"text\" id=\"txtUserName\" placeholder=\"ProfileID/EmailID\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"username\" required/>\r" +
     "\n" +
-    "                <input type=\"password\" id=\"txtPassword\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"password\" required/>\r" +
+    "                <input type=\"password\" id=\"txtPassword\" placeholder=\"Password\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"password\" required/>\r" +
     "\n" +
     "                <span class=\"clear\">&nbsp;</span>\r" +
     "\n" +
@@ -10238,7 +10294,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <input type=\"button\" id=\"btnUserLogin\" ng-click=\"loginsubmit()\" ng-disabled=\"myForm.$invalid\" class=\"button_custom\" value=\"Login\" />\r" +
+    "                <md-button id=\"btnUserLogin\" ng-click=\"loginsubmit()\" ng-disabled=\"myForms.$invalid\" class=\"md-raised md-warn\">Login</md-button>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -10256,7 +10312,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </h3>\r" +
     "\n" +
-    "            <h4>make a missed call<span><em>+91-9390999999</em></span></h4>\r" +
+    "            <h4>make a missed call<s></s>pan><em>+91-9390999999</em></span>\r" +
+    "\n" +
+    "            </h4>\r" +
     "\n" +
     "            <h4>Support No<span>+1-734-926-1011</span></h4>\r" +
     "\n" +

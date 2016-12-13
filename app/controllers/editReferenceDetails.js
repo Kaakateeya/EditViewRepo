@@ -34,17 +34,17 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
             scope.refObj.txtNativePlace = item.RefrenceNativePlaceID;
             scope.refObj.txtPresentlocation = item.RefenceCurrentLocation;
 
-            scope.refObj.ddlMobileCountryID = item.RefrenceMobileCountryID;
+            scope.refObj.ddlMobileCountryID = commonFactory.checkvals(item.RefrenceMobileCountryID) ? parseInt(item.RefrenceMobileCountryID) : null;
 
             scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
 
             if (commonFactory.checkvals(item.RefrenceAreaCode)) {
-                scope.refObj.ddlLandLineCountryID = item.RefrenceLandCountryId;
+                scope.refObj.ddlLandLineCountryID = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
                 scope.refObj.txtAreCode = item.RefrenceAreaCode;
                 scope.refObj.txtLandNumber = item.RefrenceLandNumber;
 
             } else {
-                scope.refObj.ddlMobileCountryID2 = item.RefrenceLandCountryId;
+                scope.refObj.ddlMobileCountryID2 = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
                 scope.refObj.txtMobileNumber2 = item.RefrenceLandNumber;
 
             }

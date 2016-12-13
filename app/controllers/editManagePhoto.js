@@ -6,6 +6,7 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
 
     var logincustid = authSvc.getCustId();
     var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+    scope.loginpaidstatus = authSvc.getpaidstatus();
 
     scope.photorowID = 0;
 
@@ -180,6 +181,19 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
 
     };
 
+    scope.redirectPage = function(type) {
 
+        switch (type) {
+            case 'PhotoGuideLines':
+                window.open('#/registration/photoGuideLines', '_blank');
+                break;
+            case 'Faqs':
+                window.open('#/faqs', '_blank');
+                break;
+            case 'uploadTips':
+                window.open('#/registration/uploadTips', '_blank');
+                break;
+        }
+    };
 
 }]);

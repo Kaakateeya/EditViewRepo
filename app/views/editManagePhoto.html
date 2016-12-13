@@ -4,7 +4,6 @@
 
         <div class="my_photos_main my_photos_main_edit">
             <h6>Upload your recent Photos for better response</h6>
-            <a id="lnkbtnn" class="skip_button" onclick="lnkskip_Click">skip this page</a>
 
             <div class="clear">&nbsp;</div>
 
@@ -42,7 +41,7 @@
 
                         <div class="clear"></div>
                         <div class="edit_page_photo_manage_submit">
-                            <div class="edit_page_photo_manage_protect pull-left clearfix" id="divPassword">
+                            <div class="edit_page_photo_manage_protect pull-left clearfix" ng-show="{{loginpaidstatus===1}}">
                                 <label class="">
                                 
                                 <div class="radio_my2 clearfix">
@@ -57,11 +56,12 @@
                     </div>
                     </br>
                     <div class="photo_upload_instrctns_list clearfix">
-                        <a onclick="PhotoGuideLine();" id="phtoguide" href="javascript:__doPostBack('phtoguide','')">Photo guidelines
+
+                        <a ID="phtoguide" href="javascript:void(0);" ng-click="redirectPage('PhotoGuideLines');">Photo guidelines
                         </a>
-                        <a onclick="PhotoFaq();" id="photofaq" href="javascript:__doPostBack('photofaq','')">Photo faq’s
+                        <a ID="photofaq" href="javascript:void(0);" ng-click="redirectPage('Faqs');">Photo faq’s
                         </a>
-                        <a id="photoupload" href="../../Employee/PhotoFAQ.aspx" target="_blank">Photo upload tips
+                        <a ID="photoupload" href="javascript:void(0);" ng-click="redirectPage('uploadTips');">Photo upload tips
                         </a>
                     </div>
                 </div>
@@ -77,28 +77,28 @@
                     <tbody>
                         <tr>
                             <td>
-                                <img id="DataList3_ctl00_images" src="../CutomerImages/Managephotos/Side-face.png">
+                                <img id="DataList3_ctl00_images" src="src\images/Side-face.png">
                                 <p>
                                     Side Face
                                 </p>
 
                             </td>
                             <td>
-                                <img id="DataList3_ctl01_images" src="../CutomerImages/Managephotos/Blir.png">
+                                <img id="DataList3_ctl01_images" src="src\images/Blir.png">
                                 <p>
                                     Blur
                                 </p>
 
                             </td>
                             <td>
-                                <img id="DataList3_ctl02_images" src="../CutomerImages/Managephotos/Group-photos.png">
+                                <img id="DataList3_ctl02_images" src="src\images/Group-photos.png">
                                 <p>
                                     Group Photo
                                 </p>
 
                             </td>
                             <td>
-                                <img id="DataList3_ctl03_images" src="../CutomerImages/Managephotos/Water-mark.png">
+                                <img id="DataList3_ctl03_images" src="src\images/Water-mark.png">
                                 <p>
                                     Watermark
                                 </p>
@@ -115,13 +115,13 @@
                     <tbody>
                         <tr>
                             <td>
-                                <img id="DataList2_ctl00_images" src="../CutomerImages/Managephotos/Close-up.png">
+                                <img id="DataList2_ctl00_images" src="src\images/Close-up.png">
                                 <p>
                                     Close Up
                                 </p>
                             </td>
                             <td>
-                                <img id="DataList2_ctl01_images" src="../CutomerImages/Managephotos/Fulsize.png">
+                                <img id="DataList2_ctl01_images" src="src\images/Fulsize.png">
                                 <p>
                                     Full Size
                                 </p>
@@ -135,11 +135,11 @@
         <div class="my_photos_main_block3">
 
             <p>
-                <img src="../images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
+                <img src="src/images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
                 <span>91-9848535373</span> - Kindly mention your Profile ID and name
             </p>
             <p>
-                <img src="../images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
+                <img src="src/images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
             </p>
 
         </div>

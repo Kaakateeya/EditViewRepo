@@ -80,6 +80,8 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.profObj.ddlprofession = item.ProfessionID;
                     scope.profObj.txtcmpyname = item.CompanyName;
                     scope.profObj.txtsalary = item.Salary;
+
+                    scope.profObj.ddlcurreny = item.SalaryCurrency;
                     scope.profObj.ddlCountryProf = item.CountryID;
                     scope.profObj.ddlStateProf = item.StateID;
                     scope.profObj.ddlDistrictProf = item.DistrictID;
@@ -118,12 +120,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         });
         editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
-
+            console.log(scope.ProfessionSelectArray);
         });
         scope.lblaboutUrself = null;
         editviewServices.getAboutData(custID).then(function(response) {
             scope.lblaboutUrself = response.data;
-            console.log(response);
+
         });
     };
     scope.getdata();

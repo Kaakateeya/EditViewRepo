@@ -54,8 +54,7 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
             };
 
             scope.checkMobile = function(ev, strval, type, strdisplay) {
-
-                if (strval !== "" && strval !== undefined) {
+                if (strval !== "" && strval !== undefined && strval !== null) {
                     scope.confirm = commonFactory.showConfirm(ev, mdDialog, 'Are You Sure To Delete ' + strdisplay + ' Number', 'delete', 'cancel');
                     scope.test(type);
 

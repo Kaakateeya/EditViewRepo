@@ -6,15 +6,15 @@
         <input type="button" value="Login" ng-show="loginstatus" id="btnLoginsubmit" class="pull-right button_custom login_show" ng-click="divloginblock();" />
         <input type="button" value="Logout" ng-show="loginoutstatus" id="btnLogOut" class="pull-right button_custom" ng-click="ClearlocalStorage();" />
         <div class="login_block_header" ng-show="loginpopup" id="divLogin">
-            <form name="myForm">
-                <input type="text" id="txtUserName" style="height: 38px;border: 1px solid #cbc0c0 !important;" ng-model="username" required/>
-                <input type="password" id="txtPassword" style="height: 38px;border: 1px solid #cbc0c0 !important;" ng-model="password" required/>
+            <form name="myForms">
+                <input type="text" id="txtUserName" placeholder="ProfileID/EmailID" style="height: 38px;border: 1px solid #cbc0c0 !important;" ng-model="username" required/>
+                <input type="password" id="txtPassword" placeholder="Password" style="height: 38px;border: 1px solid #cbc0c0 !important;" ng-model="password" required/>
                 <span class="clear">&nbsp;</span>
                 <div class="login_help">
                     <a id="lnkForgotPassword">Forgot Password</a>
                     <a href="#/Registration">New User Sign Up</a>
                 </div>
-                <input type="button" id="btnUserLogin" ng-click="loginsubmit()" ng-disabled="myForm.$invalid" class="button_custom" value="Login" />
+                <md-button id="btnUserLogin" ng-click="loginsubmit()" ng-disabled="myForms.$invalid" class="md-raised md-warn">Login</md-button>
             </form>
             <span class="clear">&nbsp;</span>
         </div>
@@ -23,7 +23,8 @@
             <h3>
                 <a id="lnkFeedbackMenu" href="#/feedback">Feedback</a>
             </h3>
-            <h4>make a missed call<span><em>+91-9390999999</em></span></h4>
+            <h4>make a missed call<s></s>pan><em>+91-9390999999</em></span>
+            </h4>
             <h4>Support No<span>+1-734-926-1011</span></h4>
         </div>
     </div>

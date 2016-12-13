@@ -1,4 +1,4 @@
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http', function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http) {
     scope.starLanguage = 'starLanguage';
     scope.Country = 'Country';
     scope.ZodaicSign = 'ZodaicSign';
@@ -6,14 +6,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.paadam = 'paadam';
     scope.atroObj = [];
     scope.generateData = [];
+    scope.ImageUrl = '';
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
     //011046585
 
-    var loginpaidstatus = authSvc.getpaidstatus();
-    alert(custID);
-    alert(loginpaidstatus);
+    scope.loginpaidstatus = authSvc.getpaidstatus();
+
+
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -73,12 +74,29 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         commonFactory.open('astroContent.html', scope, uibModal);
     };
-    astroServices.getAstroData(custID).then(function(response) {
-        scope.AstroArr = JSON.parse(response.data[0]);
-        scope.generateData = JSON.parse(response.data[1]);
-        console.log('test');
-        console.log(scope.generateData);
-    });
+
+    scope.astropageload = function(custid) {
+
+        astroServices.getAstroData(custid).then(function(response) {
+            scope.AstroArr = JSON.parse(response.data[0]);
+            scope.generateData = JSON.parse(response.data[1]);
+            console.log(scope.AstroArr);
+            console.log(scope.generateData);
+            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage)) {
+                var extension = "jpg";
+                // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+                //     extension = "html";
+                // } else {
+                //     extension = "jpg";
+                // }
+                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+            }
+
+        });
+
+    };
+    scope.astropageload(custID);
+
 
     scope.astroSubmit = function(obj) {
 
@@ -116,9 +134,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             commonFactory.closepopup();
             if (response.data === 1) {
                 alert('submitted Succesfully');
-                astroServices.getAstroData(custID).then(function(response) {
-                    scope.AstroArr = JSON.parse(response.data[0]);
-                });
+                scope.astropageload(custID);
             } else {
                 alert('Updation failed');
             }
@@ -161,6 +177,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(JSON.stringify(scope.uploadData));
                 astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
                     console.log(response);
+                    scope.astropageload(custID);
+                    commonFactory.closepopup();
                 });
             }
         });
@@ -169,100 +187,40 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
     scope.generateHoro = function() {
 
-
-        // Int64 customerid = Int64CustID;
-        // int strGender = 0;
-        // string strName = string.Empty;
-        // int intDay = 0;
-        // int intMonth = 0;
-        // int intYear = 0;
-        // string strTime = string.Empty;
-        // int strcityid = 0;
-        // string cityName = string.Empty;
-        // string longitude = string.Empty;
-        // string latitude = string.Empty;
-        // Kaakateeya_procEntities db = new Kaakateeya_procEntities();
-
-
-
-
-
-
-        var strGender = (scope.generateData)[0].GenderID;
-        var strName = (scope.generateData)[0].FirstName + " " + (scope.generateData)[0].LastName;
-
-        var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
-
-        var month = check.format('M');
-        var day = check.format('D');
-        var year = check.format('YYYY');
-
-        console.log(check);
-        console.log(month);
-        console.log(day);
-        console.log(year);
-
-        var intDay = day;
-        var intMonth = month;
-        var intYear = year;
-
-        // var astrodata = from astro in db.Cust_Horoscope where astro.Cust_ID == customerid select new { astro.CityOfBirthID, astro.TimeOfBirth };
-        // foreach(var j in astrodata) {
-        //     DateTime myDate = Convert.ToDateTime((j.TimeOfBirth).ToString());
-        //     strTime = myDate.ToString("HH:mm:ss");
-        //     strcityid = Convert.ToInt32(j.CityOfBirthID);
-        // }
-
-        // if (strcityid != 0) {
-        //     var astrocitydata = (from c in db.Mst_City_Type join a in db.Astrocitydatas on c.CityName equals a.place_name where c.CityID == strcityid select new { c.CityID, c.CityName, longitud = (a.longitude_deg + "." + a.longitude_min), latitud = (a.latitude_deg + "." + a.latitude_min) });
-
-        //     foreach(var s in astrocitydata) {
-        //         longitude = s.longitud;
-        //         latitude = s.latitud;
-        //         cityName = s.CityName;
-        //     }
-
-        //     if (string.IsNullOrEmpty(cityName) && ddlAstrocity.SelectedIndex > -1) {
-        //         var astrocitydatanew = (from c in db.Astrocitydatas where c.place_id == ddlAstrocity.SelectedValue select new { c.place_id, c.place_name, longitud = (c.longitude_deg + "." + c.longitude_min), latitud = (c.latitude_deg + "." + c.latitude_min) });
-        //         foreach(var s in astrocitydatanew) {
-        //             longitude = s.longitud;
-        //             latitude = s.latitud;
-        //             cityName = s.place_name;
-        //         }
-        //     }
-
-
-        // }
-        // var olcity = (from data in db.Mst_City_Type where data.CityID == strcityid select new { data.CityName }).FirstOrDefault();
-
-        // List < geneaterhoro > li = new List < geneaterhoro > ();
-        // li.Add(new geneaterhoro { strGender = strGender, strName = strName, intDay = intDay, intMonth = intMonth, intYear = intYear, cityName = cityName, longitude = longitude, latitude = latitude, strTime = strTime, oldcityname = olcity.CityName });
-
-
     };
 
 
     scope.deleteHoroImage = function() {
 
+        var extension = "jpg";
+
+        // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+        //     extension = "html";
+        // } else {
+        //     extension = "jpg";
+        // }
+        var keynameq = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+        http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+
+        });
+
         scope.uploadData = {
-            Cust_ID: 91035,
+            Cust_ID: custID,
             i_flag: 0
         };
 
         astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
             console.log(response);
+            if (response.data === 1 || response.data === '1') {
+                scope.astropageload(custID);
+                commonFactory.closepopup();
+                scope.ImageUrl = '';
+                scope.atroObj.rdlUploadGenerate = '';
+            }
         });
     };
-
+    scope.shoedeletePopup = function() {
+        commonFactory.open('deletehoroPopup.html', scope, uibModal, 'sm');
+    };
 
 }]);
-
-// var data = {
-//     "Cust_ID": 91022,
-//     "Horopath": "../../Imagesnew/HoroscopeImages/91022_HaroscopeImage/91022_HaroscopeImage.jpg",
-//     "ModifiedByEmpID": "",
-//     "VisibleToID": "",
-//     "Empid": "",
-//     "IsActive": false,
-//     "i_flag": 1
-// };

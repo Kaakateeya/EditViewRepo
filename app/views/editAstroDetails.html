@@ -76,7 +76,7 @@
     </div>
     <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
 
-        <div class="radio-group-my input-group">
+        <div class="radio-group-my input-group" ng-show="ImageUrl==='' || ImageUrl===null">
             <!--<label><input ng-model="atroObj.rdlUploadGenerate" value="0" type="radio"><span>&nbsp;Upload Horoscope</span> </label>
             <label class=""><input ng-model="atroObj.rdlUploadGenerate" value="1" type="radio"><span>&nbsp;Generate Horoscope</span></label>-->
             <md-radio-group ng-required="true" name="rdlUploadGenerate" layout="row" ng-model="atroObj.rdlUploadGenerate" ng-change="uploadGenerateHoro(atroObj.rdlUploadGenerate);" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -86,9 +86,22 @@
         </div>
 
     </div>
-</div>
+    <div ng-hide="ImageUrl==='' || ImageUrl===null">
+        <div class="edit_page_details_item">
+            <div class="edit_page_details_item_desc clearfix">
+                <img ng-model="imghoroName" ng-src="{{ImageUrl}}" Style="width: 250px; height: 250px;" />
+            </div>
+        </div>
+        <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
+            <div class="edit_page_item_ui clearfix  pull-left">
 
-<button ng-click="deleteHoroImage();">delete</button>
+                <a ID="btndeletehoro" class="edit_page_del_button" href="javascript:void(0);" ng-click="shoedeletePopup();" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Astro Details">
+               Delete <ng-md-icon icon="delete" style="fill:#665454" size="18">Delete</ng-md-icon></a>
+                <a ID="btnlookhoro" Style="padding-left: 100px;" class="btn btn-link">View<span class="glyphicon glyphicon-eye-open"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -220,4 +233,19 @@
             <input value="Upload" class="button_custom" type="submit">
         </div>
     </form>
+</script>
+<script type="text/ng-template" id="deletehoroPopup.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="deleteHoroImage();">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Delete Horoscope </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="text-center">Are you sure to delete horoscope?</div>
+        </div>
+        <div class="modal-footer">
+            <input value="Close" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
+            <input value="Delete" class="button_custom" type="submit">
+        </div>
+    </form>
+
 </script>
