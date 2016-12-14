@@ -3130,13 +3130,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "                <div class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
     "            </div>\r" +
     "\n" +
     "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "                <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                <button type=\"submit\" class=\"button_custom\">Submit</button>\r" +
+    "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -4119,15 +4135,27 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -7977,19 +8005,27 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "                <li class=\"row \">\r" +
+    "\n" +
+    "                    <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
     "            </ul>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "            <input value=\"Cancel\" id=\"btnEduCancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Submit\" id=\"btnEduSubmit\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -9470,11 +9506,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <select multiselectdropdown ng-model=\"profObj.ddlcurreny\" typeofdata='currency'></select>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                                <input ng-model=\"profObj.txtsalary\" class=\"form-control\" onchange=\"currency();\" maxlength=\"7\" tabindex=\"6\" />\r" +
-    "\n" +
-    "\r" +
+    "                                <input ng-model=\"profObj.txtsalary\" style=\"float:right\" class=\"form-control\" onchange=\"currency();\" maxlength=\"7\" tabindex=\"6\" />\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -9660,6 +9692,22 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
     "                    </ul>\r" +
     "\n" +
     "\r" +
@@ -9668,9 +9716,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div class=\"modal-footer\">\r" +
     "\n" +
-    "                    <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    <input value=\"Submit\" class=\"button_custom\" type=\"submit\">\r" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +

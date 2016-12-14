@@ -460,11 +460,17 @@
                 <li class="clearfix form-group">
                     <textarea ng-model="partnerDescObj.txtpartnerdescription" style="width: 500px; height: 150px;" class="col-lg-10" maxlength="1000" required ng-class="form-control" required />
                 </li>
+                <li class="row ">
+                    <div class="col-lg-9">
+                        <input type="submit" value="Submit" class="button_custom  pull-right">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="modal-footer">
-            <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-            <input value="Submit" class="button_custom" type="submit">
         </div>
     </form>
 </script>

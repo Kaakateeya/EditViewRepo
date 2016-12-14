@@ -325,9 +325,7 @@
                             <label for="lblsal" class="pop_label_left">Monthly salary</label>
                             <div class="pop_controls_right select-box-my select-box-my-double">
                                 <select multiselectdropdown ng-model="profObj.ddlcurreny" typeofdata='currency'></select>
-
-                                <input ng-model="profObj.txtsalary" class="form-control" onchange="currency();" maxlength="7" tabindex="6" />
-
+                                <input ng-model="profObj.txtsalary" style="float:right" class="form-control" onchange="currency();" maxlength="7" tabindex="6" />
                             </div>
                         </li>
 
@@ -420,12 +418,19 @@
                             <label id="Label1" style="color: red; font-size: 13px;" class="pull-right">(max 1000 characters)</label>
                             <label id="lblaboutcount" style="color: #1e1c1c; font-size: 13px;">{{aboutForm.txtAboutUS.length}}</label>
                         </li>
+                        <li class="row ">
+                            <div class="col-lg-9">
+                                <input type="submit" value="Submit" class="button_custom  pull-right">
+                            </div>
+                            <div class="col-lg-3">
+                                <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                            </div>
+                        </li>
                     </ul>
 
                 </div>
                 <div class="modal-footer">
-                    <input value="Cancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                    <input value="Submit" class="button_custom" type="submit">
+
                 </div>
             </form>
         </script>

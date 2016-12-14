@@ -991,10 +991,18 @@
                     <label class="control-label">(Do Not Mention Any Contact Information Phone Numbers, Email Id’s or your Profile May be Rejected.)</label>
                     <textarea class="form-control" ng-model="aboutFamilyObj.txtAboutUs" required="required" type="text"> </textarea>
                 </div>
+
+                <div class="row ">
+                    <div class="col-lg-9">
+                        <input type="submit" value="Submit" class="button_custom  pull-right">
+                    </div>
+                    <div class="col-lg-3">
+                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <input value="Cancel" id="btnEduCancel" class="button_custom button_custom_reset" ng-click="cancel();" type="button">
-                <button type="submit" class="button_custom">Submit</button>
+
             </div>
         </form>
     </script>
