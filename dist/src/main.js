@@ -391,6 +391,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.generateData = JSON.parse(response.data[1]);
             console.log(scope.AstroArr);
             console.log(scope.generateData);
+            console.log((scope.generateData)[0].DateOfBirth);
+
             if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage)) {
                 var extension = "jpg";
                 // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
@@ -495,9 +497,18 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
 
     scope.generateHoro = function() {
-        astroServices.generateHoroscope().then(function(response) {
-            console.log(response.data);
+        var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
 
+        var month = check.format('M');
+        var day = check.format('D');
+        var year = check.format('YYYY');
+
+        console.log(month);
+        console.log(day);
+        console.log(year);
+        var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year };
+        astroServices.generateHoroscope(inputobj).then(function(response) {
+            console.log(response.data);
             window.open('' + response.data + '', '_blank');
         });
     };
@@ -3123,8 +3134,8 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         uploadDeleteAstroData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
         },
-        generateHoroscope: function() {
-            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: 99169, EmpIDQueryString: 2 } });
+        generateHoroscope: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear } });
         }
     };
 }]);
@@ -3997,11 +4008,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -6017,13 +6024,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -6191,13 +6192,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -6433,11 +6428,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -6493,11 +6484,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -7436,11 +7423,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -7498,9 +7481,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "        </div>\r" +
+    "\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -7773,19 +7754,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
+    "                    <li class=\"row \">\r" +
+    "\n" +
+    "                        <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                            <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                            <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
     "                </ul>\r" +
     "\n" +
     "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
-    "                <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                <input type=\"submit\" value=\"Submit\" class=\"button_custom\">\r" +
-    "\n" +
-    "            </div>\r" +
+    "\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -8186,11 +8177,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -9237,11 +9224,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -9451,11 +9434,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -9613,11 +9592,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -9855,11 +9830,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -11368,9 +11339,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "        </div>\r" +
+    "\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -11708,11 +11677,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -12048,11 +12013,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -12751,11 +12712,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -12979,13 +12936,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -13057,11 +13008,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -13918,6 +13865,30 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        width: 100%;\r" +
     "\n" +
     "        padding: 20px 1%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .header_inner {\r" +
+    "\n" +
+    "        margin-bottom: 2%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .edit_pages_sidebar {\r" +
+    "\n" +
+    "        margin-left: 3%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .edit_pages_content_main {\r" +
+    "\n" +
+    "        width: 72%;\r" +
     "\n" +
     "    }\r" +
     "\n" +

@@ -82,6 +82,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.generateData = JSON.parse(response.data[1]);
             console.log(scope.AstroArr);
             console.log(scope.generateData);
+            console.log((scope.generateData)[0].DateOfBirth);
+
             if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage)) {
                 var extension = "jpg";
                 // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
@@ -186,9 +188,18 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
 
     scope.generateHoro = function() {
-        astroServices.generateHoroscope().then(function(response) {
-            console.log(response.data);
+        var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
 
+        var month = check.format('M');
+        var day = check.format('D');
+        var year = check.format('YYYY');
+
+        console.log(month);
+        console.log(day);
+        console.log(year);
+        var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year };
+        astroServices.generateHoroscope(inputobj).then(function(response) {
+            console.log(response.data);
             window.open('' + response.data + '', '_blank');
         });
     };

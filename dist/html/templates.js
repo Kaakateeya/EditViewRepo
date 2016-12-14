@@ -654,11 +654,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -2674,13 +2670,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -2848,13 +2838,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -3090,11 +3074,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -3150,11 +3130,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -4093,11 +4069,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -4155,9 +4127,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "        </div>\r" +
+    "\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -4430,19 +4400,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
+    "                    <li class=\"row \">\r" +
+    "\n" +
+    "                        <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                            <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                            <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
     "                </ul>\r" +
     "\n" +
     "\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
-    "                <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                <input type=\"submit\" value=\"Submit\" class=\"button_custom\">\r" +
-    "\n" +
-    "            </div>\r" +
+    "\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -4843,11 +4823,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "            </div>\r" +
     "\n" +
     "        </form>\r" +
     "\n" +
@@ -5894,11 +5870,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -6108,11 +6080,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -6270,11 +6238,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -6512,11 +6476,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -8025,9 +7985,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "        </div>\r" +
+    "\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -8365,11 +8323,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -8705,11 +8659,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "        </div>\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
@@ -9408,11 +9358,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -9636,13 +9582,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -9714,11 +9654,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"modal-footer\">\r" +
-    "\n" +
     "\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "            </form>\r" +
     "\n" +
@@ -10575,6 +10511,30 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        width: 100%;\r" +
     "\n" +
     "        padding: 20px 1%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .header_inner {\r" +
+    "\n" +
+    "        margin-bottom: 2%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .edit_pages_sidebar {\r" +
+    "\n" +
+    "        margin-left: 3%;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .edit_pages_content_main {\r" +
+    "\n" +
+    "        width: 72%;\r" +
     "\n" +
     "    }\r" +
     "\n" +
