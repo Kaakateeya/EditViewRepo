@@ -186,7 +186,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
 
     scope.generateHoro = function() {
+        astroServices.generateHoroscope().then(function(response) {
+            console.log(response.data);
 
+            window.open('' + response.data + '', '_blank');
+        });
     };
 
 

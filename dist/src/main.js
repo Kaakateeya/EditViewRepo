@@ -495,7 +495,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
 
     scope.generateHoro = function() {
+        astroServices.generateHoroscope().then(function(response) {
+            console.log(response.data);
 
+            window.open('' + response.data + '', '_blank');
+        });
     };
 
 
@@ -3118,6 +3122,9 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         uploadDeleteAstroData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
+        },
+        generateHoroscope: function() {
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: 99169, EmpIDQueryString: 2 } });
         }
     };
 }]);
@@ -3394,7 +3401,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <select multiselectdropdown ng-model=\"dmobile\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
     "\n" +
-    "                <input type=text ng-model=\"strmobile\" class=\"form-control\" maxlength=\"10\" tabindex=\"10\" />\r" +
+    "                <input type=text ng-model=\"strmobile\" style=\"float:right;\" class=\"form-control\" maxlength=\"10\" tabindex=\"10\" />\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -3412,7 +3419,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <select multiselectdropdown ng-model=\"dalternative\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
     "\n" +
-    "                <input type=text class=\"form-control\" ng-model=\"stralternative\" maxlength=\"10\" tabindex=\"12\" />\r" +
+    "                <input type=text class=\"form-control\" style=\"float:right;\" ng-model=\"stralternative\" maxlength=\"10\" tabindex=\"12\" />\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -7385,7 +7392,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"\" class=\"pop_label_left\"></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
+    "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
     "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstpreferedstars\" ng-options=\"item.value as item.label for item in starArr\"></select>\r" +
     "\n" +

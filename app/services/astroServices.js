@@ -8,6 +8,9 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         uploadDeleteAstroData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
+        },
+        generateHoroscope: function() {
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: 99169, EmpIDQueryString: 2 } });
         }
     };
 }]);
