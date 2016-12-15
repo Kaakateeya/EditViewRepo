@@ -15,8 +15,6 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
             scope.databind = function(data) {
                 element.multiselect('dataprovider', data);
 
-
-
                 timeout(function() {
                     element.multiselect('select', scope.ngModel);
 

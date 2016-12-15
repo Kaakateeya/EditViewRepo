@@ -3755,7 +3755,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstReligion\" typeofdata=Religion ng-change=\"changeBind('caste',partnerObj.lstReligion,partnerObj.lstMothertongue);\" required></select>\r" +
+    "                        <select multiselectdropdown multiple=\"multiple\" ng-model=\"partnerObj.lstReligion\" typeofdata=Religion ng-change=\"changeBind('caste',partnerObj.lstReligion,partnerObj.lstMothertongue);\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -10018,7 +10018,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <span>Accout type :</span>\r" +
     "\n" +
-    "                    <a id=\"lblpaid\" href=\"#\" style=\"color:White;\">{{paidstatus}}</a>\r" +
+    "                    <a id=\"lblpaid\" ng-href=\"{{hrefpaid}}\" style=\"color:White;\">{{paidstatus}}</a>\r" +
     "\n" +
     "                </h2>\r" +
     "\n" +

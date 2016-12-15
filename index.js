@@ -11,7 +11,7 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-//editviewapp.templateroot = '';
+editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 
