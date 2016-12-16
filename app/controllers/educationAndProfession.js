@@ -201,10 +201,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 editviewServices.getEducationData(custID).then(function(response) {
                     scope.educationSelectArray = response.data;
                 });
-                alert('submitted Succesfully');
+
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
 
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -249,12 +250,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 editviewServices.getProfessionData(custID).then(function(response) {
                     scope.ProfessionSelectArray = response.data;
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -266,13 +269,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
                     console.log(response);
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };

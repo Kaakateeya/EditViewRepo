@@ -103,7 +103,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.broObj = {};
                     commonFactory.open('brotherModalContent.html', scope, uibModal);
                 } else {
-                    alert('Cannot add more brothers');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 3000);
                 }
                 break;
 
@@ -180,7 +180,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.sisObj = {};
                     commonFactory.open('sisterModalContent.html', scope, uibModal);
                 } else {
-                    alert('Cannot add more sisters');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 3000);
                 }
                 break;
         }
@@ -265,11 +265,12 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.sibPageload(custID);
 
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -334,11 +335,12 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.sibPageload(custID);
 
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -408,16 +410,17 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
-                    alert('submitted Succesfully');
+
                     scope.sibPageload(custID);
 
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
                 } else {
-                    alert('Updation failed');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                 }
             });
         } else {
-            alert('Please enter Correct Sibling count');
 
+            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please enter Correct Sibling count', 3000);
         }
 
     };

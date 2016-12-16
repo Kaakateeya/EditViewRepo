@@ -297,10 +297,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -334,10 +335,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -369,10 +371,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -384,10 +387,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             scope.lblaboutMyfamily = obj.txtAboutUs;
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+
                 scope.AboutPageloadData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 

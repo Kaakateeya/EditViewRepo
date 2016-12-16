@@ -444,10 +444,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.astropageload(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -670,12 +671,13 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
                     console.log(response);
                     if (response.status === 200) {
-                        alert('submitted Succesfully');
+
                         scope.manageArr = response.data;
                         scope.refreshPageLoad(scope.manageArr);
 
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
                     } else {
-                        alert('Updation failed');
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                     }
                 });
 
@@ -1046,10 +1048,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -1083,10 +1086,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -1118,10 +1122,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.parentBindData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -1133,10 +1138,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             scope.lblaboutMyfamily = obj.txtAboutUs;
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+
                 scope.AboutPageloadData(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1339,9 +1345,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.partnerPrefArr = response.data;
                     console.log(scope.partnerPrefArr);
                 });
-                alert('submitted Succesfully');
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -1355,9 +1361,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1419,12 +1425,13 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 propertyServices.getPropertyData(custID).then(function(response) {
                     scope.propertyArr = response.data;
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -1544,12 +1551,13 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 referenceServices.getReferenceData(custID).then(function(response) {
                     scope.ReferenceArr = response.data;
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1772,10 +1780,11 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.relativePageLoad(custid);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1818,10 +1827,11 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.relativePageLoad(custid);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1858,10 +1868,11 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.relativePageLoad(custid);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -1902,10 +1913,11 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.relativePageLoad(custid);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -2021,7 +2033,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.broObj = {};
                     commonFactory.open('brotherModalContent.html', scope, uibModal);
                 } else {
-                    alert('Cannot add more brothers');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 3000);
                 }
                 break;
 
@@ -2098,7 +2110,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.sisObj = {};
                     commonFactory.open('sisterModalContent.html', scope, uibModal);
                 } else {
-                    alert('Cannot add more sisters');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 3000);
                 }
                 break;
         }
@@ -2183,11 +2195,12 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.sibPageload(custID);
 
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -2252,11 +2265,12 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.sibPageload(custID);
 
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -2326,16 +2340,17 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
-                    alert('submitted Succesfully');
+
                     scope.sibPageload(custID);
 
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
                 } else {
-                    alert('Updation failed');
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                 }
             });
         } else {
-            alert('Please enter Correct Sibling count');
 
+            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please enter Correct Sibling count', 3000);
         }
 
     };
@@ -2598,10 +2613,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 editviewServices.getEducationData(custID).then(function(response) {
                     scope.educationSelectArray = response.data;
                 });
-                alert('submitted Succesfully');
+
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
 
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -2646,12 +2662,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 editviewServices.getProfessionData(custID).then(function(response) {
                     scope.ProfessionSelectArray = response.data;
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 
@@ -2663,13 +2681,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
                     console.log(response);
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -4076,7 +4095,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "</script>"
+    "</script>\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -4445,7 +4466,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</div>\r" +
     "\n" +
-    "\r" +
+    "<alert-directive></alert-directive>\r" +
     "\n" +
     "<style>\r" +
     "\n" +
@@ -13042,7 +13063,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "</style>"
+    "</style>\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -13308,9 +13331,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <form name=\"myForms\">\r" +
     "\n" +
-    "                <input type=\"text\" id=\"txtUserName\" placeholder=\"ProfileID/EmailID\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"username\" required/>\r" +
+    "                <input type=\"text\" id=\"txtUserName\" ng-keyup=\"myForms.$valid && $event.keyCode == 13 && loginsubmit()\" placeholder=\"ProfileID/EmailID\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"username\" required/>\r" +
     "\n" +
-    "                <input type=\"password\" id=\"txtPassword\" placeholder=\"Password\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"password\" required/>\r" +
+    "                <input type=\"password\" id=\"txtPassword\" ng-keyup=\"myForms.$valid && $event.keyCode == 13 && loginsubmit()\" placeholder=\"Password\" style=\"height: 38px;border: 1px solid #cbc0c0 !important;\" ng-model=\"password\" required/>\r" +
     "\n" +
     "                <span class=\"clear\">&nbsp;</span>\r" +
     "\n" +
@@ -13726,7 +13749,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<div class=\"\">\r" +
     "\n" +
-    "    <div class=\"edit_pages_sidebar clearfix\" ng-controller=\"editSideMenuCtrl\">\r" +
+    "    <div class=\"edit_pages_sidebar clearfix\" ng-controller=\"personalCtrl\">\r" +
     "\n" +
     "        <div class=\"edit_page_profile_pic\">\r" +
     "\n" +
@@ -13738,7 +13761,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        <div class=\"edit_pages_sidebar_profile_details\" ng-controller='personalCtrl'>\r" +
+    "        <div class=\"edit_pages_sidebar_profile_details\">\r" +
     "\n" +
     "            <h6>\r" +
     "\n" +

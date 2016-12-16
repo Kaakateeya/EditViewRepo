@@ -135,10 +135,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 scope.astropageload(custID);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };

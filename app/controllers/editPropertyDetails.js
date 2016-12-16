@@ -50,12 +50,13 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-                alert('submitted Succesfully');
+
                 propertyServices.getPropertyData(custID).then(function(response) {
                     scope.propertyArr = response.data;
                 });
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };

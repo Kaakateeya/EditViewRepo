@@ -161,9 +161,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.partnerPrefArr = response.data;
                     console.log(scope.partnerPrefArr);
                 });
-                alert('submitted Succesfully');
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
     };
@@ -177,9 +177,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                alert('submitted Succesfully');
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
             } else {
-                alert('Updation failed');
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
             }
         });
 

@@ -120,12 +120,13 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
                     console.log(response);
                     if (response.status === 200) {
-                        alert('submitted Succesfully');
+
                         scope.manageArr = response.data;
                         scope.refreshPageLoad(scope.manageArr);
 
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
                     } else {
-                        alert('Updation failed');
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                     }
                 });
 
