@@ -17,159 +17,158 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
 
                 timeout(function() {
                     element.multiselect('select', scope.ngModel);
-
                 }, 500);
 
 
             };
+            timeout(function() {
+                switch (scope.typeofdata) {
 
-            switch (scope.typeofdata) {
+                    case 'MaritalStatus':
+                        scope.databind(cons.MaritalStatus);
+                        break;
 
-                case 'MaritalStatus':
-                    scope.databind(cons.MaritalStatus);
-                    break;
+                    case 'height':
+                        scope.databind(cons.height);
+                        break;
 
-                case 'height':
-                    scope.databind(cons.height);
-                    break;
+                    case 'Religion':
+                        scope.databind(cons.Religion);
+                        break;
 
-                case 'Religion':
-                    scope.databind(cons.Religion);
-                    break;
+                    case 'Mothertongue':
+                        scope.databind(cons.Mothertongue);
+                        break;
 
-                case 'Mothertongue':
-                    scope.databind(cons.Mothertongue);
-                    break;
+                    case 'educationcategory':
+                        scope.databind(cons.educationcategory);
+                        break;
 
-                case 'educationcategory':
-                    scope.databind(cons.educationcategory);
-                    break;
+                    case 'visastatus':
+                        scope.databind(cons.visastatus);
+                        break;
 
-                case 'visastatus':
-                    scope.databind(cons.visastatus);
-                    break;
+                    case 'stars':
+                        scope.databind(cons.stars);
+                        break;
 
-                case 'stars':
-                    scope.databind(cons.stars);
-                    break;
+                    case 'region':
+                        scope.databind(cons.region);
+                        break;
 
-                case 'region':
-                    scope.databind(cons.region);
-                    break;
+                    case 'bodyType':
+                        scope.databind(cons.bodyType);
+                        break;
 
-                case 'bodyType':
-                    scope.databind(cons.bodyType);
-                    break;
+                    case 'bloodGroup':
+                        scope.databind(cons.bloodGroup);
+                        break;
 
-                case 'bloodGroup':
-                    scope.databind(cons.bloodGroup);
-                    break;
+                    case 'healthCondition':
+                        scope.databind(cons.healthCondition);
+                        break;
 
-                case 'healthCondition':
-                    scope.databind(cons.healthCondition);
-                    break;
+                    case 'starLanguage':
+                        scope.databind(cons.starLanguage);
+                        break;
 
-                case 'starLanguage':
-                    scope.databind(cons.starLanguage);
-                    break;
+                    case 'lagnam':
+                        scope.databind(cons.lagnam);
+                        break;
 
-                case 'lagnam':
-                    scope.databind(cons.lagnam);
-                    break;
+                    case 'ZodaicSign':
+                        scope.databind(cons.ZodaicSign);
+                        break;
 
-                case 'ZodaicSign':
-                    scope.databind(cons.ZodaicSign);
-                    break;
+                    case 'paadam':
+                        scope.databind(cons.paadam);
+                        break;
 
-                case 'paadam':
-                    scope.databind(cons.paadam);
-                    break;
+                    case 'familyStatus':
+                        scope.databind(cons.familyStatus);
+                        break;
 
-                case 'familyStatus':
-                    scope.databind(cons.familyStatus);
-                    break;
+                    case 'RelationshipType':
+                        scope.databind(cons.RelationshipType);
+                        break;
 
-                case 'RelationshipType':
-                    scope.databind(cons.RelationshipType);
-                    break;
-
-                case 'Country':
-                    service.countrySelect().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    case 'Country':
+                        service.countrySelect().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
+                        break;
 
-                case 'ProfCatgory':
+                    case 'ProfCatgory':
 
-                    service.ProfessionCatgory().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        service.ProfessionCatgory().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
+                        break;
 
-                case 'ProfGroup':
-                    service.ProfessionGroup().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    case 'ProfGroup':
+                        service.ProfessionGroup().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
+                        break;
 
-                case 'indiaStates':
-                    service.stateSelect('1').then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    case 'indiaStates':
+                        service.stateSelect('1').then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
-                case 'countryCode':
-                    service.countryCodeselect().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        break;
+                    case 'countryCode':
+                        service.countryCodeselect().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
-                case 'caste':
-                    service.casteselect().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        break;
+                    case 'caste':
+                        service.casteselect().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
-                case 'currency':
-                    service.currency().then(function(response) {
-                        var option = [];
-                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        break;
+                    case 'currency':
+                        service.currency().then(function(response) {
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            scope.databind(option);
                         });
-                        scope.databind(option);
-                    });
-                    break;
+                        break;
 
-            }
-
+                }
+            }, 1000);
             element.multiselect({
                 buttonClass: 'btn',
                 buttonWidth: 'auto',
@@ -192,11 +191,14 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
                 return element[0].length;
             }, function() {
                 scope.$applyAsync(element.multiselect('rebuild'));
+                element.multiselect('select', scope.ngModel);
+
             });
 
             // Watch for any changes from outside the directive and refresh
             scope.$watch(attrs.ngModel, function() {
                 element.multiselect('refresh');
+
             });
         }
     };

@@ -32,7 +32,7 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
     var states = [
         { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
         { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
-        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrl' },
+        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrledit' },
         { name: 'editview.editparent', url: '/editparent', templateUrl: editviewapp.templateroot + 'app/views/editParentDetails.html', controller: 'parentCtrl' },
         { name: 'editview.editPartnerPreferences', url: '/editPartnerPreferences', templateUrl: editviewapp.templateroot + 'app/views/editPartnerPreferences.html', controller: 'partnerPreferenceCtrl' },
         { name: 'editview.editSiblingDetails', url: '/editSiblingDetails', templateUrl: editviewapp.templateroot + 'app/views/editSibblingDetails.html', controller: 'sibblingCtrl' },
@@ -71,8 +71,8 @@ editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'aut
     var logincustid = authSvc.getCustId();
     var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
     personalDetailsService.personalDetails(CustID).then(function(response) {
-
         scope.PersonalObj = response.data;
+        scope.imgsrc = authSvc.getprofilepic();
     });
 
 }]);

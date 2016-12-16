@@ -3775,7 +3775,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste{{partnerObj.lstCaste}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
@@ -10376,7 +10376,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_profile_pic\">\r" +
     "\n" +
-    "            <img id=\"imgphoto\" src=\"../../access/Images/ProfilePics/KMPL_91035_Images/img1_Images/210910352_ApplicationPhoto.jpg\">\r" +
+    "            <img id=\"imgphoto\" ng-src=\"{{imgsrc}}\">\r" +
     "\n" +
     "            <span id=\"lblcust_Id\" style=\"display: none;\"></span>\r" +
     "\n" +

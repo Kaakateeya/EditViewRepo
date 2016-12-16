@@ -28,7 +28,7 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
     var states = [
         { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
         { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
-        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrl' },
+        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrledit' },
         { name: 'editview.editparent', url: '/editparent', templateUrl: editviewapp.templateroot + 'app/views/editParentDetails.html', controller: 'parentCtrl' },
         { name: 'editview.editPartnerPreferences', url: '/editPartnerPreferences', templateUrl: editviewapp.templateroot + 'app/views/editPartnerPreferences.html', controller: 'partnerPreferenceCtrl' },
         { name: 'editview.editSiblingDetails', url: '/editSiblingDetails', templateUrl: editviewapp.templateroot + 'app/views/editSibblingDetails.html', controller: 'sibblingCtrl' },
@@ -67,8 +67,8 @@ editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'aut
     var logincustid = authSvc.getCustId();
     var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
     personalDetailsService.personalDetails(CustID).then(function(response) {
-
         scope.PersonalObj = response.data;
+        scope.imgsrc = authSvc.getprofilepic();
     });
 
 }]);
@@ -548,7 +548,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
 
 }]);
-editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
+editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
     var up = {};
 
@@ -608,7 +608,7 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
             } else if (item.IsActive === 0 && item.PhotoName === null) {
                 item.addButtonvisible = true;
                 item.deleteVisibility = false;
-                item.ImageUrl = editviewapp.Fnoimage;
+                item.ImageUrl = authSvc.getprofilepic();
             }
         });
         return Arr;
@@ -7129,7 +7129,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste{{partnerObj.lstCaste}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
@@ -13730,7 +13730,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_profile_pic\">\r" +
     "\n" +
-    "            <img id=\"imgphoto\" src=\"../../access/Images/ProfilePics/KMPL_91035_Images/img1_Images/210910352_ApplicationPhoto.jpg\">\r" +
+    "            <img id=\"imgphoto\" ng-src=\"{{imgsrc}}\">\r" +
     "\n" +
     "            <span id=\"lblcust_Id\" style=\"display: none;\"></span>\r" +
     "\n" +

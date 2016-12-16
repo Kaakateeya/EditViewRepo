@@ -1,4 +1,4 @@
-editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
+editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
     var up = {};
 
@@ -58,7 +58,7 @@ editviewapp.controller("managePhotoCtrl", ['$uibModal', '$scope', 'commonFactory
             } else if (item.IsActive === 0 && item.PhotoName === null) {
                 item.addButtonvisible = true;
                 item.deleteVisibility = false;
-                item.ImageUrl = editviewapp.Fnoimage;
+                item.ImageUrl = authSvc.getprofilepic();
             }
         });
         return Arr;
