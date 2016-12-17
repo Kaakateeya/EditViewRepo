@@ -65,7 +65,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
 
     scope.getData = function() {
-
         editmanagePhotoServices.getPhotoData(CustID).then(function(response) {
             var StrCustID = CustID;
             console.log(response.data);
@@ -129,7 +128,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                     }
                 });
-
             }
         });
     };

@@ -3,7 +3,7 @@
  * Main App Creation
  */
 
-var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'jcs-autoValidate', 'ngMaterial', 'ngMdIcons']);
+var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons']);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
@@ -616,7 +616,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
 
     scope.getData = function() {
-
         editmanagePhotoServices.getPhotoData(CustID).then(function(response) {
             var StrCustID = CustID;
             console.log(response.data);
@@ -680,7 +679,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
                     }
                 });
-
             }
         });
     };
