@@ -7,6 +7,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     var logincustid = authSvc.getCustId();
     var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
     scope.loginpaidstatus = authSvc.getpaidstatus();
+    var genderID = authSvc.getGenderID();
 
     scope.photorowID = 0;
 
@@ -58,7 +59,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             } else if (item.IsActive === 0 && item.PhotoName === null) {
                 item.addButtonvisible = true;
                 item.deleteVisibility = false;
-                item.ImageUrl = authSvc.getprofilepic();
+
+                item.ImageUrl = genderID === '1' || genderID === 1 ? editviewapp.Mnoimage : editviewapp.Fnoimage;
             }
         });
         return Arr;
