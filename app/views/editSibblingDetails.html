@@ -11,7 +11,7 @@
         <div id="upnoofSibblings" class="edit_page_details_item">
 
             <div id="lstnoofbros">
-                <div class="edit_page_details_item_desc clearfix" ng-repeat="item in sibblingCountArr">
+                <div ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-repeat="item in sibblingCountArr">
                     <div>
                         <div>
                             <div class="form-group">
@@ -133,7 +133,7 @@
             <div id="lstSibbling" ng-repeat="item in BrotherArr">
 
                 <div>
-                    <div id="Div1" class="edit_page_details_item_desc clearfix">
+                    <div id="Div1" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                         <div>
                             <div>
                                 <div id="uplElderbrotherName" class="edit_page_details_item_desc clearfix">
@@ -411,8 +411,8 @@
             <div id="listsister" ng-repeat="item in sisterArr">
 
                 <div>
-                    <div id="Div2" class="edit_page_details_item_desc clearfix">
-                        <label id="Label3" visible="false"></label>
+                    <div id="Div2" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+
 
                         <div>
                             <div>
@@ -1081,7 +1081,7 @@
 
     </form>
 </script>
-
+<alert-directive></alert-directive>
 <style>
     .md-dialog-container {
         z-index: 99999999999;

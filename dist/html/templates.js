@@ -226,7 +226,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
-    "            <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in AstroArr track by $index\">\r" +
+    "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in AstroArr track by $index\">\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -1170,7 +1170,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"listparents\" ng-repeat=\"item in parentArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -1850,7 +1850,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"Div1\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div1\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2038,7 +2038,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"Div2\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div2\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -2246,7 +2246,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
-    "            <div id=\"lstAboutMyFamily\" onitemdatabound=\"listparents_ItemDataBound\">\r" +
+    "            <div id=\"lstAboutMyFamily\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3138,7 +3138,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </script>\r" +
     "\n" +
-    "\r" +
+    "    <alert-directive></alert-directive>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -3215,7 +3215,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div id=\"uppartner\">\r" +
     "\n" +
-    "                    <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4133,7 +4133,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </form>\r" +
     "\n" +
-    "</script>"
+    "</script>\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -4172,11 +4174,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "            <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in propertyArr\">\r" +
+    "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in propertyArr\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
+    "                {{item.reviewstatus}}\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -4432,7 +4432,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "</div>"
+    "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -4461,13 +4465,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        <div class=\"edit_page_details_item\" ng-repeat=\"item in ReferenceArr\">\r" +
+    "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
     "            <div id=\"fullupdate\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in ReferenceArr\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -4843,7 +4845,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "</style>"
+    "    \r" +
+    "\n" +
+    "    .reviewCls {\r" +
+    "\n" +
+    "        background-image: url(src/images/img_kaaka_Seal_b.png);\r" +
+    "\n" +
+    "        background-repeat: no-repeat;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -4872,7 +4888,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"fullupdatefatherbrother\" ng-repeat=\"item in FBArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -5074,7 +5090,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"fullupdatefathersister\" ng-repeat=\"item in FSArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -5326,7 +5342,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -5528,7 +5544,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -6484,7 +6500,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "\r" +
+    "<alert-directive></alert-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6527,7 +6543,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstnoofbros\">\r" +
     "\n" +
-    "                <div class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in sibblingCountArr\">\r" +
+    "                <div ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in sibblingCountArr\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -6771,7 +6787,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div>\r" +
     "\n" +
-    "                    <div id=\"Div1\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"Div1\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                        <div>\r" +
     "\n" +
@@ -7327,9 +7343,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div>\r" +
     "\n" +
-    "                    <div id=\"Div2\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"Div2\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
-    "                        <label id=\"Label3\" visible=\"false\"></label>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8667,7 +8683,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "\r" +
+    "<alert-directive></alert-directive>\r" +
     "\n" +
     "<style>\r" +
     "\n" +
@@ -8830,9 +8846,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div id=\"ListView1\" ng-repeat=\"item in educationSelectArray\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                    <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                        <div id=\"lbleducationgroup\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -8976,7 +8990,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstProfession\" ng-repeat=\"item in ProfessionSelectArray\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'reviewCls':''\">\r" +
     "\n" +
     "                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -9693,6 +9707,51 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "</style>\r" +
     "\n" +
     "<alert-directive></alert-directive>"
+  );
+
+
+  $templateCache.put('editview/app/views/oldAlert.html',
+    "<script type=\"text/ng-template\" id=\"oldAlert.html\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"{{typecls}}\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <a href=\"javascript:void(0);\" ng-click=\"close();\">\r" +
+    "\n" +
+    "                <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "            </a>\r" +
+    "\n" +
+    "            <h4 class=\"modal-title \">\r" +
+    "\n" +
+    "                <center>Alert</center>\r" +
+    "\n" +
+    "            </h4>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body \" id=\"modalbodyID \">\r" +
+    "\n" +
+    "        <p>\r" +
+    "\n" +
+    "            <label style=\"color:blue;\">{{msgs}}</label>\r" +
+    "\n" +
+    "        </p>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer \">\r" +
+    "\n" +
+    "        <button type=\"button \" class=\"btn btn-default \" ng-click=\"close(); \">Close</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</script>"
   );
 
 

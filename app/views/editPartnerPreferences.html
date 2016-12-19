@@ -11,7 +11,7 @@
             </div>
             <div class="edit_page_details_item">
                 <div id="uppartner">
-                    <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                    <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
 
                         <div id="UpdatePanel21" class="edit_page_details_item_desc clearfix">
                             <h6>
@@ -471,3 +471,4 @@
 
     </form>
 </script>
+<alert-directive></alert-directive>

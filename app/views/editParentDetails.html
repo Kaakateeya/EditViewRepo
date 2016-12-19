@@ -12,7 +12,7 @@
         </div>
         <div class="edit_page_details_item">
             <div id="listparents" ng-repeat="item in parentArr">
-                <div id="reviewdiv">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                     <div>
                         <div>
                             <div class="edit_page_details_item_desc clearfix">
@@ -352,7 +352,7 @@
 
             <div ng-repeat="item in addressArr">
 
-                <div id="Div1" class="edit_page_details_item_desc clearfix">
+                <div id="Div1" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
 
                     <div class="edit_page_details_item_desc clearfix">
 
@@ -446,7 +446,7 @@
 
             <div ng-repeat="item in physicalArr">
 
-                <div id="Div2" class="edit_page_details_item_desc clearfix">
+                <div id="Div2" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
 
                     <div class="edit_page_details_item_desc clearfix">
                         <h6>
@@ -550,7 +550,7 @@
             </div>
         </div>
         <div class="edit_page_details_item">
-            <div id="lstAboutMyFamily" onitemdatabound="listparents_ItemDataBound">
+            <div id="lstAboutMyFamily">
 
                 <div id="Div3" class="edit_page_details_item_desc clearfix">
                     <div>
@@ -996,7 +996,7 @@
 
         </form>
     </script>
-
+    <alert-directive></alert-directive>
     </div>
 
     <style>

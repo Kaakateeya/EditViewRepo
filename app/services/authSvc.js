@@ -52,6 +52,7 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
         clearSession('cust.profileid');
         clearSession('cust.paidstatus');
         clearSession('cust.profilepic');
+        clearSession('cust.GenderID');
     }
 
     function getUser() {
@@ -60,8 +61,8 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
             username: getSession('cust.username'),
             profileid: getSession('cust.profileid'),
             paidstatus: getSession('cust.paidstatus'),
-            profilepic: getSession('cust.profilepic')
-
+            profilepic: getSession('cust.profilepic'),
+            GenderID: getSession('cust.GenderID')
         };
     }
 
@@ -86,6 +87,9 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
         },
         getprofilepic: function() {
             return getSession('cust.profilepic');
+        },
+        getGenderID: function() {
+            return getSession('cust.GenderID');
         },
         clearUserSessionDetails: function() {
             return clearUserSession();

@@ -161,9 +161,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.partnerPrefArr = response.data;
                     console.log(scope.partnerPrefArr);
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -177,9 +177,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 

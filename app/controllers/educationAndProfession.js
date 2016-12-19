@@ -114,9 +114,8 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.getdata = function() {
 
         editviewServices.getEducationData(custID).then(function(response) {
-
             scope.educationSelectArray = response.data;
-
+            console.log(scope.educationSelectArray);
         });
         editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
@@ -202,10 +201,10 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.educationSelectArray = response.data;
                 });
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
 
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -244,20 +243,20 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             }
         };
 
-        console.log(JSON.stringify(scope.myprofData));
+
 
         editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
-            console.log(response);
+
             commonFactory.closepopup();
             if (response.data === 1) {
 
                 editviewServices.getProfessionData(custID).then(function(response) {
                     scope.ProfessionSelectArray = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
 
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -266,17 +265,17 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.AboutUrselfSubmit = function(obj) {
 
         editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
-            console.log(response);
+
             commonFactory.closepopup();
             if (response.data === '1') {
 
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
-                    console.log(response);
+
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };

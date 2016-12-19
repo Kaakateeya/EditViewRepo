@@ -57,6 +57,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
 
     referenceServices.getReferenceData(custID).then(function(response) {
         scope.ReferenceArr = response.data;
+        console.log(scope.ReferenceArr);
     });
 
     scope.changeBind = function(type, parentval) {
@@ -111,9 +112,9 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 referenceServices.getReferenceData(custID).then(function(response) {
                     scope.ReferenceArr = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 

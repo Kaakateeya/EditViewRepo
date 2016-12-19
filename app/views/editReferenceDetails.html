@@ -10,10 +10,9 @@
         </div>
 
 
-        <div class="edit_page_details_item" ng-repeat="item in ReferenceArr">
+        <div class="edit_page_details_item">
             <div id="fullupdate">
-
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                <div ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-repeat="item in ReferenceArr">
                     <div>
                         <div id="uplRelationShipType">
 
@@ -201,4 +200,11 @@
     .md-dialog-container {
         z-index: 99999999999;
     }
+    
+    .reviewCls {
+        background-image: url(src/images/img_kaaka_Seal_b.png);
+        background-repeat: no-repeat;
+    }
 </style>
+
+<alert-directive></alert-directive>

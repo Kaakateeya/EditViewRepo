@@ -17,7 +17,6 @@ editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoi
 editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
 
-
 editviewapp.BucketName = 'angularkaknew';
 /**
  * Configure the Routes
@@ -446,9 +445,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             if (response.data === 1) {
 
                 scope.astropageload(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1049,10 +1048,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             commonFactory.closepopup();
             if (response.data === 1) {
 
+                alert(1);
                 scope.parentBindData(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1088,9 +1088,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             if (response.data === 1) {
 
                 scope.parentBindData(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1124,9 +1124,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             if (response.data === 1) {
 
                 scope.parentBindData(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1140,9 +1140,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             if (response.data === '1') {
 
                 scope.AboutPageloadData(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1345,9 +1345,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.partnerPrefArr = response.data;
                     console.log(scope.partnerPrefArr);
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1361,9 +1361,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1429,9 +1429,9 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                 propertyServices.getPropertyData(custID).then(function(response) {
                     scope.propertyArr = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -1501,6 +1501,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
 
     referenceServices.getReferenceData(custID).then(function(response) {
         scope.ReferenceArr = response.data;
+        console.log(scope.ReferenceArr);
     });
 
     scope.changeBind = function(type, parentval) {
@@ -1555,9 +1556,9 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 referenceServices.getReferenceData(custID).then(function(response) {
                     scope.ReferenceArr = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1782,9 +1783,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             if (response.data === 1) {
 
                 scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1829,9 +1830,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             if (response.data === 1) {
 
                 scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1870,9 +1871,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             if (response.data === 1) {
 
                 scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -1915,9 +1916,9 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             if (response.data === 1) {
 
                 scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -2033,7 +2034,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.broObj = {};
                     commonFactory.open('brotherModalContent.html', scope, uibModal);
                 } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 3000);
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 1500);
                 }
                 break;
 
@@ -2110,7 +2111,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.sisObj = {};
                     commonFactory.open('sisterModalContent.html', scope, uibModal);
                 } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 3000);
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 1500);
                 }
                 break;
         }
@@ -2198,9 +2199,9 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
                 scope.sibPageload(custID);
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -2268,9 +2269,9 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
                 scope.sibPageload(custID);
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -2343,14 +2344,13 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
                     scope.sibPageload(custID);
 
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                 } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
                 }
             });
         } else {
-
-            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please enter Correct Sibling count', 3000);
+            alert('Please enter Correct Sibling count');
         }
 
     };
@@ -2526,9 +2526,8 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.getdata = function() {
 
         editviewServices.getEducationData(custID).then(function(response) {
-
             scope.educationSelectArray = response.data;
-
+            console.log(scope.educationSelectArray);
         });
         editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
@@ -2614,10 +2613,10 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.educationSelectArray = response.data;
                 });
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
 
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -2656,20 +2655,20 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             }
         };
 
-        console.log(JSON.stringify(scope.myprofData));
+
 
         editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
-            console.log(response);
+
             commonFactory.closepopup();
             if (response.data === 1) {
 
                 editviewServices.getProfessionData(custID).then(function(response) {
                     scope.ProfessionSelectArray = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
 
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
 
@@ -2678,17 +2677,17 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     scope.AboutUrselfSubmit = function(obj) {
 
         editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
-            console.log(response);
+
             commonFactory.closepopup();
             if (response.data === '1') {
 
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
-                    console.log(response);
+
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };
@@ -3599,7 +3598,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
-    "            <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in AstroArr track by $index\">\r" +
+    "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in AstroArr track by $index\">\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -4543,7 +4542,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"listparents\" ng-repeat=\"item in parentArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -5223,7 +5222,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"Div1\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div1\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -5411,7 +5410,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"Div2\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div2\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -5619,7 +5618,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
-    "            <div id=\"lstAboutMyFamily\" onitemdatabound=\"listparents_ItemDataBound\">\r" +
+    "            <div id=\"lstAboutMyFamily\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6511,7 +6510,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </script>\r" +
     "\n" +
-    "\r" +
+    "    <alert-directive></alert-directive>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -6588,7 +6587,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div id=\"uppartner\">\r" +
     "\n" +
-    "                    <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7506,7 +7505,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </form>\r" +
     "\n" +
-    "</script>"
+    "</script>\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -7545,11 +7546,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "            <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in propertyArr\">\r" +
+    "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in propertyArr\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
+    "                {{item.reviewstatus}}\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -7805,7 +7804,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "</div>"
+    "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -7834,13 +7837,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        <div class=\"edit_page_details_item\" ng-repeat=\"item in ReferenceArr\">\r" +
+    "        <div class=\"edit_page_details_item\">\r" +
     "\n" +
     "            <div id=\"fullupdate\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in ReferenceArr\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -8216,7 +8217,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "</style>"
+    "    \r" +
+    "\n" +
+    "    .reviewCls {\r" +
+    "\n" +
+    "        background-image: url(src/images/img_kaaka_Seal_b.png);\r" +
+    "\n" +
+    "        background-repeat: no-repeat;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<alert-directive></alert-directive>"
   );
 
 
@@ -8245,7 +8260,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"fullupdatefatherbrother\" ng-repeat=\"item in FBArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -8447,7 +8462,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"fullupdatefathersister\" ng-repeat=\"item in FSArr\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -8699,7 +8714,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -8901,7 +8916,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\" style=\"background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -9857,7 +9872,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "\r" +
+    "<alert-directive></alert-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -9900,7 +9915,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstnoofbros\">\r" +
     "\n" +
-    "                <div class=\"edit_page_details_item_desc clearfix\" ng-repeat=\"item in sibblingCountArr\">\r" +
+    "                <div ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in sibblingCountArr\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -10144,7 +10159,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div>\r" +
     "\n" +
-    "                    <div id=\"Div1\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"Div1\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                        <div>\r" +
     "\n" +
@@ -10700,9 +10715,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div>\r" +
     "\n" +
-    "                    <div id=\"Div2\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"Div2\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
-    "                        <label id=\"Label3\" visible=\"false\"></label>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -12040,7 +12055,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "\r" +
+    "<alert-directive></alert-directive>\r" +
     "\n" +
     "<style>\r" +
     "\n" +
@@ -12203,9 +12218,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <div id=\"ListView1\" ng-repeat=\"item in educationSelectArray\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                    <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                    <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                        <div id=\"lbleducationgroup\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -12349,7 +12362,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstProfession\" ng-repeat=\"item in ProfessionSelectArray\">\r" +
     "\n" +
-    "                <div id=\"reviewdiv\">\r" +
+    "                <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'reviewCls':''\">\r" +
     "\n" +
     "                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -13066,6 +13079,51 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "</style>\r" +
     "\n" +
     "<alert-directive></alert-directive>"
+  );
+
+
+  $templateCache.put('editview/app/views/oldAlert.html',
+    "<script type=\"text/ng-template\" id=\"oldAlert.html\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"{{typecls}}\">\r" +
+    "\n" +
+    "        <div class=\"modal-header\">\r" +
+    "\n" +
+    "            <a href=\"javascript:void(0);\" ng-click=\"close();\">\r" +
+    "\n" +
+    "                <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "            </a>\r" +
+    "\n" +
+    "            <h4 class=\"modal-title \">\r" +
+    "\n" +
+    "                <center>Alert</center>\r" +
+    "\n" +
+    "            </h4>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body \" id=\"modalbodyID \">\r" +
+    "\n" +
+    "        <p>\r" +
+    "\n" +
+    "            <label style=\"color:blue;\">{{msgs}}</label>\r" +
+    "\n" +
+    "        </p>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer \">\r" +
+    "\n" +
+    "        <button type=\"button \" class=\"btn btn-default \" ng-click=\"close(); \">Close</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</script>"
   );
 
 

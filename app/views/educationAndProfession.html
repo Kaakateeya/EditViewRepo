@@ -11,8 +11,7 @@
             <div id="fulleducation">
 
                 <div id="ListView1" ng-repeat="item in educationSelectArray">
-
-                    <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                    <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                         <div id="lbleducationgroup" class="edit_page_details_item_desc clearfix">
                             <h6>
                                 <label id="lbleducationgroup" ng-style="{color: item.EduHighestDegree==1?'Red':'Black'}">{{item.EducationCategory!=null?(item.EducationCategory=="Below Graduation"?"Under Graduation":"Education"):"Education"}}</label>
@@ -84,7 +83,7 @@
 
         <div class="edit_page_details_item">
             <div id="lstProfession" ng-repeat="item in ProfessionSelectArray">
-                <div id="reviewdiv">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'reviewCls':''">
                     <div class="edit_page_details_item_desc clearfix">
                         <h6>
                             <span id="lblprofession" style="font-weight:bold;">Profession</span></h6>

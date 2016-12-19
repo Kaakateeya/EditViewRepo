@@ -54,9 +54,9 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                 propertyServices.getPropertyData(custID).then(function(response) {
                     scope.propertyArr = response.data;
                 });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
     };

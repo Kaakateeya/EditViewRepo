@@ -10,7 +10,7 @@
         </div>
         <div class="edit_page_details_item">
             <div id="fullupdatefatherbrother" ng-repeat="item in FBArr">
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                     <div>
                         <div>
                             <div id="upFatherBrother" class="edit_page_details_item_desc clearfix">
@@ -111,7 +111,7 @@
         </div>
         <div class="edit_page_details_item">
             <div id="fullupdatefathersister" ng-repeat="item in FSArr">
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                     <div>
                         <div>
                             <div id="upFathersister" class="edit_page_details_item_desc clearfix">
@@ -237,7 +237,7 @@
         <div class="edit_page_details_item">
             <div id="fullupdatemotherbrother" ng-repeat="item in MBrr">
 
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                     <div>
                         <div>
                             <div id="upmotherbrother" class="edit_page_details_item_desc clearfix">
@@ -338,7 +338,7 @@
         <div class="edit_page_details_item">
             <div id="fullupdatemothersister" ng-repeat="item in MSArr">
 
-                <div id="reviewdiv" class="edit_page_details_item_desc clearfix" style="background-image:url(../../Customer/Images/img_kaaka_Seal_b.png); background-repeat: no-repeat;">
+                <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
                     <div>
                         <div>
                             <div id="upMothersister" class="edit_page_details_item_desc clearfix">
@@ -816,7 +816,7 @@
 
     </form>
 </script>
-
+<alert-directive></alert-directive>
 
 <style>
     .md-dialog-container {

@@ -21,7 +21,6 @@ editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoi
 editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
 
-
 editviewapp.BucketName = 'angularkaknew';
 /**
  * Configure the Routes

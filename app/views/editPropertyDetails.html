@@ -15,9 +15,8 @@
 
         <div class="edit_page_details_item">
 
-            <div id="reviewdiv" class="edit_page_details_item_desc clearfix" ng-repeat="item in propertyArr">
-
-
+            <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-repeat="item in propertyArr">
+                {{item.reviewstatus}}
                 <div>
                     <div id="uplFamilyStatus" class="edit_page_details_item_desc clearfix">
 
@@ -146,3 +145,5 @@
     </script>
 
 </div>
+
+<alert-directive></alert-directive>
