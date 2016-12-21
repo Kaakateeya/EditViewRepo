@@ -246,5 +246,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.shoedeletePopup = function() {
         commonFactory.open('deletehoroPopup.html', scope, uibModal, 'sm');
     };
-
+    scope.$on('datagetinAstro', function(e) {
+        scope.populateAstro();
+    });
 }]);

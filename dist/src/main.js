@@ -556,7 +556,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     scope.shoedeletePopup = function() {
         commonFactory.open('deletehoroPopup.html', scope, uibModal, 'sm');
     };
-
+    scope.$on('datagetinAstro', function(e) {
+        scope.populateAstro();
+    });
 }]);
 editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
@@ -1190,6 +1192,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             item.txtlbs = '';
         }
     };
+
+
+    scope.$on('datagetinParent', function(e, type) {
+        scope.populateModel(type);
+    });
 
 }]);
 editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal', 'commonFactory', 'authSvc', function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc) {
@@ -2709,11 +2716,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             }
         });
     };
-
-
-    scope.$on('rtestttt', function(e) {
-        alert(111);
+    scope.$on('datagetinedu', function(e, type) {
+        scope.showpopup(type);
     });
+
+
 
 }]);
 editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, timeout) {

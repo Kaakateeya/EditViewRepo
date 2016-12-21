@@ -431,4 +431,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
         }
     };
 
+
+    scope.$on('datagetinParent', function(e, type) {
+        scope.populateModel(type);
+    });
+
 }]);

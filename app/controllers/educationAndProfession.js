@@ -276,10 +276,10 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             }
         });
     };
-
-
-    scope.$on('rtestttt', function(e) {
-        alert(111);
+    scope.$on('datagetinedu', function(e, type) {
+        scope.showpopup(type);
     });
+
+
 
 }]);
