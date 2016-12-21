@@ -13,8 +13,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     //011046585
 
     scope.loginpaidstatus = authSvc.getpaidstatus();
+    scope.$on("CallParentMethod", function() {
+        alert(111);
+    });
 
 
+    scope.$on("myEvent", function(event, args) {
+        scope.rest_id = args.username;
+        alert(1);
+    });
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -199,6 +206,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         console.log(day);
         console.log(year);
         var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year };
+        console.log(JSON.stringify(inputobj));
         astroServices.generateHoroscope(inputobj).then(function(response) {
             console.log(response.data);
             window.open('' + response.data + '', '_blank');

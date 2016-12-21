@@ -67,8 +67,19 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         }
     };
 
-    scope.partnerprefPopulate = function(item) {
 
+    scope.SplitstringintoArray = function(string) {
+        var array = [];
+        if (string !== null && string !== "") {
+            _.each(string.split(','), function(item) {
+                array.push(parseInt(item));
+            });
+        }
+        return array;
+    };
+
+
+    scope.partnerprefPopulate = function(item) {
 
         scope.partnerObj = {};
         if (item !== undefined) {
@@ -84,24 +95,24 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             scope.partnerObj.ddlToAge = item.AgeMax;
             scope.partnerObj.ddlFromheight = item.MinHeight;
             scope.partnerObj.ddltoHeight = item.MaxHeight;
-            scope.partnerObj.lstReligion = item.religionid;
-            scope.partnerObj.lstMothertongue = item.MotherTongueID;
-            scope.partnerObj.lstCaste = item.casteid;
-            scope.partnerObj.lstSubcaste = item.subcasteid;
+            scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
+            scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
+            scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
+            scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
             scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
-            scope.partnerObj.lstEducationcategory = item.EducationCategoryID;
-            scope.partnerObj.lstEducationgroup = item.EducationGroupID;
-            scope.partnerObj.lstEmployedin = item.ProfessionCategoryID;
-            scope.partnerObj.lstProfessiongroup = item.ProfessionGroupID;
-            scope.partnerObj.lstPreferredcountry = item.CountryID;
-            scope.partnerObj.lstPreferredstate = item.StateID;
-            scope.partnerObj.lstRegion = item.regionId;
-            scope.partnerObj.lstBranch = item.branchid;
+            scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
+            scope.partnerObj.lstEducationgroup = scope.SplitstringintoArray(item.EducationGroupID);
+            scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
+            scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
+            scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
+            scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
+            scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
+            scope.partnerObj.lstBranch = scope.SplitstringintoArray(item.branchid);
             scope.partnerObj.rbtDiet = item.DietID;
             scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
             scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
             scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
-            scope.partnerObj.lstpreferedstars = item.PreferredStars;
+            scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
         }
         commonFactory.open('partnerPrefContent.html', scope, uibModal);
 

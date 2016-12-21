@@ -39,7 +39,9 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl' },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
-        { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' }
+        { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
+        { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
+
 
     ];
 

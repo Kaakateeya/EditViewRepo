@@ -27,7 +27,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         commonFactory.closepopup();
     };
 
-
     scope.showpopup = function(type, item) {
 
         switch (type) {
@@ -109,7 +108,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         }
 
     };
-
 
     scope.getdata = function() {
 
@@ -271,7 +269,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
-
                 });
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
@@ -279,5 +276,10 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             }
         });
     };
+
+
+    scope.$on('rtestttt', function(e) {
+        alert(111);
+    });
 
 }]);

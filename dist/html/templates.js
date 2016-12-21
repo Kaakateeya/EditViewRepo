@@ -3247,15 +3247,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <span id=\"lblagegap\">{{ item.AgeGap}}</span></h5>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                        </div>\r" +
     "\n" +
     "                        <div id=\"UpdatePanel13\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <h6>\r" +
     "\n" +
@@ -3270,10 +3264,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                        <div id=\"UpdatePanel15\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <h6>\r" +
     "\n" +
@@ -9222,8 +9212,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                    </h3>\r" +
     "\n" +
     "                </div>\r" +
@@ -9752,6 +9740,193 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "    </div>\r" +
     "\n" +
     "</script>"
+  );
+
+
+  $templateCache.put('editview/app/views/testcontroller.html',
+    "<div id=\"edupopupdiv\">\r" +
+    "\n" +
+    "    <a class=\"edit_page_add_button\" href=\"javascript:void(0);\" ng-click=\"clickkk();\">Add</a>\r" +
+    "\n" +
+    "    <div ng-controller=\"eduAndProfCtrl\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
+    "\n" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduSubmit(edoObj);\">\r" +
+    "\n" +
+    "                <div class=\"modal-header\">\r" +
+    "\n" +
+    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Education Details\r" +
+    "\n" +
+    "                        <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                        </a>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </h3>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "                    <ul id=\"uleducation\" class='modal-body clearfix pop_content_my'>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblIsHighestDegree\" class=\"pop_label_left\">Is Highest Degree<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"radio-group-my input-group\">\r" +
+    "\n" +
+    "                                <label><input ng-model=\"edoObj.IsHighestDegree\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span> </label>\r" +
+    "\n" +
+    "                                <label class=\"\"><input ng-model=\"edoObj.IsHighestDegree\" value=\"0\" type=\"radio\"><span>&nbsp;No</span></label>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Education category<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Education group<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEdugroup\" ng-options=\"item.value as item.label for item in eduGroupArr\" ng-change=\"changeBind('EducationGroup',edoObj.ddlEdugroup);\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Edu specialization<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" typeofdata=\"\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\" id=\"divuniversity\">\r" +
+    "\n" +
+    "                            <label for=\"lbluniversity\" class=\"pop_label_left\">University</label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right\">\r" +
+    "\n" +
+    "                                <input type=\"text\" ng-model=\"edoObj.txtuniversity\" maxlength=\"100\" class=\"form-control\" />\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblcollege\" class=\"pop_label_left\">College</label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right\">\r" +
+    "\n" +
+    "                                <input type=\"text\" ng-model=\"edoObj.txtcollege\" maxlength=\"150\" class=\"form-control\" />\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year{{edoObj.ddlpassOfyear}}</label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlpassOfyear\" ng-options=\"item1.value as item1.label for item1 in passOfyearArr\"></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <country-directive countryshow=\"true\" cityshow=\"true\" othercity=\"true\" dcountry=\"edoObj.ddlCountry\" dstate=\"edoObj.ddlState\" ddistrict=\"edoObj.ddlDistrict\" dcity=\"edoObj.ddlcity\" strothercity=\"edoObj.txtcity\"></country-directive>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblEduMerits\" class=\"pop_label_left\">Educational merits</label>\r" +
+    "\n" +
+    "                            <div class=\"\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"width:515px;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </ul>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </form>\r" +
+    "\n" +
+    "        </script>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
   );
 
 

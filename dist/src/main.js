@@ -35,7 +35,9 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl' },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
-        { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' }
+        { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
+        { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
+
 
     ];
 
@@ -321,8 +323,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     //011046585
 
     scope.loginpaidstatus = authSvc.getpaidstatus();
+    scope.$on("CallParentMethod", function() {
+        alert(111);
+    });
 
 
+    scope.$on("myEvent", function(event, args) {
+        scope.rest_id = args.username;
+        alert(1);
+    });
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -507,6 +516,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         console.log(day);
         console.log(year);
         var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year };
+        console.log(JSON.stringify(inputobj));
         astroServices.generateHoroscope(inputobj).then(function(response) {
             console.log(response.data);
             window.open('' + response.data + '', '_blank');
@@ -1251,8 +1261,19 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         }
     };
 
-    scope.partnerprefPopulate = function(item) {
 
+    scope.SplitstringintoArray = function(string) {
+        var array = [];
+        if (string !== null && string !== "") {
+            _.each(string.split(','), function(item) {
+                array.push(parseInt(item));
+            });
+        }
+        return array;
+    };
+
+
+    scope.partnerprefPopulate = function(item) {
 
         scope.partnerObj = {};
         if (item !== undefined) {
@@ -1268,24 +1289,24 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             scope.partnerObj.ddlToAge = item.AgeMax;
             scope.partnerObj.ddlFromheight = item.MinHeight;
             scope.partnerObj.ddltoHeight = item.MaxHeight;
-            scope.partnerObj.lstReligion = item.religionid;
-            scope.partnerObj.lstMothertongue = item.MotherTongueID;
-            scope.partnerObj.lstCaste = item.casteid;
-            scope.partnerObj.lstSubcaste = item.subcasteid;
+            scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
+            scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
+            scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
+            scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
             scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
-            scope.partnerObj.lstEducationcategory = item.EducationCategoryID;
-            scope.partnerObj.lstEducationgroup = item.EducationGroupID;
-            scope.partnerObj.lstEmployedin = item.ProfessionCategoryID;
-            scope.partnerObj.lstProfessiongroup = item.ProfessionGroupID;
-            scope.partnerObj.lstPreferredcountry = item.CountryID;
-            scope.partnerObj.lstPreferredstate = item.StateID;
-            scope.partnerObj.lstRegion = item.regionId;
-            scope.partnerObj.lstBranch = item.branchid;
+            scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
+            scope.partnerObj.lstEducationgroup = scope.SplitstringintoArray(item.EducationGroupID);
+            scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
+            scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
+            scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
+            scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
+            scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
+            scope.partnerObj.lstBranch = scope.SplitstringintoArray(item.branchid);
             scope.partnerObj.rbtDiet = item.DietID;
             scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
             scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
             scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
-            scope.partnerObj.lstpreferedstars = item.PreferredStars;
+            scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
         }
         commonFactory.open('partnerPrefContent.html', scope, uibModal);
 
@@ -2439,7 +2460,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         commonFactory.closepopup();
     };
 
-
     scope.showpopup = function(type, item) {
 
         switch (type) {
@@ -2521,7 +2541,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         }
 
     };
-
 
     scope.getdata = function() {
 
@@ -2683,13 +2702,25 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 editviewServices.getAboutData(custID).then(function(response) {
                     scope.lblaboutUrself = response.data;
-
                 });
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
+    };
+
+
+    scope.$on('rtestttt', function(e) {
+        alert(111);
+    });
+
+}]);
+editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, timeout) {
+    scope.clickkk = function() {
+
+        scope.$broadcast('rtestttt');
+
     };
 
 }]);
@@ -6619,15 +6650,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <span id=\"lblagegap\">{{ item.AgeGap}}</span></h5>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                        </div>\r" +
     "\n" +
     "                        <div id=\"UpdatePanel13\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <h6>\r" +
     "\n" +
@@ -6642,10 +6667,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                        <div id=\"UpdatePanel15\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <h6>\r" +
     "\n" +
@@ -12594,8 +12615,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                    </h3>\r" +
     "\n" +
     "                </div>\r" +
@@ -13124,6 +13143,193 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "    </div>\r" +
     "\n" +
     "</script>"
+  );
+
+
+  $templateCache.put('editview/app/views/testcontroller.html',
+    "<div id=\"edupopupdiv\">\r" +
+    "\n" +
+    "    <a class=\"edit_page_add_button\" href=\"javascript:void(0);\" ng-click=\"clickkk();\">Add</a>\r" +
+    "\n" +
+    "    <div ng-controller=\"eduAndProfCtrl\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
+    "\n" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduSubmit(edoObj);\">\r" +
+    "\n" +
+    "                <div class=\"modal-header\">\r" +
+    "\n" +
+    "                    <h3 class=\"modal-title text-center\" id=\"modal-title\">Education Details\r" +
+    "\n" +
+    "                        <a href=\"javascript:void(0);\" ng-click=\"cancel();\">\r" +
+    "\n" +
+    "                            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "                        </a>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </h3>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "                    <ul id=\"uleducation\" class='modal-body clearfix pop_content_my'>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblIsHighestDegree\" class=\"pop_label_left\">Is Highest Degree<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"radio-group-my input-group\">\r" +
+    "\n" +
+    "                                <label><input ng-model=\"edoObj.IsHighestDegree\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span> </label>\r" +
+    "\n" +
+    "                                <label class=\"\"><input ng-model=\"edoObj.IsHighestDegree\" value=\"0\" type=\"radio\"><span>&nbsp;No</span></label>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Education category<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Education group<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEdugroup\" ng-options=\"item.value as item.label for item in eduGroupArr\" ng-change=\"changeBind('EducationGroup',edoObj.ddlEdugroup);\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Edu specialization<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" typeofdata=\"\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\" id=\"divuniversity\">\r" +
+    "\n" +
+    "                            <label for=\"lbluniversity\" class=\"pop_label_left\">University</label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right\">\r" +
+    "\n" +
+    "                                <input type=\"text\" ng-model=\"edoObj.txtuniversity\" maxlength=\"100\" class=\"form-control\" />\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblcollege\" class=\"pop_label_left\">College</label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right\">\r" +
+    "\n" +
+    "                                <input type=\"text\" ng-model=\"edoObj.txtcollege\" maxlength=\"150\" class=\"form-control\" />\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year{{edoObj.ddlpassOfyear}}</label>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlpassOfyear\" ng-options=\"item1.value as item1.label for item1 in passOfyearArr\"></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <country-directive countryshow=\"true\" cityshow=\"true\" othercity=\"true\" dcountry=\"edoObj.ddlCountry\" dstate=\"edoObj.ddlState\" ddistrict=\"edoObj.ddlDistrict\" dcity=\"edoObj.ddlcity\" strothercity=\"edoObj.txtcity\"></country-directive>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblEduMerits\" class=\"pop_label_left\">Educational merits</label>\r" +
+    "\n" +
+    "                            <div class=\"\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"width:515px;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"row \">\r" +
+    "\n" +
+    "                            <div class=\"col-lg-9\">\r" +
+    "\n" +
+    "                                <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div class=\"col-lg-3\">\r" +
+    "\n" +
+    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </ul>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </form>\r" +
+    "\n" +
+    "        </script>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
   );
 
 
