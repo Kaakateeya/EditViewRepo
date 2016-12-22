@@ -394,7 +394,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log((scope.generateData)[0].DateOfBirth);
 
             if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                alert(scope.AstroArr[0].Horoscopeimage);
+
                 var extension = "jpg";
                 // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
                 //     extension = "html";
