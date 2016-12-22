@@ -297,10 +297,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
-                alert(1);
                 scope.parentBindData(custID);
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
@@ -431,9 +432,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
         }
     };
 
-
     scope.$on('datagetinParent', function(e, type) {
         scope.populateModel(type);
+        scope.datagetInStatus = 1;
     });
 
 }]);

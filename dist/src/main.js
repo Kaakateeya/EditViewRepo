@@ -323,15 +323,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     //011046585
 
     scope.loginpaidstatus = authSvc.getpaidstatus();
-    scope.$on("CallParentMethod", function() {
-        alert(111);
-    });
 
-
-    scope.$on("myEvent", function(event, args) {
-        scope.rest_id = args.username;
-        alert(1);
-    });
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -401,7 +393,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(scope.generateData);
             console.log((scope.generateData)[0].DateOfBirth);
 
-            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage)) {
+            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                alert(scope.AstroArr[0].Horoscopeimage);
                 var extension = "jpg";
                 // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
                 //     extension = "html";
@@ -452,9 +445,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
                 scope.astropageload(custID);
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
@@ -558,6 +554,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
     scope.$on('datagetinAstro', function(e) {
         scope.populateAstro();
+        scope.datagetInStatus = 1;
     });
 }]);
 editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
@@ -652,7 +649,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         var extension = ((obj.myFile.name).split('.'))[1];
         var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
 
-        fileUpload.uploadFileToUrl(obj.myFile, 'http://localhost:3000/photoUplad', keyname).then(function(res) {
+        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
             console.log(res.status);
             if (res.status == 200) {
                 commonFactory.closepopup();
@@ -679,6 +676,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         Admin: null
                     }
                 };
+
+
 
                 editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
                     console.log(response);
@@ -1059,10 +1058,11 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
-                alert(1);
                 scope.parentBindData(custID);
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
@@ -1193,9 +1193,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
         }
     };
 
-
     scope.$on('datagetinParent', function(e, type) {
         scope.populateModel(type);
+        scope.datagetInStatus = 1;
     });
 
 }]);
@@ -1352,7 +1352,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 Preferreddistrict: null,
                 Preferredlocation: null,
                 TypeofStar: objitem.rbtPreferredstars,
-                PrefredStars: objitem.lstpreferedstars,
+                PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
                 GenderID: objitem.rbtlGender,
                 Region: commonFactory.listSelectedVal(objitem.lstRegion),
                 Branch: commonFactory.listSelectedVal(objitem.lstBranch),
@@ -1364,7 +1364,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             }
         };
 
+        // var datare = { "GetDetails": { "CustID": 91035, "AgeGapFrom": 1, "AgeGapTo": 5, "HeightFrom": "17", "HeightTo": "22", "Religion": "1,2", "Mothertongue": "1,2", "Caste": "402,403", "Subcaste": "459,462", "Maritalstatus": "43,44", "ManglikKujadosham": "2", "PreferredstarLanguage": "2", "Educationcategory": "1,2", "Educationgroup": "2,3", "Employedin": "1,2", "Professiongroup": "1,2", "Diet": "28", "Preferredcountry": "1,2", "Preferredstate": "4,5", "Preferreddistrict": '', "Preferredlocation": '', "TypeofStar": "1", "PrefredStars": "4,5", "GenderID": 2, "Region": "408,409", "Branch": "" }, "customerpersonaldetails": { "intCusID": 91035, "EmpID": '', "Admin": '' } };
 
+        console.log(JSON.stringify(scope.partnerPrefData));
         partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
@@ -2640,13 +2642,13 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 });
 
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
-
-
     };
 
     scope.ProfSubmit = function(objitem) {
@@ -2692,6 +2694,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.ProfessionSelectArray = response.data;
                 });
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
 
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
@@ -2718,9 +2723,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     };
     scope.$on('datagetinedu', function(e, type) {
         scope.showpopup(type);
+        scope.datagetInStatus = 1;
+
     });
-
-
 
 }]);
 editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, timeout) {
@@ -2741,7 +2746,9 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
                 scope: scope,
-                size: size
+                size: size,
+                backdrop: 'static',
+                keyboard: false
             });
         },
         closepopup: function() {

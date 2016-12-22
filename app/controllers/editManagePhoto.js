@@ -90,7 +90,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         var extension = ((obj.myFile.name).split('.'))[1];
         var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
 
-        fileUpload.uploadFileToUrl(obj.myFile, 'http://localhost:3000/photoUplad', keyname).then(function(res) {
+        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
             console.log(res.status);
             if (res.status == 200) {
                 commonFactory.closepopup();
@@ -117,6 +117,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         Admin: null
                     }
                 };
+
+
 
                 editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
                     console.log(response);

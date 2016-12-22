@@ -8,7 +8,9 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
                 scope: scope,
-                size: size
+                size: size,
+                backdrop: 'static',
+                keyboard: false
             });
         },
         closepopup: function() {

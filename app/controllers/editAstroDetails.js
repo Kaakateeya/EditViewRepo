@@ -13,15 +13,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     //011046585
 
     scope.loginpaidstatus = authSvc.getpaidstatus();
-    scope.$on("CallParentMethod", function() {
-        alert(111);
-    });
 
-
-    scope.$on("myEvent", function(event, args) {
-        scope.rest_id = args.username;
-        alert(1);
-    });
     scope.changeBind = function(type, parentval) {
 
         switch (type) {
@@ -91,7 +83,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(scope.generateData);
             console.log((scope.generateData)[0].DateOfBirth);
 
-            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage)) {
+            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                alert(scope.AstroArr[0].Horoscopeimage);
                 var extension = "jpg";
                 // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
                 //     extension = "html";
@@ -142,9 +135,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
                 scope.astropageload(custID);
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
@@ -248,5 +244,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
     };
     scope.$on('datagetinAstro', function(e) {
         scope.populateAstro();
+        scope.datagetInStatus = 1;
     });
 }]);

@@ -200,13 +200,13 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 });
 
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
         });
-
-
     };
 
     scope.ProfSubmit = function(objitem) {
@@ -252,6 +252,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.ProfessionSelectArray = response.data;
                 });
                 scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                if (scope.datagetInStatus === 1) {
+                    window.location = "#/mobileverf";
+                }
 
             } else {
                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
@@ -278,8 +281,8 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     };
     scope.$on('datagetinedu', function(e, type) {
         scope.showpopup(type);
+        scope.datagetInStatus = 1;
+
     });
-
-
 
 }]);
