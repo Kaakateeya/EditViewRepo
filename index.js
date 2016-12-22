@@ -7,7 +7,7 @@
  * Main App Creation
  */
 
-var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons']);
+var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons', 'jcs-autoValidate']);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
