@@ -173,6 +173,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         checkvals: function(val) {
             return (val !== undefined && val !== null && val !== '') ? true : false;
+        },
+        AstroCity: function(countryName, stateName) {
+            var AstrocityArr = [];
+            AstrocityArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+            SelectBindService.AstroCities(countryName, stateName).then(function(response) {
+                _.each(response.data, function(item) {
+                    AstrocityArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return AstrocityArr;
         }
 
     };

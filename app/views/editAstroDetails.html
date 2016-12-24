@@ -258,4 +258,26 @@
     </form>
 
 </script>
+
+
+<script type="text/ng-template" id="AstroCityPopup.html">
+    <div class="modal-header alert alert-danger" id="div2">
+        <button type="button" class="close" ng-click="cancel();">&times;</button>
+        <h4 class="modal-title">
+            <span id="lblcityheader">we are unable to genearte horoscope with your given city <b style="color: green"> Administrative Buildings </b>,so please select Nearest city to your place of birth</span>
+        </h4>
+    </div>
+    <div class="modal-body" id="modalbodyIDnew">
+        <div class="pop_controls_right select-box-my">
+            <select multiselectdropdown ng-model="ddlAstrocity" ng-options="item.value as item.label for item in AstrocityArr" ng-change="changeBind('star',atroObj.ddlstarlanguage);"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel();">Close</button>
+    </div>
+
+</script>
+
+
+
 <alert-directive></alert-directive>

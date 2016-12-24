@@ -23,7 +23,6 @@ editviewapp.BucketName = 'angularkaknew';
  */
 
 editviewapp.config(function($stateProvider, $urlRouterProvider) {
-
     var states = [
         { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
         { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
@@ -37,7 +36,6 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
         { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
         { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
-
 
     ];
 
@@ -308,255 +306,270 @@ editviewapp.constant('arrayConstantsEdit', {
 
 
 });
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http', function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http) {
-    scope.starLanguage = 'starLanguage';
-    scope.Country = 'Country';
-    scope.ZodaicSign = 'ZodaicSign';
-    scope.lagnam = 'lagnam';
-    scope.paadam = 'paadam';
-    scope.atroObj = [];
-    scope.generateData = [];
-    scope.ImageUrl = '';
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http) {
+        scope.starLanguage = 'starLanguage';
+        scope.Country = 'Country';
+        scope.ZodaicSign = 'ZodaicSign';
+        scope.lagnam = 'lagnam';
+        scope.paadam = 'paadam';
+        scope.atroObj = [];
+        scope.generateData = [];
+        scope.ImageUrl = '';
 
-    var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-    //011046585
+        var logincustid = authSvc.getCustId();
+        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        //011046585
 
-    scope.loginpaidstatus = authSvc.getpaidstatus();
+        scope.loginpaidstatus = authSvc.getpaidstatus();
 
-    scope.changeBind = function(type, parentval) {
+        scope.changeBind = function(type, parentval) {
 
-        switch (type) {
-            case 'Country':
-                scope.stateArr = commonFactory.StateBind(parentval);
-                break;
+            switch (type) {
+                case 'Country':
+                    scope.stateArr = commonFactory.StateBind(parentval);
+                    break;
 
-            case 'State':
-                scope.districtArr = commonFactory.districtBind(parentval);
-                break;
+                case 'State':
+                    scope.districtArr = commonFactory.districtBind(parentval);
+                    break;
 
-            case 'District':
+                case 'District':
 
-                scope.cityeArr = commonFactory.cityBind(parentval);
-                break;
-            case 'star':
+                    scope.cityeArr = commonFactory.cityBind(parentval);
+                    break;
+                case 'star':
 
-                scope.starArr = commonFactory.starBind(parentval);
-                break;
-        }
-    };
-
-    scope.populateAstro = function(item) {
-
-
-        scope.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
-        scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
-        scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
-
-        if (item !== undefined) {
-            scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
-            scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
-            scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
-            scope.starArr = commonFactory.starBind(item.StarLanguageID);
-
-            if (item.TimeOfBirth !== undefined) {
-                scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
-
-                scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
-                scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
-                scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
-            }
-            scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
-            scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
-            scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
-            scope.atroObj.ddlcity = item.CityOfBirthID;
-            scope.atroObj.ddlstarlanguage = item.StarLanguageID;
-            scope.atroObj.ddlstar = item.StarID;
-            scope.atroObj.ddlpaadam = item.PaadamID;
-            scope.atroObj.ddlLagnam = item.LagnamID;
-            scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
-            scope.atroObj.txtGothramGotra = item.Gothram;
-            scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
-            scope.atroObj.rdlkujaDosham = item.manglikID;
-
-        }
-
-        commonFactory.open('astroContent.html', scope, uibModal);
-    };
-
-    scope.astropageload = function(custid) {
-
-        astroServices.getAstroData(custid).then(function(response) {
-            scope.AstroArr = JSON.parse(response.data[0]);
-            scope.generateData = JSON.parse(response.data[1]);
-            console.log(scope.AstroArr);
-            console.log(scope.generateData);
-            console.log((scope.generateData)[0].DateOfBirth);
-
-            if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-
-                var extension = "jpg";
-                // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
-                //     extension = "html";
-                // } else {
-                //     extension = "jpg";
-                // }
-                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
-            }
-
-        });
-
-    };
-    scope.astropageload(custID);
-
-
-    scope.astroSubmit = function(obj) {
-
-        var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
-
-        scope.astroData = {
-            GetDetails: {
-                CustID: custID,
-                TimeofBirth: strFromTimeOfBirth,
-                CountryOfBirthID: obj.ddlCountryOfBirthID,
-                StateOfBirthID: obj.ddlStateOfBirthID,
-                DistrictOfBirthID: obj.ddlDistrictOfBirthID,
-                CityOfBirthID: obj.ddlcity,
-                Starlanguage: obj.ddlstarlanguage,
-                Star: obj.ddlstar,
-                Paadam: obj.ddlpaadam,
-                Lagnam: obj.ddlLagnam,
-                RasiMoonsign: obj.ddlRaasiMoonsign,
-                GothramGotra: obj.txtGothramGotra,
-                Maternalgothram: obj.txtMaternalgothram,
-                ManglikKujadosham: obj.rdlkujaDosham,
-                Pblongitude: obj.PBlongitude,
-                pblatitude: obj.PBlatitude,
-                TimeZone: null
-            },
-            customerpersonaldetails: {
-                intCusID: custID,
-                EmpID: null,
-                Admin: null
+                    scope.starArr = commonFactory.starBind(parentval);
+                    break;
             }
         };
 
-        astroServices.submitAstroData(scope.astroData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
-                if (scope.datagetInStatus === 1) {
-                    window.location = "#/mobileverf";
+        scope.populateAstro = function(item) {
+
+
+            scope.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
+            scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
+            scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
+
+            if (item !== undefined) {
+                scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
+                scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
+                scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
+                scope.starArr = commonFactory.starBind(item.StarLanguageID);
+
+                if (item.TimeOfBirth !== undefined) {
+                    scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
+
+                    scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
+                    scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
+                    scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
                 }
-                scope.astropageload(custID);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
+                scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
+                scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
+                scope.atroObj.ddlcity = item.CityOfBirthID;
+                scope.atroObj.ddlstarlanguage = item.StarLanguageID;
+                scope.atroObj.ddlstar = item.StarID;
+                scope.atroObj.ddlpaadam = item.PaadamID;
+                scope.atroObj.ddlLagnam = item.LagnamID;
+                scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
+                scope.atroObj.txtGothramGotra = item.Gothram;
+                scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
+                scope.atroObj.rdlkujaDosham = item.manglikID;
 
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
             }
-        });
-    };
 
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
+            commonFactory.open('astroContent.html', scope, uibModal);
+        };
 
-    scope.uploadGenerateHoro = function(val) {
+        scope.astropageload = function(custid) {
 
-        if (val === '0') {
-            commonFactory.open('AddHoroPopup.html', scope, uibModal, 'sm');
-        } else {
-            scope.generateHoro();
-        }
-    };
+            astroServices.getAstroData(custid).then(function(response) {
+                scope.AstroArr = JSON.parse(response.data[0]);
+                scope.generateData = JSON.parse(response.data[1]);
+                console.log(scope.AstroArr);
+                console.log(scope.generateData);
+                console.log((scope.generateData)[0].DateOfBirth);
+
+                if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+
+                    var extension = "jpg";
+                    // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+                    //     extension = "html";
+                    // } else {
+                    //     extension = "jpg";
+                    // }
+                    scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+                }
+
+            });
+
+        };
+        scope.astropageload(custID);
 
 
-    scope.upload = function(obj) {
-        console.log(obj.myFile);
-        var extension = ((obj.myFile.name).split('.'))[1];
-        var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+        scope.astroSubmit = function(obj) {
 
-        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-            console.log(res.status);
-            if (res.status == 200) {
+            var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
+
+            scope.astroData = {
+                GetDetails: {
+                    CustID: custID,
+                    TimeofBirth: strFromTimeOfBirth,
+                    CountryOfBirthID: obj.ddlCountryOfBirthID,
+                    StateOfBirthID: obj.ddlStateOfBirthID,
+                    DistrictOfBirthID: obj.ddlDistrictOfBirthID,
+                    CityOfBirthID: obj.ddlcity,
+                    Starlanguage: obj.ddlstarlanguage,
+                    Star: obj.ddlstar,
+                    Paadam: obj.ddlpaadam,
+                    Lagnam: obj.ddlLagnam,
+                    RasiMoonsign: obj.ddlRaasiMoonsign,
+                    GothramGotra: obj.txtGothramGotra,
+                    Maternalgothram: obj.txtMaternalgothram,
+                    ManglikKujadosham: obj.rdlkujaDosham,
+                    Pblongitude: obj.PBlongitude,
+                    pblatitude: obj.PBlatitude,
+                    TimeZone: null
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
+
+            astroServices.submitAstroData(scope.astroData).then(function(response) {
+                console.log(response);
                 commonFactory.closepopup();
-                scope.uploadData = {
-                    Cust_ID: custID,
-                    Horopath: '../../' + keyname,
-                    ModifiedByEmpID: '',
-                    VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
-                    Empid: '',
-                    IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
-                    i_flag: 1
-                };
+                if (response.data === 1) {
+                    if (scope.datagetInStatus === 1) {
+                        window.location = "#/mobileverf";
+                    }
+                    scope.astropageload(custID);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
 
-                console.log(JSON.stringify(scope.uploadData));
-                astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                    console.log(response);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        };
+
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+        scope.uploadGenerateHoro = function(val) {
+
+            if (val === '0') {
+                commonFactory.open('AddHoroPopup.html', scope, uibModal, 'sm');
+            } else {
+                scope.generateHoro();
+            }
+        };
+
+
+        scope.upload = function(obj) {
+            console.log(obj.myFile);
+            var extension = ((obj.myFile.name).split('.'))[1];
+            var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
+            fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                console.log(res.status);
+                if (res.status == 200) {
+                    commonFactory.closepopup();
+                    scope.uploadData = {
+                        Cust_ID: custID,
+                        Horopath: '../../' + keyname,
+                        ModifiedByEmpID: '',
+                        VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
+                        Empid: '',
+                        IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
+                        i_flag: 1
+                    };
+
+                    console.log(JSON.stringify(scope.uploadData));
+                    astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+                        console.log(response);
+                        scope.astropageload(custID);
+                        commonFactory.closepopup();
+                    });
+                }
+            });
+
+        };
+
+        scope.generateHoro = function(astrocity) {
+
+            var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
+
+            var month = check.format('M');
+            var day = check.format('D');
+            var year = check.format('YYYY');
+            console.log(month);
+            console.log(day);
+            console.log(year);
+            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : '' };
+            console.log(JSON.stringify(inputobj));
+            astroServices.generateHoroscope(inputobj).then(function(response) {
+                console.log(response.data);
+                if (commonFactory.checkvals(response.data)) {
+                    window.open('' + response.data + '', '_blank');
+                } else {
+                    scope.AstrocityArr = commonFactory.AstroCity('', '');
+                    commonFactory.open('AstroCityPopup.html', scope, uibModal);
+
+                }
+
+            });
+        };
+
+
+        scope.deleteHoroImage = function() {
+
+            var extension = "jpg";
+
+            // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+            //     extension = "html";
+            // } else {
+            //     extension = "jpg";
+            // }
+            var keynameq = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+            http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+
+            });
+
+            scope.uploadData = {
+                Cust_ID: custID,
+                i_flag: 0
+            };
+
+            astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+                console.log(response);
+                if (response.data === 1 || response.data === '1') {
                     scope.astropageload(custID);
                     commonFactory.closepopup();
-                });
-            }
+                    scope.ImageUrl = '';
+                    scope.atroObj.rdlUploadGenerate = '';
+                }
+            });
+        };
+        scope.shoedeletePopup = function() {
+            commonFactory.open('deletehoroPopup.html', scope, uibModal, 'sm');
+        };
+        scope.$on('datagetinAstro', function(e) {
+            scope.populateAstro();
+            scope.datagetInStatus = 1;
         });
 
-    };
+        scope.AstroCityChange = function() {
+            scope.generateHoro();
 
-    scope.generateHoro = function() {
-        var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
-
-        var month = check.format('M');
-        var day = check.format('D');
-        var year = check.format('YYYY');
-
-        console.log(month);
-        console.log(day);
-        console.log(year);
-        var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year };
-        console.log(JSON.stringify(inputobj));
-        astroServices.generateHoroscope(inputobj).then(function(response) {
-            console.log(response.data);
-            window.open('' + response.data + '', '_blank');
-        });
-    };
-
-
-    scope.deleteHoroImage = function() {
-
-        var extension = "jpg";
-
-        // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
-        //     extension = "html";
-        // } else {
-        //     extension = "jpg";
-        // }
-        var keynameq = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-        http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
-
-        });
-
-        scope.uploadData = {
-            Cust_ID: custID,
-            i_flag: 0
         };
 
-        astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-            console.log(response);
-            if (response.data === 1 || response.data === '1') {
-                scope.astropageload(custID);
-                commonFactory.closepopup();
-                scope.ImageUrl = '';
-                scope.atroObj.rdlUploadGenerate = '';
-            }
-        });
-    };
-    scope.shoedeletePopup = function() {
-        commonFactory.open('deletehoroPopup.html', scope, uibModal, 'sm');
-    };
-    scope.$on('datagetinAstro', function(e) {
-        scope.populateAstro();
-        scope.datagetInStatus = 1;
-    });
-}]);
+    }
+]);
 editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
     var up = {};
@@ -876,7 +889,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.txtMName = item.MotherName;
                     scope.parent.txtMEducation = item.MotherEducationDetails;
                     scope.parent.txtMProfession = item.MotherProfedetails;
-                    //scope.parent.chkbox = item.;
+                    scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
                     scope.parent.txtMCompanyName = item.MothercompanyName;
                     scope.parent.txtMJobLocation = item.MotherJoblocation;
 
@@ -2911,6 +2924,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         checkvals: function(val) {
             return (val !== undefined && val !== null && val !== '') ? true : false;
+        },
+        AstroCity: function(countryName, stateName) {
+            var AstrocityArr = [];
+            AstrocityArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+            SelectBindService.AstroCities(countryName, stateName).then(function(response) {
+                _.each(response.data, function(item) {
+                    AstrocityArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return AstrocityArr;
         }
 
     };
@@ -3198,7 +3221,7 @@ editviewapp.factory('astroServices', ['$http', function(http) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/AstroDetailsUpdateDelete', JSON.stringify(obj1));
         },
         generateHoroscope: function(obj) {
-            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear } });
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear, CityID: obj.CityID } });
         }
     };
 }]);
@@ -3397,6 +3420,10 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
 
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: obj1, dependencyflagID: '' } });
         },
+        AstroCities: function(countryName, statename) {
+            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
+            return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
+        }
     };
 }]);
 editviewapp.factory('sibblingServices', ['$http', function(http) {
@@ -4141,6 +4168,50 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"AstroCityPopup.html\">\r" +
+    "\n" +
+    "    <div class=\"modal-header alert alert-danger\" id=\"div2\">\r" +
+    "\n" +
+    "        <button type=\"button\" class=\"close\" ng-click=\"cancel();\">&times;</button>\r" +
+    "\n" +
+    "        <h4 class=\"modal-title\">\r" +
+    "\n" +
+    "            <span id=\"lblcityheader\">we are unable to genearte horoscope with your given city <b style=\"color: green\"> Administrative Buildings </b>,so please select Nearest city to your place of birth</span>\r" +
+    "\n" +
+    "        </h4>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body\" id=\"modalbodyIDnew\">\r" +
+    "\n" +
+    "        <div class=\"pop_controls_right select-box-my\">\r" +
+    "\n" +
+    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"changeBind('star',atroObj.ddlstarlanguage);\"></select>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        <button type=\"button\" class=\"btn btn-default\" ng-click=\"cancel();\">Close</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<alert-directive></alert-directive>"
   );
 
@@ -4693,7 +4764,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                   {{((item.FathercompanyName!=null && (item.FathercompanyName!=\"\")?item.FathercompanyName:\"NotSpecified\"))\r" +
     "\n" +
-    "                                        +\" \"+((item.FatherJoblocation!=null && (item.FatherJoblocation!=\"\")?\",\" +\" \"+item.FatherJoblocation:item.FatherJoblocation))}}\r" +
+    "                                        +\" \"+((item.FatherJoblocation!=null && (item.FatherJoblocation!=\"\")?\",\" +\" \"+item.FatherJoblocation:''))}}\r" +
     "\n" +
     "                            </span>\r" +
     "\n" +
@@ -4957,7 +5028,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <div id=\"mothercompany\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                        <div id=\"mothercompany\" class=\"edit_page_details_item_desc clearfix\" ng-hide=\"item.MotherProfedetails=='HouseWife'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4973,7 +5044,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            ((item.MotherJoblocation!=null && (item.MotherJoblocation!=\"\")?\", \"+\" \"+\r" +
     "\n" +
-    "                                            item.MotherJoblocation:item.MotherJoblocation))}}\r" +
+    "                                            item.MotherJoblocation:''))}}\r" +
     "\n" +
     "                                </span>\r" +
     "\n" +
@@ -5909,7 +5980,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <div id=\"divmotherprofesseion\">\r" +
+    "                        <div id=\"divmotherprofesseion\" ng-hide=\"parent.chkbox==true\">\r" +
     "\n" +
     "                            <li id=\"divComLocation\" class=\"clearfix form-group\">\r" +
     "\n" +
@@ -7583,7 +7654,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in propertyArr\">\r" +
     "\n" +
-    "                {{item.reviewstatus}}\r" +
+    "\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -7659,17 +7730,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "            <hr>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -7755,7 +7816,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                            <input ng-model=\"proObj.txtValueofproperty\" class=\"form-control\" maxlength=\"5\" tabindex=\"3\" />\r" +
+    "                            <input ng-model=\"proObj.txtValueofproperty\" class=\"form-control\" maxlength=\"5\" onkeydown=\"return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));\"\r" +
+    "\n" +
+    "                            />\r" +
     "\n" +
     "                            <span font-bold=\"true\">Lakhs</span>\r" +
     "\n" +
@@ -9413,23 +9476,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"fsObj.ddlFSHStateID\" ddistrict=\"fsObj.ddlFSHDistrictID\"></country-directive>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
+    "                <country-directive countryshow=\"false\" dcountry=\"'1'\" cityshow=\"false\" othercity=\"false\" dstate=\"fsObj.ddlFSHStateID\" ddistrict=\"fsObj.ddlFSHDistrictID\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -9775,7 +9822,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"msObj.ddlMSisState\" ddistrict=\"msObj.ddlMsDistrict\"></country-directive>\r" +
+    "                <country-directive countryshow=\"false\" dcountry=\"'1'\" cityshow=\"false\" othercity=\"false\" dstate=\"msObj.ddlMSisState\" ddistrict=\"msObj.ddlMsDistrict\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -13591,7 +13638,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller='headctrl'>\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\">\r" +
     "\n" +
     "\r" +
     "\n" +

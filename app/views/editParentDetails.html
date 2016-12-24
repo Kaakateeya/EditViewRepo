@@ -65,7 +65,7 @@
                             <h5>
                                 <span id="lblfatherprofandloc">
                                    {{((item.FathercompanyName!=null && (item.FathercompanyName!="")?item.FathercompanyName:"NotSpecified"))
-                                        +" "+((item.FatherJoblocation!=null && (item.FatherJoblocation!="")?"," +" "+item.FatherJoblocation:item.FatherJoblocation))}}
+                                        +" "+((item.FatherJoblocation!=null && (item.FatherJoblocation!="")?"," +" "+item.FatherJoblocation:''))}}
                             </span>
                             </h5>
                         </div>
@@ -197,7 +197,7 @@
                             </h5>
                         </div>
 
-                        <div id="mothercompany" class="edit_page_details_item_desc clearfix">
+                        <div id="mothercompany" class="edit_page_details_item_desc clearfix" ng-hide="item.MotherProfedetails=='HouseWife'">
 
                             <h6>
                                 <label id="lblmotherprofession">Company & JobLocation</label></h6>
@@ -205,7 +205,7 @@
                                 <span id="lblmotherprofandloc">
                                    {{((item.MothercompanyName!=null && (item.MothercompanyName!="")?item.MothercompanyName:""))+" "+
                                             ((item.MotherJoblocation!=null && (item.MotherJoblocation!="")?", "+" "+
-                                            item.MotherJoblocation:item.MotherJoblocation))}}
+                                            item.MotherJoblocation:''))}}
                                 </span>
                             </h5>
                         </div>
@@ -673,7 +673,7 @@
                             </div>
 
                         </li>
-                        <div id="divmotherprofesseion">
+                        <div id="divmotherprofesseion" ng-hide="parent.chkbox==true">
                             <li id="divComLocation" class="clearfix form-group">
 
                                 <label for="lblMCompanyName" class="pop_label_left">Company Name </label>

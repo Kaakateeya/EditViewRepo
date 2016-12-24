@@ -724,6 +724,50 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"AstroCityPopup.html\">\r" +
+    "\n" +
+    "    <div class=\"modal-header alert alert-danger\" id=\"div2\">\r" +
+    "\n" +
+    "        <button type=\"button\" class=\"close\" ng-click=\"cancel();\">&times;</button>\r" +
+    "\n" +
+    "        <h4 class=\"modal-title\">\r" +
+    "\n" +
+    "            <span id=\"lblcityheader\">we are unable to genearte horoscope with your given city <b style=\"color: green\"> Administrative Buildings </b>,so please select Nearest city to your place of birth</span>\r" +
+    "\n" +
+    "        </h4>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body\" id=\"modalbodyIDnew\">\r" +
+    "\n" +
+    "        <div class=\"pop_controls_right select-box-my\">\r" +
+    "\n" +
+    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"changeBind('star',atroObj.ddlstarlanguage);\"></select>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        <button type=\"button\" class=\"btn btn-default\" ng-click=\"cancel();\">Close</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<alert-directive></alert-directive>"
   );
 
@@ -1276,7 +1320,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                   {{((item.FathercompanyName!=null && (item.FathercompanyName!=\"\")?item.FathercompanyName:\"NotSpecified\"))\r" +
     "\n" +
-    "                                        +\" \"+((item.FatherJoblocation!=null && (item.FatherJoblocation!=\"\")?\",\" +\" \"+item.FatherJoblocation:item.FatherJoblocation))}}\r" +
+    "                                        +\" \"+((item.FatherJoblocation!=null && (item.FatherJoblocation!=\"\")?\",\" +\" \"+item.FatherJoblocation:''))}}\r" +
     "\n" +
     "                            </span>\r" +
     "\n" +
@@ -1540,7 +1584,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <div id=\"mothercompany\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                        <div id=\"mothercompany\" class=\"edit_page_details_item_desc clearfix\" ng-hide=\"item.MotherProfedetails=='HouseWife'\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -1556,7 +1600,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            ((item.MotherJoblocation!=null && (item.MotherJoblocation!=\"\")?\", \"+\" \"+\r" +
     "\n" +
-    "                                            item.MotherJoblocation:item.MotherJoblocation))}}\r" +
+    "                                            item.MotherJoblocation:''))}}\r" +
     "\n" +
     "                                </span>\r" +
     "\n" +
@@ -2492,7 +2536,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <div id=\"divmotherprofesseion\">\r" +
+    "                        <div id=\"divmotherprofesseion\" ng-hide=\"parent.chkbox==true\">\r" +
     "\n" +
     "                            <li id=\"divComLocation\" class=\"clearfix form-group\">\r" +
     "\n" +
@@ -4166,7 +4210,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"reviewdiv\" ng-class=\"item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\" ng-repeat=\"item in propertyArr\">\r" +
     "\n" +
-    "                {{item.reviewstatus}}\r" +
+    "\r" +
     "\n" +
     "                <div>\r" +
     "\n" +
@@ -4242,17 +4286,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "            <hr>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -4338,7 +4372,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                            <input ng-model=\"proObj.txtValueofproperty\" class=\"form-control\" maxlength=\"5\" tabindex=\"3\" />\r" +
+    "                            <input ng-model=\"proObj.txtValueofproperty\" class=\"form-control\" maxlength=\"5\" onkeydown=\"return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));\"\r" +
+    "\n" +
+    "                            />\r" +
     "\n" +
     "                            <span font-bold=\"true\">Lakhs</span>\r" +
     "\n" +
@@ -5996,23 +6032,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"fsObj.ddlFSHStateID\" ddistrict=\"fsObj.ddlFSHDistrictID\"></country-directive>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
+    "                <country-directive countryshow=\"false\" dcountry=\"'1'\" cityshow=\"false\" othercity=\"false\" dstate=\"fsObj.ddlFSHStateID\" ddistrict=\"fsObj.ddlFSHDistrictID\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6358,7 +6378,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <country-directive countryshow=\"false\" cityshow=\"false\" othercity=\"false\" dstate=\"msObj.ddlMSisState\" ddistrict=\"msObj.ddlMsDistrict\"></country-directive>\r" +
+    "                <country-directive countryshow=\"false\" dcountry=\"'1'\" cityshow=\"false\" othercity=\"false\" dstate=\"msObj.ddlMSisState\" ddistrict=\"msObj.ddlMsDistrict\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10174,7 +10194,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller='headctrl'>\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\">\r" +
     "\n" +
     "\r" +
     "\n" +

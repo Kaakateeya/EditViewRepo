@@ -115,7 +115,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
                     scope.parent.txtMName = item.MotherName;
                     scope.parent.txtMEducation = item.MotherEducationDetails;
                     scope.parent.txtMProfession = item.MotherProfedetails;
-                    //scope.parent.chkbox = item.;
+                    scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
                     scope.parent.txtMCompanyName = item.MothercompanyName;
                     scope.parent.txtMJobLocation = item.MotherJoblocation;
 
