@@ -269,7 +269,7 @@
     </div>
     <div class="modal-body" id="modalbodyIDnew">
         <div class="pop_controls_right select-box-my">
-            <select multiselectdropdown ng-model="ddlAstrocity" ng-options="item.value as item.label for item in AstrocityArr" ng-change="changeBind('star',atroObj.ddlstarlanguage);"></select>
+            <select multiselectdropdown ng-model="ddlAstrocity" ng-options="item.value as item.label for item in AstrocityArr" ng-change="AstroCityChange(ddlAstrocity);"></select>
         </div>
     </div>
     <div class="modal-footer">

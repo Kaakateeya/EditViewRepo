@@ -391,15 +391,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(scope.AstroArr);
                 console.log(scope.generateData);
                 console.log((scope.generateData)[0].DateOfBirth);
-
+                alert(scope.AstroArr[0].Horoscopeimage);
                 if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
 
                     var extension = "jpg";
-                    // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
-                    //     extension = "html";
-                    // } else {
-                    //     extension = "jpg";
-                    // }
+                    if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+                        extension = "html";
+                    } else {
+                        extension = "jpg";
+                    }
                     scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                 }
 
@@ -469,7 +469,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
         };
 
-
         scope.upload = function(obj) {
             console.log(obj.myFile);
             var extension = ((obj.myFile.name).split('.'))[1];
@@ -501,30 +500,24 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.generateHoro = function(astrocity) {
-
             var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
-
             var month = check.format('M');
             var day = check.format('D');
             var year = check.format('YYYY');
-            console.log(month);
-            console.log(day);
-            console.log(year);
-            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : '' };
+
+            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
             console.log(JSON.stringify(inputobj));
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
+                    commonFactory.closepopup();
                     window.open('' + response.data + '', '_blank');
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity('', '');
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
-
                 }
-
             });
         };
-
 
         scope.deleteHoroImage = function() {
 
@@ -563,9 +556,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.datagetInStatus = 1;
         });
 
-        scope.AstroCityChange = function() {
-            scope.generateHoro();
-
+        scope.AstroCityChange = function(val) {
+            scope.generateHoro(val);
         };
 
     }
@@ -599,7 +591,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
                 item.ImageUrl = path1;
                 item.addButtonvisible = false;
-                item.deleteVisibility = true;
+
                 item.keyname = strCustDirName1 + "/" + item.PhotoName;
                 //dynDiv.Attributes.Add("Class", "cssMaskdiv clearfix");
 
@@ -607,7 +599,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
                 var strCustDirName = "KMPL_" + CustID + "_Images";
                 item.addButtonvisible = false;
-                item.deleteVisibility = true;
+
                 switch (item.DisplayOrder) {
                     case 1:
                         var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
@@ -630,7 +622,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 }
             } else if (item.IsActive === 0 && item.PhotoName === null) {
                 item.addButtonvisible = true;
-                item.deleteVisibility = false;
+
 
                 item.ImageUrl = genderID === '1' || genderID === 1 ? editviewapp.Mnoimage : editviewapp.Fnoimage;
             }
@@ -734,7 +726,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             console.log(response.data);
 
             if (response.data === 1) {
-                commonFactory.closepopup();
                 scope.getData();
             }
         });
@@ -4190,7 +4181,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"changeBind('star',atroObj.ddlstarlanguage);\"></select>\r" +
+    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"AstroCityChange(ddlAstrocity);\"></select>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -4273,7 +4264,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                            <a href=\"javascript:void(0);\" ng-show=\"{{item.deleteVisibility}}\" ng-click=\"DeleteImage(item.keyname,item.Cust_Photos_ID);\">\r" +
+    "                                            <a href=\"javascript:void(0);\" ng-show=\"{{item.IsMain==1?false:(item.PhotoName!=null?true:false)}}\" ng-click=\"DeleteImage(item.keyname,item.Cust_Photos_ID);\">\r" +
     "\n" +
     "                                                <ng-md-icon icon=\"delete\" style=\"fill:#665454\" size=\"25\">Delete</ng-md-icon>\r" +
     "\n" +
@@ -12794,7 +12785,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"width:515px;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
+    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"max-width:515px;width:100%;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
     "\n" +
     "\r" +
     "\n" +

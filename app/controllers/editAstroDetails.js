@@ -83,15 +83,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(scope.AstroArr);
                 console.log(scope.generateData);
                 console.log((scope.generateData)[0].DateOfBirth);
-
+                alert(scope.AstroArr[0].Horoscopeimage);
                 if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
 
                     var extension = "jpg";
-                    // if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
-                    //     extension = "html";
-                    // } else {
-                    //     extension = "jpg";
-                    // }
+                    if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+                        extension = "html";
+                    } else {
+                        extension = "jpg";
+                    }
                     scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                 }
 
@@ -161,7 +161,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
         };
 
-
         scope.upload = function(obj) {
             console.log(obj.myFile);
             var extension = ((obj.myFile.name).split('.'))[1];
@@ -193,30 +192,24 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.generateHoro = function(astrocity) {
-
             var check = moment((scope.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
-
             var month = check.format('M');
             var day = check.format('D');
             var year = check.format('YYYY');
-            console.log(month);
-            console.log(day);
-            console.log(year);
-            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : '' };
+
+            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
             console.log(JSON.stringify(inputobj));
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
+                    commonFactory.closepopup();
                     window.open('' + response.data + '', '_blank');
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity('', '');
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
-
                 }
-
             });
         };
-
 
         scope.deleteHoroImage = function() {
 
@@ -255,9 +248,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.datagetInStatus = 1;
         });
 
-        scope.AstroCityChange = function() {
-            scope.generateHoro();
-
+        scope.AstroCityChange = function(val) {
+            scope.generateHoro(val);
         };
 
     }

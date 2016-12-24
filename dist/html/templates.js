@@ -746,7 +746,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"changeBind('star',atroObj.ddlstarlanguage);\"></select>\r" +
+    "            <select multiselectdropdown ng-model=\"ddlAstrocity\" ng-options=\"item.value as item.label for item in AstrocityArr\" ng-change=\"AstroCityChange(ddlAstrocity);\"></select>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -829,7 +829,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                            <a href=\"javascript:void(0);\" ng-show=\"{{item.deleteVisibility}}\" ng-click=\"DeleteImage(item.keyname,item.Cust_Photos_ID);\">\r" +
+    "                                            <a href=\"javascript:void(0);\" ng-show=\"{{item.IsMain==1?false:(item.PhotoName!=null?true:false)}}\" ng-click=\"DeleteImage(item.keyname,item.Cust_Photos_ID);\">\r" +
     "\n" +
     "                                                <ng-md-icon icon=\"delete\" style=\"fill:#665454\" size=\"25\">Delete</ng-md-icon>\r" +
     "\n" +
@@ -9350,7 +9350,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"width:515px;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
+    "                                <textarea ng-model=\"edoObj.txtEdumerits\" maxlength=\"500\" rows=\"4\" cols=\"20\" style=\"max-width:515px;width:100%;\" tabindex=\"12\" onkeydown=\"return CharacterCountedu()\" onkeyup=\"return CharacterCountedu()\"></textarea>\r" +
     "\n" +
     "\r" +
     "\n" +

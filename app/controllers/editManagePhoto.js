@@ -27,7 +27,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
                 item.ImageUrl = path1;
                 item.addButtonvisible = false;
-                item.deleteVisibility = true;
+
                 item.keyname = strCustDirName1 + "/" + item.PhotoName;
                 //dynDiv.Attributes.Add("Class", "cssMaskdiv clearfix");
 
@@ -35,7 +35,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
                 var strCustDirName = "KMPL_" + CustID + "_Images";
                 item.addButtonvisible = false;
-                item.deleteVisibility = true;
+
                 switch (item.DisplayOrder) {
                     case 1:
                         var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
@@ -58,7 +58,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 }
             } else if (item.IsActive === 0 && item.PhotoName === null) {
                 item.addButtonvisible = true;
-                item.deleteVisibility = false;
+
 
                 item.ImageUrl = genderID === '1' || genderID === 1 ? editviewapp.Mnoimage : editviewapp.Fnoimage;
             }
@@ -162,7 +162,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             console.log(response.data);
 
             if (response.data === 1) {
-                commonFactory.closepopup();
                 scope.getData();
             }
         });
