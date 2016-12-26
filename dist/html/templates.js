@@ -2292,9 +2292,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstAboutMyFamily\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                <div id=\"Div3\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div3\" ng-class=\"AboutFamilyReviewStatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -3811,7 +3809,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste{{partnerObj.lstCaste}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
@@ -10772,9 +10770,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "    \r" +
-    "\n" +
-    "    .header_inner {\r" +
+    "    /*.header_inner {\r" +
     "\n" +
     "        margin-bottom: 2%;\r" +
     "\n" +
@@ -10794,7 +10790,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        width: 72%;\r" +
     "\n" +
-    "    }\r" +
+    "    }*/\r" +
     "\n" +
     "</style>"
   );

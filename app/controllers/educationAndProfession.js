@@ -117,7 +117,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         });
         editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
-            console.log(scope.ProfessionSelectArray);
+
         });
         scope.lblaboutUrself = null;
         editviewServices.getAboutData(custID).then(function(response) {

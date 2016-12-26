@@ -13,12 +13,16 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
             scope.options = [];
 
             scope.databind = function(data) {
+                scope.status = 'multiple' in attrs;
+                if (scope.status === true && data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
+
+                    data.splice(0, 1);
+                }
                 element.multiselect('dataprovider', data);
 
                 timeout(function() {
                     element.multiselect('select', scope.ngModel);
                 }, 500);
-
 
             };
             timeout(function() {

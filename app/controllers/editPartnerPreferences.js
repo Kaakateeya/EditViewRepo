@@ -37,32 +37,38 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.partnerPrefArr = response.data;
         console.log(scope.partnerPrefArr);
     });
+    scope.removeSelect = function(data) {
+        if (data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
+            data.splice(0, 1);
+        }
 
+        return data;
+    };
     scope.changeBind = function(type, parentval, parentval2) {
 
         switch (type) {
             case 'Country':
-                scope.stateArr = commonFactory.StateBind(commonFactory.listSelectedVal(parentval));
+                scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'EducationCatgory':
-                scope.eduGroupArr = commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval));
+                scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'caste':
-                scope.casteArr = commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2));
+                scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2)));
                 break;
 
             case 'subCaste':
-                scope.subCasteArr = commonFactory.subCaste(commonFactory.listSelectedVal(parentval));
+                scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'star':
-                scope.starArr = commonFactory.starBind(commonFactory.listSelectedVal(parentval));
+                scope.starArr = scope.removeSelect(commonFactory.starBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'region':
-                scope.branchArr = commonFactory.branch(commonFactory.listSelectedVal(parentval));
+                scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(parentval)));
                 break;
         }
     };
@@ -83,10 +89,10 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
         scope.partnerObj = {};
         if (item !== undefined) {
-            scope.casteArr = commonFactory.casteDepedency(item.religionid, item.MotherTongueID);
-            scope.stateArr = commonFactory.StateBind(item.CountryID);
-            scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
-            scope.starArr = commonFactory.starBind(item.StarLanguageID);
+            scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
+            scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
+            scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
+            scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
             scope.partnerObj.intCusID = item.intCusID;
             scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
 

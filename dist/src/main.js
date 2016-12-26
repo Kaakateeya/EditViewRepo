@@ -391,7 +391,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(scope.AstroArr);
                 console.log(scope.generateData);
                 console.log((scope.generateData)[0].DateOfBirth);
-                alert(scope.AstroArr[0].Horoscopeimage);
+
                 if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
 
                     var extension = "jpg";
@@ -778,18 +778,18 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.aboutFamilyObj = {};
     scope.dcountry = '1';
     scope.parentArr = [];
-
+    scope.AboutFamilyReviewStatus = null;
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
 
     scope.parentBindData = function(icustID) {
         parentServices.getParentData(icustID).then(function(response) {
             scope.parentArr = JSON.parse(response.data[0]);
             scope.addressArr = JSON.parse(response.data[1]);
             scope.physicalArr = JSON.parse(response.data[2]);
-            console.log(scope.parentArr);
+            scope.AboutFamily = JSON.parse(response.data[3]);
+            scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
         });
     };
 
@@ -1242,32 +1242,38 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.partnerPrefArr = response.data;
         console.log(scope.partnerPrefArr);
     });
+    scope.removeSelect = function(data) {
+        if (data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
+            data.splice(0, 1);
+        }
 
+        return data;
+    };
     scope.changeBind = function(type, parentval, parentval2) {
 
         switch (type) {
             case 'Country':
-                scope.stateArr = commonFactory.StateBind(commonFactory.listSelectedVal(parentval));
+                scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'EducationCatgory':
-                scope.eduGroupArr = commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval));
+                scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'caste':
-                scope.casteArr = commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2));
+                scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2)));
                 break;
 
             case 'subCaste':
-                scope.subCasteArr = commonFactory.subCaste(commonFactory.listSelectedVal(parentval));
+                scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'star':
-                scope.starArr = commonFactory.starBind(commonFactory.listSelectedVal(parentval));
+                scope.starArr = scope.removeSelect(commonFactory.starBind(commonFactory.listSelectedVal(parentval)));
                 break;
 
             case 'region':
-                scope.branchArr = commonFactory.branch(commonFactory.listSelectedVal(parentval));
+                scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(parentval)));
                 break;
         }
     };
@@ -1288,10 +1294,10 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
         scope.partnerObj = {};
         if (item !== undefined) {
-            scope.casteArr = commonFactory.casteDepedency(item.religionid, item.MotherTongueID);
-            scope.stateArr = commonFactory.StateBind(item.CountryID);
-            scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
-            scope.starArr = commonFactory.starBind(item.StarLanguageID);
+            scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
+            scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
+            scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
+            scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
             scope.partnerObj.intCusID = item.intCusID;
             scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
 
@@ -2563,7 +2569,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         });
         editviewServices.getProfessionData(custID).then(function(response) {
             scope.ProfessionSelectArray = response.data;
-            console.log(scope.ProfessionSelectArray);
+
         });
         scope.lblaboutUrself = null;
         editviewServices.getAboutData(custID).then(function(response) {
@@ -5727,9 +5733,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div id=\"lstAboutMyFamily\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                <div id=\"Div3\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                <div id=\"Div3\" ng-class=\"AboutFamilyReviewStatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'\">\r" +
     "\n" +
     "                    <div>\r" +
     "\n" +
@@ -7246,7 +7250,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste{{partnerObj.lstCaste}}<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
@@ -14207,9 +14211,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "    \r" +
-    "\n" +
-    "    .header_inner {\r" +
+    "    /*.header_inner {\r" +
     "\n" +
     "        margin-bottom: 2%;\r" +
     "\n" +
@@ -14229,7 +14231,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        width: 72%;\r" +
     "\n" +
-    "    }\r" +
+    "    }*/\r" +
     "\n" +
     "</style>"
   );

@@ -13,18 +13,18 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices', '
     scope.aboutFamilyObj = {};
     scope.dcountry = '1';
     scope.parentArr = [];
-
+    scope.AboutFamilyReviewStatus = null;
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
 
     scope.parentBindData = function(icustID) {
         parentServices.getParentData(icustID).then(function(response) {
             scope.parentArr = JSON.parse(response.data[0]);
             scope.addressArr = JSON.parse(response.data[1]);
             scope.physicalArr = JSON.parse(response.data[2]);
-            console.log(scope.parentArr);
+            scope.AboutFamily = JSON.parse(response.data[3]);
+            scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
         });
     };
 
