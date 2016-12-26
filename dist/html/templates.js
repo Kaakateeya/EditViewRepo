@@ -10770,7 +10770,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    }\r" +
     "\n" +
-    "    /*.header_inner {\r" +
+    "    \r" +
+    "\n" +
+    "    .header_inner {\r" +
     "\n" +
     "        margin-bottom: 2%;\r" +
     "\n" +
@@ -10790,7 +10792,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        width: 72%;\r" +
     "\n" +
-    "    }*/\r" +
+    "    }\r" +
     "\n" +
     "</style>"
   );
