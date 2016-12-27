@@ -26,7 +26,7 @@ editviewapp.BucketName = 'angularkaknew';
  * Configure the Routes
  */
 
-editviewapp.config(function($stateProvider, $urlRouterProvider) {
+editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     var states = [
         { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
         { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
@@ -62,6 +62,7 @@ editviewapp.config(function($stateProvider, $urlRouterProvider) {
             url: item.url,
             views: innerView
         })
+        $locationProvider.html5Mode(true);
     });
 });
 
@@ -74,4 +75,40 @@ editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'aut
         scope.imgsrc = authSvc.getprofilepic();
     });
 
+    scope.unreviewedLinks = function() {
+
+        personalDetailsService.menuReviewstatus(CustID).then(function(response) {
+            scope.menuReviewdata = JSON.parse(response.data);
+            _.each(scope.menuReviewdata, function(item) {
+                var SectionID = item.SectionID;
+                if (SectionID === 11 || SectionID === 12 || SectionID === 13 || SectionID == 15) {
+                    scope.lnkparentsReview = true;
+                }
+                if (SectionID === 14 || SectionID === 25 || SectionID === 26) {
+                    scope.lnksiblingsReview = true;
+                }
+                if (SectionID === 27 || SectionID === 28 || SectionID === 32 || SectionID === 33) {
+                    scope.lnkrelativesReview = true;
+                }
+                if (SectionID === 6 || SectionID === 7 || SectionID === 8) {
+                    scope.lnkeducationandprofReview = true;
+                }
+                if (SectionID === 16 || SectionID === 22) {
+                    scope.lnkpartnerReview = true;
+                }
+                if (SectionID === 23) {
+                    scope.lnkastroReview = true;
+                }
+                if (SectionID === 29) {
+                    scope.lnkreferenceReview = true;
+                }
+                if (SectionID === 34) {
+                    scope.lnkpropertyReview = true;
+                }
+            });
+        });
+
+
+    };
+    scope.unreviewedLinks();
 }]);

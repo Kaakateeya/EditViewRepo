@@ -121,8 +121,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         });
         scope.lblaboutUrself = null;
         editviewServices.getAboutData(custID).then(function(response) {
-            scope.lblaboutUrself = response.data;
-
+            var AboutData = (response.data).split(';');
+            scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+            scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
         });
     };
     scope.getdata();

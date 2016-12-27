@@ -85,9 +85,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log((scope.generateData)[0].DateOfBirth);
 
                 if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-
                     var extension = "jpg";
-                    if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html')) {
+
+                    if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                         extension = "html";
                     } else {
                         extension = "jpg";
@@ -250,6 +250,10 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.AstroCityChange = function(val) {
             scope.generateHoro(val);
+        };
+
+        scope.vewHoro = function() {
+            commonFactory.open('AstroimagePopup.html', scope, uibModal);
         };
 
     }
