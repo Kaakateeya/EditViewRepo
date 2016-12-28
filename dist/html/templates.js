@@ -546,7 +546,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
     "                    <label for=\"lblMaternalgothram\" class=\"pop_label_left\">Maternal gothram</label>\r" +
     "\n" +
@@ -558,33 +558,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblManglikKuja dosham\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix form-group\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                    <input ng-model=\"atroObj.rdlkujaDosham\" value=\"0\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                        <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"atroObj.rdlkujaDosham\" value=\"1\" type=\"radio\"><span>&nbsp;No</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                        <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"atroObj.rdlkujaDosham\" value=\"2\" type=\"radio\"><span>&nbsp;Dont't Know</span>\r" +
-    "\n" +
-    "                </label>\r" +
+    "                    <label for=\"lblManglikKujadosham\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rdlkujaDosham\" layout=\"row\" ng-model=\"atroObj.rdlkujaDosham\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"0\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"1\"> No </md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"2\"> Dont't Know </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -3765,11 +3757,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul id=\"divclear\">\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
     "                    <label for=\"lblGender\" class=\"pop_label_left\">Gender</label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -3779,7 +3771,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <input ng-model=\"partnerObj.rbtlGender\" value=\"2\" type=\"radio\"><span>&nbsp;Female</span></label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rbtlGender\" layout=\"row\" ng-model=\"partnerObj.rbtlGender\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"1\" class=\"md-primary\">Male</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"2\">Female </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -4001,11 +4007,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblDiet\" class=\"pop_label_left\">Diet</label>\r" +
+    "                    <label for=\"lblDiet\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Diet</label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -4019,17 +4025,35 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <input ng-model=\"partnerObj.rbtDiet\" value=\"29\" type=\"radio\"><span>&nbsp;Both</span></label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rbtDiet\" layout=\"row\" ng-model=\"partnerObj.rbtDiet\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"27\" class=\"md-primary\">Veg</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"28\"> Non Veg </md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"29\"> Both </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblManglik\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
+    "                    <label for=\"lblManglik\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -4043,19 +4067,31 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <input ng-model=\"partnerObj.rbtManglikKujadosham\" value=\"2\" type=\"radio\"><span>&nbsp;Does Not Matter</span></label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rbtManglikKujadosham\" layout=\"row\" ng-model=\"partnerObj.rbtManglikKujadosham\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"0\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"1\">No </md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"2\"> Does Not Matter </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblPreferredstar\" class=\"pop_label_left\">Preferred star Language</label>\r" +
+    "                    <label for=\"lblPreferredstar\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Preferred star Language</label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -4071,21 +4107,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
     "\n" +
-    "\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rbtPreferredstarLanguage\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstarLanguage\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"1\" class=\"md-primary\">Telugu</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"2\">Tamil </md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"3\">Kannada</md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                    <label for=\"\" class=\"pop_label_left\">Star Preference</label>\r" +
+    "                    <label for=\"\" class=\"pop_label_left\" style=\"padding-top: 2%;\">Star Preference</label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -4095,7 +4143,23 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <input ng-model=\"partnerObj.rbtPreferredstars\" value=\"1\" type=\"radio\"><span>&nbsp;NonPreferredstars</span></label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group name=\"rbtPreferredstars\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstars\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"0\" class=\"md-primary\">Preferredstars</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"1\">NonPreferredstars </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -4356,11 +4420,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
-    "                    <li class=\"clearfix form-group\">\r" +
+    "                    <li class=\"clearfix\">\r" +
     "\n" +
-    "                        <label for=\"lblSharedProperty\" class=\"pop_label_left\">Is shared property</label>\r" +
+    "                        <label for=\"lblSharedProperty\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Is shared property</label>\r" +
     "\n" +
-    "                        <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                        <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4376,7 +4440,23 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        </div>\r" +
+    "                        </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                            <md-radio-group name=\"rdlSharedProperty\" layout=\"row\" ng-model=\"proObj.rdlSharedProperty\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                                <md-radio-button value=\"0\"> No </md-radio-button>\r" +
+    "\n" +
+    "                            </md-radio-group>\r" +
+    "\n" +
+    "                        </md-input-container>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                    </li>\r" +
     "\n" +
@@ -5830,27 +5910,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul id=\"ulFatherBrother\">\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"ElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <label for=\"ElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <label>\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "                <input ng-model=\"fbObj.rdlFBElderORyounger\" value=\"324\" type=\"radio\"><span>&nbsp;Elder</span>\r" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlFBElderORyounger\" layout=\"row\" ng-model=\"fbObj.rdlFBElderORyounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "            </label>\r" +
+    "                            <md-radio-button value=\"324\" class=\"md-primary\">Elder</md-radio-button>\r" +
     "\n" +
-    "                        <label class=\"\">\r" +
+    "                            <md-radio-button value=\"323\"> Younger </md-radio-button>\r" +
     "\n" +
-    "                <input ng-model=\"fbObj.rdlFBElderORyounger\" value=\"323\" type=\"radio\"><span>&nbsp;Younger</span>\r" +
+    "                        </md-radio-group>\r" +
     "\n" +
-    "            </label>\r" +
+    "                        <div ng-messages=\"FBForm.rdlFBElderORyounger.$invalid\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                            <div ng-if=\"FBForm.rdlFBElderORyounger.$invalid && (FBForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -5968,11 +6050,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"FSElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"FSElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -5986,9 +6068,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </label>\r" +
     "\n" +
+    "                    </div>-->\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlFSElderYounger\" layout=\"row\" ng-model=\"fsObj.rdlFSElderYounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"326\" class=\"md-primary\">Elder</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"325\"> Younger </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                        <div ng-messages=\"FSForm.rdlFSElderYounger.$invalid\">\r" +
+    "\n" +
+    "                            <div ng-if=\"FSForm.rdlFSElderYounger.$invalid && (FSForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
+    "\n" +
     "\r" +
     "\n" +
-    "                    </div>\r" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -6162,15 +6264,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul id=\"ulmotherbrother\">\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                    <label for=\"MotherElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"MotherElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -6184,7 +6286,27 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlMBElderYounger\" layout=\"row\" ng-model=\"mbObj.rdlMBElderYounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"328\" class=\"md-primary\">Elder</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"327\"> Younger </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                        <div ng-messages=\"MBForm.rdlMBElderYounger.$invalid\">\r" +
+    "\n" +
+    "                            <div ng-if=\"MBForm.rdlMBElderYounger.$invalid && (MBForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6320,29 +6442,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul id=\"ulmothersister\">\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"MsElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <label for=\"MsElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <label>\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "                <input ng-model=\"msObj.rdlMSElderYounger\" value=\"330\" type=\"radio\"><span>&nbsp;Elder</span>\r" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlMSElderYounger\" layout=\"row\" ng-model=\"msObj.rdlMSElderYounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "            </label>\r" +
+    "                            <md-radio-button value=\"330\" class=\"md-primary\">Elder</md-radio-button>\r" +
     "\n" +
-    "                        <label class=\"\">\r" +
+    "                            <md-radio-button value=\"329\"> Younger </md-radio-button>\r" +
     "\n" +
-    "                <input ng-model=\"msObj.rdlMSElderYounger\" value=\"329\" type=\"radio\"><span>&nbsp;Younger</span>\r" +
+    "                        </md-radio-group>\r" +
     "\n" +
-    "            </label>\r" +
+    "                        <div ng-messages=\"MSForm.rdlMSElderYounger.$invalid\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                            <div ng-if=\"MSForm.rdlMSElderYounger.$invalid && (MSForm.$submitted)\">This field is required.</div>\r" +
     "\n" +
-    "\r" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -6400,15 +6522,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                <country-directive countryshow=\"false\" dcountry=\"'1'\" cityshow=\"false\" othercity=\"false\" dstate=\"msObj.ddlMSisState\" ddistrict=\"msObj.ddlMsDistrict\"></country-directive>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6418,19 +6532,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                        <input ng-model=\"msObj.txtMSNativePlace\" class=\"form-control\" tabindex=\"7\" maxlength=\"100\" />\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                    </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -8067,11 +8171,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                    <label for=\"lblElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
     "                        <label>\r" +
     "\n" +
@@ -8085,7 +8189,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </label>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\n" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlBElderYounger\" layout=\"row\" ng-model=\"broObj.rdlBElderYounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                            <md-radio-button value=\"42\" class=\"md-primary\">Elder</md-radio-button>\r" +
+    "\n" +
+    "                            <md-radio-button value=\"41\"> Younger </md-radio-button>\r" +
+    "\n" +
+    "                        </md-radio-group>\r" +
+    "\n" +
+    "                        <div ng-messages=\"brotherForm.rdlBElderYounger.$invalid\">\r" +
+    "\n" +
+    "                            <div ng-if=\"brotherForm.rdlBElderYounger.$invalid && (brotherForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -8165,25 +8295,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblIsMarried\" class=\"pop_label_left\">Married<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <label for=\"lblIsMarried\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Married<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <label>\r" +
+    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"1\" type=\"radio\" ng-change=\"BIsMarried(broObj.rdlBIsMarried);\"><span>&nbsp;Yes</span>\r" +
+    "                        <md-radio-group ng-required=\"true\" name=\"rdlBIsMarried\" ng-change=\"BIsMarried(broObj.rdlBIsMarried);\" layout=\"row\" ng-model=\"broObj.rdlBIsMarried\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "            </label>\r" +
+    "                            <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                        <label class=\"\">\r" +
+    "                            <md-radio-button value=\"0\"> No </md-radio-button>\r" +
     "\n" +
-    "                <input ng-model=\"broObj.rdlBIsMarried\" value=\"0\" type=\"radio\" ng-change=\"BIsMarried(broObj.rdlBIsMarried);\"><span>&nbsp;No</span>\r" +
+    "                        </md-radio-group>\r" +
     "\n" +
-    "            </label>\r" +
+    "                        <div ng-messages=\"brotherForm.rdlBIsMarried.$invalid\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                            <div ng-if=\"brotherForm.rdlBIsMarried.$invalid && (brotherForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </md-input-container>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -8387,7 +8521,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"sisterModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"aboutForm\" novalidate role=\"form\" ng-submit=\"sibSisSubmit(sisObj)\">\r" +
+    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibSisSubmit(sisObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -8407,25 +8541,31 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <ul id=\"ulsibilingsister\">\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblElderYounger\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
-    "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                    <label for=\"lblElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <label>\r" +
+    "                    <div class=\"radio-group-my\">\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rbtSElderyounger\" value=\"322\" type=\"radio\"><span>&nbsp;Elder</span>\r" +
+    "                        <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "            </label>\r" +
+    "                            <md-radio-group ng-required=\"true\" name=\"rbtSElderyounger\" layout=\"row\" ng-model=\"sisObj.rbtSElderyounger\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                        <label class=\"\">\r" +
+    "                                <md-radio-button value=\"322\" class=\"md-primary\">Elder</md-radio-button>\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rbtSElderyounger\" value=\"321\" type=\"radio\"><span>&nbsp;Younger</span>\r" +
+    "                                <md-radio-button value=\"321\"> Younger </md-radio-button>\r" +
     "\n" +
-    "            </label>\r" +
+    "                            </md-radio-group>\r" +
+    "\n" +
+    "                            <div ng-messages=\"sibsisForm.rbtSElderyounger.$invalid\">\r" +
+    "\n" +
+    "                                <div ng-if=\"sibsisForm.rbtSElderyounger.$invalid && (sibsisForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </md-input-container>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8519,23 +8659,31 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix\">\r" +
     "\n" +
     "                    <label for=\"lblIsMarried\" class=\"pop_label_left\">Is Married<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "\r" +
     "\n" +
-    "                        <label>\r" +
+    "                    <div class=\"radio-group-my\">\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"1\" type=\"radio\" ng-change=\"SIsMarried(sisObj.rdlSIsMarried);\"><span>&nbsp;Yes</span>\r" +
+    "                        <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "            </label>\r" +
+    "                            <md-radio-group ng-required=\"true\" name=\"rdlSIsMarried\" layout=\"row\" ng-change=\"SIsMarried(sisObj.rdlSIsMarried);\" ng-model=\"sisObj.rdlSIsMarried\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                        <label class=\"\">\r" +
+    "                                <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                <input ng-model=\"sisObj.rdlSIsMarried\" value=\"0\" type=\"radio\" ng-change=\"SIsMarried(sisObj.rdlSIsMarried);\"><span>&nbsp;No</span>\r" +
+    "                                <md-radio-button value=\"0\"> No </md-radio-button>\r" +
     "\n" +
-    "            </label>\r" +
+    "                            </md-radio-group>\r" +
+    "\n" +
+    "                            <div ng-messages=\"sibsisForm.rdlSIsMarried.$invalid\">\r" +
+    "\n" +
+    "                                <div ng-if=\"sibsisForm.rdlSIsMarried.$invalid && (sibsisForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </md-input-container>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -9266,17 +9414,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <ul id=\"uleducation\" class='modal-body clearfix pop_content_my'>\r" +
     "\n" +
-    "                        <li class=\"clearfix form-group\">\r" +
+    "                        <li class=\"clearfix\">\r" +
     "\n" +
-    "                            <label for=\"lblIsHighestDegree\" class=\"pop_label_left\">Is Highest Degree<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                            <label for=\"lblIsHighestDegree\" class=\"pop_label_left\" style=\"padding-top: 2%;\">Is Highest Degree<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                            <div class=\"radio-group-my input-group\">\r" +
+    "                            <div class=\"radio-group-my\">\r" +
     "\n" +
-    "                                <label><input ng-model=\"edoObj.IsHighestDegree\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span> </label>\r" +
+    "                                <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
-    "                                <label class=\"\"><input ng-model=\"edoObj.IsHighestDegree\" value=\"0\" type=\"radio\"><span>&nbsp;No</span></label>\r" +
+    "                                    <md-radio-group ng-required=\"true\" name=\"IsHighestDegree\" layout=\"row\" ng-model=\"edoObj.IsHighestDegree\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                        <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                                        <md-radio-button value=\"2\"> No </md-radio-button>\r" +
+    "\n" +
+    "                                    </md-radio-group>\r" +
+    "\n" +
+    "                                    <div ng-messages=\"eduForm.IsHighestDegree.$invalid\">\r" +
+    "\n" +
+    "                                        <div ng-if=\"eduForm.IsHighestDegree.$invalid && (eduForm.$submitted)\">This field is required.</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </md-input-container>\r" +
     "\n" +
     "                            </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -10765,8 +10929,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                </li>\r" +
     "\n" +
     "                <li>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +

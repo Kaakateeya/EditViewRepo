@@ -76,9 +76,9 @@
                             <select multiselectdropdown ng-model="proObj.ddlFamilyStatus" typeofdata="familyStatus"></select>
                         </div>
                     </li>
-                    <li class="clearfix form-group">
-                        <label for="lblSharedProperty" class="pop_label_left">Is shared property</label>
-                        <div class="pop_controls_right pop_radios_list">
+                    <li class="clearfix">
+                        <label for="lblSharedProperty" style="padding-top: 2%;" class="pop_label_left">Is shared property</label>
+                        <!--<div class="pop_controls_right pop_radios_list">
 
                             <label class="">
                 <input ng-model="proObj.rdlSharedProperty" value="1" type="radio" checked><span>&nbsp;Yes</span>
@@ -86,7 +86,15 @@
                             <label class=""><input ng-model="proObj.rdlSharedProperty" value="0" type="radio"><span>&nbsp;No</span>
             </label>
 
-                        </div>
+                        </div>-->
+
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group name="rdlSharedProperty" layout="row" ng-model="proObj.rdlSharedProperty" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="0"> No </md-radio-button>
+                            </md-radio-group>
+                        </md-input-container>
+
                     </li>
                     <li class="clearfix form-group" style="display: none;">
                         <label for="lblQuantity" class="pop_label_left">Quantity</label>

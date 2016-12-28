@@ -755,16 +755,29 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
-                <li class="clearfix form-group">
-                    <label for="lblElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                <li class="clearfix">
+                    <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+                    <!--<div class="pop_controls_right pop_radios_list">
                         <label>
                 <input ng-model="broObj.rdlBElderYounger" value="42" type="radio"><span>&nbsp;Elder</span>
             </label>
                         <label class="">
                 <input ng-model="broObj.rdlBElderYounger" value="41" type="radio"><span>&nbsp;Younger</span>
             </label>
-                    </div>
+                    </div>-->
+
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlBElderYounger" layout="row" ng-model="broObj.rdlBElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="42" class="md-primary">Elder</md-radio-button>
+                            <md-radio-button value="41"> Younger </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="brotherForm.rdlBElderYounger.$invalid">
+                            <div ng-if="brotherForm.rdlBElderYounger.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
+
+
+
                 </li>
                 <li class="clearfix form-group">
                     <label for="lblBroName" class="pop_label_left">Name<span style="color: red; margin-left: 3px;">*</span></label>
@@ -804,16 +817,18 @@
 
 
                 <li class="clearfix form-group">
-                    <label for="lblIsMarried" class="pop_label_left">Married<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                    <label for="lblIsMarried" style="padding-top: 2%;" class="pop_label_left">Married<span style="color: red; margin-left: 3px;">*</span></label>
 
-                        <label>
-                <input ng-model="broObj.rdlBIsMarried" value="1" type="radio" ng-change="BIsMarried(broObj.rdlBIsMarried);"><span>&nbsp;Yes</span>
-            </label>
-                        <label class="">
-                <input ng-model="broObj.rdlBIsMarried" value="0" type="radio" ng-change="BIsMarried(broObj.rdlBIsMarried);"><span>&nbsp;No</span>
-            </label>
-                    </div>
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlBIsMarried" ng-change="BIsMarried(broObj.rdlBIsMarried);" layout="row" ng-model="broObj.rdlBIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="0"> No </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="brotherForm.rdlBIsMarried.$invalid">
+                            <div ng-if="brotherForm.rdlBIsMarried.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
+
                 </li>
                 <div ng-if="broObj.rdlBIsMarried==1">
                     <li class="clearfix form-group">
@@ -915,7 +930,7 @@
 </script>
 
 <script type="text/ng-template" id="sisterModalContent.html">
-    <form name="aboutForm" novalidate role="form" ng-submit="sibSisSubmit(sisObj)">
+    <form name="sibsisForm" novalidate role="form" ng-submit="sibSisSubmit(sisObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Sister details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -925,16 +940,19 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulsibilingsister">
-                <li class="clearfix form-group">
-                    <label for="lblElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                <li class="clearfix">
+                    <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
 
-                        <label>
-                <input ng-model="sisObj.rbtSElderyounger" value="322" type="radio"><span>&nbsp;Elder</span>
-            </label>
-                        <label class="">
-                <input ng-model="sisObj.rbtSElderyounger" value="321" type="radio"><span>&nbsp;Younger</span>
-            </label>
+                    <div class="radio-group-my">
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rbtSElderyounger" layout="row" ng-model="sisObj.rbtSElderyounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="322" class="md-primary">Elder</md-radio-button>
+                                <md-radio-button value="321"> Younger </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="sibsisForm.rbtSElderyounger.$invalid">
+                                <div ng-if="sibsisForm.rbtSElderyounger.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
                     </div>
                 </li>
                 <li class="clearfix form-group">
@@ -981,15 +999,19 @@
                 <contact-directive emailhide="true" dmobile="sisObj.ddlSMobileCountyCodeID" strmobile="sisObj.txtSMobileNumber" dalternative="sisObj.ddlSMobileCountyCodeID2" stralternative="sisObj.txtSMobileNumber2" dland="sisObj.ddlSLandLineCountryCodeID" strareacode="sisObj.txtSAreacoude"
                     strland="sisObj.txtSNumber" strmail="sisObj.txtSEmails"></contact-directive>
 
-                <li class="clearfix form-group">
+                <li class="clearfix">
                     <label for="lblIsMarried" class="pop_label_left">Is Married<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
-                        <label>
-                <input ng-model="sisObj.rdlSIsMarried" value="1" type="radio" ng-change="SIsMarried(sisObj.rdlSIsMarried);"><span>&nbsp;Yes</span>
-            </label>
-                        <label class="">
-                <input ng-model="sisObj.rdlSIsMarried" value="0" type="radio" ng-change="SIsMarried(sisObj.rdlSIsMarried);"><span>&nbsp;No</span>
-            </label>
+
+                    <div class="radio-group-my">
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rdlSIsMarried" layout="row" ng-change="SIsMarried(sisObj.rdlSIsMarried);" ng-model="sisObj.rdlSIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="0"> No </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="sibsisForm.rdlSIsMarried.$invalid">
+                                <div ng-if="sibsisForm.rdlSIsMarried.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
                     </div>
                 </li>
 

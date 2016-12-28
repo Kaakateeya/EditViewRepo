@@ -203,12 +203,20 @@
                 </div>
                 <div class="modal-body" id="modal-body">
                     <ul id="uleducation" class='modal-body clearfix pop_content_my'>
-                        <li class="clearfix form-group">
-                            <label for="lblIsHighestDegree" class="pop_label_left">Is Highest Degree<span style="color: red; margin-left: 3px;">*</span></label>
-                            <div class="radio-group-my input-group">
-                                <label><input ng-model="edoObj.IsHighestDegree" value="1" type="radio"><span>&nbsp;Yes</span> </label>
-                                <label class=""><input ng-model="edoObj.IsHighestDegree" value="0" type="radio"><span>&nbsp;No</span></label>
+                        <li class="clearfix">
+                            <label for="lblIsHighestDegree" class="pop_label_left" style="padding-top: 2%;">Is Highest Degree<span style="color: red; margin-left: 3px;">*</span></label>
+                            <div class="radio-group-my">
+                                <md-input-container style="font-weight: 700;color:black;">
+                                    <md-radio-group ng-required="true" name="IsHighestDegree" layout="row" ng-model="edoObj.IsHighestDegree" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        <md-radio-button value="2"> No </md-radio-button>
+                                    </md-radio-group>
+                                    <div ng-messages="eduForm.IsHighestDegree.$invalid">
+                                        <div ng-if="eduForm.IsHighestDegree.$invalid && (eduForm.$submitted)">This field is required.</div>
+                                    </div>
+                                </md-input-container>
                             </div>
+
                         </li>
                         <li class="clearfix form-group">
                             <label for="lbleducationGroup" class="pop_label_left">Education category<span style="color: red; margin-left: 3px;">*</span></label>

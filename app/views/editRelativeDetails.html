@@ -455,17 +455,18 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulFatherBrother">
-                <li class="clearfix form-group">
-                    <label for="ElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                <li class="clearfix">
+                    <label for="ElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
 
-                        <label>
-                <input ng-model="fbObj.rdlFBElderORyounger" value="324" type="radio"><span>&nbsp;Elder</span>
-            </label>
-                        <label class="">
-                <input ng-model="fbObj.rdlFBElderORyounger" value="323" type="radio"><span>&nbsp;Younger</span>
-            </label>
-                    </div>
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlFBElderORyounger" layout="row" ng-model="fbObj.rdlFBElderORyounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="324" class="md-primary">Elder</md-radio-button>
+                            <md-radio-button value="323"> Younger </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="FBForm.rdlFBElderORyounger.$invalid">
+                            <div ng-if="FBForm.rdlFBElderORyounger.$invalid && (FBForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
                 </li>
 
                 <li class="clearfix form-group">
@@ -524,17 +525,27 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
-                <li class="clearfix form-group">
-                    <label for="FSElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                <li class="clearfix">
+                    <label for="FSElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+                    <!--<div class="pop_controls_right pop_radios_list">
                         <label>
                 <input ng-model="fsObj.rdlFSElderYounger" value="326" type="radio"><span>&nbsp;Elder</span>
             </label>
                         <label class="">
                 <input ng-model="fsObj.rdlFSElderYounger" value="325" type="radio"><span>&nbsp;Younger</span>
             </label>
+                    </div>-->
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlFSElderYounger" layout="row" ng-model="fsObj.rdlFSElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="326" class="md-primary">Elder</md-radio-button>
+                            <md-radio-button value="325"> Younger </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="FSForm.rdlFSElderYounger.$invalid">
+                            <div ng-if="FSForm.rdlFSElderYounger.$invalid && (FSForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
 
-                    </div>
+
                 </li>
                 <li class="clearfix form-group">
                     <label for="Fathersistername" class="pop_label_left">Father's sister name<span style="color: red; margin-left: 3px;">*</span></label>
@@ -621,18 +632,28 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulmotherbrother">
-                <li class="clearfix form-group">
+                <li class="clearfix">
 
 
-                    <label for="MotherElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                    <label for="MotherElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+                    <!--<div class="pop_controls_right pop_radios_list">
                         <label>
                 <input ng-model="mbObj.rdlMBElderYounger" value="328" type="radio"><span>&nbsp;Elder</span>
             </label>
                         <label class="">
                 <input ng-model="mbObj.rdlMBElderYounger" value="327" type="radio"><span>&nbsp;Younger</span>
             </label>
-                    </div>
+                    </div>-->
+
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlMBElderYounger" layout="row" ng-model="mbObj.rdlMBElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="328" class="md-primary">Elder</md-radio-button>
+                            <md-radio-button value="327"> Younger </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="MBForm.rdlMBElderYounger.$invalid">
+                            <div ng-if="MBForm.rdlMBElderYounger.$invalid && (MBForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
 
                 </li>
                 <li class="clearfix form-group">
@@ -700,18 +721,18 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul id="ulmothersister">
-                <li class="clearfix form-group">
-                    <label for="MsElderYounger" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right pop_radios_list">
+                <li class="clearfix">
+                    <label for="MsElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
 
-                        <label>
-                <input ng-model="msObj.rdlMSElderYounger" value="330" type="radio"><span>&nbsp;Elder</span>
-            </label>
-                        <label class="">
-                <input ng-model="msObj.rdlMSElderYounger" value="329" type="radio"><span>&nbsp;Younger</span>
-            </label>
-                    </div>
-
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group ng-required="true" name="rdlMSElderYounger" layout="row" ng-model="msObj.rdlMSElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="330" class="md-primary">Elder</md-radio-button>
+                            <md-radio-button value="329"> Younger </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="MSForm.rdlMSElderYounger.$invalid">
+                            <div ng-if="MSForm.rdlMSElderYounger.$invalid && (MSForm.$submitted)">This field is required.</div>
+                        </div>
+                    </md-input-container>
                 </li>
                 <li class="clearfix form-group">
                     <label for="Fathersistername" class="pop_label_left">Mother's sister name<span style="color: red; margin-left: 3px;">*</span></label>
@@ -740,22 +761,13 @@
                     </div>
                 </li>
 
-
-
                 <country-directive countryshow="false" dcountry="'1'" cityshow="false" othercity="false" dstate="msObj.ddlMSisState" ddistrict="msObj.ddlMsDistrict"></country-directive>
-
-
 
                 <li class="clearfix form-group">
                     <label for="MSHNativePlace" class="pop_label_left">Native place </label>
                     <div class="pop_controls_right">
-
-
                         <input ng-model="msObj.txtMSNativePlace" class="form-control" tabindex="7" maxlength="100" />
-
-
                     </div>
-
                 </li>
 
                 <li class="clearfix form-group">

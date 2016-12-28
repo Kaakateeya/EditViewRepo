@@ -169,26 +169,22 @@
                         <input ng-model="atroObj.txtGothramGotra" class="form-control" tabindex="13" maxlength="100" />
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix">
                     <label for="lblMaternalgothram" class="pop_label_left">Maternal gothram</label>
                     <div class="pop_controls_right select-box-my">
                         <input ng-model="atroObj.txtMaternalgothram" class="form-control" tabindex="14" maxlength="100" />
                     </div>
                 </li>
-                <li class="clearfix form-group">
-                    <label for="lblManglikKuja dosham" class="pop_label_left">Manglik/Kuja dosham</label>
-                    <div class="pop_controls_right pop_radios_list clearfix form-group">
-                        <label>
-                    <input ng-model="atroObj.rdlkujaDosham" value="0" type="radio"><span>&nbsp;Yes</span>
-                </label>
-                        <label class="">
-                    <input ng-model="atroObj.rdlkujaDosham" value="1" type="radio"><span>&nbsp;No</span>
-                </label>
-                        <label class="">
-                    <input ng-model="atroObj.rdlkujaDosham" value="2" type="radio"><span>&nbsp;Dont't Know</span>
-                </label>
+                <li class="clearfix">
+                    <label for="lblManglikKujadosham" style="padding-top: 2%;" class="pop_label_left">Manglik/Kuja dosham</label>
 
-                    </div>
+                    <md-input-container style="font-weight: 700;color:black;">
+                        <md-radio-group name="rdlkujaDosham" layout="row" ng-model="atroObj.rdlkujaDosham" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="0" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="1"> No </md-radio-button>
+                            <md-radio-button value="2"> Dont't Know </md-radio-button>
+                        </md-radio-group>
+                    </md-input-container>
                 </li>
 
                 <li class="clearfix form-group" style="display: none;">
