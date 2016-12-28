@@ -2726,6 +2726,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"row \">\r" +
     "\n" +
+    "                            <br/>\r" +
+    "\n" +
     "                            <div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <button type=\"submit\" class=\"button_custom pull-right\">Submit</button>\r" +
@@ -2888,7 +2890,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <li class=\"row \">\r" +
+    "                        <li class=\"row\">\r" +
+    "\n" +
+    "                            <br/>\r" +
     "\n" +
     "                            <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -3128,7 +3132,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <li class=\"row \">\r" +
+    "                        <li class=\"row\">\r" +
+    "\n" +
+    "                            <br/>\r" +
     "\n" +
     "                            <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -3188,7 +3194,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <div class=\"row \">\r" +
+    "                <div class=\"row\">\r" +
+    "\n" +
+    "                    <br/>\r" +
     "\n" +
     "                    <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -4187,7 +4195,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"row \">\r" +
+    "                <li class=\"row\">\r" +
+    "\n" +
+    "                    <br/>\r" +
     "\n" +
     "                    <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -4245,7 +4255,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"row \">\r" +
+    "                <li class=\"row\">\r" +
+    "\n" +
+    "                    <br/>\r" +
     "\n" +
     "                    <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -8135,7 +8147,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"row \">\r" +
+    "                <li class=\"row\">\r" +
+    "\n" +
+    "                    <br/>\r" +
     "\n" +
     "                    <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -9560,7 +9574,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <li class=\"row \">\r" +
+    "                        <li class=\"row\">\r" +
+    "\n" +
+    "                            <br/>\r" +
     "\n" +
     "                            <div class=\"col-lg-9\">\r" +
     "\n" +
@@ -9788,7 +9804,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <li class=\"row \">\r" +
+    "                        <li class=\"row\">\r" +
     "\n" +
     "                            <div class=\"col-lg-9\">\r" +
     "\n" +
