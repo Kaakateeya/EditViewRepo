@@ -2652,9 +2652,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"ParentIntercaste\" class=\"pop_label_left\">Are parents interCaste ? </label>\r" +
+    "                            <label for=\"ParentIntercaste\" class=\"pop_label_left\">Are parents interCaste ? {{parent.rbtlParentIntercaste}}</label>\r" +
     "\n" +
-    "                            <div class=\"pop_controls_right pop_radios_list\">\r" +
+    "                            <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
     "                                <label>\r" +
     "\n" +
@@ -2668,13 +2668,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </label>\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <md-radio-group name=\"rbtlParentIntercaste\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"parent.rbtlParentIntercaste\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                                <md-radio-button value=\"0\">No </md-radio-button>\r" +
+    "\n" +
+    "                            </md-radio-group>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <div ng-if=\"parent.rbtlParentIntercaste==='1'\">\r" +
+    "                        <div ng-if=\"parent.rbtlParentIntercaste==='1' || parent.rbtlParentIntercaste===1\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3775,17 +3787,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\r" +
     "\n" +
-    "                        <md-radio-group name=\"rbtlGender\" layout=\"row\" ng-model=\"partnerObj.rbtlGender\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "                    <md-radio-group name=\"rbtlGender\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtlGender\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                            <md-radio-button value=\"1\" class=\"md-primary\">Male</md-radio-button>\r" +
+    "                        <md-radio-button value=\"1\" class=\"md-primary\">Male</md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"2\">Female </md-radio-button>\r" +
+    "                        <md-radio-button value=\"2\">Female </md-radio-button>\r" +
     "\n" +
-    "                        </md-radio-group>\r" +
+    "                    </md-radio-group>\r" +
     "\n" +
-    "                    </md-input-container>\r" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -4009,7 +4021,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblDiet\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Diet</label>\r" +
+    "                    <label for=\"lblDiet\" class=\"pop_label_left\">Diet</label>\r" +
     "\n" +
     "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
@@ -4029,19 +4041,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\r" +
     "\n" +
-    "                        <md-radio-group name=\"rbtDiet\" layout=\"row\" ng-model=\"partnerObj.rbtDiet\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "                    <md-radio-group name=\"rbtDiet\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtDiet\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                            <md-radio-button value=\"27\" class=\"md-primary\">Veg</md-radio-button>\r" +
+    "                        <md-radio-button value=\"27\" class=\"md-primary\">Veg</md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"28\"> Non Veg </md-radio-button>\r" +
+    "                        <md-radio-button value=\"28\"> Non Veg </md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"29\"> Both </md-radio-button>\r" +
+    "                        <md-radio-button value=\"29\"> Both </md-radio-button>\r" +
     "\n" +
-    "                        </md-radio-group>\r" +
+    "                    </md-radio-group>\r" +
     "\n" +
-    "                    </md-input-container>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4051,7 +4063,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblManglik\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
+    "                    <label for=\"lblManglik\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
     "\n" +
     "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
@@ -4071,25 +4083,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\r" +
     "\n" +
-    "                        <md-radio-group name=\"rbtManglikKujadosham\" layout=\"row\" ng-model=\"partnerObj.rbtManglikKujadosham\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "                    <md-radio-group name=\"rbtManglikKujadosham\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtManglikKujadosham\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                            <md-radio-button value=\"0\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "                        <md-radio-button value=\"0\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"1\">No </md-radio-button>\r" +
+    "                        <md-radio-button value=\"1\">No </md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"2\"> Does Not Matter </md-radio-button>\r" +
+    "                        <md-radio-button value=\"2\"> Does Not Matter </md-radio-button>\r" +
     "\n" +
-    "                        </md-radio-group>\r" +
+    "                    </md-radio-group>\r" +
     "\n" +
-    "                    </md-input-container>\r" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "                <li class=\"clearfix\">\r" +
     "\n" +
-    "                    <label for=\"lblPreferredstar\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Preferred star Language</label>\r" +
+    "                    <label for=\"lblPreferredstar\" class=\"pop_label_left\">Preferred star Language</label>\r" +
     "\n" +
     "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
     "\n" +
@@ -4109,19 +4121,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </div>-->\r" +
     "\n" +
-    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\r" +
     "\n" +
-    "                        <md-radio-group name=\"rbtPreferredstarLanguage\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstarLanguage\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "                    <md-radio-group name=\"rbtPreferredstarLanguage\" style=\"font-weight: 700;color:black;\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstarLanguage\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                            <md-radio-button value=\"1\" class=\"md-primary\">Telugu</md-radio-button>\r" +
+    "                        <md-radio-button value=\"1\" class=\"md-primary\">Telugu</md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"2\">Tamil </md-radio-button>\r" +
+    "                        <md-radio-button value=\"2\">Tamil </md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"3\">Kannada</md-radio-button>\r" +
+    "                        <md-radio-button value=\"3\">Kannada</md-radio-button>\r" +
     "\n" +
-    "                        </md-radio-group>\r" +
+    "                    </md-radio-group>\r" +
     "\n" +
-    "                    </md-input-container>\r" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -4129,7 +4141,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <label for=\"\" class=\"pop_label_left\" style=\"padding-top: 2%;\">Star Preference</label>\r" +
+    "                    <label for=\"\" class=\"pop_label_left\">Star Preference</label>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4147,17 +4159,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
+    "\r" +
     "\n" +
-    "                        <md-radio-group name=\"rbtPreferredstars\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstars\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "                    <md-radio-group name=\"rbtPreferredstars\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstars\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
-    "                            <md-radio-button value=\"0\" class=\"md-primary\">Preferredstars</md-radio-button>\r" +
+    "                        <md-radio-button value=\"0\" class=\"md-primary\">Preferredstars</md-radio-button>\r" +
     "\n" +
-    "                            <md-radio-button value=\"1\">NonPreferredstars </md-radio-button>\r" +
+    "                        <md-radio-button value=\"1\">NonPreferredstars </md-radio-button>\r" +
     "\n" +
-    "                        </md-radio-group>\r" +
+    "                    </md-radio-group>\r" +
     "\n" +
-    "                    </md-input-container>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +

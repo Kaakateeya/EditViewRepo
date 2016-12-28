@@ -260,12 +260,12 @@
                 <input ng-model="partnerObj.rbtlGender" value="2" type="radio"><span>&nbsp;Female</span></label>
                     </div>-->
 
-                    <md-input-container style="font-weight: 700;color:black;">
-                        <md-radio-group name="rbtlGender" layout="row" ng-model="partnerObj.rbtlGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="1" class="md-primary">Male</md-radio-button>
-                            <md-radio-button value="2">Female </md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
+
+                    <md-radio-group name="rbtlGender" style="font-weight: 700;color:black;" layout="row" ng-model="partnerObj.rbtlGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="1" class="md-primary">Male</md-radio-button>
+                        <md-radio-button value="2">Female </md-radio-button>
+                    </md-radio-group>
+
                 </li>
                 <li class="clearfix form-group">
                     <label for="lblagegapp" class="pop_label_left">Age Gap<span style="color: red; margin-left: 3px;">*</span></label>
@@ -377,7 +377,7 @@
                     </div>
                 </li>
                 <li class="clearfix">
-                    <label for="lblDiet" style="padding-top: 2%;" class="pop_label_left">Diet</label>
+                    <label for="lblDiet" class="pop_label_left">Diet</label>
                     <!--<div class="pop_controls_right pop_radios_list clearfix">
                         <label>
                 <input ng-model="partnerObj.rbtDiet" value="27" type="radio"><span>&nbsp;Veg</span></label>
@@ -387,18 +387,18 @@
                 <input ng-model="partnerObj.rbtDiet" value="29" type="radio"><span>&nbsp;Both</span></label>
                     </div>-->
 
-                    <md-input-container style="font-weight: 700;color:black;">
-                        <md-radio-group name="rbtDiet" layout="row" ng-model="partnerObj.rbtDiet" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="27" class="md-primary">Veg</md-radio-button>
-                            <md-radio-button value="28"> Non Veg </md-radio-button>
-                            <md-radio-button value="29"> Both </md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
+
+                    <md-radio-group name="rbtDiet" style="font-weight: 700;color:black;" layout="row" ng-model="partnerObj.rbtDiet" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="27" class="md-primary">Veg</md-radio-button>
+                        <md-radio-button value="28"> Non Veg </md-radio-button>
+                        <md-radio-button value="29"> Both </md-radio-button>
+                    </md-radio-group>
+
 
                 </li>
 
                 <li class="clearfix">
-                    <label for="lblManglik" style="padding-top: 2%;" class="pop_label_left">Manglik/Kuja dosham</label>
+                    <label for="lblManglik" class="pop_label_left">Manglik/Kuja dosham</label>
                     <!--<div class="pop_controls_right pop_radios_list clearfix">
                         <label>
                 <input ng-model="partnerObj.rbtManglikKujadosham" value="0" type="radio"><span>&nbsp;Yes</span></label>
@@ -408,16 +408,16 @@
                 <input ng-model="partnerObj.rbtManglikKujadosham" value="2" type="radio"><span>&nbsp;Does Not Matter</span></label>
                     </div>-->
 
-                    <md-input-container style="font-weight: 700;color:black;">
-                        <md-radio-group name="rbtManglikKujadosham" layout="row" ng-model="partnerObj.rbtManglikKujadosham" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Yes</md-radio-button>
-                            <md-radio-button value="1">No </md-radio-button>
-                            <md-radio-button value="2"> Does Not Matter </md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
+
+                    <md-radio-group name="rbtManglikKujadosham" style="font-weight: 700;color:black;" layout="row" ng-model="partnerObj.rbtManglikKujadosham" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="0" class="md-primary">Yes</md-radio-button>
+                        <md-radio-button value="1">No </md-radio-button>
+                        <md-radio-button value="2"> Does Not Matter </md-radio-button>
+                    </md-radio-group>
+
                 </li>
                 <li class="clearfix">
-                    <label for="lblPreferredstar" style="padding-top: 2%;" class="pop_label_left">Preferred star Language</label>
+                    <label for="lblPreferredstar" class="pop_label_left">Preferred star Language</label>
                     <!--<div class="pop_controls_right pop_radios_list clearfix">
                         <label>
                 <input ng-model="partnerObj.rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" value="1" type="radio"><span>&nbsp;Telugu</span></label>
@@ -427,17 +427,17 @@
                 <input ng-model="partnerObj.rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" value="3" type="radio"><span>&nbsp;Kannada</span></label>
 
                     </div>-->
-                    <md-input-container style="font-weight: 700;color:black;">
-                        <md-radio-group name="rbtPreferredstarLanguage" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" layout="row" ng-model="partnerObj.rbtPreferredstarLanguage" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="1" class="md-primary">Telugu</md-radio-button>
-                            <md-radio-button value="2">Tamil </md-radio-button>
-                            <md-radio-button value="3">Kannada</md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
+
+                    <md-radio-group name="rbtPreferredstarLanguage" style="font-weight: 700;color:black;" ng-change="changeBind('star',partnerObj.rbtPreferredstarLanguage);" layout="row" ng-model="partnerObj.rbtPreferredstarLanguage" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="1" class="md-primary">Telugu</md-radio-button>
+                        <md-radio-button value="2">Tamil </md-radio-button>
+                        <md-radio-button value="3">Kannada</md-radio-button>
+                    </md-radio-group>
+
                 </li>
                 <li class="clearfix">
 
-                    <label for="" class="pop_label_left" style="padding-top: 2%;">Star Preference</label>
+                    <label for="" class="pop_label_left">Star Preference</label>
 
                     <!--<div class="pop_controls_right pop_radios_list clearfix">
                         <label>
@@ -446,12 +446,12 @@
                 <input ng-model="partnerObj.rbtPreferredstars" value="1" type="radio"><span>&nbsp;NonPreferredstars</span></label>
                     </div>-->
 
-                    <md-input-container style="font-weight: 700;color:black;">
-                        <md-radio-group name="rbtPreferredstars" layout="row" ng-model="partnerObj.rbtPreferredstars" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Preferredstars</md-radio-button>
-                            <md-radio-button value="1">NonPreferredstars </md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
+
+                    <md-radio-group name="rbtPreferredstars" style="font-weight: 700;color:black;" layout="row" ng-model="partnerObj.rbtPreferredstars" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="0" class="md-primary">Preferredstars</md-radio-button>
+                        <md-radio-button value="1">NonPreferredstars </md-radio-button>
+                    </md-radio-group>
+
 
                 </li>
                 <li class="clearfix form-group">
