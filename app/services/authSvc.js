@@ -97,6 +97,9 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
         logout: function() {
             clearUserSession();
             window.location = "#/";
+
+
+
         },
         login: function(username, password) {
 

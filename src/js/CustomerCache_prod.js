@@ -1,5 +1,5 @@
 function CallApiWithoutLoader(Url, object) {
-   
+
     var returndata = [];
     $.ajax({
         type: "POST",
@@ -8,10 +8,10 @@ function CallApiWithoutLoader(Url, object) {
         data: JSON.stringify(object),
         dataType: "json",
         async: false,
-        success: function (data) {
+        success: function(data) {
             returndata = data;
         },
-        error: function (result) {
+        error: function(result) {
             //alert(result);
             return false;
         }
@@ -31,21 +31,18 @@ function CurrentDateSTringCS() {
 
 
 function loginCheck(PageType) {
-    
+
     var usrname, password;
     if (PageType == 'innermaster') {
         usrname = $('#ctl00_txtUserName').val();
         password = $('#ctl00_txtPassword').val();
-    }
-    else if (PageType == 'search') {
+    } else if (PageType == 'search') {
         usrname = $('#txtUserLoginModelpopup').val();
         password = $('#txtPasswordModelpopup').val();
-    }
-    else if (PageType == 'emailverification') {
+    } else if (PageType == 'emailverification') {
         usrname = $('#ctl00_ContentPlaceHolder1_lblprofileid').text();
         password = $('#ctl00_ContentPlaceHolder1_txtPassword').val();
-    }
-    else {
+    } else {
         usrname = $('#ctl00_ContentPlaceHolder1_txtUserName').val();
         password = $('#ctl00_ContentPlaceHolder1_txtPassword').val();
 
@@ -67,8 +64,7 @@ function loginCheck(PageType) {
                     localStorage.clear();
                     localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCS()));
                 }
-            }
-            else {
+            } else {
                 localStorage.clear();
                 localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCS()));
             }
@@ -85,13 +81,15 @@ function homepage_load() {
             var EncryptstrCustidCache = JSON.parse(localStorage.getItem("EncryptstrCustid"));
             if (EncryptstrCustidCache != "" && EncryptstrCustidCache != null && EncryptstrCustidCache != undefined) {
                 window.location = "CustomerDashBoard.aspx?CustID=" + EncryptstrCustidCache;
+
+
             }
         }
     }
 }
 
 function innermasterPge_load() {
-    
+
     var LoginDate = JSON.parse(localStorage.getItem("LoginDate"));
 
     var EncryptstrCustidCache = JSON.parse(localStorage.getItem("EncryptstrCustid"));
@@ -106,6 +104,7 @@ function innermasterPge_load() {
     }
 
 }
+
 function createCacheForRegistered(bool) {
     if (bool == true) {
         localStorage.setItem("LogoutStatus", false);
@@ -115,8 +114,7 @@ function createCacheForRegistered(bool) {
                 localStorage.clear();
                 localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCS()));
             }
-        }
-        else {
+        } else {
             localStorage.clear();
             localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCS()));
         }
@@ -138,14 +136,10 @@ function loggedasCustomerCreateCache() {
                 localStorage.clear();
                 localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCSlog()));
             }
-        }
-        else {
+        } else {
             localStorage.clear();
             localStorage.setItem("LoginDate", JSON.stringify(CurrentDateSTringCSlog()));
         }
     }
 
 }
-
-
-

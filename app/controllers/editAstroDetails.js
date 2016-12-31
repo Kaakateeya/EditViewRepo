@@ -1,5 +1,5 @@
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http',
-    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http', 'route',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route) {
         scope.starLanguage = 'starLanguage';
         scope.Country = 'Country';
         scope.ZodaicSign = 'ZodaicSign';
@@ -137,7 +137,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 commonFactory.closepopup();
                 if (response.data === 1) {
                     if (scope.datagetInStatus === 1) {
-                        window.location = "#/mobileverf";
+
+                        route.go('mobileverf', {});
                     }
                     scope.astropageload(custID);
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
