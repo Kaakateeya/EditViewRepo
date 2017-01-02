@@ -22,11 +22,16 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
         scope.parentBindData = function(icustID) {
             parentServices.getParentData(icustID).then(function(response) {
-                scope.parentArr = JSON.parse(response.data[0]);
-                scope.addressArr = JSON.parse(response.data[1]);
-                scope.physicalArr = JSON.parse(response.data[2]);
-                scope.AboutFamily = JSON.parse(response.data[3]);
-                scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
+                if (commonFactory.checkvals(response.data)) {
+                    scope.parentArr = commonFactory.checkvals(response.data[0]) ? JSON.parse(response.data[0]) : [];
+                    scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
+                    scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
+                    scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
+                }
+
+                if (commonFactory.checkvals(scope.AboutFamily[0])) {
+                    scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
+                }
             });
         };
 

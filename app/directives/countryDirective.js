@@ -33,7 +33,6 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                     });
                 });
             }
-
             if (scope.dcountry === '1' || scope.dcountry === 1) {
                 scope.districtArr = commonFactory.districtBind(scope.dstate);
             } else {
@@ -67,14 +66,10 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                 }
 
             };
-
             scope.ShowCity = function() {
                 scope.cityinput = true;
                 scope.dcity = '';
             };
-
-
-
         }
     };
 }]);

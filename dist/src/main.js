@@ -423,21 +423,20 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         scope.astropageload = function(custid) {
 
             astroServices.getAstroData(custid).then(function(response) {
-                scope.AstroArr = JSON.parse(response.data[0]);
-                scope.generateData = JSON.parse(response.data[1]);
-                console.log(scope.AstroArr);
-                console.log(scope.generateData);
-                console.log((scope.generateData)[0].DateOfBirth);
 
-                if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                    var extension = "jpg";
+                if (commonFactory.checkvals(response.data[0])) {
+                    scope.AstroArr = JSON.parse(response.data[0]);
+                    scope.generateData = JSON.parse(response.data[1]);
+                    if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                        var extension = "jpg";
 
-                    if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
-                        extension = "html";
-                    } else {
-                        extension = "jpg";
+                        if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
+                            extension = "html";
+                        } else {
+                            extension = "jpg";
+                        }
+                        scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                     }
-                    scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                 }
 
             });
@@ -829,11 +828,16 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
         scope.parentBindData = function(icustID) {
             parentServices.getParentData(icustID).then(function(response) {
-                scope.parentArr = JSON.parse(response.data[0]);
-                scope.addressArr = JSON.parse(response.data[1]);
-                scope.physicalArr = JSON.parse(response.data[2]);
-                scope.AboutFamily = JSON.parse(response.data[3]);
-                scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
+                if (commonFactory.checkvals(response.data)) {
+                    scope.parentArr = commonFactory.checkvals(response.data[0]) ? JSON.parse(response.data[0]) : [];
+                    scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
+                    scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
+                    scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
+                }
+
+                if (commonFactory.checkvals(scope.AboutFamily[0])) {
+                    scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
+                }
             });
         };
 
@@ -2615,18 +2619,25 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         scope.getdata = function() {
 
             editviewServices.getEducationData(custID).then(function(response) {
-                scope.educationSelectArray = response.data;
-                console.log(scope.educationSelectArray);
+                if (commonFactory.checkvals(response.data)) {
+                    scope.educationSelectArray = response.data;
+                    console.log(scope.educationSelectArray);
+                }
+
             });
             editviewServices.getProfessionData(custID).then(function(response) {
-                scope.ProfessionSelectArray = response.data;
+                if (commonFactory.checkvals(response.data)) {
+                    scope.ProfessionSelectArray = response.data;
+                }
 
             });
             scope.lblaboutUrself = null;
             editviewServices.getAboutData(custID).then(function(response) {
-                var AboutData = (response.data).split(';');
-                scope.lblaboutUrself = (AboutData[0].split(':'))[1];
-                scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                if (commonFactory.checkvals(response.data)) {
+                    var AboutData = (response.data).split(';');
+                    scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+                    scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                }
             });
         };
         scope.getdata();
@@ -3147,7 +3158,6 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                     });
                 });
             }
-
             if (scope.dcountry === '1' || scope.dcountry === 1) {
                 scope.districtArr = commonFactory.districtBind(scope.dstate);
             } else {
@@ -3181,14 +3191,10 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                 }
 
             };
-
             scope.ShowCity = function() {
                 scope.cityinput = true;
                 scope.dcity = '';
             };
-
-
-
         }
     };
 }]);

@@ -115,18 +115,25 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         scope.getdata = function() {
 
             editviewServices.getEducationData(custID).then(function(response) {
-                scope.educationSelectArray = response.data;
-                console.log(scope.educationSelectArray);
+                if (commonFactory.checkvals(response.data)) {
+                    scope.educationSelectArray = response.data;
+                    console.log(scope.educationSelectArray);
+                }
+
             });
             editviewServices.getProfessionData(custID).then(function(response) {
-                scope.ProfessionSelectArray = response.data;
+                if (commonFactory.checkvals(response.data)) {
+                    scope.ProfessionSelectArray = response.data;
+                }
 
             });
             scope.lblaboutUrself = null;
             editviewServices.getAboutData(custID).then(function(response) {
-                var AboutData = (response.data).split(';');
-                scope.lblaboutUrself = (AboutData[0].split(':'))[1];
-                scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                if (commonFactory.checkvals(response.data)) {
+                    var AboutData = (response.data).split(';');
+                    scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+                    scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                }
             });
         };
         scope.getdata();
