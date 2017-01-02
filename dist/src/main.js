@@ -481,7 +481,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 commonFactory.closepopup();
                 if (response.data === 1) {
                     if (scope.datagetInStatus === 1) {
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
                     }
                     scope.astropageload(custID);
@@ -1113,7 +1113,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.parentBindData(custID);
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                     if (scope.datagetInStatus === 1) {
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
 
 
@@ -2716,9 +2716,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                     if (scope.datagetInStatus === 1) {
-
-
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
                     }
                 } else {
@@ -2771,7 +2769,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     });
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                     if (scope.datagetInStatus === 1) {
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
                     }
 

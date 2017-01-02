@@ -136,7 +136,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 commonFactory.closepopup();
                 if (response.data === 1) {
                     if (scope.datagetInStatus === 1) {
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
                     }
                     scope.astropageload(custID);

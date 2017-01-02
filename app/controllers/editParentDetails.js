@@ -307,7 +307,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.parentBindData(custID);
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                     if (scope.datagetInStatus === 1) {
-
+                        sessionStorage.removeItem('missingStatus');
                         route.go('mobileverf', {});
 
 
