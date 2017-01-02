@@ -427,16 +427,25 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
                     scope.generateData = JSON.parse(response.data[1]);
-                    if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                        var extension = "jpg";
 
-                        if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
-                            extension = "html";
-                        } else {
-                            extension = "jpg";
+                    if (commonFactory.checkvals(scope.AstroArr[0] && commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage))) {
+
+                        if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                            var extension = "jpg";
+
+                            if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
+                                extension = "html";
+                            } else {
+                                extension = "jpg";
+                            }
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                         }
-                        scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+
+
                     }
+
+
+
                 }
 
             });
