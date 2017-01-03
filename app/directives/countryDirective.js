@@ -13,7 +13,6 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
         },
         templateUrl: editviewapp.templateroot + 'app/views/countryTemplate.html',
         link: function(scope, element, attr) {
-
             if (scope.countryshow === true) {
                 SelectBindService.countrySelect().then(function(response) {
                     scope.countryArr = [];
@@ -22,7 +21,9 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                         scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                     });
                 });
-                scope.stateArr = commonFactory.StateBind(scope.dcountry);
+                if (scope.dcountry !== undefined) {
+                    scope.stateArr = commonFactory.StateBind(scope.dcountry);
+                }
             } else {
                 scope.dcountry = '1';
                 SelectBindService.stateSelect('1').then(function(response) {
@@ -33,14 +34,18 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                     });
                 });
             }
-            if (scope.dcountry === '1' || scope.dcountry === 1) {
+            if ((scope.dcountry === '1' || scope.dcountry === 1) && scope.dstate !== undefined) {
                 scope.districtArr = commonFactory.districtBind(scope.dstate);
             } else {
-                scope.cityeArr = commonFactory.districtBind(scope.dstate);
+                if (scope.dstate !== undefined) {
+                    scope.cityeArr = commonFactory.districtBind(scope.dstate);
+                }
             }
 
             if (scope.cityshow === true && scope.cityeArr === undefined) {
-                scope.cityeArr = commonFactory.cityBind(scope.ddistrict);
+                if (scope.ddistrict !== undefined) {
+                    scope.cityeArr = commonFactory.cityBind(scope.ddistrict);
+                }
             }
 
             scope.changeBind = function(type, parentval, countryVal) {
