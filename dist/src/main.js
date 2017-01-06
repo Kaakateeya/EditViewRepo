@@ -2550,11 +2550,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.edoObj.EducationID = null;
                     scope.edoObj = {};
                     if (item !== undefined) {
-                        scope.eduGroupArr = commonFactory.educationGroupBind(item.EducationCategoryID);
-                        scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(item.EducationGroupID);
-                        scope.stateArr = commonFactory.StateBind(item.CountryID);
-                        scope.districtArr = commonFactory.districtBind(item.StateID);
-                        scope.cityeArr = commonFactory.cityBind(item.DistrictID);
+                        scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
+                        scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
+                        scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
+                        scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
+                        scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
