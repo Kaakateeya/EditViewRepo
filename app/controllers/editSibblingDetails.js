@@ -71,6 +71,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
                         scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
                         //scope.broObj.chkboxbrotherwifeprofession = item.;
+                        scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
                         scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
                         scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
 
@@ -123,6 +124,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
                         scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
                         //scopsisroObj.chksisProfession = item.;
+                        scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
                         scope.sisObj.txtSCompanyName = item.SibilingCompany;
                         scope.sisObj.txtSjobloc = item.SibilingJobPLace;
 
@@ -195,7 +197,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.BrotherArr = JSON.parse(response.data[1]);
             scope.sisterArr = JSON.parse(response.data[2]);
             console.log(scope.BrotherArr);
-
+            console.log(scope.sisterArr);
             scope.BroCount = scope.sibblingCountArr[0].NoOfBrothers;
             scope.SisCount = scope.sibblingCountArr[0].NoOfSisters;
         });

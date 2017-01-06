@@ -3,7 +3,7 @@
  * Main App Creation
  */
 
-var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons', 'jcs-autoValidate']);
+var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'ui.bootstrap.datetimepicker']);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
@@ -1359,6 +1359,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
             scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
             scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
+            scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(item.casteid)));
+
             scope.partnerObj.intCusID = item.intCusID;
             scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
 
@@ -2103,6 +2105,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
                         scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
                         //scope.broObj.chkboxbrotherwifeprofession = item.;
+                        scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
                         scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
                         scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
 
@@ -2155,6 +2158,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
                         scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
                         //scopsisroObj.chksisProfession = item.;
+                        scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
                         scope.sisObj.txtSCompanyName = item.SibilingCompany;
                         scope.sisObj.txtSjobloc = item.SibilingJobPLace;
 
@@ -2227,7 +2231,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.BrotherArr = JSON.parse(response.data[1]);
             scope.sisterArr = JSON.parse(response.data[2]);
             console.log(scope.BrotherArr);
-
+            console.log(scope.sisterArr);
             scope.BroCount = scope.sibblingCountArr[0].NoOfBrothers;
             scope.SisCount = scope.sibblingCountArr[0].NoOfSisters;
         });
@@ -2735,7 +2739,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.ProfSubmit = function(objitem) {
-
             scope.myprofData = {
                 customerProfession: {
                     CustID: custID,
@@ -3237,10 +3240,17 @@ editviewapp.directive('datePicker', function() {
             strdate: '='
         },
         template: '<p class="input-group">' +
-            '<input type="text" class="form-control" style="width:84%;" uib-datepicker-popup="dd-MM-yyyy"  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
+            '<input type="text" class="form-control" style="width:84%;" ng-data-required=false uib-datepicker-popup=""  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
             '<span class="input-group-btn">' +
             '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 30px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
             '</span></p>',
+
+        // template: '<datetimepicker ng-model="strdate"  ' +
+        //     ' date-format="dd-MM-yyyy" ' +
+        //     ' date-options="dateOptions" ' +
+        //     ' date-disabled="isDisabledDate(date, mode)" ng-required=false> ' +
+        //     '</datetimepicker>',
+
         link: function(scope, element) {
 
             // alert(scope.strdate);
@@ -3259,6 +3269,7 @@ editviewapp.directive('datePicker', function() {
             $scope.open2 = function() {
                 $scope.showdate = true;
             };
+
         }
     };
 });
@@ -6197,7 +6208,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"ParentIntercaste\" class=\"pop_label_left\">Are parents interCaste ? {{parent.rbtlParentIntercaste}}</label>\r" +
+    "                            <label for=\"ParentIntercaste\" class=\"pop_label_left\">Are parents interCaste ? </label>\r" +
     "\n" +
     "                            <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
     "\n" +
@@ -6503,7 +6514,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <label>\r" +
+    "                                <!--<label>\r" +
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlDiet\" value=\"27\" type=\"radio\"><span>&nbsp;Veg</span>\r" +
     "\n" +
@@ -6519,7 +6530,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlDiet\" value=\"29\" type=\"radio\"><span>&nbsp;Both</span>\r" +
     "\n" +
-    "                </label>\r" +
+    "                </label>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <md-radio-group name=\"rbtlDiet\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"physicalObj.rbtlDiet\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"27\" class=\"md-primary\">Veg</md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"28\">Non Veg </md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"29\">Both </md-radio-button>\r" +
+    "\n" +
+    "                                </md-radio-group>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -6533,7 +6556,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <label>\r" +
+    "                                <!--<label>\r" +
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlDrink\" value=\"30\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
     "\n" +
@@ -6549,7 +6572,23 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlDrink\" value=\"32\" type=\"radio\"><span>&nbsp;Occasional</span>\r" +
     "\n" +
-    "                </label>\r" +
+    "                </label>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <md-radio-group name=\"rbtlDrink\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"physicalObj.rbtlDrink\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"30\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"31\">No </md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"32\">Occasional </md-radio-button>\r" +
+    "\n" +
+    "                                </md-radio-group>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -6563,7 +6602,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <label>\r" +
+    "                                <!--<label>\r" +
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlSmoke\" value=\"30\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
     "\n" +
@@ -6579,9 +6618,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <input ng-model=\"physicalObj.rbtlSmoke\" value=\"32\" type=\"radio\"><span>&nbsp;Occasional</span>\r" +
     "\n" +
-    "                </label>\r" +
+    "                </label>-->\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "                                <md-radio-group name=\"rbtlSmoke\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"physicalObj.rbtlSmoke\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"30\" class=\"md-primary\">Yes</md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"31\">No </md-radio-button>\r" +
+    "\n" +
+    "                                    <md-radio-button value=\"32\">Occasional </md-radio-button>\r" +
+    "\n" +
+    "                                </md-radio-group>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -10798,21 +10847,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"uplwifeprofessioneb\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <div id=\"uplwifeprofessioneb\" class=\"edit_page_details_item_desc clearfix\" ng-hide=\"item.SibilingSpouseProfessionDetails=='HouseWife'\">\r" +
     "\n" +
-    "\r" +
+    "                                        <h6>\r" +
     "\n" +
-    "                                        <div id=\"divcompany\">\r" +
+    "                                            <label id=\"wifeprofession\" font-bold=\"true\">Company&JobLocation</label></h6>\r" +
     "\n" +
-    "\r" +
+    "                                        <h5>\r" +
     "\n" +
-    "                                            <h6>\r" +
-    "\n" +
-    "                                                <label id=\"wifeprofession\" font-bold=\"true\">Company&JobLocation</label></h6>\r" +
-    "\n" +
-    "                                            <h5>\r" +
-    "\n" +
-    "                                                <span id=\"lblwifeprofession\">\r" +
+    "                                            <span id=\"lblwifeprofession\">\r" +
     "\n" +
     "                                                    {{ ((item.spoucecompanyName.ToString()!=\"\" && item.spoucecompanyName!=null)?item.spoucecompanyName:\"\")+((item.spoucejobloc.ToString()!=\"\"\r" +
     "\n" +
@@ -10820,9 +10863,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            </span>\r" +
     "\n" +
-    "                                            </h5>\r" +
+    "                                        </h5>\r" +
     "\n" +
-    "                                        </div>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -11166,29 +11209,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "                            <div id=\"uplsisprofes\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                            <div id=\"uplsisprofes\" class=\"edit_page_details_item_desc clearfix\" ng-hide=\"item.SibilingProfessionDetails=='HouseWife'\">\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                                <div id=\"divsisprof\">\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                                    <h6>\r" +
+    "                                <h6>\r" +
     "\n" +
-    "                                        <label id=\"sisprof\" font-bold=\"true\">Company & Job Location</label></h6>\r" +
+    "                                    <label id=\"sisprof\" font-bold=\"true\">Company & Job Location </label></h6>\r" +
     "\n" +
-    "                                    <h5>\r" +
+    "                                <h5>\r" +
     "\n" +
-    "                                        <span id=\"lblsisprof\">\r" +
+    "                                    <span id=\"lblsisprof\">\r" +
     "\n" +
     "                                            {{ (item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!=\"\" && item.SibilingJobPLace!=null)?\",\"+item.SibilingJobPLace:\"\")}}\r" +
     "\n" +
     "                                    </span>\r" +
     "\n" +
-    "                                    </h5>\r" +
+    "                                </h5>\r" +
     "\n" +
-    "                                </div>\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -11936,9 +11979,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                    <div id=\"brothercmpyyy\">\r" +
+    "                    <div id=\"brothercmpyyy\" ng-hide=\"broObj.chkboxbrotherwifeprofession==true\">\r" +
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
@@ -12186,7 +12227,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <div id=\"divsiscmpyyy\">\r" +
+    "                <div id=\"divsiscmpyyy\" ng-hide=\"sisObj.chksisProfession==true\">\r" +
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +

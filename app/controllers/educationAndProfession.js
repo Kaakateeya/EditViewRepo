@@ -222,7 +222,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.ProfSubmit = function(objitem) {
-
             scope.myprofData = {
                 customerProfession: {
                     CustID: custID,

@@ -284,19 +284,16 @@
                                         </div>
 
                                     </div>
-                                    <div id="uplwifeprofessioneb" class="edit_page_details_item_desc clearfix">
-
-                                        <div id="divcompany">
-
-                                            <h6>
-                                                <label id="wifeprofession" font-bold="true">Company&JobLocation</label></h6>
-                                            <h5>
-                                                <span id="lblwifeprofession">
+                                    <div id="uplwifeprofessioneb" class="edit_page_details_item_desc clearfix" ng-hide="item.SibilingSpouseProfessionDetails=='HouseWife'">
+                                        <h6>
+                                            <label id="wifeprofession" font-bold="true">Company&JobLocation</label></h6>
+                                        <h5>
+                                            <span id="lblwifeprofession">
                                                     {{ ((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?item.spoucecompanyName:"")+((item.spoucejobloc.ToString()!=""
                                                     && item.spoucejobloc!=null)?","+item.spoucejobloc:"") }}
                                             </span>
-                                            </h5>
-                                        </div>
+                                        </h5>
+
 
                                     </div>
                                     <div id="update1">
@@ -468,18 +465,18 @@
                                 </div>
 
                             </div>
-                            <div id="uplsisprofes" class="edit_page_details_item_desc clearfix">
+                            <div id="uplsisprofes" class="edit_page_details_item_desc clearfix" ng-hide="item.SibilingProfessionDetails=='HouseWife'">
 
-                                <div id="divsisprof">
 
-                                    <h6>
-                                        <label id="sisprof" font-bold="true">Company & Job Location</label></h6>
-                                    <h5>
-                                        <span id="lblsisprof">
+
+                                <h6>
+                                    <label id="sisprof" font-bold="true">Company & Job Location </label></h6>
+                                <h5>
+                                    <span id="lblsisprof">
                                             {{ (item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:"")}}
                                     </span>
-                                    </h5>
-                                </div>
+                                </h5>
+
 
 
                             </div>
@@ -853,8 +850,7 @@
                         </div>
                     </li>
 
-
-                    <div id="brothercmpyyy">
+                    <div id="brothercmpyyy" ng-hide="broObj.chkboxbrotherwifeprofession==true">
                         <li class="clearfix form-group">
                             <label for="lblwifescmpy" class="pop_label_left">Company Name</label>
                             <div class="pop_controls_right">
@@ -978,7 +974,7 @@
                         <input ng-model="sisObj.chksisProfession" type="checkbox" ng-change="ShousewiseChk(sisObj);"><span>&nbsp;HouseWife</span>
                     </div>
                 </li>
-                <div id="divsiscmpyyy">
+                <div id="divsiscmpyyy" ng-hide="sisObj.chksisProfession==true">
                     <li class="clearfix form-group">
                         <label for="lblsisscmpy" class="pop_label_left">Company Name</label>
                         <div class="pop_controls_right">

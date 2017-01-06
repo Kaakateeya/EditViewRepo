@@ -93,6 +93,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
             scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
             scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
+            scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(item.casteid)));
+
             scope.partnerObj.intCusID = item.intCusID;
             scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
 

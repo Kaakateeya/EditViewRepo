@@ -721,7 +721,7 @@
                             </div>
                         </li>
                         <li class="clearfix form-group">
-                            <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? {{parent.rbtlParentIntercaste}}</label>
+                            <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? </label>
                             <!--<div class="pop_controls_right pop_radios_list">
                                 <label>
                     <input ng-model="parent.rbtlParentIntercaste" value="1" type="radio"><span>&nbsp;Yes</span>
@@ -874,7 +874,7 @@
                             <label for="lblpDiet" class="pop_label_left">Diet</label>
                             <div class="pop_controls_right">
 
-                                <label>
+                                <!--<label>
                     <input ng-model="physicalObj.rbtlDiet" value="27" type="radio"><span>&nbsp;Veg</span>
                 </label>
                                 <label class="">
@@ -882,14 +882,20 @@
                 </label>
                                 <label class="">
                     <input ng-model="physicalObj.rbtlDiet" value="29" type="radio"><span>&nbsp;Both</span>
-                </label>
+                </label>-->
+
+                                <md-radio-group name="rbtlDiet" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlDiet" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="27" class="md-primary">Veg</md-radio-button>
+                                    <md-radio-button value="28">Non Veg </md-radio-button>
+                                    <md-radio-button value="29">Both </md-radio-button>
+                                </md-radio-group>
                             </div>
                         </li>
                         <li class="clearfix form-group">
                             <label for="lblpDrink" class="pop_label_left">Drink</label>
                             <div class="pop_controls_right">
 
-                                <label>
+                                <!--<label>
                     <input ng-model="physicalObj.rbtlDrink" value="30" type="radio"><span>&nbsp;Yes</span>
                 </label>
                                 <label class="">
@@ -897,14 +903,22 @@
                 </label>
                                 <label class="">
                     <input ng-model="physicalObj.rbtlDrink" value="32" type="radio"><span>&nbsp;Occasional</span>
-                </label>
+                </label>-->
+
+
+                                <md-radio-group name="rbtlDrink" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlDrink" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="30" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="31">No </md-radio-button>
+                                    <md-radio-button value="32">Occasional </md-radio-button>
+                                </md-radio-group>
+
                             </div>
                         </li>
                         <li class="clearfix form-group">
                             <label for="lblpSmoke" class="pop_label_left">Smoke</label>
                             <div class="pop_controls_right">
 
-                                <label>
+                                <!--<label>
                     <input ng-model="physicalObj.rbtlSmoke" value="30" type="radio"><span>&nbsp;Yes</span>
                 </label>
                                 <label class="">
@@ -912,8 +926,13 @@
                 </label>
                                 <label class="">
                     <input ng-model="physicalObj.rbtlSmoke" value="32" type="radio"><span>&nbsp;Occasional</span>
-                </label>
+                </label>-->
 
+                                <md-radio-group name="rbtlSmoke" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlSmoke" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="30" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="31">No </md-radio-button>
+                                    <md-radio-button value="32">Occasional </md-radio-button>
+                                </md-radio-group>
                             </div>
                         </li>
                         <li class="clearfix form-group">

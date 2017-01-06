@@ -4,10 +4,17 @@ editviewapp.directive('datePicker', function() {
             strdate: '='
         },
         template: '<p class="input-group">' +
-            '<input type="text" class="form-control" style="width:84%;" uib-datepicker-popup="dd-MM-yyyy"  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
+            '<input type="text" class="form-control" style="width:84%;" ng-data-required=false uib-datepicker-popup=""  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
             '<span class="input-group-btn">' +
             '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 30px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
             '</span></p>',
+
+        // template: '<datetimepicker ng-model="strdate"  ' +
+        //     ' date-format="dd-MM-yyyy" ' +
+        //     ' date-options="dateOptions" ' +
+        //     ' date-disabled="isDisabledDate(date, mode)" ng-required=false> ' +
+        //     '</datetimepicker>',
+
         link: function(scope, element) {
 
             // alert(scope.strdate);
@@ -26,6 +33,7 @@ editviewapp.directive('datePicker', function() {
             $scope.open2 = function() {
                 $scope.showdate = true;
             };
+
         }
     };
 });
