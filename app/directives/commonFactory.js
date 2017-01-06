@@ -29,69 +29,82 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         StateBind: function(parentval) {
             var stateArr = [];
-            stateArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.stateSelect(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                stateArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.stateSelect(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return stateArr;
         },
         districtBind: function(parentval) {
             var disttrictArr = [];
-            disttrictArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                disttrictArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
-            SelectBindService.districtSelect(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    disttrictArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                SelectBindService.districtSelect(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        disttrictArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return disttrictArr;
         },
         cityBind: function(parentval) {
             var cityeArr = [];
-            cityeArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                cityeArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
-            SelectBindService.citySelect(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    cityeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                SelectBindService.citySelect(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        cityeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return cityeArr;
         },
 
         professionBind: function(parentval) {
             var professionArr = [];
-            professionArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                professionArr.push({ "label": "--select--", "title": "--select--", "value": "" });
 
-            SelectBindService.ProfessionSpecialisation(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    professionArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                SelectBindService.ProfessionSpecialisation(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        professionArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return professionArr;
         },
         educationGroupBind: function(parentval) {
 
             var educationGroupArr = [];
             if (parentval !== undefined && parentval !== null && parentval !== '') {
-                educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                SelectBindService.EducationGroup(parentval).then(function(response) {
-                    _.each(response.data, function(item) {
-                        educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                if (parentval !== undefined && parentval !== null && parentval !== '') {
+                    educationGroupArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    SelectBindService.EducationGroup(parentval).then(function(response) {
+                        _.each(response.data, function(item) {
+                            educationGroupArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
                     });
-                });
+                }
             }
             return educationGroupArr;
         },
         educationSpeciakisationBind: function(parentval) {
             var educationSpecialArr = [];
-            educationSpecialArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.EducationSpecialisation(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    educationSpecialArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                educationSpecialArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.EducationSpecialisation(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        educationSpecialArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return educationSpecialArr;
         },
 
@@ -119,16 +132,20 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         starBind: function(parentval) {
             var starArr = [];
-            starArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.stars(parentval).then(function(response) {
-                _.each(response.data, function(item) {
-                    starArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval !== undefined && parentval !== null && parentval !== '') {
+                starArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.stars(parentval).then(function(response) {
+                    _.each(response.data, function(item) {
+                        starArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return starArr;
         },
         casteDepedency: function(parentval1, parentval2) {
             var casteArr = [];
+            parentval1 = parentval1 === null || parentval1 === undefined ? '' : parentval1;
+            parentval2 = parentval2 === null || parentval2 === undefined ? '' : parentval2;
             casteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
             SelectBindService.castedependency(parentval1, parentval2).then(function(response) {
                 _.each(response.data, function(item) {
@@ -139,22 +156,26 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         },
         subCaste: function(parentval1) {
             var subcasteArr = [];
-            subcasteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.subCasteBind(parentval1).then(function(response) {
-                _.each(response.data, function(item) {
-                    subcasteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval1 !== undefined && parentval1 !== null && parentval1 !== '') {
+                subcasteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.subCasteBind(parentval1).then(function(response) {
+                    _.each(response.data, function(item) {
+                        subcasteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return subcasteArr;
         },
         branch: function(parentval1) {
             var branchArr = [];
-            branchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-            SelectBindService.branch(parentval1).then(function(response) {
-                _.each(response.data, function(item) {
-                    branchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            if (parentval1 !== undefined && parentval1 !== null && parentval1 !== '') {
+                branchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                SelectBindService.branch(parentval1).then(function(response) {
+                    _.each(response.data, function(item) {
+                        branchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
                 });
-            });
+            }
             return branchArr;
         },
         showConfirm: function(ev, mdDialog, header, okTxt, cancelTxt) {
