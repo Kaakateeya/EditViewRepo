@@ -36,7 +36,6 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
         { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
         { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
-
     ];
 
     $urlRouterProvider.otherwise('editview');
@@ -516,33 +515,49 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.upload = function(obj) {
+
             console.log(obj.myFile);
-            var extension = ((obj.myFile.name).split('.'))[1];
-            var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+            var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+            var gifFormat = "gif, jpeg, png,jpg";
 
-            fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-                console.log(res.status);
-                if (res.status == 200) {
-                    commonFactory.closepopup();
-                    scope.uploadData = {
-                        Cust_ID: custID,
-                        Horopath: '../../' + keyname,
-                        ModifiedByEmpID: '',
-                        VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
-                        Empid: '',
-                        IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
-                        i_flag: 1
-                    };
+            if (typeof(obj.myFile.name) != "undefined") {
 
-                    console.log(JSON.stringify(scope.uploadData));
-                    astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                        console.log(response);
-                        scope.astropageload(custID);
-                        commonFactory.closepopup();
+                var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
+                if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                    alert('Your uploaded image contains an unapproved file formats.');
+                } else if (size > 4 * 1024) {
+                    alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
+                } else {
+                    // var extension = ((obj.myFile.name).split('.'))[1];
+                    var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
+                    fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                        console.log(res.status);
+                        if (res.status == 200) {
+                            commonFactory.closepopup();
+                            scope.uploadData = {
+                                Cust_ID: custID,
+                                Horopath: '../../' + keyname,
+                                ModifiedByEmpID: '',
+                                VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
+                                Empid: '',
+                                IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
+                                i_flag: 1
+                            };
+
+                            console.log(JSON.stringify(scope.uploadData));
+                            astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+                                console.log(response);
+                                scope.astropageload(custID);
+                                commonFactory.closepopup();
+                            });
+                        }
                     });
-                }
-            });
 
+                }
+            } else {
+                alert("This browser does not support HTML5.");
+            }
         };
 
         scope.generateHoro = function(astrocity) {
@@ -701,54 +716,75 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
     scope.upload = function(obj) {
         console.log(obj.myFile);
-        var extension = ((obj.myFile.name).split('.'))[1];
-        var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
+        var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+        var gifFormat = "gif, jpeg, png,jpg";
 
-        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-            console.log(res.status);
-            if (res.status == 200) {
-                commonFactory.closepopup();
-                scope.uploadData = {
-                    GetDetails: {
-                        ID: scope.Cust_Photos_ID,
-                        url: 'Img' + scope.photorowID + '.' + extension,
-                        order: scope.DisplayOrder,
-                        IsProfilePic: 0,
-                        DisplayStatus: scope.DisplayOrder,
-                        Password: 0,
-                        IsReviewed: 0,
-                        TempImageUrl: editviewapp.GlobalImgPath + keyname,
-                        IsTempActive: commonFactory.checkvals(scope.IsActive) ? scope.IsActive : '0',
-                        DeletedImageurl: null,
-                        IsImageDeleted: 0,
-                        PhotoStatus: null,
-                        PhotoID: scope.DisplayOrder,
-                        PhotoPassword: null
-                    },
-                    customerpersonaldetails: {
-                        intCusID: CustID,
-                        EmpID: null,
-                        Admin: null
-                    }
-                };
+        if (typeof(obj.myFile.name) != "undefined") {
+
+            var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
+            if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                alert('Your uploaded image contains an unapproved file formats.');
+            } else if (size > 4 * 1024) {
+                alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
+            } else {
 
 
+                // var extension = ((obj.myFile.name).split('.'))[1];
+                var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
+                fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                    console.log(res.status);
+                    if (res.status == 200) {
+                        commonFactory.closepopup();
+                        scope.uploadData = {
+                            GetDetails: {
+                                ID: scope.Cust_Photos_ID,
+                                url: 'Img' + scope.photorowID + '.' + extension,
+                                order: scope.DisplayOrder,
+                                IsProfilePic: 0,
+                                DisplayStatus: scope.DisplayOrder,
+                                Password: 0,
+                                IsReviewed: 0,
+                                TempImageUrl: editviewapp.GlobalImgPath + keyname,
+                                IsTempActive: commonFactory.checkvals(scope.IsActive) ? scope.IsActive : '0',
+                                DeletedImageurl: null,
+                                IsImageDeleted: 0,
+                                PhotoStatus: null,
+                                PhotoID: scope.DisplayOrder,
+                                PhotoPassword: null
+                            },
+                            customerpersonaldetails: {
+                                intCusID: CustID,
+                                EmpID: null,
+                                Admin: null
+                            }
+                        };
 
-                editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
-                    console.log(response);
-                    if (response.status === 200) {
+                        editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
+                            console.log(response);
+                            if (response.status === 200) {
 
-                        scope.manageArr = response.data;
-                        scope.refreshPageLoad(scope.manageArr);
+                                scope.manageArr = response.data;
+                                scope.refreshPageLoad(scope.manageArr);
 
-                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
-                    } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                            } else {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                            }
+                        });
                     }
                 });
+
+
+
             }
-        });
+        } else {
+            alert("This browser does not support HTML5.");
+        }
+
+
+
     };
+
 
     scope.DeleteImage = function(key, Cust_Photoid) {
         scope.deleteKey = key;
@@ -763,7 +799,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         });
 
         editmanagePhotoServices.linqSubmits(scope.DCust_Photos_ID, 3).then(function(response) {
-
             if (response.data === 1) {
                 commonFactory.closepopup();
                 scope.getData();
@@ -811,6 +846,13 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 break;
         }
     };
+
+
+
+
+
+
+
 
 }]);
 editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
@@ -2509,6 +2551,26 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         }
     };
 
+
+    scope.$watch(function() {
+        return scope.SibCountObj.ddlnoofsiblings;
+    }, function(current, original) {
+        if (current === 0) {
+            scope.SibCountObj.ddlnoofelderrother = 0;
+            scope.SibCountObj.ddlnoofyoungerbrother = 0;
+        }
+    });
+
+    scope.$watch(function() {
+        return scope.SibCountObj.ddlnoofsisters;
+    }, function(current, original) {
+        if (current === 0) {
+            scope.SibCountObj.ddlnoofeldersisters = 0;
+            scope.SibCountObj.ddlnoofyoungersisters = 0;
+        }
+    });
+
+
 }]);
 
 editviewapp.controller("editSideMenuCtrl", function () {
@@ -2606,11 +2668,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.profObj.ddlDistrictProf = item.DistrictID;
                         scope.profObj.ddlcityworkingprofession = item.CityID;
                         scope.profObj.txtcityprofession = item.CityWorkingIn;
-                        scope.profObj.txtworkingfrom = moment(item.WorkingFromDate, 'DD-MM-YYYY').format(); // item.WorkingFromDate;
+                        scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         scope.profObj.ddlvisastatus = item.VisaTypeID;
-                        scope.profObj.txtssincedate = moment(item.ResidingSince, 'DD-MM-YYYY').format();
-                        scope.profObj.txtarrivaldate = moment(item.ArrivingDate, 'DD-MM-YYYY').format();
-                        scope.profObj.txtdeparture = moment(item.DepartureDate, 'DD-MM-YYYY').format();
+                        scope.profObj.txtssincedate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
+                        scope.profObj.txtarrivaldate = commonFactory.convertDateFormat(item.ArrivingDate, 'DD-MM-YYYY');
+                        scope.profObj.txtdeparture = commonFactory.convertDateFormat(item.DepartureDate, 'DD-MM-YYYY');
                         scope.profObj.txtoccupation = item.OccupationDetails;
                         scope.profObj.Cust_Profession_ID = item.Cust_Profession_ID;
                     }
@@ -2800,7 +2862,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 if (response.data === '1') {
 
                     editviewServices.getAboutData(custID).then(function(response) {
-                        scope.lblaboutUrself = response.data;
+
+                        if (commonFactory.checkvals(response.data)) {
+                            var AboutData = (response.data).split(';');
+                            scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+                            scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                        }
                     });
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                 } else {
@@ -3021,6 +3088,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         checkvals: function(val) {
             return (val !== undefined && val !== null && val !== '') ? true : false;
         },
+        convertDateFormat: function(val, format) {
+
+            format = format || 'DD-MM-YYYY';
+            if (val !== undefined && val !== null && val !== '') {
+                return moment(item.ResidingSince, format).format();
+            } else {
+                return '';
+            }
+        },
+
         AstroCity: function(countryName, stateName) {
             var AstrocityArr = [];
             AstrocityArr.push({ "label": "--select--", "title": "--select--", "value": "" });
@@ -3240,7 +3317,7 @@ editviewapp.directive('datePicker', function() {
             strdate: '='
         },
         template: '<p class="input-group">' +
-            '<input type="text" class="form-control" style="width:84%;" ng-data-required=false uib-datepicker-popup=""  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
+            '<input type="text" class="form-control" style="width:84%;"  uib-datepicker-popup="MM/dd/yyyy"  ng-model="strdate" is-open="showdate"  show-button-bar="false" close-text="Close" />' +
             '<span class="input-group-btn">' +
             '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 30px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
             '</span></p>',
@@ -3252,15 +3329,14 @@ editviewapp.directive('datePicker', function() {
         //     '</datetimepicker>',
 
         link: function(scope, element) {
-
-            // alert(scope.strdate);
+            console.log(scope.strdate);
+            scope.strdate = scope.strdate === null ? '' : scope.strdate;
 
             // scope.showdate = false;
 
             // scope.open2 = function() {
             //     scope.showdate = true;
             // };
-
         },
         controller: function($scope) {
             $scope.strdate = new Date($scope.strdate); //moment(new Date()).format();
@@ -11675,7 +11751,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblnoofelderrother\" class=\"pop_label_left\">Elder Brother</label>\r" +
+    "                    <label for=\"lblnoofelderrother\" class=\"pop_label_left\">Elder Brother{{SibCountObj.ddlnoofelderrother}}</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
@@ -13296,7 +13372,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblworkingfrome\" class=\"pop_label_left\">Working from date</label>\r" +
+    "                            <label for=\"lblworkingfrome\" class=\"pop_label_left\">Working from date{{profObj.txtworkingfrom}}</label>\r" +
     "\n" +
     "                            <div class=\"pop_controls_right\">\r" +
     "\n" +

@@ -475,4 +475,24 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         }
     };
 
+
+    scope.$watch(function() {
+        return scope.SibCountObj.ddlnoofsiblings;
+    }, function(current, original) {
+        if (current === 0) {
+            scope.SibCountObj.ddlnoofelderrother = 0;
+            scope.SibCountObj.ddlnoofyoungerbrother = 0;
+        }
+    });
+
+    scope.$watch(function() {
+        return scope.SibCountObj.ddlnoofsisters;
+    }, function(current, original) {
+        if (current === 0) {
+            scope.SibCountObj.ddlnoofeldersisters = 0;
+            scope.SibCountObj.ddlnoofyoungersisters = 0;
+        }
+    });
+
+
 }]);

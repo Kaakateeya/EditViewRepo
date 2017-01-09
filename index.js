@@ -40,7 +40,6 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
         { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
         { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
-
     ];
 
     $urlRouterProvider.otherwise('editview');

@@ -8119,7 +8119,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblnoofelderrother\" class=\"pop_label_left\">Elder Brother</label>\r" +
+    "                    <label for=\"lblnoofelderrother\" class=\"pop_label_left\">Elder Brother{{SibCountObj.ddlnoofelderrother}}</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
@@ -9740,7 +9740,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblworkingfrome\" class=\"pop_label_left\">Working from date</label>\r" +
+    "                            <label for=\"lblworkingfrome\" class=\"pop_label_left\">Working from date{{profObj.txtworkingfrom}}</label>\r" +
     "\n" +
     "                            <div class=\"pop_controls_right\">\r" +
     "\n" +

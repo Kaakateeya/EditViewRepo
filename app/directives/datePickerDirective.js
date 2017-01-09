@@ -4,7 +4,7 @@ editviewapp.directive('datePicker', function() {
             strdate: '='
         },
         template: '<p class="input-group">' +
-            '<input type="text" class="form-control" style="width:84%;" ng-data-required=false uib-datepicker-popup=""  ng-model="strdate" is-open="showdate" datepicker-options="dateOptions"  show-button-bar="false" close-text="Close" />' +
+            '<input type="text" class="form-control" style="width:84%;"  uib-datepicker-popup="MM/dd/yyyy"  ng-model="strdate" is-open="showdate"  show-button-bar="false" close-text="Close" />' +
             '<span class="input-group-btn">' +
             '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 30px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
             '</span></p>',
@@ -16,15 +16,14 @@ editviewapp.directive('datePicker', function() {
         //     '</datetimepicker>',
 
         link: function(scope, element) {
-
-            // alert(scope.strdate);
+            console.log(scope.strdate);
+            scope.strdate = scope.strdate === null ? '' : scope.strdate;
 
             // scope.showdate = false;
 
             // scope.open2 = function() {
             //     scope.showdate = true;
             // };
-
         },
         controller: function($scope) {
             $scope.strdate = new Date($scope.strdate); //moment(new Date()).format();

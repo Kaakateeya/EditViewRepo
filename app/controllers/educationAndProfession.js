@@ -89,11 +89,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.profObj.ddlDistrictProf = item.DistrictID;
                         scope.profObj.ddlcityworkingprofession = item.CityID;
                         scope.profObj.txtcityprofession = item.CityWorkingIn;
-                        scope.profObj.txtworkingfrom = moment(item.WorkingFromDate, 'DD-MM-YYYY').format(); // item.WorkingFromDate;
+                        scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         scope.profObj.ddlvisastatus = item.VisaTypeID;
-                        scope.profObj.txtssincedate = moment(item.ResidingSince, 'DD-MM-YYYY').format();
-                        scope.profObj.txtarrivaldate = moment(item.ArrivingDate, 'DD-MM-YYYY').format();
-                        scope.profObj.txtdeparture = moment(item.DepartureDate, 'DD-MM-YYYY').format();
+                        scope.profObj.txtssincedate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
+                        scope.profObj.txtarrivaldate = commonFactory.convertDateFormat(item.ArrivingDate, 'DD-MM-YYYY');
+                        scope.profObj.txtdeparture = commonFactory.convertDateFormat(item.DepartureDate, 'DD-MM-YYYY');
                         scope.profObj.txtoccupation = item.OccupationDetails;
                         scope.profObj.Cust_Profession_ID = item.Cust_Profession_ID;
                     }
@@ -283,7 +283,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 if (response.data === '1') {
 
                     editviewServices.getAboutData(custID).then(function(response) {
-                        scope.lblaboutUrself = response.data;
+
+                        if (commonFactory.checkvals(response.data)) {
+                            var AboutData = (response.data).split(';');
+                            scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+                            scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                        }
                     });
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                 } else {

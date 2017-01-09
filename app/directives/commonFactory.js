@@ -195,6 +195,16 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
         checkvals: function(val) {
             return (val !== undefined && val !== null && val !== '') ? true : false;
         },
+        convertDateFormat: function(val, format) {
+
+            format = format || 'DD-MM-YYYY';
+            if (val !== undefined && val !== null && val !== '') {
+                return moment(item.ResidingSince, format).format();
+            } else {
+                return '';
+            }
+        },
+
         AstroCity: function(countryName, stateName) {
             var AstrocityArr = [];
             AstrocityArr.push({ "label": "--select--", "title": "--select--", "value": "" });

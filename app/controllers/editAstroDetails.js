@@ -171,33 +171,49 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.upload = function(obj) {
+
             console.log(obj.myFile);
-            var extension = ((obj.myFile.name).split('.'))[1];
-            var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+            var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+            var gifFormat = "gif, jpeg, png,jpg";
 
-            fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-                console.log(res.status);
-                if (res.status == 200) {
-                    commonFactory.closepopup();
-                    scope.uploadData = {
-                        Cust_ID: custID,
-                        Horopath: '../../' + keyname,
-                        ModifiedByEmpID: '',
-                        VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
-                        Empid: '',
-                        IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
-                        i_flag: 1
-                    };
+            if (typeof(obj.myFile.name) != "undefined") {
 
-                    console.log(JSON.stringify(scope.uploadData));
-                    astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                        console.log(response);
-                        scope.astropageload(custID);
-                        commonFactory.closepopup();
+                var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
+                if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                    alert('Your uploaded image contains an unapproved file formats.');
+                } else if (size > 4 * 1024) {
+                    alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
+                } else {
+                    // var extension = ((obj.myFile.name).split('.'))[1];
+                    var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
+                    fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                        console.log(res.status);
+                        if (res.status == 200) {
+                            commonFactory.closepopup();
+                            scope.uploadData = {
+                                Cust_ID: custID,
+                                Horopath: '../../' + keyname,
+                                ModifiedByEmpID: '',
+                                VisibleToID: keyname.indexOf('html') !== -1 ? 1 : '',
+                                Empid: '',
+                                IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
+                                i_flag: 1
+                            };
+
+                            console.log(JSON.stringify(scope.uploadData));
+                            astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
+                                console.log(response);
+                                scope.astropageload(custID);
+                                commonFactory.closepopup();
+                            });
+                        }
                     });
-                }
-            });
 
+                }
+            } else {
+                alert("This browser does not support HTML5.");
+            }
         };
 
         scope.generateHoro = function(astrocity) {

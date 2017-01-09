@@ -87,54 +87,75 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
     scope.upload = function(obj) {
         console.log(obj.myFile);
-        var extension = ((obj.myFile.name).split('.'))[1];
-        var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
+        var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+        var gifFormat = "gif, jpeg, png,jpg";
 
-        fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-            console.log(res.status);
-            if (res.status == 200) {
-                commonFactory.closepopup();
-                scope.uploadData = {
-                    GetDetails: {
-                        ID: scope.Cust_Photos_ID,
-                        url: 'Img' + scope.photorowID + '.' + extension,
-                        order: scope.DisplayOrder,
-                        IsProfilePic: 0,
-                        DisplayStatus: scope.DisplayOrder,
-                        Password: 0,
-                        IsReviewed: 0,
-                        TempImageUrl: editviewapp.GlobalImgPath + keyname,
-                        IsTempActive: commonFactory.checkvals(scope.IsActive) ? scope.IsActive : '0',
-                        DeletedImageurl: null,
-                        IsImageDeleted: 0,
-                        PhotoStatus: null,
-                        PhotoID: scope.DisplayOrder,
-                        PhotoPassword: null
-                    },
-                    customerpersonaldetails: {
-                        intCusID: CustID,
-                        EmpID: null,
-                        Admin: null
-                    }
-                };
+        if (typeof(obj.myFile.name) != "undefined") {
+
+            var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
+            if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                alert('Your uploaded image contains an unapproved file formats.');
+            } else if (size > 4 * 1024) {
+                alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
+            } else {
 
 
+                // var extension = ((obj.myFile.name).split('.'))[1];
+                var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
+                fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                    console.log(res.status);
+                    if (res.status == 200) {
+                        commonFactory.closepopup();
+                        scope.uploadData = {
+                            GetDetails: {
+                                ID: scope.Cust_Photos_ID,
+                                url: 'Img' + scope.photorowID + '.' + extension,
+                                order: scope.DisplayOrder,
+                                IsProfilePic: 0,
+                                DisplayStatus: scope.DisplayOrder,
+                                Password: 0,
+                                IsReviewed: 0,
+                                TempImageUrl: editviewapp.GlobalImgPath + keyname,
+                                IsTempActive: commonFactory.checkvals(scope.IsActive) ? scope.IsActive : '0',
+                                DeletedImageurl: null,
+                                IsImageDeleted: 0,
+                                PhotoStatus: null,
+                                PhotoID: scope.DisplayOrder,
+                                PhotoPassword: null
+                            },
+                            customerpersonaldetails: {
+                                intCusID: CustID,
+                                EmpID: null,
+                                Admin: null
+                            }
+                        };
 
-                editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
-                    console.log(response);
-                    if (response.status === 200) {
+                        editmanagePhotoServices.submituploadData(scope.uploadData).then(function(response) {
+                            console.log(response);
+                            if (response.status === 200) {
 
-                        scope.manageArr = response.data;
-                        scope.refreshPageLoad(scope.manageArr);
+                                scope.manageArr = response.data;
+                                scope.refreshPageLoad(scope.manageArr);
 
-                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
-                    } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 3000);
+                            } else {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 3000);
+                            }
+                        });
                     }
                 });
+
+
+
             }
-        });
+        } else {
+            alert("This browser does not support HTML5.");
+        }
+
+
+
     };
+
 
     scope.DeleteImage = function(key, Cust_Photoid) {
         scope.deleteKey = key;
@@ -149,7 +170,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         });
 
         editmanagePhotoServices.linqSubmits(scope.DCust_Photos_ID, 3).then(function(response) {
-
             if (response.data === 1) {
                 commonFactory.closepopup();
                 scope.getData();
@@ -197,5 +217,12 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 break;
         }
     };
+
+
+
+
+
+
+
 
 }]);
