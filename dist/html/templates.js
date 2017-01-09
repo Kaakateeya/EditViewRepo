@@ -7001,13 +7001,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    <h6>\r" +
     "\n" +
-    "                                        <label id=\"ElderbrotherName\" font-bold=\"true\" forecolor=\"Red\">\r" +
+    "                                        <label id=\"ElderbrotherName\" font-bold=\"true\" style=\"color:red;\">\r" +
     "\n" +
     "                                        Brother Name</label></h6>\r" +
     "\n" +
     "                                    <h5>\r" +
     "\n" +
-    "                                        <span id=\"lblElderbrotherName\" forecolor=\"Red\">\r" +
+    "                                        <span id=\"lblElderbrotherName\" style=\"color:red;\">\r" +
     "\n" +
     "                                            {{ item.SibilingName+\" (\"+item.brotherYoungerORelder+\")\" }}\r" +
     "\n" +
@@ -7049,7 +7049,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <span id=\"lblBrotherEducationDetails\">\r" +
     "\n" +
-    "                                            {{ item.SibilingEducationDetails}}\r" +
+    "                                            {{ item.SibilingEducationDetails!=null?item.SibilingEducationDetails:''}}\r" +
     "\n" +
     "                                    </span>\r" +
     "\n" +
@@ -7101,7 +7101,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <span id=\"lblprofession\">\r" +
     "\n" +
-    "                                            {{ item.SibilingCompany+\" \"+(item.SibilingJobPLace.ToString()!=\"\" && item.SibilingJobPLace!=null?\",\"+item.SibilingJobPLace:\"\") }}\r" +
+    "                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+\" \"+(item.SibilingJobPLace.ToString()!=\"\" && item.SibilingJobPLace!=null?\",\"+item.SibilingJobPLace:\"\") }}\r" +
     "\n" +
     "                                    </span>\r" +
     "\n" +
@@ -7139,7 +7139,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                <span id=\"lblConactNo\">\r" +
     "\n" +
-    "                                                    {{ item.SibilingMobileNumberWithCode+\r" +
+    "                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+\r" +
     "\n" +
     "                                                ((item.SibilngLandnumberwithcode.ToString()!=\"\" && item.SibilngLandnumberwithcode!=null)?\",\"+item.SibilngLandnumberwithcode:\"\")}}\r" +
     "\n" +
@@ -7337,7 +7337,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                        <span id=\"lblbrotherwifemobnumbers\">\r" +
     "\n" +
-    "                                                           {{ item.SibilingSpouceMobileNumberWithCode\r" +
+    "                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==nullitem.SibilingSpouceMobileNumberWithCode:'')\r" +
     "\n" +
     "                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!=\"\" && item.SibilingSpouceLandNumberWithCode!=null)?\",\"+item.SibilingSpouceLandNumberWithCode:\"\") }}\r" +
     "\n" +
@@ -7669,7 +7669,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    <span id=\"lblsisprof\">\r" +
     "\n" +
-    "                                            {{ (item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!=\"\" && item.SibilingJobPLace!=null)?\",\"+item.SibilingJobPLace:\"\")}}\r" +
+    "                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+ ((item.SibilingJobPLace.ToString()!=\"\" && item.SibilingJobPLace!=null)?\",\"+item.SibilingJobPLace:\"\")}}\r" +
     "\n" +
     "                                    </span>\r" +
     "\n" +
@@ -7707,7 +7707,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                <span id=\"lblsisnumbers\">\r" +
     "\n" +
-    "                                                    {{ item.SibilingMobileNumberWithCode+\r" +
+    "                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+\r" +
     "\n" +
     "                                                ((item.SibilngLandnumberwithcode.ToString()!=\"\" && item.SibilngLandnumberwithcode!=null)?\",\"+item.SibilngLandnumberwithcode:\"\")}}\r" +
     "\n" +
@@ -7903,7 +7903,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                        <span id=\"lblhusbandnumbers\">\r" +
     "\n" +
-    "                                                          {{ item.SibilingSpouceMobileNumberWithCode+((item.SibilingSpouceLandNumberWithCode.ToString()!=\"\" && item.SibilingSpouceLandNumberWithCode!=null)?\",\"\r" +
+    "                                                          {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')+((item.SibilingSpouceLandNumberWithCode.ToString()!=\"\" && item.SibilingSpouceLandNumberWithCode!=null)?\",\"\r" +
     "\n" +
     "                                                            +item.SibilingSpouceLandNumberWithCode:\"\")}}\r" +
     "\n" +
@@ -8209,7 +8209,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"brotherModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"sibBroSubmit(broObj)\">\r" +
+    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"brotherForm.$valid  && sibBroSubmit(broObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -8577,7 +8577,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"sisterModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibSisSubmit(sisObj)\">\r" +
+    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibsisForm.$valid  && sibSisSubmit(sisObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +

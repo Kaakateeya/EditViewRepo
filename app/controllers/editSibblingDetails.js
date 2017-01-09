@@ -23,6 +23,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         switch (type) {
             case 'sibCounrt':
                 if (item !== undefined) {
+                    console.log(item.NoOfElderBrothers);
                     scope.SibCountObj.ddlnoofsiblings = item.NoOfBrothers;
                     scope.SibCountObj.ddlnoofelderrother = item.NoOfElderBrothers;
                     scope.SibCountObj.ddlnoofyoungerbrother = item.NoOfYoungerBrothers;
@@ -205,7 +206,6 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     };
     scope.sibPageload(custID);
 
-
     scope.sibBroSubmit = function(obj) {
         scope.sibBroData = {
             GetDetails: {
@@ -359,7 +359,6 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
     };
 
-
     scope.cancel = function() {
         commonFactory.closepopup();
     };
@@ -482,6 +481,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         if (current === 0) {
             scope.SibCountObj.ddlnoofelderrother = 0;
             scope.SibCountObj.ddlnoofyoungerbrother = 0;
+            console.log(scope.SibCountObj.ddlnoofelderrother);
         }
     });
 

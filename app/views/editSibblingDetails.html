@@ -139,10 +139,10 @@
                                 <div id="uplElderbrotherName" class="edit_page_details_item_desc clearfix">
 
                                     <h6>
-                                        <label id="ElderbrotherName" font-bold="true" forecolor="Red">
+                                        <label id="ElderbrotherName" font-bold="true" style="color:red;">
                                         Brother Name</label></h6>
                                     <h5>
-                                        <span id="lblElderbrotherName" forecolor="Red">
+                                        <span id="lblElderbrotherName" style="color:red;">
                                             {{ item.SibilingName+" ("+item.brotherYoungerORelder+")" }}
                                     </span>
                                     </h5>
@@ -163,7 +163,7 @@
                                         <label id="lblEducationbrother" font-bold="true">Education</label></h6>
                                     <h5>
                                         <span id="lblBrotherEducationDetails">
-                                            {{ item.SibilingEducationDetails}}
+                                            {{ item.SibilingEducationDetails!=null?item.SibilingEducationDetails:''}}
                                     </span>
                                     </h5>
                                 </div>
@@ -189,7 +189,7 @@
                                         <label id="profession" font-bold="true">Company&JobLocation</label></h6>
                                     <h5>
                                         <span id="lblprofession">
-                                            {{ item.SibilingCompany+" "+(item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null?","+item.SibilingJobPLace:"") }}
+                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+" "+(item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null?","+item.SibilingJobPLace:"") }}
                                     </span>
                                     </h5>
                                 </div>
@@ -208,7 +208,7 @@
                                                 <label id="ConactNo" font-bold="true">Conact Nos</label></h6>
                                             <h5>
                                                 <span id="lblConactNo">
-                                                    {{ item.SibilingMobileNumberWithCode+
+                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+
                                                 ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
                                             </span>
                                             </h5>
@@ -307,7 +307,7 @@
                                                         <label id="lblbrotherwife" font-bold="true">Contact Nos</label></h6>
                                                     <h5>
                                                         <span id="lblbrotherwifemobnumbers">
-                                                           {{ item.SibilingSpouceMobileNumberWithCode
+                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==nullitem.SibilingSpouceMobileNumberWithCode:'')
                                                           +((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","+item.SibilingSpouceLandNumberWithCode:"") }}
                                                     </span>
                                                     </h5>
@@ -473,7 +473,7 @@
                                     <label id="sisprof" font-bold="true">Company & Job Location </label></h6>
                                 <h5>
                                     <span id="lblsisprof">
-                                            {{ (item.SibilingCompany)+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:"")}}
+                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:"")}}
                                     </span>
                                 </h5>
 
@@ -492,7 +492,7 @@
                                                 <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
                                             <h5>
                                                 <span id="lblsisnumbers">
-                                                    {{ item.SibilingMobileNumberWithCode+
+                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+
                                                 ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
                                             </span>
                                             </h5>
@@ -590,7 +590,7 @@
                                                         <label id="lblsisterhusband" font-bold="true">Conact Nos</label></h6>
                                                     <h5>
                                                         <span id="lblhusbandnumbers">
-                                                          {{ item.SibilingSpouceMobileNumberWithCode+((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","
+                                                          {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')+((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","
                                                             +item.SibilingSpouceLandNumberWithCode:"")}}
                                                     </span>
                                                     </h5>
@@ -743,7 +743,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="brotherModalContent.html">
-    <form name="brotherForm" novalidate role="form" ng-submit="sibBroSubmit(broObj)">
+    <form name="brotherForm" novalidate role="form" ng-submit="brotherForm.$valid  && sibBroSubmit(broObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Brother details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -927,7 +927,7 @@
 </script>
 
 <script type="text/ng-template" id="sisterModalContent.html">
-    <form name="sibsisForm" novalidate role="form" ng-submit="sibSisSubmit(sisObj)">
+    <form name="sibsisForm" novalidate role="form" ng-submit="sibsisForm.$valid  && sibSisSubmit(sisObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Sister details
                 <a href="javascript:void(0);" ng-click="cancel();">

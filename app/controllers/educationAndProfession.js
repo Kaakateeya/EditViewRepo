@@ -89,7 +89,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.profObj.ddlDistrictProf = item.DistrictID;
                         scope.profObj.ddlcityworkingprofession = item.CityID;
                         scope.profObj.txtcityprofession = item.CityWorkingIn;
-                        scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
+                        //scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         scope.profObj.ddlvisastatus = item.VisaTypeID;
                         scope.profObj.txtssincedate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
                         scope.profObj.txtarrivaldate = commonFactory.convertDateFormat(item.ArrivingDate, 'DD-MM-YYYY');

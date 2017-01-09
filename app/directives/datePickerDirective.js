@@ -17,8 +17,11 @@ editviewapp.directive('datePicker', function() {
 
         link: function(scope, element) {
             console.log(scope.strdate);
-            scope.strdate = scope.strdate === null ? '' : scope.strdate;
 
+            scope.strdate = (scope.strdate === 'Invalid Date') ? '' : scope.strdate;
+            alert(scope.strdate);
+
+            console.log(scope.strdate);
             // scope.showdate = false;
 
             // scope.open2 = function() {
