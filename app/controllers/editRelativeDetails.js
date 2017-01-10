@@ -204,7 +204,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitFBData(scope.FBData).then(function(response) {
+        scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -251,7 +251,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitFSData(scope.FSData).then(function(response) {
+        scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -292,7 +292,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitMBData(scope.MBData).then(function(response) {
+        scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -337,7 +337,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 Admin: null
             }
         };
-        relativeServices.submitMSData(scope.MSData).then(function(response) {
+        scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {

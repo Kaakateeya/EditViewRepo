@@ -697,13 +697,13 @@
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofsiblings" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsiblings!==0">
                     <label for="lblnoofelderrother" class="pop_label_left">Elder Brother{{SibCountObj.ddlnoofelderrother}}</label>
                     <div class="pop_controls_right select-box-my">
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofelderrother" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsiblings!==0">
                     <label for="lblnoofyoungerbrother" class="pop_label_left">Younger Brother</label>
                     <div class="pop_controls_right select-box-my">
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungerbrother" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
@@ -716,13 +716,13 @@
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofsisters" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsisters!==0">
                     <label for="lblnoofeldersisters" class="pop_label_left">Elder sisters</label>
                     <div class="pop_controls_right select-box-my">
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofeldersisters" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsisters!==0">
                     <label for="lblnoofyoungersisters" class="pop_label_left">Younger  sisters</label>
                     <div class="pop_controls_right select-box-my">
                         <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungersisters" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
@@ -730,12 +730,14 @@
                 </li>
                 <li class="row">
                     <br/>
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input type="submit" value="Submit" class="button_custom  pull-right">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
             </ul>
         </div>
@@ -911,12 +913,14 @@
                     </div>
                 </div>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
             </ul>
 
@@ -1086,12 +1090,14 @@
                     </li>
                 </div>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
             </ul>
 

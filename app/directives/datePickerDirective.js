@@ -16,24 +16,12 @@ editviewapp.directive('datePicker', function() {
         //     '</datetimepicker>',
 
         link: function(scope, element) {
-            console.log(scope.strdate);
+            if (scope.strdate !== '')
+                scope.strdate = new Date(scope.strdate); //moment(new Date()).format();
+            scope.showdate = false;
 
-            scope.strdate = (scope.strdate === 'Invalid Date') ? '' : scope.strdate;
-            alert(scope.strdate);
-
-            console.log(scope.strdate);
-            // scope.showdate = false;
-
-            // scope.open2 = function() {
-            //     scope.showdate = true;
-            // };
-        },
-        controller: function($scope) {
-            $scope.strdate = new Date($scope.strdate); //moment(new Date()).format();
-            $scope.showdate = false;
-
-            $scope.open2 = function() {
-                $scope.showdate = true;
+            scope.open2 = function() {
+                scope.showdate = true;
             };
 
         }

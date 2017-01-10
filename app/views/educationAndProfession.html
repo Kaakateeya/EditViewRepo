@@ -272,12 +272,14 @@
                         </li>
                         <li class="row">
                             <br/>
-                            <div class="col-lg-9">
+                            <!--<div class="col-lg-9">
                                 <input value="Submit" class="button_custom pull-right" type="submit">
                             </div>
                             <div class="col-lg-3">
                                 <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                            </div>
+                            </div>-->
+
+                            <edit-footer></edit-footer>
                         </li>
 
                     </ul>
@@ -386,12 +388,14 @@
                             </div>
                         </li>
                         <li class="row">
-                            <div class="col-lg-9">
+                            <!--<div class="col-lg-9">
                                 <input type="submit" value="Submit" class="button_custom  pull-right">
                             </div>
                             <div class="col-lg-3">
                                 <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                            </div>
+                            </div>-->
+
+                            <edit-footer></edit-footer>
                         </li>
                     </ul>
                 </div>
@@ -420,18 +424,18 @@
                             <label id="Label1" style="color: red; font-size: 13px;" class="pull-right">(max 1000 characters)</label>
                             <label id="lblaboutcount" style="color: #1e1c1c; font-size: 13px;">{{aboutForm.txtAboutUS.length}}</label>
                         </li>
-                        <li class="row ">
-                            <div class="col-lg-9">
-                                <input type="submit" value="Submit" class="button_custom  pull-right">
+                        <li class="row">
+                            <!--<div class="col-lg-9">
+                                <button class="button_custom  pull-right" type="submit" promise-btn="submitPromise">Submit</button>
                             </div>
                             <div class="col-lg-3">
                                 <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                            </div>
+                            </div>-->
+                            <edit-footer></edit-footer>
                         </li>
                     </ul>
 
                 </div>
-
             </form>
         </script>
     </div>

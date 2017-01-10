@@ -140,7 +140,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             };
 
-            astroServices.submitAstroData(scope.astroData).then(function(response) {
+            scope.submitPromise = astroServices.submitAstroData(scope.astroData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {

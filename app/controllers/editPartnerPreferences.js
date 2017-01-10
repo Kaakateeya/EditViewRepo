@@ -174,7 +174,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         // var datare = { "GetDetails": { "CustID": 91035, "AgeGapFrom": 1, "AgeGapTo": 5, "HeightFrom": "17", "HeightTo": "22", "Religion": "1,2", "Mothertongue": "1,2", "Caste": "402,403", "Subcaste": "459,462", "Maritalstatus": "43,44", "ManglikKujadosham": "2", "PreferredstarLanguage": "2", "Educationcategory": "1,2", "Educationgroup": "2,3", "Employedin": "1,2", "Professiongroup": "1,2", "Diet": "28", "Preferredcountry": "1,2", "Preferredstate": "4,5", "Preferreddistrict": '', "Preferredlocation": '', "TypeofStar": "1", "PrefredStars": "4,5", "GenderID": 2, "Region": "408,409", "Branch": "" }, "customerpersonaldetails": { "intCusID": 91035, "EmpID": '', "Admin": '' } };
 
         console.log(JSON.stringify(scope.partnerPrefData));
-        partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+        scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -194,7 +194,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
 
     scope.partnerDescriptionSubmit = function(obj) {
-        partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
+        scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {

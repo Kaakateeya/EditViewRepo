@@ -104,11 +104,10 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 Admin: null
             }
         };
-        referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
+        scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
                 referenceServices.getReferenceData(custID).then(function(response) {
                     scope.ReferenceArr = response.data;
                 });

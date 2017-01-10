@@ -17,7 +17,9 @@ editviewapp.factory('parentServices', ['$http', function(http) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerPhysicalAttributesUpdatedetails', JSON.stringify(obj1));
         },
         submitAboutFamilyData: function(obj) {
+
             return http.get(editviewapp.apipath + 'CustomerPersonal/getParents_AboutMyFamily', { params: obj });
+
         }
     };
 }]);

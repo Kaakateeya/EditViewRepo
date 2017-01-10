@@ -445,7 +445,7 @@
 </div>
 
 <script type="text/ng-template" id="FBModalContent.html">
-    <form name="FBForm" novalidate role="form" ng-submit="FBSubmit(fbObj)">
+    <form name="FBForm" novalidate role="form" ng-submit="FBForm.$valid  && FBSubmit(fbObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Father's Brother Details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -501,12 +501,14 @@
                     </div>
                 </li>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom  pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
             </ul>
 
@@ -515,7 +517,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="FSModalContent.html">
-    <form name="FSForm" novalidate role="form" ng-submit="FSSubmit(fsObj)">
+    <form name="FSForm" novalidate role="form" ng-submit="FSForm.$valid  && FSSubmit(fsObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Father's Sister Details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -608,12 +610,14 @@
                     </div>
                 </li>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom  pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
             </ul>
 
@@ -622,7 +626,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="MBModalContent.html">
-    <form name="MBForm" novalidate role="form" ng-submit="MBSubmit(mbObj)">
+    <form name="MBForm" novalidate role="form" ng-submit="MBForm.$valid  && MBSubmit(mbObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Mother's Brother Details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -696,12 +700,14 @@
                     </div>
                 </li>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom  pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
 
             </ul>
@@ -711,7 +717,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="MSModalContent.html">
-    <form name="MSForm" novalidate role="form" ng-submit="MSSubmit(msObj)">
+    <form name="MSForm" novalidate role="form" ng-submit="MSForm.$valid  && MSSubmit(msObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Mother's Sister Details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -806,12 +812,14 @@
                     </div>
                 </li>
                 <li class="row ">
-                    <div class="col-lg-9">
+                    <!--<div class="col-lg-9">
                         <input value="Submit" class="button_custom  pull-right" type="submit">
                     </div>
                     <div class="col-lg-3">
                         <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                    </div>
+                    </div>-->
+
+                    <edit-footer></edit-footer>
                 </li>
 
             </ul>

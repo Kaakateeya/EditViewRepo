@@ -46,7 +46,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
             }
         };
 
-        propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
+        scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {

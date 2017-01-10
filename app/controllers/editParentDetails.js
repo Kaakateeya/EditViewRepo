@@ -300,7 +300,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             };
 
             console.log(JSON.stringify(scope.myData));
-            parentServices.submitParentData(scope.myData).then(function(response) {
+            scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -343,7 +343,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 }
 
             };
-            parentServices.submitAddressData(scope.myAddrData).then(function(response) {
+            scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -379,7 +379,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
             };
 
-            parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
+            scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -392,9 +392,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             });
         };
 
-
         scope.AboutMyfamilySubmit = function(obj) {
-            parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
+            scope.submitPromise = parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
                 console.log(response);
                 scope.lblaboutMyfamily = obj.txtAboutUs;
                 commonFactory.closepopup();

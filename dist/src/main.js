@@ -3,7 +3,7 @@
  * Main App Creation
  */
 
-var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons', 'jcs-autoValidate']);
+var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons']);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
@@ -24,18 +24,16 @@ editviewapp.BucketName = 'angularkaknew';
 
 editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     var states = [
-        { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
-        { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl' },
-        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrledit' },
-        { name: 'editview.editparent', url: '/editparent', templateUrl: editviewapp.templateroot + 'app/views/editParentDetails.html', controller: 'parentCtrl' },
-        { name: 'editview.editPartnerPreferences', url: '/editPartnerPreferences', templateUrl: editviewapp.templateroot + 'app/views/editPartnerPreferences.html', controller: 'partnerPreferenceCtrl' },
-        { name: 'editview.editSiblingDetails', url: '/editSiblingDetails', templateUrl: editviewapp.templateroot + 'app/views/editSibblingDetails.html', controller: 'sibblingCtrl' },
+        { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl', isloginrequired: true },
+        { name: 'editview.editEducationAndProfession', url: '/editEducationAndProfession', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl', isloginrequired: true },
+        { name: 'editview.editManagePhoto', url: '/editManagePhoto', templateUrl: editviewapp.templateroot + 'app/views/editManagePhoto.html', controller: 'managePhotoCtrledit', isloginrequired: true },
+        { name: 'editview.editparent', url: '/editparent', templateUrl: editviewapp.templateroot + 'app/views/editParentDetails.html', controller: 'parentCtrl', isloginrequired: true },
+        { name: 'editview.editPartnerPreferences', url: '/editPartnerPreferences', templateUrl: editviewapp.templateroot + 'app/views/editPartnerPreferences.html', controller: 'partnerPreferenceCtrl', isloginrequired: true },
+        { name: 'editview.editSiblingDetails', url: '/editSiblingDetails', templateUrl: editviewapp.templateroot + 'app/views/editSibblingDetails.html', controller: 'sibblingCtrl', isloginrequired: true },
         { name: 'editview.editAstro', url: '/editAstro', templateUrl: editviewapp.templateroot + 'app/views/editAstroDetails.html', controller: 'astroCtrl', isloginrequired: true },
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
-        { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl' },
-        { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl' },
-        { name: 'editview.registration', url: '/registration', templateUrl: editviewapp.templateroot + 'app/views/registration.html', controller: 'registrationCtrl' },
-        { name: 'editview.testcontroller', url: '/testcontroller', templateUrl: editviewapp.templateroot + 'app/views/testcontroller.html', controller: 'testcontroller' }
+        { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl', isloginrequired: true },
+        { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl', isloginrequired: true },
     ];
 
     $urlRouterProvider.otherwise('editview');
@@ -484,7 +482,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             };
 
-            astroServices.submitAstroData(scope.astroData).then(function(response) {
+            scope.submitPromise = astroServices.submitAstroData(scope.astroData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -1157,7 +1155,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             };
 
             console.log(JSON.stringify(scope.myData));
-            parentServices.submitParentData(scope.myData).then(function(response) {
+            scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -1200,7 +1198,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 }
 
             };
-            parentServices.submitAddressData(scope.myAddrData).then(function(response) {
+            scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -1236,7 +1234,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
             };
 
-            parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
+            scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -1249,9 +1247,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             });
         };
 
-
         scope.AboutMyfamilySubmit = function(obj) {
-            parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
+            scope.submitPromise = parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
                 console.log(response);
                 scope.lblaboutMyfamily = obj.txtAboutUs;
                 commonFactory.closepopup();
@@ -1482,7 +1479,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         // var datare = { "GetDetails": { "CustID": 91035, "AgeGapFrom": 1, "AgeGapTo": 5, "HeightFrom": "17", "HeightTo": "22", "Religion": "1,2", "Mothertongue": "1,2", "Caste": "402,403", "Subcaste": "459,462", "Maritalstatus": "43,44", "ManglikKujadosham": "2", "PreferredstarLanguage": "2", "Educationcategory": "1,2", "Educationgroup": "2,3", "Employedin": "1,2", "Professiongroup": "1,2", "Diet": "28", "Preferredcountry": "1,2", "Preferredstate": "4,5", "Preferreddistrict": '', "Preferredlocation": '', "TypeofStar": "1", "PrefredStars": "4,5", "GenderID": 2, "Region": "408,409", "Branch": "" }, "customerpersonaldetails": { "intCusID": 91035, "EmpID": '', "Admin": '' } };
 
         console.log(JSON.stringify(scope.partnerPrefData));
-        partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+        scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -1502,7 +1499,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
 
     scope.partnerDescriptionSubmit = function(obj) {
-        partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
+        scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === '1') {
@@ -1566,7 +1563,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
             }
         };
 
-        propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
+        scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -1693,11 +1690,10 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 Admin: null
             }
         };
-        referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
+        scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
-
                 referenceServices.getReferenceData(custID).then(function(response) {
                     scope.ReferenceArr = response.data;
                 });
@@ -1922,7 +1918,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitFBData(scope.FBData).then(function(response) {
+        scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -1969,7 +1965,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitFSData(scope.FSData).then(function(response) {
+        scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -2010,7 +2006,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
             }
         };
 
-        relativeServices.submitMBData(scope.MBData).then(function(response) {
+        scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -2055,7 +2051,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 Admin: null
             }
         };
-        relativeServices.submitMSData(scope.MSData).then(function(response) {
+        scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -2186,6 +2182,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 break;
 
             case 'sister':
+
                 if (item !== undefined && scope.sisterArr.length <= parseInt(scope.SisCount)) {
 
                     scope.sisObj.SibilingCustfamilyID = null;
@@ -2200,7 +2197,6 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.sisObj.txtSisterName = item.SibilingName;
                         scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
                         scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
-                        //scopsisroObj.chksisProfession = item.;
                         scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
                         scope.sisObj.txtSCompanyName = item.SibilingCompany;
                         scope.sisObj.txtSjobloc = item.SibilingJobPLace;
@@ -2339,7 +2335,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             }
         };
 
-        sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
+        scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -2409,7 +2405,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 Admin: null
             }
         };
-        sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
+        scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -2483,7 +2479,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.BroCount = obj.ddlnoofsiblings;
             scope.SisCount = obj.ddlnoofsisters;
 
-            sibblingServices.submitSibCountsData(objinput).then(function(response) {
+            scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -2550,27 +2546,6 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         }
     };
 
-
-    scope.$watch(function() {
-        return scope.SibCountObj.ddlnoofsiblings;
-    }, function(current, original) {
-        if (current === 0) {
-            scope.SibCountObj.ddlnoofelderrother = 0;
-            scope.SibCountObj.ddlnoofyoungerbrother = 0;
-            console.log(scope.SibCountObj.ddlnoofelderrother);
-        }
-    });
-
-    scope.$watch(function() {
-        return scope.SibCountObj.ddlnoofsisters;
-    }, function(current, original) {
-        if (current === 0) {
-            scope.SibCountObj.ddlnoofeldersisters = 0;
-            scope.SibCountObj.ddlnoofyoungersisters = 0;
-        }
-    });
-
-
 }]);
 
 editviewapp.controller("editSideMenuCtrl", function () {
@@ -2578,9 +2553,9 @@ editviewapp.controller("editSideMenuCtrl", function () {
 
 });
 editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService',
-    'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', 'route',
+    'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', 'route', '$q', '$log',
     function(uibModal, scope, editviewServices, SelectBindService, commonFactory,
-        mdDialog, filter, authSvc, timeout, route) {
+        mdDialog, filter, authSvc, timeout, route, $q, $log) {
 
         scope.stateArr = [];
         scope.districtArr = [];
@@ -2668,7 +2643,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.profObj.ddlDistrictProf = item.DistrictID;
                         scope.profObj.ddlcityworkingprofession = item.CityID;
                         scope.profObj.txtcityprofession = item.CityWorkingIn;
-                        //scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
+                        scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         scope.profObj.ddlvisastatus = item.VisaTypeID;
                         scope.profObj.txtssincedate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
                         scope.profObj.txtarrivaldate = commonFactory.convertDateFormat(item.ArrivingDate, 'DD-MM-YYYY');
@@ -2781,7 +2756,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             };
 
 
-            editviewServices.submitEducationData(scope.myData).then(function(response) {
+            scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -2833,7 +2808,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
 
 
-            editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
+            scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
 
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -2854,10 +2829,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
         };
 
+
+
+
         scope.AboutUrselfSubmit = function(obj) {
 
-            editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
-
+            scope.submitPromise = editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
                 commonFactory.closepopup();
                 if (response.data === '1') {
 
@@ -3329,25 +3306,28 @@ editviewapp.directive('datePicker', function() {
         //     '</datetimepicker>',
 
         link: function(scope, element) {
-            console.log(scope.strdate);
+            if (scope.strdate !== '')
+                scope.strdate = new Date(scope.strdate); //moment(new Date()).format();
+            scope.showdate = false;
 
-            scope.strdate = (scope.strdate === 'Invalid Date') ? '' : scope.strdate;
-            alert(scope.strdate);
-
-            console.log(scope.strdate);
-            // scope.showdate = false;
-
-            // scope.open2 = function() {
-            //     scope.showdate = true;
-            // };
-        },
-        controller: function($scope) {
-            $scope.strdate = new Date($scope.strdate); //moment(new Date()).format();
-            $scope.showdate = false;
-
-            $scope.open2 = function() {
-                $scope.showdate = true;
+            scope.open2 = function() {
+                scope.showdate = true;
             };
+
+        }
+    };
+});
+editviewapp.directive('editFooter', function() {
+    return {
+        restrict: 'E',
+        template: '<div class="col-lg-9">' +
+            '<button class="button_custom  pull-right" type="submit" promise-btn="submitPromise">Submit</button>' +
+            '</div>' +
+            ' <div class="col-lg-3">' +
+            '<input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">' +
+            ' </div>',
+        link: function(scope, element, attrs) {
+
 
         }
     };
@@ -3421,7 +3401,7 @@ editviewapp.factory('editmanagePhotoServices', ['$http', function(http) {
         }
     };
 }]);
-editviewapp.factory('editviewServices', ['$http', function(http) {
+editviewapp.factory('editviewServices', ['$http', '$timeout', '$q', function(http, timeout, $q) {
 
     return {
         getEducationData: function(obj) {
@@ -3476,7 +3456,9 @@ editviewapp.factory('parentServices', ['$http', function(http) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerPhysicalAttributesUpdatedetails', JSON.stringify(obj1));
         },
         submitAboutFamilyData: function(obj) {
+
             return http.get(editviewapp.apipath + 'CustomerPersonal/getParents_AboutMyFamily', { params: obj });
+
         }
     };
 }]);
@@ -4263,7 +4245,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -4273,7 +4255,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -6363,7 +6349,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <button type=\"submit\" class=\"button_custom pull-right\">Submit</button>\r" +
     "\n" +
@@ -6373,7 +6359,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -6529,7 +6517,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -6539,7 +6527,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -6809,7 +6801,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -6819,7 +6811,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -6871,7 +6869,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <br/>\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
     "\n" +
@@ -6881,7 +6879,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -7872,7 +7876,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <br/>\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -7882,7 +7886,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -7932,7 +7940,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <br/>\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
     "\n" +
@@ -7942,7 +7950,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -8233,7 +8245,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li class=\"row \">\r" +
     "\n" +
-    "                        <div class=\"col-lg-9\">\r" +
+    "                        <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                            <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
     "\n" +
@@ -8243,7 +8255,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                        </div>\r" +
+    "                        </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <edit-footer></edit-footer>\r" +
     "\n" +
     "                    </li>\r" +
     "\n" +
@@ -8636,7 +8652,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <li class=\"row \">\r" +
     "\n" +
-    "                        <div class=\"col-lg-9\">\r" +
+    "                        <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                            <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -8646,7 +8662,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                        </div>\r" +
+    "                        </div>-->\r" +
+    "\n" +
+    "                        <edit-footer></edit-footer>\r" +
     "\n" +
     "                    </li>\r" +
     "\n" +
@@ -9587,7 +9605,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"FBModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"FBForm\" novalidate role=\"form\" ng-submit=\"FBSubmit(fbObj)\">\r" +
+    "    <form name=\"FBForm\" novalidate role=\"form\" ng-submit=\"FBForm.$valid  && FBSubmit(fbObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -9699,7 +9717,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -9709,7 +9727,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -9727,7 +9749,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"FSModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"FSForm\" novalidate role=\"form\" ng-submit=\"FSSubmit(fsObj)\">\r" +
+    "    <form name=\"FSForm\" novalidate role=\"form\" ng-submit=\"FSForm.$valid  && FSSubmit(fsObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -9913,7 +9935,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -9923,7 +9945,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -9941,7 +9967,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"MBModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"MBForm\" novalidate role=\"form\" ng-submit=\"MBSubmit(mbObj)\">\r" +
+    "    <form name=\"MBForm\" novalidate role=\"form\" ng-submit=\"MBForm.$valid  && MBSubmit(mbObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -10089,7 +10115,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -10099,7 +10125,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -10119,7 +10149,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"MSModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"MSForm\" novalidate role=\"form\" ng-submit=\"MSSubmit(msObj)\">\r" +
+    "    <form name=\"MSForm\" novalidate role=\"form\" ng-submit=\"MSForm.$valid  && MSSubmit(msObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -10309,7 +10339,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -10319,7 +10349,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -11752,7 +11786,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" ng-show=\"SibCountObj.ddlnoofsiblings!==0\">\r" +
     "\n" +
     "                    <label for=\"lblnoofelderrother\" class=\"pop_label_left\">Elder Brother{{SibCountObj.ddlnoofelderrother}}</label>\r" +
     "\n" +
@@ -11764,7 +11798,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" ng-show=\"SibCountObj.ddlnoofsiblings!==0\">\r" +
     "\n" +
     "                    <label for=\"lblnoofyoungerbrother\" class=\"pop_label_left\">Younger Brother</label>\r" +
     "\n" +
@@ -11790,7 +11824,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" ng-show=\"SibCountObj.ddlnoofsisters!==0\">\r" +
     "\n" +
     "                    <label for=\"lblnoofeldersisters\" class=\"pop_label_left\">Elder sisters</label>\r" +
     "\n" +
@@ -11802,7 +11836,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" ng-show=\"SibCountObj.ddlnoofsisters!==0\">\r" +
     "\n" +
     "                    <label for=\"lblnoofyoungersisters\" class=\"pop_label_left\">Younger  sisters</label>\r" +
     "\n" +
@@ -11818,7 +11852,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <br/>\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
     "\n" +
@@ -11828,7 +11862,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -12180,7 +12218,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -12190,7 +12228,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -12530,7 +12572,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <div class=\"col-lg-9\">\r" +
+    "                    <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -12540,7 +12582,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <edit-footer></edit-footer>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -13243,7 +13289,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
     "\n" +
@@ -13253,7 +13299,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -13471,7 +13521,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"row\">\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
     "                                <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
     "\n" +
@@ -13481,7 +13531,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -13539,11 +13593,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </li>\r" +
     "\n" +
-    "                        <li class=\"row \">\r" +
+    "                        <li class=\"row\">\r" +
     "\n" +
-    "                            <div class=\"col-lg-9\">\r" +
+    "                            <!--<div class=\"col-lg-9\">\r" +
     "\n" +
-    "                                <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
+    "                                <button class=\"button_custom  pull-right\" type=\"submit\" promise-btn=\"submitPromise\">Submit</button>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -13551,7 +13605,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "                            </div>\r" +
+    "                            </div>-->\r" +
+    "\n" +
+    "                            <edit-footer></edit-footer>\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
@@ -13560,8 +13616,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "                </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "            </form>\r" +
     "\n" +

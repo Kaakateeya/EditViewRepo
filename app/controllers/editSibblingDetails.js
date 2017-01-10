@@ -110,6 +110,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 break;
 
             case 'sister':
+
                 if (item !== undefined && scope.sisterArr.length <= parseInt(scope.SisCount)) {
 
                     scope.sisObj.SibilingCustfamilyID = null;
@@ -124,7 +125,6 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.sisObj.txtSisterName = item.SibilingName;
                         scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
                         scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
-                        //scopsisroObj.chksisProfession = item.;
                         scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
                         scope.sisObj.txtSCompanyName = item.SibilingCompany;
                         scope.sisObj.txtSjobloc = item.SibilingJobPLace;
@@ -263,7 +263,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             }
         };
 
-        sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
+        scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -333,7 +333,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 Admin: null
             }
         };
-        sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
+        scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
             console.log(response);
             commonFactory.closepopup();
             if (response.data === 1) {
@@ -407,7 +407,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.BroCount = obj.ddlnoofsiblings;
             scope.SisCount = obj.ddlnoofsisters;
 
-            sibblingServices.submitSibCountsData(objinput).then(function(response) {
+            scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -473,26 +473,5 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.sisObj.txtSisSpouceFatherCity = '';
         }
     };
-
-
-    scope.$watch(function() {
-        return scope.SibCountObj.ddlnoofsiblings;
-    }, function(current, original) {
-        if (current === 0) {
-            scope.SibCountObj.ddlnoofelderrother = 0;
-            scope.SibCountObj.ddlnoofyoungerbrother = 0;
-            console.log(scope.SibCountObj.ddlnoofelderrother);
-        }
-    });
-
-    scope.$watch(function() {
-        return scope.SibCountObj.ddlnoofsisters;
-    }, function(current, original) {
-        if (current === 0) {
-            scope.SibCountObj.ddlnoofeldersisters = 0;
-            scope.SibCountObj.ddlnoofyoungersisters = 0;
-        }
-    });
-
 
 }]);

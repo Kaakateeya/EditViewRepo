@@ -1,7 +1,7 @@
 editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServices', 'SelectBindService',
-    'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', 'route',
+    'commonFactory', '$mdDialog', '$filter', 'authSvc', '$timeout', 'route', '$q', '$log',
     function(uibModal, scope, editviewServices, SelectBindService, commonFactory,
-        mdDialog, filter, authSvc, timeout, route) {
+        mdDialog, filter, authSvc, timeout, route, $q, $log) {
 
         scope.stateArr = [];
         scope.districtArr = [];
@@ -89,7 +89,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.profObj.ddlDistrictProf = item.DistrictID;
                         scope.profObj.ddlcityworkingprofession = item.CityID;
                         scope.profObj.txtcityprofession = item.CityWorkingIn;
-                        //scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
+                        scope.profObj.txtworkingfrom = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         scope.profObj.ddlvisastatus = item.VisaTypeID;
                         scope.profObj.txtssincedate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
                         scope.profObj.txtarrivaldate = commonFactory.convertDateFormat(item.ArrivingDate, 'DD-MM-YYYY');
@@ -202,7 +202,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             };
 
 
-            editviewServices.submitEducationData(scope.myData).then(function(response) {
+            scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -254,7 +254,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
 
 
-            editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
+            scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
 
                 commonFactory.closepopup();
                 if (response.data === 1) {
@@ -275,10 +275,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
         };
 
+
+
+
         scope.AboutUrselfSubmit = function(obj) {
 
-            editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
-
+            scope.submitPromise = editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
                 commonFactory.closepopup();
                 if (response.data === '1') {
 

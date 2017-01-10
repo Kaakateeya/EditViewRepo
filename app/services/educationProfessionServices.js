@@ -1,4 +1,4 @@
-editviewapp.factory('editviewServices', ['$http', function(http) {
+editviewapp.factory('editviewServices', ['$http', '$timeout', '$q', function(http, timeout, $q) {
 
     return {
         getEducationData: function(obj) {
