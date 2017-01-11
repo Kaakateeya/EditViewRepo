@@ -4,7 +4,7 @@
  */
 
 var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
-    'ngMaterial', 'ngMdIcons', 'jcs-autoValidate'
+    'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 editviewapp.templateroot = 'editview/';
@@ -3308,7 +3308,7 @@ editviewapp.directive('datePicker', function() {
         //     '</datetimepicker>',
 
         link: function(scope, element) {
-            if (scope.strdate !== '')
+            if (scope.strdate !== '' && scope.strdate !== undefined && scope.strdate !== null)
                 scope.strdate = new Date(scope.strdate); //moment(new Date()).format();
             scope.showdate = false;
 
