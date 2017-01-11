@@ -10283,7 +10283,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            &nbsp;&nbsp;&nbsp;\r" +
     "\n" +
-    "            <a onclick=\"OpenLHNChat();return false;\" href=\"#\" target=\"_blank\" id=\"lhnWin\" class=\"icon-chat-footer pull-left\"></a>\r" +
+    "            <a onclick=\"OpenLHNChat();return false;\" href=\"javascript:void(0)\" target=\"_blank\" id=\"lhnWin\" class=\"icon-chat-footer pull-left\"></a>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10329,7 +10329,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                var wtop = (screen.height - 420 - 96) / 2;\r" +
     "\n" +
-    "                alert(bLHNOnline);\r" +
+    "                var bLHNOnline = 0;\r" +
+    "\n" +
+    "                var lhnwindow = 0;\r" +
     "\n" +
     "                var sScrollbars = (bLHNOnline == 0) ? \"yes\" : \"no\";\r" +
     "\n" +
@@ -10399,7 +10401,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"lnkFooterSucess\" href=\"#/successstories\">success stories</a>\r" +
+    "                    <a id=\"lnkFooterSucess\" href=\"successstories\">success stories</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -10413,19 +10415,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"linkcareers\" href=\"#/help\">careers</a>\r" +
+    "                    <a id=\"linkcareers\" href=\"help\">careers</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"linkfaq\" href=\"#/faqs\">faq’s</a>\r" +
+    "                    <a id=\"linkfaq\" href=\"faqs\">faq’s</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"lnktermsFooter\" href=\"#/termsAndConditions\">Terms Of Use</a>\r" +
+    "                    <a id=\"lnktermsFooter\" href=\"termsAndConditions\">Terms Of Use</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -10443,19 +10445,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"lnkFeedBackFooter\" href=\"#/feedback\">Feed Back</a>\r" +
+    "                    <a id=\"lnkFeedBackFooter\" href=\"feedback\">Feed Back</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"lnkBranchesFooter\" href=\"#/ourbranches\">Our Branches</a>\r" +
+    "                    <a id=\"lnkBranchesFooter\" href=\"ourbranches\">Our Branches</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"linkHelp\" href=\"#/help\">Help</a>\r" +
+    "                    <a id=\"linkHelp\" href=\"help\">Help</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -10463,7 +10465,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li>\r" +
     "\n" +
-    "                    <a id=\"lnkPrivacyFooter\" href=\"#/privacyPolicy\">Privacy Policy</a>\r" +
+    "                    <a id=\"lnkPrivacyFooter\" href=\"privacyPolicy\">Privacy Policy</a>\r" +
     "\n" +
     "                </li>\r" +
     "\n" +
@@ -10514,7 +10516,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
 
 
   $templateCache.put('editview/masterView/header.html',
-    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\">\r" +
+    "<div class=\"header_inner\" id=\"divInnerMaster\" ng-controller=\"headctrl\" ng-init=\"headerinit()\">\r" +
     "\n" +
     "\r" +
     "\n" +
