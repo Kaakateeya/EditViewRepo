@@ -42,7 +42,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
                         scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
                         scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
-
+                        alert(item.EduHighestDegree);
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
 
@@ -136,7 +136,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 }
             });
         };
-        scope.getdata();
+
 
         scope.ProfchangeBind = function(type, parentval) {
 
@@ -144,6 +144,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 case 'ProfessionGroup':
                     scope.ProfSpecialisationArr = commonFactory.professionBind(parentval);
+                    scope.profObj.ddlprofession = "";
                     break;
             }
         };
@@ -153,13 +154,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 case 'EducationCatgory':
                     scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
+                    scope.edoObj.ddlEdugroup = "";
                     break;
 
                 case 'EducationGroup':
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(parentval);
+                    scope.edoObj.ddlEduspecialization = "";
                     break;
             }
-
         };
 
         scope.passOfYear = function(maxyr, no_year) {
@@ -200,7 +202,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     Admin: null
                 }
             };
-
 
             scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                 console.log(response);

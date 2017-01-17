@@ -626,21 +626,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"row \">\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
+    "                <li class=\"row\">\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
     "\n" +
@@ -4931,9 +4917,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                        <div class=\"pop_controls_right select-box-my\">\r" +
+    "                        <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                            <select multiselectdropdown ng-model=\"refObj.ddlRelationshiptype\" typeofdata=\"RelationshipType\"></select>\r" +
+    "                            <select multiselectdropdown ng-model=\"refObj.ddlRelationshiptype\" typeofdata=\"RelationshipType\" required></select>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -4981,17 +4967,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\" require=\"true\"></country-directive>\r" +
+    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"NativePlace\" class=\"pop_label_left\">Native place<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                        <label for=\"NativePlace\" class=\"pop_label_left\">Native Place</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                            <input ng-model=\"refObj.txtNativePlace\" class=\"form-control\" tabindex=\"8\" maxlength=\"100\" required/>\r" +
+    "                            <input ng-model=\"refObj.txtNativePlace\" class=\"form-control\" tabindex=\"8\" maxlength=\"100\" />\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7249,6 +7235,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
     "                            <div id=\"uuuuuuuppp\" ng-if=\"item.SibilingMarried==1\">\r" +
     "\n" +
     "\r" +
@@ -7389,7 +7377,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                        <span id=\"lblbrotherwifemobnumbers\">\r" +
     "\n" +
-    "                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==nullitem.SibilingSpouceMobileNumberWithCode:'')\r" +
+    "                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')\r" +
     "\n" +
     "                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!=\"\" && item.SibilingSpouceLandNumberWithCode!=null)?\",\"+item.SibilingSpouceLandNumberWithCode:\"\") }}\r" +
     "\n" +
@@ -7409,12 +7397,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            <div id=\"Brotherwife\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                                                <h6>\r" +
     "\n" +
     "                                                    <label id=\"brotherwifeemail\" font-bold=\"true\">Email</label></h6>\r" +
@@ -7428,12 +7410,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                                                    </span>\r" +
     "\n" +
     "                                                </h5>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                            </div>\r" +
     "\n" +
@@ -7485,19 +7461,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                                    </div>\r" +
     "\n" +
     "                                    <div id=\"upBroSpouseFatherNativePlace\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                        <h6>\r" +
     "\n" +
@@ -9514,7 +9480,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduSubmit(edoObj);\">\r" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\">\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
@@ -9546,7 +9512,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                                        <md-radio-button value=\"2\"> No </md-radio-button>\r" +
+    "                                        <md-radio-button value=\"0\"> No </md-radio-button>\r" +
     "\n" +
     "                                    </md-radio-group>\r" +
     "\n" +
@@ -9559,8 +9525,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                                </md-input-container>\r" +
     "\n" +
     "                            </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +

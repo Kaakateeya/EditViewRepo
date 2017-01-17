@@ -237,6 +237,7 @@
                                 </div>
 
                             </div>
+
                             <div id="uuuuuuuppp" ng-if="item.SibilingMarried==1">
 
                                 <div id="BROTHERDIV">
@@ -307,7 +308,7 @@
                                                         <label id="lblbrotherwife" font-bold="true">Contact Nos</label></h6>
                                                     <h5>
                                                         <span id="lblbrotherwifemobnumbers">
-                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==nullitem.SibilingSpouceMobileNumberWithCode:'')
+                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')
                                                           +((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","+item.SibilingSpouceLandNumberWithCode:"") }}
                                                     </span>
                                                     </h5>
@@ -317,9 +318,6 @@
 
                                             </div>
                                             <div id="Brotherwife" class="edit_page_details_item_desc clearfix">
-
-
-
                                                 <h6>
                                                     <label id="brotherwifeemail" font-bold="true">Email</label></h6>
                                                 <h5>
@@ -327,9 +325,6 @@
                                                             {{ item.SpouseEmail }}
                                                     </span>
                                                 </h5>
-
-
-
                                             </div>
                                         </div>
 
@@ -355,13 +350,8 @@
                                                     {{ item.SibilingSpouseFatherCaste }}
                                             </span>
                                         </h5>
-
-
                                     </div>
                                     <div id="upBroSpouseFatherNativePlace" class="edit_page_details_item_desc clearfix">
-
-
-
                                         <h6>
                                             <label id="BroSpouseFatherNativePlace" font-bold="true">Native Place</label></h6>
                                         <h5>

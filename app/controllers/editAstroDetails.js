@@ -11,6 +11,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
         //011046585
 
         scope.loginpaidstatus = authSvc.getpaidstatus();
@@ -39,7 +40,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.populateAstro = function(item) {
 
-
             scope.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
@@ -52,7 +52,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
                 if (item.TimeOfBirth !== undefined) {
                     scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
-
                     scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
                     scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
                     scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
@@ -82,22 +81,36 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
                     scope.generateData = JSON.parse(response.data[1]);
-
+                    console.log(scope.generateData);
                     if (commonFactory.checkvals(scope.AstroArr[0] && commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage))) {
 
                         if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                             var extension = "jpg";
+
 
                             if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extension = "html";
                             } else {
                                 extension = "jpg";
                             }
+
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                         }
+                    } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
 
 
+                        if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                            var extensn = "jpg";
+                            if ((scope.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
+                                extensn = "html";
+                            } else {
+                                extensn = "jpg";
+                            }
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                        }
                     }
+
+
 
 
 
@@ -166,7 +179,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             if (val === '0') {
                 commonFactory.open('AddHoroPopup.html', scope, uibModal, 'sm');
             } else {
-                scope.generateHoro();
+                if (scope.AstroArr.length > 0) {
+                    scope.generateHoro();
+                } else {
+                    commonFactory.open('astroContent.html', scope, uibModal);
+                }
+
             }
         };
 
@@ -201,11 +219,16 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 i_flag: 1
                             };
 
+
                             console.log(JSON.stringify(scope.uploadData));
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
                                 console.log(response);
                                 scope.astropageload(custID);
+
+                                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
                                 commonFactory.closepopup();
+
                             });
                         }
                     });
@@ -278,7 +301,14 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.vewHoro = function() {
-            commonFactory.open('AstroimagePopup.html', scope, uibModal);
+
+            if (scope.ImageUrl !== null && scope.ImageUrl !== '' && scope.ImageUrl !== undefined) {
+                if (scope.ImageUrl.indexOf('.html') !== -1) {
+                    window.open('' + scope.ImageUrl + '', '_blank');
+                } else {
+                    commonFactory.open('AstroimagePopup.html', scope, uibModal);
+                }
+            }
         };
 
     }

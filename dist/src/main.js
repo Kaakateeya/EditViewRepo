@@ -355,6 +355,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
         //011046585
 
         scope.loginpaidstatus = authSvc.getpaidstatus();
@@ -383,7 +384,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.populateAstro = function(item) {
 
-
             scope.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
@@ -396,7 +396,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
                 if (item.TimeOfBirth !== undefined) {
                     scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
-
                     scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
                     scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
                     scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
@@ -426,22 +425,36 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
                     scope.generateData = JSON.parse(response.data[1]);
-
+                    console.log(scope.generateData);
                     if (commonFactory.checkvals(scope.AstroArr[0] && commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage))) {
 
                         if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                             var extension = "jpg";
+
 
                             if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extension = "html";
                             } else {
                                 extension = "jpg";
                             }
+
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                         }
+                    } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
 
 
+                        if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                            var extensn = "jpg";
+                            if ((scope.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
+                                extensn = "html";
+                            } else {
+                                extensn = "jpg";
+                            }
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                        }
                     }
+
+
 
 
 
@@ -510,7 +523,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             if (val === '0') {
                 commonFactory.open('AddHoroPopup.html', scope, uibModal, 'sm');
             } else {
-                scope.generateHoro();
+                if (scope.AstroArr.length > 0) {
+                    scope.generateHoro();
+                } else {
+                    commonFactory.open('astroContent.html', scope, uibModal);
+                }
+
             }
         };
 
@@ -545,11 +563,16 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 i_flag: 1
                             };
 
+
                             console.log(JSON.stringify(scope.uploadData));
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
                                 console.log(response);
                                 scope.astropageload(custID);
+
+                                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+
                                 commonFactory.closepopup();
+
                             });
                         }
                     });
@@ -622,7 +645,14 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         };
 
         scope.vewHoro = function() {
-            commonFactory.open('AstroimagePopup.html', scope, uibModal);
+
+            if (scope.ImageUrl !== null && scope.ImageUrl !== '' && scope.ImageUrl !== undefined) {
+                if (scope.ImageUrl.indexOf('.html') !== -1) {
+                    window.open('' + scope.ImageUrl + '', '_blank');
+                } else {
+                    commonFactory.open('AstroimagePopup.html', scope, uibModal);
+                }
+            }
         };
 
     }
@@ -2598,7 +2628,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
                         scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
                         scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
-
+                        alert(item.EduHighestDegree);
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
 
@@ -2692,7 +2722,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 }
             });
         };
-        scope.getdata();
+
 
         scope.ProfchangeBind = function(type, parentval) {
 
@@ -2700,6 +2730,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 case 'ProfessionGroup':
                     scope.ProfSpecialisationArr = commonFactory.professionBind(parentval);
+                    scope.profObj.ddlprofession = "";
                     break;
             }
         };
@@ -2709,13 +2740,14 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                 case 'EducationCatgory':
                     scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
+                    scope.edoObj.ddlEdugroup = "";
                     break;
 
                 case 'EducationGroup':
                     scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(parentval);
+                    scope.edoObj.ddlEduspecialization = "";
                     break;
             }
-
         };
 
         scope.passOfYear = function(maxyr, no_year) {
@@ -2756,7 +2788,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     Admin: null
                 }
             };
-
 
             scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                 console.log(response);
@@ -4245,21 +4276,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"row \">\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
+    "                <li class=\"row\">\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
     "\n" +
@@ -8550,9 +8567,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <label for=\"Relationshiptype\" class=\"pop_label_left\">Relationship type<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                        <div class=\"pop_controls_right select-box-my\">\r" +
+    "                        <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                            <select multiselectdropdown ng-model=\"refObj.ddlRelationshiptype\" typeofdata=\"RelationshipType\"></select>\r" +
+    "                            <select multiselectdropdown ng-model=\"refObj.ddlRelationshiptype\" typeofdata=\"RelationshipType\" required></select>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -8600,17 +8617,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\" require=\"true\"></country-directive>\r" +
+    "                    <country-directive countryshow=\"true\" cityshow=\"false\" othercity=\"false\" dcountry=\"refObj.ddlCountry\" dstate=\"refObj.ddlState\" ddistrict=\"refObj.ddlDistrict\"></country-directive>\r" +
     "\n" +
     "\r" +
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"NativePlace\" class=\"pop_label_left\">Native place<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
+    "                        <label for=\"NativePlace\" class=\"pop_label_left\">Native Place</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                            <input ng-model=\"refObj.txtNativePlace\" class=\"form-control\" tabindex=\"8\" maxlength=\"100\" required/>\r" +
+    "                            <input ng-model=\"refObj.txtNativePlace\" class=\"form-control\" tabindex=\"8\" maxlength=\"100\" />\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -10868,6 +10885,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
     "                            <div id=\"uuuuuuuppp\" ng-if=\"item.SibilingMarried==1\">\r" +
     "\n" +
     "\r" +
@@ -11008,7 +11027,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                                        <span id=\"lblbrotherwifemobnumbers\">\r" +
     "\n" +
-    "                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==nullitem.SibilingSpouceMobileNumberWithCode:'')\r" +
+    "                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')\r" +
     "\n" +
     "                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!=\"\" && item.SibilingSpouceLandNumberWithCode!=null)?\",\"+item.SibilingSpouceLandNumberWithCode:\"\") }}\r" +
     "\n" +
@@ -11028,12 +11047,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            <div id=\"Brotherwife\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                                                <h6>\r" +
     "\n" +
     "                                                    <label id=\"brotherwifeemail\" font-bold=\"true\">Email</label></h6>\r" +
@@ -11047,12 +11060,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                                                    </span>\r" +
     "\n" +
     "                                                </h5>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                            </div>\r" +
     "\n" +
@@ -11104,19 +11111,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                                    </div>\r" +
     "\n" +
     "                                    <div id=\"upBroSpouseFatherNativePlace\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                        <h6>\r" +
     "\n" +
@@ -13133,7 +13130,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduSubmit(edoObj);\">\r" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\">\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
@@ -13165,7 +13162,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <md-radio-button value=\"1\" class=\"md-primary\">Yes</md-radio-button>\r" +
     "\n" +
-    "                                        <md-radio-button value=\"2\"> No </md-radio-button>\r" +
+    "                                        <md-radio-button value=\"0\"> No </md-radio-button>\r" +
     "\n" +
     "                                    </md-radio-group>\r" +
     "\n" +
@@ -13178,8 +13175,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                                </md-input-container>\r" +
     "\n" +
     "                            </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                        </li>\r" +
     "\n" +
