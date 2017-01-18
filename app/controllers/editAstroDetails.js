@@ -86,8 +86,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
                         if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                             var extension = "jpg";
-
-
                             if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extension = "html";
                             } else {
@@ -97,8 +95,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                         }
                     } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-
-
                         if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                             var extensn = "jpg";
                             if ((scope.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
@@ -109,10 +105,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
                         }
                     }
-
-
-
-
 
                 }
 
@@ -182,7 +174,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (scope.AstroArr.length > 0) {
                     scope.generateHoro();
                 } else {
-                    commonFactory.open('astroContent.html', scope, uibModal);
+                    // commonFactory.open('astroContent.html', scope, uibModal);
+                    scope.populateAstro();
                 }
 
             }

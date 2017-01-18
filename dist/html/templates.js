@@ -656,6 +656,10 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-body\" id=\"modal-body\">\r" +
     "\n" +
+    "            <label class=\"control-label\">Use this file formats like gif, jpeg, png,jpg</label>\r" +
+    "\n" +
+    "            <br>\r" +
+    "\n" +
     "            <ul id=\"ulprofession\">\r" +
     "\n" +
     "                <input type=\"file\" file-model=\"up.myFile\" />\r" +
@@ -1234,7 +1238,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h6>\r" +
     "\n" +
-    "                                    <label id=\"lfathername\"></label> Father Name</h6>\r" +
+    "                                    <label id=\"lfathername\"></label> Father Name{{item.reviewstatus}}</h6>\r" +
     "\n" +
     "                                <h5>\r" +
     "\n" +
