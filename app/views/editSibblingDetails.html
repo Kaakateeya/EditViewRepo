@@ -735,7 +735,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="brotherModalContent.html">
-    <form name="brotherForm" novalidate role="form" ng-submit="brotherForm.$valid  && sibBroSubmit(broObj)">
+    <form name="brotherForm" novalidate role="form" ng-submit="brotherForm.$valid  && sibBroSubmit(broObj)" accessible-form>
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Brother details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -921,7 +921,7 @@
 </script>
 
 <script type="text/ng-template" id="sisterModalContent.html">
-    <form name="sibsisForm" novalidate role="form" ng-submit="sibsisForm.$valid  && sibSisSubmit(sisObj)">
+    <form name="sibsisForm" novalidate role="form" ng-submit="sibsisForm.$valid  && sibSisSubmit(sisObj)" accessible-form>
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Sister details
                 <a href="javascript:void(0);" ng-click="cancel();">

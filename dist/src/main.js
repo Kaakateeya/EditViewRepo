@@ -460,6 +460,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.astroSubmit = function(obj) {
 
+            $('#ssss').prop('disabled', true);
             var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
 
             scope.astroData = {
@@ -560,12 +561,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             console.log(JSON.stringify(scope.uploadData));
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
                                 console.log(response);
+                                commonFactory.closepopup();
+
                                 scope.astropageload(custID);
 
                                 scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-
-                                commonFactory.closepopup();
-
                             });
                         }
                     });
@@ -647,7 +647,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             }
         };
-
     }
 ]);
 editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
@@ -2621,12 +2620,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
                         scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
                         scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
-                        alert(item.EduHighestDegree);
+
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
 
                         scope.edoObj.ddlEduCatgory = commonFactory.checkvals(item.EducationCategoryID) ? parseInt(item.EducationCategoryID) : null;
-
                         scope.edoObj.ddlEdugroup = item.EducationGroupID;
                         scope.edoObj.ddlEduspecialization = item.EducationSpecializationID;
                         scope.edoObj.txtuniversity = item.EduUniversity;
@@ -2894,6 +2892,52 @@ editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, 
     };
 
 }]);
+// editviewapp.directive('accessibleForm', function() {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, elem) {
+
+//             // set up event handler on the form element
+//             elem.on('submit', function() {
+
+//                 // find the first invalid element
+//                 var firstInvalid = elem[0].querySelector('.ng-invalid');
+
+//                 if (firstInvalid) {
+//                     firstInvalid.focus();
+//                 }
+//             });
+//         }
+//     };
+// });
+
+
+
+
+
+editviewapp.directive('accessibleForm', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, elem) {
+            // set up event handler on the form element
+            elem.on('submit', function() {
+
+                var firstInvalid = elem[0].querySelector('.ng-invalid');
+
+                firstInvalid.focus();
+                var firstInvalidselect = elem[0][1];
+                $('select').each(function() {
+                    var testtt = $(this).attr('class');
+                    if (testtt.indexOf('ng-invalid-required') !== -1) {
+                        firstInvalidselect.focus();
+                        return false;
+                    }
+                });
+
+            });
+        }
+    };
+});
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
     var modalpopupopen;
 
@@ -3347,13 +3391,12 @@ editviewapp.directive('editFooter', function() {
     return {
         restrict: 'E',
         template: '<div class="col-lg-9">' +
-            '<button class="button_custom  pull-right" type="submit" promise-btn="submitPromise">Submit</button>' +
+            '<button class="button_custom  pull-right" id="ssss" type="submit" promise-btn="submitPromise">Submit</button>' +
             '</div>' +
             ' <div class="col-lg-3">' +
-            '<input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">' +
+            '<input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">' +
             ' </div>',
         link: function(scope, element, attrs) {
-
 
         }
     };
@@ -3373,16 +3416,6 @@ editviewapp.directive('fileModel', ['$parse', function($parse) {
         }
     };
 }]);
-editviewapp.directive('modelFooter', function() {
-    return {
-        // restrict: 'E',
-        // template: "</div>"
-        // + "<div class='modal-footer'>"
-        // + "	<button class='btn btn-primary' type='button' ng-click='ok()'>OK</button>"
-        // + "<button class='btn btn-warning' type='button' ng-click='cancel()'>Cancel</button>"
-        // + "</div>"
-    };
-});
 editviewapp.directive('modelHeader', function() {
     return {
         scope: {
@@ -4065,7 +4098,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"astroContent.html\">\r" +
     "\n" +
-    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj)\">\r" +
+    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -7448,7 +7481,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "    <form name=\"partnerFormForm\" novalidate role=\"form\" ng-submit=\"partnerPrefSubmit(partnerObj)\">\r" +
+    "    <form name=\"partnerFormForm\" novalidate role=\"form\" ng-submit=\"partnerPrefSubmit(partnerObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -8540,7 +8573,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    <script type=\"text/ng-template\" id=\"referenceContent.html\">\r" +
     "\n" +
-    "        <form name=\"refForm\" novalidate role=\"form\" ng-submit=\"refenceSubmit(refObj)\">\r" +
+    "        <form name=\"refForm\" novalidate role=\"form\" ng-submit=\"refenceSubmit(refObj)\" accessible-form>\r" +
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
@@ -11878,7 +11911,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"brotherModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"brotherForm.$valid  && sibBroSubmit(broObj)\">\r" +
+    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"brotherForm.$valid  && sibBroSubmit(broObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -12250,7 +12283,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"sisterModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibsisForm.$valid  && sibSisSubmit(sisObj)\">\r" +
+    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibsisForm.$valid  && sibSisSubmit(sisObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -13127,7 +13160,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\">\r" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\" accessible-form>\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
@@ -13181,7 +13214,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
+    "                                <select multiselectdropdown id=\"estt\" ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -13193,8 +13226,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                <select multiselectdropdown ng-model=\"edoObj.ddlEdugroup\" ng-options=\"item.value as item.label for item in eduGroupArr\" ng-change=\"changeBind('EducationGroup',edoObj.ddlEdugroup);\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
@@ -13205,13 +13236,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Edu specialization<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" typeofdata=\"\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -13323,7 +13350,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"profModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"profForm\" novalidate role=\"form\" ng-submit=\"ProfSubmit(profObj);\">\r" +
+    "            <form name=\"profForm\" novalidate role=\"form\" ng-submit=\"ProfSubmit(profObj);\" accessible-form>\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +

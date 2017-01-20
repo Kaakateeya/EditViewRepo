@@ -193,7 +193,7 @@
 
     <div id="edupopupdiv">
         <script type="text/ng-template" id="EduModalContent.html">
-            <form name="eduForm" novalidate role="form" ng-submit="eduForm.$valid  && eduSubmit(edoObj);">
+            <form name="eduForm" novalidate role="form" ng-submit="eduForm.$valid  && eduSubmit(edoObj);" accessible-form>
                 <div class="modal-header">
                     <h3 class="modal-title text-center" id="modal-title">Education Details
                         <a href="javascript:void(0);" ng-click="cancel();">
@@ -220,22 +220,19 @@
                         <li class="clearfix form-group">
                             <label for="lbleducationGroup" class="pop_label_left">Education category<span style="color: red; margin-left: 3px;">*</span></label>
                             <div class="pop_controls_right select-box-my input-group">
-                                <select multiselectdropdown ng-model="edoObj.ddlEduCatgory" typeofdata="educationcategory" ng-change="changeBind('EducationCatgory',edoObj.ddlEduCatgory);" required></select>
+                                <select multiselectdropdown id="estt" ng-model="edoObj.ddlEduCatgory" typeofdata="educationcategory" ng-change="changeBind('EducationCatgory',edoObj.ddlEduCatgory);" required></select>
                             </div>
                         </li>
                         <li class="clearfix form-group">
                             <label for="lbleducationGroup" class="pop_label_left">Education group<span style="color: red; margin-left: 3px;">*</span></label>
                             <div class="pop_controls_right select-box-my input-group">
-
                                 <select multiselectdropdown ng-model="edoObj.ddlEdugroup" ng-options="item.value as item.label for item in eduGroupArr" ng-change="changeBind('EducationGroup',edoObj.ddlEdugroup);" required></select>
                             </div>
                         </li>
                         <li class="clearfix form-group">
                             <label for="lbleducationGroup" class="pop_label_left">Edu specialization<span style="color: red; margin-left: 3px;">*</span></label>
-
                             <div class="pop_controls_right select-box-my input-group">
-
-                                <select multiselectdropdown ng-model="edoObj.ddlEduspecialization" typeofdata="" ng-options="item.value as item.label for item in eduSpecialisationArr" required></select>
+                                <select multiselectdropdown ng-model="edoObj.ddlEduspecialization" ng-options="item.value as item.label for item in eduSpecialisationArr" required></select>
                             </div>
                         </li>
                         <li class="clearfix form-group" id="divuniversity">
@@ -291,7 +288,7 @@
     </div>
     <div id=profpopupdiv>
         <script type="text/ng-template" id="profModalContent.html">
-            <form name="profForm" novalidate role="form" ng-submit="ProfSubmit(profObj);">
+            <form name="profForm" novalidate role="form" ng-submit="ProfSubmit(profObj);" accessible-form>
                 <div class="modal-header">
                     <h3 class="modal-title text-center" id="modal-title">Profession details
                         <a href="javascript:void(0);" ng-click="cancel();">

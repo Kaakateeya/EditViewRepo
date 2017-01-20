@@ -422,7 +422,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"astroContent.html\">\r" +
     "\n" +
-    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj)\">\r" +
+    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -3805,7 +3805,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "    <form name=\"partnerFormForm\" novalidate role=\"form\" ng-submit=\"partnerPrefSubmit(partnerObj)\">\r" +
+    "    <form name=\"partnerFormForm\" novalidate role=\"form\" ng-submit=\"partnerPrefSubmit(partnerObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -4897,7 +4897,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    <script type=\"text/ng-template\" id=\"referenceContent.html\">\r" +
     "\n" +
-    "        <form name=\"refForm\" novalidate role=\"form\" ng-submit=\"refenceSubmit(refObj)\">\r" +
+    "        <form name=\"refForm\" novalidate role=\"form\" ng-submit=\"refenceSubmit(refObj)\" accessible-form>\r" +
     "\n" +
     "            <div class=\"modal-header\">\r" +
     "\n" +
@@ -8235,7 +8235,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"brotherModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"brotherForm.$valid  && sibBroSubmit(broObj)\">\r" +
+    "    <form name=\"brotherForm\" novalidate role=\"form\" ng-submit=\"brotherForm.$valid  && sibBroSubmit(broObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -8607,7 +8607,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"sisterModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibsisForm.$valid  && sibSisSubmit(sisObj)\">\r" +
+    "    <form name=\"sibsisForm\" novalidate role=\"form\" ng-submit=\"sibsisForm.$valid  && sibSisSubmit(sisObj)\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -9484,7 +9484,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"EduModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\">\r" +
+    "            <form name=\"eduForm\" novalidate role=\"form\" ng-submit=\"eduForm.$valid  && eduSubmit(edoObj);\" accessible-form>\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +
@@ -9538,7 +9538,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
+    "                                <select multiselectdropdown id=\"estt\" ng-model=\"edoObj.ddlEduCatgory\" typeofdata=\"educationcategory\" ng-change=\"changeBind('EducationCatgory',edoObj.ddlEduCatgory);\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -9550,8 +9550,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                <select multiselectdropdown ng-model=\"edoObj.ddlEdugroup\" ng-options=\"item.value as item.label for item in eduGroupArr\" ng-change=\"changeBind('EducationGroup',edoObj.ddlEdugroup);\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
@@ -9562,13 +9560,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <label for=\"lbleducationGroup\" class=\"pop_label_left\">Edu specialization<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" typeofdata=\"\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
+    "                                <select multiselectdropdown ng-model=\"edoObj.ddlEduspecialization\" ng-options=\"item.value as item.label for item in eduSpecialisationArr\" required></select>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -9680,7 +9674,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <script type=\"text/ng-template\" id=\"profModalContent.html\">\r" +
     "\n" +
-    "            <form name=\"profForm\" novalidate role=\"form\" ng-submit=\"ProfSubmit(profObj);\">\r" +
+    "            <form name=\"profForm\" novalidate role=\"form\" ng-submit=\"ProfSubmit(profObj);\" accessible-form>\r" +
     "\n" +
     "                <div class=\"modal-header\">\r" +
     "\n" +

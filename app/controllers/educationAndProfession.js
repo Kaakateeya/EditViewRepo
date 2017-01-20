@@ -42,12 +42,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                         scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
                         scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
                         scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
-                        alert(item.EduHighestDegree);
+
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
 
                         scope.edoObj.ddlEduCatgory = commonFactory.checkvals(item.EducationCategoryID) ? parseInt(item.EducationCategoryID) : null;
-
                         scope.edoObj.ddlEdugroup = item.EducationGroupID;
                         scope.edoObj.ddlEduspecialization = item.EducationSpecializationID;
                         scope.edoObj.txtuniversity = item.EduUniversity;

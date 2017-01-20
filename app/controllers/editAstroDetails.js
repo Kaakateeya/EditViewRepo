@@ -116,6 +116,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.astroSubmit = function(obj) {
 
+            $('#ssss').prop('disabled', true);
             var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
 
             scope.astroData = {
@@ -216,12 +217,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             console.log(JSON.stringify(scope.uploadData));
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
                                 console.log(response);
+                                commonFactory.closepopup();
+
                                 scope.astropageload(custID);
 
                                 scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-
-                                commonFactory.closepopup();
-
                             });
                         }
                     });
@@ -303,6 +303,5 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             }
         };
-
     }
 ]);
