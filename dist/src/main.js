@@ -55,7 +55,11 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         };
         $stateProvider.state(item.name, {
             url: item.url,
-            views: innerView
+            views: innerView,
+            data: {
+                requiresLogin: item.isloginrequired == null ? true : item.isloginrequired,
+
+            }
         })
         $locationProvider.html5Mode(true);
     });
@@ -3463,7 +3467,7 @@ editviewapp.directive('editFooter', function() {
     return {
         restrict: 'E',
         template: '<div class="col-lg-9">' +
-            '{{loading}}<button class="button_custom  pull-right" ng-click="testtt();" ng-disabled="loading"  type="submit" promise-btn="submitPromise">Submit</button>' +
+            '<button class="button_custom  pull-right"  ng-disabled="loading"  type="submit" promise-btn="submitPromise">Submit</button>' +
             '</div>' +
             ' <div class="col-lg-3">' +
             '<input value="Cancel"  class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">' +
@@ -4400,7 +4404,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-body\" id=\"modal-body\">\r" +
     "\n" +
-    "            <label class=\"control-label\">Use this file formats like gif, jpeg, png,jpg</label>\r" +
+    "            <label class=\"<control></control>-label\">Use this file formats like gif, jpeg, png,jpg</label>\r" +
     "\n" +
     "            <br>\r" +
     "\n" +

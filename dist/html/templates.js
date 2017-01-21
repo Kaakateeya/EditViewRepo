@@ -652,7 +652,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"modal-body\" id=\"modal-body\">\r" +
     "\n" +
-    "            <label class=\"control-label\">Use this file formats like gif, jpeg, png,jpg</label>\r" +
+    "            <label class=\"<control></control>-label\">Use this file formats like gif, jpeg, png,jpg</label>\r" +
     "\n" +
     "            <br>\r" +
     "\n" +

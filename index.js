@@ -59,7 +59,11 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         };
         $stateProvider.state(item.name, {
             url: item.url,
-            views: innerView
+            views: innerView,
+            data: {
+                requiresLogin: item.isloginrequired == null ? true : item.isloginrequired,
+
+            }
         })
         $locationProvider.html5Mode(true);
     });
