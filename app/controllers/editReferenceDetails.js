@@ -6,13 +6,14 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
     scope.RelationshipType = 'RelationshipType';
     scope.Country = 'Country';
     scope.countryCode = 'countryCode';
-
+    var isSubmit = true;
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
 
 
     scope.referencePopulate = function(item) {
+        isSubmit = true;
         scope.refObj.RefrenceCust_Reference_ID = null;
         scope.refObj = {};
         if (item !== undefined) {
@@ -74,50 +75,54 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
     };
 
     scope.refenceSubmit = function(obj) {
-        scope.referenceData = {
-            GetDetails: {
-                CustID: custID,
-                RelationshiptypeID: obj.ddlRelationshiptype,
-                Firstname: obj.txtFname,
-                Lastname: obj.txtLname,
-                Employedin: null,
-                Professiongroup: null,
-                Profession: null,
-                Professiondetails: obj.txtProfessiondetails,
-                CountryID: obj.ddlCountry,
-                StateID: obj.ddlState,
-                DistrictID: obj.ddlDistrict,
-                Nativeplace: obj.txtNativePlace,
-                Presentlocation: obj.txtPresentlocation,
-                MobileCountryID: obj.ddlMobileCountryID,
-                MobileNumber: obj.txtMobileNumber,
-                LandLineCountryID: commonFactory.checkvals(obj.ddlMobileCountryID2) ? obj.ddlMobileCountryID2 : (commonFactory.checkvals(obj.ddlLandLineCountryID) ? obj.ddlLandLineCountryID : null),
-                LandLineAreaCode: commonFactory.checkvals(obj.txtMobileNumber2) ? null : (commonFactory.checkvals(obj.txtAreCode) ? obj.txtAreCode : null),
-                LandLineNumber: commonFactory.checkvals(obj.txtMobileNumber2) ? obj.txtMobileNumber2 : (commonFactory.checkvals(obj.txtLandNumber) ? obj.txtLandNumber : null),
-                Emails: obj.txtEmails,
-                Narration: obj.txtNarrations,
-                Cust_Reference_ID: scope.refObj.RefrenceCust_Reference_ID
-            },
-            customerpersonaldetails: {
-                intCusID: custID,
-                EmpID: null,
-                Admin: null
-            }
-        };
-        scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
-                referenceServices.getReferenceData(custID).then(function(response) {
-                    scope.ReferenceArr = response.data;
-                });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
 
+        if (isSubmit) {
+            isSubmit = false;
 
+            scope.referenceData = {
+                GetDetails: {
+                    CustID: custID,
+                    RelationshiptypeID: obj.ddlRelationshiptype,
+                    Firstname: obj.txtFname,
+                    Lastname: obj.txtLname,
+                    Employedin: null,
+                    Professiongroup: null,
+                    Profession: null,
+                    Professiondetails: obj.txtProfessiondetails,
+                    CountryID: obj.ddlCountry,
+                    StateID: obj.ddlState,
+                    DistrictID: obj.ddlDistrict,
+                    Nativeplace: obj.txtNativePlace,
+                    Presentlocation: obj.txtPresentlocation,
+                    MobileCountryID: obj.ddlMobileCountryID,
+                    MobileNumber: obj.txtMobileNumber,
+                    LandLineCountryID: commonFactory.checkvals(obj.ddlMobileCountryID2) ? obj.ddlMobileCountryID2 : (commonFactory.checkvals(obj.ddlLandLineCountryID) ? obj.ddlLandLineCountryID : null),
+                    LandLineAreaCode: commonFactory.checkvals(obj.txtMobileNumber2) ? null : (commonFactory.checkvals(obj.txtAreCode) ? obj.txtAreCode : null),
+                    LandLineNumber: commonFactory.checkvals(obj.txtMobileNumber2) ? obj.txtMobileNumber2 : (commonFactory.checkvals(obj.txtLandNumber) ? obj.txtLandNumber : null),
+                    Emails: obj.txtEmails,
+                    Narration: obj.txtNarrations,
+                    Cust_Reference_ID: scope.refObj.RefrenceCust_Reference_ID
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
+            scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
+                    referenceServices.getReferenceData(custID).then(function(response) {
+                        scope.ReferenceArr = response.data;
+                    });
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+
+        }
     };
 
     scope.cancel = function() {

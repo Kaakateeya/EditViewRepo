@@ -22,7 +22,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         scope.edoObj = {};
         scope.aboutObj = {};
         scope.edoObj.IsHighestDegree = '';
-
+        var isSubmit = true;
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -31,7 +31,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.showpopup = function(type, item) {
-
+            isSubmit = true;
             switch (type) {
                 case 'showEduModal':
                     scope.edoObj.EducationID = null;
@@ -175,128 +175,133 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
         scope.eduSubmit = function(objitem) {
 
-            scope.myData = {
-                customerEducation: {
-                    CustID: custID,
-                    // scope.edoObj.intCusID,
-                    Educationcategory: objitem.ddlEduCatgory,
-                    Educationgroup: objitem.ddlEdugroup,
-                    EducationSpecialization: objitem.ddlEduspecialization,
-                    University: objitem.txtuniversity,
-                    College: objitem.txtcollege,
-                    Passofyear: objitem.ddlpassOfyear,
-                    Countrystudyin: objitem.ddlCountry,
-                    Statestudyin: objitem.ddlState,
-                    Districtstudyin: objitem.ddlDistrict,
-                    CitystudyIn: objitem.ddlcity,
-                    OtherCity: objitem.txtcity,
-                    Highestdegree: objitem.IsHighestDegree,
-                    Educationalmerits: objitem.txtEdumerits,
-                    Cust_Education_ID: scope.edoObj.EducationID,
-                    intEduID: scope.edoObj.EducationID,
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    editviewServices.getEducationData(custID).then(function(response) {
-                        scope.educationSelectArray = response.data;
-                    });
-
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                    if (scope.datagetInStatus === 1) {
-                        sessionStorage.removeItem('missingStatus');
-                        route.go('mobileverf', {});
+            if (isSubmit) {
+                isSubmit = false;
+                scope.myData = {
+                    customerEducation: {
+                        CustID: custID,
+                        // scope.edoObj.intCusID,
+                        Educationcategory: objitem.ddlEduCatgory,
+                        Educationgroup: objitem.ddlEdugroup,
+                        EducationSpecialization: objitem.ddlEduspecialization,
+                        University: objitem.txtuniversity,
+                        College: objitem.txtcollege,
+                        Passofyear: objitem.ddlpassOfyear,
+                        Countrystudyin: objitem.ddlCountry,
+                        Statestudyin: objitem.ddlState,
+                        Districtstudyin: objitem.ddlDistrict,
+                        CitystudyIn: objitem.ddlcity,
+                        OtherCity: objitem.txtcity,
+                        Highestdegree: objitem.IsHighestDegree,
+                        Educationalmerits: objitem.txtEdumerits,
+                        Cust_Education_ID: scope.edoObj.EducationID,
+                        intEduID: scope.edoObj.EducationID,
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
                     }
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                };
+
+                scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        editviewServices.getEducationData(custID).then(function(response) {
+                            scope.educationSelectArray = response.data;
+                        });
+
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                        if (scope.datagetInStatus === 1) {
+                            sessionStorage.removeItem('missingStatus');
+                            route.go('mobileverf', {});
+                        }
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
         };
 
         scope.ProfSubmit = function(objitem) {
-            scope.myprofData = {
-                customerProfession: {
-                    CustID: custID,
-                    EmployedIn: objitem.ddlemployedin,
-                    Professionalgroup: objitem.ddlprofgroup,
-                    Profession: objitem.ddlprofession,
-                    Companyname: objitem.txtcmpyname,
-                    Currency: objitem.ddlcurreny,
-                    Monthlysalary: objitem.txtsalary,
-                    CountryID: objitem.ddlCountryProf,
-                    StateID: objitem.ddlStateProf,
-                    DistrictID: objitem.ddlDistrictProf,
-                    CityID: objitem.ddlcityworkingprofession,
-                    OtherCity: objitem.txtcityprofession,
-                    Workingfromdate: filter('date')(objitem.txtworkingfrom, 'yyyy-MM-dd'),
-                    OccupationDetails: objitem.txtoccupation,
-                    visastatus: objitem.ddlvisastatus,
-                    Sincedate: objitem.txtssincedate !== '' && objitem.txtssincedate !== 'Invalid date' ? filter('date')(objitem.txtssincedate, 'yyyy-MM-dd') : null,
-                    ArrivalDate: objitem.txtarrivaldate !== '' && objitem.txtarrivaldate !== 'Invalid date' ? filter('date')(objitem.txtarrivaldate, 'yyyy-MM-dd') : null,
-                    DepartureDate: objitem.txtdeparture !== '' && objitem.txtdeparture !== 'Invalid date' ? filter('date')(objitem.txtdeparture, 'yyyy-MM-dd') : null,
-                    profGridID: scope.profObj.Cust_Profession_ID,
-                    ProfessionID: scope.profObj.Cust_Profession_ID,
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
 
-
-
-            scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
-
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    editviewServices.getProfessionData(custID).then(function(response) {
-                        scope.ProfessionSelectArray = response.data;
-                    });
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                    if (scope.datagetInStatus === 1) {
-                        sessionStorage.removeItem('missingStatus');
-                        route.go('mobileverf', {});
+            if (isSubmit) {
+                isSubmit = false;
+                scope.myprofData = {
+                    customerProfession: {
+                        CustID: custID,
+                        EmployedIn: objitem.ddlemployedin,
+                        Professionalgroup: objitem.ddlprofgroup,
+                        Profession: objitem.ddlprofession,
+                        Companyname: objitem.txtcmpyname,
+                        Currency: objitem.ddlcurreny,
+                        Monthlysalary: objitem.txtsalary,
+                        CountryID: objitem.ddlCountryProf,
+                        StateID: objitem.ddlStateProf,
+                        DistrictID: objitem.ddlDistrictProf,
+                        CityID: objitem.ddlcityworkingprofession,
+                        OtherCity: objitem.txtcityprofession,
+                        Workingfromdate: filter('date')(objitem.txtworkingfrom, 'yyyy-MM-dd'),
+                        OccupationDetails: objitem.txtoccupation,
+                        visastatus: objitem.ddlvisastatus,
+                        Sincedate: objitem.txtssincedate !== '' && objitem.txtssincedate !== 'Invalid date' ? filter('date')(objitem.txtssincedate, 'yyyy-MM-dd') : null,
+                        ArrivalDate: objitem.txtarrivaldate !== '' && objitem.txtarrivaldate !== 'Invalid date' ? filter('date')(objitem.txtarrivaldate, 'yyyy-MM-dd') : null,
+                        DepartureDate: objitem.txtdeparture !== '' && objitem.txtdeparture !== 'Invalid date' ? filter('date')(objitem.txtdeparture, 'yyyy-MM-dd') : null,
+                        profGridID: scope.profObj.Cust_Profession_ID,
+                        ProfessionID: scope.profObj.Cust_Profession_ID,
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
                     }
+                };
 
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
 
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        editviewServices.getProfessionData(custID).then(function(response) {
+                            scope.ProfessionSelectArray = response.data;
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                        if (scope.datagetInStatus === 1) {
+                            sessionStorage.removeItem('missingStatus');
+                            route.go('mobileverf', {});
+                        }
+
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
         };
 
-
-
-
         scope.AboutUrselfSubmit = function(obj) {
+            if (isSubmit) {
+                isSubmit = false;
+                scope.submitPromise = editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
+                    commonFactory.closepopup();
+                    if (response.data === '1') {
 
-            scope.submitPromise = editviewServices.submitAboutUrData({ CustID: custID, AboutYourself: obj.txtAboutUS, flag: 1 }).then(function(response) {
-                commonFactory.closepopup();
-                if (response.data === '1') {
+                        editviewServices.getAboutData(custID).then(function(response) {
 
-                    editviewServices.getAboutData(custID).then(function(response) {
+                            if (commonFactory.checkvals(response.data)) {
+                                var AboutData = (response.data).split(';');
+                                scope.lblaboutUrself = (AboutData[0].split(':'))[1];
+                                scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
+                            }
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
 
-                        if (commonFactory.checkvals(response.data)) {
-                            var AboutData = (response.data).split(';');
-                            scope.lblaboutUrself = (AboutData[0].split(':'))[1];
-                            scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
-                        }
-                    });
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
         };
         scope.$on('datagetinedu', function(e, type) {
             scope.showpopup(type);

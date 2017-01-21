@@ -13,13 +13,13 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     scope.BroCount = null;
     scope.SisCount = null;
     scope.CountryVal = '1';
-
+    var isSubmit = true;
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
     scope.sibblingPopulatePopulate = function(type, item) {
-
+        isSubmit = true;
         switch (type) {
             case 'sibCounrt':
                 if (item !== undefined) {
@@ -207,144 +207,154 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     scope.sibPageload(custID);
 
     scope.sibBroSubmit = function(obj) {
-        scope.sibBroData = {
-            GetDetails: {
-                CustID: custID,
-                BroName: obj.txtBName,
-                BroElderYounger: obj.rdlBElderYounger,
-                BroEducationcategory: null,
-                BroEducationgroup: null,
-                BroEducationspecialization: null,
-                BroEmployedin: null,
-                BroProfessiongroup: null,
-                BroProfession: null,
-                BroCompanyName: obj.txtBCompanyname,
-                BroJobLocation: obj.txtBJoblocation,
-                BroMobileCountryCodeID: obj.ddlBMObileCountryID,
-                BroMobileNumber: obj.txtBmobilenumber,
-                BroLandCountryCodeID: commonFactory.checkvals(obj.ddlBMObileCountryID2) ? obj.ddlBMObileCountryID2 : (commonFactory.checkvals(obj.ddlBLandLineCountryID) ? obj.ddlBLandLineCountryID : null),
-                BroLandAreaCode: commonFactory.checkvals(obj.txtBmobilenumber2) ? null : (obj.txtBAreCode !== '' && obj.txtBAreCode !== null ? obj.txtBAreCode : null),
-                BroLandNumber: commonFactory.checkvals(obj.txtBmobilenumber2) ? obj.txtBmobilenumber2 : (commonFactory.checkvals(obj.txtBLandNumber) ? obj.txtBLandNumber : null),
-                BroEmail: obj.txtBEmails,
-                BIsMarried: obj.rdlBIsMarried,
-                BroWifeName: obj.txtBWifeName,
-                BroWifeEducationcategory: null,
-                BroWifeEducationgroup: null,
-                BroWifeEducationspecialization: null,
-                BroWifeEmployedin: null,
-                BroWifeProfessiongroup: null,
-                BroWifeProfession: null,
-                BroWifeCompanyName: obj.txtBWifeCompanyName,
-                BroWifeJobLocation: obj.txtBwifeJoblocation,
-                BroWifeMobileCountryCodeID: obj.ddlBWMobileCode,
-                BroWifeMobileNumber: obj.txtBWifeMobileNumber,
-                BroWifeLandCountryCodeID: commonFactory.checkvals(obj.ddlBWMobileCode2) ? obj.ddlBWMobileCode2 : commonFactory.checkvals(obj.ddlBWifeLandLineCountryCode) ? obj.ddlBWifeLandLineCountryCode : null,
-                BroWifeLandAreacode: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? null : commonFactory.checkvals(obj.txtBWifeLandLineAreaCode) ? obj.txtBWifeLandLineAreaCode : null,
-                BroWifeLandNumber: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? obj.txtBWifeMobileNumber2 : commonFactory.checkvals(obj.txtBWifeLandLineNumber) ? obj.txtBWifeLandLineNumber : null,
-                BroWifeFatherSurName: obj.txtBWifeFatherSurName,
-                BroWifeFatherName: obj.txtBWWifeFatherName,
-                BroSibilingCustfamilyID: scope.broObj.SibilingCustfamilyID,
-                BroEducationDetails: obj.txtbrotherreducation,
-                BrowifeEducationDetails: obj.txtbrotherwifeeducation,
-                BroProfessionDetails: obj.txtbrotherprofession,
-                BroWifeProfessionDetails: obj.txtbrotherwifeprofession,
-                BroSpouseFatherCountryID: '1',
-                BroSpouseFatherStateID: obj.ddlBroSpousefatherState,
-                BroSpouseFatherDitrictID: obj.ddlBroSpousefatherDistrict,
-                BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
-                BrotherSpouseEmail: obj.txtwifeEmail,
-                SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
 
-            },
-            customerpersonaldetails: {
-                intCusID: custID,
-                EmpID: null,
-                Admin: null
-            }
-        };
+        if (isSubmit) {
+            isSubmit = false;
+            scope.sibBroData = {
+                GetDetails: {
+                    CustID: custID,
+                    BroName: obj.txtBName,
+                    BroElderYounger: obj.rdlBElderYounger,
+                    BroEducationcategory: null,
+                    BroEducationgroup: null,
+                    BroEducationspecialization: null,
+                    BroEmployedin: null,
+                    BroProfessiongroup: null,
+                    BroProfession: null,
+                    BroCompanyName: obj.txtBCompanyname,
+                    BroJobLocation: obj.txtBJoblocation,
+                    BroMobileCountryCodeID: obj.ddlBMObileCountryID,
+                    BroMobileNumber: obj.txtBmobilenumber,
+                    BroLandCountryCodeID: commonFactory.checkvals(obj.ddlBMObileCountryID2) ? obj.ddlBMObileCountryID2 : (commonFactory.checkvals(obj.ddlBLandLineCountryID) ? obj.ddlBLandLineCountryID : null),
+                    BroLandAreaCode: commonFactory.checkvals(obj.txtBmobilenumber2) ? null : (obj.txtBAreCode !== '' && obj.txtBAreCode !== null ? obj.txtBAreCode : null),
+                    BroLandNumber: commonFactory.checkvals(obj.txtBmobilenumber2) ? obj.txtBmobilenumber2 : (commonFactory.checkvals(obj.txtBLandNumber) ? obj.txtBLandNumber : null),
+                    BroEmail: obj.txtBEmails,
+                    BIsMarried: obj.rdlBIsMarried,
+                    BroWifeName: obj.txtBWifeName,
+                    BroWifeEducationcategory: null,
+                    BroWifeEducationgroup: null,
+                    BroWifeEducationspecialization: null,
+                    BroWifeEmployedin: null,
+                    BroWifeProfessiongroup: null,
+                    BroWifeProfession: null,
+                    BroWifeCompanyName: obj.txtBWifeCompanyName,
+                    BroWifeJobLocation: obj.txtBwifeJoblocation,
+                    BroWifeMobileCountryCodeID: obj.ddlBWMobileCode,
+                    BroWifeMobileNumber: obj.txtBWifeMobileNumber,
+                    BroWifeLandCountryCodeID: commonFactory.checkvals(obj.ddlBWMobileCode2) ? obj.ddlBWMobileCode2 : commonFactory.checkvals(obj.ddlBWifeLandLineCountryCode) ? obj.ddlBWifeLandLineCountryCode : null,
+                    BroWifeLandAreacode: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? null : commonFactory.checkvals(obj.txtBWifeLandLineAreaCode) ? obj.txtBWifeLandLineAreaCode : null,
+                    BroWifeLandNumber: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? obj.txtBWifeMobileNumber2 : commonFactory.checkvals(obj.txtBWifeLandLineNumber) ? obj.txtBWifeLandLineNumber : null,
+                    BroWifeFatherSurName: obj.txtBWifeFatherSurName,
+                    BroWifeFatherName: obj.txtBWWifeFatherName,
+                    BroSibilingCustfamilyID: scope.broObj.SibilingCustfamilyID,
+                    BroEducationDetails: obj.txtbrotherreducation,
+                    BrowifeEducationDetails: obj.txtbrotherwifeeducation,
+                    BroProfessionDetails: obj.txtbrotherprofession,
+                    BroWifeProfessionDetails: obj.txtbrotherwifeprofession,
+                    BroSpouseFatherCountryID: '1',
+                    BroSpouseFatherStateID: obj.ddlBroSpousefatherState,
+                    BroSpouseFatherDitrictID: obj.ddlBroSpousefatherDistrict,
+                    BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
+                    BrotherSpouseEmail: obj.txtwifeEmail,
+                    SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
 
-        scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
 
-                scope.sibPageload(custID);
+            scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+                    scope.sibPageload(custID);
+
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
+
     };
 
     scope.sibSisSubmit = function(obj) {
-        scope.sibSisData = {
-            GetDetails: {
-                CustID: custID,
-                SisName: obj.txtSisterName,
-                SisElderYounger: obj.rbtSElderyounger,
-                SisEducationcategory: null,
-                SisEducationgroup: null,
-                SisEducationspecialization: null,
-                SisEmployedin: null,
-                SisProfessiongroup: null,
-                SisProfession: null,
-                SisCompanyName: obj.txtSCompanyName,
-                SisJobLocation: obj.txtSjobloc,
-                SisMobileCountryCodeID: obj.ddlSMobileCountyCodeID,
-                SisMobileNumber: obj.txtSMobileNumber,
-                SisLandCountryCodeID: commonFactory.checkvals(obj.ddlSMobileCountyCodeID2) ? obj.ddlSMobileCountyCodeID2 : commonFactory.checkvals(obj.ddlSLandLineCountryCodeID) ? obj.ddlSLandLineCountryCodeID : null,
-                SisLandAreaCode: commonFactory.checkvals(obj.txtSMobileNumber2) ? null : commonFactory.checkvals(obj.txtSAreacoude) ? obj.txtSAreacoude : null,
-                SisLandNumber: commonFactory.checkvals(obj.txtSMobileNumber2) ? obj.txtSMobileNumber2 : commonFactory.checkvals(obj.txtSNumber) ? obj.txtSNumber : null,
-                SisEmail: obj.txtSEmails,
-                SIsMarried: obj.rdlSIsMarried,
-                SisHusbandName: obj.txtShusName,
-                SisHusbandEducationcategory: null,
-                SisHusbandEducationgroup: null,
-                SisHusbandEducationspecialization: null,
-                SisHusbandEmployedin: null,
-                SisHusbandProfessiongroup: null,
-                SisHusbandProfession: null,
-                SisHusCompanyName: obj.txtShusCompanyName,
-                SisHusJobLocation: obj.txtShusjobloc,
-                SisHusbandMobileCountryCodeID: obj.ddlSHusMobileCountryID,
-                SisHusbandMobileNumber: obj.txtSHusMobileNumber,
-                SisHusbandLandCountryCodeID: commonFactory.checkvals(obj.ddlSHusMobileCountryID2) ? obj.ddlSHusMobileCountryID2 : commonFactory.checkvals(obj.ddlSHusLandCountryID) ? obj.ddlSHusLandCountryID : null,
-                SisHusbandLandAreacode: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? null : commonFactory.checkvals(obj.txtSHusLandArea) ? obj.txtSHusLandArea : null,
-                SisHusbandLandNumber: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? obj.txtSHusMobileNumber2 : commonFactory.checkvals(obj.txtSHusLandNumber) ? obj.txtSHusLandNumber : null,
-                SisHusbandFatherSurName: obj.txtHusbandFatherSurName,
-                SisHusbandFatherName: obj.txtHusbandFatherName,
-                SisSibilingCustfamilyID: scope.sisObj.SibilingCustfamilyID,
-                siseducationdetails: obj.txtsisEducation,
-                sisprofessiondetails: obj.txtsisProfession,
-                sisspouseeducationdetails: obj.txtHusbandEducation,
-                sisspouseprofessiondetails: obj.txtHusbandProfession,
-                SisSpouseFatherCountryID: '1',
-                SisSpouseFatherStateID: obj.ddlSisSpouceFatherState,
-                SisSpouseFatherDitrictID: obj.ddlSisSpouceFatherDistrict,
-                SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
-                SisSpouseEmail: obj.txtHusbandEmail,
-                SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
 
-            },
-            customerpersonaldetails: {
-                intCusID: custID,
-                EmpID: null,
-                Admin: null
-            }
-        };
-        scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
+        if (isSubmit) {
+            isSubmit = false;
+            scope.sibSisData = {
+                GetDetails: {
+                    CustID: custID,
+                    SisName: obj.txtSisterName,
+                    SisElderYounger: obj.rbtSElderyounger,
+                    SisEducationcategory: null,
+                    SisEducationgroup: null,
+                    SisEducationspecialization: null,
+                    SisEmployedin: null,
+                    SisProfessiongroup: null,
+                    SisProfession: null,
+                    SisCompanyName: obj.txtSCompanyName,
+                    SisJobLocation: obj.txtSjobloc,
+                    SisMobileCountryCodeID: obj.ddlSMobileCountyCodeID,
+                    SisMobileNumber: obj.txtSMobileNumber,
+                    SisLandCountryCodeID: commonFactory.checkvals(obj.ddlSMobileCountyCodeID2) ? obj.ddlSMobileCountyCodeID2 : commonFactory.checkvals(obj.ddlSLandLineCountryCodeID) ? obj.ddlSLandLineCountryCodeID : null,
+                    SisLandAreaCode: commonFactory.checkvals(obj.txtSMobileNumber2) ? null : commonFactory.checkvals(obj.txtSAreacoude) ? obj.txtSAreacoude : null,
+                    SisLandNumber: commonFactory.checkvals(obj.txtSMobileNumber2) ? obj.txtSMobileNumber2 : commonFactory.checkvals(obj.txtSNumber) ? obj.txtSNumber : null,
+                    SisEmail: obj.txtSEmails,
+                    SIsMarried: obj.rdlSIsMarried,
+                    SisHusbandName: obj.txtShusName,
+                    SisHusbandEducationcategory: null,
+                    SisHusbandEducationgroup: null,
+                    SisHusbandEducationspecialization: null,
+                    SisHusbandEmployedin: null,
+                    SisHusbandProfessiongroup: null,
+                    SisHusbandProfession: null,
+                    SisHusCompanyName: obj.txtShusCompanyName,
+                    SisHusJobLocation: obj.txtShusjobloc,
+                    SisHusbandMobileCountryCodeID: obj.ddlSHusMobileCountryID,
+                    SisHusbandMobileNumber: obj.txtSHusMobileNumber,
+                    SisHusbandLandCountryCodeID: commonFactory.checkvals(obj.ddlSHusMobileCountryID2) ? obj.ddlSHusMobileCountryID2 : commonFactory.checkvals(obj.ddlSHusLandCountryID) ? obj.ddlSHusLandCountryID : null,
+                    SisHusbandLandAreacode: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? null : commonFactory.checkvals(obj.txtSHusLandArea) ? obj.txtSHusLandArea : null,
+                    SisHusbandLandNumber: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? obj.txtSHusMobileNumber2 : commonFactory.checkvals(obj.txtSHusLandNumber) ? obj.txtSHusLandNumber : null,
+                    SisHusbandFatherSurName: obj.txtHusbandFatherSurName,
+                    SisHusbandFatherName: obj.txtHusbandFatherName,
+                    SisSibilingCustfamilyID: scope.sisObj.SibilingCustfamilyID,
+                    siseducationdetails: obj.txtsisEducation,
+                    sisprofessiondetails: obj.txtsisProfession,
+                    sisspouseeducationdetails: obj.txtHusbandEducation,
+                    sisspouseprofessiondetails: obj.txtHusbandProfession,
+                    SisSpouseFatherCountryID: '1',
+                    SisSpouseFatherStateID: obj.ddlSisSpouceFatherState,
+                    SisSpouseFatherDitrictID: obj.ddlSisSpouceFatherDistrict,
+                    SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
+                    SisSpouseEmail: obj.txtHusbandEmail,
+                    SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
 
-                scope.sibPageload(custID);
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
+            scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
 
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+                    scope.sibPageload(custID);
+
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
+
     };
 
     scope.changeBind = function(type, parentval) {
@@ -385,43 +395,51 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
     };
     scope.sibblingCountsSubmit = function(obj) {
 
-        var totalnofBrothers = parseInt(scope.checkVal(obj.ddlnoofsiblings));
-        var elderBrotherCount = parseInt(scope.checkVal(obj.ddlnoofelderrother));
-        var youngerBrotherCount = parseInt(scope.checkVal(obj.ddlnoofyoungerbrother));
 
-        var totalnoFSister = parseInt(scope.checkVal(obj.ddlnoofsisters));
-        var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
-        var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
+        if (isSubmit) {
+            isSubmit = false;
 
-        if ((totalnofBrothers === (elderBrotherCount + youngerBrotherCount) && totalnoFSister === (elderSisterCount + youngerSisterCount))) {
 
-            var objinput = {
-                CustID: custID,
-                NoOfBrothers: obj.ddlnoofsiblings,
-                NoOfSisters: obj.ddlnoofsisters,
-                NoOfYoungerBrothers: obj.ddlnoofyoungerbrother,
-                NoOfElderBrothers: obj.ddlnoofelderrother,
-                NoOfElderSisters: obj.ddlnoofeldersisters,
-                NoOfYoungerSisters: obj.ddlnoofyoungersisters
-            };
-            scope.BroCount = obj.ddlnoofsiblings;
-            scope.SisCount = obj.ddlnoofsisters;
+            var totalnofBrothers = parseInt(scope.checkVal(obj.ddlnoofsiblings));
+            var elderBrotherCount = parseInt(scope.checkVal(obj.ddlnoofelderrother));
+            var youngerBrotherCount = parseInt(scope.checkVal(obj.ddlnoofyoungerbrother));
 
-            scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
+            var totalnoFSister = parseInt(scope.checkVal(obj.ddlnoofsisters));
+            var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
+            var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
 
-                    scope.sibPageload(custID);
+            if ((totalnofBrothers === (elderBrotherCount + youngerBrotherCount) && totalnoFSister === (elderSisterCount + youngerSisterCount))) {
 
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        } else {
-            alert('Please enter Correct Sibling count');
+                var objinput = {
+                    CustID: custID,
+                    NoOfBrothers: obj.ddlnoofsiblings,
+                    NoOfSisters: obj.ddlnoofsisters,
+                    NoOfYoungerBrothers: obj.ddlnoofyoungerbrother,
+                    NoOfElderBrothers: obj.ddlnoofelderrother,
+                    NoOfElderSisters: obj.ddlnoofeldersisters,
+                    NoOfYoungerSisters: obj.ddlnoofyoungersisters
+                };
+                scope.BroCount = obj.ddlnoofsiblings;
+                scope.SisCount = obj.ddlnoofsisters;
+
+                scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.sibPageload(custID);
+
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            } else {
+                alert('Please enter Correct Sibling count');
+            }
+
         }
+
 
     };
 

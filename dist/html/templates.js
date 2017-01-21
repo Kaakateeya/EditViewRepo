@@ -153,21 +153,17 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "        <div id=\"divEduDistric\">\r" +
     "\n" +
-    "            <label for=\"lblDistrict\" class=\"pop_label_left\">District</label>\r" +
+    "            <label for=\"lblDistrict\" class=\"pop_label_left\">District<span ng-if=\"require==true\" style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "            <div class=\"pop_controls_right select-box-my\">\r" +
+    "            <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"ddistrict\" ng-options=\"item1.value as item1.label for item1 in districtArr\" ng-change=\"changeBind('District',ddistrict);\"></select>\r" +
+    "                <select multiselectdropdown ng-model=\"ddistrict\" ng-options=\"item1.value as item1.label for item1 in districtArr\" ng-change=\"changeBind('District',ddistrict);\" ng-required=\"(dcountry===1 || dcountry==='1')?require:false\"></select>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
     "        </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "    </li>\r" +
     "\n" +
@@ -188,8 +184,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "            <div ng-show=\"othercity\">\r" +
     "\n" +
     "                <input ng-model=\"strothercity\" ng-show=\"cityinput\" class=\"form-control\" maxlength=\"100\" />\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                <a id=\"lnkCity\" href=\"javascript:void(0);\" ng-click=\"ShowCity();\">Not in List</a>\r" +
     "\n" +
@@ -422,7 +416,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"astroContent.html\">\r" +
     "\n" +
-    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj)\" accessible-form>\r" +
+    "    <form name=\"astroForm\" novalidate role=\"form\" ng-submit=\"astroSubmit(atroObj);\" accessible-form>\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +
@@ -446,15 +440,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"lbltimebirth\" class=\"pop_label_left\">Time of Birth<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <div class=\"pop_controls_right select-box-my select-box-my-trible select-box-my-trible3\">\r" +
+    "                    <div class=\"pop_controls_right select-box-my select-box-my-trible select-box-my-trible3 input-group\">\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromHours\" ng-options=\"item.value as item.label for item in hrsbindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromHours\" ng-options=\"item.value as item.label for item in hrsbindArr\" required></select>\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromMinutes\" ng-options=\"item.value as item.label for item in minbindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromMinutes\" ng-options=\"item.value as item.label for item in minbindArr\" required></select>\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromSeconds\" ng-options=\"item.value as item.label for item in secbindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"atroObj.ddlFromSeconds\" ng-options=\"item.value as item.label for item in secbindArr\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -629,6 +623,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                <li class=\"row\">\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </li>\r" +
     "\n" +

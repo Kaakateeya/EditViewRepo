@@ -11,8 +11,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
-        //011046585
+        var isSubmit = true;
 
         scope.loginpaidstatus = authSvc.getpaidstatus();
 
@@ -43,7 +42,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
-
+            isSubmit = true;
             if (item !== undefined) {
                 scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
                 scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
@@ -70,7 +69,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 scope.atroObj.rdlkujaDosham = item.manglikID;
 
             }
-
             commonFactory.open('astroContent.html', scope, uibModal);
         };
 
@@ -115,52 +113,53 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
 
         scope.astroSubmit = function(obj) {
+            if (isSubmit) {
+                isSubmit = false;
+                $('#ssss').prop('disabled', true);
+                var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
 
-            $('#ssss').prop('disabled', true);
-            var strFromTimeOfBirth = obj.ddlFromHours + ":" + obj.ddlFromMinutes + ":" + obj.ddlFromSeconds;
-
-            scope.astroData = {
-                GetDetails: {
-                    CustID: custID,
-                    TimeofBirth: strFromTimeOfBirth,
-                    CountryOfBirthID: obj.ddlCountryOfBirthID,
-                    StateOfBirthID: obj.ddlStateOfBirthID,
-                    DistrictOfBirthID: obj.ddlDistrictOfBirthID,
-                    CityOfBirthID: obj.ddlcity,
-                    Starlanguage: obj.ddlstarlanguage,
-                    Star: obj.ddlstar,
-                    Paadam: obj.ddlpaadam,
-                    Lagnam: obj.ddlLagnam,
-                    RasiMoonsign: obj.ddlRaasiMoonsign,
-                    GothramGotra: obj.txtGothramGotra,
-                    Maternalgothram: obj.txtMaternalgothram,
-                    ManglikKujadosham: obj.rdlkujaDosham,
-                    Pblongitude: obj.PBlongitude,
-                    pblatitude: obj.PBlatitude,
-                    TimeZone: null
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = astroServices.submitAstroData(scope.astroData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    if (scope.datagetInStatus === 1) {
-                        sessionStorage.removeItem('missingStatus');
-                        route.go('mobileverf', {});
+                scope.astroData = {
+                    GetDetails: {
+                        CustID: custID,
+                        TimeofBirth: strFromTimeOfBirth,
+                        CountryOfBirthID: obj.ddlCountryOfBirthID,
+                        StateOfBirthID: obj.ddlStateOfBirthID,
+                        DistrictOfBirthID: obj.ddlDistrictOfBirthID,
+                        CityOfBirthID: obj.ddlcity,
+                        Starlanguage: obj.ddlstarlanguage,
+                        Star: obj.ddlstar,
+                        Paadam: obj.ddlpaadam,
+                        Lagnam: obj.ddlLagnam,
+                        RasiMoonsign: obj.ddlRaasiMoonsign,
+                        GothramGotra: obj.txtGothramGotra,
+                        Maternalgothram: obj.txtMaternalgothram,
+                        ManglikKujadosham: obj.rdlkujaDosham,
+                        Pblongitude: obj.PBlongitude,
+                        pblatitude: obj.PBlatitude,
+                        TimeZone: null
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
                     }
-                    scope.astropageload(custID);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                };
 
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                scope.submitPromise = astroServices.submitAstroData(scope.astroData).then(function(response) {
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        if (scope.datagetInStatus === 1) {
+                            sessionStorage.removeItem('missingStatus');
+                            route.go('mobileverf', {});
+                        }
+                        scope.astropageload(custID);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
         };
 
         scope.cancel = function() {
@@ -303,5 +302,27 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             }
         };
+
     }
 ]);
+
+// editviewapp.directive('srMutexClick', function($parse) {
+//     return {
+//         compile: function($element, attr) {
+//             var fn = $parse(attr['srMutexClick']);
+//             return function srEventHandler(scope, element) {
+//                 var submitting = false;
+//                 element.on('click', function(event) {
+//                     scope.$apply(function() {
+//                         if (submitting) {
+//                             return
+//                         }
+//                         submitting = true;
+//                         // `submitting` is reset when promise is resolved
+//                         fn(scope, { $event: event }).finally(function() { submitting = false });
+//                     });
+//                 });
+//             };
+//         }
+//     };
+// });

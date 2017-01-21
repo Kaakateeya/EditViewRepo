@@ -13,7 +13,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
     scope.region = 'region';
 
     scope.partnerDescObj = {};
-
+    var isSubmit = true;
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
@@ -86,7 +86,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
 
     scope.partnerprefPopulate = function(item) {
-
+        isSubmit = true;
         scope.partnerObj = {};
         if (item !== undefined) {
             scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
@@ -127,6 +127,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
     };
 
     scope.partnerdescPopulate = function(item) {
+        isSubmit = true;
         scope.partnerDescObj = {};
         if (item !== undefined) {
             scope.partnerDescObj.txtpartnerdescription = item.PartnerDescripition;
@@ -135,58 +136,60 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
     };
     scope.partnerPrefSubmit = function(objitem) {
 
-        scope.partnerPrefData = {
-            GetDetails: {
-                CustID: custID,
-                AgeGapFrom: objitem.ddlFromAge,
-                AgeGapTo: objitem.ddlToAge,
-                HeightFrom: objitem.ddlFromheight,
-                HeightTo: objitem.ddltoHeight,
-                Religion: commonFactory.listSelectedVal(objitem.lstReligion),
-                Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
-                Caste: commonFactory.listSelectedVal(objitem.lstCaste),
-                Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
-                Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
-                ManglikKujadosham: objitem.rbtManglikKujadosham,
-                PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
-                Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
-                Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
-                Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
-                Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
-                Diet: objitem.rbtDiet,
-                Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
-                Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
-                Preferreddistrict: null,
-                Preferredlocation: null,
-                TypeofStar: objitem.rbtPreferredstars,
-                PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
-                GenderID: objitem.rbtlGender,
-                Region: commonFactory.listSelectedVal(objitem.lstRegion),
-                Branch: commonFactory.listSelectedVal(objitem.lstBranch),
-            },
-            customerpersonaldetails: {
-                intCusID: custID,
-                EmpID: null,
-                Admin: null
-            }
-        };
+        if (isSubmit) {
+            isSubmit = false;
+            scope.partnerPrefData = {
+                GetDetails: {
+                    CustID: custID,
+                    AgeGapFrom: objitem.ddlFromAge,
+                    AgeGapTo: objitem.ddlToAge,
+                    HeightFrom: objitem.ddlFromheight,
+                    HeightTo: objitem.ddltoHeight,
+                    Religion: commonFactory.listSelectedVal(objitem.lstReligion),
+                    Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
+                    Caste: commonFactory.listSelectedVal(objitem.lstCaste),
+                    Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
+                    Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
+                    ManglikKujadosham: objitem.rbtManglikKujadosham,
+                    PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
+                    Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
+                    Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
+                    Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
+                    Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
+                    Diet: objitem.rbtDiet,
+                    Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
+                    Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
+                    Preferreddistrict: null,
+                    Preferredlocation: null,
+                    TypeofStar: objitem.rbtPreferredstars,
+                    PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
+                    GenderID: objitem.rbtlGender,
+                    Region: commonFactory.listSelectedVal(objitem.lstRegion),
+                    Branch: commonFactory.listSelectedVal(objitem.lstBranch),
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
 
-        // var datare = { "GetDetails": { "CustID": 91035, "AgeGapFrom": 1, "AgeGapTo": 5, "HeightFrom": "17", "HeightTo": "22", "Religion": "1,2", "Mothertongue": "1,2", "Caste": "402,403", "Subcaste": "459,462", "Maritalstatus": "43,44", "ManglikKujadosham": "2", "PreferredstarLanguage": "2", "Educationcategory": "1,2", "Educationgroup": "2,3", "Employedin": "1,2", "Professiongroup": "1,2", "Diet": "28", "Preferredcountry": "1,2", "Preferredstate": "4,5", "Preferreddistrict": '', "Preferredlocation": '', "TypeofStar": "1", "PrefredStars": "4,5", "GenderID": 2, "Region": "408,409", "Branch": "" }, "customerpersonaldetails": { "intCusID": 91035, "EmpID": '', "Admin": '' } };
+            console.log(JSON.stringify(scope.partnerPrefData));
+            scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
+                    partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+                        scope.partnerPrefArr = response.data;
+                        console.log(scope.partnerPrefArr);
+                    });
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
 
-        console.log(JSON.stringify(scope.partnerPrefData));
-        scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
-                partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
-                    scope.partnerPrefArr = response.data;
-                    console.log(scope.partnerPrefArr);
-                });
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+        }
     };
     scope.cancel = function() {
         commonFactory.closepopup();
@@ -194,17 +197,20 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
 
     scope.partnerDescriptionSubmit = function(obj) {
-        scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === '1') {
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
 
+        if (isSubmit) {
+            isSubmit = false;
+            scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === '1') {
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
 
+        }
     };
 
 

@@ -13,14 +13,12 @@
         </div>
     </li>
     <li class="clearfix form-group">
-
         <div id="divEduDistric">
-            <label for="lblDistrict" class="pop_label_left">District</label>
-            <div class="pop_controls_right select-box-my">
-                <select multiselectdropdown ng-model="ddistrict" ng-options="item1.value as item1.label for item1 in districtArr" ng-change="changeBind('District',ddistrict);"></select>
+            <label for="lblDistrict" class="pop_label_left">District<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
+            <div class="pop_controls_right select-box-my input-group">
+                <select multiselectdropdown ng-model="ddistrict" ng-options="item1.value as item1.label for item1 in districtArr" ng-change="changeBind('District',ddistrict);" ng-required="(dcountry===1 || dcountry==='1')?require:false"></select>
             </div>
         </div>
-
     </li>
     <li class="clearfix form-group" ng-show="cityshow">
         <label for="lblCityworking" class="pop_label_left">City<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
@@ -31,7 +29,6 @@
             </div>
             <div ng-show="othercity">
                 <input ng-model="strothercity" ng-show="cityinput" class="form-control" maxlength="100" />
-
                 <a id="lnkCity" href="javascript:void(0);" ng-click="ShowCity();">Not in List</a>
             </div>
         </div>

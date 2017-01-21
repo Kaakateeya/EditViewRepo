@@ -7,7 +7,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
     scope.msObj = {};
     scope.countryCode = 'countryCode';
     scope.indiaStates = 'indiaStates';
-
+    var isSubmit = true;
     var logincustid = authSvc.getCustId();
     var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -23,7 +23,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
     scope.relativePageLoad(custid);
 
     scope.relativePopulatePopulate = function(type, item) {
-
+        isSubmit = true;
         switch (type) {
             case 'FB':
                 scope.fbObj.FatherbrotherCustfamilyID = null;
@@ -177,177 +177,191 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
     };
 
     scope.FBSubmit = function(obj) {
-        scope.FBData = {
-            GetDetails: {
-                CustID: custid,
-                Fatherbrothername: obj.txtFatherbrothername,
-                FBElderYounger: obj.rdlFBElderORyounger,
-                FBEmployedin: null,
-                FBProfessiongroup: null,
-                FBProfession: null,
-                FBProfessiondetails: obj.txtFBProfessiondetails,
-                FBMobileCountryID: obj.ddlFBMobileCountryID,
-                FBMobileNumber: obj.txtFBMobileNumber,
-                FBLandLineCountryID: commonFactory.checkvals(obj.ddlFBMobileCountryID2) ? obj.ddlFBMobileCountryID2 : (commonFactory.checkvals(obj.ddlFBLandLineCountry) ? obj.ddlFBLandLineCountry : null),
-                FBLandAreaCode: commonFactory.checkvals(obj.txtFBMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFBAreCode) ? obj.txtFBAreCode : null),
-                FBLandNumber: commonFactory.checkvals(obj.txtFBMobileNumber2) ? obj.txtFBMobileNumber2 : (commonFactory.checkvals(obj.txtFBLandNumber) ? obj.txtFBLandNumber : null),
-                FBEmails: obj.txtFBEmails,
-                FBCurrentLocation: obj.txtCurrentLocation,
-                FatherbrotherCust_familyID: scope.fbObj.FatherbrotherCustfamilyID,
-                FatherBrotherEducationDetails: obj.txtFBEducationdetails,
 
-            },
-            customerpersonaldetails: {
-                intCusID: custid,
-                EmpID: null,
-                Admin: null
-            }
-        };
+        if (isSubmit) {
+            isSubmit = false;
+            scope.FBData = {
+                GetDetails: {
+                    CustID: custid,
+                    Fatherbrothername: obj.txtFatherbrothername,
+                    FBElderYounger: obj.rdlFBElderORyounger,
+                    FBEmployedin: null,
+                    FBProfessiongroup: null,
+                    FBProfession: null,
+                    FBProfessiondetails: obj.txtFBProfessiondetails,
+                    FBMobileCountryID: obj.ddlFBMobileCountryID,
+                    FBMobileNumber: obj.txtFBMobileNumber,
+                    FBLandLineCountryID: commonFactory.checkvals(obj.ddlFBMobileCountryID2) ? obj.ddlFBMobileCountryID2 : (commonFactory.checkvals(obj.ddlFBLandLineCountry) ? obj.ddlFBLandLineCountry : null),
+                    FBLandAreaCode: commonFactory.checkvals(obj.txtFBMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFBAreCode) ? obj.txtFBAreCode : null),
+                    FBLandNumber: commonFactory.checkvals(obj.txtFBMobileNumber2) ? obj.txtFBMobileNumber2 : (commonFactory.checkvals(obj.txtFBLandNumber) ? obj.txtFBLandNumber : null),
+                    FBEmails: obj.txtFBEmails,
+                    FBCurrentLocation: obj.txtCurrentLocation,
+                    FatherbrotherCust_familyID: scope.fbObj.FatherbrotherCustfamilyID,
+                    FatherBrotherEducationDetails: obj.txtFBEducationdetails,
 
-        scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
+                },
+                customerpersonaldetails: {
+                    intCusID: custid,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
 
-                scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+            scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
 
+                    scope.relativePageLoad(custid);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
     };
 
     scope.FSSubmit = function(obj) {
-        scope.FSData = {
-            GetDetails: {
-                CustID: custid,
-                FSFathersistername: obj.txtFathersistername,
-                FSElderYounger: obj.rdlFSElderYounger,
-                FSHusbandfirstname: obj.txtFSHusbandfirstname,
-                FSHusbandlastname: obj.txtFSHusbandlastname,
-                FSCountryID: 1,
-                FSHStateID: obj.ddlFSHStateID,
-                FSHDistrict: obj.ddlFSHDistrictID,
-                FSNativeplace: obj.txtFSHNativePlace,
-                FSHEmployedin: null,
-                FSHProfessiongroup: null,
-                FSHProfession: null,
-                FSHProfessiondetails: obj.txtFSProfessiondetails,
-                FSHMobileCountryID: obj.ddlFSMObileCountryID,
-                FSHMObileNumber: obj.txtFSMobileNumber,
-                FSHLandCountryID: commonFactory.checkvals(obj.ddlFSMObileCountryID2) ? obj.ddlFSMObileCountryID2 : (commonFactory.checkvals(obj.ddlFSHLandCountryID) ? obj.ddlFSHLandCountryID : null),
-                FSHLandAreaCode: commonFactory.checkvals(obj.txtFSMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFSHAreaNumber) ? obj.txtFSHAreaNumber : null),
-                FSHLandNumber: commonFactory.checkvals(obj.txtFSMobileNumber2) ? obj.txtFSMobileNumber2 : (commonFactory.checkvals(obj.txtFSHNUmber) ? obj.txtFSHNUmber : null),
-                FSHEmails: obj.txtFSHEmails,
-                FSCurrentLocation: obj.txtFSHCurrentLocation,
-                FatherSisterCust_familyID: scope.fsObj.FatherSisterCustfamilyID,
-                FSHEducationdetails: obj.txtFSHEDucation
-            },
-            customerpersonaldetails: {
-                intCusID: custid,
-                EmpID: null,
-                Admin: null
-            }
-        };
 
-        scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
+        if (isSubmit) {
+            isSubmit = false;
+            scope.FSData = {
+                GetDetails: {
+                    CustID: custid,
+                    FSFathersistername: obj.txtFathersistername,
+                    FSElderYounger: obj.rdlFSElderYounger,
+                    FSHusbandfirstname: obj.txtFSHusbandfirstname,
+                    FSHusbandlastname: obj.txtFSHusbandlastname,
+                    FSCountryID: 1,
+                    FSHStateID: obj.ddlFSHStateID,
+                    FSHDistrict: obj.ddlFSHDistrictID,
+                    FSNativeplace: obj.txtFSHNativePlace,
+                    FSHEmployedin: null,
+                    FSHProfessiongroup: null,
+                    FSHProfession: null,
+                    FSHProfessiondetails: obj.txtFSProfessiondetails,
+                    FSHMobileCountryID: obj.ddlFSMObileCountryID,
+                    FSHMObileNumber: obj.txtFSMobileNumber,
+                    FSHLandCountryID: commonFactory.checkvals(obj.ddlFSMObileCountryID2) ? obj.ddlFSMObileCountryID2 : (commonFactory.checkvals(obj.ddlFSHLandCountryID) ? obj.ddlFSHLandCountryID : null),
+                    FSHLandAreaCode: commonFactory.checkvals(obj.txtFSMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFSHAreaNumber) ? obj.txtFSHAreaNumber : null),
+                    FSHLandNumber: commonFactory.checkvals(obj.txtFSMobileNumber2) ? obj.txtFSMobileNumber2 : (commonFactory.checkvals(obj.txtFSHNUmber) ? obj.txtFSHNUmber : null),
+                    FSHEmails: obj.txtFSHEmails,
+                    FSCurrentLocation: obj.txtFSHCurrentLocation,
+                    FatherSisterCust_familyID: scope.fsObj.FatherSisterCustfamilyID,
+                    FSHEducationdetails: obj.txtFSHEDucation
+                },
+                customerpersonaldetails: {
+                    intCusID: custid,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
 
-                scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+            scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
 
+                    scope.relativePageLoad(custid);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
     };
 
     scope.MBSubmit = function(obj) {
-        scope.MBData = {
-            GetDetails: {
-                CustID: custid,
-                Motherbrothername: obj.txtMBName,
-                MBElderYounger: obj.rdlMBElderYounger,
-                MBEmployedin: null,
-                MBProfessiongroup: null,
-                MBProfession: null,
-                MBProfessiondetails: obj.txtMBProfessiondetails,
-                MBMobileCountryID: obj.ddlMBCountriCode,
-                MBMObileNumber: obj.txtMBMobileNum,
-                MBLandLineCountryID: commonFactory.checkvals(obj.ddlMBCountriCode2) ? obj.ddlMBCountriCode2 : (commonFactory.checkvals(obj.ddlMBLandLineCountryCode) ? obj.ddlMBLandLineCountryCode : null),
-                MBLandAreaCode: commonFactory.checkvals(obj.txtMBMobileNum2) ? null : (commonFactory.checkvals(obj.txtMBAreaCode) ? obj.txtMBAreaCode : null),
-                MBLandNumber: commonFactory.checkvals(obj.txtMBMobileNum2) ? obj.txtMBMobileNum2 : (commonFactory.checkvals(obj.txtMBLandLineNum) ? obj.txtMBLandLineNum : null),
-                MBEmails: obj.txtMBEmails,
-                MBCurrentLocation: obj.txtMBCurrentLocation,
-                MBMotherBrotherCust_familyID: scope.mbObj.MotherBrotherCustfamilyID,
-                MBEducationdetails: obj.txtMBEducation
-            },
-            customerpersonaldetails: {
-                intCusID: custid,
-                EmpID: null,
-                Admin: null
-            }
-        };
+        if (isSubmit) {
+            isSubmit = false;
 
-        scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
+            scope.MBData = {
+                GetDetails: {
+                    CustID: custid,
+                    Motherbrothername: obj.txtMBName,
+                    MBElderYounger: obj.rdlMBElderYounger,
+                    MBEmployedin: null,
+                    MBProfessiongroup: null,
+                    MBProfession: null,
+                    MBProfessiondetails: obj.txtMBProfessiondetails,
+                    MBMobileCountryID: obj.ddlMBCountriCode,
+                    MBMObileNumber: obj.txtMBMobileNum,
+                    MBLandLineCountryID: commonFactory.checkvals(obj.ddlMBCountriCode2) ? obj.ddlMBCountriCode2 : (commonFactory.checkvals(obj.ddlMBLandLineCountryCode) ? obj.ddlMBLandLineCountryCode : null),
+                    MBLandAreaCode: commonFactory.checkvals(obj.txtMBMobileNum2) ? null : (commonFactory.checkvals(obj.txtMBAreaCode) ? obj.txtMBAreaCode : null),
+                    MBLandNumber: commonFactory.checkvals(obj.txtMBMobileNum2) ? obj.txtMBMobileNum2 : (commonFactory.checkvals(obj.txtMBLandLineNum) ? obj.txtMBLandLineNum : null),
+                    MBEmails: obj.txtMBEmails,
+                    MBCurrentLocation: obj.txtMBCurrentLocation,
+                    MBMotherBrotherCust_familyID: scope.mbObj.MotherBrotherCustfamilyID,
+                    MBEducationdetails: obj.txtMBEducation
+                },
+                customerpersonaldetails: {
+                    intCusID: custid,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
 
-                scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+            scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
+
+                    scope.relativePageLoad(custid);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
 
     };
 
     scope.MSSubmit = function(obj) {
-        scope.MSData = {
-            GetDetails: {
-                CustID: custid,
-                Mothersistername: obj.txtMSName,
-                MSElderYounger: obj.rdlMSElderYounger,
-                MSHusbandfirstname: obj.txtMsHusbandfirstname,
-                MSHusbandlastname: obj.txtMsHusbandlastname,
-                MSCountryID: 1,
-                MSMSHStateID: obj.ddlMSisState,
-                MSMSHDistrictID: obj.ddlMsDistrict,
-                MSNativeplace: obj.txtMSNativePlace,
-                MSEmployedin: null,
-                MSProfession: null,
-                MSProfessiondetails: obj.txtMSProfessiondetails,
-                MSMSHMobileCountryID: obj.ddlMSCounCodeID,
-                MSMObileNumber: obj.txtMSMObileNum,
-                MSHLandlineCountryID: commonFactory.checkvals(obj.ddlMSCounCodeID2) ? obj.ddlMSCounCodeID2 : (commonFactory.checkvals(obj.ddlMSLLCounCode) ? obj.ddlMSLLCounCode : null),
-                MSLandAreaCode: commonFactory.checkvals(obj.txtMSMObileNum2) ? null : (commonFactory.checkvals(obj.txtMSArea) ? obj.txtMSArea : null),
-                MSLandNumber: commonFactory.checkvals(obj.txtMSMObileNum2) ? obj.txtMSMObileNum2 : (commonFactory.checkvals(obj.txtLLNum) ? obj.txtLLNum : null),
-                MSHEmails: obj.txtMSEmail,
-                MSCurrentLocation: obj.txtMSCurrentLocation,
-                MSCust_familyID: scope.msObj.MotherSisterCustfamilyID,
-                MSEducationdetails: obj.txtMSHEducation
-            },
-            customerpersonaldetails: {
-                intCusID: custid,
-                EmpID: null,
-                Admin: null
-            }
-        };
-        scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
-            console.log(response);
-            commonFactory.closepopup();
-            if (response.data === 1) {
 
-                scope.relativePageLoad(custid);
-                scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-            } else {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-            }
-        });
+        if (isSubmit) {
+            isSubmit = false;
+            scope.MSData = {
+                GetDetails: {
+                    CustID: custid,
+                    Mothersistername: obj.txtMSName,
+                    MSElderYounger: obj.rdlMSElderYounger,
+                    MSHusbandfirstname: obj.txtMsHusbandfirstname,
+                    MSHusbandlastname: obj.txtMsHusbandlastname,
+                    MSCountryID: 1,
+                    MSMSHStateID: obj.ddlMSisState,
+                    MSMSHDistrictID: obj.ddlMsDistrict,
+                    MSNativeplace: obj.txtMSNativePlace,
+                    MSEmployedin: null,
+                    MSProfession: null,
+                    MSProfessiondetails: obj.txtMSProfessiondetails,
+                    MSMSHMobileCountryID: obj.ddlMSCounCodeID,
+                    MSMObileNumber: obj.txtMSMObileNum,
+                    MSHLandlineCountryID: commonFactory.checkvals(obj.ddlMSCounCodeID2) ? obj.ddlMSCounCodeID2 : (commonFactory.checkvals(obj.ddlMSLLCounCode) ? obj.ddlMSLLCounCode : null),
+                    MSLandAreaCode: commonFactory.checkvals(obj.txtMSMObileNum2) ? null : (commonFactory.checkvals(obj.txtMSArea) ? obj.txtMSArea : null),
+                    MSLandNumber: commonFactory.checkvals(obj.txtMSMObileNum2) ? obj.txtMSMObileNum2 : (commonFactory.checkvals(obj.txtLLNum) ? obj.txtLLNum : null),
+                    MSHEmails: obj.txtMSEmail,
+                    MSCurrentLocation: obj.txtMSCurrentLocation,
+                    MSCust_familyID: scope.msObj.MotherSisterCustfamilyID,
+                    MSEducationdetails: obj.txtMSHEducation
+                },
+                customerpersonaldetails: {
+                    intCusID: custid,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
+            scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data === 1) {
+
+                    scope.relativePageLoad(custid);
+                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                }
+            });
+        }
 
     };
 

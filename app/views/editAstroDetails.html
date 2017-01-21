@@ -107,7 +107,7 @@
 
 
 <script type="text/ng-template" id="astroContent.html">
-    <form name="astroForm" novalidate role="form" ng-submit="astroSubmit(atroObj)" accessible-form>
+    <form name="astroForm" novalidate role="form" ng-submit="astroSubmit(atroObj);" accessible-form>
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Astro details
                 <a href="javascript:void(0);" ng-click="cancel();">
@@ -119,11 +119,11 @@
             <ul id="ulastro">
                 <li class="clearfix form-group">
                     <label for="lbltimebirth" class="pop_label_left">Time of Birth<span style="color: red; margin-left: 3px;">*</span></label>
-                    <div class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3">
+                    <div class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3 input-group">
 
-                        <select multiselectdropdown ng-model="atroObj.ddlFromHours" ng-options="item.value as item.label for item in hrsbindArr"></select>
-                        <select multiselectdropdown ng-model="atroObj.ddlFromMinutes" ng-options="item.value as item.label for item in minbindArr"></select>
-                        <select multiselectdropdown ng-model="atroObj.ddlFromSeconds" ng-options="item.value as item.label for item in secbindArr"></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromHours" ng-options="item.value as item.label for item in hrsbindArr" required></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromMinutes" ng-options="item.value as item.label for item in minbindArr" required></select>
+                        <select multiselectdropdown ng-model="atroObj.ddlFromSeconds" ng-options="item.value as item.label for item in secbindArr" required></select>
                     </div>
                 </li>
 
@@ -211,6 +211,7 @@
                 </li>
                 <li class="row">
                     <edit-footer></edit-footer>
+
                 </li>
             </ul>
         </div>

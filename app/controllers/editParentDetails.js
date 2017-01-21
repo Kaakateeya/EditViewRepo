@@ -16,7 +16,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         scope.dcountry = '1';
         scope.parentArr = [];
         scope.AboutFamilyReviewStatus = null;
-
+        var isSubmit = true;
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -67,7 +67,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         };
 
         scope.populateModel = function(type, item) {
-
+            isSubmit = true;
             switch (type) {
                 case "parent":
                     scope.parent.FatherCust_family_id = null;
@@ -225,187 +225,205 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         };
 
         scope.ParentSubmit = function(objitem) {
+            if (isSubmit) {
+                isSubmit = false;
 
-            scope.myData = {
-                GetDetails: {
-                    CustID: custID,
-                    FatherName: objitem.txtFathername,
-                    Educationcategory: null,
-                    Educationgroup: null,
-                    Educationspecialization: null,
-                    Employedin: null,
-                    Professiongroup: null,
-                    Profession: null,
-                    CompanyName: objitem.txtCompany,
-                    JobLocation: objitem.txtJobLocation,
-                    Professiondetails: objitem.txtFProfession,
-                    MobileCountry: objitem.ddlMobile,
-                    MobileNumber: objitem.txtMobile,
-                    LandlineCountry: commonFactory.checkvals(objitem.ddlfathermobile2) ? objitem.ddlfathermobile2 : (commonFactory.checkvals(objitem.ddlLandLineCountry) ? objitem.ddlLandLineCountry : null),
-                    LandAreCode: commonFactory.checkvals(objitem.txtfathermobile2) ? null : (commonFactory.checkvals(objitem.txtAreCode) ? objitem.txtAreCode : null),
-                    landLineNumber: commonFactory.checkvals(objitem.txtfathermobile2) ? objitem.txtfathermobile2 : (commonFactory.checkvals(objitem.txtLandNumber) ? objitem.txtLandNumber : null),
-                    Email: objitem.txtEmail,
-                    FatherFatherName: objitem.txtFatherFname,
+                scope.myData = {
+                    GetDetails: {
+                        CustID: custID,
+                        FatherName: objitem.txtFathername,
+                        Educationcategory: null,
+                        Educationgroup: null,
+                        Educationspecialization: null,
+                        Employedin: null,
+                        Professiongroup: null,
+                        Profession: null,
+                        CompanyName: objitem.txtCompany,
+                        JobLocation: objitem.txtJobLocation,
+                        Professiondetails: objitem.txtFProfession,
+                        MobileCountry: objitem.ddlMobile,
+                        MobileNumber: objitem.txtMobile,
+                        LandlineCountry: commonFactory.checkvals(objitem.ddlfathermobile2) ? objitem.ddlfathermobile2 : (commonFactory.checkvals(objitem.ddlLandLineCountry) ? objitem.ddlLandLineCountry : null),
+                        LandAreCode: commonFactory.checkvals(objitem.txtfathermobile2) ? null : (commonFactory.checkvals(objitem.txtAreCode) ? objitem.txtAreCode : null),
+                        landLineNumber: commonFactory.checkvals(objitem.txtfathermobile2) ? objitem.txtfathermobile2 : (commonFactory.checkvals(objitem.txtLandNumber) ? objitem.txtLandNumber : null),
+                        Email: objitem.txtEmail,
+                        FatherFatherName: objitem.txtFatherFname,
 
-                    MotherName: objitem.txtMName,
-                    MotherEducationcategory: null,
-                    MotherEducationgroup: null,
-                    MotherEducationspecialization: null,
-                    MotherEmployedIn: null,
-                    MotherProfessiongroup: null,
-                    MotherProfession: null,
-                    MotherCompanyName: objitem.txtMCompanyName,
-                    MotherJobLocation: objitem.txtMJobLocation,
-                    MotherProfessiondetails: objitem.txtMProfession,
-                    MotherMobileCountryID: objitem.ddlMMobileCounCodeID,
-                    MotherMobileNumber: objitem.txtMMobileNum,
-                    MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode) ? objitem.ddlMLandLineCounCode : null,
-                    MotherLandAreaCode: commonFactory.checkvals(objitem.txtMMobileNum2) ? null : (commonFactory.checkvals(objitem.txtmAreaCode) ? objitem.txtmAreaCode : null),
-                    MotherLandNumber: commonFactory.checkvals(objitem.txtMMobileNum2) ? objitem.txtMMobileNum2 : commonFactory.checkvals(objitem.txtMLandLineNum) ? objitem.txtMLandLineNum : null,
-                    MotherEmail: objitem.txtMEmail,
-                    MotherFatherFistname: objitem.txtMFatherFname,
-                    MotherFatherLastname: objitem.txtMFatherLname,
-                    FatherCustFamilyID: scope.parent.FatherCust_family_id,
-                    MotherCustFamilyID: scope.parent.MotherCust_family_id,
-                    FatherEducationDetails: objitem.txtFEducation,
-                    MotherEducationDetails: objitem.txtMEducation,
-                    FatherCountry: 1,
-                    FatherState: objitem.ddlFState,
-                    FatherDistric: objitem.ddlFDistric,
-                    FatherCity: objitem.txtFNativePlace,
-                    MotherCountry: 1,
-                    MotherState: objitem.ddlMState,
-                    MotherDistric: objitem.ddlMDistrict,
-                    MotherCity: objitem.txtMNativePlace,
-                    AreParentsInterCaste: objitem.rbtlParentIntercaste,
-                    FatherfatherMobileCountryID: objitem.ddlFatherfatherMobileCountryCode,
-                    FatherFatherMobileNumber: objitem.txtMobileFatherfather,
-                    FatherFatherLandCountryID: commonFactory.checkvals(objitem.ddlfatherfatherAlternative) ? objitem.ddlfatherfatherAlternative : (commonFactory.checkvals(objitem.ddlFatherFatherLandLineCode) ? objitem.ddlFatherFatherLandLineCode : null),
-                    FatherFatherLandAreaCode: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? null : (commonFactory.checkvals(objitem.txtGrandFatherArea) ? objitem.txtGrandFatherArea : null),
-                    FatherFatherLandNumber: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? objitem.txtfatherfatherAlternative : (commonFactory.checkvals(objitem.txtGrandFatherLandLinenum) ? objitem.txtGrandFatherLandLinenum : null),
-                    MotherfatherMobileCountryID: objitem.ddlMotherfatheMobileCountryCode,
-                    MotherFatherMobileNumber: objitem.txtMotherfatheMobilenumber,
-                    MotherFatherLandCountryID: commonFactory.checkvals(objitem.ddlmotherfatheralternative) ? objitem.ddlmotherfatheralternative : (commonFactory.checkvals(objitem.ddlMotherFatherLandLineCode) ? objitem.ddlMotherFatherLandLineCode : null),
-                    MotherFatherLandAreaCode: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? null : (commonFactory.checkvals(objitem.txtMotherFatherLandLineareacode) ? objitem.txtMotherFatherLandLineareacode : null),
-                    MotherFatherLandNumber: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? objitem.txtmotherfatheralternative : (commonFactory.checkvals(objitem.txtMotherFatherLandLinenum) ? objitem.txtMotherFatherLandLinenum : null),
-                    FatherCaste: objitem.ddlMotherCaste,
-                    MotherCaste: objitem.ddlFatherCaste
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-
-            };
-
-            console.log(JSON.stringify(scope.myData));
-            scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    scope.parentBindData(custID);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                    if (scope.datagetInStatus === 1) {
-                        sessionStorage.removeItem('missingStatus');
-                        route.go('mobileverf', {});
-
-
+                        MotherName: objitem.txtMName,
+                        MotherEducationcategory: null,
+                        MotherEducationgroup: null,
+                        MotherEducationspecialization: null,
+                        MotherEmployedIn: null,
+                        MotherProfessiongroup: null,
+                        MotherProfession: null,
+                        MotherCompanyName: objitem.txtMCompanyName,
+                        MotherJobLocation: objitem.txtMJobLocation,
+                        MotherProfessiondetails: objitem.txtMProfession,
+                        MotherMobileCountryID: objitem.ddlMMobileCounCodeID,
+                        MotherMobileNumber: objitem.txtMMobileNum,
+                        MotherLandCountryID: commonFactory.checkvals(objitem.ddlMMobileCounCodeID2) ? objitem.ddlMMobileCounCodeID2 : commonFactory.checkvals(objitem.ddlMLandLineCounCode) ? objitem.ddlMLandLineCounCode : null,
+                        MotherLandAreaCode: commonFactory.checkvals(objitem.txtMMobileNum2) ? null : (commonFactory.checkvals(objitem.txtmAreaCode) ? objitem.txtmAreaCode : null),
+                        MotherLandNumber: commonFactory.checkvals(objitem.txtMMobileNum2) ? objitem.txtMMobileNum2 : commonFactory.checkvals(objitem.txtMLandLineNum) ? objitem.txtMLandLineNum : null,
+                        MotherEmail: objitem.txtMEmail,
+                        MotherFatherFistname: objitem.txtMFatherFname,
+                        MotherFatherLastname: objitem.txtMFatherLname,
+                        FatherCustFamilyID: scope.parent.FatherCust_family_id,
+                        MotherCustFamilyID: scope.parent.MotherCust_family_id,
+                        FatherEducationDetails: objitem.txtFEducation,
+                        MotherEducationDetails: objitem.txtMEducation,
+                        FatherCountry: 1,
+                        FatherState: objitem.ddlFState,
+                        FatherDistric: objitem.ddlFDistric,
+                        FatherCity: objitem.txtFNativePlace,
+                        MotherCountry: 1,
+                        MotherState: objitem.ddlMState,
+                        MotherDistric: objitem.ddlMDistrict,
+                        MotherCity: objitem.txtMNativePlace,
+                        AreParentsInterCaste: objitem.rbtlParentIntercaste,
+                        FatherfatherMobileCountryID: objitem.ddlFatherfatherMobileCountryCode,
+                        FatherFatherMobileNumber: objitem.txtMobileFatherfather,
+                        FatherFatherLandCountryID: commonFactory.checkvals(objitem.ddlfatherfatherAlternative) ? objitem.ddlfatherfatherAlternative : (commonFactory.checkvals(objitem.ddlFatherFatherLandLineCode) ? objitem.ddlFatherFatherLandLineCode : null),
+                        FatherFatherLandAreaCode: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? null : (commonFactory.checkvals(objitem.txtGrandFatherArea) ? objitem.txtGrandFatherArea : null),
+                        FatherFatherLandNumber: commonFactory.checkvals(objitem.txtfatherfatherAlternative) ? objitem.txtfatherfatherAlternative : (commonFactory.checkvals(objitem.txtGrandFatherLandLinenum) ? objitem.txtGrandFatherLandLinenum : null),
+                        MotherfatherMobileCountryID: objitem.ddlMotherfatheMobileCountryCode,
+                        MotherFatherMobileNumber: objitem.txtMotherfatheMobilenumber,
+                        MotherFatherLandCountryID: commonFactory.checkvals(objitem.ddlmotherfatheralternative) ? objitem.ddlmotherfatheralternative : (commonFactory.checkvals(objitem.ddlMotherFatherLandLineCode) ? objitem.ddlMotherFatherLandLineCode : null),
+                        MotherFatherLandAreaCode: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? null : (commonFactory.checkvals(objitem.txtMotherFatherLandLineareacode) ? objitem.txtMotherFatherLandLineareacode : null),
+                        MotherFatherLandNumber: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? objitem.txtmotherfatheralternative : (commonFactory.checkvals(objitem.txtMotherFatherLandLinenum) ? objitem.txtMotherFatherLandLinenum : null),
+                        FatherCaste: objitem.ddlMotherCaste,
+                        MotherCaste: objitem.ddlFatherCaste
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
                     }
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+
+                };
+
+                console.log(JSON.stringify(scope.myData));
+                scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        scope.parentBindData(custID);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                        if (scope.datagetInStatus === 1) {
+                            sessionStorage.removeItem('missingStatus');
+                            route.go('mobileverf', {});
+
+
+                        }
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+
+            }
+
         };
 
         scope.contactAddressSubmit = function(objitem) {
 
-            scope.myAddrData = {
-                GetDetails: {
-                    CustID: custID,
-                    HouseFlateNumber: objitem.txtHouse_flat,
-                    Apartmentname: objitem.txtApartmentName,
-                    Streetname: objitem.txtStreetName,
-                    AreaName: objitem.txtAreaName,
-                    Landmark: objitem.txtLandmark,
-                    Country: objitem.ddlCountryContact,
-                    STATE: objitem.ddlStateContact,
-                    District: objitem.ddlDistricContact,
-                    othercity: null,
-                    city: objitem.txtCity,
-                    ZipPin: objitem.txtZip_no,
-                    Cust_Family_ID: scope.AdrrObj.Cust_Family_ID
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
+            if (isSubmit) {
+                isSubmit = false;
 
-            };
-            scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
+                scope.myAddrData = {
+                    GetDetails: {
+                        CustID: custID,
+                        HouseFlateNumber: objitem.txtHouse_flat,
+                        Apartmentname: objitem.txtApartmentName,
+                        Streetname: objitem.txtStreetName,
+                        AreaName: objitem.txtAreaName,
+                        Landmark: objitem.txtLandmark,
+                        Country: objitem.ddlCountryContact,
+                        STATE: objitem.ddlStateContact,
+                        District: objitem.ddlDistricContact,
+                        othercity: null,
+                        city: objitem.txtCity,
+                        ZipPin: objitem.txtZip_no,
+                        Cust_Family_ID: scope.AdrrObj.Cust_Family_ID
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
 
-                    scope.parentBindData(custID);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                };
+                scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.parentBindData(custID);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+
+            }
+
         };
 
         scope.physicalAtrrSubmit = function(objitem) {
 
-            scope.myPhysicalData = {
-                GetDetails: {
-                    CustID: custID,
-                    BWKgs: objitem.txtBWKgs,
-                    BWlbs: objitem.txtlbs,
-                    BloodGroup: objitem.ddlBloodGroup,
-                    HealthConditions: objitem.ddlHealthConditions,
-                    HealthConditiondesc: objitem.txtHealthCondition,
-                    DietID: objitem.rbtlDiet,
-                    SmokeID: objitem.rbtlSmoke,
-                    DrinkID: objitem.rbtlDrink,
-                    BodyTypeID: objitem.ddlBodyType,
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
+            if (isSubmit) {
+                isSubmit = false;
+                scope.myPhysicalData = {
+                    GetDetails: {
+                        CustID: custID,
+                        BWKgs: objitem.txtBWKgs,
+                        BWlbs: objitem.txtlbs,
+                        BloodGroup: objitem.ddlBloodGroup,
+                        HealthConditions: objitem.ddlHealthConditions,
+                        HealthConditiondesc: objitem.txtHealthCondition,
+                        DietID: objitem.rbtlDiet,
+                        SmokeID: objitem.rbtlSmoke,
+                        DrinkID: objitem.rbtlDrink,
+                        BodyTypeID: objitem.ddlBodyType,
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
 
-            };
+                };
 
-            scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
+                scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
 
-                    scope.parentBindData(custID);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                        scope.parentBindData(custID);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
         };
 
         scope.AboutMyfamilySubmit = function(obj) {
-            scope.submitPromise = parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
-                console.log(response);
-                scope.lblaboutMyfamily = obj.txtAboutUs;
-                commonFactory.closepopup();
-                if (response.data === '1') {
+            if (isSubmit) {
+                isSubmit = false;
 
-                    scope.AboutPageloadData(custID);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
+                scope.submitPromise = parentServices.submitAboutFamilyData({ CustID: custID, AboutYourself: obj.txtAboutUs, flag: 1 }).then(function(response) {
+                    console.log(response);
+                    scope.lblaboutMyfamily = obj.txtAboutUs;
+                    commonFactory.closepopup();
+                    if (response.data === '1') {
 
+                        scope.AboutPageloadData(custID);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
         };
 
 
