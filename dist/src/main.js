@@ -693,6 +693,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
 
     scope.refreshPageLoad = function(Arr) {
+        console.log('5555555');
+        console.log(Arr);
         _.each(Arr, function(item) {
 
             scope.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
@@ -701,7 +703,9 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             if (item.IsActive === 0 && item.PhotoName !== null) {
                 var strCustDirName1 = "KMPL_" + CustID + "_Images";
                 var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
-                item.ImageUrl = path1;
+                item.ImageUrl = path1 + '?decache=' + Math.random();
+                //item.ImageUrl = item.ImageUrl;
+
                 item.addButtonvisible = false;
 
                 item.keyname = strCustDirName1 + "/" + item.PhotoName;
@@ -715,8 +719,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 switch (item.DisplayOrder) {
                     case 1:
                         var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
-                        var path = imagepath + strCustDirName + "/" + photoshoppath;
-                        item.ImageUrl = path;
+                        var path11 = imagepath + strCustDirName + "/" + photoshoppath;
+                        item.ImageUrl = path11;
                         item.keyname = strCustDirName + "/" + photoshoppath;
                         break;
                     case 2:
@@ -774,8 +778,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             } else if (size > 4 * 1024) {
                 alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
             } else {
-
-
                 // var extension = ((obj.myFile.name).split('.'))[1];
                 var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
                 fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
@@ -820,15 +822,10 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         });
                     }
                 });
-
-
-
             }
         } else {
             alert("This browser does not support HTML5.");
         }
-
-
 
     };
 
@@ -893,12 +890,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 break;
         }
     };
-
-
-
-
-
-
 
 
 }]);
@@ -3729,8 +3720,8 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: obj1, dependencyflagID: '' } });
         },
         AstroCities: function(countryName, statename) {
-            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
-            return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
+            return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
+            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
         }
     };
 }]);
@@ -4986,7 +4977,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h6>\r" +
     "\n" +
-    "                                    <label id=\"lfathername\"></label> Father Name{{item.reviewstatus}}</h6>\r" +
+    "                                    <label id=\"lfathername\" font-bold=\"true\"></label> Father Name</h6>\r" +
     "\n" +
     "                                <h5>\r" +
     "\n" +
@@ -8978,7 +8969,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <h5>\r" +
     "\n" +
-    "                                            <span id=\"lblFBcontacts\">{{item.FatherbrotherMobileNumberWithCode+\" \"\r" +
+    "                                            <span id=\"lblFBcontacts\">{{(item.FatherbrotherMobileNumberWithCode!=null?item.FatherbrotherMobileNumberWithCode:'')+\" \"\r" +
     "\n" +
     "                                        +(item.FatherbrotherLandnumberwithcode!=null&&item.FatherbrotherLandnumberwithcode.ToString()!=\"\"?\"&\"+\r" +
     "\n" +
@@ -9144,8 +9135,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                <h6>\r" +
     "\n" +
     "                                    <span id=\"Fshprofessiondetails\" style=\"font-weight:bold;\">Fsh Profession</span></h6>\r" +
@@ -9200,7 +9189,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h5>\r" +
     "\n" +
-    "                                    <span id=\"lblFshNativeplace\">{{item.FathersisterSpouseNativePlace+\" \"+(item.FatherSisterSpousDistrict!=null && \r" +
+    "                                    <span id=\"lblFshNativeplace\">{{(item.FathersisterSpouseNativePlace!=null?item.FathersisterSpouseNativePlace:'')+\" \"+(item.FatherSisterSpousDistrict!=null && \r" +
     "\n" +
     "                                                item.FatherSisterSpousDistrict.ToString()!=\"\"? \",\"+item.FatherSisterSpousDistrict:\"\")+\" \"+(item.FatherSisterSpousestate!=null && \r" +
     "\n" +
@@ -9236,7 +9225,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        <h5>\r" +
     "\n" +
-    "                                            <span id=\"lblFSHcontacts\">{{item.FatherSisterspouseMobileNumberWithCode+\" \"+(item.FatherSisterspouseLandnumberwithcode!=null&&\r" +
+    "                                            <span id=\"lblFSHcontacts\">{{(item.FatherSisterspouseMobileNumberWithCode!=null?item.FatherSisterspouseMobileNumberWithCode:'')+\" \"+(item.FatherSisterspouseLandnumberwithcode!=null&&\r" +
     "\n" +
     "                                    item.FatherSisterspouseLandnumberwithcode.ToString()!=\"\"?\"&\"+item.FatherSisterspouseLandnumberwithcode:\"\") }}</span></h5>\r" +
     "\n" +
@@ -9432,7 +9421,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            <h5>\r" +
     "\n" +
-    "                                                <span id=\"lblMBcontacts\">{{item.MotherBrotherMobileNumberWithCode+\" \"+(item.MotherBrotherLandnumberwithcode!=null&& \r" +
+    "                                                <span id=\"lblMBcontacts\">{{(item.MotherBrotherMobileNumberWithCode!=null?item.MotherBrotherMobileNumberWithCode:'')+\" \"+(item.MotherBrotherLandnumberwithcode!=null&& \r" +
     "\n" +
     "                                                    item.MotherBrotherLandnumberwithcode.ToString()!=\"\"?\"&\"+item.MotherBrotherLandnumberwithcode:\"\") }}</span></h5>\r" +
     "\n" +
@@ -9628,7 +9617,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <h5>\r" +
     "\n" +
-    "                                <span id=\"lblMshNativeplace\">{{item.MotherSisterSpouseNativePlace+\" \"+(item.Mothersisterspousedistrict!=null && \r" +
+    "                                <span id=\"lblMshNativeplace\">{{(item.MotherSisterSpouseNativePlace!=null?item.MotherSisterSpouseNativePlace:'')+\" \"+(item.Mothersisterspousedistrict!=null && \r" +
     "\n" +
     "                                                item.Mothersisterspousedistrict.ToString()!=\"\"? \",\"+item.Mothersisterspousedistrict:\"\")+\" \"+(item.Motherssisterspousestate!=null && \r" +
     "\n" +
@@ -9662,7 +9651,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    <h5>\r" +
     "\n" +
-    "                                        <span id=\"lblMshcontactnos\">{{item.MotherSisterspouseMobileNumberWithCode+\" \"+(item.MotherSisterspouseLandnumberwithcode!=null \r" +
+    "                                        <span id=\"lblMshcontactnos\">{{(item.MotherSisterspouseMobileNumberWithCode!=null?item.MotherSisterspouseMobileNumberWithCode:'')+\" \"+(item.MotherSisterspouseLandnumberwithcode!=null \r" +
     "\n" +
     "                                            && item.MotherSisterspouseLandnumberwithcode.ToString()!=\"\" ?\r" +
     "\n" +
@@ -13022,7 +13011,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <h5>\r" +
     "\n" +
-    "                            <span id=\"txtProfession\">{{item.Professional+\" \"+(item.CompanyName !=null && item.CompanyName !=\"\"?\"in\"+\" \"+item.CompanyName:item.CompanyName)}}</span></h5>\r" +
+    "                            <span id=\"txtProfession\">{{item.Professional+\" \"+(item.CompanyName !=null && item.CompanyName !=\"\"?\"in\"+\" \"+item.CompanyName:'')}}</span></h5>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -13344,7 +13333,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year{{edoObj.ddlpassOfyear}}</label>\r" +
+    "                            <label for=\"lblPassOfYear\" class=\"pop_label_left\">Pass of year</label>\r" +
     "\n" +
     "\r" +
     "\n" +

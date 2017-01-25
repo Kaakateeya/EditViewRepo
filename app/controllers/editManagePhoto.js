@@ -17,6 +17,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     };
 
     scope.refreshPageLoad = function(Arr) {
+        console.log('5555555');
+        console.log(Arr);
         _.each(Arr, function(item) {
 
             scope.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
@@ -25,7 +27,9 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             if (item.IsActive === 0 && item.PhotoName !== null) {
                 var strCustDirName1 = "KMPL_" + CustID + "_Images";
                 var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
-                item.ImageUrl = path1;
+                item.ImageUrl = path1 + '?decache=' + Math.random();
+                //item.ImageUrl = item.ImageUrl;
+
                 item.addButtonvisible = false;
 
                 item.keyname = strCustDirName1 + "/" + item.PhotoName;
@@ -39,8 +43,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 switch (item.DisplayOrder) {
                     case 1:
                         var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
-                        var path = imagepath + strCustDirName + "/" + photoshoppath;
-                        item.ImageUrl = path;
+                        var path11 = imagepath + strCustDirName + "/" + photoshoppath;
+                        item.ImageUrl = path11;
                         item.keyname = strCustDirName + "/" + photoshoppath;
                         break;
                     case 2:
@@ -98,8 +102,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
             } else if (size > 4 * 1024) {
                 alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
             } else {
-
-
                 // var extension = ((obj.myFile.name).split('.'))[1];
                 var keyname = editviewapp.prefixPath + 'KMPL_' + CustID + '_Images/Img' + scope.photorowID + '.' + extension;
                 fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
@@ -144,15 +146,10 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                         });
                     }
                 });
-
-
-
             }
         } else {
             alert("This browser does not support HTML5.");
         }
-
-
 
     };
 
@@ -217,12 +214,6 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
                 break;
         }
     };
-
-
-
-
-
-
 
 
 }]);

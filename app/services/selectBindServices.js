@@ -63,8 +63,8 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: obj1, dependencyflagID: '' } });
         },
         AstroCities: function(countryName, statename) {
-            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
-            return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
+            return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
+            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
         }
     };
 }]);

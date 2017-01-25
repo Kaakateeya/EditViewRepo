@@ -71,7 +71,7 @@
                                         <h6>
                                             <span id="FBcontacts" style="font-weight:bold;">FB contacts</span></h6>
                                         <h5>
-                                            <span id="lblFBcontacts">{{item.FatherbrotherMobileNumberWithCode+" "
+                                            <span id="lblFBcontacts">{{(item.FatherbrotherMobileNumberWithCode!=null?item.FatherbrotherMobileNumberWithCode:'')+" "
                                         +(item.FatherbrotherLandnumberwithcode!=null&&item.FatherbrotherLandnumberwithcode.ToString()!=""?"&"+
                                         item.FatherbrotherLandnumberwithcode:" ") }}</span></h5>
 
@@ -154,7 +154,6 @@
                         <div id="UpdatePanelFshprofessiondetails" class="edit_page_details_item_desc clearfix">
 
                             <div>
-
                                 <h6>
                                     <span id="Fshprofessiondetails" style="font-weight:bold;">Fsh Profession</span></h6>
                                 <h5>
@@ -182,7 +181,7 @@
                                 <h6>
                                     <span id="FshNativeplace" style="font-weight:bold;">Fsh Native Place</span></h6>
                                 <h5>
-                                    <span id="lblFshNativeplace">{{item.FathersisterSpouseNativePlace+" "+(item.FatherSisterSpousDistrict!=null && 
+                                    <span id="lblFshNativeplace">{{(item.FathersisterSpouseNativePlace!=null?item.FathersisterSpouseNativePlace:'')+" "+(item.FatherSisterSpousDistrict!=null && 
                                                 item.FatherSisterSpousDistrict.ToString()!=""? ","+item.FatherSisterSpousDistrict:"")+" "+(item.FatherSisterSpousestate!=null && 
                                                 item.FatherSisterSpousestate.ToString()!=""? ","+item.FatherSisterSpousestate:"")+" "+(item.FatherSisterSpousecountry!=null && 
                                                 item.FatherSisterSpousecountry.ToString()!=""? ","+item.FatherSisterSpousecountry:"")  }}</span></h5>
@@ -200,7 +199,7 @@
                                         <h6>
                                             <span id="FShcontactnos" style="font-weight:bold;">FSh contact nos</span></h6>
                                         <h5>
-                                            <span id="lblFSHcontacts">{{item.FatherSisterspouseMobileNumberWithCode+" "+(item.FatherSisterspouseLandnumberwithcode!=null&&
+                                            <span id="lblFSHcontacts">{{(item.FatherSisterspouseMobileNumberWithCode!=null?item.FatherSisterspouseMobileNumberWithCode:'')+" "+(item.FatherSisterspouseLandnumberwithcode!=null&&
                                     item.FatherSisterspouseLandnumberwithcode.ToString()!=""?"&"+item.FatherSisterspouseLandnumberwithcode:"") }}</span></h5>
                                     </div>
 
@@ -298,7 +297,7 @@
                                             <h6>
                                                 <span id="MBcontacts" style="font-weight:bold;">MB contacts</span></h6>
                                             <h5>
-                                                <span id="lblMBcontacts">{{item.MotherBrotherMobileNumberWithCode+" "+(item.MotherBrotherLandnumberwithcode!=null&& 
+                                                <span id="lblMBcontacts">{{(item.MotherBrotherMobileNumberWithCode!=null?item.MotherBrotherMobileNumberWithCode:'')+" "+(item.MotherBrotherLandnumberwithcode!=null&& 
                                                     item.MotherBrotherLandnumberwithcode.ToString()!=""?"&"+item.MotherBrotherLandnumberwithcode:"") }}</span></h5>
                                         </div>
 
@@ -396,7 +395,7 @@
                             <h6>
                                 <span id="MshNativeplace" style="font-weight:bold;">Msh Native Place</span></h6>
                             <h5>
-                                <span id="lblMshNativeplace">{{item.MotherSisterSpouseNativePlace+" "+(item.Mothersisterspousedistrict!=null && 
+                                <span id="lblMshNativeplace">{{(item.MotherSisterSpouseNativePlace!=null?item.MotherSisterSpouseNativePlace:'')+" "+(item.Mothersisterspousedistrict!=null && 
                                                 item.Mothersisterspousedistrict.ToString()!=""? ","+item.Mothersisterspousedistrict:"")+" "+(item.Motherssisterspousestate!=null && 
                                                 item.Motherssisterspousestate.ToString()!=""? ","+item.Motherssisterspousestate:"")+" "+(item.MothersisterspouseCountry!=null && 
                                                 item.MothersisterspouseCountry.ToString()!=""? ","+item.MothersisterspouseCountry:"")  }}    </span></h5>
@@ -413,7 +412,7 @@
                                     <h6>
                                         <span id="Mshcontactnos" style="font-weight:bold;">Msh contact nos</span></h6>
                                     <h5>
-                                        <span id="lblMshcontactnos">{{item.MotherSisterspouseMobileNumberWithCode+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
+                                        <span id="lblMshcontactnos">{{(item.MotherSisterspouseMobileNumberWithCode!=null?item.MotherSisterspouseMobileNumberWithCode:'')+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
                                             && item.MotherSisterspouseLandnumberwithcode.ToString()!="" ?
                                             "&"+item.MotherSisterspouseLandnumberwithcode:"") }}</span></h5>
                                 </div>
