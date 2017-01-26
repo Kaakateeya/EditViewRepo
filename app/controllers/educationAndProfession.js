@@ -149,17 +149,24 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.changeBind = function(type, parentval) {
-            switch (type) {
+            if (commonFactory.checkvals(parentval)) {
 
-                case 'EducationCatgory':
-                    scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
-                    scope.edoObj.ddlEdugroup = "";
-                    break;
+                switch (type) {
 
-                case 'EducationGroup':
-                    scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(parentval);
-                    scope.edoObj.ddlEduspecialization = "";
-                    break;
+                    case 'EducationCatgory':
+
+                        scope.eduGroupArr = commonFactory.educationGroupBind(parentval);
+                        scope.edoObj.ddlEdugroup = "";
+
+                        break;
+
+                    case 'EducationGroup':
+
+                        scope.eduSpecialisationArr = commonFactory.educationSpeciakisationBind(parentval);
+                        scope.edoObj.ddlEduspecialization = "";
+
+                        break;
+                }
             }
         };
 

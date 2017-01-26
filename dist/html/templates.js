@@ -9760,8 +9760,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
     "                            <label for=\"lblworkingfrome\" class=\"pop_label_left\">Working from date{{profObj.txtworkingfrom}}</label>\r" +
@@ -9817,8 +9815,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                                    <date-picker strdate=\"profObj.txtarrivaldate\"></date-picker>\r" +
     "\n" +
     "                                </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            </li>\r" +
     "\n" +
