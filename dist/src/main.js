@@ -6,7 +6,7 @@
 var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
-editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 editviewapp.templateroot = 'editview/';
 
 //editviewapp.templateroot = '';
@@ -922,6 +922,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
                     scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
                     scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
+
+                    console.log(scope.parentArr);
                 }
 
                 if (commonFactory.checkvals(scope.AboutFamily[0])) {
@@ -984,7 +986,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                         scope.parent.txtCompany = item.FathercompanyName;
                         scope.parent.txtJobLocation = item.FatherJoblocation;
 
-                        scope.parent.ddlMobile = item.FatherLandCountryCodeId;
+                        scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
                         scope.parent.txtMobile = item.FathermobilenumberID;
 
                         if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
@@ -1380,24 +1382,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
-
-
-    // scope.listSelectedVal = function(val) {
-    //     var str = null;
-    //     if (val != null) {
-    //         if (angular.isString(val)) {
-    //             str = val === '' ? null : val;
-    //         } else {
-    //             str = val.join(',');
-    //         }
-    //     }
-    //     return str;
-    // }
-
+    scope.partnerDescription = '';
 
     partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
         scope.partnerPrefArr = response.data;
+        scope.partnerDescription = (scope.partnerPrefArr.length > 0 && scope.partnerPrefArr[0].PartnerDescripition !== undefined && scope.partnerPrefArr[0].PartnerDescripition !== null) ? scope.partnerPrefArr[0].PartnerDescripition : '';
         console.log(scope.partnerPrefArr);
     });
     scope.removeSelect = function(data) {
@@ -1567,6 +1556,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === '1') {
+                    scope.partnerDescription = obj.txtpartnerdescription;
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                 } else {
                     scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
@@ -7521,7 +7511,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <h5>\r" +
     "\n" +
-    "                                <span id=\"lblpartnerdesc\">{{ item.PartnerDescripition}}</span></h5>\r" +
+    "                                <span id=\"lblpartnerdesc\">{{ partnerDescription}}</span></h5>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -8058,20 +8048,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                <li class=\"row\">\r" +
     "\n" +
     "                    <br/>\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
     "\n" +

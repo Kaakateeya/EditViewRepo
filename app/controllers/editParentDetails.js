@@ -27,6 +27,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
                     scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
                     scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
+
+                    console.log(scope.parentArr);
                 }
 
                 if (commonFactory.checkvals(scope.AboutFamily[0])) {
@@ -89,7 +91,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                         scope.parent.txtCompany = item.FathercompanyName;
                         scope.parent.txtJobLocation = item.FatherJoblocation;
 
-                        scope.parent.ddlMobile = item.FatherLandCountryCodeId;
+                        scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
                         scope.parent.txtMobile = item.FathermobilenumberID;
 
                         if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {

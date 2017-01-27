@@ -17,24 +17,11 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
     var logincustid = authSvc.getCustId();
     var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
-
-
-    // scope.listSelectedVal = function(val) {
-    //     var str = null;
-    //     if (val != null) {
-    //         if (angular.isString(val)) {
-    //             str = val === '' ? null : val;
-    //         } else {
-    //             str = val.join(',');
-    //         }
-    //     }
-    //     return str;
-    // }
-
+    scope.partnerDescription = '';
 
     partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
         scope.partnerPrefArr = response.data;
+        scope.partnerDescription = (scope.partnerPrefArr.length > 0 && scope.partnerPrefArr[0].PartnerDescripition !== undefined && scope.partnerPrefArr[0].PartnerDescripition !== null) ? scope.partnerPrefArr[0].PartnerDescripition : '';
         console.log(scope.partnerPrefArr);
     });
     scope.removeSelect = function(data) {
@@ -204,6 +191,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 console.log(response);
                 commonFactory.closepopup();
                 if (response.data === '1') {
+                    scope.partnerDescription = obj.txtpartnerdescription;
                     scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                 } else {
                     scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);

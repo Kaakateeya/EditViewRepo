@@ -3771,7 +3771,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <h5>\r" +
     "\n" +
-    "                                <span id=\"lblpartnerdesc\">{{ item.PartnerDescripition}}</span></h5>\r" +
+    "                                <span id=\"lblpartnerdesc\">{{ partnerDescription}}</span></h5>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -4308,20 +4308,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                <li class=\"row\">\r" +
     "\n" +
     "                    <br/>\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
     "\n" +
