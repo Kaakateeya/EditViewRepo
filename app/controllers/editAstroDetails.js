@@ -245,7 +245,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     commonFactory.closepopup();
                     window.open('' + response.data + '', '_blank');
                 } else {
-                    scope.AstrocityArr = commonFactory.AstroCity('', '');
+                    scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
                 }
             });

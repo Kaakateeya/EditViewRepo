@@ -64,7 +64,6 @@ editviewapp.factory('SelectBindService', ["$http", function(http) {
         },
         AstroCities: function(countryName, statename) {
             return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
-            //return http.get(editviewapp.apipath + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: 'India', dependencyflagID: 'Karnataka' } });
         }
     };
 }]);
