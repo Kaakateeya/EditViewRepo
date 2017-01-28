@@ -111,7 +111,7 @@ module.exports = function(grunt) {
             },
             js: { //target
                 src: ['index.js', 'app/**/*.js', 'dist/html/templates.js', '!app/directives/multiSelectDirective.js', '!app/services/authSvc.js',
-                    '!app/controllers/headercontrolller.js', '!app/directives/oldAlert.js', '!app/services/errorInterceptor.js'
+                    '!app/controllers/headercontrolller.js', '!app/directives/oldAlert.js', '!app/services/errorInterceptor.js', '!app/directives/accessibleForm.js'
                 ],
                 dest: 'dist/src/main.js'
             },
