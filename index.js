@@ -11,8 +11,14 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
+
+
+editviewapp.apipath = '/webroot/Api/';
+
+
+
 editviewapp.templateroot = 'editview/';
 
 //editviewapp.templateroot = '';
@@ -64,7 +70,6 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
             views: innerView,
             data: {
                 requiresLogin: item.isloginrequired == null ? true : item.isloginrequired,
-
             }
         })
         $locationProvider.html5Mode(true);
