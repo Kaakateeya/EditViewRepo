@@ -408,17 +408,18 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
             var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
 
-            if ((totalnofBrothers === (elderBrotherCount + youngerBrotherCount) && totalnoFSister === (elderSisterCount + youngerSisterCount))) {
+            if ((totalnofBrothers === 0 || totalnofBrothers === (elderBrotherCount + youngerBrotherCount)) && (totalnoFSister === 0 || totalnoFSister === (elderSisterCount + youngerSisterCount))) {
 
                 var objinput = {
                     CustID: custID,
                     NoOfBrothers: obj.ddlnoofsiblings,
                     NoOfSisters: obj.ddlnoofsisters,
-                    NoOfYoungerBrothers: obj.ddlnoofyoungerbrother,
-                    NoOfElderBrothers: obj.ddlnoofelderrother,
-                    NoOfElderSisters: obj.ddlnoofeldersisters,
-                    NoOfYoungerSisters: obj.ddlnoofyoungersisters
+                    NoOfYoungerBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofyoungerbrother,
+                    NoOfElderBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofelderrother,
+                    NoOfElderSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofeldersisters,
+                    NoOfYoungerSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofyoungersisters
                 };
+
                 scope.BroCount = obj.ddlnoofsiblings;
                 scope.SisCount = obj.ddlnoofsisters;
 
@@ -435,6 +436,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     }
                 });
             } else {
+
                 alert('Please enter Correct Sibling count');
             }
 
@@ -491,5 +493,13 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
             scope.sisObj.txtSisSpouceFatherCity = '';
         }
     };
+
+    scope.enableSubmit = function() {
+        isSubmit = true;
+
+
+    };
+
+
 
 }]);

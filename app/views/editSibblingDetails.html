@@ -29,7 +29,7 @@
                                 </div>
                                 <div id="brotherHide">
 
-                                    <div ng-hide="item.NoOfElderBrothers===null" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfElderBrothers===null || item.NoOfElderBrothers===0" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
                                             <label id="noofelderbrother" font-bold="true">No of elder brothers</label></h6>
@@ -41,7 +41,7 @@
 
 
                                     </div>
-                                    <div ng-hide="item.NoOfYoungerBrothers===null" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfYoungerBrothers===null || item.NoOfYoungerBrothers===0" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
                                             <label id="Noofyoungerbrother" font-bold="true">No of younger brother</label>
@@ -78,7 +78,7 @@
 
                                 </div>
                                 <div id="sisterHideDiv">
-                                    <div ng-hide="item.NoOfElderSisters===null" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfElderSisters===null || item.NoOfElderSisters===0" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
                                             <label font-bold="true">No of elder sisters</label></h6>
@@ -90,7 +90,7 @@
 
 
                                     </div>
-                                    <div ng-hide="item.NoOfYoungerSisters===null" class="edit_page_details_item_desc clearfix">
+                                    <div ng-hide="item.NoOfYoungerSisters===null || item.NoOfYoungerSisters===0" class="edit_page_details_item_desc clearfix">
 
                                         <h6>
                                             <label font-bold="true">No of younger sisters</label></h6>
@@ -684,38 +684,38 @@
                 <li class="clearfix form-group">
                     <label for="lblnoofsiblings" class="pop_label_left">No of Brothers<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right select-box-my input-group">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofsiblings" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofsiblings" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
                     </div>
                 </li>
                 <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsiblings!==0">
                     <label for="lblnoofelderrother" class="pop_label_left">Elder Brother{{SibCountObj.ddlnoofelderrother}}</label>
                     <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofelderrother" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofelderrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
                 <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsiblings!==0">
                     <label for="lblnoofyoungerbrother" class="pop_label_left">Younger Brother</label>
                     <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungerbrother" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungerbrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
 
                 <li class="clearfix form-group">
                     <label for="lblnoofsisters" class="pop_label_left">No of sisters<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right select-box-my input-group">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofsisters" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofsisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr" required></select>
                     </div>
                 </li>
                 <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsisters!==0">
                     <label for="lblnoofeldersisters" class="pop_label_left">Elder sisters</label>
                     <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofeldersisters" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofeldersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
                 <li class="clearfix form-group" ng-show="SibCountObj.ddlnoofsisters!==0">
                     <label for="lblnoofyoungersisters" class="pop_label_left">Younger  sisters</label>
                     <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungersisters" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
+                        <select multiselectdropdown ng-model="SibCountObj.ddlnoofyoungersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in sibCountsBindArr"></select>
                     </div>
                 </li>
                 <li class="row">
@@ -1042,21 +1042,15 @@
 
                     <contact-directive emailhide="true" dmobile="sisObj.ddlSHusMobileCountryID" strmobile="sisObj.txtSHusMobileNumber" dalternative="sisObj.ddlSHusMobileCountryID2" stralternative="sisObj.txtSHusMobileNumber2" dland="sisObj.ddlSHusLandCountryID" strareacode="sisObj.txtSHusLandArea"
                         strland="sisObj.txtSHusLandNumber" strmail="sisObj.txtHusbandEmail"></contact-directive>
-
-
                     <li class="clearfix form-group">
                         <label for="lblwifefathername" class="pop_label_left">Husband Father SurName</label>
                         <div class="pop_controls_right">
-
-
                             <input ng-model="sisObj.txtHusbandFatherSurName" class="form-control" tabindex="36" maxlength="50" />
                         </div>
                     </li>
                     <li class="clearfix form-group">
                         <label for="lblNatvehus" class="pop_label_left">Husband Father Name</label>
                         <div class="pop_controls_right">
-
-
                             <input ng-model="sisObj.txtHusbandFatherName" class="form-control" tabindex="37" maxlength="100" />
                         </div>
                     </li>

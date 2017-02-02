@@ -6801,7 +6801,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                    <div ng-hide=\"item.NoOfElderBrothers===null\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <div ng-hide=\"item.NoOfElderBrothers===null || item.NoOfElderBrothers===0\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6825,7 +6825,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div ng-hide=\"item.NoOfYoungerBrothers===null\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <div ng-hide=\"item.NoOfYoungerBrothers===null || item.NoOfYoungerBrothers===0\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6899,7 +6899,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <div id=\"sisterHideDiv\">\r" +
     "\n" +
-    "                                    <div ng-hide=\"item.NoOfElderSisters===null\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <div ng-hide=\"item.NoOfElderSisters===null || item.NoOfElderSisters===0\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6923,7 +6923,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div ng-hide=\"item.NoOfYoungerSisters===null\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <div ng-hide=\"item.NoOfYoungerSisters===null || item.NoOfYoungerSisters===0\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8111,7 +8111,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofsiblings\" ng-options=\"item.value as item.label for item in sibCountsBindArr\" required></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofsiblings\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8123,7 +8123,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofelderrother\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofelderrother\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8135,7 +8135,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofyoungerbrother\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofyoungerbrother\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8149,7 +8149,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofsisters\" ng-options=\"item.value as item.label for item in sibCountsBindArr\" required></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofsisters\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8161,7 +8161,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofeldersisters\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofeldersisters\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8173,7 +8173,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofyoungersisters\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
+    "                        <select multiselectdropdown ng-model=\"SibCountObj.ddlnoofyoungersisters\" ng-change=\"enableSubmit();\" ng-options=\"item.value as item.label for item in sibCountsBindArr\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8827,19 +8827,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        strland=\"sisObj.txtSHusLandNumber\" strmail=\"sisObj.txtHusbandEmail\"></contact-directive>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
     "                        <label for=\"lblwifefathername\" class=\"pop_label_left\">Husband Father SurName</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <input ng-model=\"sisObj.txtHusbandFatherSurName\" class=\"form-control\" tabindex=\"36\" maxlength=\"50\" />\r" +
     "\n" +
@@ -8852,10 +8844,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        <label for=\"lblNatvehus\" class=\"pop_label_left\">Husband Father Name</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <input ng-model=\"sisObj.txtHusbandFatherName\" class=\"form-control\" tabindex=\"37\" maxlength=\"100\" />\r" +
     "\n" +
