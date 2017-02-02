@@ -4506,8 +4506,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </div>-->\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                        <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
     "                            <md-radio-group name=\"rdlSharedProperty\" layout=\"row\" ng-model=\"proObj.rdlSharedProperty\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
@@ -6502,7 +6500,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"MSModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"MSForm\" novalidate role=\"form\" ng-submit=\"MSForm.$valid  && MSSubmit(msObj)\">\r" +
+    "    <form name=\"MSForm\" novalidate=\"true\" ng-submit=\"MSForm.$valid  && MSSubmit(msObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +

@@ -8,12 +8,10 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
 ]);
 
 // editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
-editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
-
-
+// editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 
-
+editviewapp.apipath = 'http://35.154.148.74:8070/Api/';
 
 editviewapp.templateroot = 'editview/';
 
@@ -8227,8 +8225,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </div>-->\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                        <md-input-container style=\"font-weight: 700;color:black;\">\r" +
     "\n" +
     "                            <md-radio-group name=\"rdlSharedProperty\" layout=\"row\" ng-model=\"proObj.rdlSharedProperty\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
@@ -10223,7 +10219,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "<script type=\"text/ng-template\" id=\"MSModalContent.html\">\r" +
     "\n" +
-    "    <form name=\"MSForm\" novalidate role=\"form\" ng-submit=\"MSForm.$valid  && MSSubmit(msObj)\">\r" +
+    "    <form name=\"MSForm\" novalidate=\"true\" ng-submit=\"MSForm.$valid  && MSSubmit(msObj)\">\r" +
     "\n" +
     "        <div class=\"modal-header\">\r" +
     "\n" +

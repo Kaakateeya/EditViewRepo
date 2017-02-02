@@ -716,7 +716,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="MSModalContent.html">
-    <form name="MSForm" novalidate role="form" ng-submit="MSForm.$valid  && MSSubmit(msObj)">
+    <form name="MSForm" novalidate="true" ng-submit="MSForm.$valid  && MSSubmit(msObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Mother's Sister Details
                 <a href="javascript:void(0);" ng-click="cancel();">
