@@ -19,7 +19,7 @@ editviewapp.apipath = 'http://35.154.148.74:8070/Api/';
 
 editviewapp.templateroot = 'editview/';
 
-editviewapp.templateroot = '';
+//editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 
