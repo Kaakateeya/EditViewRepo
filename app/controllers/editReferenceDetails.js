@@ -17,8 +17,8 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
         scope.refObj.RefrenceCust_Reference_ID = null;
         scope.refObj = {};
         if (item !== undefined) {
-            scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
-            scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
+            // scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
+            // scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
 
             scope.refObj.intCusID = custID;
             scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;

@@ -397,9 +397,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
             isSubmit = true;
             if (item !== undefined) {
-                scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
-                scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
-                scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
+                // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
+                // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
+                // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
                 scope.starArr = commonFactory.starBind(item.StarLanguageID);
 
                 if (item.TimeOfBirth !== undefined) {
@@ -978,8 +978,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
                     if (item !== undefined) {
                         scope.parent = [];
-                        scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
-                        scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
+                        // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
+                        // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
 
                         scope.parent.cust_id = item.cust_id;
                         scope.parent.FatherCust_family_id = item.FatherCust_family_id;
@@ -1071,8 +1071,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.AdrrObj.Cust_Family_ID = null;
                     scope.AdrrObj = {};
                     if (item !== undefined) {
-                        scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
-                        scope.districtArr = commonFactory.districtBind(item.ParentStateid);
+                        // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
+                        // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
 
                         scope.AdrrObj.Cust_ID = item.Cust_ID;
                         scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;
@@ -1668,8 +1668,8 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
         scope.refObj.RefrenceCust_Reference_ID = null;
         scope.refObj = {};
         if (item !== undefined) {
-            scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
-            scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
+            // scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
+            // scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
 
             scope.refObj.intCusID = custID;
             scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;
@@ -1843,7 +1843,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.fsObj = {};
                 if (item !== undefined) {
 
-                    scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
+                    // scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
 
                     scope.fsObj.FatherSisterCustfamilyID = item.FatherSisterCustfamilyID;
                     scope.fsObj.rdlFSElderYounger = item.FatherSisterElderyounger == 'Elder' ? 326 : (item.FatherSisterElderyounger == 'Younger' ? 325 : '-1');
@@ -1912,7 +1912,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.msObj = {};
                 if (item !== undefined) {
 
-                    scope.msDistrict = commonFactory.districtBind(item.spousestateid);
+                    // scope.msDistrict = commonFactory.districtBind(item.spousestateid);
 
                     scope.msObj.MotherSisterCustfamilyID = item.MotherSisterCustfamilyID;
                     scope.msObj.rdlMSElderYounger = item.MotherSisterElderyounger == 'Elder' ? 330 : (item.MotherSisterElderyounger == 'Younger' ? 329 : '-1');
@@ -2198,7 +2198,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.broObj.SibilingCustfamilyID = null;
                     scope.broObj = {};
                     if (item !== undefined) {
-                        scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                        // scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
 
                         scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
                         scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
@@ -2274,7 +2274,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
                     if (item !== undefined) {
 
-                        scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                        // scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
 
                         scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
                         scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
@@ -2705,9 +2705,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     if (item !== undefined) {
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
-                        scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
-                        scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
-                        scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
+                        // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
+                        // scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
+                        // scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
@@ -2736,9 +2736,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.profObj.Cust_Profession_ID = null;
                     scope.profObj = {};
                     if (item !== undefined) {
-                        scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
-                        scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
-                        scope.ProfcityeArr = commonFactory.cityBind(item.DistrictID);
+                        // scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
+                        // scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
+                        // scope.ProfcityeArr = commonFactory.cityBind(item.DistrictID);
                         scope.ProfSpecialisationArr = commonFactory.professionBind(item.ProfessionGroupID);
 
                         scope.profObj.intCusID = item.intCusID;
@@ -3501,6 +3501,27 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         }
     };
 }]);
+(function() {
+    'use strict';
+
+    editviewapp.factory('dropdownModel', factory);
+
+    factory.$inject = ['SelectBindService'];
+
+    function factory(service) {
+        var model = {};
+        service.countryCodeselect().then(function(response) {
+            var option = [];
+            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+            _.each(response.data, function(item) {
+                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            });
+            model.getCountryCode = option;
+            console.log(123);
+        });
+        return model;
+    }
+})();
 editviewapp.factory('editmanagePhotoServices', ['$http', function(http) {
     return {
         getPhotoData: function(obj) {

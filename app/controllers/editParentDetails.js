@@ -78,8 +78,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
                     if (item !== undefined) {
                         scope.parent = [];
-                        scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
-                        scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
+                        // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
+                        // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
 
                         scope.parent.cust_id = item.cust_id;
                         scope.parent.FatherCust_family_id = item.FatherCust_family_id;
@@ -171,8 +171,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.AdrrObj.Cust_Family_ID = null;
                     scope.AdrrObj = {};
                     if (item !== undefined) {
-                        scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
-                        scope.districtArr = commonFactory.districtBind(item.ParentStateid);
+                        // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
+                        // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
 
                         scope.AdrrObj.Cust_ID = item.Cust_ID;
                         scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;

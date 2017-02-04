@@ -44,9 +44,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
             isSubmit = true;
             if (item !== undefined) {
-                scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
-                scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
-                scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
+                // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
+                // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
+                // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
                 scope.starArr = commonFactory.starBind(item.StarLanguageID);
 
                 if (item.TimeOfBirth !== undefined) {

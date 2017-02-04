@@ -39,9 +39,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     if (item !== undefined) {
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
-                        scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
-                        scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
-                        scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
+                        // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
+                        // scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
+                        // scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
@@ -70,9 +70,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.profObj.Cust_Profession_ID = null;
                     scope.profObj = {};
                     if (item !== undefined) {
-                        scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
-                        scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
-                        scope.ProfcityeArr = commonFactory.cityBind(item.DistrictID);
+                        // scope.ProfstateArr = commonFactory.StateBind(item.CountryID);
+                        // scope.ProfdistrictArr = commonFactory.districtBind(item.StateID);
+                        // scope.ProfcityeArr = commonFactory.cityBind(item.DistrictID);
                         scope.ProfSpecialisationArr = commonFactory.professionBind(item.ProfessionGroupID);
 
                         scope.profObj.intCusID = item.intCusID;

@@ -59,7 +59,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.fsObj = {};
                 if (item !== undefined) {
 
-                    scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
+                    // scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
 
                     scope.fsObj.FatherSisterCustfamilyID = item.FatherSisterCustfamilyID;
                     scope.fsObj.rdlFSElderYounger = item.FatherSisterElderyounger == 'Elder' ? 326 : (item.FatherSisterElderyounger == 'Younger' ? 325 : '-1');
@@ -128,7 +128,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.msObj = {};
                 if (item !== undefined) {
 
-                    scope.msDistrict = commonFactory.districtBind(item.spousestateid);
+                    // scope.msDistrict = commonFactory.districtBind(item.spousestateid);
 
                     scope.msObj.MotherSisterCustfamilyID = item.MotherSisterCustfamilyID;
                     scope.msObj.rdlMSElderYounger = item.MotherSisterElderyounger == 'Elder' ? 330 : (item.MotherSisterElderyounger == 'Younger' ? 329 : '-1');

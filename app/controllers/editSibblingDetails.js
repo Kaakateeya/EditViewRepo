@@ -42,7 +42,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.broObj.SibilingCustfamilyID = null;
                     scope.broObj = {};
                     if (item !== undefined) {
-                        scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                        // scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
 
                         scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
                         scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
@@ -118,7 +118,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
                     if (item !== undefined) {
 
-                        scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+                        // scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
 
                         scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
                         scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
