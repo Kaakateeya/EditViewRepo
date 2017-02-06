@@ -42,19 +42,19 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
                 switch (item.DisplayOrder) {
                     case 1:
-                        var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppath = "Img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var path11 = imagepath + strCustDirName + "/" + photoshoppath;
                         item.ImageUrl = path11;
                         item.keyname = strCustDirName + "/" + photoshoppath;
                         break;
                     case 2:
-                        var photoshoppathnew = "img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppathnew = "Img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var pathnew = imagepath + strCustDirName + "/" + photoshoppathnew;
                         item.ImageUrl = pathnew;
                         item.keyname = strCustDirName + "/" + photoshoppathnew;
                         break;
                     case 3:
-                        var photoshoppathneew3 = "img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppathneew3 = "Img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var pathneww = imagepath + strCustDirName + "/" + photoshoppathneew3;
                         item.ImageUrl = pathneww;
                         item.keyname = strCustDirName + "/" + photoshoppathneew3;

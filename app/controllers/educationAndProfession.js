@@ -30,6 +30,21 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             commonFactory.closepopup();
         };
 
+        SelectBindService.countryCodeselect().then(function(response) {
+            var option = [];
+            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+            _.each(response.data, function(item) {
+                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            });
+            sessionStorage.setItem('CountryCode', JSON.stringify(option));
+            console.log(123);
+        });
+
+
+
+
+
+
         scope.showpopup = function(type, item) {
             isSubmit = true;
             switch (type) {
@@ -37,6 +52,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.edoObj.EducationID = null;
                     scope.edoObj = {};
                     if (item !== undefined) {
+
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
                         // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];

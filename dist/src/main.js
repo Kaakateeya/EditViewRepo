@@ -17,15 +17,15 @@ editviewapp.templateroot = 'editview/';
 
 //editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
-editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
+editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
-editviewapp.prefixPath = 'Imagesnew/ProfilePics/';
+editviewapp.prefixPath = 'Images/ProfilePics/';
 editviewapp.S3PhotoPath = '';
 editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
 
-editviewapp.BucketName = 'angularkaknew';
+editviewapp.BucketName = 'kaakateeyaprod';
 /**
  * Configure the Routes
  */
@@ -723,19 +723,19 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
                 switch (item.DisplayOrder) {
                     case 1:
-                        var photoshoppath = "img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppath = "Img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var path11 = imagepath + strCustDirName + "/" + photoshoppath;
                         item.ImageUrl = path11;
                         item.keyname = strCustDirName + "/" + photoshoppath;
                         break;
                     case 2:
-                        var photoshoppathnew = "img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppathnew = "Img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var pathnew = imagepath + strCustDirName + "/" + photoshoppathnew;
                         item.ImageUrl = pathnew;
                         item.keyname = strCustDirName + "/" + photoshoppathnew;
                         break;
                     case 3:
-                        var photoshoppathneew3 = "img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                        var photoshoppathneew3 = "Img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
                         var pathneww = imagepath + strCustDirName + "/" + photoshoppathneew3;
                         item.ImageUrl = pathneww;
                         item.keyname = strCustDirName + "/" + photoshoppathneew3;
@@ -2696,6 +2696,21 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             commonFactory.closepopup();
         };
 
+        SelectBindService.countryCodeselect().then(function(response) {
+            var option = [];
+            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+            _.each(response.data, function(item) {
+                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            });
+            sessionStorage.setItem('CountryCode', JSON.stringify(option));
+            console.log(123);
+        });
+
+
+
+
+
+
         scope.showpopup = function(type, item) {
             isSubmit = true;
             switch (type) {
@@ -2703,6 +2718,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.edoObj.EducationID = null;
                     scope.edoObj = {};
                     if (item !== undefined) {
+
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
                         // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];

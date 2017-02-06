@@ -21,15 +21,15 @@ editviewapp.templateroot = 'editview/';
 
 //editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
-editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
+editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
-editviewapp.prefixPath = 'Imagesnew/ProfilePics/';
+editviewapp.prefixPath = 'Images/ProfilePics/';
 editviewapp.S3PhotoPath = '';
 editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
 
-editviewapp.BucketName = 'angularkaknew';
+editviewapp.BucketName = 'kaakateeyaprod';
 /**
  * Configure the Routes
  */
