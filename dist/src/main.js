@@ -443,7 +443,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 extension = "jpg";
                             }
 
-                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
                         }
                     } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                         if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -453,7 +453,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             } else {
                                 extensn = "jpg";
                             }
-                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
                         }
                     }
 
@@ -549,7 +549,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
                 } else {
                     // var extension = ((obj.myFile.name).split('.'))[1];
-                    var keyname = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                    var keyname = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
 
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
                         console.log(res.status);
@@ -573,7 +573,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
                                 scope.astropageload(custID);
 
-                                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                             });
                         }
                     });
@@ -613,7 +613,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             // } else {
             //     extension = "jpg";
             // }
-            var keynameq = "Imagesnew/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+            var keynameq = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
             http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
             });
