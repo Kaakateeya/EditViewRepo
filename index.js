@@ -15,7 +15,7 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 
-editviewapp.apipath = 'http://35.154.148.74:8070/Api/';
+editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 
 editviewapp.templateroot = 'editview/';
 
