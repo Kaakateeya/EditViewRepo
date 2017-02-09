@@ -773,6 +773,9 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     scope.upload = function(obj) {
         console.log(obj.myFile);
         var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+
+        extension = angular.lowercase(extension);
+
         var gifFormat = "gif, jpeg, png,jpg";
 
         if (typeof(obj.myFile.name) != "undefined") {
