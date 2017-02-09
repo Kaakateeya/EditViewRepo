@@ -10494,9 +10494,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </h3>\r" +
     "\n" +
-    "            <h4>make a missed call<s></s>pan><em>+91-9390999999</em></span>\r" +
+    "            <h4>make a missed call<span><em>+91-9390999999</em></span>\r" +
     "\n" +
     "            </h4>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "            <h4>Support No<span>+1-734-926-1011</span></h4>\r" +
     "\n" +
