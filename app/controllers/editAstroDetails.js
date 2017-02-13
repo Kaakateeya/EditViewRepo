@@ -8,6 +8,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         scope.atroObj = [];
         scope.generateData = [];
         scope.ImageUrl = '';
+        scope.iframeShow = false;
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
@@ -87,10 +88,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extension = "html";
                             } else {
+                                scope.iframeShow = false;
                                 extension = "jpg";
                             }
 
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+                            if (extension === "html") {
+                                scope.iframeShow = true;
+                                $('#iframe').attr('src', scope.ImageUrl);
+                            }
                         }
                     } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                         if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -98,11 +104,18 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             if ((scope.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extensn = "html";
                             } else {
+                                scope.iframeShow = false;
                                 extensn = "jpg";
                             }
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                            if (extensn === "html") {
+                                scope.iframeShow = true;
+                                $('#iframe').attr('src', scope.ImageUrl);
+                            }
                         }
                     }
+
+
 
                 }
 
@@ -243,6 +256,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
                     commonFactory.closepopup();
+                    scope.astropageload(custID);
                     window.open('' + response.data + '', '_blank');
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
@@ -302,6 +316,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             }
         };
+
+
 
     }
 ]);

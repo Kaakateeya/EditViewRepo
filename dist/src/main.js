@@ -12,7 +12,6 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
 // editviewapp.apipath = '/webroot/Api/';
 
 editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
-
 editviewapp.templateroot = 'editview/';
 
 // editviewapp.templateroot = '';
@@ -361,6 +360,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         scope.atroObj = [];
         scope.generateData = [];
         scope.ImageUrl = '';
+        scope.iframeShow = false;
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
@@ -440,10 +440,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             if ((scope.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extension = "html";
                             } else {
+                                scope.iframeShow = false;
                                 extension = "jpg";
                             }
 
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+                            if (extension === "html") {
+                                scope.iframeShow = true;
+                                $('#iframe').attr('src', scope.ImageUrl);
+                            }
                         }
                     } else if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                         if (commonFactory.checkvals(scope.generateData[0].Horoscopeimage) && (scope.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -451,11 +456,18 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             if ((scope.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
                                 extensn = "html";
                             } else {
+                                scope.iframeShow = false;
                                 extensn = "jpg";
                             }
                             scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                            if (extensn === "html") {
+                                scope.iframeShow = true;
+                                $('#iframe').attr('src', scope.ImageUrl);
+                            }
                         }
                     }
+
+
 
                 }
 
@@ -596,6 +608,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
                     commonFactory.closepopup();
+                    scope.astropageload(custID);
                     window.open('' + response.data + '', '_blank');
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
@@ -655,6 +668,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 }
             }
         };
+
+
 
     }
 ]);
@@ -4149,7 +4164,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "                <img ng-model=\"imghoroName\" ng-src=\"{{ImageUrl}}\" Style=\"width: 250px; height: 250px;\" />\r" +
+    "                <img ng-model=\"imghoroName\" ng-src=\"{{ImageUrl}}\" Style=\"width: 250px; height: 250px;\" ng-show=\"!iframeShow\" />\r" +
+    "\n" +
+    "                <iframe border=\"0\" id=\"iframe\" frameborder=\"0\" height=\"300\" width=\"800\" ng-show=\"iframeShow\"></iframe>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -4158,8 +4175,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        <div class=\"edit_page_details_item_desc clearfix\" style=\"padding: 0 0 0 20px;\">\r" +
     "\n" +
     "            <div class=\"edit_page_item_ui clearfix  pull-left\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                <a ID=\"btndeletehoro\" class=\"edit_page_del_button\" href=\"javascript:void(0);\" ng-click=\"shoedeletePopup();\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Delete Astro Details\">\r" +
     "\n" +

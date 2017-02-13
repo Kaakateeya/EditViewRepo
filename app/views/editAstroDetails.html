@@ -89,12 +89,12 @@
     <div ng-hide="ImageUrl==='' || ImageUrl===null">
         <div class="edit_page_details_item">
             <div class="edit_page_details_item_desc clearfix">
-                <img ng-model="imghoroName" ng-src="{{ImageUrl}}" Style="width: 250px; height: 250px;" />
+                <img ng-model="imghoroName" ng-src="{{ImageUrl}}" Style="width: 250px; height: 250px;" ng-show="!iframeShow" />
+                <iframe border="0" id="iframe" frameborder="0" height="300" width="800" ng-show="iframeShow"></iframe>
             </div>
         </div>
         <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
             <div class="edit_page_item_ui clearfix  pull-left">
-
                 <a ID="btndeletehoro" class="edit_page_del_button" href="javascript:void(0);" ng-click="shoedeletePopup();" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Astro Details">
                Delete <ng-md-icon icon="delete" style="fill:#665454" size="18">Delete</ng-md-icon></a>
                 <a Style="padding-left: 100px;" class="btn btn-link" ng-click="vewHoro();">View<span class="glyphicon glyphicon-eye-open"></span></a>

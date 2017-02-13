@@ -380,7 +380,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "                <img ng-model=\"imghoroName\" ng-src=\"{{ImageUrl}}\" Style=\"width: 250px; height: 250px;\" />\r" +
+    "                <img ng-model=\"imghoroName\" ng-src=\"{{ImageUrl}}\" Style=\"width: 250px; height: 250px;\" ng-show=\"!iframeShow\" />\r" +
+    "\n" +
+    "                <iframe border=\"0\" id=\"iframe\" frameborder=\"0\" height=\"300\" width=\"800\" ng-show=\"iframeShow\"></iframe>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -389,8 +391,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        <div class=\"edit_page_details_item_desc clearfix\" style=\"padding: 0 0 0 20px;\">\r" +
     "\n" +
     "            <div class=\"edit_page_item_ui clearfix  pull-left\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                <a ID=\"btndeletehoro\" class=\"edit_page_del_button\" href=\"javascript:void(0);\" ng-click=\"shoedeletePopup();\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Delete Astro Details\">\r" +
     "\n" +
