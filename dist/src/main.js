@@ -15,7 +15,7 @@ editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 
 editviewapp.templateroot = 'editview/';
 
-//editviewapp.templateroot = '';
+// editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -13489,7 +13489,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <select multiselectdropdown ng-model=\"profObj.ddlcurreny\" typeofdata='currency'></select>\r" +
     "\n" +
-    "                                <input ng-model=\"profObj.txtsalary\" style=\"float:right\" class=\"form-control\" onchange=\"currency();\" maxlength=\"7\" tabindex=\"6\" />\r" +
+    "                                <input ng-model=\"profObj.txtsalary\" style=\"float:right\" class=\"form-control\" onchange=\"currency();\" maxlength=\"7\" tabindex=\"6\" onkeydown=\"return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));\"\r" +
+    "\n" +
+    "                                />\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
