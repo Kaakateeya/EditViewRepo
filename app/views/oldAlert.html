@@ -5,17 +5,17 @@
             <a href="javascript:void(0);" ng-click="close();">
                 <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
             </a>
-            <h4 class="modal-title ">
+            <h4 class="modal-title">
                 <center>Alert</center>
             </h4>
         </div>
     </div>
-    <div class="modal-body " id="modalbodyID ">
+    <div class="modal-body" id="modalbodyID">
         <p>
-            <label style="color:blue;">{{msgs}}</label>
+            <label style="color:blue;" ng-bind-html="msgs"></label>
         </p>
     </div>
     <div class="modal-footer ">
-        <button type="button " class="btn btn-default " ng-click="close(); ">Close</button>
+        <button type="button" class="btn btn-default" ng-click="close();">Close</button>
     </div>
 </script>

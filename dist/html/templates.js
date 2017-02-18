@@ -782,6 +782,26 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"RefreshPopup.html\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"modal-body clearfix\" id=\"modal-body\">\r" +
+    "\n" +
+    "        <button ng-click=\"generatedhoroS3Upload();\" class=\"btn btn-success center-block\">Refresh Page<span class=\"fa fa-refresh\"></span></button>&nbsp;&nbsp;\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<alert-directive></alert-directive>"
   );
 
@@ -9979,7 +9999,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </a>\r" +
     "\n" +
-    "            <h4 class=\"modal-title \">\r" +
+    "            <h4 class=\"modal-title\">\r" +
     "\n" +
     "                <center>Alert</center>\r" +
     "\n" +
@@ -9989,11 +10009,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "    <div class=\"modal-body \" id=\"modalbodyID \">\r" +
+    "    <div class=\"modal-body\" id=\"modalbodyID\">\r" +
     "\n" +
     "        <p>\r" +
     "\n" +
-    "            <label style=\"color:blue;\">{{msgs}}</label>\r" +
+    "            <label style=\"color:blue;\" ng-bind-html=\"msgs\"></label>\r" +
     "\n" +
     "        </p>\r" +
     "\n" +
@@ -10001,7 +10021,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    <div class=\"modal-footer \">\r" +
     "\n" +
-    "        <button type=\"button \" class=\"btn btn-default \" ng-click=\"close(); \">Close</button>\r" +
+    "        <button type=\"button\" class=\"btn btn-default\" ng-click=\"close();\">Close</button>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +

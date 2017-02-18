@@ -11,6 +11,11 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         generateHoroscope: function(obj) {
             return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear, CityID: obj.CityID } });
+        },
+
+        GenerateHoroS3: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getAstroGenerationS3Update', { params: { Path: JSON.stringify(obj.Path), KeyName: JSON.stringify(obj.KeyName) } });
         }
+
     };
 }]);

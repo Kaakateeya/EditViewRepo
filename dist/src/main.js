@@ -7,14 +7,14 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 
-editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+//editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -350,8 +350,9 @@ editviewapp.constant('arrayConstantsEdit', {
 
 
 });
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http', 'route',
-    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory',
+    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices) {
         scope.starLanguage = 'starLanguage';
         scope.Country = 'Country';
         scope.ZodaicSign = 'ZodaicSign';
@@ -361,12 +362,31 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         scope.generateData = [];
         scope.ImageUrl = '';
         scope.iframeShow = false;
+        var s3obj = {};
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         var isSubmit = true;
+        //
+        // scope.blockeditpages = function(custID, Page) {
+        //         sibblingServices.allowblockWebusers(custID).then(function(response) {
+        //             console.log(response);
+        //             var testArr = JSON.parse(response.data[0]);
+        //             console.log(testArr);
+        //             if (testArr[0].BranchID !== 342) {
+        //                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> ' + Page + '  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+        //                 return false;
+        //             } else {
+        //                 return true;
+        //             }
 
+        //         });
+        //     }
+        //
         scope.loginpaidstatus = authSvc.getpaidstatus();
+
+
+
 
         scope.changeBind = function(type, parentval) {
 
@@ -397,32 +417,45 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
             isSubmit = true;
             if (item !== undefined) {
-                // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
-                // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
-                // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
-                scope.starArr = commonFactory.starBind(item.StarLanguageID);
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                if (item.TimeOfBirth !== undefined) {
-                    scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
-                    scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
-                    scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
-                    scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
-                }
-                scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
-                scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
-                scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
-                scope.atroObj.ddlcity = item.CityOfBirthID;
-                scope.atroObj.ddlstarlanguage = item.StarLanguageID;
-                scope.atroObj.ddlstar = item.StarID;
-                scope.atroObj.ddlpaadam = item.PaadamID;
-                scope.atroObj.ddlLagnam = item.LagnamID;
-                scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
-                scope.atroObj.txtGothramGotra = item.Gothram;
-                scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
-                scope.atroObj.rdlkujaDosham = item.manglikID;
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Astro Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
+                    } else {
+                        // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
+                        // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
+                        // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
+                        scope.starArr = commonFactory.starBind(item.StarLanguageID);
+
+                        if (item.TimeOfBirth !== undefined) {
+                            scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
+                            scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
+                            scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
+                            scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
+                        }
+                        scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
+                        scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
+                        scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
+                        scope.atroObj.ddlcity = item.CityOfBirthID;
+                        scope.atroObj.ddlstarlanguage = item.StarLanguageID;
+                        scope.atroObj.ddlstar = item.StarID;
+                        scope.atroObj.ddlpaadam = item.PaadamID;
+                        scope.atroObj.ddlLagnam = item.LagnamID;
+                        scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
+                        scope.atroObj.txtGothramGotra = item.Gothram;
+                        scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
+                        scope.atroObj.rdlkujaDosham = item.manglikID;
+                        commonFactory.open('astroContent.html', scope, uibModal);
+
+                    }
+                });
+            } else {
+                commonFactory.open('astroContent.html', scope, uibModal);
             }
-            commonFactory.open('astroContent.html', scope, uibModal);
+
         };
 
         scope.astropageload = function(custid) {
@@ -432,7 +465,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
                     scope.generateData = JSON.parse(response.data[1]);
-                    console.log(scope.generateData);
+
                     if (commonFactory.checkvals(scope.AstroArr[0] && commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage))) {
 
                         if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -548,7 +581,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.upload = function(obj) {
 
-            console.log(obj.myFile);
+
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             var gifFormat = "gif, jpeg, png,jpg";
 
@@ -564,7 +597,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     var keyname = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
 
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-                        console.log(res.status);
+
                         if (res.status == 200) {
                             commonFactory.closepopup();
                             scope.uploadData = {
@@ -578,9 +611,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             };
 
 
-                            console.log(JSON.stringify(scope.uploadData));
+
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                                console.log(response);
+
                                 commonFactory.closepopup();
 
                                 scope.astropageload(custID);
@@ -603,13 +636,16 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             var year = check.format('YYYY');
 
             var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
-            console.log(JSON.stringify(inputobj));
+
             astroServices.generateHoroscope(inputobj).then(function(response) {
-                console.log(response.data);
-                if (commonFactory.checkvals(response.data)) {
+                console.log(response);
+                if (commonFactory.checkvals(response.data.AstroGeneration)) {
+
+
+                    s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
+                    window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
-                    scope.astropageload(custID);
-                    window.open('' + response.data + '', '_blank');
+                    commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
@@ -637,7 +673,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             };
 
             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                console.log(response);
+
                 if (response.data === 1 || response.data === '1') {
                     scope.astropageload(custID);
                     commonFactory.closepopup();
@@ -669,31 +705,18 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
         };
 
-
+        scope.generatedhoroS3Upload = function() {
+            console.log('s3obj');
+            console.log(s3obj);
+            astroServices.GenerateHoroS3(s3obj).then(function(response) {
+                console.log(response);
+            });
+            scope.astropageload(custID);
+            commonFactory.closepopup();
+        };
 
     }
 ]);
-
-// editviewapp.directive('srMutexClick', function($parse) {
-//     return {
-//         compile: function($element, attr) {
-//             var fn = $parse(attr['srMutexClick']);
-//             return function srEventHandler(scope, element) {
-//                 var submitting = false;
-//                 element.on('click', function(event) {
-//                     scope.$apply(function() {
-//                         if (submitting) {
-//                             return
-//                         }
-//                         submitting = true;
-//                         // `submitting` is reset when promise is resolved
-//                         fn(scope, { $event: event }).finally(function() { submitting = false });
-//                     });
-//                 });
-//             };
-//         }
-//     };
-// });
 editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFactory', 'editmanagePhotoServices', '$http', 'fileUpload', 'authSvc', function(uibModal, scope, commonFactory, editmanagePhotoServices, http, fileUpload, authSvc) {
 
     var up = {};
@@ -917,8 +940,8 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
 }]);
 editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
-    'commonFactory', '$mdDialog', 'authSvc', 'route',
-    function(uibModal, scope, parentServices, commonFactory, mdDialog, authSvc, route) {
+    'commonFactory', '$mdDialog', 'authSvc', 'route', 'sibblingServices',
+    function(uibModal, scope, parentServices, commonFactory, mdDialog, authSvc, route, sibblingServices) {
         scope.indiaStates = 'indiaStates';
         scope.Country = 'Country';
         scope.parent = {};
@@ -995,147 +1018,194 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.parent = {};
 
                     if (item !== undefined) {
-                        scope.parent = [];
-                        // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
-                        // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.parent.cust_id = item.cust_id;
-                        scope.parent.FatherCust_family_id = item.FatherCust_family_id;
-                        scope.parent.MotherCust_family_id = item.MotherCust_family_id;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
-                        scope.parent.txtFathername = item.FatherName;
-                        scope.parent.txtFEducation = item.FatherEducationDetails;
-                        scope.parent.txtFProfession = item.FatherProfDetails;
-                        scope.parent.txtCompany = item.FathercompanyName;
-                        scope.parent.txtJobLocation = item.FatherJoblocation;
+                            } else {
+                                scope.parent = [];
+                                // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
+                                // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
 
-                        scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
-                        scope.parent.txtMobile = item.FathermobilenumberID;
+                                scope.parent.cust_id = item.cust_id;
+                                scope.parent.FatherCust_family_id = item.FatherCust_family_id;
+                                scope.parent.MotherCust_family_id = item.MotherCust_family_id;
 
-                        if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
-                            scope.parent.ddlLandLineCountry = item.FatherLandCountryCodeId;
-                            scope.parent.txtAreCode = item.FatherLandAreaCodeId;
-                            scope.parent.txtLandNumber = item.FatherLandNumberID;
-                        } else {
-                            scope.parent.ddlfathermobile2 = item.FatherLandCountryCodeId;
-                            scope.parent.txtfathermobile2 = item.FatherLandNumberID;
-                        }
+                                scope.parent.txtFathername = item.FatherName;
+                                scope.parent.txtFEducation = item.FatherEducationDetails;
+                                scope.parent.txtFProfession = item.FatherProfDetails;
+                                scope.parent.txtCompany = item.FathercompanyName;
+                                scope.parent.txtJobLocation = item.FatherJoblocation;
 
-                        scope.parent.txtEmail = item.FatherEmail;
-                        scope.parent.txtFatherFname = item.FatherFathername;
+                                scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
+                                scope.parent.txtMobile = item.FathermobilenumberID;
 
-                        scope.parent.ddlFatherfatherMobileCountryCode = item.FatherfatherMobileCountryID;
-                        scope.parent.txtMobileFatherfather = item.FatherFatherMobileNumber;
+                                if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
+                                    scope.parent.ddlLandLineCountry = item.FatherLandCountryCodeId;
+                                    scope.parent.txtAreCode = item.FatherLandAreaCodeId;
+                                    scope.parent.txtLandNumber = item.FatherLandNumberID;
+                                } else {
+                                    scope.parent.ddlfathermobile2 = item.FatherLandCountryCodeId;
+                                    scope.parent.txtfathermobile2 = item.FatherLandNumberID;
+                                }
 
-                        if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
-                            scope.parent.ddlFatherFatherLandLineCode = item.FatherfatherLandCountryCodeID;
-                            scope.parent.txtGrandFatherArea = item.FatherFatherLandAreaCode;
-                            scope.parent.txtGrandFatherLandLinenum = item.FatherFatherLandNumber;
-                        } else {
-                            scope.parent.ddlfatherfatherAlternative = item.FatherfatherMobileCountrycode1;
-                            scope.parent.txtfatherfatherAlternative = item.FatherFatherLandNumber;
-                        }
+                                scope.parent.txtEmail = item.FatherEmail;
+                                scope.parent.txtFatherFname = item.FatherFathername;
 
-                        scope.parent.ddlFState = item.FatherStateID;
-                        scope.parent.ddlFDistric = item.FatherDistrictID;
-                        scope.parent.txtFNativePlace = item.FatherNativeplace;
-                        scope.parent.txtMName = item.MotherName;
-                        scope.parent.txtMEducation = item.MotherEducationDetails;
-                        scope.parent.txtMProfession = item.MotherProfedetails;
-                        scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
-                        scope.parent.txtMCompanyName = item.MothercompanyName;
-                        scope.parent.txtMJobLocation = item.MotherJoblocation;
+                                scope.parent.ddlFatherfatherMobileCountryCode = item.FatherfatherMobileCountryID;
+                                scope.parent.txtMobileFatherfather = item.FatherFatherMobileNumber;
 
-                        scope.parent.ddlMMobileCounCodeID = item.MotherMobileCountryCodeId;
-                        scope.parent.txtMMobileNum = item.MotherMobilenumberID;
+                                if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
+                                    scope.parent.ddlFatherFatherLandLineCode = item.FatherfatherLandCountryCodeID;
+                                    scope.parent.txtGrandFatherArea = item.FatherFatherLandAreaCode;
+                                    scope.parent.txtGrandFatherLandLinenum = item.FatherFatherLandNumber;
+                                } else {
+                                    scope.parent.ddlfatherfatherAlternative = item.FatherfatherMobileCountrycode1;
+                                    scope.parent.txtfatherfatherAlternative = item.FatherFatherLandNumber;
+                                }
 
-                        if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
-                            scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
-                            scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
-                            scope.parent.txtMLandLineNum = item.MotherLandNumberID;
-                        } else {
-                            scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
-                            scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
+                                scope.parent.ddlFState = item.FatherStateID;
+                                scope.parent.ddlFDistric = item.FatherDistrictID;
+                                scope.parent.txtFNativePlace = item.FatherNativeplace;
+                                scope.parent.txtMName = item.MotherName;
+                                scope.parent.txtMEducation = item.MotherEducationDetails;
+                                scope.parent.txtMProfession = item.MotherProfedetails;
+                                scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
+                                scope.parent.txtMCompanyName = item.MothercompanyName;
+                                scope.parent.txtMJobLocation = item.MotherJoblocation;
 
-                        }
+                                scope.parent.ddlMMobileCounCodeID = item.MotherMobileCountryCodeId;
+                                scope.parent.txtMMobileNum = item.MotherMobilenumberID;
 
-                        scope.parent.txtMEmail = item.MotherEmail;
-                        scope.parent.txtMFatherFname = item.MotherFatherName;
-                        scope.parent.txtMFatherLname = item.MotherFatherLastName;
+                                if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
+                                    scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
+                                    scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
+                                    scope.parent.txtMLandLineNum = item.MotherLandNumberID;
+                                } else {
+                                    scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
+                                    scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
 
-                        scope.parent.ddlMotherfatheMobileCountryCode = item.MotherfatherMobileCountryID;
-                        scope.parent.txtMotherfatheMobilenumber = item.MotherFatherMobileNumber;
+                                }
 
-                        if (commonFactory.checkvals(item.MotherFatherLandAreaCode)) {
-                            scope.parent.ddlMotherFatherLandLineCode = item.motherfatherLandCountryID;
-                            scope.parent.txtMotherFatherLandLineareacode = item.MotherFatherLandAreaCode;
-                            scope.parent.txtMotherFatherLandLinenum = item.MotherFatherLandNumber;
-                        } else {
-                            scope.parent.ddlmotherfatheralternative = item.MotherfatherMobileCountryID1;
-                            scope.parent.txtmotherfatheralternative = item.MotherFatherLandNumber;
-                        }
-                        scope.parent.ddlMState = item.motherStateID;
-                        scope.parent.ddlMDistrict = item.motherDistricID;
-                        scope.parent.txtMNativePlace = item.MotherNativeplace;
-                        scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
-                        scope.parent.ddlFatherCaste = item.FatherCasteID;
-                        scope.parent.ddlMotherCaste = item.MotherCasteID;
+                                scope.parent.txtMEmail = item.MotherEmail;
+                                scope.parent.txtMFatherFname = item.MotherFatherName;
+                                scope.parent.txtMFatherLname = item.MotherFatherLastName;
+
+                                scope.parent.ddlMotherfatheMobileCountryCode = item.MotherfatherMobileCountryID;
+                                scope.parent.txtMotherfatheMobilenumber = item.MotherFatherMobileNumber;
+
+                                if (commonFactory.checkvals(item.MotherFatherLandAreaCode)) {
+                                    scope.parent.ddlMotherFatherLandLineCode = item.motherfatherLandCountryID;
+                                    scope.parent.txtMotherFatherLandLineareacode = item.MotherFatherLandAreaCode;
+                                    scope.parent.txtMotherFatherLandLinenum = item.MotherFatherLandNumber;
+                                } else {
+                                    scope.parent.ddlmotherfatheralternative = item.MotherfatherMobileCountryID1;
+                                    scope.parent.txtmotherfatheralternative = item.MotherFatherLandNumber;
+                                }
+                                scope.parent.ddlMState = item.motherStateID;
+                                scope.parent.ddlMDistrict = item.motherDistricID;
+                                scope.parent.txtMNativePlace = item.MotherNativeplace;
+                                scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
+                                scope.parent.ddlFatherCaste = item.FatherCasteID;
+                                scope.parent.ddlMotherCaste = item.MotherCasteID;
+                                commonFactory.open('parentModalContent.html', scope, uibModal);
+
+                            }
+                        });
+                    } else {
+                        commonFactory.open('parentModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('parentModalContent.html', scope, uibModal);
-
                     break;
 
                 case "Address":
                     scope.AdrrObj.Cust_Family_ID = null;
                     scope.AdrrObj = {};
                     if (item !== undefined) {
-                        // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
-                        // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.AdrrObj.Cust_ID = item.Cust_ID;
-                        scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
-                        scope.AdrrObj.txtHouse_flat = item.FlatNumber;
-                        scope.AdrrObj.txtApartmentName = item.ApartmentName;
-                        scope.AdrrObj.txtStreetName = item.StreetName;
-                        scope.AdrrObj.txtAreaName = item.AreaName;
-                        scope.AdrrObj.txtLandmark = item.LandMark;
-                        scope.AdrrObj.ddlCountryContact = item.ParentCountryId;
-                        scope.AdrrObj.ddlStateContact = item.ParentStateid;
-                        scope.AdrrObj.ddlDistricContact = item.ParentDistrictId;
-                        scope.AdrrObj.txtCity = item.CityName;
-                        scope.AdrrObj.txtZip_no = item.Zip;
+                            } else {
+                                // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
+                                // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
 
+                                scope.AdrrObj.Cust_ID = item.Cust_ID;
+                                scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;
+
+                                scope.AdrrObj.txtHouse_flat = item.FlatNumber;
+                                scope.AdrrObj.txtApartmentName = item.ApartmentName;
+                                scope.AdrrObj.txtStreetName = item.StreetName;
+                                scope.AdrrObj.txtAreaName = item.AreaName;
+                                scope.AdrrObj.txtLandmark = item.LandMark;
+                                scope.AdrrObj.ddlCountryContact = item.ParentCountryId;
+                                scope.AdrrObj.ddlStateContact = item.ParentStateid;
+                                scope.AdrrObj.ddlDistricContact = item.ParentDistrictId;
+                                scope.AdrrObj.txtCity = item.CityName;
+                                scope.AdrrObj.txtZip_no = item.Zip;
+                                commonFactory.open('AddressModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('AddressModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('AddressModalContent.html', scope, uibModal);
+
                     break;
 
                 case "physicalAttributes":
                     scope.physicalObj = {};
+
                     if (item !== undefined) {
-                        scope.physicalObj.Cust_ID = item.Cust_ID;
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.physicalObj.rbtlDiet = item.DietID;
-                        scope.physicalObj.rbtlDrink = item.DrinkID;
-                        scope.physicalObj.rbtlSmoke = item.SmokeID;
-                        scope.physicalObj.ddlBodyType = item.BodyTypeID;
-                        scope.physicalObj.txtBWKgs = item.BodyWeight;
-                        //scope.physicalObj.txtlbs = item.;
-                        scope.physicalObj.ddlBloodGroup = item.BloodGroupID;
-                        scope.physicalObj.ddlHealthConditions = item.HealthConditionID;
-                        scope.physicalObj.txtHealthCondition = item.HealthConditionDescription;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
+                            } else {
+                                scope.physicalObj.Cust_ID = item.Cust_ID;
+
+                                scope.physicalObj.rbtlDiet = item.DietID;
+                                scope.physicalObj.rbtlDrink = item.DrinkID;
+                                scope.physicalObj.rbtlSmoke = item.SmokeID;
+                                scope.physicalObj.ddlBodyType = item.BodyTypeID;
+                                scope.physicalObj.txtBWKgs = item.BodyWeight;
+                                //scope.physicalObj.txtlbs = item.;
+                                scope.physicalObj.ddlBloodGroup = item.BloodGroupID;
+                                scope.physicalObj.ddlHealthConditions = item.HealthConditionID;
+                                scope.physicalObj.txtHealthCondition = item.HealthConditionDescription;
+                                commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
+
+                            }
+                        });
+                    } else {
+                        commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
 
                     break;
 
                 case "AboutFamily":
-                    if (item !== undefined) {
-                        scope.aboutFamilyObj.txtAboutUs = item;
-                    }
-                    commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
 
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                            } else {
+                                scope.aboutFamilyObj.txtAboutUs = item;
+                                commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
+                    }
                     break;
             }
         };
@@ -1386,1218 +1456,1201 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
 
     }
 ]);
-editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal', 'commonFactory', 'authSvc', function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc) {
-    scope.partnerPrefArr = [];
-    scope.partnerObj = {};
-    scope.ageGapArr = [];
-    scope.height = 'height';
-    scope.Religion = 'Religion';
-    scope.Mothertongue = 'Mothertongue';
-    scope.MaritalStatus = 'MaritalStatus';
-    scope.educationcategory = 'educationcategory';
-    scope.Country = 'Country';
-    scope.ProfCatgory = 'ProfCatgory';
-    scope.ProfGroup = 'ProfGroup';
-    scope.region = 'region';
-
-    scope.partnerDescObj = {};
-    var isSubmit = true;
-
-    var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-    scope.partnerDescription = '';
-
-    partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
-        scope.partnerPrefArr = response.data;
-        scope.partnerDescription = (scope.partnerPrefArr.length > 0 && scope.partnerPrefArr[0].PartnerDescripition !== undefined && scope.partnerPrefArr[0].PartnerDescripition !== null) ? scope.partnerPrefArr[0].PartnerDescripition : '';
-        console.log(scope.partnerPrefArr);
-    });
-    scope.removeSelect = function(data) {
-        if (data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
-            data.splice(0, 1);
-        }
-
-        return data;
-    };
-    scope.changeBind = function(type, parentval, parentval2) {
-
-        switch (type) {
-            case 'Country':
-                scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
-                break;
-
-            case 'EducationCatgory':
-                scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval)));
-                break;
-
-            case 'caste':
-                scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2)));
-                break;
-
-            case 'subCaste':
-                scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
-                break;
-
-            case 'star':
-                scope.starArr = scope.removeSelect(commonFactory.starBind(commonFactory.listSelectedVal(parentval)));
-                break;
-
-            case 'region':
-                scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(parentval)));
-                break;
-        }
-    };
-
-
-    scope.SplitstringintoArray = function(string) {
-        var array = [];
-        if (string !== null && string !== "") {
-            _.each(string.split(','), function(item) {
-                array.push(parseInt(item));
-            });
-        }
-        return array;
-    };
-
-
-    scope.partnerprefPopulate = function(item) {
-        isSubmit = true;
+editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal',
+    'commonFactory', 'authSvc', 'sibblingServices',
+    function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc, sibblingServices) {
+        scope.partnerPrefArr = [];
         scope.partnerObj = {};
-        if (item !== undefined) {
-            scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
-            scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
-            scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
-            scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
-            scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(item.casteid)));
+        scope.ageGapArr = [];
+        scope.height = 'height';
+        scope.Religion = 'Religion';
+        scope.Mothertongue = 'Mothertongue';
+        scope.MaritalStatus = 'MaritalStatus';
+        scope.educationcategory = 'educationcategory';
+        scope.Country = 'Country';
+        scope.ProfCatgory = 'ProfCatgory';
+        scope.ProfGroup = 'ProfGroup';
+        scope.region = 'region';
 
-            scope.partnerObj.intCusID = item.intCusID;
-            scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
-
-            scope.partnerObj.rbtlGender = item.Gender === 'Female' ? 2 : 1;
-            scope.partnerObj.ddlFromAge = item.Agemin;
-            scope.partnerObj.ddlToAge = item.AgeMax;
-            scope.partnerObj.ddlFromheight = item.MinHeight;
-            scope.partnerObj.ddltoHeight = item.MaxHeight;
-            scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
-            scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
-            scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
-            scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
-            scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
-            scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
-            scope.partnerObj.lstEducationgroup = scope.SplitstringintoArray(item.EducationGroupID);
-            scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
-            scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
-            scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
-            scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
-            scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
-            scope.partnerObj.lstBranch = scope.SplitstringintoArray(item.branchid);
-            scope.partnerObj.rbtDiet = item.DietID;
-            scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
-            scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
-            scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
-            scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
-        }
-        commonFactory.open('partnerPrefContent.html', scope, uibModal);
-
-    };
-
-    scope.partnerdescPopulate = function(item) {
-        isSubmit = true;
         scope.partnerDescObj = {};
-        if (item !== undefined) {
-            scope.partnerDescObj.txtpartnerdescription = item.PartnerDescripition;
-        }
-        commonFactory.open('partnerDescContent.html', scope, uibModal);
-    };
-    scope.partnerPrefSubmit = function(objitem) {
+        var isSubmit = true;
 
-        if (isSubmit) {
-            isSubmit = false;
-            scope.partnerPrefData = {
-                GetDetails: {
-                    CustID: custID,
-                    AgeGapFrom: objitem.ddlFromAge,
-                    AgeGapTo: objitem.ddlToAge,
-                    HeightFrom: objitem.ddlFromheight,
-                    HeightTo: objitem.ddltoHeight,
-                    Religion: commonFactory.listSelectedVal(objitem.lstReligion),
-                    Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
-                    Caste: commonFactory.listSelectedVal(objitem.lstCaste),
-                    Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
-                    Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
-                    ManglikKujadosham: objitem.rbtManglikKujadosham,
-                    PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
-                    Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
-                    Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
-                    Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
-                    Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
-                    Diet: objitem.rbtDiet,
-                    Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
-                    Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
-                    Preferreddistrict: null,
-                    Preferredlocation: null,
-                    TypeofStar: objitem.rbtPreferredstars,
-                    PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
-                    GenderID: objitem.rbtlGender,
-                    Region: commonFactory.listSelectedVal(objitem.lstRegion),
-                    Branch: commonFactory.listSelectedVal(objitem.lstBranch),
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
+        var logincustid = authSvc.getCustId();
+        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        scope.partnerDescription = '';
 
-            console.log(JSON.stringify(scope.partnerPrefData));
-            scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
-                        scope.partnerPrefArr = response.data;
-                        console.log(scope.partnerPrefArr);
-                    });
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-
-        }
-    };
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
-
-
-    scope.partnerDescriptionSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === '1') {
-                    scope.partnerDescription = obj.txtpartnerdescription;
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-
-        }
-    };
-
-
-
-}]);
-editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices', 'commonFactory', 'authSvc', function(uibModal, scope, propertyServices, commonFactory, authSvc) {
-    scope.propertyArr = [];
-    scope.proObj = {};
-    scope.familyStatus = 'familyStatus';
-
-    var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-    var isSubmit = true;
-
-    propertyServices.getPropertyData(custID).then(function(response) {
-        scope.propertyArr = response.data;
-    });
-
-    scope.populateProperty = function(item) {
-        isSubmit = true;
-        scope.proObj = {};
-        scope.proObj.Custpropertyid = null;
-        if (item !== undefined) {
-            scope.proObj.Custpropertyid = item.Custpropertyid;
-            scope.proObj.ddlFamilyStatus = item.FamilyValuesID;
-            scope.proObj.rdlSharedProperty = item.SharedPropertyID === true ? 1 : 0;
-            scope.proObj.txtValueofproperty = item.PropertyValue;
-            scope.proObj.txtPropertydesc = item.PropertyDetails;
-        }
-
-        commonFactory.open('propertyContent.html', scope, uibModal);
-    };
-
-
-    scope.propertySubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.propertyData = {
-                GetDetails: {
-                    FamilyStatus: obj.ddlFamilyStatus,
-                    Issharedproperty: obj.rdlSharedProperty,
-                    Valueofproperty: obj.txtValueofproperty,
-                    PropertyType: '281',
-                    Propertydescription: obj.txtPropertydesc,
-                    Showingviewprofile: obj.rbtShowViewProfile,
-                    Custpropertyid: scope.proObj.Custpropertyid,
-                    PropertyID: scope.proObj.Custpropertyid,
-                    CustId: custID
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    propertyServices.getPropertyData(custID).then(function(response) {
-                        scope.propertyArr = response.data;
-                    });
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-
-    };
-
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
-
-
-}]);
-editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory', 'authSvc', function(uibModal, scope, referenceServices, commonFactory, authSvc) {
-
-
-    scope.ReferenceArr = [];
-    scope.refObj = {};
-    scope.RelationshipType = 'RelationshipType';
-    scope.Country = 'Country';
-    scope.countryCode = 'countryCode';
-    var isSubmit = true;
-    var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
-
-
-    scope.referencePopulate = function(item) {
-        isSubmit = true;
-        scope.refObj.RefrenceCust_Reference_ID = null;
-        scope.refObj = {};
-        if (item !== undefined) {
-            // scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
-            // scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
-
-            scope.refObj.intCusID = custID;
-            scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;
-            scope.refObj.ddlRelationshiptype = 318;
-
-            console.log(scope.refObj.ddlRelationshiptype);
-
-            scope.refObj.txtFname = item.ReferenceFirstName;
-            scope.refObj.txtLname = item.ReferenceLastName;
-            scope.refObj.txtProfessiondetails = item.RefrenceProfessionDetails;
-            scope.refObj.ddlCountry = commonFactory.checkvals(item.RefrenceCountry) ? parseInt(item.RefrenceCountry) : null;
-            scope.refObj.ddlState = commonFactory.checkvals(item.RefrenceStateID) ? parseInt(item.RefrenceStateID) : null;
-            scope.refObj.ddlDistrict = commonFactory.checkvals(item.RefrenceDistrictID) ? parseInt(item.RefrenceDistrictID) : null;
-            scope.refObj.txtNativePlace = item.RefrenceNativePlaceID;
-            scope.refObj.txtPresentlocation = item.RefenceCurrentLocation;
-
-            scope.refObj.ddlMobileCountryID = commonFactory.checkvals(item.RefrenceMobileCountryID) ? parseInt(item.RefrenceMobileCountryID) : null;
-
-            scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
-
-            if (commonFactory.checkvals(item.RefrenceAreaCode)) {
-                scope.refObj.ddlLandLineCountryID = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
-                scope.refObj.txtAreCode = item.RefrenceAreaCode;
-                scope.refObj.txtLandNumber = item.RefrenceLandNumber;
-
-            } else {
-                scope.refObj.ddlMobileCountryID2 = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
-                scope.refObj.txtMobileNumber2 = item.RefrenceLandNumber;
-
+        partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+            scope.partnerPrefArr = response.data;
+            scope.partnerDescription = (scope.partnerPrefArr.length > 0 && scope.partnerPrefArr[0].PartnerDescripition !== undefined && scope.partnerPrefArr[0].PartnerDescripition !== null) ? scope.partnerPrefArr[0].PartnerDescripition : '';
+            console.log(scope.partnerPrefArr);
+        });
+        scope.removeSelect = function(data) {
+            if (data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
+                data.splice(0, 1);
             }
 
-            scope.refObj.txtEmails = item.RefrenceEmail;
-            scope.refObj.txtNarrations = item.RefrenceNarration;
-        }
-        commonFactory.open('referenceContent.html', scope, uibModal);
-    };
+            return data;
+        };
+        scope.changeBind = function(type, parentval, parentval2) {
 
-    referenceServices.getReferenceData(custID).then(function(response) {
-        scope.ReferenceArr = response.data;
-        console.log(scope.ReferenceArr);
-    });
+            switch (type) {
+                case 'Country':
+                    scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
+                    break;
 
-    scope.changeBind = function(type, parentval) {
-        switch (type) {
-            case 'Country':
-                scope.stateArr = commonFactory.StateBind(parentval);
-                break;
+                case 'EducationCatgory':
+                    scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(commonFactory.listSelectedVal(parentval)));
+                    break;
 
-            case 'State':
-                scope.districtArr = commonFactory.districtBind(parentval);
-                break;
-        }
+                case 'caste':
+                    scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2)));
+                    break;
 
-    };
+                case 'subCaste':
+                    scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
+                    break;
 
-    scope.refenceSubmit = function(obj) {
+                case 'star':
+                    scope.starArr = scope.removeSelect(commonFactory.starBind(commonFactory.listSelectedVal(parentval)));
+                    break;
 
-        if (isSubmit) {
-            isSubmit = false;
-
-            scope.referenceData = {
-                GetDetails: {
-                    CustID: custID,
-                    RelationshiptypeID: obj.ddlRelationshiptype,
-                    Firstname: obj.txtFname,
-                    Lastname: obj.txtLname,
-                    Employedin: null,
-                    Professiongroup: null,
-                    Profession: null,
-                    Professiondetails: obj.txtProfessiondetails,
-                    CountryID: obj.ddlCountry,
-                    StateID: obj.ddlState,
-                    DistrictID: obj.ddlDistrict,
-                    Nativeplace: obj.txtNativePlace,
-                    Presentlocation: obj.txtPresentlocation,
-                    MobileCountryID: obj.ddlMobileCountryID,
-                    MobileNumber: obj.txtMobileNumber,
-                    LandLineCountryID: commonFactory.checkvals(obj.ddlMobileCountryID2) ? obj.ddlMobileCountryID2 : (commonFactory.checkvals(obj.ddlLandLineCountryID) ? obj.ddlLandLineCountryID : null),
-                    LandLineAreaCode: commonFactory.checkvals(obj.txtMobileNumber2) ? null : (commonFactory.checkvals(obj.txtAreCode) ? obj.txtAreCode : null),
-                    LandLineNumber: commonFactory.checkvals(obj.txtMobileNumber2) ? obj.txtMobileNumber2 : (commonFactory.checkvals(obj.txtLandNumber) ? obj.txtLandNumber : null),
-                    Emails: obj.txtEmails,
-                    Narration: obj.txtNarrations,
-                    Cust_Reference_ID: scope.refObj.RefrenceCust_Reference_ID
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-            scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    referenceServices.getReferenceData(custID).then(function(response) {
-                        scope.ReferenceArr = response.data;
-                    });
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-
-        }
-    };
-
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
+                case 'region':
+                    scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(parentval)));
+                    break;
+            }
+        };
 
 
-}]);
-editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices', 'commonFactory', 'authSvc', function(uibModal, scope, relativeServices, commonFactory, authSvc) {
+        scope.SplitstringintoArray = function(string) {
+            var array = [];
+            if (string !== null && string !== "") {
+                _.each(string.split(','), function(item) {
+                    array.push(parseInt(item));
+                });
+            }
+            return array;
+        };
 
 
-    scope.fbObj = {};
-    scope.fsObj = {};
-    scope.mbObj = {};
-    scope.msObj = {};
-    scope.countryCode = 'countryCode';
-    scope.indiaStates = 'indiaStates';
-    var isSubmit = true;
-    var logincustid = authSvc.getCustId();
-    var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        scope.partnerprefPopulate = function(item) {
+            isSubmit = true;
+            scope.partnerObj = {};
 
-    scope.relativePageLoad = function(icustid) {
-        relativeServices.getRelativeeData(icustid).then(function(response) {
-            scope.FBArr = JSON.parse(response.data[0]);
-            scope.FSArr = JSON.parse(response.data[1]);
-            scope.MBrr = JSON.parse(response.data[2]);
-            scope.MSArr = JSON.parse(response.data[3]);
-        });
-    };
-
-    scope.relativePageLoad(custid);
-
-    scope.relativePopulatePopulate = function(type, item) {
-        isSubmit = true;
-        switch (type) {
-            case 'FB':
-                scope.fbObj.FatherbrotherCustfamilyID = null;
-                scope.fbObj = {};
-                if (item !== undefined) {
-                    scope.fbObj.FatherbrotherCustfamilyID = item.FatherbrotherCustfamilyID;
-                    scope.fbObj.rdlFBElderORyounger = item.FatherBrotherElderyounger == 'Elder' ? 324 : (item.FatherBrotherElderyounger == 'Younger' ? 323 : '-1');
-                    scope.fbObj.txtFatherbrothername = item.FatherbrotherName;
-                    scope.fbObj.txtFBEducationdetails = item.FatherBrotherEducationDetails;
-                    scope.fbObj.txtFBProfessiondetails = item.FatherbrotherProfessionDetails;
-
-                    scope.fbObj.ddlFBMobileCountryID = item.FatherbrotherMobileCode;
-                    scope.fbObj.txtFBMobileNumber = item.FatherbrotherMobileNumber;
-
-                    if (commonFactory.checkvals(item.FatherbrotherLandaraecode)) {
-                        scope.fbObj.ddlFBLandLineCountry = item.FatherbrotherLandCountryCode;
-                        scope.fbObj.txtFBAreCode = item.FatherbrotherLandaraecode;
-                        scope.fbObj.txtFBLandNumber = item.FatherbrotherLandNumber;
+            if (item !== undefined) {
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">PartnerPreference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
-                        scope.fbObj.ddlFBMobileCountryID2 = item.FatherbrotherLandCountryCode;
-                        scope.fbObj.txtFBMobileNumber2 = item.FatherbrotherLandNumber;
+                        scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
+                        scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
+                        scope.eduGroupArr = scope.removeSelect(commonFactory.educationGroupBind(item.EducationCategoryID));
+                        scope.starArr = scope.removeSelect(commonFactory.starBind(item.StarLanguageID));
+                        scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(item.casteid)));
+
+                        scope.partnerObj.intCusID = item.intCusID;
+                        scope.ageGapArr = commonFactory.numbersBind('years', 1, 80);
+
+                        scope.partnerObj.rbtlGender = item.Gender === 'Female' ? 2 : 1;
+                        scope.partnerObj.ddlFromAge = item.Agemin;
+                        scope.partnerObj.ddlToAge = item.AgeMax;
+                        scope.partnerObj.ddlFromheight = item.MinHeight;
+                        scope.partnerObj.ddltoHeight = item.MaxHeight;
+                        scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
+                        scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
+                        scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
+                        scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
+                        scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
+                        scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
+                        scope.partnerObj.lstEducationgroup = scope.SplitstringintoArray(item.EducationGroupID);
+                        scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
+                        scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
+                        scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
+                        scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
+                        scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
+                        scope.partnerObj.lstBranch = scope.SplitstringintoArray(item.branchid);
+                        scope.partnerObj.rbtDiet = item.DietID;
+                        scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
+                        scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
+                        scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
+                        scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
+                        commonFactory.open('partnerPrefContent.html', scope, uibModal);
                     }
 
-                    scope.fbObj.txtFBEmails = item.FatherbrotherEmail;
-                    scope.fbObj.txtCurrentLocation = item.FatherbrotherCurrentLocation;
+                });
+            } else {
+                commonFactory.open('partnerPrefContent.html', scope, uibModal);
+            }
 
-                }
-                commonFactory.open('FBModalContent.html', scope, uibModal);
-                break;
+        };
 
-            case 'FS':
-                scope.fsObj.FatherSisterCustfamilyID = null;
-                scope.fsObj = {};
-                if (item !== undefined) {
-
-                    // scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
-
-                    scope.fsObj.FatherSisterCustfamilyID = item.FatherSisterCustfamilyID;
-                    scope.fsObj.rdlFSElderYounger = item.FatherSisterElderyounger == 'Elder' ? 326 : (item.FatherSisterElderyounger == 'Younger' ? 325 : '-1');
-                    scope.fsObj.txtFathersistername = item.FatherSisterName;
-                    scope.fsObj.txtFSHusbandfirstname = item.SpouceFName;
-                    scope.fsObj.txtFSHusbandlastname = item.SpoucelName;
-                    scope.fsObj.txtFSHEDucation = item.FatherSisterSpouseEducationDetails;
-                    scope.fsObj.txtFSProfessiondetails = item.FathersisterSpouseProfessionDetails;
-                    scope.fsObj.ddlFSHStateID = item.FatherSisterspousestateId;
-                    scope.fsObj.ddlFSHDistrictID = item.FatherSisterspouseDistrictId;
-                    scope.fsObj.txtFSHNativePlace = item.FathersisterSpouseNativePlace;
-
-                    scope.fsObj.ddlFSMObileCountryID = item.FatherSisterMobilecodeid;
-                    scope.fsObj.txtFSMobileNumber = item.FatherSisterspouseMobileNumber;
-
-
-                    if (commonFactory.checkvals(item.FatherSisterspouseLandaraecode)) {
-                        scope.fsObj.ddlFSHLandCountryID = item.FatherSisterlandcontrycodeid;
-                        scope.fsObj.txtFSHAreaNumber = item.FatherSisterspouseLandaraecode;
-                        scope.fsObj.txtFSHNUmber = item.FatherSisterspouseLandNumber;
-
+        scope.partnerdescPopulate = function(item) {
+            isSubmit = true;
+            scope.partnerDescObj = {};
+            if (item !== undefined) {
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Partner Description</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
-                        scope.fsObj.ddlFSMObileCountryID2 = item.FatherSisterlandcontrycodeid;
-                        scope.fsObj.txtFSMobileNumber2 = item.FatherSisterspouseLandNumber;
+                        scope.partnerDescObj.txtpartnerdescription = item.PartnerDescripition;
+                        commonFactory.open('partnerDescContent.html', scope, uibModal);
                     }
+                });
+            } else {
+                commonFactory.open('partnerDescContent.html', scope, uibModal);
+            }
+        };
+        scope.partnerPrefSubmit = function(objitem) {
 
-                    scope.fsObj.txtFSHEmails = item.FatherSisterspouseEmail;
-                    scope.fsObj.txtFSHCurrentLocation = item.FatherSisterCurrentLocation;
-
-                }
-                commonFactory.open('FSModalContent.html', scope, uibModal);
-                break;
-
-            case 'MB':
-                scope.mbObj.MotherBrotherCustfamilyID = null;
-                scope.mbObj = {};
-                if (item !== undefined) {
-                    scope.mbObj.MotherBrotherCustfamilyID = item.MotherBrotherCustfamilyID;
-                    scope.mbObj.rdlMBElderYounger = item.MotherBrotherElderyounger == 'Elder' ? 328 : (item.MotherBrotherElderyounger == 'Younger' ? 327 : '-1');
-                    scope.mbObj.txtMBName = item.MotherBrotherName;
-                    scope.mbObj.txtMBEducation = item.MotherBrotherEducationDetails;
-                    scope.mbObj.txtMBProfessiondetails = item.MotherBrotherProfessionDetails;
-
-                    scope.mbObj.ddlMBCountriCode = item.MotherBrotherMobileCode;
-                    scope.mbObj.txtMBMobileNum = item.MotherBrotherMobileNumber;
-
-
-                    if (commonFactory.checkvals(item.MotherBrotherLandaraecode)) {
-                        scope.mbObj.ddlMBLandLineCountryCode = item.MotherBrotherLandCountryCode;
-                        scope.mbObj.txtMBAreaCode = item.MotherBrotherLandaraecode;
-                        scope.mbObj.txtMBLandLineNum = item.MotherBrotherLandNumber;
-
-                    } else {
-                        scope.mbObj.ddlMBCountriCode2 = item.MotherBrotherLandCountryCode;
-                        scope.mbObj.txtMBMobileNum2 = item.MotherBrotherLandNumber;
+            if (isSubmit) {
+                isSubmit = false;
+                scope.partnerPrefData = {
+                    GetDetails: {
+                        CustID: custID,
+                        AgeGapFrom: objitem.ddlFromAge,
+                        AgeGapTo: objitem.ddlToAge,
+                        HeightFrom: objitem.ddlFromheight,
+                        HeightTo: objitem.ddltoHeight,
+                        Religion: commonFactory.listSelectedVal(objitem.lstReligion),
+                        Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
+                        Caste: commonFactory.listSelectedVal(objitem.lstCaste),
+                        Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
+                        Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
+                        ManglikKujadosham: objitem.rbtManglikKujadosham,
+                        PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
+                        Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
+                        Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
+                        Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
+                        Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
+                        Diet: objitem.rbtDiet,
+                        Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
+                        Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
+                        Preferreddistrict: null,
+                        Preferredlocation: null,
+                        TypeofStar: objitem.rbtPreferredstars,
+                        PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
+                        GenderID: objitem.rbtlGender,
+                        Region: commonFactory.listSelectedVal(objitem.lstRegion),
+                        Branch: commonFactory.listSelectedVal(objitem.lstBranch),
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
                     }
-
-                    scope.mbObj.txtMBEmails = item.MotherBrotherEmail;
-                    scope.mbObj.txtMBCurrentLocation = item.MotherBrotherCurrentLocation;
-
-                }
-                commonFactory.open('MBModalContent.html', scope, uibModal);
-                break;
-            case 'MS':
-                scope.msObj.MotherSisterCustfamilyID = null;
-                scope.msObj = {};
-                if (item !== undefined) {
-
-                    // scope.msDistrict = commonFactory.districtBind(item.spousestateid);
-
-                    scope.msObj.MotherSisterCustfamilyID = item.MotherSisterCustfamilyID;
-                    scope.msObj.rdlMSElderYounger = item.MotherSisterElderyounger == 'Elder' ? 330 : (item.MotherSisterElderyounger == 'Younger' ? 329 : '-1');
-                    scope.msObj.txtMSName = item.MotherSisterName;
-                    scope.msObj.txtMsHusbandfirstname = item.SpouceFName;
-                    scope.msObj.txtMsHusbandlastname = item.SpoucelName;
-                    scope.msObj.ddlMSisState = item.spousestateid;
-                    scope.msObj.ddlMsDistrict = item.spousedistrictID;
-                    scope.msObj.txtMSNativePlace = item.MotherSisterSpouseNativePlace;
-                    scope.msObj.txtMSHEducation = item.MothersisterspouseEducationdetails;
-                    scope.msObj.txtMSProfessiondetails = item.MotherSisterProfessionDetails;
-
-                    scope.msObj.ddlMSCounCodeID = item.MotherSisterMobileCodeId;
-                    scope.msObj.txtMSMObileNum = item.MotherSisterspouseMobileNumber;
-
-                    if (commonFactory.checkvals(item.MotherSisterspouseLandaraecode)) {
-                        scope.msObj.ddlMSLLCounCode = item.MotherSisterSpouselandcodeid;
-                        scope.msObj.txtMSArea = item.MotherSisterspouseLandaraecode;
-                        scope.msObj.txtLLNum = item.MotherSisterspouseLandNumber;
-                    } else {
-                        scope.msObj.ddlMSCounCodeID2 = item.MotherSisterSpouselandcodeid;
-                        scope.msObj.txtMSMObileNum2 = item.MotherSisterspouseLandNumber;
-                    }
-
-                    scope.msObj.txtMSEmail = item.MotherSisterspouseEmail;
-                    scope.msObj.txtMSCurrentLocation = item.MotherSisterCurrentLocation;
-
-                }
-                commonFactory.open('MSModalContent.html', scope, uibModal);
-                break;
-        }
-
-    };
-
-    scope.changeBind = function(type, parentval) {
-
-        switch (type) {
-            case 'fs':
-                scope.fsDistrict = commonFactory.districtBind(parentval);
-                break;
-
-            case 'ms':
-                scope.msDistrict = commonFactory.districtBind(parentval);
-                break;
-        }
-    };
-
-    scope.FBSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.FBData = {
-                GetDetails: {
-                    CustID: custid,
-                    Fatherbrothername: obj.txtFatherbrothername,
-                    FBElderYounger: obj.rdlFBElderORyounger,
-                    FBEmployedin: null,
-                    FBProfessiongroup: null,
-                    FBProfession: null,
-                    FBProfessiondetails: obj.txtFBProfessiondetails,
-                    FBMobileCountryID: obj.ddlFBMobileCountryID,
-                    FBMobileNumber: obj.txtFBMobileNumber,
-                    FBLandLineCountryID: commonFactory.checkvals(obj.ddlFBMobileCountryID2) ? obj.ddlFBMobileCountryID2 : (commonFactory.checkvals(obj.ddlFBLandLineCountry) ? obj.ddlFBLandLineCountry : null),
-                    FBLandAreaCode: commonFactory.checkvals(obj.txtFBMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFBAreCode) ? obj.txtFBAreCode : null),
-                    FBLandNumber: commonFactory.checkvals(obj.txtFBMobileNumber2) ? obj.txtFBMobileNumber2 : (commonFactory.checkvals(obj.txtFBLandNumber) ? obj.txtFBLandNumber : null),
-                    FBEmails: obj.txtFBEmails,
-                    FBCurrentLocation: obj.txtCurrentLocation,
-                    FatherbrotherCust_familyID: scope.fbObj.FatherbrotherCustfamilyID,
-                    FatherBrotherEducationDetails: obj.txtFBEducationdetails,
-
-                },
-                customerpersonaldetails: {
-                    intCusID: custid,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.relativePageLoad(custid);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-    };
-
-    scope.FSSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.FSData = {
-                GetDetails: {
-                    CustID: custid,
-                    FSFathersistername: obj.txtFathersistername,
-                    FSElderYounger: obj.rdlFSElderYounger,
-                    FSHusbandfirstname: obj.txtFSHusbandfirstname,
-                    FSHusbandlastname: obj.txtFSHusbandlastname,
-                    FSCountryID: 1,
-                    FSHStateID: obj.ddlFSHStateID,
-                    FSHDistrict: obj.ddlFSHDistrictID,
-                    FSNativeplace: obj.txtFSHNativePlace,
-                    FSHEmployedin: null,
-                    FSHProfessiongroup: null,
-                    FSHProfession: null,
-                    FSHProfessiondetails: obj.txtFSProfessiondetails,
-                    FSHMobileCountryID: obj.ddlFSMObileCountryID,
-                    FSHMObileNumber: obj.txtFSMobileNumber,
-                    FSHLandCountryID: commonFactory.checkvals(obj.ddlFSMObileCountryID2) ? obj.ddlFSMObileCountryID2 : (commonFactory.checkvals(obj.ddlFSHLandCountryID) ? obj.ddlFSHLandCountryID : null),
-                    FSHLandAreaCode: commonFactory.checkvals(obj.txtFSMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFSHAreaNumber) ? obj.txtFSHAreaNumber : null),
-                    FSHLandNumber: commonFactory.checkvals(obj.txtFSMobileNumber2) ? obj.txtFSMobileNumber2 : (commonFactory.checkvals(obj.txtFSHNUmber) ? obj.txtFSHNUmber : null),
-                    FSHEmails: obj.txtFSHEmails,
-                    FSCurrentLocation: obj.txtFSHCurrentLocation,
-                    FatherSisterCust_familyID: scope.fsObj.FatherSisterCustfamilyID,
-                    FSHEducationdetails: obj.txtFSHEDucation
-                },
-                customerpersonaldetails: {
-                    intCusID: custid,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.relativePageLoad(custid);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-    };
-
-    scope.MBSubmit = function(obj) {
-        if (isSubmit) {
-            isSubmit = false;
-
-            scope.MBData = {
-                GetDetails: {
-                    CustID: custid,
-                    Motherbrothername: obj.txtMBName,
-                    MBElderYounger: obj.rdlMBElderYounger,
-                    MBEmployedin: null,
-                    MBProfessiongroup: null,
-                    MBProfession: null,
-                    MBProfessiondetails: obj.txtMBProfessiondetails,
-                    MBMobileCountryID: obj.ddlMBCountriCode,
-                    MBMObileNumber: obj.txtMBMobileNum,
-                    MBLandLineCountryID: commonFactory.checkvals(obj.ddlMBCountriCode2) ? obj.ddlMBCountriCode2 : (commonFactory.checkvals(obj.ddlMBLandLineCountryCode) ? obj.ddlMBLandLineCountryCode : null),
-                    MBLandAreaCode: commonFactory.checkvals(obj.txtMBMobileNum2) ? null : (commonFactory.checkvals(obj.txtMBAreaCode) ? obj.txtMBAreaCode : null),
-                    MBLandNumber: commonFactory.checkvals(obj.txtMBMobileNum2) ? obj.txtMBMobileNum2 : (commonFactory.checkvals(obj.txtMBLandLineNum) ? obj.txtMBLandLineNum : null),
-                    MBEmails: obj.txtMBEmails,
-                    MBCurrentLocation: obj.txtMBCurrentLocation,
-                    MBMotherBrotherCust_familyID: scope.mbObj.MotherBrotherCustfamilyID,
-                    MBEducationdetails: obj.txtMBEducation
-                },
-                customerpersonaldetails: {
-                    intCusID: custid,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.relativePageLoad(custid);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-
-    };
-
-    scope.MSSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.MSData = {
-                GetDetails: {
-                    CustID: custid,
-                    Mothersistername: obj.txtMSName,
-                    MSElderYounger: obj.rdlMSElderYounger,
-                    MSHusbandfirstname: obj.txtMsHusbandfirstname,
-                    MSHusbandlastname: obj.txtMsHusbandlastname,
-                    MSCountryID: 1,
-                    MSMSHStateID: obj.ddlMSisState,
-                    MSMSHDistrictID: obj.ddlMsDistrict,
-                    MSNativeplace: obj.txtMSNativePlace,
-                    MSEmployedin: null,
-                    MSProfession: null,
-                    MSProfessiondetails: obj.txtMSProfessiondetails,
-                    MSMSHMobileCountryID: obj.ddlMSCounCodeID,
-                    MSMObileNumber: obj.txtMSMObileNum,
-                    MSHLandlineCountryID: commonFactory.checkvals(obj.ddlMSCounCodeID2) ? obj.ddlMSCounCodeID2 : (commonFactory.checkvals(obj.ddlMSLLCounCode) ? obj.ddlMSLLCounCode : null),
-                    MSLandAreaCode: commonFactory.checkvals(obj.txtMSMObileNum2) ? null : (commonFactory.checkvals(obj.txtMSArea) ? obj.txtMSArea : null),
-                    MSLandNumber: commonFactory.checkvals(obj.txtMSMObileNum2) ? obj.txtMSMObileNum2 : (commonFactory.checkvals(obj.txtLLNum) ? obj.txtLLNum : null),
-                    MSHEmails: obj.txtMSEmail,
-                    MSCurrentLocation: obj.txtMSCurrentLocation,
-                    MSCust_familyID: scope.msObj.MotherSisterCustfamilyID,
-                    MSEducationdetails: obj.txtMSHEducation
-                },
-                customerpersonaldetails: {
-                    intCusID: custid,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-            scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.relativePageLoad(custid);
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-
-    };
-
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
-
-}]);
-editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', 'authSvc', function(scope, uibModal, sibblingServices, commonFactory, authSvc) {
-
-    scope.countryCode = 'countryCode';
-    scope.sibblingCountArr = [];
-    scope.BrotherArr = [];
-    scope.sisterArr = [];
-    scope.broObj = [];
-    scope.sisObj = [];
-    scope.caste = 'caste';
-    scope.indiaStates = 'indiaStates';
-    scope.sibCountsBindArr = commonFactory.numbersBind('', 0, 10);
-    scope.SibCountObj = {};
-    scope.BroCount = null;
-    scope.SisCount = null;
-    scope.CountryVal = '1';
-    var isSubmit = true;
-
-    var logincustid = authSvc.getCustId();
-    var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-
-    scope.sibblingPopulatePopulate = function(type, item) {
-        isSubmit = true;
-        switch (type) {
-            case 'sibCounrt':
-                if (item !== undefined) {
-                    console.log(item.NoOfElderBrothers);
-                    scope.SibCountObj.ddlnoofsiblings = item.NoOfBrothers;
-                    scope.SibCountObj.ddlnoofelderrother = item.NoOfElderBrothers;
-                    scope.SibCountObj.ddlnoofyoungerbrother = item.NoOfYoungerBrothers;
-                    scope.SibCountObj.ddlnoofsisters = item.NoOfSisters;
-                    scope.SibCountObj.ddlnoofeldersisters = item.NoOfElderSisters;
-                    scope.SibCountObj.ddlnoofyoungersisters = item.NoOfYoungerSisters;
-                }
-                commonFactory.open('SibblingCountPopup.html', scope, uibModal);
-
-
-                break;
-
-            case 'brother':
-
-                if (item !== undefined && scope.BrotherArr.length <= parseInt(scope.BroCount)) {
-                    scope.broObj.SibilingCustfamilyID = null;
-                    scope.broObj = {};
-                    if (item !== undefined) {
-                        // scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
-
-                        scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
-                        scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
-                        scope.broObj.txtBName = item.SibilingName;
-                        scope.broObj.txtbrotherreducation = item.SibilingEducationDetails;
-                        scope.broObj.txtbrotherprofession = item.SibilingProfessionDetails;
-                        scope.broObj.txtBCompanyname = item.SibilingCompany;
-                        scope.broObj.txtBJoblocation = item.SibilingJobPLace;
-
-                        scope.broObj.ddlBMObileCountryID = item.SibilingMobileCode;
-                        scope.broObj.txtBmobilenumber = item.SibilingMobileNumber;
-
-                        if (item.SibilingLandaraecode !== '' && item.SibilingLandaraecode !== null) {
-                            scope.broObj.ddlBLandLineCountryID = item.SibilngLandCountryCode;
-                            scope.broObj.txtBAreCode = item.SibilingLandaraecode;
-                            scope.broObj.txtBLandNumber = item.SibilingLandNumber;
-                        } else {
-                            scope.broObj.ddlBMObileCountryID2 = item.SibilngLandCountryCode;
-                            scope.broObj.txtBmobilenumber2 = item.SibilingLandNumber;
-
-                        }
-
-                        scope.broObj.txtBEmails = item.SibilingEmail;
-                        scope.broObj.rdlBIsMarried = item.SibilingMarried;
-
-                        scope.broObj.txtBWifeName = item.SibilingSpouseName;
-                        scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
-                        scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
-                        //scope.broObj.chkboxbrotherwifeprofession = item.;
-                        scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
-                        scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
-                        scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
-
-                        scope.broObj.ddlBWMobileCode = item.SibilingSpouseMobileCode;
-
-                        scope.broObj.txtBWifeMobileNumber = item.SibilingSpouceMobileNumber;
-
-                        if (item.SibilingSpouseLandareCode !== '' && item.SibilingSpouseLandareCode !== null) {
-                            scope.broObj.ddlBWifeLandLineCountryCode = item.SibilingSpouseLandCode;
-                            scope.broObj.txtBWifeLandLineAreaCode = item.SibilingSpouseLandareCode;
-                            scope.broObj.txtBWifeLandLineNumber = item.SibilngSpouseLandnumber;
-                        } else {
-                            scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
-                            scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
-                        }
-
-                        scope.broObj.txtwifeEmail = item.SpouseEmail;
-                        scope.broObj.txtBWifeFatherSurName = item.SFsurname;
-                        scope.broObj.txtBWWifeFatherName = item.SFname;
-                        scope.broObj.ddlborherspousefathercaste = item.SibilingSpouseFatherCasteID;
-                        scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
-                        scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
-                        scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
-
-
-                    }
-                    commonFactory.open('brotherModalContent.html', scope, uibModal);
-                } else if (item === undefined && scope.BrotherArr.length < parseInt(scope.BroCount)) {
-                    scope.broObj.SibilingCustfamilyID = null;
-                    scope.broObj = {};
-                    commonFactory.open('brotherModalContent.html', scope, uibModal);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 1500);
-                }
-                break;
-
-            case 'sister':
-
-                if (item !== undefined && scope.sisterArr.length <= parseInt(scope.SisCount)) {
-
-                    scope.sisObj.SibilingCustfamilyID = null;
-                    scope.sisObj = {};
-
-                    if (item !== undefined) {
-
-                        // scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
-
-                        scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
-                        scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
-                        scope.sisObj.txtSisterName = item.SibilingName;
-                        scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
-                        scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
-                        scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
-                        scope.sisObj.txtSCompanyName = item.SibilingCompany;
-                        scope.sisObj.txtSjobloc = item.SibilingJobPLace;
-
-                        scope.sisObj.ddlSMobileCountyCodeID = item.SibilingMobileCode;
-                        scope.sisObj.txtSMobileNumber = item.SibilingMobileNumber;
-
-
-                        if (item.SibilingLandaraecode !== '' && item.SibilingLandaraecode !== null) {
-                            scope.sisObj.ddlSLandLineCountryCodeID = item.SibilngLandCountryCode;
-                            scope.sisObj.txtSAreacoude = item.SibilingLandaraecode;
-                            scope.sisObj.txtSNumber = item.SibilingLandNumber;
-                        } else {
-                            scope.sisObj.ddlSMobileCountyCodeID2 = item.SibilngLandCountryCode;
-                            scope.sisObj.txtSMobileNumber2 = item.SibilingLandNumber;
-
-                        }
-
-                        scope.sisObj.txtSEmails = item.SibilingEmail;
-                        scope.sisObj.rdlSIsMarried = item.SibilingMarried;
-
-
-
-                        scope.sisObj.txtShusName = item.SibilingName;
-                        scope.sisObj.txtHusbandEducation = item.SibilingSpouseEducationDetails;
-                        scope.sisObj.txtHusbandProfession = item.SibilingSpouseProfessionDetails;
-                        scope.sisObj.txtShusCompanyName = item.spoucecompanyName;
-                        scope.sisObj.txtShusjobloc = item.spoucejobloc;
-
-                        scope.sisObj.ddlSHusMobileCountryID = item.sisterspousemobilecode;
-                        scope.sisObj.txtSHusMobileNumber = item.SibilingSpouceMobileNumber;
-
-                        if (item.SibilingSpouseLandareCode !== '' && item.SibilingSpouseLandareCode !== null) {
-                            scope.sisObj.ddlSHusLandCountryID = item.SpousesisterLandCode;
-                            scope.sisObj.txtSHusLandNumber = item.SibilngSpouseLandnumber;
-                            scope.sisObj.txtSHusLandArea = item.SibilingSpouseLandareCode;
-                        } else {
-                            scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
-                            scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
-
-                        }
-
-                        scope.sisObj.txtHusbandEmail = item.SpouseEmail;
-                        scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
-                        scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
-                        scope.sisObj.ddlsisterspusefathercaste = item.SibilingSpouseFatherCasteId;
-                        scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
-                        scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
-                        scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
-
-                    }
-                    commonFactory.open('sisterModalContent.html', scope, uibModal);
-                } else if (item === undefined && scope.sisterArr.length < parseInt(scope.SisCount)) {
-
-                    scope.sisObj.SibilingCustfamilyID = null;
-                    scope.sisObj = {};
-                    commonFactory.open('sisterModalContent.html', scope, uibModal);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 1500);
-                }
-                break;
-        }
-
-    };
-
-
-    scope.sibPageload = function(icustID) {
-
-        sibblingServices.getSibblingeData(icustID).then(function(response) {
-            scope.sibblingCountArr = JSON.parse(response.data[0]);
-            scope.BrotherArr = JSON.parse(response.data[1]);
-            scope.sisterArr = JSON.parse(response.data[2]);
-            console.log(scope.BrotherArr);
-            console.log(scope.sisterArr);
-            scope.BroCount = scope.sibblingCountArr[0].NoOfBrothers;
-            scope.SisCount = scope.sibblingCountArr[0].NoOfSisters;
-        });
-
-    };
-    scope.sibPageload(custID);
-
-    scope.sibBroSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.sibBroData = {
-                GetDetails: {
-                    CustID: custID,
-                    BroName: obj.txtBName,
-                    BroElderYounger: obj.rdlBElderYounger,
-                    BroEducationcategory: null,
-                    BroEducationgroup: null,
-                    BroEducationspecialization: null,
-                    BroEmployedin: null,
-                    BroProfessiongroup: null,
-                    BroProfession: null,
-                    BroCompanyName: obj.txtBCompanyname,
-                    BroJobLocation: obj.txtBJoblocation,
-                    BroMobileCountryCodeID: obj.ddlBMObileCountryID,
-                    BroMobileNumber: obj.txtBmobilenumber,
-                    BroLandCountryCodeID: commonFactory.checkvals(obj.ddlBMObileCountryID2) ? obj.ddlBMObileCountryID2 : (commonFactory.checkvals(obj.ddlBLandLineCountryID) ? obj.ddlBLandLineCountryID : null),
-                    BroLandAreaCode: commonFactory.checkvals(obj.txtBmobilenumber2) ? null : (obj.txtBAreCode !== '' && obj.txtBAreCode !== null ? obj.txtBAreCode : null),
-                    BroLandNumber: commonFactory.checkvals(obj.txtBmobilenumber2) ? obj.txtBmobilenumber2 : (commonFactory.checkvals(obj.txtBLandNumber) ? obj.txtBLandNumber : null),
-                    BroEmail: obj.txtBEmails,
-                    BIsMarried: obj.rdlBIsMarried,
-                    BroWifeName: obj.txtBWifeName,
-                    BroWifeEducationcategory: null,
-                    BroWifeEducationgroup: null,
-                    BroWifeEducationspecialization: null,
-                    BroWifeEmployedin: null,
-                    BroWifeProfessiongroup: null,
-                    BroWifeProfession: null,
-                    BroWifeCompanyName: obj.txtBWifeCompanyName,
-                    BroWifeJobLocation: obj.txtBwifeJoblocation,
-                    BroWifeMobileCountryCodeID: obj.ddlBWMobileCode,
-                    BroWifeMobileNumber: obj.txtBWifeMobileNumber,
-                    BroWifeLandCountryCodeID: commonFactory.checkvals(obj.ddlBWMobileCode2) ? obj.ddlBWMobileCode2 : commonFactory.checkvals(obj.ddlBWifeLandLineCountryCode) ? obj.ddlBWifeLandLineCountryCode : null,
-                    BroWifeLandAreacode: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? null : commonFactory.checkvals(obj.txtBWifeLandLineAreaCode) ? obj.txtBWifeLandLineAreaCode : null,
-                    BroWifeLandNumber: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? obj.txtBWifeMobileNumber2 : commonFactory.checkvals(obj.txtBWifeLandLineNumber) ? obj.txtBWifeLandLineNumber : null,
-                    BroWifeFatherSurName: obj.txtBWifeFatherSurName,
-                    BroWifeFatherName: obj.txtBWWifeFatherName,
-                    BroSibilingCustfamilyID: scope.broObj.SibilingCustfamilyID,
-                    BroEducationDetails: obj.txtbrotherreducation,
-                    BrowifeEducationDetails: obj.txtbrotherwifeeducation,
-                    BroProfessionDetails: obj.txtbrotherprofession,
-                    BroWifeProfessionDetails: obj.txtbrotherwifeprofession,
-                    BroSpouseFatherCountryID: '1',
-                    BroSpouseFatherStateID: obj.ddlBroSpousefatherState,
-                    BroSpouseFatherDitrictID: obj.ddlBroSpousefatherDistrict,
-                    BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
-                    BrotherSpouseEmail: obj.txtwifeEmail,
-                    SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
-
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-
-            scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.sibPageload(custID);
-
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-
-    };
-
-    scope.sibSisSubmit = function(obj) {
-
-        if (isSubmit) {
-            isSubmit = false;
-            scope.sibSisData = {
-                GetDetails: {
-                    CustID: custID,
-                    SisName: obj.txtSisterName,
-                    SisElderYounger: obj.rbtSElderyounger,
-                    SisEducationcategory: null,
-                    SisEducationgroup: null,
-                    SisEducationspecialization: null,
-                    SisEmployedin: null,
-                    SisProfessiongroup: null,
-                    SisProfession: null,
-                    SisCompanyName: obj.txtSCompanyName,
-                    SisJobLocation: obj.txtSjobloc,
-                    SisMobileCountryCodeID: obj.ddlSMobileCountyCodeID,
-                    SisMobileNumber: obj.txtSMobileNumber,
-                    SisLandCountryCodeID: commonFactory.checkvals(obj.ddlSMobileCountyCodeID2) ? obj.ddlSMobileCountyCodeID2 : commonFactory.checkvals(obj.ddlSLandLineCountryCodeID) ? obj.ddlSLandLineCountryCodeID : null,
-                    SisLandAreaCode: commonFactory.checkvals(obj.txtSMobileNumber2) ? null : commonFactory.checkvals(obj.txtSAreacoude) ? obj.txtSAreacoude : null,
-                    SisLandNumber: commonFactory.checkvals(obj.txtSMobileNumber2) ? obj.txtSMobileNumber2 : commonFactory.checkvals(obj.txtSNumber) ? obj.txtSNumber : null,
-                    SisEmail: obj.txtSEmails,
-                    SIsMarried: obj.rdlSIsMarried,
-                    SisHusbandName: obj.txtShusName,
-                    SisHusbandEducationcategory: null,
-                    SisHusbandEducationgroup: null,
-                    SisHusbandEducationspecialization: null,
-                    SisHusbandEmployedin: null,
-                    SisHusbandProfessiongroup: null,
-                    SisHusbandProfession: null,
-                    SisHusCompanyName: obj.txtShusCompanyName,
-                    SisHusJobLocation: obj.txtShusjobloc,
-                    SisHusbandMobileCountryCodeID: obj.ddlSHusMobileCountryID,
-                    SisHusbandMobileNumber: obj.txtSHusMobileNumber,
-                    SisHusbandLandCountryCodeID: commonFactory.checkvals(obj.ddlSHusMobileCountryID2) ? obj.ddlSHusMobileCountryID2 : commonFactory.checkvals(obj.ddlSHusLandCountryID) ? obj.ddlSHusLandCountryID : null,
-                    SisHusbandLandAreacode: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? null : commonFactory.checkvals(obj.txtSHusLandArea) ? obj.txtSHusLandArea : null,
-                    SisHusbandLandNumber: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? obj.txtSHusMobileNumber2 : commonFactory.checkvals(obj.txtSHusLandNumber) ? obj.txtSHusLandNumber : null,
-                    SisHusbandFatherSurName: obj.txtHusbandFatherSurName,
-                    SisHusbandFatherName: obj.txtHusbandFatherName,
-                    SisSibilingCustfamilyID: scope.sisObj.SibilingCustfamilyID,
-                    siseducationdetails: obj.txtsisEducation,
-                    sisprofessiondetails: obj.txtsisProfession,
-                    sisspouseeducationdetails: obj.txtHusbandEducation,
-                    sisspouseprofessiondetails: obj.txtHusbandProfession,
-                    SisSpouseFatherCountryID: '1',
-                    SisSpouseFatherStateID: obj.ddlSisSpouceFatherState,
-                    SisSpouseFatherDitrictID: obj.ddlSisSpouceFatherDistrict,
-                    SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
-                    SisSpouseEmail: obj.txtHusbandEmail,
-                    SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
-
-                },
-                customerpersonaldetails: {
-                    intCusID: custID,
-                    EmpID: null,
-                    Admin: null
-                }
-            };
-            scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
-                console.log(response);
-                commonFactory.closepopup();
-                if (response.data === 1) {
-
-                    scope.sibPageload(custID);
-
-                    scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                }
-            });
-        }
-
-    };
-
-    scope.changeBind = function(type, parentval) {
-        switch (type) {
-            case 'State':
-                scope.brodistrictArr = commonFactory.districtBind(parentval);
-                break;
-            case 'sisState':
-                scope.sisdistrictArr = commonFactory.districtBind(parentval);
-                break;
-        }
-
-    };
-
-    scope.cancel = function() {
-        commonFactory.closepopup();
-    };
-
-    scope.ShousewiseChk = function(item) {
-        if (item.chksisProfession === true) {
-            item.txtsisProfession = 'HouseWife';
-        } else {
-            item.txtsisProfession = '';
-        }
-    };
-
-    scope.BhousewiseChk = function(item) {
-        if (item.chkboxbrotherwifeprofession === true) {
-            item.txtbrotherwifeprofession = 'HouseWife';
-        } else {
-            item.txtbrotherwifeprofession = '';
-        }
-    };
-
-    scope.checkVal = function(val) {
-        return (val !== '' && val !== undefined) ? val : 0;
-
-    };
-    scope.sibblingCountsSubmit = function(obj) {
-
-
-        if (isSubmit) {
-            isSubmit = false;
-
-
-            var totalnofBrothers = parseInt(scope.checkVal(obj.ddlnoofsiblings));
-            var elderBrotherCount = parseInt(scope.checkVal(obj.ddlnoofelderrother));
-            var youngerBrotherCount = parseInt(scope.checkVal(obj.ddlnoofyoungerbrother));
-
-            var totalnoFSister = parseInt(scope.checkVal(obj.ddlnoofsisters));
-            var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
-            var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
-
-            if ((totalnofBrothers === 0 || totalnofBrothers === (elderBrotherCount + youngerBrotherCount)) && (totalnoFSister === 0 || totalnoFSister === (elderSisterCount + youngerSisterCount))) {
-
-                var objinput = {
-                    CustID: custID,
-                    NoOfBrothers: obj.ddlnoofsiblings,
-                    NoOfSisters: obj.ddlnoofsisters,
-                    NoOfYoungerBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofyoungerbrother,
-                    NoOfElderBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofelderrother,
-                    NoOfElderSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofeldersisters,
-                    NoOfYoungerSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofyoungersisters
                 };
 
-                scope.BroCount = obj.ddlnoofsiblings;
-                scope.SisCount = obj.ddlnoofsisters;
+                console.log(JSON.stringify(scope.partnerPrefData));
+                scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+                            scope.partnerPrefArr = response.data;
+                            console.log(scope.partnerPrefArr);
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
 
-                scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
+            }
+        };
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+
+        scope.partnerDescriptionSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.submitPromise = partnerPreferenceServices.submitPartnerDescData({ CustID: custID, AboutYourself: obj.txtpartnerdescription, flag: 1 }).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === '1') {
+                        scope.partnerDescription = obj.txtpartnerdescription;
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+
+            }
+        };
+
+
+
+    }
+]);
+editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices', 'commonFactory',
+    'authSvc', 'sibblingServices',
+    function(uibModal, scope, propertyServices, commonFactory, authSvc, sibblingServices) {
+        scope.propertyArr = [];
+        scope.proObj = {};
+        scope.familyStatus = 'familyStatus';
+
+        var logincustid = authSvc.getCustId();
+        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        var isSubmit = true;
+
+        propertyServices.getPropertyData(custID).then(function(response) {
+            scope.propertyArr = response.data;
+        });
+
+        scope.populateProperty = function(item) {
+            isSubmit = true;
+            scope.proObj = {};
+            scope.proObj.Custpropertyid = null;
+            if (item !== undefined) {
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Property Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                    } else {
+                        scope.proObj.Custpropertyid = item.Custpropertyid;
+                        scope.proObj.ddlFamilyStatus = item.FamilyValuesID;
+                        scope.proObj.rdlSharedProperty = item.SharedPropertyID === true ? 1 : 0;
+                        scope.proObj.txtValueofproperty = item.PropertyValue;
+                        scope.proObj.txtPropertydesc = item.PropertyDetails;
+                        commonFactory.open('propertyContent.html', scope, uibModal);
+                    }
+                });
+            } else {
+                commonFactory.open('propertyContent.html', scope, uibModal);
+            }
+        };
+
+
+        scope.propertySubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.propertyData = {
+                    GetDetails: {
+                        FamilyStatus: obj.ddlFamilyStatus,
+                        Issharedproperty: obj.rdlSharedProperty,
+                        Valueofproperty: obj.txtValueofproperty,
+                        PropertyType: '281',
+                        Propertydescription: obj.txtPropertydesc,
+                        Showingviewprofile: obj.rbtShowViewProfile,
+                        Custpropertyid: scope.proObj.Custpropertyid,
+                        PropertyID: scope.proObj.Custpropertyid,
+                        CustId: custID
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+
+                scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        propertyServices.getPropertyData(custID).then(function(response) {
+                            scope.propertyArr = response.data;
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
+        };
+
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+
+    }
+]);
+editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory',
+    'authSvc', 'sibblingServices',
+    function(uibModal, scope, referenceServices, commonFactory, authSvc, sibblingServices) {
+
+
+        scope.ReferenceArr = [];
+        scope.refObj = {};
+        scope.RelationshipType = 'RelationshipType';
+        scope.Country = 'Country';
+        scope.countryCode = 'countryCode';
+        var isSubmit = true;
+        var logincustid = authSvc.getCustId();
+        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
+
+        scope.referencePopulate = function(item) {
+            isSubmit = true;
+            scope.refObj.RefrenceCust_Reference_ID = null;
+            scope.refObj = {};
+
+            if (item !== undefined) {
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Reference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                    } else {
+                        // scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
+                        // scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
+
+                        scope.refObj.intCusID = custID;
+                        scope.refObj.RefrenceCust_Reference_ID = item.RefrenceCust_Reference_ID;
+                        scope.refObj.ddlRelationshiptype = 318;
+
+                        console.log(scope.refObj.ddlRelationshiptype);
+
+                        scope.refObj.txtFname = item.ReferenceFirstName;
+                        scope.refObj.txtLname = item.ReferenceLastName;
+                        scope.refObj.txtProfessiondetails = item.RefrenceProfessionDetails;
+                        scope.refObj.ddlCountry = commonFactory.checkvals(item.RefrenceCountry) ? parseInt(item.RefrenceCountry) : null;
+                        scope.refObj.ddlState = commonFactory.checkvals(item.RefrenceStateID) ? parseInt(item.RefrenceStateID) : null;
+                        scope.refObj.ddlDistrict = commonFactory.checkvals(item.RefrenceDistrictID) ? parseInt(item.RefrenceDistrictID) : null;
+                        scope.refObj.txtNativePlace = item.RefrenceNativePlaceID;
+                        scope.refObj.txtPresentlocation = item.RefenceCurrentLocation;
+
+                        scope.refObj.ddlMobileCountryID = commonFactory.checkvals(item.RefrenceMobileCountryID) ? parseInt(item.RefrenceMobileCountryID) : null;
+
+                        scope.refObj.txtMobileNumber = item.RefrenceMobileNumberID;
+
+                        if (commonFactory.checkvals(item.RefrenceAreaCode)) {
+                            scope.refObj.ddlLandLineCountryID = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
+                            scope.refObj.txtAreCode = item.RefrenceAreaCode;
+                            scope.refObj.txtLandNumber = item.RefrenceLandNumber;
+
+                        } else {
+                            scope.refObj.ddlMobileCountryID2 = commonFactory.checkvals(item.RefrenceLandCountryId) ? parseInt(item.RefrenceLandCountryId) : null;
+                            scope.refObj.txtMobileNumber2 = item.RefrenceLandNumber;
+
+                        }
+
+                        scope.refObj.txtEmails = item.RefrenceEmail;
+                        scope.refObj.txtNarrations = item.RefrenceNarration;
+                        commonFactory.open('referenceContent.html', scope, uibModal);
+
+                    }
+                });
+            } else {
+                commonFactory.open('referenceContent.html', scope, uibModal);
+            }
+        };
+
+        referenceServices.getReferenceData(custID).then(function(response) {
+            scope.ReferenceArr = response.data;
+            console.log(scope.ReferenceArr);
+        });
+
+        scope.changeBind = function(type, parentval) {
+            switch (type) {
+                case 'Country':
+                    scope.stateArr = commonFactory.StateBind(parentval);
+                    break;
+
+                case 'State':
+                    scope.districtArr = commonFactory.districtBind(parentval);
+                    break;
+            }
+
+        };
+
+        scope.refenceSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+
+                scope.referenceData = {
+                    GetDetails: {
+                        CustID: custID,
+                        RelationshiptypeID: obj.ddlRelationshiptype,
+                        Firstname: obj.txtFname,
+                        Lastname: obj.txtLname,
+                        Employedin: null,
+                        Professiongroup: null,
+                        Profession: null,
+                        Professiondetails: obj.txtProfessiondetails,
+                        CountryID: obj.ddlCountry,
+                        StateID: obj.ddlState,
+                        DistrictID: obj.ddlDistrict,
+                        Nativeplace: obj.txtNativePlace,
+                        Presentlocation: obj.txtPresentlocation,
+                        MobileCountryID: obj.ddlMobileCountryID,
+                        MobileNumber: obj.txtMobileNumber,
+                        LandLineCountryID: commonFactory.checkvals(obj.ddlMobileCountryID2) ? obj.ddlMobileCountryID2 : (commonFactory.checkvals(obj.ddlLandLineCountryID) ? obj.ddlLandLineCountryID : null),
+                        LandLineAreaCode: commonFactory.checkvals(obj.txtMobileNumber2) ? null : (commonFactory.checkvals(obj.txtAreCode) ? obj.txtAreCode : null),
+                        LandLineNumber: commonFactory.checkvals(obj.txtMobileNumber2) ? obj.txtMobileNumber2 : (commonFactory.checkvals(obj.txtLandNumber) ? obj.txtLandNumber : null),
+                        Emails: obj.txtEmails,
+                        Narration: obj.txtNarrations,
+                        Cust_Reference_ID: scope.refObj.RefrenceCust_Reference_ID
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+                scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        referenceServices.getReferenceData(custID).then(function(response) {
+                            scope.ReferenceArr = response.data;
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+
+            }
+        };
+
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+
+    }
+]);
+editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices', 'commonFactory',
+    'authSvc', 'sibblingServices',
+    function(uibModal, scope, relativeServices, commonFactory, authSvc, sibblingServices) {
+
+
+        scope.fbObj = {};
+        scope.fsObj = {};
+        scope.mbObj = {};
+        scope.msObj = {};
+        scope.countryCode = 'countryCode';
+        scope.indiaStates = 'indiaStates';
+        var isSubmit = true;
+        var logincustid = authSvc.getCustId();
+        var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+        scope.relativePageLoad = function(icustid) {
+            relativeServices.getRelativeeData(icustid).then(function(response) {
+                scope.FBArr = JSON.parse(response.data[0]);
+                scope.FSArr = JSON.parse(response.data[1]);
+                scope.MBrr = JSON.parse(response.data[2]);
+                scope.MSArr = JSON.parse(response.data[3]);
+            });
+        };
+
+        scope.relativePageLoad(custid);
+
+        scope.relativePopulatePopulate = function(type, item) {
+            isSubmit = true;
+            switch (type) {
+                case 'FB':
+                    scope.fbObj.FatherbrotherCustfamilyID = null;
+                    scope.fbObj = {};
+
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custid).then(function(response) {
+                            console.log(response);
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Father Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                            } else {
+                                scope.fbObj.FatherbrotherCustfamilyID = item.FatherbrotherCustfamilyID;
+                                scope.fbObj.rdlFBElderORyounger = item.FatherBrotherElderyounger == 'Elder' ? 324 : (item.FatherBrotherElderyounger == 'Younger' ? 323 : '-1');
+                                scope.fbObj.txtFatherbrothername = item.FatherbrotherName;
+                                scope.fbObj.txtFBEducationdetails = item.FatherBrotherEducationDetails;
+                                scope.fbObj.txtFBProfessiondetails = item.FatherbrotherProfessionDetails;
+
+                                scope.fbObj.ddlFBMobileCountryID = item.FatherbrotherMobileCode;
+                                scope.fbObj.txtFBMobileNumber = item.FatherbrotherMobileNumber;
+
+                                if (commonFactory.checkvals(item.FatherbrotherLandaraecode)) {
+                                    scope.fbObj.ddlFBLandLineCountry = item.FatherbrotherLandCountryCode;
+                                    scope.fbObj.txtFBAreCode = item.FatherbrotherLandaraecode;
+                                    scope.fbObj.txtFBLandNumber = item.FatherbrotherLandNumber;
+                                } else {
+                                    scope.fbObj.ddlFBMobileCountryID2 = item.FatherbrotherLandCountryCode;
+                                    scope.fbObj.txtFBMobileNumber2 = item.FatherbrotherLandNumber;
+                                }
+
+                                scope.fbObj.txtFBEmails = item.FatherbrotherEmail;
+                                scope.fbObj.txtCurrentLocation = item.FatherbrotherCurrentLocation;
+                                commonFactory.open('FBModalContent.html', scope, uibModal);
+                            }
+
+                        });
+                    } else {
+                        commonFactory.open('FBModalContent.html', scope, uibModal);
+                    }
+                    break;
+
+                case 'FS':
+                    scope.fsObj.FatherSisterCustfamilyID = null;
+                    scope.fsObj = {};
+
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custid).then(function(response) {
+                            console.log(response);
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">  Father  Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                            } else {
+                                // scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
+                                scope.fsObj.FatherSisterCustfamilyID = item.FatherSisterCustfamilyID;
+                                scope.fsObj.rdlFSElderYounger = item.FatherSisterElderyounger == 'Elder' ? 326 : (item.FatherSisterElderyounger == 'Younger' ? 325 : '-1');
+                                scope.fsObj.txtFathersistername = item.FatherSisterName;
+                                scope.fsObj.txtFSHusbandfirstname = item.SpouceFName;
+                                scope.fsObj.txtFSHusbandlastname = item.SpoucelName;
+                                scope.fsObj.txtFSHEDucation = item.FatherSisterSpouseEducationDetails;
+                                scope.fsObj.txtFSProfessiondetails = item.FathersisterSpouseProfessionDetails;
+                                scope.fsObj.ddlFSHStateID = item.FatherSisterspousestateId;
+                                scope.fsObj.ddlFSHDistrictID = item.FatherSisterspouseDistrictId;
+                                scope.fsObj.txtFSHNativePlace = item.FathersisterSpouseNativePlace;
+
+                                scope.fsObj.ddlFSMObileCountryID = item.FatherSisterMobilecodeid;
+                                scope.fsObj.txtFSMobileNumber = item.FatherSisterspouseMobileNumber;
+
+
+                                if (commonFactory.checkvals(item.FatherSisterspouseLandaraecode)) {
+                                    scope.fsObj.ddlFSHLandCountryID = item.FatherSisterlandcontrycodeid;
+                                    scope.fsObj.txtFSHAreaNumber = item.FatherSisterspouseLandaraecode;
+                                    scope.fsObj.txtFSHNUmber = item.FatherSisterspouseLandNumber;
+
+                                } else {
+                                    scope.fsObj.ddlFSMObileCountryID2 = item.FatherSisterlandcontrycodeid;
+                                    scope.fsObj.txtFSMobileNumber2 = item.FatherSisterspouseLandNumber;
+                                }
+
+                                scope.fsObj.txtFSHEmails = item.FatherSisterspouseEmail;
+                                scope.fsObj.txtFSHCurrentLocation = item.FatherSisterCurrentLocation;
+                                commonFactory.open('FSModalContent.html', scope, uibModal);
+
+                            }
+                        });
+                    } else {
+                        commonFactory.open('FSModalContent.html', scope, uibModal);
+
+                    }
+                    break;
+
+                case 'MB':
+                    scope.mbObj.MotherBrotherCustfamilyID = null;
+                    scope.mbObj = {};
+
+                    if (item === undefined) {
+                        sibblingServices.allowblockWebusers(custid).then(function(response) {
+                            console.log(response);
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                            } else {
+                                scope.mbObj.MotherBrotherCustfamilyID = item.MotherBrotherCustfamilyID;
+                                scope.mbObj.rdlMBElderYounger = item.MotherBrotherElderyounger == 'Elder' ? 328 : (item.MotherBrotherElderyounger == 'Younger' ? 327 : '-1');
+                                scope.mbObj.txtMBName = item.MotherBrotherName;
+                                scope.mbObj.txtMBEducation = item.MotherBrotherEducationDetails;
+                                scope.mbObj.txtMBProfessiondetails = item.MotherBrotherProfessionDetails;
+
+                                scope.mbObj.ddlMBCountriCode = item.MotherBrotherMobileCode;
+                                scope.mbObj.txtMBMobileNum = item.MotherBrotherMobileNumber;
+
+
+                                if (commonFactory.checkvals(item.MotherBrotherLandaraecode)) {
+                                    scope.mbObj.ddlMBLandLineCountryCode = item.MotherBrotherLandCountryCode;
+                                    scope.mbObj.txtMBAreaCode = item.MotherBrotherLandaraecode;
+                                    scope.mbObj.txtMBLandLineNum = item.MotherBrotherLandNumber;
+
+                                } else {
+                                    scope.mbObj.ddlMBCountriCode2 = item.MotherBrotherLandCountryCode;
+                                    scope.mbObj.txtMBMobileNum2 = item.MotherBrotherLandNumber;
+                                }
+
+                                scope.mbObj.txtMBEmails = item.MotherBrotherEmail;
+                                scope.mbObj.txtMBCurrentLocation = item.MotherBrotherCurrentLocation;
+                                commonFactory.open('MBModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('MBModalContent.html', scope, uibModal);
+                    }
+                    break;
+                case 'MS':
+                    scope.msObj.MotherSisterCustfamilyID = null;
+                    scope.msObj = {};
+
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custid).then(function(response) {
+                            console.log(response);
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Sister Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                            } else {
+                                // scope.msDistrict = commonFactory.districtBind(item.spousestateid);
+
+                                scope.msObj.MotherSisterCustfamilyID = item.MotherSisterCustfamilyID;
+                                scope.msObj.rdlMSElderYounger = item.MotherSisterElderyounger == 'Elder' ? 330 : (item.MotherSisterElderyounger == 'Younger' ? 329 : '-1');
+                                scope.msObj.txtMSName = item.MotherSisterName;
+                                scope.msObj.txtMsHusbandfirstname = item.SpouceFName;
+                                scope.msObj.txtMsHusbandlastname = item.SpoucelName;
+                                scope.msObj.ddlMSisState = item.spousestateid;
+                                scope.msObj.ddlMsDistrict = item.spousedistrictID;
+                                scope.msObj.txtMSNativePlace = item.MotherSisterSpouseNativePlace;
+                                scope.msObj.txtMSHEducation = item.MothersisterspouseEducationdetails;
+                                scope.msObj.txtMSProfessiondetails = item.MotherSisterProfessionDetails;
+
+                                scope.msObj.ddlMSCounCodeID = item.MotherSisterMobileCodeId;
+                                scope.msObj.txtMSMObileNum = item.MotherSisterspouseMobileNumber;
+
+                                if (commonFactory.checkvals(item.MotherSisterspouseLandaraecode)) {
+                                    scope.msObj.ddlMSLLCounCode = item.MotherSisterSpouselandcodeid;
+                                    scope.msObj.txtMSArea = item.MotherSisterspouseLandaraecode;
+                                    scope.msObj.txtLLNum = item.MotherSisterspouseLandNumber;
+                                } else {
+                                    scope.msObj.ddlMSCounCodeID2 = item.MotherSisterSpouselandcodeid;
+                                    scope.msObj.txtMSMObileNum2 = item.MotherSisterspouseLandNumber;
+                                }
+
+                                scope.msObj.txtMSEmail = item.MotherSisterspouseEmail;
+                                scope.msObj.txtMSCurrentLocation = item.MotherSisterCurrentLocation;
+                                commonFactory.open('MSModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('MSModalContent.html', scope, uibModal);
+                    }
+                    break;
+            }
+
+        };
+
+        scope.changeBind = function(type, parentval) {
+
+            switch (type) {
+                case 'fs':
+                    scope.fsDistrict = commonFactory.districtBind(parentval);
+                    break;
+
+                case 'ms':
+                    scope.msDistrict = commonFactory.districtBind(parentval);
+                    break;
+            }
+        };
+
+        scope.FBSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.FBData = {
+                    GetDetails: {
+                        CustID: custid,
+                        Fatherbrothername: obj.txtFatherbrothername,
+                        FBElderYounger: obj.rdlFBElderORyounger,
+                        FBEmployedin: null,
+                        FBProfessiongroup: null,
+                        FBProfession: null,
+                        FBProfessiondetails: obj.txtFBProfessiondetails,
+                        FBMobileCountryID: obj.ddlFBMobileCountryID,
+                        FBMobileNumber: obj.txtFBMobileNumber,
+                        FBLandLineCountryID: commonFactory.checkvals(obj.ddlFBMobileCountryID2) ? obj.ddlFBMobileCountryID2 : (commonFactory.checkvals(obj.ddlFBLandLineCountry) ? obj.ddlFBLandLineCountry : null),
+                        FBLandAreaCode: commonFactory.checkvals(obj.txtFBMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFBAreCode) ? obj.txtFBAreCode : null),
+                        FBLandNumber: commonFactory.checkvals(obj.txtFBMobileNumber2) ? obj.txtFBMobileNumber2 : (commonFactory.checkvals(obj.txtFBLandNumber) ? obj.txtFBLandNumber : null),
+                        FBEmails: obj.txtFBEmails,
+                        FBCurrentLocation: obj.txtCurrentLocation,
+                        FatherbrotherCust_familyID: scope.fbObj.FatherbrotherCustfamilyID,
+                        FatherBrotherEducationDetails: obj.txtFBEducationdetails,
+
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custid,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+
+                scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.relativePageLoad(custid);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+        };
+
+        scope.FSSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.FSData = {
+                    GetDetails: {
+                        CustID: custid,
+                        FSFathersistername: obj.txtFathersistername,
+                        FSElderYounger: obj.rdlFSElderYounger,
+                        FSHusbandfirstname: obj.txtFSHusbandfirstname,
+                        FSHusbandlastname: obj.txtFSHusbandlastname,
+                        FSCountryID: 1,
+                        FSHStateID: obj.ddlFSHStateID,
+                        FSHDistrict: obj.ddlFSHDistrictID,
+                        FSNativeplace: obj.txtFSHNativePlace,
+                        FSHEmployedin: null,
+                        FSHProfessiongroup: null,
+                        FSHProfession: null,
+                        FSHProfessiondetails: obj.txtFSProfessiondetails,
+                        FSHMobileCountryID: obj.ddlFSMObileCountryID,
+                        FSHMObileNumber: obj.txtFSMobileNumber,
+                        FSHLandCountryID: commonFactory.checkvals(obj.ddlFSMObileCountryID2) ? obj.ddlFSMObileCountryID2 : (commonFactory.checkvals(obj.ddlFSHLandCountryID) ? obj.ddlFSHLandCountryID : null),
+                        FSHLandAreaCode: commonFactory.checkvals(obj.txtFSMobileNumber2) ? null : (commonFactory.checkvals(obj.txtFSHAreaNumber) ? obj.txtFSHAreaNumber : null),
+                        FSHLandNumber: commonFactory.checkvals(obj.txtFSMobileNumber2) ? obj.txtFSMobileNumber2 : (commonFactory.checkvals(obj.txtFSHNUmber) ? obj.txtFSHNUmber : null),
+                        FSHEmails: obj.txtFSHEmails,
+                        FSCurrentLocation: obj.txtFSHCurrentLocation,
+                        FatherSisterCust_familyID: scope.fsObj.FatherSisterCustfamilyID,
+                        FSHEducationdetails: obj.txtFSHEDucation
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custid,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+
+                scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.relativePageLoad(custid);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+        };
+
+        scope.MBSubmit = function(obj) {
+            if (isSubmit) {
+                isSubmit = false;
+
+                scope.MBData = {
+                    GetDetails: {
+                        CustID: custid,
+                        Motherbrothername: obj.txtMBName,
+                        MBElderYounger: obj.rdlMBElderYounger,
+                        MBEmployedin: null,
+                        MBProfessiongroup: null,
+                        MBProfession: null,
+                        MBProfessiondetails: obj.txtMBProfessiondetails,
+                        MBMobileCountryID: obj.ddlMBCountriCode,
+                        MBMObileNumber: obj.txtMBMobileNum,
+                        MBLandLineCountryID: commonFactory.checkvals(obj.ddlMBCountriCode2) ? obj.ddlMBCountriCode2 : (commonFactory.checkvals(obj.ddlMBLandLineCountryCode) ? obj.ddlMBLandLineCountryCode : null),
+                        MBLandAreaCode: commonFactory.checkvals(obj.txtMBMobileNum2) ? null : (commonFactory.checkvals(obj.txtMBAreaCode) ? obj.txtMBAreaCode : null),
+                        MBLandNumber: commonFactory.checkvals(obj.txtMBMobileNum2) ? obj.txtMBMobileNum2 : (commonFactory.checkvals(obj.txtMBLandLineNum) ? obj.txtMBLandLineNum : null),
+                        MBEmails: obj.txtMBEmails,
+                        MBCurrentLocation: obj.txtMBCurrentLocation,
+                        MBMotherBrotherCust_familyID: scope.mbObj.MotherBrotherCustfamilyID,
+                        MBEducationdetails: obj.txtMBEducation
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custid,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+
+                scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.relativePageLoad(custid);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
+        };
+
+        scope.MSSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.MSData = {
+                    GetDetails: {
+                        CustID: custid,
+                        Mothersistername: obj.txtMSName,
+                        MSElderYounger: obj.rdlMSElderYounger,
+                        MSHusbandfirstname: obj.txtMsHusbandfirstname,
+                        MSHusbandlastname: obj.txtMsHusbandlastname,
+                        MSCountryID: 1,
+                        MSMSHStateID: obj.ddlMSisState,
+                        MSMSHDistrictID: obj.ddlMsDistrict,
+                        MSNativeplace: obj.txtMSNativePlace,
+                        MSEmployedin: null,
+                        MSProfession: null,
+                        MSProfessiondetails: obj.txtMSProfessiondetails,
+                        MSMSHMobileCountryID: obj.ddlMSCounCodeID,
+                        MSMObileNumber: obj.txtMSMObileNum,
+                        MSHLandlineCountryID: commonFactory.checkvals(obj.ddlMSCounCodeID2) ? obj.ddlMSCounCodeID2 : (commonFactory.checkvals(obj.ddlMSLLCounCode) ? obj.ddlMSLLCounCode : null),
+                        MSLandAreaCode: commonFactory.checkvals(obj.txtMSMObileNum2) ? null : (commonFactory.checkvals(obj.txtMSArea) ? obj.txtMSArea : null),
+                        MSLandNumber: commonFactory.checkvals(obj.txtMSMObileNum2) ? obj.txtMSMObileNum2 : (commonFactory.checkvals(obj.txtLLNum) ? obj.txtLLNum : null),
+                        MSHEmails: obj.txtMSEmail,
+                        MSCurrentLocation: obj.txtMSCurrentLocation,
+                        MSCust_familyID: scope.msObj.MotherSisterCustfamilyID,
+                        MSEducationdetails: obj.txtMSHEducation
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custid,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+                scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.relativePageLoad(custid);
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
+        };
+
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+    }
+]);
+editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', 'authSvc',
+
+    function(scope, uibModal, sibblingServices, commonFactory, authSvc) {
+
+        scope.countryCode = 'countryCode';
+        scope.sibblingCountArr = [];
+        scope.BrotherArr = [];
+        scope.sisterArr = [];
+        scope.broObj = [];
+        scope.sisObj = [];
+        scope.caste = 'caste';
+        scope.indiaStates = 'indiaStates';
+        scope.sibCountsBindArr = commonFactory.numbersBind('', 0, 10);
+        scope.SibCountObj = {};
+        scope.BroCount = null;
+        scope.SisCount = null;
+        scope.CountryVal = '1';
+        var isSubmit = true;
+
+        var logincustid = authSvc.getCustId();
+        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
+
+        scope.sibblingPopulatePopulate = function(type, item) {
+            isSubmit = true;
+            switch (type) {
+                case 'sibCounrt':
+
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
+                            console.log(response);
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sibling Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                            } else {
+                                console.log(item.NoOfElderBrothers);
+                                scope.SibCountObj.ddlnoofsiblings = item.NoOfBrothers;
+                                scope.SibCountObj.ddlnoofelderrother = item.NoOfElderBrothers;
+                                scope.SibCountObj.ddlnoofyoungerbrother = item.NoOfYoungerBrothers;
+                                scope.SibCountObj.ddlnoofsisters = item.NoOfSisters;
+                                scope.SibCountObj.ddlnoofeldersisters = item.NoOfElderSisters;
+                                scope.SibCountObj.ddlnoofyoungersisters = item.NoOfYoungerSisters;
+                                commonFactory.open('SibblingCountPopup.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('SibblingCountPopup.html', scope, uibModal);
+
+                    }
+                    break;
+
+                case 'brother':
+
+                    if (item !== undefined && scope.BrotherArr.length <= parseInt(scope.BroCount)) {
+                        scope.broObj.SibilingCustfamilyID = null;
+                        scope.broObj = {};
+                        if (item !== undefined) {
+                            sibblingServices.allowblockWebusers(custID).then(function(response) {
+                                console.log(response);
+                                var testArr = JSON.parse(response.data[0]);
+                                console.log(testArr);
+                                if (testArr[0].BranchID !== 342) {
+                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                                } else {
+                                    // scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+
+                                    scope.broObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
+                                    scope.broObj.rdlBElderYounger = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
+                                    scope.broObj.txtBName = item.SibilingName;
+                                    scope.broObj.txtbrotherreducation = item.SibilingEducationDetails;
+                                    scope.broObj.txtbrotherprofession = item.SibilingProfessionDetails;
+                                    scope.broObj.txtBCompanyname = item.SibilingCompany;
+                                    scope.broObj.txtBJoblocation = item.SibilingJobPLace;
+
+                                    scope.broObj.ddlBMObileCountryID = item.SibilingMobileCode;
+                                    scope.broObj.txtBmobilenumber = item.SibilingMobileNumber;
+
+                                    if (item.SibilingLandaraecode !== '' && item.SibilingLandaraecode !== null) {
+                                        scope.broObj.ddlBLandLineCountryID = item.SibilngLandCountryCode;
+                                        scope.broObj.txtBAreCode = item.SibilingLandaraecode;
+                                        scope.broObj.txtBLandNumber = item.SibilingLandNumber;
+                                    } else {
+                                        scope.broObj.ddlBMObileCountryID2 = item.SibilngLandCountryCode;
+                                        scope.broObj.txtBmobilenumber2 = item.SibilingLandNumber;
+
+                                    }
+
+                                    scope.broObj.txtBEmails = item.SibilingEmail;
+                                    scope.broObj.rdlBIsMarried = item.SibilingMarried;
+
+                                    scope.broObj.txtBWifeName = item.SibilingSpouseName;
+                                    scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
+                                    scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
+                                    //scope.broObj.chkboxbrotherwifeprofession = item.;
+                                    scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
+                                    scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
+                                    scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
+
+                                    scope.broObj.ddlBWMobileCode = item.SibilingSpouseMobileCode;
+
+                                    scope.broObj.txtBWifeMobileNumber = item.SibilingSpouceMobileNumber;
+
+                                    if (item.SibilingSpouseLandareCode !== '' && item.SibilingSpouseLandareCode !== null) {
+                                        scope.broObj.ddlBWifeLandLineCountryCode = item.SibilingSpouseLandCode;
+                                        scope.broObj.txtBWifeLandLineAreaCode = item.SibilingSpouseLandareCode;
+                                        scope.broObj.txtBWifeLandLineNumber = item.SibilngSpouseLandnumber;
+                                    } else {
+                                        scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
+                                        scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
+                                    }
+
+                                    scope.broObj.txtwifeEmail = item.SpouseEmail;
+                                    scope.broObj.txtBWifeFatherSurName = item.SFsurname;
+                                    scope.broObj.txtBWWifeFatherName = item.SFname;
+                                    scope.broObj.ddlborherspousefathercaste = item.SibilingSpouseFatherCasteID;
+                                    scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
+                                    scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
+                                    scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
+                                    commonFactory.open('brotherModalContent.html', scope, uibModal);
+
+                                }
+                            });
+                            //  
+                        }
+                    } else if (item === undefined && scope.BrotherArr.length < parseInt(scope.BroCount)) {
+                        scope.broObj.SibilingCustfamilyID = null;
+                        scope.broObj = {};
+                        commonFactory.open('brotherModalContent.html', scope, uibModal);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more brothers', 1500);
+                    }
+
+                    break;
+
+                case 'sister':
+
+                    if (item !== undefined && scope.sisterArr.length <= parseInt(scope.SisCount)) {
+
+                        scope.sisObj.SibilingCustfamilyID = null;
+                        scope.sisObj = {};
+
+                        if (item !== undefined) {
+                            sibblingServices.allowblockWebusers(custID).then(function(response) {
+
+                                var testArr = JSON.parse(response.data[0]);
+                                console.log(testArr);
+                                if (testArr[0].BranchID !== 342) {
+                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+
+                                } else {
+                                    // scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
+
+                                    scope.sisObj.SibilingCustfamilyID = item.SibilingCustfamilyID;
+                                    scope.sisObj.rbtSElderyounger = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
+                                    scope.sisObj.txtSisterName = item.SibilingName;
+                                    scope.sisObj.txtsisEducation = item.SibilingEducationDetails;
+                                    scope.sisObj.txtsisProfession = item.SibilingProfessionDetails;
+                                    scope.sisObj.chksisProfession = item.SibilingProfessionDetails === 'HouseWife' ? true : false;
+                                    scope.sisObj.txtSCompanyName = item.SibilingCompany;
+                                    scope.sisObj.txtSjobloc = item.SibilingJobPLace;
+
+                                    scope.sisObj.ddlSMobileCountyCodeID = item.SibilingMobileCode;
+                                    scope.sisObj.txtSMobileNumber = item.SibilingMobileNumber;
+
+
+                                    if (item.SibilingLandaraecode !== '' && item.SibilingLandaraecode !== null) {
+                                        scope.sisObj.ddlSLandLineCountryCodeID = item.SibilngLandCountryCode;
+                                        scope.sisObj.txtSAreacoude = item.SibilingLandaraecode;
+                                        scope.sisObj.txtSNumber = item.SibilingLandNumber;
+                                    } else {
+                                        scope.sisObj.ddlSMobileCountyCodeID2 = item.SibilngLandCountryCode;
+                                        scope.sisObj.txtSMobileNumber2 = item.SibilingLandNumber;
+
+                                    }
+
+                                    scope.sisObj.txtSEmails = item.SibilingEmail;
+                                    scope.sisObj.rdlSIsMarried = item.SibilingMarried;
+
+
+
+                                    scope.sisObj.txtShusName = item.SibilingName;
+                                    scope.sisObj.txtHusbandEducation = item.SibilingSpouseEducationDetails;
+                                    scope.sisObj.txtHusbandProfession = item.SibilingSpouseProfessionDetails;
+                                    scope.sisObj.txtShusCompanyName = item.spoucecompanyName;
+                                    scope.sisObj.txtShusjobloc = item.spoucejobloc;
+
+                                    scope.sisObj.ddlSHusMobileCountryID = item.sisterspousemobilecode;
+                                    scope.sisObj.txtSHusMobileNumber = item.SibilingSpouceMobileNumber;
+
+                                    if (item.SibilingSpouseLandareCode !== '' && item.SibilingSpouseLandareCode !== null) {
+                                        scope.sisObj.ddlSHusLandCountryID = item.SpousesisterLandCode;
+                                        scope.sisObj.txtSHusLandNumber = item.SibilngSpouseLandnumber;
+                                        scope.sisObj.txtSHusLandArea = item.SibilingSpouseLandareCode;
+                                    } else {
+                                        scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
+                                        scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
+
+                                    }
+
+                                    scope.sisObj.txtHusbandEmail = item.SpouseEmail;
+                                    scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
+                                    scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
+                                    scope.sisObj.ddlsisterspusefathercaste = item.SibilingSpouseFatherCasteId;
+                                    scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
+                                    scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
+                                    scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
+                                    commonFactory.open('sisterModalContent.html', scope, uibModal);
+                                }
+                            });
+
+                        }
+                    } else if (item === undefined && scope.sisterArr.length < parseInt(scope.SisCount)) {
+
+                        scope.sisObj.SibilingCustfamilyID = null;
+                        scope.sisObj = {};
+                        commonFactory.open('sisterModalContent.html', scope, uibModal);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Cannot add more sisters', 1500);
+
+                        break;
+                    }
+            }
+
+        };
+
+
+        scope.sibPageload = function(icustID) {
+
+            sibblingServices.getSibblingeData(icustID).then(function(response) {
+                scope.sibblingCountArr = JSON.parse(response.data[0]);
+                scope.BrotherArr = JSON.parse(response.data[1]);
+                scope.sisterArr = JSON.parse(response.data[2]);
+                console.log(scope.BrotherArr);
+                console.log(scope.sisterArr);
+                scope.BroCount = scope.sibblingCountArr[0].NoOfBrothers;
+                scope.SisCount = scope.sibblingCountArr[0].NoOfSisters;
+            });
+
+        };
+        scope.sibPageload(custID);
+
+        scope.sibBroSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.sibBroData = {
+                    GetDetails: {
+                        CustID: custID,
+                        BroName: obj.txtBName,
+                        BroElderYounger: obj.rdlBElderYounger,
+                        BroEducationcategory: null,
+                        BroEducationgroup: null,
+                        BroEducationspecialization: null,
+                        BroEmployedin: null,
+                        BroProfessiongroup: null,
+                        BroProfession: null,
+                        BroCompanyName: obj.txtBCompanyname,
+                        BroJobLocation: obj.txtBJoblocation,
+                        BroMobileCountryCodeID: obj.ddlBMObileCountryID,
+                        BroMobileNumber: obj.txtBmobilenumber,
+                        BroLandCountryCodeID: commonFactory.checkvals(obj.ddlBMObileCountryID2) ? obj.ddlBMObileCountryID2 : (commonFactory.checkvals(obj.ddlBLandLineCountryID) ? obj.ddlBLandLineCountryID : null),
+                        BroLandAreaCode: commonFactory.checkvals(obj.txtBmobilenumber2) ? null : (obj.txtBAreCode !== '' && obj.txtBAreCode !== null ? obj.txtBAreCode : null),
+                        BroLandNumber: commonFactory.checkvals(obj.txtBmobilenumber2) ? obj.txtBmobilenumber2 : (commonFactory.checkvals(obj.txtBLandNumber) ? obj.txtBLandNumber : null),
+                        BroEmail: obj.txtBEmails,
+                        BIsMarried: obj.rdlBIsMarried,
+                        BroWifeName: obj.txtBWifeName,
+                        BroWifeEducationcategory: null,
+                        BroWifeEducationgroup: null,
+                        BroWifeEducationspecialization: null,
+                        BroWifeEmployedin: null,
+                        BroWifeProfessiongroup: null,
+                        BroWifeProfession: null,
+                        BroWifeCompanyName: obj.txtBWifeCompanyName,
+                        BroWifeJobLocation: obj.txtBwifeJoblocation,
+                        BroWifeMobileCountryCodeID: obj.ddlBWMobileCode,
+                        BroWifeMobileNumber: obj.txtBWifeMobileNumber,
+                        BroWifeLandCountryCodeID: commonFactory.checkvals(obj.ddlBWMobileCode2) ? obj.ddlBWMobileCode2 : commonFactory.checkvals(obj.ddlBWifeLandLineCountryCode) ? obj.ddlBWifeLandLineCountryCode : null,
+                        BroWifeLandAreacode: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? null : commonFactory.checkvals(obj.txtBWifeLandLineAreaCode) ? obj.txtBWifeLandLineAreaCode : null,
+                        BroWifeLandNumber: commonFactory.checkvals(obj.txtBWifeMobileNumber2) ? obj.txtBWifeMobileNumber2 : commonFactory.checkvals(obj.txtBWifeLandLineNumber) ? obj.txtBWifeLandLineNumber : null,
+                        BroWifeFatherSurName: obj.txtBWifeFatherSurName,
+                        BroWifeFatherName: obj.txtBWWifeFatherName,
+                        BroSibilingCustfamilyID: scope.broObj.SibilingCustfamilyID,
+                        BroEducationDetails: obj.txtbrotherreducation,
+                        BrowifeEducationDetails: obj.txtbrotherwifeeducation,
+                        BroProfessionDetails: obj.txtbrotherprofession,
+                        BroWifeProfessionDetails: obj.txtbrotherwifeprofession,
+                        BroSpouseFatherCountryID: '1',
+                        BroSpouseFatherStateID: obj.ddlBroSpousefatherState,
+                        BroSpouseFatherDitrictID: obj.ddlBroSpousefatherDistrict,
+                        BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
+                        BrotherSpouseEmail: obj.txtwifeEmail,
+                        SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
+
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+
+                scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
@@ -2609,74 +2662,232 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
                     }
                 });
-            } else {
-
-                alert('Please enter Correct Sibling count');
             }
 
-        }
+        };
+
+        scope.sibSisSubmit = function(obj) {
+
+            if (isSubmit) {
+                isSubmit = false;
+                scope.sibSisData = {
+                    GetDetails: {
+                        CustID: custID,
+                        SisName: obj.txtSisterName,
+                        SisElderYounger: obj.rbtSElderyounger,
+                        SisEducationcategory: null,
+                        SisEducationgroup: null,
+                        SisEducationspecialization: null,
+                        SisEmployedin: null,
+                        SisProfessiongroup: null,
+                        SisProfession: null,
+                        SisCompanyName: obj.txtSCompanyName,
+                        SisJobLocation: obj.txtSjobloc,
+                        SisMobileCountryCodeID: obj.ddlSMobileCountyCodeID,
+                        SisMobileNumber: obj.txtSMobileNumber,
+                        SisLandCountryCodeID: commonFactory.checkvals(obj.ddlSMobileCountyCodeID2) ? obj.ddlSMobileCountyCodeID2 : commonFactory.checkvals(obj.ddlSLandLineCountryCodeID) ? obj.ddlSLandLineCountryCodeID : null,
+                        SisLandAreaCode: commonFactory.checkvals(obj.txtSMobileNumber2) ? null : commonFactory.checkvals(obj.txtSAreacoude) ? obj.txtSAreacoude : null,
+                        SisLandNumber: commonFactory.checkvals(obj.txtSMobileNumber2) ? obj.txtSMobileNumber2 : commonFactory.checkvals(obj.txtSNumber) ? obj.txtSNumber : null,
+                        SisEmail: obj.txtSEmails,
+                        SIsMarried: obj.rdlSIsMarried,
+                        SisHusbandName: obj.txtShusName,
+                        SisHusbandEducationcategory: null,
+                        SisHusbandEducationgroup: null,
+                        SisHusbandEducationspecialization: null,
+                        SisHusbandEmployedin: null,
+                        SisHusbandProfessiongroup: null,
+                        SisHusbandProfession: null,
+                        SisHusCompanyName: obj.txtShusCompanyName,
+                        SisHusJobLocation: obj.txtShusjobloc,
+                        SisHusbandMobileCountryCodeID: obj.ddlSHusMobileCountryID,
+                        SisHusbandMobileNumber: obj.txtSHusMobileNumber,
+                        SisHusbandLandCountryCodeID: commonFactory.checkvals(obj.ddlSHusMobileCountryID2) ? obj.ddlSHusMobileCountryID2 : commonFactory.checkvals(obj.ddlSHusLandCountryID) ? obj.ddlSHusLandCountryID : null,
+                        SisHusbandLandAreacode: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? null : commonFactory.checkvals(obj.txtSHusLandArea) ? obj.txtSHusLandArea : null,
+                        SisHusbandLandNumber: commonFactory.checkvals(obj.txtSHusMobileNumber2) ? obj.txtSHusMobileNumber2 : commonFactory.checkvals(obj.txtSHusLandNumber) ? obj.txtSHusLandNumber : null,
+                        SisHusbandFatherSurName: obj.txtHusbandFatherSurName,
+                        SisHusbandFatherName: obj.txtHusbandFatherName,
+                        SisSibilingCustfamilyID: scope.sisObj.SibilingCustfamilyID,
+                        siseducationdetails: obj.txtsisEducation,
+                        sisprofessiondetails: obj.txtsisProfession,
+                        sisspouseeducationdetails: obj.txtHusbandEducation,
+                        sisspouseprofessiondetails: obj.txtHusbandProfession,
+                        SisSpouseFatherCountryID: '1',
+                        SisSpouseFatherStateID: obj.ddlSisSpouceFatherState,
+                        SisSpouseFatherDitrictID: obj.ddlSisSpouceFatherDistrict,
+                        SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
+                        SisSpouseEmail: obj.txtHusbandEmail,
+                        SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
+
+                    },
+                    customerpersonaldetails: {
+                        intCusID: custID,
+                        EmpID: null,
+                        Admin: null
+                    }
+                };
+                scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+
+                        scope.sibPageload(custID);
+
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
+            }
+
+        };
+
+        scope.changeBind = function(type, parentval) {
+            switch (type) {
+                case 'State':
+                    scope.brodistrictArr = commonFactory.districtBind(parentval);
+                    break;
+                case 'sisState':
+                    scope.sisdistrictArr = commonFactory.districtBind(parentval);
+                    break;
+            }
+
+        };
+
+        scope.cancel = function() {
+            commonFactory.closepopup();
+        };
+
+        scope.ShousewiseChk = function(item) {
+            if (item.chksisProfession === true) {
+                item.txtsisProfession = 'HouseWife';
+            } else {
+                item.txtsisProfession = '';
+            }
+        };
+
+        scope.BhousewiseChk = function(item) {
+            if (item.chkboxbrotherwifeprofession === true) {
+                item.txtbrotherwifeprofession = 'HouseWife';
+            } else {
+                item.txtbrotherwifeprofession = '';
+            }
+        };
+
+        scope.checkVal = function(val) {
+            return (val !== '' && val !== undefined) ? val : 0;
+
+        };
+        scope.sibblingCountsSubmit = function(obj) {
 
 
-    };
-
-    scope.BIsMarried = function(val) {
-        if (val == '0') {
-            scope.broObj.txtBWifeName = '';
-            scope.broObj.txtbrotherwifeeducation = '';
-            scope.broObj.txtbrotherwifeprofession = '';
-            scope.broObj.chkboxbrotherwifeprofession = '';
-            scope.broObj.txtBWifeCompanyName = '';
-            scope.broObj.txtBwifeJoblocation = '';
-            scope.broObj.ddlBWMobileCode = '';
-            scope.broObj.txtBWifeMobileNumber = '';
-            scope.broObj.ddlBWifeLandLineCountryCode = '';
-            scope.broObj.txtBWifeLandLineAreaCode = '';
-            scope.broObj.txtBWifeLandLineNumber = '';
-            scope.broObj.ddlBWMobileCode2 = '';
-            scope.broObj.txtBWifeMobileNumber2 = '';
-            scope.broObj.txtwifeEmail = '';
-            scope.broObj.txtBWifeFatherSurName = '';
-            scope.broObj.txtBWWifeFatherName = '';
-            scope.broObj.ddlborherspousefathercaste = '';
-            scope.broObj.ddlBroSpousefatherState = '';
-            scope.broObj.ddlBroSpousefatherDistrict = '';
-            scope.broObj.txtBroSpousefatherCity = '';
-        }
-    };
-
-    scope.SIsMarried = function(val) {
-        if (val == '0') {
-            scope.sisObj.txtShusName = '';
-            scope.sisObj.txtHusbandEducation = '';
-            scope.sisObj.txtHusbandProfession = '';
-            scope.sisObj.txtShusCompanyName = '';
-            scope.sisObj.txtShusjobloc = '';
-            scope.sisObj.ddlSHusMobileCountryID = '';
-            scope.sisObj.txtSHusMobileNumber = '';
-            scope.sisObj.ddlSHusLandCountryID = '';
-            scope.sisObj.txtSHusLandNumber = '';
-            scope.sisObj.txtSHusLandArea = '';
-            scope.sisObj.ddlSHusMobileCountryID2 = '';
-            scope.sisObj.txtSHusMobileNumber2 = '';
-            scope.sisObj.txtHusbandEmail = '';
-            scope.sisObj.txtHusbandFatherSurName = '';
-            scope.sisObj.txtHusbandFatherName = '';
-            scope.sisObj.ddlsisterspusefathercaste = '';
-            scope.sisObj.ddlSisSpouceFatherState = '';
-            scope.sisObj.ddlSisSpouceFatherDistrict = '';
-            scope.sisObj.txtSisSpouceFatherCity = '';
-        }
-    };
-
-    scope.enableSubmit = function() {
-        isSubmit = true;
+            if (isSubmit) {
+                isSubmit = false;
 
 
-    };
+                var totalnofBrothers = parseInt(scope.checkVal(obj.ddlnoofsiblings));
+                var elderBrotherCount = parseInt(scope.checkVal(obj.ddlnoofelderrother));
+                var youngerBrotherCount = parseInt(scope.checkVal(obj.ddlnoofyoungerbrother));
+
+                var totalnoFSister = parseInt(scope.checkVal(obj.ddlnoofsisters));
+                var elderSisterCount = parseInt(scope.checkVal(obj.ddlnoofeldersisters));
+                var youngerSisterCount = parseInt(scope.checkVal(obj.ddlnoofyoungersisters));
+
+                if ((totalnofBrothers === 0 || totalnofBrothers === (elderBrotherCount + youngerBrotherCount)) && (totalnoFSister === 0 || totalnoFSister === (elderSisterCount + youngerSisterCount))) {
+
+                    var objinput = {
+                        CustID: custID,
+                        NoOfBrothers: obj.ddlnoofsiblings,
+                        NoOfSisters: obj.ddlnoofsisters,
+                        NoOfYoungerBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofyoungerbrother,
+                        NoOfElderBrothers: totalnofBrothers === 0 ? '0' : obj.ddlnoofelderrother,
+                        NoOfElderSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofeldersisters,
+                        NoOfYoungerSisters: totalnoFSister === 0 ? '0' : obj.ddlnoofyoungersisters
+                    };
+
+                    scope.BroCount = obj.ddlnoofsiblings;
+                    scope.SisCount = obj.ddlnoofsisters;
+
+                    scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
+                        console.log(response);
+                        commonFactory.closepopup();
+                        if (response.data === 1) {
+
+                            scope.sibPageload(custID);
+
+                            scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                        } else {
+                            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                        }
+                    });
+                } else {
+
+                    alert('Please enter Correct Sibling count');
+                }
+
+            }
+
+
+        };
+
+        scope.BIsMarried = function(val) {
+            if (val == '0') {
+                scope.broObj.txtBWifeName = '';
+                scope.broObj.txtbrotherwifeeducation = '';
+                scope.broObj.txtbrotherwifeprofession = '';
+                scope.broObj.chkboxbrotherwifeprofession = '';
+                scope.broObj.txtBWifeCompanyName = '';
+                scope.broObj.txtBwifeJoblocation = '';
+                scope.broObj.ddlBWMobileCode = '';
+                scope.broObj.txtBWifeMobileNumber = '';
+                scope.broObj.ddlBWifeLandLineCountryCode = '';
+                scope.broObj.txtBWifeLandLineAreaCode = '';
+                scope.broObj.txtBWifeLandLineNumber = '';
+                scope.broObj.ddlBWMobileCode2 = '';
+                scope.broObj.txtBWifeMobileNumber2 = '';
+                scope.broObj.txtwifeEmail = '';
+                scope.broObj.txtBWifeFatherSurName = '';
+                scope.broObj.txtBWWifeFatherName = '';
+                scope.broObj.ddlborherspousefathercaste = '';
+                scope.broObj.ddlBroSpousefatherState = '';
+                scope.broObj.ddlBroSpousefatherDistrict = '';
+                scope.broObj.txtBroSpousefatherCity = '';
+            }
+        };
+
+        scope.SIsMarried = function(val) {
+            if (val == '0') {
+                scope.sisObj.txtShusName = '';
+                scope.sisObj.txtHusbandEducation = '';
+                scope.sisObj.txtHusbandProfession = '';
+                scope.sisObj.txtShusCompanyName = '';
+                scope.sisObj.txtShusjobloc = '';
+                scope.sisObj.ddlSHusMobileCountryID = '';
+                scope.sisObj.txtSHusMobileNumber = '';
+                scope.sisObj.ddlSHusLandCountryID = '';
+                scope.sisObj.txtSHusLandNumber = '';
+                scope.sisObj.txtSHusLandArea = '';
+                scope.sisObj.ddlSHusMobileCountryID2 = '';
+                scope.sisObj.txtSHusMobileNumber2 = '';
+                scope.sisObj.txtHusbandEmail = '';
+                scope.sisObj.txtHusbandFatherSurName = '';
+                scope.sisObj.txtHusbandFatherName = '';
+                scope.sisObj.ddlsisterspusefathercaste = '';
+                scope.sisObj.ddlSisSpouceFatherState = '';
+                scope.sisObj.ddlSisSpouceFatherDistrict = '';
+                scope.sisObj.txtSisSpouceFatherCity = '';
+            }
+        };
+
+        scope.enableSubmit = function() {
+            isSubmit = true;
+
+
+        };
 
 
 
-}]);
+    }
+]);
 
 editviewapp.controller("editSideMenuCtrl", function () {
 
@@ -3028,7 +3239,6 @@ editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, 
 }]);
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
     var modalpopupopen;
-
     return {
         open: function(url, scope, uibModal, size) {
             modalpopupopen = uibModal.open({
@@ -3519,6 +3729,7 @@ editviewapp.filter('myFilter', ['$filter', function(filter) {
     };
 
 }]);
+
 editviewapp.factory('astroServices', ['$http', function(http) {
     return {
         getAstroData: function(obj) {
@@ -3532,7 +3743,12 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
         generateHoroscope: function(obj) {
             return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear, CityID: obj.CityID } });
+        },
+
+        GenerateHoroS3: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getAstroGenerationS3Update', { params: { Path: JSON.stringify(obj.Path), KeyName: JSON.stringify(obj.KeyName) } });
         }
+
     };
 }]);
 (function() {
@@ -3779,7 +3995,19 @@ editviewapp.factory('sibblingServices', ['$http', function(http) {
         },
         submitSibCountsData: function(obj1) {
             return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/UpdateSibblingCounts', JSON.stringify(obj1));
-        }
+        },
+        allowblockWebusers: function(custid) {
+
+            return http.get(editviewapp.apipath + 'StaticPages/getRegisteredBranchStatus', { params: { StrCustID: custid } });
+        },
+        // allowblockWebuserstuefalse: function(obj, Pagename) {
+        //     if (obj[0].BranchID !== 342) {
+        //         //alerts.timeoutoldalerts(scope, 'alert-danger', 'To edit < b style = color: maroon > ' + Pagename + ' < /b>, please contact your relationship manager  ' + obj.FirstName + obj.OfficialContactNumber, 2500);
+        //         return false;
+        //     } else {
+        //         return true;
+        //     }
+        // }
     };
 }]);
 angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache) {
@@ -4561,6 +4789,26 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "        </div>\r" +
     "\n" +
     "    </div>\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"RefreshPopup.html\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"modal-body clearfix\" id=\"modal-body\">\r" +
+    "\n" +
+    "        <button ng-click=\"generatedhoroS3Upload();\" class=\"btn btn-success center-block\">Refresh Page<span class=\"fa fa-refresh\"></span></button>&nbsp;&nbsp;\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "</script>\r" +
     "\n" +
@@ -13763,7 +14011,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            </a>\r" +
     "\n" +
-    "            <h4 class=\"modal-title \">\r" +
+    "            <h4 class=\"modal-title\">\r" +
     "\n" +
     "                <center>Alert</center>\r" +
     "\n" +
@@ -13773,11 +14021,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "    <div class=\"modal-body \" id=\"modalbodyID \">\r" +
+    "    <div class=\"modal-body\" id=\"modalbodyID\">\r" +
     "\n" +
     "        <p>\r" +
     "\n" +
-    "            <label style=\"color:blue;\">{{msgs}}</label>\r" +
+    "            <label style=\"color:blue;\" ng-bind-html=\"msgs\"></label>\r" +
     "\n" +
     "        </p>\r" +
     "\n" +
@@ -13785,7 +14033,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    <div class=\"modal-footer \">\r" +
     "\n" +
-    "        <button type=\"button \" class=\"btn btn-default \" ng-click=\"close(); \">Close</button>\r" +
+    "        <button type=\"button\" class=\"btn btn-default\" ng-click=\"close();\">Close</button>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +

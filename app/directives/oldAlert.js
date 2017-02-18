@@ -1,6 +1,6 @@
-editviewapp.directive("alertDirective", ['commonFactory', '$uibModal', '$timeout',
+editviewapp.directive("alertDirective", ['commonFactory', '$uibModal', '$timeout', '$sce',
 
-    function(commonFactory, uibModal, timeout) {
+    function(commonFactory, uibModal, timeout, $sce) {
         var modalinstance;
         return {
             restrict: "E",
@@ -9,7 +9,7 @@ editviewapp.directive("alertDirective", ['commonFactory', '$uibModal', '$timeout
 
                 scope.$on('showAlertPopupccc', function(event, cls, msg, time) {
                     scope.typecls = cls;
-                    scope.msgs = msg;
+                    scope.msgs = $sce.trustAsHtml(msg);
                     modalinstance = uibModal.open({
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',

@@ -1,6 +1,6 @@
 editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
-    'commonFactory', '$mdDialog', 'authSvc', 'route',
-    function(uibModal, scope, parentServices, commonFactory, mdDialog, authSvc, route) {
+    'commonFactory', '$mdDialog', 'authSvc', 'route', 'sibblingServices',
+    function(uibModal, scope, parentServices, commonFactory, mdDialog, authSvc, route, sibblingServices) {
         scope.indiaStates = 'indiaStates';
         scope.Country = 'Country';
         scope.parent = {};
@@ -77,147 +77,194 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.parent = {};
 
                     if (item !== undefined) {
-                        scope.parent = [];
-                        // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
-                        // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.parent.cust_id = item.cust_id;
-                        scope.parent.FatherCust_family_id = item.FatherCust_family_id;
-                        scope.parent.MotherCust_family_id = item.MotherCust_family_id;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
-                        scope.parent.txtFathername = item.FatherName;
-                        scope.parent.txtFEducation = item.FatherEducationDetails;
-                        scope.parent.txtFProfession = item.FatherProfDetails;
-                        scope.parent.txtCompany = item.FathercompanyName;
-                        scope.parent.txtJobLocation = item.FatherJoblocation;
+                            } else {
+                                scope.parent = [];
+                                // scope.fDistrictArr = commonFactory.districtBind(item.FatherStateID);
+                                // scope.mDistrictArr = commonFactory.districtBind(item.motherStateID);
 
-                        scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
-                        scope.parent.txtMobile = item.FathermobilenumberID;
+                                scope.parent.cust_id = item.cust_id;
+                                scope.parent.FatherCust_family_id = item.FatherCust_family_id;
+                                scope.parent.MotherCust_family_id = item.MotherCust_family_id;
 
-                        if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
-                            scope.parent.ddlLandLineCountry = item.FatherLandCountryCodeId;
-                            scope.parent.txtAreCode = item.FatherLandAreaCodeId;
-                            scope.parent.txtLandNumber = item.FatherLandNumberID;
-                        } else {
-                            scope.parent.ddlfathermobile2 = item.FatherLandCountryCodeId;
-                            scope.parent.txtfathermobile2 = item.FatherLandNumberID;
-                        }
+                                scope.parent.txtFathername = item.FatherName;
+                                scope.parent.txtFEducation = item.FatherEducationDetails;
+                                scope.parent.txtFProfession = item.FatherProfDetails;
+                                scope.parent.txtCompany = item.FathercompanyName;
+                                scope.parent.txtJobLocation = item.FatherJoblocation;
 
-                        scope.parent.txtEmail = item.FatherEmail;
-                        scope.parent.txtFatherFname = item.FatherFathername;
+                                scope.parent.ddlMobile = item.FatherMobileCountryCodeId;
+                                scope.parent.txtMobile = item.FathermobilenumberID;
 
-                        scope.parent.ddlFatherfatherMobileCountryCode = item.FatherfatherMobileCountryID;
-                        scope.parent.txtMobileFatherfather = item.FatherFatherMobileNumber;
+                                if (commonFactory.checkvals(item.FatherLandAreaCodeId)) {
+                                    scope.parent.ddlLandLineCountry = item.FatherLandCountryCodeId;
+                                    scope.parent.txtAreCode = item.FatherLandAreaCodeId;
+                                    scope.parent.txtLandNumber = item.FatherLandNumberID;
+                                } else {
+                                    scope.parent.ddlfathermobile2 = item.FatherLandCountryCodeId;
+                                    scope.parent.txtfathermobile2 = item.FatherLandNumberID;
+                                }
 
-                        if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
-                            scope.parent.ddlFatherFatherLandLineCode = item.FatherfatherLandCountryCodeID;
-                            scope.parent.txtGrandFatherArea = item.FatherFatherLandAreaCode;
-                            scope.parent.txtGrandFatherLandLinenum = item.FatherFatherLandNumber;
-                        } else {
-                            scope.parent.ddlfatherfatherAlternative = item.FatherfatherMobileCountrycode1;
-                            scope.parent.txtfatherfatherAlternative = item.FatherFatherLandNumber;
-                        }
+                                scope.parent.txtEmail = item.FatherEmail;
+                                scope.parent.txtFatherFname = item.FatherFathername;
 
-                        scope.parent.ddlFState = item.FatherStateID;
-                        scope.parent.ddlFDistric = item.FatherDistrictID;
-                        scope.parent.txtFNativePlace = item.FatherNativeplace;
-                        scope.parent.txtMName = item.MotherName;
-                        scope.parent.txtMEducation = item.MotherEducationDetails;
-                        scope.parent.txtMProfession = item.MotherProfedetails;
-                        scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
-                        scope.parent.txtMCompanyName = item.MothercompanyName;
-                        scope.parent.txtMJobLocation = item.MotherJoblocation;
+                                scope.parent.ddlFatherfatherMobileCountryCode = item.FatherfatherMobileCountryID;
+                                scope.parent.txtMobileFatherfather = item.FatherFatherMobileNumber;
 
-                        scope.parent.ddlMMobileCounCodeID = item.MotherMobileCountryCodeId;
-                        scope.parent.txtMMobileNum = item.MotherMobilenumberID;
+                                if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
+                                    scope.parent.ddlFatherFatherLandLineCode = item.FatherfatherLandCountryCodeID;
+                                    scope.parent.txtGrandFatherArea = item.FatherFatherLandAreaCode;
+                                    scope.parent.txtGrandFatherLandLinenum = item.FatherFatherLandNumber;
+                                } else {
+                                    scope.parent.ddlfatherfatherAlternative = item.FatherfatherMobileCountrycode1;
+                                    scope.parent.txtfatherfatherAlternative = item.FatherFatherLandNumber;
+                                }
 
-                        if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
-                            scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
-                            scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
-                            scope.parent.txtMLandLineNum = item.MotherLandNumberID;
-                        } else {
-                            scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
-                            scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
+                                scope.parent.ddlFState = item.FatherStateID;
+                                scope.parent.ddlFDistric = item.FatherDistrictID;
+                                scope.parent.txtFNativePlace = item.FatherNativeplace;
+                                scope.parent.txtMName = item.MotherName;
+                                scope.parent.txtMEducation = item.MotherEducationDetails;
+                                scope.parent.txtMProfession = item.MotherProfedetails;
+                                scope.parent.chkbox = item.MotherProfedetails == 'HouseWife' ? true : false;
+                                scope.parent.txtMCompanyName = item.MothercompanyName;
+                                scope.parent.txtMJobLocation = item.MotherJoblocation;
 
-                        }
+                                scope.parent.ddlMMobileCounCodeID = item.MotherMobileCountryCodeId;
+                                scope.parent.txtMMobileNum = item.MotherMobilenumberID;
 
-                        scope.parent.txtMEmail = item.MotherEmail;
-                        scope.parent.txtMFatherFname = item.MotherFatherName;
-                        scope.parent.txtMFatherLname = item.MotherFatherLastName;
+                                if (commonFactory.checkvals(item.MotherLandAreaCodeId)) {
+                                    scope.parent.ddlMLandLineCounCode = item.MotherLandCountryCodeId;
+                                    scope.parent.txtmAreaCode = item.MotherLandAreaCodeId;
+                                    scope.parent.txtMLandLineNum = item.MotherLandNumberID;
+                                } else {
+                                    scope.parent.ddlMMobileCounCodeID2 = item.MotherMobileCountryCodeId;
+                                    scope.parent.txtMMobileNum2 = item.MotherLandNumberID;
 
-                        scope.parent.ddlMotherfatheMobileCountryCode = item.MotherfatherMobileCountryID;
-                        scope.parent.txtMotherfatheMobilenumber = item.MotherFatherMobileNumber;
+                                }
 
-                        if (commonFactory.checkvals(item.MotherFatherLandAreaCode)) {
-                            scope.parent.ddlMotherFatherLandLineCode = item.motherfatherLandCountryID;
-                            scope.parent.txtMotherFatherLandLineareacode = item.MotherFatherLandAreaCode;
-                            scope.parent.txtMotherFatherLandLinenum = item.MotherFatherLandNumber;
-                        } else {
-                            scope.parent.ddlmotherfatheralternative = item.MotherfatherMobileCountryID1;
-                            scope.parent.txtmotherfatheralternative = item.MotherFatherLandNumber;
-                        }
-                        scope.parent.ddlMState = item.motherStateID;
-                        scope.parent.ddlMDistrict = item.motherDistricID;
-                        scope.parent.txtMNativePlace = item.MotherNativeplace;
-                        scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
-                        scope.parent.ddlFatherCaste = item.FatherCasteID;
-                        scope.parent.ddlMotherCaste = item.MotherCasteID;
+                                scope.parent.txtMEmail = item.MotherEmail;
+                                scope.parent.txtMFatherFname = item.MotherFatherName;
+                                scope.parent.txtMFatherLname = item.MotherFatherLastName;
+
+                                scope.parent.ddlMotherfatheMobileCountryCode = item.MotherfatherMobileCountryID;
+                                scope.parent.txtMotherfatheMobilenumber = item.MotherFatherMobileNumber;
+
+                                if (commonFactory.checkvals(item.MotherFatherLandAreaCode)) {
+                                    scope.parent.ddlMotherFatherLandLineCode = item.motherfatherLandCountryID;
+                                    scope.parent.txtMotherFatherLandLineareacode = item.MotherFatherLandAreaCode;
+                                    scope.parent.txtMotherFatherLandLinenum = item.MotherFatherLandNumber;
+                                } else {
+                                    scope.parent.ddlmotherfatheralternative = item.MotherfatherMobileCountryID1;
+                                    scope.parent.txtmotherfatheralternative = item.MotherFatherLandNumber;
+                                }
+                                scope.parent.ddlMState = item.motherStateID;
+                                scope.parent.ddlMDistrict = item.motherDistricID;
+                                scope.parent.txtMNativePlace = item.MotherNativeplace;
+                                scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
+                                scope.parent.ddlFatherCaste = item.FatherCasteID;
+                                scope.parent.ddlMotherCaste = item.MotherCasteID;
+                                commonFactory.open('parentModalContent.html', scope, uibModal);
+
+                            }
+                        });
+                    } else {
+                        commonFactory.open('parentModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('parentModalContent.html', scope, uibModal);
-
                     break;
 
                 case "Address":
                     scope.AdrrObj.Cust_Family_ID = null;
                     scope.AdrrObj = {};
                     if (item !== undefined) {
-                        // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
-                        // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.AdrrObj.Cust_ID = item.Cust_ID;
-                        scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
-                        scope.AdrrObj.txtHouse_flat = item.FlatNumber;
-                        scope.AdrrObj.txtApartmentName = item.ApartmentName;
-                        scope.AdrrObj.txtStreetName = item.StreetName;
-                        scope.AdrrObj.txtAreaName = item.AreaName;
-                        scope.AdrrObj.txtLandmark = item.LandMark;
-                        scope.AdrrObj.ddlCountryContact = item.ParentCountryId;
-                        scope.AdrrObj.ddlStateContact = item.ParentStateid;
-                        scope.AdrrObj.ddlDistricContact = item.ParentDistrictId;
-                        scope.AdrrObj.txtCity = item.CityName;
-                        scope.AdrrObj.txtZip_no = item.Zip;
+                            } else {
+                                // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
+                                // scope.districtArr = commonFactory.districtBind(item.ParentStateid);
 
+                                scope.AdrrObj.Cust_ID = item.Cust_ID;
+                                scope.AdrrObj.Cust_Family_ID = item.Cust_Family_ID;
+
+                                scope.AdrrObj.txtHouse_flat = item.FlatNumber;
+                                scope.AdrrObj.txtApartmentName = item.ApartmentName;
+                                scope.AdrrObj.txtStreetName = item.StreetName;
+                                scope.AdrrObj.txtAreaName = item.AreaName;
+                                scope.AdrrObj.txtLandmark = item.LandMark;
+                                scope.AdrrObj.ddlCountryContact = item.ParentCountryId;
+                                scope.AdrrObj.ddlStateContact = item.ParentStateid;
+                                scope.AdrrObj.ddlDistricContact = item.ParentDistrictId;
+                                scope.AdrrObj.txtCity = item.CityName;
+                                scope.AdrrObj.txtZip_no = item.Zip;
+                                commonFactory.open('AddressModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('AddressModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('AddressModalContent.html', scope, uibModal);
+
                     break;
 
                 case "physicalAttributes":
                     scope.physicalObj = {};
+
                     if (item !== undefined) {
-                        scope.physicalObj.Cust_ID = item.Cust_ID;
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                        scope.physicalObj.rbtlDiet = item.DietID;
-                        scope.physicalObj.rbtlDrink = item.DrinkID;
-                        scope.physicalObj.rbtlSmoke = item.SmokeID;
-                        scope.physicalObj.ddlBodyType = item.BodyTypeID;
-                        scope.physicalObj.txtBWKgs = item.BodyWeight;
-                        //scope.physicalObj.txtlbs = item.;
-                        scope.physicalObj.ddlBloodGroup = item.BloodGroupID;
-                        scope.physicalObj.ddlHealthConditions = item.HealthConditionID;
-                        scope.physicalObj.txtHealthCondition = item.HealthConditionDescription;
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
+                            } else {
+                                scope.physicalObj.Cust_ID = item.Cust_ID;
+
+                                scope.physicalObj.rbtlDiet = item.DietID;
+                                scope.physicalObj.rbtlDrink = item.DrinkID;
+                                scope.physicalObj.rbtlSmoke = item.SmokeID;
+                                scope.physicalObj.ddlBodyType = item.BodyTypeID;
+                                scope.physicalObj.txtBWKgs = item.BodyWeight;
+                                //scope.physicalObj.txtlbs = item.;
+                                scope.physicalObj.ddlBloodGroup = item.BloodGroupID;
+                                scope.physicalObj.ddlHealthConditions = item.HealthConditionID;
+                                scope.physicalObj.txtHealthCondition = item.HealthConditionDescription;
+                                commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
+
+                            }
+                        });
+                    } else {
+                        commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
                     }
-                    commonFactory.open('PhysicalAttributeModalContent.html', scope, uibModal);
 
                     break;
 
                 case "AboutFamily":
-                    if (item !== undefined) {
-                        scope.aboutFamilyObj.txtAboutUs = item;
-                    }
-                    commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
 
+                    if (item !== undefined) {
+                        sibblingServices.allowblockWebusers(custID).then(function(response) {
+                            var testArr = JSON.parse(response.data[0]);
+                            console.log(testArr);
+                            if (testArr[0].BranchID !== 342) {
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                            } else {
+                                scope.aboutFamilyObj.txtAboutUs = item;
+                                commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
+                            }
+                        });
+                    } else {
+                        commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
+                    }
                     break;
             }
         };

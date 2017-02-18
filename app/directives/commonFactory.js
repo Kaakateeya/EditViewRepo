@@ -1,6 +1,5 @@
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
     var modalpopupopen;
-
     return {
         open: function(url, scope, uibModal, size) {
             modalpopupopen = uibModal.open({

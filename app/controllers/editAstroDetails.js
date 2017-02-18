@@ -1,5 +1,6 @@
-editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory', 'authSvc', 'fileUpload', '$http', 'route',
-    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route) {
+editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory',
+    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices) {
         scope.starLanguage = 'starLanguage';
         scope.Country = 'Country';
         scope.ZodaicSign = 'ZodaicSign';
@@ -9,12 +10,31 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         scope.generateData = [];
         scope.ImageUrl = '';
         scope.iframeShow = false;
+        var s3obj = {};
 
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         var isSubmit = true;
+        //
+        // scope.blockeditpages = function(custID, Page) {
+        //         sibblingServices.allowblockWebusers(custID).then(function(response) {
+        //             console.log(response);
+        //             var testArr = JSON.parse(response.data[0]);
+        //             console.log(testArr);
+        //             if (testArr[0].BranchID !== 342) {
+        //                 scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> ' + Page + '  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+        //                 return false;
+        //             } else {
+        //                 return true;
+        //             }
 
+        //         });
+        //     }
+        //
         scope.loginpaidstatus = authSvc.getpaidstatus();
+
+
+
 
         scope.changeBind = function(type, parentval) {
 
@@ -45,32 +65,45 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
             isSubmit = true;
             if (item !== undefined) {
-                // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
-                // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
-                // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
-                scope.starArr = commonFactory.starBind(item.StarLanguageID);
+                sibblingServices.allowblockWebusers(custID).then(function(response) {
 
-                if (item.TimeOfBirth !== undefined) {
-                    scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
-                    scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
-                    scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
-                    scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
-                }
-                scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
-                scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
-                scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
-                scope.atroObj.ddlcity = item.CityOfBirthID;
-                scope.atroObj.ddlstarlanguage = item.StarLanguageID;
-                scope.atroObj.ddlstar = item.StarID;
-                scope.atroObj.ddlpaadam = item.PaadamID;
-                scope.atroObj.ddlLagnam = item.LagnamID;
-                scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
-                scope.atroObj.txtGothramGotra = item.Gothram;
-                scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
-                scope.atroObj.rdlkujaDosham = item.manglikID;
+                    var testArr = JSON.parse(response.data[0]);
+                    console.log(testArr);
+                    if (testArr[0].BranchID !== 342) {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Astro Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
+                    } else {
+                        // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
+                        // scope.districtArr = commonFactory.districtBind(item.StateOfBirthID);
+                        // scope.cityeArr = commonFactory.cityBind(item.DistrictOfBirthID);
+                        scope.starArr = commonFactory.starBind(item.StarLanguageID);
+
+                        if (item.TimeOfBirth !== undefined) {
+                            scope.strdot = ((item.TimeOfBirth).split(' '))[0].split(':');
+                            scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
+                            scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
+                            scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
+                        }
+                        scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
+                        scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
+                        scope.atroObj.ddlDistrictOfBirthID = item.DistrictOfBirthID;
+                        scope.atroObj.ddlcity = item.CityOfBirthID;
+                        scope.atroObj.ddlstarlanguage = item.StarLanguageID;
+                        scope.atroObj.ddlstar = item.StarID;
+                        scope.atroObj.ddlpaadam = item.PaadamID;
+                        scope.atroObj.ddlLagnam = item.LagnamID;
+                        scope.atroObj.ddlRaasiMoonsign = item.RaasiID;
+                        scope.atroObj.txtGothramGotra = item.Gothram;
+                        scope.atroObj.txtMaternalgothram = item.MeternalGothramID;
+                        scope.atroObj.rdlkujaDosham = item.manglikID;
+                        commonFactory.open('astroContent.html', scope, uibModal);
+
+                    }
+                });
+            } else {
+                commonFactory.open('astroContent.html', scope, uibModal);
             }
-            commonFactory.open('astroContent.html', scope, uibModal);
+
         };
 
         scope.astropageload = function(custid) {
@@ -80,7 +113,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
                     scope.generateData = JSON.parse(response.data[1]);
-                    console.log(scope.generateData);
+
                     if (commonFactory.checkvals(scope.AstroArr[0] && commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage))) {
 
                         if (commonFactory.checkvals(scope.AstroArr[0].Horoscopeimage) && (scope.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -196,7 +229,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.upload = function(obj) {
 
-            console.log(obj.myFile);
+
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             var gifFormat = "gif, jpeg, png,jpg";
 
@@ -212,7 +245,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     var keyname = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
 
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-                        console.log(res.status);
+
                         if (res.status == 200) {
                             commonFactory.closepopup();
                             scope.uploadData = {
@@ -226,9 +259,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             };
 
 
-                            console.log(JSON.stringify(scope.uploadData));
+
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                                console.log(response);
+
                                 commonFactory.closepopup();
 
                                 scope.astropageload(custID);
@@ -251,13 +284,16 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             var year = check.format('YYYY');
 
             var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
-            console.log(JSON.stringify(inputobj));
+
             astroServices.generateHoroscope(inputobj).then(function(response) {
-                console.log(response.data);
-                if (commonFactory.checkvals(response.data)) {
+                console.log(response);
+                if (commonFactory.checkvals(response.data.AstroGeneration)) {
+
+
+                    s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
+                    window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
-                    scope.astropageload(custID);
-                    window.open('' + response.data + '', '_blank');
+                    commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
@@ -285,7 +321,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             };
 
             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
-                console.log(response);
+
                 if (response.data === 1 || response.data === '1') {
                     scope.astropageload(custID);
                     commonFactory.closepopup();
@@ -317,28 +353,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
         };
 
-
+        scope.generatedhoroS3Upload = function() {
+            console.log('s3obj');
+            console.log(s3obj);
+            astroServices.GenerateHoroS3(s3obj).then(function(response) {
+                console.log(response);
+            });
+            scope.astropageload(custID);
+            commonFactory.closepopup();
+        };
 
     }
 ]);
-
-// editviewapp.directive('srMutexClick', function($parse) {
-//     return {
-//         compile: function($element, attr) {
-//             var fn = $parse(attr['srMutexClick']);
-//             return function srEventHandler(scope, element) {
-//                 var submitting = false;
-//                 element.on('click', function(event) {
-//                     scope.$apply(function() {
-//                         if (submitting) {
-//                             return
-//                         }
-//                         submitting = true;
-//                         // `submitting` is reset when promise is resolved
-//                         fn(scope, { $event: event }).finally(function() { submitting = false });
-//                     });
-//                 });
-//             };
-//         }
-//     };
-// });
