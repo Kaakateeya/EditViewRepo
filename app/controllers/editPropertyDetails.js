@@ -22,7 +22,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Property Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Property Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
                         scope.proObj.Custpropertyid = item.Custpropertyid;
                         scope.proObj.ddlFamilyStatus = item.FamilyValuesID;

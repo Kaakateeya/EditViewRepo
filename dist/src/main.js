@@ -422,7 +422,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Astro Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Astro Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                     } else {
                         // scope.stateArr = commonFactory.StateBind(item.CountryOfBirthID);
@@ -1023,7 +1023,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.parent = [];
@@ -1129,7 +1129,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
@@ -1166,7 +1166,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.physicalObj.Cust_ID = item.Cust_ID;
@@ -1197,7 +1197,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                             } else {
                                 scope.aboutFamilyObj.txtAboutUs = item;
                                 commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
@@ -1541,7 +1541,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">PartnerPreference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">PartnerPreference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
                         scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(item.religionid, item.MotherTongueID));
                         scope.stateArr = scope.removeSelect(commonFactory.StateBind(item.CountryID));
@@ -1593,7 +1593,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Partner Description</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Partner Description</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
                         scope.partnerDescObj.txtpartnerdescription = item.PartnerDescripition;
                         commonFactory.open('partnerDescContent.html', scope, uibModal);
@@ -1711,7 +1711,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Property Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Property Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
                         scope.proObj.Custpropertyid = item.Custpropertyid;
                         scope.proObj.ddlFamilyStatus = item.FamilyValuesID;
@@ -1800,7 +1800,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                     var testArr = JSON.parse(response.data[0]);
                     console.log(testArr);
                     if (testArr[0].BranchID !== 342) {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Reference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Reference Details</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                     } else {
                         // scope.stateArr = commonFactory.StateBind(item.RefrenceCountry);
                         // scope.districtArr = commonFactory.districtBind(item.RefrenceStateID);
@@ -1961,7 +1961,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Father Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Father Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.fbObj.FatherbrotherCustfamilyID = item.FatherbrotherCustfamilyID;
@@ -2003,7 +2003,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">  Father  Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">  Father  Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 // scope.fsDistrict = commonFactory.districtBind(item.FatherSisterspousestateId);
@@ -2054,7 +2054,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.mbObj.MotherBrotherCustfamilyID = item.MotherBrotherCustfamilyID;
@@ -2096,7 +2096,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Sister Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Mother Sister Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 // scope.msDistrict = commonFactory.districtBind(item.spousestateid);
@@ -2380,7 +2380,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sibling Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sibling Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 console.log(item.NoOfElderBrothers);
@@ -2410,7 +2410,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                 var testArr = JSON.parse(response.data[0]);
                                 console.log(testArr);
                                 if (testArr[0].BranchID !== 342) {
-                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Brother Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                                 } else {
                                     // scope.brodistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);
@@ -2496,7 +2496,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                 var testArr = JSON.parse(response.data[0]);
                                 console.log(testArr);
                                 if (testArr[0].BranchID !== 342) {
-                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Sister Details  </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                                 } else {
                                     // scope.sisdistrictArr = commonFactory.districtBind(item.BroSpouseFatherStateID);

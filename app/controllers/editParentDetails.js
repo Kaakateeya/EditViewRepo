@@ -82,7 +82,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon"> Parents Details </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.parent = [];
@@ -188,7 +188,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Contact Address </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 // scope.stateArr = commonFactory.StateBind(item.ParentCountryId);
@@ -225,7 +225,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">Physical Attribute </b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
 
                             } else {
                                 scope.physicalObj.Cust_ID = item.Cust_ID;
@@ -256,7 +256,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                             var testArr = JSON.parse(response.data[0]);
                             console.log(testArr);
                             if (testArr[0].BranchID !== 342) {
-                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + testArr[0].LastName + "(" + testArr[0].OfficialContactNumber + ")", 4500);
+                                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'To edit <b style"=color: maroon">About My Family</b>, please contact your relationship manager  ' + testArr[0].FirstName1 + ((testArr[0].LastName) !== null ? testArr[0].LastName : "") + "(" + testArr[0].OfficialContactNumber + ")", 4500);
                             } else {
                                 scope.aboutFamilyObj.txtAboutUs = item;
                                 commonFactory.open('AboutFamilyModalContent.html', scope, uibModal);
