@@ -40,11 +40,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             console.log(123);
         });
 
-
-
-
-
-
         scope.showpopup = function(type, item) {
             isSubmit = true;
             switch (type) {
