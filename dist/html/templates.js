@@ -11705,7 +11705,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "    <div class=\"edit_pages_content_main clearfix\" ng-init=\"getdata()\">\r" +
+    "    <div class=\"edit_pages_content_main clearfix\" ng-controller=\"eduAndProfCtrl\" ng-init=\"getdata()\">\r" +
     "\n" +
     "\r" +
     "\n" +
