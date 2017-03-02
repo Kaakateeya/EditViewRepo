@@ -806,6 +806,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   );
 
 
+  $templateCache.put('editview/app/views/editContactsdetails.html',
+    ""
+  );
+
+
   $templateCache.put('editview/app/views/editManagePhoto.html',
     "<div class=\"edit_pages_content_main clearfix\">\r" +
     "\n" +
@@ -9749,6 +9754,224 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "</div>-->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<!--\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<div class=\"edit_page_item\">\r" +
+    "\n" +
+    "    <div class=\"edit_page_item_head clearfix\">\r" +
+    "\n" +
+    "        <h4>Children Details </h4>\r" +
+    "\n" +
+    "        <div class=\"edit_page_item_ui clearfix\">\r" +
+    "\n" +
+    "            <div ID=\"UpdatePanelChildrenDetails\">\r" +
+    "\n" +
+    "                \r" +
+    "\n" +
+    "                    <a ID=\"lnkChildrenDetails\"   OnClick=\"lnkChildrenDetails_Click\" class=\"edit_page_add_button\">Add\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "                \r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"edit_page_details_item\">\r" +
+    "\n" +
+    "        <div ID=\"UpdatePanelfullChildrenDetails\" >\r" +
+    "\n" +
+    "            \r" +
+    "\n" +
+    "                <div ID=\"listChildrenDetails\" >\r" +
+    "\n" +
+    "                    \r" +
+    "\n" +
+    "                        <div id=\"reviewdiv\"  class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div ID=\"updateNameofthechild\"   class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <h6>\r" +
+    "\n" +
+    "                                        <label ID=\"Nameofthechild\"   Font-Bold=\"true\" ForeColor=\"Red\">Name of the child</label></h6>\r" +
+    "\n" +
+    "                                    <h5>\r" +
+    "\n" +
+    "                                        <label ID=\"lblNameofthechild\"  >'<%#Eval(\"ChildName\") %>'</label></h5>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div  ID=\"UpdatePanellnkchidrensedit\"  class=\"edit_page_item_ui clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <a ID=\"lnkkchidrensedit\"   class=\"edit_page_edit_button\">Edit\r" +
+    "\n" +
+    "                                    </a>\r" +
+    "\n" +
+    "                                    <a ID=\"lnkkchidrensDelete\"  title=\"\" data-placement=\"bottom\" data-toggle=\"tooltip\"\r" +
+    "\n" +
+    "                                        data-original-title=\"Delete chidrens Details\" class=\"edit_page_del_button\" >delete\r" +
+    "\n" +
+    "                                           \r" +
+    "\n" +
+    "                                    </a>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div ID=\"UpdatePanelGenderofthechild\"   class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label ID=\"Genderofthechild\"   Font-Bold=\"true\">Gender of the child</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <label ID=\"lblGenderofthechild\"  >'<%#Eval(\"GenderName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div ID=\"UpdateDateofbirthofthechild\"   class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label ID=\"Dateofbirthofthechild\"   Font-Bold=\"true\">DOB of the child</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <label ID=\"lblDateofbirthofthechild\"  >'<%#Eval(\"ChildDOB\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div ID=\"UpdatePanelChildstayingwith\"   class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label ID=\"Childstayingwith\"   Font-Bold=\"true\">Child staying with</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <label ID=\"lblChildstayingwith\"  >'<%#Eval(\"ChildStayingWith\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            <div ID=\"UpdatePanelChildstayingwithrelation\"   class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                    <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label ID=\"Childstayingwithrelation\"   Font-Bold=\"true\">Child staying with relation</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <label ID=\"lblChildstayingwithrelation\" \r" +
+    "\n" +
+    "                                                >'<%#Eval(\"ChildernRelationName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            \r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <hr />\r" +
+    "\n" +
+    "                    \r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            \r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "</div>-->"
   );

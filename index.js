@@ -44,7 +44,8 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl', isloginrequired: true },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl', isloginrequired: true },
-        // { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true }
+        // { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true },
+        // { name: 'editview.editContact', url: '/editContact', templateUrl: editviewapp.templateroot + 'app/views/editContactsdetails.html', controller: 'contactctrl', isloginrequired: true }
 
     ];
 
