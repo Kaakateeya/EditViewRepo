@@ -111,7 +111,7 @@ module.exports = function(grunt) {
             },
             js: { //target
                 src: ['index.js', 'app/**/*.js', 'dist/html/templates.js',
-                    '!app/controllers/headercontrolller.js', '!app/directives/oldAlert.js'
+                    '!app/directives/oldAlert.js'
                 ],
                 dest: 'dist/src/main.js'
             },

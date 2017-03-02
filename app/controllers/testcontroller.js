@@ -1,8 +1,4 @@
-editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, timeout) {
-    scope.clickkk = function() {
+editviewapp.controller("footercontrol", ['$scope', '$timeout', function(scope, timeout) {
 
-        scope.$broadcast('rtestttt');
-
-    };
 
 }]);
