@@ -17,7 +17,7 @@
                         <div>
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
-                                    <label id="lfathername" font-bold="true"></label> Father Name</h6>
+                                    <label id="lfathername" font-bold="true"></label>Father Name</h6>
                                 <h5>
                                     <span id="LBfathername">{{item.FatherName}}</span>
                                 </h5>
@@ -30,23 +30,32 @@
                         </div>
 
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblfathereducation" font-bold="true">Education</label>
                             </h6>
-
                             <h5>
                                 <span id="lblfathereducationdetails">
                                     {{item.FatherEducationDetails }}
                             </span>
                             </h5>
+                        </div>
 
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label font-bold="true">Profession Category</label>
+                            </h6>
+                            <h5>
+                                <span>
+                                    {{item.FatherProfessionCategory }}
+                            </span>
+                            </h5>
                         </div>
 
                         <div class="edit_page_details_item_desc clearfix">
 
                             <h6>
-                                <label id="lblFatherprofession" font-bold="true">Profession</label>
+                                <label id="lblFatherprofession" font-bold="true">Designation</label>
                             </h6>
 
                             <h5>
@@ -183,10 +192,23 @@
                         </div>
 
 
+
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label font-bold="true">Profession Category</label>
+                            </h6>
+                            <h5>
+                                <span>
+                                    {{item.MotherProfessionCategory }}
+                            </span>
+                            </h5>
+                        </div>
+
                         <div class="edit_page_details_item_desc clearfix">
 
                             <h6>
-                                <label id="lblprofessionmotherr" font-bold="true">Profession</label>
+                                <label id="lblprofessionmotherr" font-bold="true">Designation</label>
                             </h6>
 
                             <h5>
@@ -606,7 +628,13 @@
                         </li>
 
                         <li class="clearfix form-group">
-                            <label for="lblFProfession" class="pop_label_left">Profession</label>
+                            <label for="lblFprofessioncat" class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="parent.ddlFprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblFProfession" class="pop_label_left">Designation</label>
                             <div class="pop_controls_right">
                                 <input type="text" ng-model="parent.txtFProfession" class="form-control" maxlength="200" tabindex="3" />
                             </div>
@@ -663,7 +691,14 @@
                         </li>
 
                         <li class="clearfix form-group">
-                            <label for="lblMProfession" class="pop_label_left">Profession</label>
+                            <label for="lblFprofessioncat" class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="parent.ddlMprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label for="lblMProfession" class="pop_label_left">Designation</label>
                             <div class="pop_controls_right">
                                 <input ng-model="parent.txtMProfession" class="form-control" maxlength="200" tabindex="32" />
                                 <label class="checkbox-inline checkbox_my" style="padding: 5px 0 0 0;">
@@ -722,14 +757,7 @@
                         </li>
                         <li class="clearfix form-group">
                             <label for="ParentIntercaste" class="pop_label_left">Are parents interCaste ? </label>
-                            <!--<div class="pop_controls_right pop_radios_list">
-                                <label>
-                    <input ng-model="parent.rbtlParentIntercaste" value="1" type="radio"><span>&nbsp;Yes</span>
-                </label>
-                                <label class="">
-                    <input ng-model="parent.rbtlParentIntercaste" value="0" type="radio"><span>&nbsp;No</span>
-                </label>
-                            </div>-->
+
 
 
                             <md-radio-group name="rbtlParentIntercaste" style="font-weight: 700;color:black;" layout="row" ng-model="parent.rbtlParentIntercaste" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -759,12 +787,7 @@
 
                         <li class="row ">
                             <br/>
-                            <!--<div class="col-lg-9">
-                                <button type="submit" class="button_custom pull-right">Submit</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                            </div>-->
+
                             <edit-footer></edit-footer>
                         </li>
                     </ul>
@@ -843,12 +866,7 @@
 
                         <li class="row">
                             <br/>
-                            <!--<div class="col-lg-9">
-                                <input value="Submit" class="button_custom  pull-right" type="submit">
-                            </div>
-                            <div class="col-lg-3">
-                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                            </div>-->
+
 
                             <edit-footer></edit-footer>
                         </li>
@@ -877,15 +895,7 @@
                             <label for="lblpDiet" class="pop_label_left">Diet</label>
                             <div class="pop_controls_right">
 
-                                <!--<label>
-                    <input ng-model="physicalObj.rbtlDiet" value="27" type="radio"><span>&nbsp;Veg</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlDiet" value="28" type="radio"><span>&nbsp;Non Veg</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlDiet" value="29" type="radio"><span>&nbsp;Both</span>
-                </label>-->
+
 
                                 <md-radio-group name="rbtlDiet" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlDiet" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="27" class="md-primary">Veg</md-radio-button>
@@ -898,15 +908,7 @@
                             <label for="lblpDrink" class="pop_label_left">Drink</label>
                             <div class="pop_controls_right">
 
-                                <!--<label>
-                    <input ng-model="physicalObj.rbtlDrink" value="30" type="radio"><span>&nbsp;Yes</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlDrink" value="31" type="radio"><span>&nbsp;No</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlDrink" value="32" type="radio"><span>&nbsp;Occasional</span>
-                </label>-->
+
 
 
                                 <md-radio-group name="rbtlDrink" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlDrink" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -921,15 +923,7 @@
                             <label for="lblpSmoke" class="pop_label_left">Smoke</label>
                             <div class="pop_controls_right">
 
-                                <!--<label>
-                    <input ng-model="physicalObj.rbtlSmoke" value="30" type="radio"><span>&nbsp;Yes</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlSmoke" value="31" type="radio"><span>&nbsp;No</span>
-                </label>
-                                <label class="">
-                    <input ng-model="physicalObj.rbtlSmoke" value="32" type="radio"><span>&nbsp;Occasional</span>
-                </label>-->
+
 
                                 <md-radio-group name="rbtlSmoke" style="font-weight: 700;color:black;" layout="row" ng-model="physicalObj.rbtlSmoke" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="30" class="md-primary">Yes</md-radio-button>
@@ -985,12 +979,7 @@
                         </li>
                         <li class="row">
                             <br/>
-                            <!--<div class="col-lg-9">
-                                <input value="Submit" class="button_custom  pull-right" type="submit">
-                            </div>
-                            <div class="col-lg-3">
-                                <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button">
-                            </div>-->
+
 
 
                             <edit-footer></edit-footer>
@@ -1019,12 +1008,6 @@
 
                 <div class="row">
                     <br/>
-                    <!--<div class="col-lg-9">
-                        <input type="submit" value="Submit" class="button_custom  pull-right">
-                    </div>
-                    <div class="col-lg-3">
-                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>-->
 
 
                     <edit-footer></edit-footer>

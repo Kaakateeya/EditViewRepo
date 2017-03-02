@@ -120,6 +120,9 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
                                     scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
                                     scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
+                                    scope.broObj.ddlbroprofessionCatgory = item.ProfessionCategoryID;
+                                    scope.broObj.ddlbroSpouseprofessionCatgory = item.SpouceProfessionCategoryID;
+
                                     commonFactory.open('brotherModalContent.html', scope, uibModal);
 
                                 }
@@ -208,6 +211,10 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
                                     scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
                                     scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
+                                    scope.sisObj.ddlsisprofessionCatgory = item.ProfessionCategoryID;
+                                    scope.sisObj.ddlsisSpouseprofessionCatgory = item.SpouceProfessionCategoryID;
+
+
                                     commonFactory.open('sisterModalContent.html', scope, uibModal);
                                 }
                             });
@@ -294,6 +301,8 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
                         BrotherSpouseEmail: obj.txtwifeEmail,
                         SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
+                        BroProfessionCategoryID: obj.ddlbroprofessionCatgory,
+                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory
 
                     },
                     customerpersonaldetails: {
@@ -370,7 +379,8 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
                         SisSpouseEmail: obj.txtHusbandEmail,
                         SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
-
+                        SisProfessionCategoryID: obj.ddlsisprofessionCatgory,
+                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory
                     },
                     customerpersonaldetails: {
                         intCusID: custID,

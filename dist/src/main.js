@@ -7,11 +7,10 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-//editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
-
-editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
 //editviewapp.templateroot = '';
@@ -41,6 +40,8 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl', isloginrequired: true },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl', isloginrequired: true },
+        // { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true }
+
     ];
 
     $urlRouterProvider.otherwise('editview');
@@ -344,6 +345,15 @@ editviewapp.constant('arrayConstantsEdit', {
         { "label": "Friend", "title": "Friend", "value": 318 },
         { "label": "Relative", "title": "Relative", "value": 319 },
         { "label": "Not Given", "title": "Not Given", "value": 549 },
+
+    ],
+    'newProfessionCatgory': [
+        { "label": "--Select--", "title": "--Select--", "value": "" },
+        { "label": "state govt job", "title": "state govt job", "value": 567 },
+        { "label": "central govt job", "title": "central govt job", "value": 568 },
+        { "label": "private job", "title": "private job", "value": 569 },
+        { "label": "doctor", "title": "doctor", "value": 570 },
+        { "label": "business", "title": "business", "value": 571 }
 
     ]
 
@@ -969,7 +979,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
                     scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
 
-                    console.log(scope.parentArr);
+                    console.log(JSON.parse(response.data[0]));
                 }
 
                 if (commonFactory.checkvals(scope.AboutFamily[0])) {
@@ -1111,6 +1121,13 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                                 scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
                                 scope.parent.ddlFatherCaste = item.FatherCasteID;
                                 scope.parent.ddlMotherCaste = item.MotherCasteID;
+
+                                scope.parent.ddlFprofessionCatgory = item.FatherProfessionCategoryID;
+                                scope.parent.ddlMprofessionCatgory = item.MotherProfessionCategoryID;
+
+
+
+
                                 commonFactory.open('parentModalContent.html', scope, uibModal);
 
                             }
@@ -1281,7 +1298,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                         MotherFatherLandAreaCode: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? null : (commonFactory.checkvals(objitem.txtMotherFatherLandLineareacode) ? objitem.txtMotherFatherLandLineareacode : null),
                         MotherFatherLandNumber: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? objitem.txtmotherfatheralternative : (commonFactory.checkvals(objitem.txtMotherFatherLandLinenum) ? objitem.txtMotherFatherLandLinenum : null),
                         FatherCaste: objitem.ddlMotherCaste,
-                        MotherCaste: objitem.ddlFatherCaste
+                        MotherCaste: objitem.ddlFatherCaste,
+                        FatherProfessionCategoryID: objitem.ddlFprofessionCatgory,
+                        MotherProfessionCategoryID: objitem.ddlMprofessionCatgory
                     },
                     customerpersonaldetails: {
                         intCusID: custID,
@@ -1575,6 +1594,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
                         scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
                         scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
+                        scope.partnerObj.rbtDomacile = item.Domicel === 'India' ? 0 : (item.Domicel === 'abroad' ? 1 : (item.Domicel === 'All' ? 2 : ''));
+
                         commonFactory.open('partnerPrefContent.html', scope, uibModal);
                     }
 
@@ -1635,6 +1656,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         GenderID: objitem.rbtlGender,
                         Region: commonFactory.listSelectedVal(objitem.lstRegion),
                         Branch: commonFactory.listSelectedVal(objitem.lstBranch),
+                        Domacile: commonFactory.checkvals(objitem.rbtDomacile) ? parseInt(objitem.rbtDomacile) : ''
                     },
                     customerpersonaldetails: {
                         intCusID: custID,
@@ -2467,6 +2489,9 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.broObj.ddlBroSpousefatherState = item.BroSpouseFatherStateID;
                                     scope.broObj.ddlBroSpousefatherDistrict = item.BroSpouseFatherDistrictID;
                                     scope.broObj.txtBroSpousefatherCity = item.BroSpouseFatherCity;
+                                    scope.broObj.ddlbroprofessionCatgory = item.ProfessionCategoryID;
+                                    scope.broObj.ddlbroSpouseprofessionCatgory = item.SpouceProfessionCategoryID;
+
                                     commonFactory.open('brotherModalContent.html', scope, uibModal);
 
                                 }
@@ -2555,6 +2580,10 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.sisObj.ddlSisSpouceFatherState = item.SisSpouseFatherStateID;
                                     scope.sisObj.ddlSisSpouceFatherDistrict = item.SisSpouseFatherDitrictID;
                                     scope.sisObj.txtSisSpouceFatherCity = item.SisSpousefatherCity;
+                                    scope.sisObj.ddlsisprofessionCatgory = item.ProfessionCategoryID;
+                                    scope.sisObj.ddlsisSpouseprofessionCatgory = item.SpouceProfessionCategoryID;
+
+
                                     commonFactory.open('sisterModalContent.html', scope, uibModal);
                                 }
                             });
@@ -2641,6 +2670,8 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         BroSpouseFatherNativePlace: obj.txtBroSpousefatherCity,
                         BrotherSpouseEmail: obj.txtwifeEmail,
                         SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
+                        BroProfessionCategoryID: obj.ddlbroprofessionCatgory,
+                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory
 
                     },
                     customerpersonaldetails: {
@@ -2717,7 +2748,8 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         SisSpouseFatherNativePlace: obj.txtSisSpouceFatherCity,
                         SisSpouseEmail: obj.txtHusbandEmail,
                         SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
-
+                        SisProfessionCategoryID: obj.ddlsisprofessionCatgory,
+                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory
                     },
                     customerpersonaldetails: {
                         intCusID: custID,
@@ -3229,6 +3261,11 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
     }
 ]);
+editviewapp.controller('Spousectrl', ['$scope', function() {
+
+
+
+}]);
 editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, timeout) {
     scope.clickkk = function() {
 
@@ -5266,7 +5303,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h6>\r" +
     "\n" +
-    "                                    <label id=\"lfathername\" font-bold=\"true\"></label> Father Name</h6>\r" +
+    "                                    <label id=\"lfathername\" font-bold=\"true\"></label>Father Name</h6>\r" +
     "\n" +
     "                                <h5>\r" +
     "\n" +
@@ -5292,15 +5329,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            <h6>\r" +
     "\n" +
     "                                <label id=\"lblfathereducation\" font-bold=\"true\">Education</label>\r" +
     "\n" +
     "                            </h6>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                            <h5>\r" +
     "\n" +
@@ -5312,7 +5345,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </h5>\r" +
     "\n" +
+    "                        </div>\r" +
+    "\n" +
     "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label font-bold=\"true\">Profession Category</label>\r" +
+    "\n" +
+    "                            </h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <span>\r" +
+    "\n" +
+    "                                    {{item.FatherProfessionCategory }}\r" +
+    "\n" +
+    "                            </span>\r" +
+    "\n" +
+    "                            </h5>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -5324,7 +5379,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <h6>\r" +
     "\n" +
-    "                                <label id=\"lblFatherprofession\" font-bold=\"true\">Profession</label>\r" +
+    "                                <label id=\"lblFatherprofession\" font-bold=\"true\">Designation</label>\r" +
     "\n" +
     "                            </h6>\r" +
     "\n" +
@@ -5598,13 +5653,39 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label font-bold=\"true\">Profession Category</label>\r" +
+    "\n" +
+    "                            </h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <span>\r" +
+    "\n" +
+    "                                    {{item.MotherProfessionCategory }}\r" +
+    "\n" +
+    "                            </span>\r" +
+    "\n" +
+    "                            </h5>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                        <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
     "                            <h6>\r" +
     "\n" +
-    "                                <label id=\"lblprofessionmotherr\" font-bold=\"true\">Profession</label>\r" +
+    "                                <label id=\"lblprofessionmotherr\" font-bold=\"true\">Designation</label>\r" +
     "\n" +
     "                            </h6>\r" +
     "\n" +
@@ -6444,7 +6525,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblFProfession\" class=\"pop_label_left\">Profession</label>\r" +
+    "                            <label for=\"lblFprofessioncat\" class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"parent.ddlFprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblFProfession\" class=\"pop_label_left\">Designation</label>\r" +
     "\n" +
     "                            <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -6558,7 +6651,21 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                            <label for=\"lblMProfession\" class=\"pop_label_left\">Profession</label>\r" +
+    "                            <label for=\"lblFprofessioncat\" class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                            <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                                <select multiselectdropdown ng-model=\"parent.ddlMprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                        </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                            <label for=\"lblMProfession\" class=\"pop_label_left\">Designation</label>\r" +
     "\n" +
     "                            <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -6676,21 +6783,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <label for=\"ParentIntercaste\" class=\"pop_label_left\">Are parents interCaste ? </label>\r" +
     "\n" +
-    "                            <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
-    "\n" +
-    "                                <label>\r" +
-    "\n" +
-    "                    <input ng-model=\"parent.rbtlParentIntercaste\" value=\"1\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"parent.rbtlParentIntercaste\" value=\"0\" type=\"radio\"><span>&nbsp;No</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                            </div>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6750,17 +6843,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                                <button type=\"submit\" class=\"button_custom pull-right\">Submit</button>\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                            <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                            </div>-->\r" +
+    "\r" +
     "\n" +
     "                            <edit-footer></edit-footer>\r" +
     "\n" +
@@ -6918,17 +7001,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                            <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                            </div>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -6986,23 +7059,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <!--<label>\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDiet\" value=\"27\" type=\"radio\"><span>&nbsp;Veg</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDiet\" value=\"28\" type=\"radio\"><span>&nbsp;Non Veg</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDiet\" value=\"29\" type=\"radio\"><span>&nbsp;Both</span>\r" +
-    "\n" +
-    "                </label>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7028,23 +7085,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <!--<label>\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDrink\" value=\"30\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDrink\" value=\"31\" type=\"radio\"><span>&nbsp;No</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlDrink\" value=\"32\" type=\"radio\"><span>&nbsp;Occasional</span>\r" +
-    "\n" +
-    "                </label>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7074,23 +7115,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                <!--<label>\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlSmoke\" value=\"30\" type=\"radio\"><span>&nbsp;Yes</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlSmoke\" value=\"31\" type=\"radio\"><span>&nbsp;No</span>\r" +
-    "\n" +
-    "                </label>\r" +
-    "\n" +
-    "                                <label class=\"\">\r" +
-    "\n" +
-    "                    <input ng-model=\"physicalObj.rbtlSmoke\" value=\"32\" type=\"radio\"><span>&nbsp;Occasional</span>\r" +
-    "\n" +
-    "                </label>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7202,17 +7227,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            <br/>\r" +
     "\n" +
-    "                            <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                                <input value=\"Submit\" class=\"button_custom  pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                            <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                                <input value=\"Cancel\" class=\"button_custom button_custom_reset pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                            </div>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7269,18 +7284,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                <div class=\"row\">\r" +
     "\n" +
     "                    <br/>\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7683,6 +7686,34 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div id=\"UpdatePanel18\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                            <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <h6>\r" +
+    "\n" +
+    "                                    <span id=\"preferredCountry\" style=\"font-weight:bold;\">Domicile</span></h6>\r" +
+    "\n" +
+    "                                <h5>\r" +
+    "\n" +
+    "                                    <span id=\"lblpreferredCountry\">{{ item.Domicel}}</span></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                        <div id=\"UpdatePanel18\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "                            <div>\r" +
@@ -7999,8 +8030,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                </li>\r" +
     "\n" +
     "                <li class=\"clearfix form-group\">\r" +
@@ -8010,8 +8039,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstEducationgroup\" ng-options=\"item.value as item.label for item in eduGroupArr\"></select>\r" +
     "\n" +
@@ -8050,6 +8077,28 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "                </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <li class=\"clearfix\">\r" +
+    "\n" +
+    "                    <label for=\"lblPreferredstar\" class=\"pop_label_left\">Domicile</label>\r" +
+    "\n" +
+    "                    <md-radio-group name=\"rbtDomacile\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtDomacile\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                        <md-radio-button value=\"0\" class=\"md-primary\">India</md-radio-button>\r" +
+    "\n" +
+    "                        <md-radio-button value=\"1\">Abroad </md-radio-button>\r" +
+    "\n" +
+    "                        <md-radio-button value=\"2\">Both</md-radio-button>\r" +
+    "\n" +
+    "                    </md-radio-group>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8109,24 +8158,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"lblDiet\" class=\"pop_label_left\">Diet</label>\r" +
     "\n" +
-    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtDiet\" value=\"27\" type=\"radio\"><span>&nbsp;Veg</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtDiet\" value=\"28\" type=\"radio\"><span>&nbsp;Non Veg</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtDiet\" value=\"29\" type=\"radio\"><span>&nbsp;Both</span></label>\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "\r" +
     "\n" +
     "                    <md-radio-group name=\"rbtDiet\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtDiet\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
@@ -8151,21 +8182,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"lblManglik\" class=\"pop_label_left\">Manglik/Kuja dosham</label>\r" +
     "\n" +
-    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtManglikKujadosham\" value=\"0\" type=\"radio\"><span>&nbsp;Yes</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtManglikKujadosham\" value=\"1\" type=\"radio\"><span>&nbsp;No</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtManglikKujadosham\" value=\"2\" type=\"radio\"><span>&nbsp;Does Not Matter</span></label>\r" +
-    "\n" +
-    "                    </div>-->\r" +
+    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8189,26 +8206,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"lblPreferredstar\" class=\"pop_label_left\">Preferred star Language</label>\r" +
     "\n" +
-    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtPreferredstarLanguage\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" value=\"1\" type=\"radio\"><span>&nbsp;Telugu</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtPreferredstarLanguage\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" value=\"2\" type=\"radio\"><span>&nbsp;Tamil</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtPreferredstarLanguage\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" value=\"3\" type=\"radio\"><span>&nbsp;Kannada</span></label>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                    <md-radio-group name=\"rbtPreferredstarLanguage\" style=\"font-weight: 700;color:black;\" ng-change=\"changeBind('star',partnerObj.rbtPreferredstarLanguage);\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstarLanguage\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
     "                        <md-radio-button value=\"1\" class=\"md-primary\">Telugu</md-radio-button>\r" +
@@ -8228,24 +8225,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\r" +
     "\n" +
     "                    <label for=\"\" class=\"pop_label_left\">Star Preference</label>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                    <!--<div class=\"pop_controls_right pop_radios_list clearfix\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtPreferredstars\" value=\"0\" type=\"radio\" aria-selected><span>&nbsp;Preferredstars</span></label>\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"partnerObj.rbtPreferredstars\" value=\"1\" type=\"radio\"><span>&nbsp;NonPreferredstars</span></label>\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                    <md-radio-group name=\"rbtPreferredstars\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtPreferredstars\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
     "\n" +
@@ -11113,15 +11092,41 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "                            <div id=\"professionbrother\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "                            <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "                                <div>\r" +
     "\n" +
     "                                    <h6>\r" +
     "\n" +
-    "                                        <label id=\"Label2\" font-bold=\"true\">Profession</label></h6>\r" +
+    "                                        <label font-bold=\"true\">Profession Category</label></h6>\r" +
+    "\n" +
+    "                                    <h5>\r" +
+    "\n" +
+    "                                        <span>\r" +
+    "\n" +
+    "                                            {{ item.ProfessionCategory}}\r" +
+    "\n" +
+    "                                    </span>\r" +
+    "\n" +
+    "                                    </h5>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                <div>\r" +
+    "\n" +
+    "                                    <h6>\r" +
+    "\n" +
+    "                                        <label id=\"Label2\" font-bold=\"true\">Designation</label></h6>\r" +
     "\n" +
     "                                    <h5>\r" +
     "\n" +
@@ -11135,9 +11140,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                            <div id=\"uplprofessioneb\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -11317,6 +11322,40 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <div>\r" +
+    "\n" +
+    "                                            <h6>\r" +
+    "\n" +
+    "                                                <label font-bold=\"true\">Profession Category</label></h6>\r" +
+    "\n" +
+    "                                            <h5>\r" +
+    "\n" +
+    "                                                <span>\r" +
+    "\n" +
+    "                                            {{ item.SpouseProfessionCategory}}\r" +
+    "\n" +
+    "                                    </span>\r" +
+    "\n" +
+    "                                            </h5>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                                    <div id=\"lblbrotherwifeprofessiondetails\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
@@ -11327,7 +11366,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            <h6>\r" +
     "\n" +
-    "                                                <label id=\"lblbrotherwifeprofession\" font-bold=\"true\">Profession</label></h6>\r" +
+    "                                                <label id=\"lblbrotherwifeprofession\" font-bold=\"true\">Designation</label></h6>\r" +
     "\n" +
     "                                            <h5>\r" +
     "\n" +
@@ -11657,6 +11696,36 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                            </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                <div>\r" +
+    "\n" +
+    "                                    <h6>\r" +
+    "\n" +
+    "                                        <label font-bold=\"true\">Profession Category</label></h6>\r" +
+    "\n" +
+    "                                    <h5>\r" +
+    "\n" +
+    "                                        <span>\r" +
+    "\n" +
+    "                                            {{ item.ProfessionCategory}}\r" +
+    "\n" +
+    "                                    </span>\r" +
+    "\n" +
+    "                                    </h5>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                            <div id=\"lblsisterprofessiondetails\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
@@ -11667,7 +11736,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    <h6>\r" +
     "\n" +
-    "                                        <label id=\"lblsisterprofession\" font-bold=\"true\">Profession</label></h6>\r" +
+    "                                        <label id=\"lblsisterprofession\" font-bold=\"true\">Designation</label></h6>\r" +
     "\n" +
     "                                    <h5>\r" +
     "\n" +
@@ -11831,11 +11900,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    <div id=\"lblsisterspouseeducation\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                        <div id=\"divlblsisterspouseeducation\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                            <h6>\r" +
     "\n" +
@@ -11853,9 +11918,33 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </div>\r" +
     "\n" +
+    "                                    </div>\r" +
+    "\n" +
     "\r" +
     "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <div>\r" +
+    "\n" +
+    "                                            <h6>\r" +
+    "\n" +
+    "                                                <label font-bold=\"true\">Profession Category</label></h6>\r" +
+    "\n" +
+    "                                            <h5>\r" +
+    "\n" +
+    "                                                <span>\r" +
+    "\n" +
+    "                                            {{ item.SpouseProfessionCategory}}\r" +
+    "\n" +
+    "                                    </span>\r" +
+    "\n" +
+    "                                            </h5>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
     "                                    </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                                    <div id=\"lblsisterspouseprofession\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -11867,7 +11956,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                            <h6>\r" +
     "\n" +
-    "                                                <label id=\"lblsisterspouseprofession\" font-bold=\"true\">Profession</label></h6>\r" +
+    "                                                <label id=\"lblsisterspouseprofession\" font-bold=\"true\">Designation</label></h6>\r" +
     "\n" +
     "                                            <h5>\r" +
     "\n" +
@@ -12215,18 +12304,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <br/>\r" +
     "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input type=\"submit\" value=\"Submit\" class=\"button_custom  pull-right\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
     "\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
@@ -12269,22 +12346,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    <label for=\"lblElderYounger\" style=\"padding-top: 2%;\" class=\"pop_label_left\">Elder/Younger<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
-    "                    <!--<div class=\"pop_controls_right pop_radios_list\">\r" +
-    "\n" +
-    "                        <label>\r" +
-    "\n" +
-    "                <input ng-model=\"broObj.rdlBElderYounger\" value=\"42\" type=\"radio\"><span>&nbsp;Elder</span>\r" +
-    "\n" +
-    "            </label>\r" +
-    "\n" +
-    "                        <label class=\"\">\r" +
-    "\n" +
-    "                <input ng-model=\"broObj.rdlBElderYounger\" value=\"41\" type=\"radio\"><span>&nbsp;Younger</span>\r" +
-    "\n" +
-    "            </label>\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
     "\r" +
     "\n" +
     "                    <md-input-container style=\"font-weight: 700;color:black;\">\r" +
@@ -12304,10 +12365,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                    </md-input-container>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -12337,9 +12394,31 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblbrotherprofession\" class=\"pop_label_left\">Profession</label>\r" +
+    "                    <label for=\"lblbroprofessioncat\" class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                        <select multiselectdropdown ng-model=\"broObj.ddlbroprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                    <label for=\"lblbrotherprofession\" class=\"pop_label_left\">Designation</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -12441,9 +12520,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
+    "\r" +
+    "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"lblwifescmpy\" class=\"pop_label_left\">Spouse Profession</label>\r" +
+    "                        <label class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                        <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                            <select multiselectdropdown ng-model=\"broObj.ddlbroSpouseprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                        <label for=\"lblwifescmpy\" class=\"pop_label_left\">Spouse Designation</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -12581,18 +12676,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                <li class=\"row \">\r" +
     "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
-    "\n" +
     "\r" +
     "\n" +
     "                    <edit-footer></edit-footer>\r" +
@@ -12693,9 +12776,35 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                    <label for=\"lblsisProfession\" class=\"pop_label_left\">Profession</label>\r" +
+    "                    <label for=\"lblbroprofessioncat\" class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                        <select multiselectdropdown ng-model=\"sisObj.ddlsisprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                    <label for=\"lblsisProfession\" class=\"pop_label_left\">Designation</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -12813,9 +12922,29 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +
-    "                        <label for=\"lblHusbandProfession\" class=\"pop_label_left\">Husband Profession</label>\r" +
+    "                        <label for=\"lblbroprofessioncat\" class=\"pop_label_left\">Profession Category</label>\r" +
+    "\n" +
+    "                        <div class=\"pop_controls_right select-box-my input-group\">\r" +
+    "\n" +
+    "                            <select multiselectdropdown ng-model=\"sisObj.ddlsisSpouseprofessionCatgory\" typeofdata=\"'newProfessionCatgory'\"></select>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                        <label for=\"lblHusbandProfession\" class=\"pop_label_left\">Husband Designation</label>\r" +
     "\n" +
     "                        <div class=\"pop_controls_right\">\r" +
     "\n" +
@@ -12922,18 +13051,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                </div>\r" +
     "\n" +
     "                <li class=\"row \">\r" +
-    "\n" +
-    "                    <!--<div class=\"col-lg-9\">\r" +
-    "\n" +
-    "                        <input value=\"Submit\" class=\"button_custom pull-right\" type=\"submit\">\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"col-lg-3\">\r" +
-    "\n" +
-    "                        <input value=\"Cancel\" class=\"button_custom button_custom_reset  pull-right\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -13088,6 +13205,601 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</div>\r" +
     "\n"
+  );
+
+
+  $templateCache.put('editview/app/views/editSpouseDetails.html',
+    "<!--<div class=\"edit_pages_content_main clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"edit_page_item\">\r" +
+    "\n" +
+    "        <div class=\"edit_page_item_head clearfix\">\r" +
+    "\n" +
+    "            <h4>Spouse Details</h4>\r" +
+    "\n" +
+    "            <div class=\"edit_page_item_ui clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <a id=\"SpouseDetailsAdd\" onclick=\"SpouseDetailsAdd_Click\" class=\"edit_page_add_button\">Add\r" +
+    "\n" +
+    "            </a>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        <div class=\"edit_page_details_item\">\r" +
+    "\n" +
+    "            <div id=\"fullSpouseDetails\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div id=\"reviewdiv\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <div id=\"updatespousename\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <h6>\r" +
+    "\n" +
+    "                            <label id=\"spouseName\" font-bold=\"true\">Name</label></h6>\r" +
+    "\n" +
+    "                        <h5>\r" +
+    "\n" +
+    "                            <label id=\"lblspouseName\">'<%#Eval(\"NAME\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanellnkspouseedit\" class=\"edit_page_item_ui clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <a id=\"lnkspouseedit\" class=\"edit_page_edit_button\">Edit\r" +
+    "\n" +
+    "                    </a>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelspouseProfession\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"spouseEducation\" font-bold=\"true\">Education</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblspouseEducation\">'<%#Eval(\"EducationDetails\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelspouseProfessionDetails\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"spouseProfessionDetails\" font-bold=\"true\">Profession</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblspouseProfessionDetails\">'<%#Eval(\"ProfessionDetails\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelMarriedon\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"Marriedon\" font-bold=\"true\">Married on</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblMarriedon\">'<%#Eval(\"MarriageDate\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelSeparateddate\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"Separateddate\" font-bold=\"true\">Separated date</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblSeparateddate\">\r" +
+    "\n" +
+    "                                '<%#Eval(\"SeperatedDate\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelLegallydivorced\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"Legallydivorced\" font-bold=\"true\">Legally divorced</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblLegallydivorced\"></label> '\r" +
+    "\n" +
+    "                                <%#Eval(\"LeagallyDivorce\") %>'</h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelFamilyplanning\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"LabelFamilyplanning\" font-bold=\"true\">Family planning</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"Familyplanning\">'<%#Eval(\"MyFamilyPlanning\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div id=\"UpdatePanelDateofegallydivorce\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                            <h6>\r" +
+    "\n" +
+    "                                <label id=\"Dateoflegallydivorce\" font-bold=\"true\">Date of legally divorce</label></h6>\r" +
+    "\n" +
+    "                            <h5>\r" +
+    "\n" +
+    "                                <label id=\"lblDateoflegallydivorce\">'<%#Eval(\"DateofLegallDivorce\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <%--<div id=\"UpdatePanelDivorcecopy\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                        <h6>\r" +
+    "\n" +
+    "                            <label id=\"Divorcecopy\" font-bold=\"true\">Divorce copy</label></h6>\r" +
+    "\n" +
+    "                        <h5>\r" +
+    "\n" +
+    "                            <label id=\"lblDivorcecopy\">'<%#Eval(\"DivorceCopySubmitted\") %>'</label>\r" +
+    "\n" +
+    "                        </h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            --%>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelReasonfordivorce\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Reasonfordivorce\" font-bold=\"true\">Reason for divorce</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblReasonfordivorce\">'<%#Eval(\"ReasonforDivorce\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelFathername\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Fathername\" font-bold=\"true\">Father name</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblFathername\">'<%#Eval(\"FatherFirstName\")+\" \"+Eval(\"FatherLastName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            <div id=\"UpdatePanellblNoOfChildrens\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"lblnoofchildrenss\" font-bold=\"true\">No Of Children</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblNoOfChildrens\">'<%#Eval(\"NoOfChildrens\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelHouseFlatnumber\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"HouseFlatnumber\" font-bold=\"true\">House/Flat number</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblHouseFlatnumber\">'<%#Eval(\"HouseFlatNumberID\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelApartmentname\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Apartmentname\" font-bold=\"true\">Apartmentname</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblApartmentname\">'<%#Eval(\"AppartmentName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelStreetname\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Streetname\" font-bold=\"true\">Street name</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblStreetname\">'<%#Eval(\"StreetName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelAreaname\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Areaname\" font-bold=\"true\">Area name</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblAreaname\">'<%#Eval(\"AreaName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelLandmark\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"lblLandark\" font-bold=\"true\">Land mark</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblLandmark\">'<%#Eval(\"LandMark\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelCountry\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"Country\" font-bold=\"true\">Country</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblCountry\">'<%#Eval(\"CountryName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelState\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"State\" font-bold=\"true\">State</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblState\">'<%#Eval(\"StateName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelDistrict\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"District\" font-bold=\"true\">District</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblDistrict\">'<%#Eval(\"DistrictName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div id=\"UpdatePanelCity\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    <h6>\r" +
+    "\n" +
+    "                        <label id=\"City\" font-bold=\"true\">City</label></h6>\r" +
+    "\n" +
+    "                    <h5>\r" +
+    "\n" +
+    "                        <label id=\"lblCity\">'<%#Eval(\"CityName\") %>'</label></h5>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <hr />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "</div>-->"
   );
 
 

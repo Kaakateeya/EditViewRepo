@@ -117,6 +117,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.rbtPreferredstarLanguage = item.StarLanguageID;
                         scope.partnerObj.rbtPreferredstars = item.TypeOfStar;
                         scope.partnerObj.lstpreferedstars = scope.SplitstringintoArray(item.PreferredStars);
+                        scope.partnerObj.rbtDomacile = item.Domicel === 'India' ? 0 : (item.Domicel === 'abroad' ? 1 : (item.Domicel === 'All' ? 2 : ''));
+
                         commonFactory.open('partnerPrefContent.html', scope, uibModal);
                     }
 
@@ -177,6 +179,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         GenderID: objitem.rbtlGender,
                         Region: commonFactory.listSelectedVal(objitem.lstRegion),
                         Branch: commonFactory.listSelectedVal(objitem.lstBranch),
+                        Domacile: commonFactory.checkvals(objitem.rbtDomacile) ? parseInt(objitem.rbtDomacile) : ''
                     },
                     customerpersonaldetails: {
                         intCusID: custID,

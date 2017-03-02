@@ -1,0 +1,296 @@
+<!--<div class="edit_pages_content_main clearfix">
+
+    <div class="edit_page_item">
+        <div class="edit_page_item_head clearfix">
+            <h4>Spouse Details</h4>
+            <div class="edit_page_item_ui clearfix">
+
+                <a id="SpouseDetailsAdd" onclick="SpouseDetailsAdd_Click" class="edit_page_add_button">Add
+            </a>
+
+            </div>
+        </div>
+
+        <div class="edit_page_details_item">
+            <div id="fullSpouseDetails">
+
+                <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+
+
+                    <div id="updatespousename" class="edit_page_details_item_desc clearfix">
+
+                        <h6>
+                            <label id="spouseName" font-bold="true">Name</label></h6>
+                        <h5>
+                            <label id="lblspouseName">'<%#Eval("NAME") %>'</label></h5>
+
+                    </div>
+                    <div id="UpdatePanellnkspouseedit" class="edit_page_item_ui clearfix">
+
+                        <a id="lnkspouseedit" class="edit_page_edit_button">Edit
+                    </a>
+
+
+                    </div>
+
+
+                    <div id="UpdatePanelspouseProfession" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="spouseEducation" font-bold="true">Education</label></h6>
+                            <h5>
+                                <label id="lblspouseEducation">'<%#Eval("EducationDetails") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanelspouseProfessionDetails" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="spouseProfessionDetails" font-bold="true">Profession</label></h6>
+                            <h5>
+                                <label id="lblspouseProfessionDetails">'<%#Eval("ProfessionDetails") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+
+                    <div id="UpdatePanelMarriedon" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="Marriedon" font-bold="true">Married on</label></h6>
+                            <h5>
+                                <label id="lblMarriedon">'<%#Eval("MarriageDate") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanelSeparateddate" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="Separateddate" font-bold="true">Separated date</label></h6>
+                            <h5>
+                                <label id="lblSeparateddate">
+                                '<%#Eval("SeperatedDate") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanelLegallydivorced" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="Legallydivorced" font-bold="true">Legally divorced</label></h6>
+                            <h5>
+                                <label id="lblLegallydivorced"></label> '
+                                <%#Eval("LeagallyDivorce") %>'</h5>
+
+                        </div>
+
+                    </div>
+
+                    <div id="UpdatePanelFamilyplanning" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="LabelFamilyplanning" font-bold="true">Family planning</label></h6>
+                            <h5>
+                                <label id="Familyplanning">'<%#Eval("MyFamilyPlanning") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+                    <div id="UpdatePanelDateofegallydivorce" class="edit_page_details_item_desc clearfix">
+
+                        <div>
+
+                            <h6>
+                                <label id="Dateoflegallydivorce" font-bold="true">Date of legally divorce</label></h6>
+                            <h5>
+                                <label id="lblDateoflegallydivorce">'<%#Eval("DateofLegallDivorce") %>'</label></h5>
+
+                        </div>
+
+                    </div>
+                    <%--<div id="UpdatePanelDivorcecopy" class="edit_page_details_item_desc clearfix">
+
+                    <div>
+
+                        <h6>
+                            <label id="Divorcecopy" font-bold="true">Divorce copy</label></h6>
+                        <h5>
+                            <label id="lblDivorcecopy">'<%#Eval("DivorceCopySubmitted") %>'</label>
+                        </h5>
+
+                </div>
+
+
+            </div>
+            --%>
+            <div id="UpdatePanelReasonfordivorce" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Reasonfordivorce" font-bold="true">Reason for divorce</label></h6>
+                    <h5>
+                        <label id="lblReasonfordivorce">'<%#Eval("ReasonforDivorce") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelFathername" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Fathername" font-bold="true">Father name</label></h6>
+                    <h5>
+                        <label id="lblFathername">'<%#Eval("FatherFirstName")+" "+Eval("FatherLastName") %>'</label></h5>
+
+                </div>
+
+            </div>
+
+            <div id="UpdatePanellblNoOfChildrens" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="lblnoofchildrenss" font-bold="true">No Of Children</label></h6>
+                    <h5>
+                        <label id="lblNoOfChildrens">'<%#Eval("NoOfChildrens") %>'</label></h5>
+
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelHouseFlatnumber" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="HouseFlatnumber" font-bold="true">House/Flat number</label></h6>
+                    <h5>
+                        <label id="lblHouseFlatnumber">'<%#Eval("HouseFlatNumberID") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelApartmentname" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Apartmentname" font-bold="true">Apartmentname</label></h6>
+                    <h5>
+                        <label id="lblApartmentname">'<%#Eval("AppartmentName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelStreetname" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Streetname" font-bold="true">Street name</label></h6>
+                    <h5>
+                        <label id="lblStreetname">'<%#Eval("StreetName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelAreaname" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Areaname" font-bold="true">Area name</label></h6>
+                    <h5>
+                        <label id="lblAreaname">'<%#Eval("AreaName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelLandmark" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="lblLandark" font-bold="true">Land mark</label></h6>
+                    <h5>
+                        <label id="lblLandmark">'<%#Eval("LandMark") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelCountry" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="Country" font-bold="true">Country</label></h6>
+                    <h5>
+                        <label id="lblCountry">'<%#Eval("CountryName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelState" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="State" font-bold="true">State</label></h6>
+                    <h5>
+                        <label id="lblState">'<%#Eval("StateName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelDistrict" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="District" font-bold="true">District</label></h6>
+                    <h5>
+                        <label id="lblDistrict">'<%#Eval("DistrictName") %>'</label></h5>
+
+                </div>
+
+            </div>
+            <div id="UpdatePanelCity" class="edit_page_details_item_desc clearfix">
+
+                <div>
+
+                    <h6>
+                        <label id="City" font-bold="true">City</label></h6>
+                    <h5>
+                        <label id="lblCity">'<%#Eval("CityName") %>'</label></h5>
+
+                </div>
+
+            </div>
+        </div>
+        <hr />
+
+
+
+    </div>
+</div>
+</div>
+
+
+</div>-->

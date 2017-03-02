@@ -169,19 +169,32 @@
                                 </div>
 
                             </div>
-                            <div id="professionbrother" class="edit_page_details_item_desc clearfix">
 
+
+                            <div class="edit_page_details_item_desc clearfix">
                                 <div>
                                     <h6>
-                                        <label id="Label2" font-bold="true">Profession</label></h6>
+                                        <label font-bold="true">Profession Category</label></h6>
+                                    <h5>
+                                        <span>
+                                            {{ item.ProfessionCategory}}
+                                    </span>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+                                <div>
+                                    <h6>
+                                        <label id="Label2" font-bold="true">Designation</label></h6>
                                     <h5>
                                         <span id="lblBrotherprofessionDetails">
                                             {{ item.SibilingProfessionDetails}}
                                     </span>
                                     </h5>
                                 </div>
-
                             </div>
+
                             <div id="uplprofessioneb" class="edit_page_details_item_desc clearfix">
 
                                 <div id="professiondiv">
@@ -271,12 +284,29 @@
                                         </div>
 
                                     </div>
+
+
+                                    <div class="edit_page_details_item_desc clearfix">
+                                        <div>
+                                            <h6>
+                                                <label font-bold="true">Profession Category</label></h6>
+                                            <h5>
+                                                <span>
+                                            {{ item.SpouseProfessionCategory}}
+                                    </span>
+                                            </h5>
+                                        </div>
+                                    </div>
+
+
+
+
                                     <div id="lblbrotherwifeprofessiondetails" class="edit_page_details_item_desc clearfix">
 
                                         <div id="divlblbrotherwifeprofession">
 
                                             <h6>
-                                                <label id="lblbrotherwifeprofession" font-bold="true">Profession</label></h6>
+                                                <label id="lblbrotherwifeprofession" font-bold="true">Designation</label></h6>
                                             <h5>
                                                 <span id="lblbrotherwifeprofessiondetails">
                                                     {{ item.SibilingSpouseProfessionDetails}}
@@ -441,12 +471,27 @@
                                 </div>
 
                             </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+                                <div>
+                                    <h6>
+                                        <label font-bold="true">Profession Category</label></h6>
+                                    <h5>
+                                        <span>
+                                            {{ item.ProfessionCategory}}
+                                    </span>
+                                    </h5>
+                                </div>
+                            </div>
+
+
                             <div id="lblsisterprofessiondetails" class="edit_page_details_item_desc clearfix">
 
                                 <div>
 
                                     <h6>
-                                        <label id="lblsisterprofession" font-bold="true">Profession</label></h6>
+                                        <label id="lblsisterprofession" font-bold="true">Designation</label></h6>
                                     <h5>
                                         <span id="lblsisterprofessiondetails">
                                             {{ item.SibilingProfessionDetails}}
@@ -528,9 +573,7 @@
                                     </div>
 
                                     <div id="lblsisterspouseeducation" class="edit_page_details_item_desc clearfix">
-
                                         <div id="divlblsisterspouseeducation">
-
                                             <h6>
                                                 <label id="lblsisterspouseeducation" font-bold="true">Education</label></h6>
                                             <h5>
@@ -539,14 +582,26 @@
                                             </span>
                                             </h5>
                                         </div>
-
                                     </div>
+
+                                    <div class="edit_page_details_item_desc clearfix">
+                                        <div>
+                                            <h6>
+                                                <label font-bold="true">Profession Category</label></h6>
+                                            <h5>
+                                                <span>
+                                            {{ item.SpouseProfessionCategory}}
+                                    </span>
+                                            </h5>
+                                        </div>
+                                    </div>
+
                                     <div id="lblsisterspouseprofession" class="edit_page_details_item_desc clearfix">
 
                                         <div id="divlblsisterspouseprofession">
 
                                             <h6>
-                                                <label id="lblsisterspouseprofession" font-bold="true">Profession</label></h6>
+                                                <label id="lblsisterspouseprofession" font-bold="true">Designation</label></h6>
                                             <h5>
                                                 <span id="lblsisterspouseprofessiondetails">
                                                     {{ item.SibilingSpouseProfessionDetails}}
@@ -720,12 +775,6 @@
                 </li>
                 <li class="row">
                     <br/>
-                    <!--<div class="col-lg-9">
-                        <input type="submit" value="Submit" class="button_custom  pull-right">
-                    </div>
-                    <div class="col-lg-3">
-                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>-->
 
                     <edit-footer></edit-footer>
                 </li>
@@ -747,14 +796,6 @@
             <ul>
                 <li class="clearfix">
                     <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
-                    <!--<div class="pop_controls_right pop_radios_list">
-                        <label>
-                <input ng-model="broObj.rdlBElderYounger" value="42" type="radio"><span>&nbsp;Elder</span>
-            </label>
-                        <label class="">
-                <input ng-model="broObj.rdlBElderYounger" value="41" type="radio"><span>&nbsp;Younger</span>
-            </label>
-                    </div>-->
 
                     <md-input-container style="font-weight: 700;color:black;">
                         <md-radio-group ng-required="true" name="rdlBElderYounger" layout="row" ng-model="broObj.rdlBElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -765,8 +806,6 @@
                             <div ng-if="brotherForm.rdlBElderYounger.$invalid && (brotherForm.$submitted)">This field is required.</div>
                         </div>
                     </md-input-container>
-
-
 
                 </li>
                 <li class="clearfix form-group">
@@ -781,8 +820,19 @@
                         <input ng-model="broObj.txtbrotherreducation" class="form-control" tabindex="3" maxlength="150" />
                     </div>
                 </li>
+
+
                 <li class="clearfix form-group">
-                    <label for="lblbrotherprofession" class="pop_label_left">Profession</label>
+                    <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                    <div class="pop_controls_right select-box-my input-group">
+                        <select multiselectdropdown ng-model="broObj.ddlbroprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                    </div>
+                </li>
+
+
+
+                <li class="clearfix form-group">
+                    <label for="lblbrotherprofession" class="pop_label_left">Designation</label>
                     <div class="pop_controls_right">
                         <input ng-model="broObj.txtbrotherprofession" class="form-control" tabindex="4" maxlength="200" />
                     </div>
@@ -833,8 +883,16 @@
                             <input ng-model="broObj.txtbrotherwifeeducation" class="form-control" tabindex="20" maxlength="150" />
                         </div>
                     </li>
+
                     <li class="clearfix form-group">
-                        <label for="lblwifescmpy" class="pop_label_left">Spouse Profession</label>
+                        <label class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="broObj.ddlbroSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblwifescmpy" class="pop_label_left">Spouse Designation</label>
                         <div class="pop_controls_right">
                             <input ng-model="broObj.txtbrotherwifeprofession" class="form-control" tabindex="21" maxlength="200" />
                             <label class="checkbox-inline"><input ng-model="broObj.chkboxbrotherwifeprofession" type="checkbox" ng-change="BhousewiseChk(broObj);"><span>&nbsp;HouseWife</span> </label>
@@ -903,12 +961,6 @@
                     </div>
                 </div>
                 <li class="row ">
-                    <!--<div class="col-lg-9">
-                        <input value="Submit" class="button_custom pull-right" type="submit">
-                    </div>
-                    <div class="col-lg-3">
-                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>-->
 
                     <edit-footer></edit-footer>
                 </li>
@@ -959,8 +1011,21 @@
                         <input ng-model="sisObj.txtsisEducation" class="form-control" tabindex="3" maxlength="150" />
                     </div>
                 </li>
+
+
                 <li class="clearfix form-group">
-                    <label for="lblsisProfession" class="pop_label_left">Profession</label>
+                    <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                    <div class="pop_controls_right select-box-my input-group">
+                        <select multiselectdropdown ng-model="sisObj.ddlsisprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                    </div>
+                </li>
+
+
+
+
+
+                <li class="clearfix form-group">
+                    <label for="lblsisProfession" class="pop_label_left">Designation</label>
                     <div class="pop_controls_right">
                         <input ng-model="sisObj.txtsisProfession" class="form-control" tabindex="4" maxlength="200" />
                     </div>
@@ -1019,8 +1084,18 @@
                             <input ng-model="sisObj.txtHusbandEducation" class="form-control" tabindex="21" maxlength="150" />
                         </div>
                     </li>
+
+
                     <li class="clearfix form-group">
-                        <label for="lblHusbandProfession" class="pop_label_left">Husband Profession</label>
+                        <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="sisObj.ddlsisSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblHusbandProfession" class="pop_label_left">Husband Designation</label>
                         <div class="pop_controls_right">
                             <input ng-model="sisObj.txtHusbandProfession" class="form-control" tabindex="22" maxlength="200" />
                         </div>
@@ -1074,12 +1149,6 @@
                     </li>
                 </div>
                 <li class="row ">
-                    <!--<div class="col-lg-9">
-                        <input value="Submit" class="button_custom pull-right" type="submit">
-                    </div>
-                    <div class="col-lg-3">
-                        <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="cancel();" type="button">
-                    </div>-->
 
                     <edit-footer></edit-footer>
                 </li>

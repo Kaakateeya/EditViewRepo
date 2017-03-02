@@ -28,7 +28,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.physicalArr = commonFactory.checkvals(response.data[2]) ? JSON.parse(response.data[2]) : [];
                     scope.AboutFamily = commonFactory.checkvals(response.data[3]) ? JSON.parse(response.data[3]) : [];
 
-                    console.log(scope.parentArr);
+                    console.log(JSON.parse(response.data[0]));
                 }
 
                 if (commonFactory.checkvals(scope.AboutFamily[0])) {
@@ -170,6 +170,13 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                                 scope.parent.rbtlParentIntercaste = item.Intercaste === 'Yes' ? 1 : 0;
                                 scope.parent.ddlFatherCaste = item.FatherCasteID;
                                 scope.parent.ddlMotherCaste = item.MotherCasteID;
+
+                                scope.parent.ddlFprofessionCatgory = item.FatherProfessionCategoryID;
+                                scope.parent.ddlMprofessionCatgory = item.MotherProfessionCategoryID;
+
+
+
+
                                 commonFactory.open('parentModalContent.html', scope, uibModal);
 
                             }
@@ -340,7 +347,9 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                         MotherFatherLandAreaCode: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? null : (commonFactory.checkvals(objitem.txtMotherFatherLandLineareacode) ? objitem.txtMotherFatherLandLineareacode : null),
                         MotherFatherLandNumber: commonFactory.checkvals(objitem.txtmotherfatheralternative) ? objitem.txtmotherfatheralternative : (commonFactory.checkvals(objitem.txtMotherFatherLandLinenum) ? objitem.txtMotherFatherLandLinenum : null),
                         FatherCaste: objitem.ddlMotherCaste,
-                        MotherCaste: objitem.ddlFatherCaste
+                        MotherCaste: objitem.ddlFatherCaste,
+                        FatherProfessionCategoryID: objitem.ddlFprofessionCatgory,
+                        MotherProfessionCategoryID: objitem.ddlMprofessionCatgory
                     },
                     customerpersonaldetails: {
                         intCusID: custID,

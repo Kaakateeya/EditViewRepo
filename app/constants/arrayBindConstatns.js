@@ -228,6 +228,15 @@ editviewapp.constant('arrayConstantsEdit', {
         { "label": "Relative", "title": "Relative", "value": 319 },
         { "label": "Not Given", "title": "Not Given", "value": 549 },
 
+    ],
+    'newProfessionCatgory': [
+        { "label": "--Select--", "title": "--Select--", "value": "" },
+        { "label": "state govt job", "title": "state govt job", "value": 567 },
+        { "label": "central govt job", "title": "central govt job", "value": 568 },
+        { "label": "private job", "title": "private job", "value": 569 },
+        { "label": "doctor", "title": "doctor", "value": 570 },
+        { "label": "business", "title": "business", "value": 571 }
+
     ]
 
 

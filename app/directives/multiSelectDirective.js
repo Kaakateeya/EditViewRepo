@@ -105,6 +105,11 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
                     case 'recomendedtofriends':
                         scope.databind(cons.recomendedtofriends);
                         break;
+
+                    case 'newProfessionCatgory':
+                        scope.databind(cons.newProfessionCatgory);
+                        break;
+
                     case 'Country':
                         service.countrySelect().then(function(response) {
                             var option = [];
