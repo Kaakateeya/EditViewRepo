@@ -1,0 +1,11 @@
+editviewapp.factory('ContactDetailsServices', ['$http', function(http) {
+    return {
+        getContactData: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerPersonalContact_Details', { params: { CustID: obj } });
+        },
+        submitContactData: function(obj1) {
+            console.log(JSON.stringify(obj1));
+            return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/CustomerContactDetails_Update', JSON.stringify(obj1));
+        }
+    };
+}]);

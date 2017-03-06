@@ -15,9 +15,10 @@ editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 // editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
-editviewapp.templateroot = 'editview/';
+// editviewapp.templateroot = 'editview/';
+editviewapp.apipath = 'http://183.82.0.58:8025/Api/';
 
-//editviewapp.templateroot = '';
+editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -44,8 +45,10 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl', isloginrequired: true },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl', isloginrequired: true },
-        // { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true },
-        // { name: 'editview.editContact', url: '/editContact', templateUrl: editviewapp.templateroot + 'app/views/editContactsdetails.html', controller: 'contactctrl', isloginrequired: true }
+        { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true },
+        { name: 'editview.editContact', url: '/editContact', templateUrl: editviewapp.templateroot + 'app/views/editContactsdetails.html', controller: 'contactctrl', isloginrequired: true },
+        { name: 'editview.officePurpose', url: '/officePurpose', templateUrl: editviewapp.templateroot + 'app/views/officePurpose.html', controller: 'officePurposectrl', isloginrequired: true },
+        { name: 'editview.profileSettings', url: '/profileSettings', templateUrl: editviewapp.templateroot + 'app/views/profileSettings.html', controller: 'profileSettingsctrl', isloginrequired: true }
 
     ];
 

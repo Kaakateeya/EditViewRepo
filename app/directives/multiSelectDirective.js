@@ -109,7 +109,9 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
                     case 'newProfessionCatgory':
                         scope.databind(cons.newProfessionCatgory);
                         break;
-
+                    case 'gradeSelection':
+                        scope.databind(cons.gradeSelection);
+                        break;
                     case 'Country':
                         service.countrySelect().then(function(response) {
                             var option = [];
