@@ -1,6 +1,6 @@
 editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices', 'commonFactory',
-    'authSvc', 'sibblingServices',
-    function(uibModal, scope, relativeServices, commonFactory, authSvc, sibblingServices) {
+    'authSvc', 'sibblingServices', 'editviewServices',
+    function(uibModal, scope, relativeServices, commonFactory, authSvc, sibblingServices, editviewServices) {
 
 
         scope.fbObj = {};
@@ -10,6 +10,8 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
         scope.countryCode = 'countryCode';
         scope.indiaStates = 'indiaStates';
         var isSubmit = true;
+        scope.deleteDisplayTxt = '';
+        scope.identityID = 0;
         var logincustid = authSvc.getCustId();
         var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -418,6 +420,21 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
         scope.cancel = function() {
             commonFactory.closepopup();
         };
+
+        scope.DeletePopup = function(type, id) {
+            scope.deleteDisplayTxt = type;
+            scope.identityID = id;
+            commonFactory.open('app/views/deletepopup.html', scope, uibModal, 'sm');
+        };
+
+        scope.deleteSubmit = function() {
+            editviewServices.DeleteSection({ sectioname: 'Family', CustID: custid, identityid: scope.identityID }).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+            });
+        };
+
+
 
     }
 ]);

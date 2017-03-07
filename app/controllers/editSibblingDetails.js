@@ -1,6 +1,6 @@
-editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', 'authSvc',
+editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices', 'commonFactory', 'authSvc', 'editviewServices',
 
-    function(scope, uibModal, sibblingServices, commonFactory, authSvc) {
+    function(scope, uibModal, sibblingServices, commonFactory, authSvc, editviewServices) {
 
         scope.countryCode = 'countryCode';
         scope.sibblingCountArr = [];
@@ -15,6 +15,8 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
         scope.BroCount = null;
         scope.SisCount = null;
         scope.CountryVal = '1';
+        scope.identityID = 0;
+
         var isSubmit = true;
 
         var logincustid = authSvc.getCustId();
@@ -547,7 +549,19 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
 
         };
 
+        scope.deleteDisplayTxt = '';
+        scope.DeletePopup = function(type, id) {
+            scope.deleteDisplayTxt = type;
+            scope.identityID = id;
+            commonFactory.open('app/views/deletepopup.html', scope, uibModal, 'sm');
+        };
 
+        scope.deleteSubmit = function(type) {
+            editviewServices.DeleteSection({ sectioname: 'Family', CustID: custID, identityid: scope.identityID }).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+            });
+        };
 
     }
 ]);

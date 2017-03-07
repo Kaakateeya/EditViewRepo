@@ -5,6 +5,13 @@ editviewapp.factory('personalDetailsService', ["$http", function(http) {
         },
         menuReviewstatus: function(obj) {
             return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerPersonalMenuReviewStatus', { params: { CustID: obj } });
+        },
+        nodatastatus: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerPersonalMenuReviewStatus', { params: { CustID: obj } });
         }
+
+
+
+
     };
 }]);

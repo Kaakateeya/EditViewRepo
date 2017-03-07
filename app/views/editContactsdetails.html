@@ -766,10 +766,7 @@
 
 
 <script type="text/ng-template" id="referenceContactContent.html">
-    <form name="refForm" novalidate role="form" ng-submit="commonContactSubmit(referenceobj.emaILcust_family_id,txtreferencename,
-    referenceobj.ddlreferencemobile,referenceobj.txtreferencemobile,referenceobj.ddlreferencemobile2,referenceobj.txtreferencemobile2,
-    referenceobj.ddlreferencelandnumber,referenceobj.txtreferenceAreCode,referenceobj.txtreferencelandnumber
-    ,referenceobj.txtreferenceemail)">
+    <form name="refForm" novalidate role="form" ng-submit="submitContactReference(referenceobj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Reference Contact details
                 <a href="javascript:void(0);" ng-click="cancel();">

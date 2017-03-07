@@ -1,6 +1,6 @@
 editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServices', 'commonFactory',
-    'authSvc', 'sibblingServices',
-    function(uibModal, scope, referenceServices, commonFactory, authSvc, sibblingServices) {
+    'authSvc', 'sibblingServices', 'editviewServices',
+    function(uibModal, scope, referenceServices, commonFactory, authSvc, sibblingServices, editviewServices) {
 
 
         scope.ReferenceArr = [];
@@ -8,7 +8,9 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
         scope.RelationshipType = 'RelationshipType';
         scope.Country = 'Country';
         scope.countryCode = 'countryCode';
+        scope.deleteDisplayTxt = 'reference';
         var isSubmit = true;
+        scope.identityID = 0;
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -142,6 +144,24 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
         scope.cancel = function() {
             commonFactory.closepopup();
         };
+
+
+        scope.DeletePopup = function(id) {
+            scope.identityID = id;
+            commonFactory.open('app/views/deletepopup.html', scope, uibModal, 'sm');
+        };
+
+        scope.deleteSubmit = function(type) {
+            editviewServices.DeleteSection({ sectioname: 'Reference', CustID: custID, identityid: scope.identityID }).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                referenceServices.getReferenceData(custID).then(function(response) {
+                    scope.ReferenceArr = response.data;
+                    console.log(scope.ReferenceArr);
+                });
+            });
+        };
+
 
 
     }

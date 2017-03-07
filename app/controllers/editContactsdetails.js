@@ -32,12 +32,6 @@ editviewapp.controller('contactctrl', ['$scope', 'authSvc', 'ContactDetailsServi
                     scope.relativeContactArr = response.data[4].length > 0 ? JSON.parse(response.data[4]) : [];
                     scope.referenceContactArr = response.data[5].length > 0 ? JSON.parse(response.data[5]) : [];
 
-                    console.log(scope.candidateContactArr);
-                    console.log(scope.candidateAddrArr);
-                    console.log(scope.parentContactArr);
-                    console.log(scope.SiiblingContactArr);
-                    console.log(scope.relativeContactArr);
-                    console.log(scope.referenceContactArr);
 
                 }
 
@@ -281,8 +275,6 @@ editviewapp.controller('contactctrl', ['$scope', 'authSvc', 'ContactDetailsServi
 
             }
 
-
-
         };
 
 
@@ -291,7 +283,27 @@ editviewapp.controller('contactctrl', ['$scope', 'authSvc', 'ContactDetailsServi
         };
 
 
+        scope.submitContactReference = function(obj) {
+            scope.Mobj = {
 
+                Cust_Reference_ID: scope.referenceobj.emaILcust_family_id,
+                Cust_ID: custID,
+                FirstName: obj.txtreferencename,
+                MobileCode: obj.ddlreferencemobile,
+                Number: obj.txtreferencemobile,
+                CountryCode: commonFactory.checkvals(obj.ddlreferencemobile2) ? obj.ddlreferencemobile2 : commonFactory.checkvals(obj.ddlreferencelandnumber) ? obj.ddlreferencelandnumber : null,
+                AreaCode: commonFactory.checkvals(obj.txtreferencemobile2) ? null : (commonFactory.checkvals(obj.txtreferenceAreCode) ? obj.txtreferenceAreCode : null),
+                Landlinenumber: commonFactory.checkvals(obj.txtreferencemobile2) ? obj.txtreferencemobile2 : commonFactory.checkvals(obj.txtreferencelandnumber) ? obj.txtreferencelandnumber : null,
+                Email: obj.txtreferenceemail
+            };
+
+            ContactDetailsServices.submitContactReferenceData(scope.Mobj).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                scope.pageload();
+            });
+
+        };
 
     }
 ]);

@@ -151,7 +151,7 @@
                                 <div id="upllnkbrodetailseb" class="edit_page_item_ui clearfix">
 
                                     <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="sibblingPopulatePopulate('brother',item)">Edit</a>
-
+                                    <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('brother',item.SibilingCustfamilyID);">Delete</a>
                                 </div>
 
                             </div>
@@ -451,8 +451,9 @@
                                 <div id="upllnksisteredites" class="edit_page_item_ui clearfix">
 
                                     <a class="edit_page_edit_button" data-original-title="Edit Sister Details" href="javascript:void(0);" ng-click="sibblingPopulatePopulate('sister',item)">Edit
-                                </a>
-
+                                         
+                                    </a>
+                                    <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('sister',item.SibilingCustfamilyID);">Delete</a>
 
                                 </div>
                             </div>
@@ -1160,6 +1161,9 @@
     </form>
 </script>
 <alert-directive></alert-directive>
+
+
+
 <style>
     .md-dialog-container {
         z-index: 99999999999;

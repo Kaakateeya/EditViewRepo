@@ -272,6 +272,14 @@ editviewapp.constant('arrayConstantsEdit', {
         { "label": "B", "title": "B", "value": 217 },
         { "label": "C", "title": "C", "value": 218 },
         { "label": "D", "title": "D", "value": 219 }
+    ],
+    'Complexion': [
+        { "label": "--select-- ", "title": "--select--", "value": "" },
+        { "label": "Very Fair", "title": "Very Fair", "value": 17 },
+        { "label": "Fair", "title": "Fair", "value": 18 },
+        { "label": "Medium", "title": "Medium", "value": 19 },
+        { "label": "Dark", "title": "Dark", "value": 20 },
+        { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 38 }
     ]
 
 });

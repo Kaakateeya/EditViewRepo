@@ -21,8 +21,12 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         scope.profObj = {};
         scope.edoObj = {};
         scope.aboutObj = {};
+        scope.custObj = {};
         scope.edoObj.IsHighestDegree = '';
         var isSubmit = true;
+        scope.educationID = 0;
+        scope.CustomerDataArr = [];
+
         var logincustid = authSvc.getCustId();
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
@@ -50,9 +54,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
-                        // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
-                        // scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
-                        // scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
@@ -118,6 +119,25 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     }
                     commonFactory.open('AboutModalContent.html', scope, uibModal);
                     break;
+
+                case 'custData':
+                    if (item !== undefined) {
+                        scope.custObj.rdlGender = item.GenderID;
+                        scope.custObj.txtSurName = item.LastName;
+                        scope.custObj.txtName = item.FirstName;
+                        scope.custObj.dropmaritalstatus = item.MaritalStatusID;
+                        scope.custObj.txtdobcandidate = commonFactory.convertDateFormat(item.DateofBirthwithoutAge, 'DD-MM-YYYY');
+                        scope.custObj.ddlHeightpersonal = item.HeightID;
+                        scope.custObj.ddlcomplexion = item.ComplexionID;
+                        scope.custObj.ddlreligioncandadate = item.ReligionID;
+                        scope.custObj.ddlmothertongue = item.MotherTongueID;
+                        scope.custObj.ddlcaste = item.CasteID;
+                        scope.custObj.ddlsubcaste = item.SubCasteID;
+                        scope.custObj.ddlBornCitizenship = item.CitizenshipID;
+
+                    }
+                    commonFactory.open('CustomerDataContent.html', scope, uibModal);
+                    break;
             }
 
         };
@@ -127,7 +147,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             editviewServices.getEducationData(custID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     scope.educationSelectArray = response.data;
-                    console.log(scope.educationSelectArray);
                 }
 
             });
@@ -145,6 +164,13 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                     scope.AboutReviewStatusID = (AboutData[1].split(':'))[1];
                 }
             });
+
+
+            editviewServices.getCustomerData(custID).then(function(response) {
+                scope.CustomerDataArr = response.data !== undefined && response.data.length > 0 ? JSON.parse(response.data) : [];
+                console.log(scope.CustomerDataArr);
+            });
+
         };
 
 
@@ -326,6 +352,63 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             scope.datagetInStatus = 1;
 
         });
+
+
+        scope.DeleteEduPopup = function(id) {
+            scope.educationID = id;
+            commonFactory.open('deleteEduContent.html', scope, uibModal, 'sm');
+        };
+
+        scope.deleteEduSubmit = function() {
+            editviewServices.DeleteSection({ sectioname: 'Education', CustID: custID, identityid: scope.educationID }).then(function(response) {
+                console.log(response);
+                editviewServices.getEducationData(custID).then(function(response) {
+                    scope.educationSelectArray = response.data;
+                });
+                commonFactory.closepopup();
+            });
+
+
+        };
+
+        scope.custdataSubmit = function(obj) {
+
+            scope.custData = {
+                GetDetails: {
+                    CustID: custID,
+                    MaritalStatusID: obj.dropmaritalstatus,
+                    DateofBirth: obj.txtdobcandidate !== '' && obj.txtdobcandidate !== 'Invalid date' ? filter('date')(obj.txtdobcandidate, 'yyyy-MM-dd') : null,
+                    HeightID: obj.ddlHeightpersonal,
+                    ComplexionID: obj.ddlcomplexion,
+                    ReligionID: obj.ddlreligioncandadate,
+                    MotherTongueID: obj.ddlmothertongue,
+                    CasteID: obj.ddlcaste,
+                    CitizenshipID: obj.ddlBornCitizenship,
+                    SubcasteID: obj.ddlsubcaste,
+                    LastName: obj.txtSurName,
+                    FirstName: obj.txtName,
+                    Gender: obj.rdlGender
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
+                }
+            };
+            debugger;
+            editviewServices.submitCustomerData(scope.custData).then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+            });
+
+
+        };
+
+
+
+
+
+
 
     }
 ]);

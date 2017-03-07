@@ -23,6 +23,7 @@
                             <div ng-if="FBArr.length>0" class="edit_page_item_ui clearfix">
 
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('FB',item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                                <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('father brother',item.FatherbrotherCustfamilyID);">Delete</a>
                             </div>
 
                         </div>
@@ -125,6 +126,7 @@
                             </div>
                             <div ng-if="FSArr.length>0" class="edit_page_item_ui clearfix">
                                 <a ng-click="relativePopulatePopulate('FS',item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                                <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('father sister',item.FatherSisterCustfamilyID);">Delete</a>
                             </div>
 
                         </div>
@@ -249,6 +251,7 @@
                             </div>
                             <div ng-if="MBrr.length>0" class="edit_page_item_ui clearfix">
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('MB',item);" class="edit_page_edit_button">Edit</a>
+                                <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('mother brother',item.MotherBrotherCustfamilyID);">Delete</a>
                             </div>
 
                             <div class="edit_page_details_item_desc clearfix">
@@ -350,6 +353,7 @@
                             </div>
                             <div ng-if="MSArr.length>0" class="edit_page_item_ui clearfix">
                                 <a href="javascript:void(0);" ng-click="relativePopulatePopulate('MS',item);" class="edit_page_edit_button">Edit</a>
+                                <a href="javascript:void(0);" class="edit_page_del_button" ng-click="DeletePopup('mother sister',item.MotherSisterCustfamilyID);">Delete</a>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">

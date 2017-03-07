@@ -18,6 +18,16 @@ editviewapp.factory('editviewServices', ['$http', '$timeout', '$q', function(htt
         },
         submitAboutUrData: function(obj1) {
             return http.get(editviewapp.apipath + 'CustomerPersonal/getEducationProfession_AboutYourself', { params: obj1 });
+        },
+        DeleteSection: function(obj) {
+            console.log(JSON.stringify(obj));
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getCustomerSectionsDeletions', { params: { sectioname: obj.sectioname, CustID: obj.CustID, identityid: obj.identityid } });
+        },
+        getCustomerData: function(obj) {
+            return http.get(editviewapp.apipath + 'CustomerPersonal/getpersonaldetails_Customer', { params: { CustID: obj } });
+        },
+        submitCustomerData: function(obj1) {
+            return http.post(editviewapp.apipath + 'CustomerPersonalUpdate/UpdatePersonalDetails_Customersetails', JSON.stringify(obj1));
         }
 
     };
