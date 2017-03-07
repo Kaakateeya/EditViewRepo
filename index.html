@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+
+    <!-- Meta-Information -->
+    <title>Kaakateeya Marriages</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <base href="/">
+    <meta name="description" content="ACME Inc.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap-theme.min.css">
+
+    <link href="node_modules/angular-material/angular-material.min.css" rel="stylesheet"></link>
+    <link href="src/css/bootstrap-responsive.min.css" rel="stylesheet"></link>
+    <link href="src/css/stylekaakateeya.css" rel="stylesheet"></link>
+
+    <link href="src/css/style_responsive.css" rel="stylesheet"></link>
+    <link href="src/css/uniform.default.css" rel="stylesheet"></link>
+    <link href="src/css/chosen.css" rel="stylesheet"></link>
+    <link href="src/css/jquery-css.css" rel="stylesheet"></link>
+    <link href="src/css/bootstrap-fileupload.css" rel="stylesheet"></link>
+    <link href="src/css/custom_styles.css" rel="stylesheet"></link>
+    <link href="src/css/custom_responsive.css" rel="stylesheet"></link>
+    <link href="src/css/GITheWall.css" rel="stylesheet"></link>
+
+    <link href="src/css/CustomerSearchResult_New.css" rel="stylesheet"></link>
+
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400" rel="stylesheet"></link>
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:500,900,300,700,400" rel="stylesheet"></link>
+
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet"></link>
+
+
+    <link href="node_modules/angular-ui-bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet"></link>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.1.2/octicons.css"></link>
+
+    <link rel="stylesheet" href="src/css/processingStyle.css"></link>
+
+    <style>
+        .reviewCls {
+            background-image: url(src/images/img_kaaka_Seal_b.png);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body ng-app="KaakateeyaEdit" ui-router-styles>
+
+    <div ui-view="topbar"></div>
+    <div ui-view="lazyLoadView"></div>
+    <div ui-view="bottompanel"></div>
+
+    <!-- SCRIPTS DATA -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-module-sanitize/angular-sanitize.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="src/js/jquery.blockui.js"></script>
+    <script src="src/js/bootstrap-multiselect.js"></script>
+    <script src="src/js/scriptsKaakateeya.js"></script>
+    <script src="src/js/jquery.alert.js"></script>
+    <script src="src/js/GI.TheWall.min.js"></script>
+    <script src="src/js/jquery-ui.js"></script>
+    <script src="node_modules/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <script src="node_modules/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
+    <script src="app/services/allowWebusersSerice.js"></script>
+
+    <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
+
+    <script src="node_modules/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
+
+    <script src="bower_components/angular-promise-buttons/dist/angular-promise-buttons.min.js"></script>
+
+    <script src="index.js"></script>
+    <script src="app/constants/arrayBindConstatns.js"></script>
+    <script src="app/controllers/editAstroDetails.js"></script>
+    <script src="app/controllers/editManagePhoto.js"></script>
+    <script src="app/controllers/editParentDetails.js"></script>
+    <script src="app/controllers/editPartnerPreferences.js"></script>
+    <script src="app/controllers/editPropertyDetails.js"></script>
+    <script src="app/controllers/editReferenceDetails.js"></script>
+    <script src="app/controllers/editRelativeDetails.js"></script>
+    <script src="app/controllers/editSibblingDetails.js"></script>
+    <script src="app/controllers/editSideMenu.js"></script>
+    <script src="app/controllers/educationAndProfession.js"></script>
+    <script src="app/directives/commonFactory.js"></script>
+    <script src="app/directives/confirmAlertDirective.js"></script>
+    <script src="app/directives/contactDirecrive.js"></script>
+    <script src="app/directives/countryDirective.js"></script>
+    <script src="app/directives/datePickerDirective.js"></script>
+    <script src="app/directives/accessibleForm.js"></script>
+    <script src="app/directives/modelHeader.js"></script>
+    <script src="app/directives/multiSelectDirective.js"></script>
+    <script src="app/filters/filter.js"></script>
+    <script src="app/services/astroServices.js"></script>
+    <script src="app/services/editManagePhotoService.js"></script>
+    <script src="app/services/educationProfessionServices.js"></script>
+    <script src="app/services/parentDetailsService.js"></script>
+    <script src="app/services/partnerPreferenceService.js"></script>
+    <script src="app/services/personalDetailsService.js"></script>
+    <script src="app/services/propertyServices.js"></script>
+    <script src="app/services/referenceService.js"></script>
+    <script src="app/services/relativeService.js"></script>
+    <script src="app/services/selectBindServices.js"></script>
+    <script src="app/services/sibblingServices.js"></script>
+
+    <script src="app/directives/fileUpload.js"></script>
+    <script src="app/services/fileUploadSevice.js"></script>
+    <script src="app/services/authSvc.js"></script>
+    <script src="app/controllers/headercontrolller.js"></script>
+    <script src="app/directives/oldAlert.js"></script>
+
+    <script src="app/controllers/testcontroller.js"></script>
+    <script src="app\services\route.js"></script>
+    <script src="app/services/errorInterceptor.js"></script>
+
+    <script src="app/directives/editFooter.js"></script>
+
+    <script src="app/services/dropdownModel.js"></script>
+
+
+
+
+    <script src="app/controllers/editSpouseDetails.js"></script>
+    <script src="app/controllers/editContactsdetails.js"></script>
+    <script src="app/services/contactService.js"></script>
+    <script src="app/services/spouseService.js"></script>
+    <script src="app/controllers/profileSettingsctrl.js"></script>
+    <script src="app/controllers/officePurposectrl.js"></script>
+    <script src="app/services/profileSettingsService.js"></script>
+    <script src="app/services/officePurposeService.js"></script>
+
+
+
+    <!--SCRIPTS END-->
+
+    <!-- SCRIPTSP DATA --#>
+    <script src="dist/js/main.min.js"></script>
+    <!--SCRIPTSP END-->
+
+</body>
+
+</html>

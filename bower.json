@@ -1,0 +1,29 @@
+{
+    "name": "EditAndView",
+    "description": "",
+    "main": "index.js",
+    "authors": [
+        "vinod.a-ext"
+    ],
+    "license": "ISC",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "3.0.3",
+        "jquery": "2.0.3",
+        "underscore": "1.5.2",
+        "angular-auto-validate": "1.19.6"
+    },
+    "devDependencies": {
+        "angular-loading-bar": "0.9.0",
+        "angular-auto-validate": "1.19.6",
+        "angular-promise-buttons": "0.1.19"
+    }
+}

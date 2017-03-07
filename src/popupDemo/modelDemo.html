@@ -1,0 +1,30 @@
+<div ng-controller="ModalControlleraa">
+dfdfgdfdfgg{{txtAboutUS}}
+	<modal visible="showModal1" on-sown="modalOneShown()" on-hide="modalOneHide()">
+		<modal-header title="Modal Titel 1"></modal-header>
+		<modal-body>
+			<h3>This is modal body</h3>
+		</modal-body>
+		<modal-footer>
+			<button class="btn btn-primary" ng-click="hide(1)">Save</button>
+		</modal-footer>
+	</modal>
+
+	<modal visible="showModal2" backdrop="static">
+		<modal-header title="Modal Titel 2"></modal-header>
+		<modal-body>
+			<h3>This is modal body</h3>
+{{txtAboutUS}}
+			<textarea ng-model="txtAboutUS" style="width: 500px; height: 150px;" class="col-lg-10" maxlength="1000" 
+							/>
+		</modal-body>
+		<modal-footer>
+			
+		</modal-footer>
+	</modal>
+
+	<h3>{{title}}</h3>
+	{{showModal1}}
+	<button class="btn btn-primary" ng-click="showModal1 = true">Show Modal</button>
+	<button class="btn btn-primary" ng-click="showModal2 = true">Show Static Modal</button>
+</div>
