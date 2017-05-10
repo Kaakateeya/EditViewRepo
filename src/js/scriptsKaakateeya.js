@@ -1,22 +1,22 @@
-var App = function () {
+var App = function() {
 
     var isMainPage = false;
     var isMapPage = false;
     var isIE8 = false;
 
 
-    var handleJQVMAP = function () {
+    var handleJQVMAP = function() {
 
         if (!sample_data) {
             return;
         }
 
-        var showMap = function (name) {
+        var showMap = function(name) {
             jQuery('.vmaps').hide();
             jQuery('#vmap_' + name).show();
         }
 
-        var setMap = function (name) {
+        var setMap = function(name) {
             var data = {
                 map: 'world_en',
                 backgroundColor: null,
@@ -33,15 +33,15 @@ var App = function () {
                 selectedColor: '#3daced',
                 selectedRegion: null,
                 showTooltip: true,
-                onLabelShow: function (event, label, code) {
+                onLabelShow: function(event, label, code) {
 
                 },
-                onRegionOver: function (event, code) {
+                onRegionOver: function(event, code) {
                     if (code == 'ca') {
                         event.preventDefault();
                     }
                 },
-                onRegionClick: function (element, code, region) {
+                onRegionClick: function(element, code, region) {
                     var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     alert(message);
                 }
@@ -63,21 +63,21 @@ var App = function () {
 
         showMap("world");
 
-        jQuery('#regional_stat_world').click(function () {
+        jQuery('#regional_stat_world').click(function() {
             showMap("world");
         });
 
-        jQuery('#regional_stat_usa').click(function () {
+        jQuery('#regional_stat_usa').click(function() {
             showMap("usa");
         });
 
-        jQuery('#regional_stat_europe').click(function () {
+        jQuery('#regional_stat_europe').click(function() {
             showMap("europe");
         });
-        jQuery('#regional_stat_russia').click(function () {
+        jQuery('#regional_stat_russia').click(function() {
             showMap("russia");
         });
-        jQuery('#regional_stat_germany').click(function () {
+        jQuery('#regional_stat_germany').click(function() {
             showMap("germany");
         });
 
@@ -85,13 +85,13 @@ var App = function () {
         $('#region_statistics_content').show();
     }
 
-    var handleAllJQVMAP = function () {
+    var handleAllJQVMAP = function() {
 
         if (!sample_data) {
             return;
         }
 
-        var setMap = function (name) {
+        var setMap = function(name) {
             var data = {
                 map: 'world_en',
                 backgroundColor: null,
@@ -108,13 +108,13 @@ var App = function () {
                 selectedColor: '#3daced',
                 selectedRegion: null,
                 showTooltip: true,
-                onRegionOver: function (event, code) {
+                onRegionOver: function(event, code) {
                     //sample to interact with map
                     if (code == 'ca') {
                         event.preventDefault();
                     }
                 },
-                onRegionClick: function (element, code, region) {
+                onRegionClick: function(element, code, region) {
                     //sample to interact with map
                     var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
                     alert(message);
@@ -135,7 +135,7 @@ var App = function () {
 
 
 
-    var handleDashboardCalendar = function () {
+    var handleDashboardCalendar = function() {
 
         if (!jQuery().fullCalendar) {
             return;
@@ -213,7 +213,7 @@ var App = function () {
 
     }
 
-    var handleCalendar = function () {
+    var handleCalendar = function() {
 
         if (!jQuery().fullCalendar) {
             return;
@@ -240,7 +240,7 @@ var App = function () {
             };
         }
 
-        var initDrag = function (el) {
+        var initDrag = function(el) {
             // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
             // it doesn't need to have a start or end
             var eventObject = {
@@ -256,7 +256,7 @@ var App = function () {
             });
         }
 
-        var addEvent = function (title, priority) {
+        var addEvent = function(title, priority) {
             title = title.length == 0 ? "Untitled Event" : title;
             priority = priority.length == 0 ? "default" : priority;
 
@@ -265,18 +265,18 @@ var App = function () {
             initDrag(html);
         }
 
-        $('#external-events div.external-event').each(function () {
+        $('#external-events div.external-event').each(function() {
             initDrag($(this))
         });
 
-        $('#event_add').click(function () {
+        $('#event_add').click(function() {
             var title = $('#event_title').val();
             var priority = $('#event_priority').val();
             addEvent(title, priority);
         });
 
         //modify chosen options
-        var handleDropdown = function () {
+        var handleDropdown = function() {
             $('#event_priority_chzn .chzn-search').hide(); //hide search box
             $('#event_priority_chzn_o_1').html('<span class="label label-default">' + $('#event_priority_chzn_o_1').text() + '</span>');
             $('#event_priority_chzn_o_2').html('<span class="label label-success">' + $('#event_priority_chzn_o_2').text() + '</span>');
@@ -303,7 +303,7 @@ var App = function () {
             header: h,
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
-            drop: function (date, allDay) { // this function is called when something is dropped
+            drop: function(date, allDay) { // this function is called when something is dropped
 
                 // retrieve the dropped element's stored Event Object
                 var originalEventObject = $(this).data('eventObject');
@@ -374,14 +374,14 @@ var App = function () {
 
     }
 
-    var handleChat = function () {
+    var handleChat = function() {
         var cont = $('#chats');
         var list = $('.chats', cont);
         var form = $('.chat-form', cont);
         var input = $('input', form);
         var btn = $('.btn', form);
 
-        var handleClick = function () {
+        var handleClick = function() {
             var text = input.val();
             if (text.length == 0) {
                 return;
@@ -410,7 +410,7 @@ var App = function () {
         }
 
         btn.click(handleClick);
-        input.keypress(function (e) {
+        input.keypress(function(e) {
             if (e.which == 13) {
                 handleClick();
                 return false; //<---- Add this line
@@ -418,7 +418,7 @@ var App = function () {
         });
     }
 
-    var handleClockfaceTimePickers = function () {
+    var handleClockfaceTimePickers = function() {
 
         if (!jQuery().clockface) {
             return;
@@ -431,7 +431,7 @@ var App = function () {
             trigger: 'manual'
         });
 
-        $('#clockface_2_toggle-btn').click(function (e) {
+        $('#clockface_2_toggle-btn').click(function(e) {
             e.stopPropagation();
             $('#clockface_2').clockface('toggle');
         });
@@ -441,7 +441,7 @@ var App = function () {
         }).clockface('show', '14:30');
     }
 
-    var handlePortletSortable = function () {
+    var handlePortletSortable = function() {
         if (!jQuery().sortable) {
             return;
         }
@@ -460,8 +460,8 @@ var App = function () {
 
     }
 
-    var handleMainMenu = function () {
-        jQuery('#sidebar .has-sub > a').click(function () {
+    var handleMainMenu = function() {
+        jQuery('#sidebar .has-sub > a').click(function() {
             var last = jQuery('.has-sub.open', $('#sidebar'));
             last.removeClass("open");
             jQuery('.arrow', last).removeClass("open");
@@ -479,20 +479,20 @@ var App = function () {
         });
     }
 
-    var handleWidgetTools = function () {
-        jQuery('.widget .tools .icon-remove').click(function () {
+    var handleWidgetTools = function() {
+        jQuery('.widget .tools .icon-remove').click(function() {
             jQuery(this).parents(".widget").parent().remove();
         });
 
-        jQuery('.widget .tools .icon-refresh').click(function () {
+        jQuery('.widget .tools .icon-refresh').click(function() {
             var el = jQuery(this).parents(".widget");
             App.blockUI(el);
-            window.setTimeout(function () {
+            window.setTimeout(function() {
                 App.unblockUI(el);
             }, 1000);
         });
 
-        jQuery('.widget .tools .icon-chevron-down, .widget .tools .icon-chevron-up').click(function () {
+        jQuery('.widget .tools .icon-chevron-down, .widget .tools .icon-chevron-up').click(function() {
             var el = jQuery(this).parents(".widget").children(".widget-body");
             if (jQuery(this).hasClass("icon-chevron-down")) {
                 jQuery(this).removeClass("icon-chevron-down").addClass("icon-chevron-up");
@@ -504,7 +504,7 @@ var App = function () {
         });
     }
 
-    var handleDashboardCharts = function () {
+    var handleDashboardCharts = function() {
 
         // used by plot functions
         var data = [];
@@ -662,7 +662,7 @@ var App = function () {
         }
 
         var previousPoint = null;
-        $("#site_statistics").bind("plothover", function (event, pos, item) {
+        $("#site_statistics").bind("plothover", function(event, pos, item) {
             $("#x").text(pos.x.toFixed(2));
             $("#y").text(pos.y.toFixed(2));
 
@@ -702,7 +702,7 @@ var App = function () {
             yaxis: {
                 min: 0,
                 max: 100,
-                tickFormatter: function (v) {
+                tickFormatter: function(v) {
                     return v + "%";
                 }
             },
@@ -730,7 +730,7 @@ var App = function () {
         update();
     }
 
-    var handleCharts = function () {
+    var handleCharts = function() {
 
         // used by plot functions
         var data = [];
@@ -766,15 +766,15 @@ var App = function () {
         function chart1() {
             var d1 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.25)
-            d1.push([i, Math.sin(i)]);
+                d1.push([i, Math.sin(i)]);
 
             var d2 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.25)
-            d2.push([i, Math.cos(i)]);
+                d2.push([i, Math.cos(i)]);
 
             var d3 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.1)
-            d3.push([i, Math.tan(i)]);
+                d3.push([i, Math.tan(i)]);
 
             $.plot($("#chart_1"), [{
                 label: "sin(x)",
@@ -944,7 +944,7 @@ var App = function () {
             }
 
             var previousPoint = null;
-            $("#chart_2").bind("plothover", function (event, pos, item) {
+            $("#chart_2").bind("plothover", function(event, pos, item) {
                 $("#x").text(pos.x.toFixed(2));
                 $("#y").text(pos.y.toFixed(2));
 
@@ -1003,7 +1003,7 @@ var App = function () {
             });
 
             var legends = $("#chart_3 .legendLabel");
-            legends.each(function () {
+            legends.each(function() {
                 // fix the widths so they don't jump around
                 $(this).css('width', $(this).width());
             });
@@ -1025,9 +1025,9 @@ var App = function () {
 
                     // find the nearest points, x-wise
                     for (j = 0; j < series.data.length; ++j)
-                    if (series.data[j][0] > pos.x) break;
+                        if (series.data[j][0] > pos.x) break;
 
-                    // now interpolate
+                        // now interpolate
                     var y, p1 = series.data[j - 1],
                         p2 = series.data[j];
                     if (p1 == null) y = p2[1];
@@ -1038,7 +1038,7 @@ var App = function () {
                 }
             }
 
-            $("#chart_3").bind("plothover", function (event, pos, item) {
+            $("#chart_3").bind("plothover", function(event, pos, item) {
                 latestPosition = pos;
                 if (!updateLegendTimeout) updateLegendTimeout = setTimeout(updateLegend, 50);
             });
@@ -1066,7 +1066,7 @@ var App = function () {
                 yaxis: {
                     min: 0,
                     max: 100,
-                    tickFormatter: function (v) {
+                    tickFormatter: function(v) {
                         return v + "%";
                     }
                 },
@@ -1095,15 +1095,15 @@ var App = function () {
         function chart5() {
             var d1 = [];
             for (var i = 0; i <= 10; i += 1)
-            d1.push([i, parseInt(Math.random() * 30)]);
+                d1.push([i, parseInt(Math.random() * 30)]);
 
             var d2 = [];
             for (var i = 0; i <= 10; i += 1)
-            d2.push([i, parseInt(Math.random() * 30)]);
+                d2.push([i, parseInt(Math.random() * 30)]);
 
             var d3 = [];
             for (var i = 0; i <= 10; i += 1)
-            d3.push([i, parseInt(Math.random() * 30)]);
+                d3.push([i, parseInt(Math.random() * 30)]);
 
             var stack = 0,
                 bars = true,
@@ -1127,12 +1127,12 @@ var App = function () {
                 });
             }
 
-            $(".stackControls input").click(function (e) {
+            $(".stackControls input").click(function(e) {
                 e.preventDefault();
                 stack = $(this).val() == "With stacking" ? true : null;
                 plotWithOptions();
             });
-            $(".graphControls input").click(function (e) {
+            $(".graphControls input").click(function(e) {
                 e.preventDefault();
                 bars = $(this).val().indexOf("Bars") != -1;
                 lines = $(this).val().indexOf("Lines") != -1;
@@ -1163,7 +1163,7 @@ var App = function () {
                         label: {
                             show: true,
                             radius: 1,
-                            formatter: function (label, series) {
+                            formatter: function(label, series) {
                                 return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
                             },
                             background: {
@@ -1186,7 +1186,7 @@ var App = function () {
                         label: {
                             show: true,
                             radius: 3 / 4,
-                            formatter: function (label, series) {
+                            formatter: function(label, series) {
                                 return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
                             },
                             background: {
@@ -1244,7 +1244,7 @@ var App = function () {
         graphs();
     }
 
-    var handleFancyBox = function () {
+    var handleFancyBox = function() {
         if (!jQuery().fancybox) {
             return;
         }
@@ -1264,35 +1264,35 @@ var App = function () {
         }
     }
 
-    var handleLoginForm = function () {
-        jQuery('#forget-password').click(function () {
+    var handleLoginForm = function() {
+        jQuery('#forget-password').click(function() {
             jQuery('#loginform').hide();
             jQuery('#forgotform').show(200);
         });
 
-        jQuery('#forget-btn').click(function () {
+        jQuery('#forget-btn').click(function() {
 
             jQuery('#loginform').slideDown(200);
             jQuery('#forgotform').slideUp(200);
         });
     }
 
-    var handleFixInputPlaceholderForIE = function () {
+    var handleFixInputPlaceholderForIE = function() {
         //fix html5 placeholder attribute for ie7 & ie8
         if (jQuery.browser.msie && jQuery.browser.version.substr(0, 1) <= 9) { // ie7&ie8
-            jQuery('input[placeholder], textarea[placeholder]').each(function () {
+            jQuery('input[placeholder], textarea[placeholder]').each(function() {
 
                 var input = jQuery(this);
 
                 jQuery(input).val(input.attr('placeholder'));
 
-                jQuery(input).focus(function () {
+                jQuery(input).focus(function() {
                     if (input.val() == input.attr('placeholder')) {
                         input.val('');
                     }
                 });
 
-                jQuery(input).blur(function () {
+                jQuery(input).blur(function() {
                     if (input.val() == '' || input.val() == input.attr('placeholder')) {
                         input.val(input.attr('placeholder'));
                     }
@@ -1301,10 +1301,10 @@ var App = function () {
         }
     }
 
-    var handleStyler = function () {
+    var handleStyler = function() {
         var scrollHeight = '25px';
 
-        jQuery('#theme-change').click(function () {
+        jQuery('#theme-change').click(function() {
             if ($(this).attr("opened") && !$(this).attr("opening") && !$(this).attr("closing")) {
                 $(this).removeAttr("opened");
                 $(this).attr("closing", "1");
@@ -1314,7 +1314,7 @@ var App = function () {
                     height: '22px',
                     'padding-top': '3px'
                 }, {
-                    complete: function () {
+                    complete: function() {
                         $(this).removeAttr("closing");
                         $("#theme-change .settings").hide();
                     }
@@ -1326,7 +1326,7 @@ var App = function () {
                     height: scrollHeight,
                     'padding-top': '3px'
                 }, {
-                    complete: function () {
+                    complete: function() {
                         $(this).removeAttr("opening");
                         $(this).attr("opened", 1);
                     }
@@ -1335,22 +1335,22 @@ var App = function () {
             }
         });
 
-        jQuery('#theme-change .colors span').click(function () {
+        jQuery('#theme-change .colors span').click(function() {
             var color = $(this).attr("data-style");
             setColor(color);
         });
 
-        jQuery('#theme-change .layout input').change(function () {
+        jQuery('#theme-change .layout input').change(function() {
             setLayout();
         });
 
-        var setColor = function (color) {
+        var setColor = function(color) {
             $('#style_color').attr("href", "css/style_" + color + ".css");
         }
 
     }
 
-    var handlePulsate = function () {
+    var handlePulsate = function() {
         if (!jQuery().pulsate) {
             return;
         }
@@ -1364,7 +1364,7 @@ var App = function () {
                 color: "#bf1c56"
             });
 
-            jQuery('#pulsate-once').click(function () {
+            jQuery('#pulsate-once').click(function() {
                 $(this).pulsate({
                     color: "#399bc3",
                     repeat: false
@@ -1377,7 +1377,7 @@ var App = function () {
                 onHover: true
             });
 
-            jQuery('#pulsate-crazy').click(function () {
+            jQuery('#pulsate-crazy').click(function() {
                 $(this).pulsate({
                     color: "#fdbe41",
                     reach: 50,
@@ -1389,7 +1389,7 @@ var App = function () {
         }
     }
 
-    var handlePeity = function () {
+    var handlePeity = function() {
         if (!jQuery().peity) {
             return;
         }
@@ -1478,14 +1478,14 @@ var App = function () {
         }).show();
     }
 
-    var handleDeviceWidth = function () {
+    var handleDeviceWidth = function() {
         function fixWidth(e) {
             var winHeight = $(window).height();
             var winWidth = $(window).width();
             //alert(winWidth);
             //for tablet and small desktops
             if (winWidth < 1125 && winWidth > 767) {
-                $(".responsive").each(function () {
+                $(".responsive").each(function() {
                     var forTablet = $(this).attr('data-tablet');
                     var forDesktop = $(this).attr('data-desktop');
                     if (forTablet) {
@@ -1495,7 +1495,7 @@ var App = function () {
 
                 });
             } else {
-                $(".responsive").each(function () {
+                $(".responsive").each(function() {
                     var forTablet = $(this).attr('data-tablet');
                     var forDesktop = $(this).attr('data-desktop');
                     if (forTablet) {
@@ -1509,10 +1509,10 @@ var App = function () {
         fixWidth();
 
         running = false;
-        jQuery(window).resize(function () {
+        jQuery(window).resize(function() {
             if (running == false) {
                 running = true;
-                setTimeout(function () {
+                setTimeout(function() {
                     // fix layout width
                     fixWidth();
                     // fix calendar width by just reinitializing
@@ -1524,13 +1524,13 @@ var App = function () {
                     }
                     // fix vector maps width
                     if (isMainPage) {
-                        jQuery('.vmaps').each(function () {
+                        jQuery('.vmaps').each(function() {
                             var map = jQuery(this);
                             map.width(map.parent().parent().width());
                         });
                     }
                     if (isMapPage) {
-                        jQuery('.vmaps').each(function () {
+                        jQuery('.vmaps').each(function() {
                             var map = jQuery(this);
                             map.width(map.parent().width());
                         });
@@ -1547,11 +1547,11 @@ var App = function () {
         });
     }
 
-    var handleGritterNotifications = function () {
+    var handleGritterNotifications = function() {
         if (!jQuery.gritter) {
             return;
         }
-        $('#gritter-sticky').click(function () {
+        $('#gritter-sticky').click(function() {
             var unique_id = $.gritter.add({
                 // (string | mandatory) the heading of the notification
                 title: 'This is a sticky notice!',
@@ -1569,7 +1569,7 @@ var App = function () {
             return false;
         });
 
-        $('#gritter-regular').click(function () {
+        $('#gritter-regular').click(function() {
 
             $.gritter.add({
                 // (string | mandatory) the heading of the notification
@@ -1588,7 +1588,7 @@ var App = function () {
 
         });
 
-        $('#gritter-max').click(function () {
+        $('#gritter-max').click(function() {
 
             $.gritter.add({
                 // (string | mandatory) the heading of the notification
@@ -1600,7 +1600,7 @@ var App = function () {
                 // (bool | optional) if you want it to fade out on its own or just sit there
                 sticky: false,
                 // (function) before the gritter notice is opened
-                before_open: function () {
+                before_open: function() {
                     if ($('.gritter-item-wrapper').length == 3) {
                         // Returning false prevents a new gritter from opening
                         return false;
@@ -1610,7 +1610,7 @@ var App = function () {
             return false;
         });
 
-        $('#gritter-without-image').click(function () {
+        $('#gritter-without-image').click(function() {
             $.gritter.add({
                 // (string | mandatory) the heading of the notification
                 title: 'This is a notice without an image!',
@@ -1621,7 +1621,7 @@ var App = function () {
             return false;
         });
 
-        $('#gritter-light').click(function () {
+        $('#gritter-light').click(function() {
 
             $.gritter.add({
                 // (string | mandatory) the heading of the notification
@@ -1634,7 +1634,7 @@ var App = function () {
             return false;
         });
 
-        $("#gritter-remove-all").click(function () {
+        $("#gritter-remove-all").click(function() {
 
             $.gritter.removeAll();
             return false;
@@ -1642,15 +1642,15 @@ var App = function () {
         });
     }
 
-    var handleTooltip = function () {
+    var handleTooltip = function() {
         jQuery('.tooltips').tooltip();
     }
 
-    var handlePopover = function () {
+    var handlePopover = function() {
         jQuery('.popovers').popover();
     }
 
-    var handleChoosenSelect = function () {
+    var handleChoosenSelect = function() {
         if (!jQuery().chosen) {
             return;
         }
@@ -1660,7 +1660,7 @@ var App = function () {
         });
     }
 
-    var handleUniform = function () {
+    var handleUniform = function() {
         if (!jQuery().uniform) {
             return;
         }
@@ -1669,7 +1669,7 @@ var App = function () {
         }
     }
 
-    var handleWysihtml5 = function () {
+    var handleWysihtml5 = function() {
         if (!jQuery().wysihtml5) {
             return;
         }
@@ -1679,7 +1679,7 @@ var App = function () {
         }
     }
 
-    var handleToggleButtons = function () {
+    var handleToggleButtons = function() {
         if (!jQuery().toggleButtons) {
             return;
         }
@@ -1736,7 +1736,7 @@ var App = function () {
 
     }
 
-    var handleTables = function () {
+    var handleTables = function() {
         if (!jQuery().dataTable) {
             return;
         }
@@ -1758,10 +1758,10 @@ var App = function () {
             }]
         });
 
-        jQuery('#sample_1 .group-checkable').change(function () {
+        jQuery('#sample_1 .group-checkable').change(function() {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
-            jQuery(set).each(function () {
+            jQuery(set).each(function() {
                 if (checked) {
                     $(this).attr("checked", true);
                 } else {
@@ -1791,10 +1791,10 @@ var App = function () {
             }]
         });
 
-        jQuery('#sample_2 .group-checkable').change(function () {
+        jQuery('#sample_2 .group-checkable').change(function() {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
-            jQuery(set).each(function () {
+            jQuery(set).each(function() {
                 if (checked) {
                     $(this).attr("checked", true);
                 } else {
@@ -1824,10 +1824,10 @@ var App = function () {
             }]
         });
 
-        jQuery('#sample_3 .group-checkable').change(function () {
+        jQuery('#sample_3 .group-checkable').change(function() {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
-            jQuery(set).each(function () {
+            jQuery(set).each(function() {
                 if (checked) {
                     $(this).attr("checked", true);
                 } else {
@@ -1841,7 +1841,7 @@ var App = function () {
         jQuery('#sample_3_wrapper .dataTables_length select').addClass("input-mini"); // modify table per page dropdown
     }
 
-    var handleDateTimePickers = function () {
+    var handleDateTimePickers = function() {
 
         if (!jQuery().daterangepicker) {
             return;
@@ -1850,104 +1850,104 @@ var App = function () {
         $('.date-range').daterangepicker();
 
         $('#dashboard-report-range').daterangepicker({
-            ranges: {
-                'Today': ['today', 'today'],
-                'Yesterday': ['yesterday', 'yesterday'],
-                'Last 7 Days': [Date.today().add({
-                    days: -6
-                }), 'today'],
-                'Last 30 Days': [Date.today().add({
+                ranges: {
+                    'Today': ['today', 'today'],
+                    'Yesterday': ['yesterday', 'yesterday'],
+                    'Last 7 Days': [Date.today().add({
+                        days: -6
+                    }), 'today'],
+                    'Last 30 Days': [Date.today().add({
+                        days: -29
+                    }), 'today'],
+                    'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+                    'Last Month': [Date.today().moveToFirstDayOfMonth().add({
+                        months: -1
+                    }), Date.today().moveToFirstDayOfMonth().add({
+                        days: -1
+                    })]
+                },
+                opens: 'left',
+                format: 'MM/dd/yyyy',
+                separator: ' to ',
+                startDate: Date.today().add({
                     days: -29
-                }), 'today'],
-                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-                    months: -1
-                }), Date.today().moveToFirstDayOfMonth().add({
-                    days: -1
-                })]
+                }),
+                endDate: Date.today(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2014',
+                locale: {
+                    applyLabel: 'Submit',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                },
+                showWeekNumbers: true,
+                buttonClasses: ['btn-danger']
             },
-            opens: 'left',
-            format: 'MM/dd/yyyy',
-            separator: ' to ',
-            startDate: Date.today().add({
-                days: -29
-            }),
-            endDate: Date.today(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2014',
-            locale: {
-                applyLabel: 'Submit',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom Range',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            },
-            showWeekNumbers: true,
-            buttonClasses: ['btn-danger']
-        },
 
-        function (start, end) {
-            App.blockUI(jQuery("#page"));
-            setTimeout(function () {
-                App.unblockUI(jQuery("#page"));
-                $.gritter.add({
-                    title: 'Dashboard',
-                    text: 'Dashboard date range updated.'
-                });
-                App.scrollTo();
-            }, 1000);
-            $('#dashboard-report-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+            function(start, end) {
+                App.blockUI(jQuery("#page"));
+                setTimeout(function() {
+                    App.unblockUI(jQuery("#page"));
+                    $.gritter.add({
+                        title: 'Dashboard',
+                        text: 'Dashboard date range updated.'
+                    });
+                    App.scrollTo();
+                }, 1000);
+                $('#dashboard-report-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
 
-        });
+            });
 
         $('#dashboard-report-range span').html(Date.today().add({
             days: -29
         }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
 
         $('#form-date-range').daterangepicker({
-            ranges: {
-                'Today': ['today', 'today'],
-                'Yesterday': ['yesterday', 'yesterday'],
-                'Last 7 Days': [Date.today().add({
-                    days: -6
-                }), 'today'],
-                'Last 30 Days': [Date.today().add({
+                ranges: {
+                    'Today': ['today', 'today'],
+                    'Yesterday': ['yesterday', 'yesterday'],
+                    'Last 7 Days': [Date.today().add({
+                        days: -6
+                    }), 'today'],
+                    'Last 30 Days': [Date.today().add({
+                        days: -29
+                    }), 'today'],
+                    'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+                    'Last Month': [Date.today().moveToFirstDayOfMonth().add({
+                        months: -1
+                    }), Date.today().moveToFirstDayOfMonth().add({
+                        days: -1
+                    })]
+                },
+                opens: 'right',
+                format: 'MM/dd/yyyy',
+                separator: ' to ',
+                startDate: Date.today().add({
                     days: -29
-                }), 'today'],
-                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-                    months: -1
-                }), Date.today().moveToFirstDayOfMonth().add({
-                    days: -1
-                })]
+                }),
+                endDate: Date.today(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2014',
+                locale: {
+                    applyLabel: 'Submit',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                },
+                showWeekNumbers: true,
+                buttonClasses: ['btn-danger']
             },
-            opens: 'right',
-            format: 'MM/dd/yyyy',
-            separator: ' to ',
-            startDate: Date.today().add({
-                days: -29
-            }),
-            endDate: Date.today(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2014',
-            locale: {
-                applyLabel: 'Submit',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom Range',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            },
-            showWeekNumbers: true,
-            buttonClasses: ['btn-danger']
-        },
 
-        function (start, end) {
-            $('#form-date-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
-        });
+            function(start, end) {
+                $('#form-date-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+            });
 
         $('#form-date-range span').html(Date.today().add({
             days: -29
@@ -1969,7 +1969,7 @@ var App = function () {
 
     }
 
-    var handleColorPicker = function () {
+    var handleColorPicker = function() {
         if (!jQuery().colorpicker) {
             return;
         }
@@ -1979,16 +1979,16 @@ var App = function () {
         $('.colorpicker-rgba').colorpicker();
     }
 
-    var handleAccordions = function () {
+    var handleAccordions = function() {
         $(".accordion").collapse().height('auto');
     }
 
-    var handleScrollers = function () {
+    var handleScrollers = function() {
         if (!jQuery().slimScroll) {
             return;
         }
 
-        $('.scroller').each(function () {
+        $('.scroller').each(function() {
             $(this).slimScroll({
                 //start: $('.blah:eq(1)'),
                 height: $(this).attr("data-height"),
@@ -1999,7 +1999,7 @@ var App = function () {
         });
     }
 
-    var handleFormWizards = function () {
+    var handleFormWizards = function() {
         if (!jQuery().bootstrapWizard) {
             return;
         }
@@ -2007,11 +2007,11 @@ var App = function () {
         $('#form_wizard_1').bootstrapWizard({
             'nextSelector': '.button-next',
             'previousSelector': '.button-previous',
-            onTabClick: function (tab, navigation, index) {
+            onTabClick: function(tab, navigation, index) {
                 alert('on tab click disabled');
                 return false;
             },
-            onNext: function (tab, navigation, index) {
+            onNext: function(tab, navigation, index) {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
@@ -2038,7 +2038,7 @@ var App = function () {
                 }
                 App.scrollTo($('.page-title'));
             },
-            onPrevious: function (tab, navigation, index) {
+            onPrevious: function(tab, navigation, index) {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
@@ -2066,7 +2066,7 @@ var App = function () {
 
                 App.scrollTo($('.page-title'));
             },
-            onTabShow: function (tab, navigation, index) {
+            onTabShow: function(tab, navigation, index) {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 var $percent = (current / total) * 100;
@@ -2077,12 +2077,12 @@ var App = function () {
         });
 
         $('#form_wizard_1').find('.button-previous').hide();
-        $('#form_wizard_1 .button-submit').click(function () {
+        $('#form_wizard_1 .button-submit').click(function() {
             alert('Finished!');
         }).hide();
     }
 
-    var handleTagsInput = function () {
+    var handleTagsInput = function() {
         if (!jQuery().tagsInput) {
             return;
         }
@@ -2094,18 +2094,18 @@ var App = function () {
         });
     }
 
-    var handleGoTop = function () {
+    var handleGoTop = function() {
         /* set variables locally for increased performance */
-        jQuery('#footer .go-top').click(function () {
+        jQuery('#footer .go-top').click(function() {
             App.scrollTo();
         });
 
     }
 
     // this is optional to use if you want animated show/hide. But plot charts can make the animation slow.
-    var handleSidebarTogglerAnimated = function () {
+    var handleSidebarTogglerAnimated = function() {
 
-        $('.sidebar-toggler').click(function () {
+        $('.sidebar-toggler').click(function() {
             if ($('#sidebar > ul').is(":visible") === true) {
                 $('#main-content').animate({
                     'margin-left': '25px'
@@ -2114,7 +2114,7 @@ var App = function () {
                 $('#sidebar').animate({
                     'margin-left': '-190px'
                 }, {
-                    complete: function () {
+                    complete: function() {
                         $('#sidebar > ul').hide();
                         $("#container").addClass("sidebar-closed");
                     }
@@ -2127,7 +2127,7 @@ var App = function () {
                 $('#sidebar').animate({
                     'margin-left': '0'
                 }, {
-                    complete: function () {
+                    complete: function() {
                         $("#container").removeClass("sidebar-closed");
                     }
                 });
@@ -2136,9 +2136,9 @@ var App = function () {
     }
 
     // by default used simple show/hide without animation due to the issue with handleSidebarTogglerAnimated.
-    var handleSidebarToggler = function () {
+    var handleSidebarToggler = function() {
 
-        $('.sidebar-toggler').click(function () {
+        $('.sidebar-toggler').click(function() {
             if ($('#sidebar > ul').is(":visible") === true) {
                 $('#main-content').css({
                     'margin-left': '25px'
@@ -2149,7 +2149,7 @@ var App = function () {
                 $('#sidebar > ul').hide();
                 $("#container").addClass("sidebar-closed");
             } else {
-               $('#main-content').css({
+                $('#main-content').css({
                     'margin-left': '215px'
                 });
                 $('#sidebar > ul').show();
@@ -2164,7 +2164,7 @@ var App = function () {
     return {
 
         //main function to initiate template pages
-        init: function () {
+        init: function() {
 
             if (jQuery.browser.msie && jQuery.browser.version.substr(0, 1) == 8) {
                 isIE8 = true; // checkes for IE8 browser version
@@ -2219,13 +2219,13 @@ var App = function () {
         },
 
         // login page setup
-        initLogin: function () {
+        initLogin: function() {
             handleLoginForm();
             handleFixInputPlaceholderForIE();
         },
 
         // wrapper function for page element pulsate
-        pulsate: function (el, options) {
+        pulsate: function(el, options) {
             var opt = jQuery.extend(options, {
                 color: '#d12610', // set the color of the pulse
                 reach: 15, // how far the pulse goes in px
@@ -2240,7 +2240,7 @@ var App = function () {
         },
 
         // wrapper function to scroll to an element
-        scrollTo: function (el) {
+        scrollTo: function(el) {
             pos = el ? el.offset().top : 0;
             jQuery('html,body').animate({
                 scrollTop: pos
@@ -2248,7 +2248,7 @@ var App = function () {
         },
 
         // wrapper function to  block element(indicate loading)
-        blockUI: function (el, loaderOnTop) {
+        blockUI: function(el, loaderOnTop) {
             lastBlockedUI = el;
             jQuery(el).block({
                 message: '<img src="img/loading.gif" align="absmiddle">',
@@ -2266,21 +2266,21 @@ var App = function () {
         },
 
         // wrapper function to  un-block element(finish loading)
-        unblockUI: function (el) {
+        unblockUI: function(el) {
             jQuery(el).unblock({
-                onUnblock: function () {
+                onUnblock: function() {
                     jQuery(el).removeAttr("style");
                 }
             });
         },
 
         // set main page
-        setMainPage: function (flag) {
+        setMainPage: function(flag) {
             isMainPage = flag;
         },
 
         // set map page
-        setMapPage: function (flag) {
+        setMapPage: function(flag) {
             isMapPage = flag;
         }
 
@@ -2298,26 +2298,29 @@ $('.element').tooltip();
 
 
 // Slider input js
-try{
+try {
     jQuery("#Slider1").slider({ from: 5, to: 50, step: 2.5, round: 1, dimension: '&nbsp;$', skin: "round_plastic" });
     jQuery("#Slider2").slider({ from: 5000, to: 150000, heterogeneity: ['50/50000'], step: 1000, dimension: '&nbsp;$', skin: "round_plastic" });
     jQuery("#Slider3").slider({ from: 1, to: 30, heterogeneity: ['50/5', '75/15'], scale: [1, '|', 3, '|', '5', '|', 15, '|', 30], limits: false, step: 1, dimension: '', skin: "round_plastic" });
-    jQuery("#Slider4").slider({ from: 480, to: 1020, step: 15, dimension: '', scale: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'], limits: false, skin: "round_plastic", calculate: function( value ){
-        var hours = Math.floor( value / 60 );
-        var mins = ( value - hours*60 );
-        return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
-    }});
-} catch (e){
-    errorMessage(e);
+    jQuery("#Slider4").slider({
+        from: 480,
+        to: 1020,
+        step: 15,
+        dimension: '',
+        scale: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        limits: false,
+        skin: "round_plastic",
+        calculate: function(value) {
+            var hours = Math.floor(value / 60);
+            var mins = (value - hours * 60);
+            return (hours < 10 ? "0" + hours : hours) + ":" + (mins == 0 ? "00" : mins);
+        }
+    });
+} catch (e) {
+    // errorMessage(e);
 }
 
 
 //knob
 
-$(".knob").knob();
-
-
-
-
-
-
+// $(".knob").knob();

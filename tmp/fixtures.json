@@ -1,0 +1,8 @@
+[{ "location": "app", "type": "dir", "depth": 1 },
+    { "location": "app/constants", "type": "dir", "depth": 2 },
+    { "location": "app/controllers", "type": "dir", "depth": 2 },
+    { "location": "app/directives", "type": "dir", "depth": 2 },
+    { "location": "app/filters", "type": "dir", "depth": 2 },
+    { "location": "app/services", "type": "dir", "depth": 2 },
+    { "location": "app/views", "type": "dir", "depth": 2 }
+]
