@@ -7,10 +7,10 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
-// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
 // editviewapp.templateroot = '';
@@ -7646,7 +7646,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h6>\r" +
     "\n" +
-    "                                    <span id=\"preferredstar\" style=\"font-weight:bold;\">Non preferred stars</span></h6>\r" +
+    "                                    <span id=\"preferredstar\" style=\"font-weight:bold;\">{{item.typeofstar?(item.TypeOfStar==='0'?'Preferred stars':'Non preferred stars'):'Preferred stars'}}</span></h6>\r" +
     "\n" +
     "                                <h5>\r" +
     "\n" +

@@ -3597,7 +3597,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                <h6>\r" +
     "\n" +
-    "                                    <span id=\"preferredstar\" style=\"font-weight:bold;\">Non preferred stars</span></h6>\r" +
+    "                                    <span id=\"preferredstar\" style=\"font-weight:bold;\">{{item.typeofstar?(item.TypeOfStar==='0'?'Preferred stars':'Non preferred stars'):'Preferred stars'}}</span></h6>\r" +
     "\n" +
     "                                <h5>\r" +
     "\n" +
