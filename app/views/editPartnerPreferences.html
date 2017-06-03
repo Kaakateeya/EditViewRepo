@@ -145,7 +145,7 @@
                             <div>
 
                                 <h6>
-                                    <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
+                                    <span id="preferredstar" style="font-weight:bold;">{{item.typeofstar?(item.TypeOfStar==='0'?'Preferred stars':'Non preferred stars'):'Preferred stars'}}</span></h6>
                                 <h5>
                                     <span id="lblpreferredstar">{{ item.Stars}}</span></h5>
 
