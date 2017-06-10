@@ -7423,7 +7423,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"uplWifeFatherfirstnameeb\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -7441,11 +7443,55 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "\r" +
+    "                                    </div>\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Contact</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                 {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))\r" +
+    "\n" +
+    "                                                 }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Email</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                   {{ item.SpouseFatherEmailID }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                                    <div id=\"brotherspusefathercaste\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -8029,61 +8075,87 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"uplhusfathernamees\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
     "\r" +
     "\n" +
-    "                                        <div id=\"divhusfathernames\">\r" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
+    "                                        <h6>\r" +
     "\n" +
-    "                                            <h6>\r" +
+    "                                            <label font-bold=\"true\">Husband Father Name</label></h6>\r" +
     "\n" +
-    "                                                <label id=\"husfathernames\" font-bold=\"true\">Husband Father Name</label></h6>\r" +
+    "                                        <h5>\r" +
     "\n" +
-    "                                            <h5>\r" +
-    "\n" +
-    "                                                <span id=\"lblhusfathername\">\r" +
+    "                                            <span>\r" +
     "\n" +
     "                                                    {{ item.SibilingSpouseFatherName }}\r" +
     "\n" +
     "                                            </span>\r" +
     "\n" +
-    "                                            </h5>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "\r" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"sisterspousefathercaste\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label id=\"husfathernames\" font-bold=\"true\">Husband Father's contact</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span id=\"lblhusfathername\">\r" +
+    "\n" +
+    "                                                     {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+\r" +
+    "\n" +
+    "                                                (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))\r" +
+    "\n" +
+    "                                                 }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Email</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                   {{ item.SpouseFatherEmailID }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "                                        <div id=\"divsisterspousefathercaste\">\r" +
+    "                                        <h6>\r" +
     "\n" +
-    "\r" +
+    "                                            <label font-bold=\"true\">Husband Father Caste</label></h6>\r" +
     "\n" +
-    "                                            <h6>\r" +
+    "                                        <h5>\r" +
     "\n" +
-    "                                                <label id=\"sisterhusbandfathercaste\" font-bold=\"true\">Husband Father Caste</label></h6>\r" +
-    "\n" +
-    "                                            <h5>\r" +
-    "\n" +
-    "                                                <span id=\"lblsisterSpousefathercaste\">\r" +
+    "                                            <span id=\"lblsisterSpousefathercaste\">\r" +
     "\n" +
     "                                                    {{ item.SibilingSpouseFatherCaste }}\r" +
     "\n" +
     "                                            </span>\r" +
     "\n" +
-    "                                            </h5>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "\r" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
@@ -8585,7 +8657,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "                        <contact-directive emailhide=\"true\" dmobile=\"broObj.sfCountryCodeId\" strmobile=\"broObj.sfMobileNumber\" dalternative=\"broObj.sfAlternativeCountryCodeId\" stralternative=\"broObj.sfAlternativeNumber\" dland=\"broObj.sfLandountryCodeId\" strareacode=\"broObj.sfLandAreaCodeId\"\r" +
+    "\n" +
+    "                            strland=\"broObj.sfLandNumberId\" strmail=\"broObj.sfEmail\"></contact-directive>\r" +
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
@@ -8962,6 +9036,12 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                    </li>\r" +
+    "\n" +
+    "                    <contact-directive emailhide=\"true\" dmobile=\"sisObj.hfCountryCodeId\" strmobile=\"sisObj.hfMobileNumber\" dalternative=\"sisObj.hfAlternativeCountryCodeId\" stralternative=\"sisObj.hfAlternativeNumber\" dland=\"sisObj.hfLandountryCodeId\" strareacode=\"sisObj.hfLandAreaCodeId\"\r" +
+    "\n" +
+    "                        strland=\"sisObj.hfLandNumberId\" strmail=\"sisObj.hfEmail\"></contact-directive>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +

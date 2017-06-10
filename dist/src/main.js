@@ -7,13 +7,13 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
-editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -27,7 +27,6 @@ editviewapp.BucketName = 'kaakateeyaprod';
 /**
  * Configure the Routes
  */
-
 editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     var states = [
         { name: 'editview', url: '/editview', templateUrl: editviewapp.templateroot + 'app/views/educationAndProfession.html', controller: 'eduAndProfCtrl', isloginrequired: true },
@@ -2464,7 +2463,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.broObj.txtBWifeName = item.SibilingSpouseName;
                                     scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
                                     scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
-                                    //scope.broObj.chkboxbrotherwifeprofession = item.;
+
                                     scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
                                     scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
                                     scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
@@ -2481,6 +2480,22 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                         scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
                                         scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
                                     }
+
+
+
+                                    scope.broObj.sfCountryCodeId = item.SpouseFatherMobileCountryID;
+                                    scope.broObj.sfMobileNumber = item.SpouseFatherMobileNo;
+                                    if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                        scope.broObj.sfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.broObj.sfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                        scope.broObj.sfLandNumberId = item.SpouseFatherLandNo;
+                                    } else {
+                                        scope.broObj.sfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.broObj.sfAlternativeNumber = item.SpouseFatherLandNo;
+                                    }
+                                    scope.broObj.sfEmail = item.SpouseFatherEmailID;
+
+
 
                                     scope.broObj.txtwifeEmail = item.SpouseEmail;
                                     scope.broObj.txtBWifeFatherSurName = item.SFsurname;
@@ -2570,9 +2585,18 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     } else {
                                         scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
                                         scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
-
                                     }
-
+                                    scope.sisObj.hfCountryCodeId = item.SpouseFatherMobileCountryID;
+                                    scope.sisObj.hfMobileNumber = item.SpouseFatherMobileNo;
+                                    if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                        scope.sisObj.hfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.sisObj.hfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                        scope.sisObj.hfLandNumberId = item.SpouseFatherLandNo;
+                                    } else {
+                                        scope.sisObj.hfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.sisObj.hfAlternativeNumber = item.SpouseFatherLandNo;
+                                    }
+                                    scope.sisObj.hfEmail = item.SpouseFatherEmailID;
                                     scope.sisObj.txtHusbandEmail = item.SpouseEmail;
                                     scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
                                     scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
@@ -2671,7 +2695,15 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         BrotherSpouseEmail: obj.txtwifeEmail,
                         SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
                         BroProfessionCategoryID: obj.ddlbroprofessionCatgory,
-                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory
+                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory,
+
+
+                        BroSpouseFatherMobileCountryID: obj.sfCountryCodeId,
+                        BroSpouseFatherMobileNo: obj.sfMobileNumber,
+                        BroSpouseFatherLandCountryID: commonFactory.checkvals(obj.sfAlternativeCountryCodeId) ? obj.sfAlternativeCountryCodeId : commonFactory.checkvals(obj.sfLandountryCodeId) ? obj.sfLandountryCodeId : null,
+                        BroSpouseFatherLandAreaCode: commonFactory.checkvals(obj.sfAlternativeNumber) ? null : commonFactory.checkvals(obj.sfLandAreaCodeId) ? obj.sfLandAreaCodeId : null,
+                        BroSpouseFatherLandNo: commonFactory.checkvals(obj.sfAlternativeNumber) ? obj.sfAlternativeNumber : commonFactory.checkvals(obj.sfLandNumberId) ? obj.sfLandNumberId : null,
+                        BroSpouseFatherEmailID: obj.sfEmail
 
                     },
                     customerpersonaldetails: {
@@ -2749,7 +2781,14 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         SisSpouseEmail: obj.txtHusbandEmail,
                         SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
                         SisProfessionCategoryID: obj.ddlsisprofessionCatgory,
-                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory
+                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory,
+
+                        SisSpouseFatherMobileCountryID: obj.hfCountryCodeId,
+                        SisSpouseFatherMobileNo: obj.hfMobileNumber,
+                        SisSpouseFatherLandCountryID: commonFactory.checkvals(obj.hfAlternativeCountryCodeId) ? obj.hfAlternativeCountryCodeId : commonFactory.checkvals(obj.hfLandountryCodeId) ? obj.hfLandountryCodeId : null,
+                        SisSpouseFatherLandAreaCode: commonFactory.checkvals(obj.hfAlternativeNumber) ? null : commonFactory.checkvals(obj.hfLandAreaCodeId) ? obj.hfLandAreaCodeId : null,
+                        SisSpouseFatherLandNo: commonFactory.checkvals(obj.hfAlternativeNumber) ? obj.hfAlternativeNumber : commonFactory.checkvals(obj.hfLandNumberId) ? obj.hfLandNumberId : null,
+                        SisSpouseFatherEmailID: obj.hfEmail
                     },
                     customerpersonaldetails: {
                         intCusID: custID,
@@ -11472,7 +11511,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"uplWifeFatherfirstnameeb\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -11490,11 +11531,55 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "\r" +
+    "                                    </div>\r" +
     "\n" +
     "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Contact</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                 {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))\r" +
+    "\n" +
+    "                                                 }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Email</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                   {{ item.SpouseFatherEmailID }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                                    <div id=\"brotherspusefathercaste\" class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
@@ -12078,61 +12163,87 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"uplhusfathernamees\" class=\"edit_page_details_item_desc clearfix\">\r" +
-    "\n" +
     "\r" +
     "\n" +
-    "                                        <div id=\"divhusfathernames\">\r" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "\r" +
+    "                                        <h6>\r" +
     "\n" +
-    "                                            <h6>\r" +
+    "                                            <label font-bold=\"true\">Husband Father Name</label></h6>\r" +
     "\n" +
-    "                                                <label id=\"husfathernames\" font-bold=\"true\">Husband Father Name</label></h6>\r" +
+    "                                        <h5>\r" +
     "\n" +
-    "                                            <h5>\r" +
-    "\n" +
-    "                                                <span id=\"lblhusfathername\">\r" +
+    "                                            <span>\r" +
     "\n" +
     "                                                    {{ item.SibilingSpouseFatherName }}\r" +
     "\n" +
     "                                            </span>\r" +
     "\n" +
-    "                                            </h5>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "\r" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div id=\"sisterspousefathercaste\" class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label id=\"husfathernames\" font-bold=\"true\">Husband Father's contact</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span id=\"lblhusfathername\">\r" +
+    "\n" +
+    "                                                     {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+\r" +
+    "\n" +
+    "                                                (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):\r" +
+    "\n" +
+    "                                                 (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))\r" +
+    "\n" +
+    "                                                 }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "\n" +
+    "                                        <h6>\r" +
+    "\n" +
+    "                                            <label font-bold=\"true\">Spouse Father's Email</label></h6>\r" +
+    "\n" +
+    "                                        <h5>\r" +
+    "\n" +
+    "                                            <span>\r" +
+    "\n" +
+    "                                                   {{ item.SpouseFatherEmailID }}\r" +
+    "\n" +
+    "                                            </span>\r" +
+    "\n" +
+    "                                        </h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
-    "                                        <div id=\"divsisterspousefathercaste\">\r" +
+    "                                        <h6>\r" +
     "\n" +
-    "\r" +
+    "                                            <label font-bold=\"true\">Husband Father Caste</label></h6>\r" +
     "\n" +
-    "                                            <h6>\r" +
+    "                                        <h5>\r" +
     "\n" +
-    "                                                <label id=\"sisterhusbandfathercaste\" font-bold=\"true\">Husband Father Caste</label></h6>\r" +
-    "\n" +
-    "                                            <h5>\r" +
-    "\n" +
-    "                                                <span id=\"lblsisterSpousefathercaste\">\r" +
+    "                                            <span id=\"lblsisterSpousefathercaste\">\r" +
     "\n" +
     "                                                    {{ item.SibilingSpouseFatherCaste }}\r" +
     "\n" +
     "                                            </span>\r" +
     "\n" +
-    "                                            </h5>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "\r" +
+    "                                        </h5>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
@@ -12634,7 +12745,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "\r" +
+    "                        <contact-directive emailhide=\"true\" dmobile=\"broObj.sfCountryCodeId\" strmobile=\"broObj.sfMobileNumber\" dalternative=\"broObj.sfAlternativeCountryCodeId\" stralternative=\"broObj.sfAlternativeNumber\" dland=\"broObj.sfLandountryCodeId\" strareacode=\"broObj.sfLandAreaCodeId\"\r" +
+    "\n" +
+    "                            strland=\"broObj.sfLandNumberId\" strmail=\"broObj.sfEmail\"></contact-directive>\r" +
     "\n" +
     "                        <li class=\"clearfix form-group\">\r" +
     "\n" +
@@ -13011,6 +13124,12 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "                        </div>\r" +
     "\n" +
     "                    </li>\r" +
+    "\n" +
+    "                    <contact-directive emailhide=\"true\" dmobile=\"sisObj.hfCountryCodeId\" strmobile=\"sisObj.hfMobileNumber\" dalternative=\"sisObj.hfAlternativeCountryCodeId\" stralternative=\"sisObj.hfAlternativeNumber\" dland=\"sisObj.hfLandountryCodeId\" strareacode=\"sisObj.hfLandAreaCodeId\"\r" +
+    "\n" +
+    "                        strland=\"sisObj.hfLandNumberId\" strmail=\"sisObj.hfEmail\"></contact-directive>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                    <li class=\"clearfix form-group\">\r" +
     "\n" +

@@ -95,7 +95,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     scope.broObj.txtBWifeName = item.SibilingSpouseName;
                                     scope.broObj.txtbrotherwifeeducation = item.SibilingSpouseEducationDetails;
                                     scope.broObj.txtbrotherwifeprofession = item.SibilingSpouseProfessionDetails;
-                                    //scope.broObj.chkboxbrotherwifeprofession = item.;
+
                                     scope.broObj.chkboxbrotherwifeprofession = item.SibilingSpouseProfessionDetails === 'HouseWife' ? true : false;
                                     scope.broObj.txtBWifeCompanyName = item.spoucecompanyName;
                                     scope.broObj.txtBwifeJoblocation = item.spoucejobloc;
@@ -112,6 +112,22 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                         scope.broObj.ddlBWMobileCode2 = item.SibilingSpouseLandCode;
                                         scope.broObj.txtBWifeMobileNumber2 = item.SibilngSpouseLandnumber;
                                     }
+
+
+
+                                    scope.broObj.sfCountryCodeId = item.SpouseFatherMobileCountryID;
+                                    scope.broObj.sfMobileNumber = item.SpouseFatherMobileNo;
+                                    if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                        scope.broObj.sfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.broObj.sfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                        scope.broObj.sfLandNumberId = item.SpouseFatherLandNo;
+                                    } else {
+                                        scope.broObj.sfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.broObj.sfAlternativeNumber = item.SpouseFatherLandNo;
+                                    }
+                                    scope.broObj.sfEmail = item.SpouseFatherEmailID;
+
+
 
                                     scope.broObj.txtwifeEmail = item.SpouseEmail;
                                     scope.broObj.txtBWifeFatherSurName = item.SFsurname;
@@ -201,9 +217,18 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                                     } else {
                                         scope.sisObj.ddlSHusMobileCountryID2 = item.SpousesisterLandCode;
                                         scope.sisObj.txtSHusMobileNumber2 = item.SibilngSpouseLandnumber;
-
                                     }
-
+                                    scope.sisObj.hfCountryCodeId = item.SpouseFatherMobileCountryID;
+                                    scope.sisObj.hfMobileNumber = item.SpouseFatherMobileNo;
+                                    if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                        scope.sisObj.hfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.sisObj.hfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                        scope.sisObj.hfLandNumberId = item.SpouseFatherLandNo;
+                                    } else {
+                                        scope.sisObj.hfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                        scope.sisObj.hfAlternativeNumber = item.SpouseFatherLandNo;
+                                    }
+                                    scope.sisObj.hfEmail = item.SpouseFatherEmailID;
                                     scope.sisObj.txtHusbandEmail = item.SpouseEmail;
                                     scope.sisObj.txtHusbandFatherSurName = item.SpouceFatherLName;
                                     scope.sisObj.txtHusbandFatherName = item.SpouceFatherFName;
@@ -302,7 +327,15 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         BrotherSpouseEmail: obj.txtwifeEmail,
                         SibilingSpouseFatherCasteID: obj.ddlborherspousefathercaste,
                         BroProfessionCategoryID: obj.ddlbroprofessionCatgory,
-                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory
+                        BroSpouseProfessionCategoryID: obj.ddlbroSpouseprofessionCatgory,
+
+
+                        BroSpouseFatherMobileCountryID: obj.sfCountryCodeId,
+                        BroSpouseFatherMobileNo: obj.sfMobileNumber,
+                        BroSpouseFatherLandCountryID: commonFactory.checkvals(obj.sfAlternativeCountryCodeId) ? obj.sfAlternativeCountryCodeId : commonFactory.checkvals(obj.sfLandountryCodeId) ? obj.sfLandountryCodeId : null,
+                        BroSpouseFatherLandAreaCode: commonFactory.checkvals(obj.sfAlternativeNumber) ? null : commonFactory.checkvals(obj.sfLandAreaCodeId) ? obj.sfLandAreaCodeId : null,
+                        BroSpouseFatherLandNo: commonFactory.checkvals(obj.sfAlternativeNumber) ? obj.sfAlternativeNumber : commonFactory.checkvals(obj.sfLandNumberId) ? obj.sfLandNumberId : null,
+                        BroSpouseFatherEmailID: obj.sfEmail
 
                     },
                     customerpersonaldetails: {
@@ -380,7 +413,14 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                         SisSpouseEmail: obj.txtHusbandEmail,
                         SibilingSpouseFatherCasteID: obj.ddlsisterspusefathercaste,
                         SisProfessionCategoryID: obj.ddlsisprofessionCatgory,
-                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory
+                        SisSpouseProfessionCategoryID: obj.ddlsisSpouseprofessionCatgory,
+
+                        SisSpouseFatherMobileCountryID: obj.hfCountryCodeId,
+                        SisSpouseFatherMobileNo: obj.hfMobileNumber,
+                        SisSpouseFatherLandCountryID: commonFactory.checkvals(obj.hfAlternativeCountryCodeId) ? obj.hfAlternativeCountryCodeId : commonFactory.checkvals(obj.hfLandountryCodeId) ? obj.hfLandountryCodeId : null,
+                        SisSpouseFatherLandAreaCode: commonFactory.checkvals(obj.hfAlternativeNumber) ? null : commonFactory.checkvals(obj.hfLandAreaCodeId) ? obj.hfLandAreaCodeId : null,
+                        SisSpouseFatherLandNo: commonFactory.checkvals(obj.hfAlternativeNumber) ? obj.hfAlternativeNumber : commonFactory.checkvals(obj.hfLandNumberId) ? obj.hfLandNumberId : null,
+                        SisSpouseFatherEmailID: obj.hfEmail
                     },
                     customerpersonaldetails: {
                         intCusID: custID,
