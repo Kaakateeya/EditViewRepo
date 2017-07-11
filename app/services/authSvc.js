@@ -111,7 +111,6 @@ editviewapp.factory('authSvc', ['$injector', function($injector) {
                 return $http.post(app.apiroot + 'DB/userLogin/person', body)
                     .then(function(response) {
                         if (response.status === 200) {
-
                             return { success: true, response: response.data };
                         }
                         return { success: false, response: response.data };
