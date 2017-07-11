@@ -121,10 +121,11 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                     break;
 
                 case 'MB':
+
                     scope.mbObj.MotherBrotherCustfamilyID = null;
                     scope.mbObj = {};
 
-                    if (item === undefined) {
+                    if (item !== undefined) {
                         sibblingServices.allowblockWebusers(custid).then(function(response) {
                             console.log(response);
                             var testArr = JSON.parse(response.data[0]);
