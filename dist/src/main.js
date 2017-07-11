@@ -13,7 +13,7 @@ editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+//editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -11535,7 +11535,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <!--<div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "                                        <h6>\r" +
     "\n" +
@@ -11557,11 +11557,11 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "                                    </div>\r" +
+    "                                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <!--<div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "                                        <h6>\r" +
     "\n" +
@@ -11577,7 +11577,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "                                    </div>\r" +
+    "                                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -12185,7 +12185,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                                    <div class=\"edit_page_details_item_desc clearfix\">\r" +
+    "                                    <!--<div class=\"edit_page_details_item_desc clearfix\">\r" +
     "\n" +
     "                                        <h6>\r" +
     "\n" +
@@ -12225,7 +12225,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                                        </h5>\r" +
     "\n" +
-    "                                    </div>\r" +
+    "                                    </div>-->\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -12745,7 +12745,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                        <contact-directive emailhide=\"true\" dmobile=\"broObj.sfCountryCodeId\" strmobile=\"broObj.sfMobileNumber\" dalternative=\"broObj.sfAlternativeCountryCodeId\" stralternative=\"broObj.sfAlternativeNumber\" dland=\"broObj.sfLandountryCodeId\" strareacode=\"broObj.sfLandAreaCodeId\"\r" +
+    "                        <contact-directive ng-hide=\"true\" emailhide=\"true\" dmobile=\"broObj.sfCountryCodeId\" strmobile=\"broObj.sfMobileNumber\" dalternative=\"broObj.sfAlternativeCountryCodeId\" stralternative=\"broObj.sfAlternativeNumber\" dland=\"broObj.sfLandountryCodeId\" strareacode=\"broObj.sfLandAreaCodeId\"\r" +
     "\n" +
     "                            strland=\"broObj.sfLandNumberId\" strmail=\"broObj.sfEmail\"></contact-directive>\r" +
     "\n" +
@@ -13125,7 +13125,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                    </li>\r" +
     "\n" +
-    "                    <contact-directive emailhide=\"true\" dmobile=\"sisObj.hfCountryCodeId\" strmobile=\"sisObj.hfMobileNumber\" dalternative=\"sisObj.hfAlternativeCountryCodeId\" stralternative=\"sisObj.hfAlternativeNumber\" dland=\"sisObj.hfLandountryCodeId\" strareacode=\"sisObj.hfLandAreaCodeId\"\r" +
+    "                    <contact-directive ng-hide=\"true\" emailhide=\"true\" dmobile=\"sisObj.hfCountryCodeId\" strmobile=\"sisObj.hfMobileNumber\" dalternative=\"sisObj.hfAlternativeCountryCodeId\" stralternative=\"sisObj.hfAlternativeNumber\" dland=\"sisObj.hfLandountryCodeId\" strareacode=\"sisObj.hfLandAreaCodeId\"\r" +
     "\n" +
     "                        strland=\"sisObj.hfLandNumberId\" strmail=\"sisObj.hfEmail\"></contact-directive>\r" +
     "\n" +
