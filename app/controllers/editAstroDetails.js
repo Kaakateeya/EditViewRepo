@@ -288,11 +288,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
-
-
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
                     window.open('' + response.data.AstroGeneration + '', '_blank');
-                    commonFactory.closepopup();
+                    if (astrocity)
+                        commonFactory.closepopup();
+
                     commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);

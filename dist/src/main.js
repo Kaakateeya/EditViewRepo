@@ -7,13 +7,13 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
+// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
-// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 editviewapp.templateroot = 'editview/';
 
-//editviewapp.templateroot = '';
+// editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -649,11 +649,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
-
-
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
                     window.open('' + response.data.AstroGeneration + '', '_blank');
-                    commonFactory.closepopup();
+                    if (astrocity)
+                        commonFactory.closepopup();
+
                     commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
