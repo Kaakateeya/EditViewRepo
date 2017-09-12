@@ -200,7 +200,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   $templateCache.put('editview/app/views/editAstroDetails.html',
     "<div class=\"edit_pages_content_main clearfix\">\r" +
     "\n" +
-    "    <div id=\"divlnkasro\" class=\"edit_page_item\">\r" +
+    "    <div id=\"divlnkasro\" class=\"edit_page_item\" ng-init=\"astropageload();\">\r" +
     "\n" +
     "        <div class=\"edit_page_item_head clearfix\">\r" +
     "\n" +
@@ -1218,7 +1218,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   $templateCache.put('editview/app/views/editParentDetails.html',
     "<div class=\"edit_pages_content_main clearfix\">\r" +
     "\n" +
-    "    <div class=\"edit_page_item\" id=\"divlnkaddparents\">\r" +
+    "    <div class=\"edit_page_item\" id=\"divlnkaddparents\" ng-init=\"parentBindData();\">\r" +
     "\n" +
     "        <div class=\"edit_page_item_head clearfix\">\r" +
     "\n" +

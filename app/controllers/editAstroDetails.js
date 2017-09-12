@@ -108,7 +108,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.astropageload = function(custid) {
 
-            astroServices.getAstroData(custid).then(function(response) {
+            astroServices.getAstroData(custID).then(function(response) {
 
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
@@ -155,7 +155,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             });
 
         };
-        scope.astropageload(custID);
+        // scope.astropageload(custID);
 
 
         scope.astroSubmit = function(obj) {
@@ -283,7 +283,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             var day = check.format('D');
             var year = check.format('YYYY');
 
-            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
+            var inputobj = { customerid: custID, EmpIDQueryString: "", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
 
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);

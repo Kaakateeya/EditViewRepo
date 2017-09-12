@@ -488,7 +488,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
         scope.astropageload = function(custid) {
 
-            astroServices.getAstroData(custid).then(function(response) {
+            astroServices.getAstroData(custID).then(function(response) {
 
                 if (commonFactory.checkvals(response.data[0])) {
                     scope.AstroArr = JSON.parse(response.data[0]);
@@ -535,7 +535,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             });
 
         };
-        scope.astropageload(custID);
+        // scope.astropageload(custID);
 
 
         scope.astroSubmit = function(obj) {
@@ -663,7 +663,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             var day = check.format('D');
             var year = check.format('YYYY');
 
-            var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
+            var inputobj = { customerid: custID, EmpIDQueryString: "", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
 
             astroServices.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);
@@ -990,7 +990,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
         scope.parentBindData = function(icustID) {
-            parentServices.getParentData(icustID).then(function(response) {
+            parentServices.getParentData(custID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     scope.parentArr = commonFactory.checkvals(response.data[0]) ? JSON.parse(response.data[0]) : [];
                     scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
@@ -1013,7 +1013,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             });
         };
 
-        scope.parentBindData(custID);
+        // scope.parentBindData(custID);
         scope.AboutPageloadData(custID);
         scope.changeBind = function(type, parentval) {
 
@@ -3901,7 +3901,7 @@ editviewapp.factory('astroServices', ['$http', function(http) {
         },
 
         GenerateHoroS3: function(obj) {
-            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getAstroGenerationS3Update', { params: { Path: JSON.stringify(obj.Path), KeyName: JSON.stringify(obj.KeyName) } });
+            return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getAstroGenerationS3Update', { params: { Path: (obj.Path), KeyName: (obj.KeyName) } });
         }
 
     };
@@ -4367,7 +4367,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   $templateCache.put('editview/app/views/editAstroDetails.html',
     "<div class=\"edit_pages_content_main clearfix\">\r" +
     "\n" +
-    "    <div id=\"divlnkasro\" class=\"edit_page_item\">\r" +
+    "    <div id=\"divlnkasro\" class=\"edit_page_item\" ng-init=\"astropageload();\">\r" +
     "\n" +
     "        <div class=\"edit_page_item_head clearfix\">\r" +
     "\n" +
@@ -5385,7 +5385,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   $templateCache.put('editview/app/views/editParentDetails.html',
     "<div class=\"edit_pages_content_main clearfix\">\r" +
     "\n" +
-    "    <div class=\"edit_page_item\" id=\"divlnkaddparents\">\r" +
+    "    <div class=\"edit_page_item\" id=\"divlnkaddparents\" ng-init=\"parentBindData();\">\r" +
     "\n" +
     "        <div class=\"edit_page_item_head clearfix\">\r" +
     "\n" +

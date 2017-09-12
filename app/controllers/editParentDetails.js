@@ -21,7 +21,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
         scope.parentBindData = function(icustID) {
-            parentServices.getParentData(icustID).then(function(response) {
+            parentServices.getParentData(custID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     scope.parentArr = commonFactory.checkvals(response.data[0]) ? JSON.parse(response.data[0]) : [];
                     scope.addressArr = commonFactory.checkvals(response.data[1]) ? JSON.parse(response.data[1]) : [];
@@ -44,7 +44,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
             });
         };
 
-        scope.parentBindData(custID);
+        // scope.parentBindData(custID);
         scope.AboutPageloadData(custID);
         scope.changeBind = function(type, parentval) {
 
