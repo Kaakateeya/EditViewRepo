@@ -35,6 +35,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     scope.AboutFamilyReviewStatus = scope.AboutFamily[0].reviewstatus;
                 }
             });
+            scope.AboutPageloadData(custID);
         };
 
         scope.AboutPageloadData = function() {
@@ -45,7 +46,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
         };
 
         // scope.parentBindData(custID);
-        scope.AboutPageloadData(custID);
+        // scope.AboutPageloadData(custID);
         scope.changeBind = function(type, parentval) {
 
             switch (type) {
