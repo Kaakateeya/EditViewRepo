@@ -15,9 +15,10 @@ editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 // editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
-editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+//editviewapp.templateroot = 'editview/';
+
+editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -74,48 +75,66 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
 });
 
 
-editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', function(scope, personalDetailsService, authSvc) {
-    var logincustid = authSvc.getCustId();
-    var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-    personalDetailsService.personalDetails(CustID).then(function(response) {
-        scope.PersonalObj = response.data;
-        scope.imgsrc = authSvc.getprofilepic();
-    });
+editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', 'personalmodel', '$timeout',
+    function(scope, personalDetailsService, authSvc, personalmodel, timeout) {
+        var logincustid = authSvc.getCustId();
 
-    scope.unreviewedLinks = function() {
+        var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
-        personalDetailsService.menuReviewstatus(CustID).then(function(response) {
-            scope.menuReviewdata = JSON.parse(response.data);
-            _.each(scope.menuReviewdata, function(item) {
-                var SectionID = item.SectionID;
-                if (SectionID === 11 || SectionID === 12 || SectionID === 13 || SectionID == 15) {
-                    scope.lnkparentsReview = true;
-                }
-                if (SectionID === 14 || SectionID === 25 || SectionID === 26) {
-                    scope.lnksiblingsReview = true;
-                }
-                if (SectionID === 27 || SectionID === 28 || SectionID === 32 || SectionID === 33) {
-                    scope.lnkrelativesReview = true;
-                }
-                if (SectionID === 6 || SectionID === 7 || SectionID === 8) {
-                    scope.lnkeducationandprofReview = true;
-                }
-                if (SectionID === 16 || SectionID === 22) {
-                    scope.lnkpartnerReview = true;
-                }
-                if (SectionID === 23) {
-                    scope.lnkastroReview = true;
-                }
-                if (SectionID === 29) {
-                    scope.lnkreferenceReview = true;
-                }
-                if (SectionID === 34) {
-                    scope.lnkpropertyReview = true;
-                }
+        scope.unreviewedLinks = function() {
+            personalDetailsService.menuReviewstatus(CustID).then(function(response) {
+                scope.menuReviewdata = JSON.parse(response.data);
+                _.each(scope.menuReviewdata, function(item) {
+                    var SectionID = item.SectionID;
+                    if (SectionID === 11 || SectionID === 12 || SectionID === 13 || SectionID == 15) {
+                        scope.lnkparentsReview = true;
+                    }
+                    if (SectionID === 14 || SectionID === 25 || SectionID === 26) {
+                        scope.lnksiblingsReview = true;
+                    }
+                    if (SectionID === 27 || SectionID === 28 || SectionID === 32 || SectionID === 33) {
+                        scope.lnkrelativesReview = true;
+                    }
+                    if (SectionID === 6 || SectionID === 7 || SectionID === 8) {
+                        scope.lnkeducationandprofReview = true;
+                    }
+                    if (SectionID === 16 || SectionID === 22) {
+                        scope.lnkpartnerReview = true;
+                    }
+                    if (SectionID === 23) {
+                        scope.lnkastroReview = true;
+                    }
+                    if (SectionID === 29) {
+                        scope.lnkreferenceReview = true;
+                    }
+                    if (SectionID === 34) {
+                        scope.lnkpropertyReview = true;
+                    }
+                });
             });
-        });
+        };
 
+        scope.personalDetails = function() {
+            personalDetailsService.personalDetails(CustID).then(function(response) {
+                scope.PersonalObj = response.data;
+                scope.imgsrc = authSvc.getprofilepic();
+            });
+        };
 
-    };
-    scope.unreviewedLinks();
-}]);
+        scope.pageload = function() {
+            if (personalmodel.currentCustID === CustID) {
+                scope.imgsrc = authSvc.getprofilepic();
+                scope.menuReviewdata = personalmodel.menuReviewdata;
+                scope.PersonalObj = personalmodel.PersonalObj;
+            } else {
+                scope.personalDetails();
+                scope.unreviewedLinks();
+                timeout(function() {
+                    personalmodel.setCustID(CustID, scope.PersonalObj, scope.menuReviewdata);
+                }, 500);
+            }
+        };
+        scope.pageload();
+
+    }
+]);

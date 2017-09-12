@@ -30,20 +30,15 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             commonFactory.closepopup();
         };
 
-        SelectBindService.countryCodeselect().then(function(response) {
-            var option = [];
-            option.push({ "label": "--select--", "title": "--select--", "value": "" });
-            _.each(response.data, function(item) {
-                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-            });
-            sessionStorage.setItem('CountryCode', JSON.stringify(option));
-            console.log(123);
-        });
-
-
-
-
-
+        // SelectBindService.countryCodeselect().then(function(response) {
+        //     var option = [];
+        //     option.push({ "label": "--select--", "title": "--select--", "value": "" });
+        //     _.each(response.data, function(item) {
+        //         option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+        //     });
+        //     sessionStorage.setItem('CountryCode', JSON.stringify(option));
+        //     console.log(123);CountryCode
+        // });
 
         scope.showpopup = function(type, item) {
             isSubmit = true;
@@ -55,9 +50,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
-                        // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
-                        // scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
-                        // scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
@@ -128,7 +120,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.getdata = function() {
-
             editviewServices.getEducationData(custID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     scope.educationSelectArray = response.data;
@@ -151,7 +142,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 }
             });
         };
-
 
         scope.ProfchangeBind = function(type, parentval) {
 

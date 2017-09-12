@@ -11,9 +11,10 @@ editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
 // editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
-editviewapp.templateroot = 'editview/';
 
-// editviewapp.templateroot = '';
+//editviewapp.templateroot = 'editview/';
+
+editviewapp.templateroot = '';
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
@@ -70,51 +71,69 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
 });
 
 
-editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', function(scope, personalDetailsService, authSvc) {
-    var logincustid = authSvc.getCustId();
-    var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
-    personalDetailsService.personalDetails(CustID).then(function(response) {
-        scope.PersonalObj = response.data;
-        scope.imgsrc = authSvc.getprofilepic();
-    });
+editviewapp.controller('personalCtrl', ['$scope', 'personalDetailsService', 'authSvc', 'personalmodel', '$timeout',
+    function(scope, personalDetailsService, authSvc, personalmodel, timeout) {
+        var logincustid = authSvc.getCustId();
 
-    scope.unreviewedLinks = function() {
+        var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
-        personalDetailsService.menuReviewstatus(CustID).then(function(response) {
-            scope.menuReviewdata = JSON.parse(response.data);
-            _.each(scope.menuReviewdata, function(item) {
-                var SectionID = item.SectionID;
-                if (SectionID === 11 || SectionID === 12 || SectionID === 13 || SectionID == 15) {
-                    scope.lnkparentsReview = true;
-                }
-                if (SectionID === 14 || SectionID === 25 || SectionID === 26) {
-                    scope.lnksiblingsReview = true;
-                }
-                if (SectionID === 27 || SectionID === 28 || SectionID === 32 || SectionID === 33) {
-                    scope.lnkrelativesReview = true;
-                }
-                if (SectionID === 6 || SectionID === 7 || SectionID === 8) {
-                    scope.lnkeducationandprofReview = true;
-                }
-                if (SectionID === 16 || SectionID === 22) {
-                    scope.lnkpartnerReview = true;
-                }
-                if (SectionID === 23) {
-                    scope.lnkastroReview = true;
-                }
-                if (SectionID === 29) {
-                    scope.lnkreferenceReview = true;
-                }
-                if (SectionID === 34) {
-                    scope.lnkpropertyReview = true;
-                }
+        scope.unreviewedLinks = function() {
+            personalDetailsService.menuReviewstatus(CustID).then(function(response) {
+                scope.menuReviewdata = JSON.parse(response.data);
+                _.each(scope.menuReviewdata, function(item) {
+                    var SectionID = item.SectionID;
+                    if (SectionID === 11 || SectionID === 12 || SectionID === 13 || SectionID == 15) {
+                        scope.lnkparentsReview = true;
+                    }
+                    if (SectionID === 14 || SectionID === 25 || SectionID === 26) {
+                        scope.lnksiblingsReview = true;
+                    }
+                    if (SectionID === 27 || SectionID === 28 || SectionID === 32 || SectionID === 33) {
+                        scope.lnkrelativesReview = true;
+                    }
+                    if (SectionID === 6 || SectionID === 7 || SectionID === 8) {
+                        scope.lnkeducationandprofReview = true;
+                    }
+                    if (SectionID === 16 || SectionID === 22) {
+                        scope.lnkpartnerReview = true;
+                    }
+                    if (SectionID === 23) {
+                        scope.lnkastroReview = true;
+                    }
+                    if (SectionID === 29) {
+                        scope.lnkreferenceReview = true;
+                    }
+                    if (SectionID === 34) {
+                        scope.lnkpropertyReview = true;
+                    }
+                });
             });
-        });
+        };
 
+        scope.personalDetails = function() {
+            personalDetailsService.personalDetails(CustID).then(function(response) {
+                scope.PersonalObj = response.data;
+                scope.imgsrc = authSvc.getprofilepic();
+            });
+        };
 
-    };
-    scope.unreviewedLinks();
-}]);
+        scope.pageload = function() {
+            if (personalmodel.currentCustID === CustID) {
+                scope.imgsrc = authSvc.getprofilepic();
+                scope.menuReviewdata = personalmodel.menuReviewdata;
+                scope.PersonalObj = personalmodel.PersonalObj;
+            } else {
+                scope.personalDetails();
+                scope.unreviewedLinks();
+                timeout(function() {
+                    personalmodel.setCustID(CustID, scope.PersonalObj, scope.menuReviewdata);
+                }, 500);
+            }
+        };
+        scope.pageload();
+
+    }
+]);
 editviewapp.constant('arrayConstantsEdit', {
     'MaritalStatus': [
         { "label": "--Select--", "title": "--Select--", "value": "" },
@@ -2997,20 +3016,15 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
             commonFactory.closepopup();
         };
 
-        SelectBindService.countryCodeselect().then(function(response) {
-            var option = [];
-            option.push({ "label": "--select--", "title": "--select--", "value": "" });
-            _.each(response.data, function(item) {
-                option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-            });
-            sessionStorage.setItem('CountryCode', JSON.stringify(option));
-            console.log(123);
-        });
-
-
-
-
-
+        // SelectBindService.countryCodeselect().then(function(response) {
+        //     var option = [];
+        //     option.push({ "label": "--select--", "title": "--select--", "value": "" });
+        //     _.each(response.data, function(item) {
+        //         option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+        //     });
+        //     sessionStorage.setItem('CountryCode', JSON.stringify(option));
+        //     console.log(123);CountryCode
+        // });
 
         scope.showpopup = function(type, item) {
             isSubmit = true;
@@ -3022,9 +3036,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
                         scope.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
                         scope.eduSpecialisationArr = commonFactory.checkvals(item.EducationGroupID) ? commonFactory.educationSpeciakisationBind(item.EducationGroupID) : [];
-                        // scope.stateArr = commonFactory.checkvals(item.CountryID) ? commonFactory.StateBind(item.CountryID) : [];
-                        // scope.districtArr = commonFactory.checkvals(item.StateID) ? commonFactory.districtBind(item.StateID) : [];
-                        // scope.cityeArr = commonFactory.checkvals(item.DistrictID) ? commonFactory.cityBind(item.DistrictID) : [];
 
                         scope.edoObj.IsHighestDegree = item.EduHighestDegree;
                         console.log(item.EduPassOfYear);
@@ -3095,7 +3106,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         };
 
         scope.getdata = function() {
-
             editviewServices.getEducationData(custID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     scope.educationSelectArray = response.data;
@@ -3118,7 +3128,6 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 }
             });
         };
-
 
         scope.ProfchangeBind = function(type, parentval) {
 
@@ -3557,182 +3566,205 @@ editviewapp.directive('ngConfirmClick', ['commonFactory',
         };
     }
 ]);
-editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory', '$mdDialog', function(SelectBindService, commonFactory, mdDialog) {
-    return {
-        scope: {
-            dmobile: '=',
-            strmobile: '=',
-            dalternative: '=',
-            stralternative: '=',
-            dland: '=',
-            strareacode: '=',
-            strland: '=',
-            strmail: '=',
-            emailhide: '='
-        },
-        templateUrl: editviewapp.templateroot + 'app/views/contacttemplate.html',
-        link: function(scope, element, attr) {
-
-            scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
-            scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;
-            scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
-            scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
-
-            SelectBindService.countryCodeselect().then(function(response) {
+editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory', '$mdDialog', 'bindMdl', '$timeout',
+    function(SelectBindService, commonFactory, mdDialog, bindMdl, timeout) {
+        return {
+            scope: {
+                dmobile: '=',
+                strmobile: '=',
+                dalternative: '=',
+                stralternative: '=',
+                dland: '=',
+                strareacode: '=',
+                strland: '=',
+                strmail: '=',
+                emailhide: '='
+            },
+            templateUrl: editviewapp.templateroot + 'app/views/contacttemplate.html',
+            link: function(scope, element, attr) {
                 scope.countryCodeArr = [];
-                scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
-                _.each(response.data, function(item) {
-                    scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                });
-            });
+                scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
+                scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;
+                scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
+                scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
 
-            scope.showhidemob = function(ev, type) {
+                var countryCodeArray = [];
 
-                scope.confirm = null;
-                switch (type) {
-                    case 'mob':
-                        if (scope.pmob === false) {
-                            scope.pmob = true;
-                        } else {
-                            var lNaumber = scope.strland;
-                            scope.checkMobile(ev, lNaumber, 'land', 'landline');
-                        }
-                        break;
+                timeout(function() {
+                    countryCodeArray = bindMdl.countryCode('get');
 
-                    case 'land':
+                    if (countryCodeArray.length > 0) {
+                        scope.countryCodeArr = countryCodeArray;
+                    } else {
+                        SelectBindService.countryCodeselect().then(function(response) {
+                            scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                            _.each(response.data, function(item) {
+                                scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                if (scope.countryCodeArr.length === response.data.length) {
+                                    bindMdl.countryCode('set', scope.countryCodeArr);
+                                }
+                            });
+                        });
+                    }
+                }, 1500);
+                scope.showhidemob = function(ev, type) {
 
-                        var lNaumber1 = scope.stralternative;
-                        scope.checkMobile(ev, lNaumber1, 'mob', 'alternative');
-                        break;
+                    scope.confirm = null;
+                    switch (type) {
+                        case 'mob':
+                            if (scope.pmob === false) {
+                                scope.pmob = true;
+                            } else {
+                                var lNaumber = scope.strland;
+                                scope.checkMobile(ev, lNaumber, 'land', 'landline');
+                            }
+                            break;
 
-                    case 'mail':
-                        scope.mail = true;
-                        break;
-                }
+                        case 'land':
 
-            };
+                            var lNaumber1 = scope.stralternative;
+                            scope.checkMobile(ev, lNaumber1, 'mob', 'alternative');
+                            break;
 
-            scope.checkMobile = function(ev, strval, type, strdisplay) {
-                if (strval !== "" && strval !== undefined && strval !== null) {
-                    scope.confirm = commonFactory.showConfirm(ev, mdDialog, 'Are You Sure To Delete ' + strdisplay + ' Number', 'delete', 'cancel');
-                    scope.test(type);
+                        case 'mail':
+                            scope.mail = true;
+                            break;
+                    }
 
-                } else {
-                    scope.clear(type);
-                }
-            };
-            scope.clear = function(type) {
+                };
 
-                if (type === 'mob') {
-                    scope.amob = false;
-                    scope.land = true;
-                    scope.dalternative = "";
-                    scope.stralternative = "";
-                } else {
-                    scope.amob = true;
-                    scope.land = false;
-                    scope.dland = "";
-                    scope.strareacode = "";
-                    scope.strland = "";
+                scope.checkMobile = function(ev, strval, type, strdisplay) {
+                    if (strval !== "" && strval !== undefined && strval !== null) {
+                        scope.confirm = commonFactory.showConfirm(ev, mdDialog, 'Are You Sure To Delete ' + strdisplay + ' Number', 'delete', 'cancel');
+                        scope.test(type);
 
-                }
-            };
+                    } else {
+                        scope.clear(type);
+                    }
+                };
+                scope.clear = function(type) {
 
-            scope.test = function(type) {
+                    if (type === 'mob') {
+                        scope.amob = false;
+                        scope.land = true;
+                        scope.dalternative = "";
+                        scope.stralternative = "";
+                    } else {
+                        scope.amob = true;
+                        scope.land = false;
+                        scope.dland = "";
+                        scope.strareacode = "";
+                        scope.strland = "";
 
-                mdDialog.show(scope.confirm).then(function() {
+                    }
+                };
 
-                    scope.clear(type);
+                scope.test = function(type) {
 
-                }, function() {
+                    mdDialog.show(scope.confirm).then(function() {
 
-                });
-            };
+                        scope.clear(type);
 
+                    }, function() {
 
-        }
-    };
-}]);
-editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory', function(SelectBindService, commonFactory) {
-    return {
-        scope: {
-            countryshow: '=',
-            cityshow: '=',
-            dcountry: '=',
-            dstate: '=',
-            ddistrict: '=',
-            dcity: '=',
-            othercity: '=',
-            strothercity: '=',
-            require: '='
-        },
-        templateUrl: editviewapp.templateroot + 'app/views/countryTemplate.html',
-        link: function(scope, element, attr) {
-            if (scope.countryshow === true) {
-                SelectBindService.countrySelect().then(function(response) {
-                    scope.countryArr = [];
-                    scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    _.each(response.data, function(item) {
-                        scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                     });
-                });
-                if (scope.dcountry !== undefined) {
-                    scope.stateArr = commonFactory.StateBind(scope.dcountry);
-                }
-            } else {
-                scope.dcountry = '1';
-                SelectBindService.stateSelect('1').then(function(response) {
-                    scope.stateArr = [];
-                    scope.stateArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    _.each(response.data, function(item) {
-                        scope.stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                };
+
+
+            }
+        };
+    }
+]);
+editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory', 'bindMdl',
+    function(SelectBindService, commonFactory, bindMdl) {
+        return {
+            scope: {
+                countryshow: '=',
+                cityshow: '=',
+                dcountry: '=',
+                dstate: '=',
+                ddistrict: '=',
+                dcity: '=',
+                othercity: '=',
+                strothercity: '=',
+                require: '='
+            },
+            templateUrl: editviewapp.templateroot + 'app/views/countryTemplate.html',
+            link: function(scope, element, attr) {
+                scope.countryArr = [];
+
+                if (scope.countryshow === true) {
+                    var countryarray = [];
+                    countryarray = bindMdl.Country('get');
+                    if (countryarray.length > 0) {
+                        scope.countryArr = countryarray;
+                    } else {
+                        SelectBindService.countrySelect().then(function(response) {
+                            scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            });
+                            bindMdl.Country('set', scope.countryArr);
+                        });
+                    }
+                    if (scope.dcountry !== undefined) {
+                        scope.stateArr = commonFactory.StateBind(scope.dcountry);
+                    }
+                } else {
+                    scope.dcountry = '1';
+                    SelectBindService.stateSelect('1').then(function(response) {
+                        scope.stateArr = [];
+                        scope.stateArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                        _.each(response.data, function(item) {
+                            scope.stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
                     });
-                });
-            }
-            if ((scope.dcountry === '1' || scope.dcountry === 1) && scope.dstate !== undefined) {
-                scope.districtArr = commonFactory.districtBind(scope.dstate);
-            } else {
-                if (scope.dstate !== undefined) {
-                    scope.cityeArr = commonFactory.districtBind(scope.dstate);
                 }
-            }
-
-            if (scope.cityshow === true && scope.cityeArr === undefined) {
-                if (scope.ddistrict !== undefined) {
-                    scope.cityeArr = commonFactory.cityBind(scope.ddistrict);
-                }
-            }
-
-            scope.changeBind = function(type, parentval, countryVal) {
-                switch (type) {
-                    case 'Country':
-                        scope.stateArr = commonFactory.StateBind(parentval);
-                        break;
-
-                    case 'State':
-                        if (countryVal === '1' || countryVal === 1) {
-                            scope.districtArr = commonFactory.districtBind(parentval);
-                        } else {
-                            scope.districtArr = [];
-                            scope.cityeArr = commonFactory.districtBind(parentval);
-                        }
-                        break;
-
-                    case 'District':
-                        if (scope.cityshow === true) {
-                            scope.cityeArr = commonFactory.cityBind(parentval);
-                        }
-                        break;
+                if ((scope.dcountry === '1' || scope.dcountry === 1) && scope.dstate !== undefined) {
+                    scope.districtArr = commonFactory.districtBind(scope.dstate);
+                } else {
+                    if (scope.dstate !== undefined) {
+                        scope.cityeArr = commonFactory.districtBind(scope.dstate);
+                    }
                 }
 
-            };
-            scope.ShowCity = function() {
-                scope.cityinput = true;
-                scope.dcity = '';
-            };
-        }
-    };
-}]);
+                if (scope.cityshow === true && scope.cityeArr === undefined) {
+                    if (scope.ddistrict !== undefined) {
+                        scope.cityeArr = commonFactory.cityBind(scope.ddistrict);
+                    }
+                }
+
+                scope.changeBind = function(type, parentval, countryVal) {
+                    switch (type) {
+                        case 'Country':
+                            scope.stateArr = commonFactory.StateBind(parentval);
+                            break;
+
+                        case 'State':
+                            if (countryVal === '1' || countryVal === 1) {
+                                scope.districtArr = commonFactory.districtBind(parentval);
+                            } else {
+                                scope.districtArr = [];
+                                scope.cityeArr = commonFactory.districtBind(parentval);
+                            }
+                            break;
+
+                        case 'District':
+                            if (scope.cityshow === true) {
+                                scope.cityeArr = commonFactory.cityBind(parentval);
+                            }
+                            break;
+                    }
+
+                };
+                scope.ShowCity = function() {
+                    scope.cityinput = true;
+                    scope.dcity = '';
+                };
+            }
+        };
+    }
+]);
 editviewapp.directive('datePicker', function() {
     return {
         scope: {
@@ -3806,6 +3838,52 @@ editviewapp.filter('myFilter', ['$filter', function(filter) {
     };
 
 }]);
+(function() {
+    'use strict';
+
+    angular
+        .module('KaakateeyaEdit')
+        .factory('bindMdl', factory);
+
+    factory.$inject = ['$http'];
+
+    function factory($http) {
+        var model = {};
+        // variable declaration
+
+        model.countryArr = [];
+        model.countryCodeArr = [];
+
+        // function declaration
+
+        model.Country = function(type, arr) {
+            if (type === 'get')
+                return model.countryArr;
+            else
+                model.countryArr = arr;
+        };
+        model.countryCode = function(type, arr) {
+            if (type === 'get')
+                return model.countryCodeArr;
+            else
+                model.countryCodeArr = arr;
+        };
+
+        return model;
+
+    }
+})();
+editviewapp.factory('personalmodel',
+    function() {
+        var model = {};
+        model.setCustID = function(custid, personalObj, reviewObj) {
+            model.currentCustID = custid;
+            model.PersonalObj = personalObj;
+            model.menuReviewdata = reviewObj;
+        };
+        return model;
+    }
+);
 
 editviewapp.factory('astroServices', ['$http', function(http) {
     return {
