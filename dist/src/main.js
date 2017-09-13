@@ -766,9 +766,11 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
     scope.refreshPageLoad = function(Arr) {
         console.log('5555555');
         console.log(Arr);
+        scope.rbtProtectPassword = undefined;
         _.each(Arr, function(item) {
-
-            scope.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
+            if (scope.rbtProtectPassword !== '1') {
+                scope.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
+            }
             var imagepath = editviewapp.accesspathdots;
 
             if (item.IsActive === 0 && item.PhotoName !== null) {
@@ -5057,7 +5059,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"edit_page_photo_manage_submit\">\r" +
     "\n" +
-    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"{{loginpaidstatus===1}}\">\r" +
+    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"loginpaidstatus==='1'\">\r" +
     "\n" +
     "                                <label class=\"\">\r" +
     "\n" +

@@ -889,7 +889,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"edit_page_photo_manage_submit\">\r" +
     "\n" +
-    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"{{loginpaidstatus===1}}\">\r" +
+    "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"loginpaidstatus==='1'\">\r" +
     "\n" +
     "                                <label class=\"\">\r" +
     "\n" +
