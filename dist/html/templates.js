@@ -56,7 +56,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dmobile\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dmobile\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dmobile\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text ng-model=\"strmobile\" style=\"float:right;\" class=\"form-control\" maxlength=\"10\" tabindex=\"10\" />\r" +
     "\n" +
@@ -74,7 +76,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dalternative\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dalternative\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dalternative\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text class=\"form-control\" style=\"float:right;\" ng-model=\"stralternative\" maxlength=\"10\" tabindex=\"12\" />\r" +
     "\n" +
@@ -92,7 +96,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dland\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dland\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dland\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text ng-model=\"strareacode\" maxlength=\"4\" tabindex=\"14\" />\r" +
     "\n" +
@@ -133,7 +139,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "            <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" ng-options=\"item1.value as item1.label for item1 in countryArr\" ng-required=\"require\"></select>\r" +
+    "            <!-- <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" ng-options=\"item1.value as item1.label for item1 in countryArr\" ng-required=\"require\"></select> -->\r" +
+    "\n" +
+    "            <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" typeofdata=\"'Country'\" ng-required=\"require\"></select>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +

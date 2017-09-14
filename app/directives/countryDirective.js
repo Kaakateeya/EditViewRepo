@@ -17,19 +17,19 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                 scope.countryArr = [];
 
                 if (scope.countryshow === true) {
-                    var countryarray = [];
-                    countryarray = bindMdl.Country('get');
-                    if (countryarray.length > 0) {
-                        scope.countryArr = countryarray;
-                    } else {
-                        SelectBindService.countrySelect().then(function(response) {
-                            scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                            _.each(response.data, function(item) {
-                                scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                            });
-                            bindMdl.Country('set', scope.countryArr);
-                        });
-                    }
+                    // var countryarray = [];
+                    // countryarray = bindMdl.Country('get');
+                    // if (countryarray.length > 0) {
+                    //     scope.countryArr = countryarray;
+                    // } else {
+                    //     SelectBindService.countrySelect().then(function(response) {
+                    //         scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    //         _.each(response.data, function(item) {
+                    //             scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    //         });
+                    //         bindMdl.Country('set', scope.countryArr);
+                    //     });
+                    // }
                     if (scope.dcountry !== undefined) {
                         scope.stateArr = commonFactory.StateBind(scope.dcountry);
                     }

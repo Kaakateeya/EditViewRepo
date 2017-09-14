@@ -3,7 +3,8 @@
     <li class="clearfix form-group" ng-show="countryshow">
         <label for="lblCountry" class="pop_label_left">Country<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
         <div class="pop_controls_right select-box-my input-group">
-            <select multiselectdropdown ng-model="dcountry" ng-change="changeBind('Country',dcountry);" ng-options="item1.value as item1.label for item1 in countryArr" ng-required="require"></select>
+            <!-- <select multiselectdropdown ng-model="dcountry" ng-change="changeBind('Country',dcountry);" ng-options="item1.value as item1.label for item1 in countryArr" ng-required="require"></select> -->
+            <select multiselectdropdown ng-model="dcountry" ng-change="changeBind('Country',dcountry);" typeofdata="'Country'" ng-required="require"></select>
         </div>
     </li>
     <li class="clearfix form-group">

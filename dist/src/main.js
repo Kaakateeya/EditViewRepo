@@ -3591,25 +3591,25 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
                 scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
                 scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
 
-                var countryCodeArray = [];
+                // var countryCodeArray = [];
 
-                timeout(function() {
-                    countryCodeArray = bindMdl.countryCode('get');
+                // timeout(function() {
+                //     countryCodeArray = bindMdl.countryCode('get');
 
-                    if (countryCodeArray.length > 0) {
-                        scope.countryCodeArr = countryCodeArray;
-                    } else {
-                        SelectBindService.countryCodeselect().then(function(response) {
-                            scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
-                            _.each(response.data, function(item) {
-                                scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                if (scope.countryCodeArr.length === response.data.length) {
-                                    bindMdl.countryCode('set', scope.countryCodeArr);
-                                }
-                            });
-                        });
-                    }
-                }, 1500);
+                //     if (countryCodeArray.length > 0) {
+                //         scope.countryCodeArr = countryCodeArray;
+                //     } else {
+                //         SelectBindService.countryCodeselect().then(function(response) {
+                //             scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                //             _.each(response.data, function(item) {
+                //                 scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                //                 if (scope.countryCodeArr.length === response.data.length) {
+                //                     bindMdl.countryCode('set', scope.countryCodeArr);
+                //                 }
+                //             });
+                //         });
+                //     }
+                // }, 1500);
                 scope.showhidemob = function(ev, type) {
 
                     scope.confirm = null;
@@ -3697,19 +3697,19 @@ editviewapp.directive('countryDirective', ['SelectBindService', 'commonFactory',
                 scope.countryArr = [];
 
                 if (scope.countryshow === true) {
-                    var countryarray = [];
-                    countryarray = bindMdl.Country('get');
-                    if (countryarray.length > 0) {
-                        scope.countryArr = countryarray;
-                    } else {
-                        SelectBindService.countrySelect().then(function(response) {
-                            scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                            _.each(response.data, function(item) {
-                                scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                            });
-                            bindMdl.Country('set', scope.countryArr);
-                        });
-                    }
+                    // var countryarray = [];
+                    // countryarray = bindMdl.Country('get');
+                    // if (countryarray.length > 0) {
+                    //     scope.countryArr = countryarray;
+                    // } else {
+                    //     SelectBindService.countrySelect().then(function(response) {
+                    //         scope.countryArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    //         _.each(response.data, function(item) {
+                    //             scope.countryArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    //         });
+                    //         bindMdl.Country('set', scope.countryArr);
+                    //     });
+                    // }
                     if (scope.dcountry !== undefined) {
                         scope.stateArr = commonFactory.StateBind(scope.dcountry);
                     }
@@ -4226,7 +4226,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dmobile\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dmobile\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dmobile\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text ng-model=\"strmobile\" style=\"float:right;\" class=\"form-control\" maxlength=\"10\" tabindex=\"10\" />\r" +
     "\n" +
@@ -4244,7 +4246,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-double\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dalternative\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dalternative\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dalternative\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text class=\"form-control\" style=\"float:right;\" ng-model=\"stralternative\" maxlength=\"10\" tabindex=\"12\" />\r" +
     "\n" +
@@ -4262,7 +4266,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "            <div class=\"pop_controls_right select-box-my select-box-my-trible\">\r" +
     "\n" +
-    "                <select multiselectdropdown ng-model=\"dland\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select>\r" +
+    "                <!-- <select multiselectdropdown ng-model=\"dland\" ng-options=\"item.value as item.label for item in countryCodeArr\"></select> -->\r" +
+    "\n" +
+    "                <select multiselectdropdown ng-model=\"dland\" typeofdata=\"'countryCode'\"></select>\r" +
     "\n" +
     "                <input type=text ng-model=\"strareacode\" maxlength=\"4\" tabindex=\"14\" />\r" +
     "\n" +
@@ -4303,7 +4309,9 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "        <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "            <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" ng-options=\"item1.value as item1.label for item1 in countryArr\" ng-required=\"require\"></select>\r" +
+    "            <!-- <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" ng-options=\"item1.value as item1.label for item1 in countryArr\" ng-required=\"require\"></select> -->\r" +
+    "\n" +
+    "            <select multiselectdropdown ng-model=\"dcountry\" ng-change=\"changeBind('Country',dcountry);\" typeofdata=\"'Country'\" ng-required=\"require\"></select>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +

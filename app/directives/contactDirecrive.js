@@ -20,25 +20,25 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
                 scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
                 scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
 
-                var countryCodeArray = [];
+                // var countryCodeArray = [];
 
-                timeout(function() {
-                    countryCodeArray = bindMdl.countryCode('get');
+                // timeout(function() {
+                //     countryCodeArray = bindMdl.countryCode('get');
 
-                    if (countryCodeArray.length > 0) {
-                        scope.countryCodeArr = countryCodeArray;
-                    } else {
-                        SelectBindService.countryCodeselect().then(function(response) {
-                            scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
-                            _.each(response.data, function(item) {
-                                scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                if (scope.countryCodeArr.length === response.data.length) {
-                                    bindMdl.countryCode('set', scope.countryCodeArr);
-                                }
-                            });
-                        });
-                    }
-                }, 1500);
+                //     if (countryCodeArray.length > 0) {
+                //         scope.countryCodeArr = countryCodeArray;
+                //     } else {
+                //         SelectBindService.countryCodeselect().then(function(response) {
+                //             scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                //             _.each(response.data, function(item) {
+                //                 scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                //                 if (scope.countryCodeArr.length === response.data.length) {
+                //                     bindMdl.countryCode('set', scope.countryCodeArr);
+                //                 }
+                //             });
+                //         });
+                //     }
+                // }, 1500);
                 scope.showhidemob = function(ev, type) {
 
                     scope.confirm = null;
