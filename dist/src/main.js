@@ -1609,6 +1609,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
                         scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
                         scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
+                        scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(item.regionId)));
                         scope.partnerObj.lstBranch = scope.SplitstringintoArray(item.branchid);
                         scope.partnerObj.rbtDiet = item.DietID;
                         scope.partnerObj.rbtManglikKujadosham = item.KujaDoshamID;
