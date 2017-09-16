@@ -11661,6 +11661,12 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </script>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "    <span us-spinner=\"{radius:30, width:8, length: 16}\" spinner-start-active=\"true\"></span>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "</div>\r" +
     "\n" +
     "\r" +
@@ -11790,8 +11796,6 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "</div>\r" +
     "\n" +
     "\r" +
-    "\n" +
-    "<span us-spinner=\"{radius:30, width:8, length: 16}\" spinner-start-active=\"true\"></span>\r" +
     "\n" +
     "\r" +
     "\n" +
