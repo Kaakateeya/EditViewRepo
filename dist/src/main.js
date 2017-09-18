@@ -956,13 +956,13 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
         switch (type) {
             case 'PhotoGuideLines':
-                window.open('#/registration/photoGuideLines', '_blank');
+                window.open('registration/photoGuideLines', '_blank');
                 break;
             case 'Faqs':
-                window.open('#/faqs', '_blank');
+                window.open('faqs', '_blank');
                 break;
             case 'uploadTips':
-                window.open('#/registration/uploadTips', '_blank');
+                window.open('registration/uploadTips', '_blank');
                 break;
         }
     };
