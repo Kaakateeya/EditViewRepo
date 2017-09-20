@@ -83,6 +83,10 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
                             scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
                             scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
+                        } else {
+                            scope.atroObj.ddlFromHours = '';
+                            scope.atroObj.ddlFromMinutes = '';
+                            scope.atroObj.ddlFromSeconds = '';
                         }
                         scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
                         scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
