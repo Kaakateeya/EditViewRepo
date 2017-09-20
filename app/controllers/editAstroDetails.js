@@ -64,6 +64,9 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             scope.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             scope.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
             isSubmit = true;
+            scope.atroObj.ddlFromHours = '';
+            scope.atroObj.ddlFromMinutes = '';
+            scope.atroObj.ddlFromSeconds = '';
             if (item !== undefined) {
                 sibblingServices.allowblockWebusers(custID).then(function(response) {
 
@@ -83,10 +86,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                             scope.atroObj.ddlFromHours = parseInt(scope.strdot[0]);
                             scope.atroObj.ddlFromMinutes = parseInt(scope.strdot[1]);
                             scope.atroObj.ddlFromSeconds = parseInt(scope.strdot[2]);
-                        } else {
-                            scope.atroObj.ddlFromHours = '';
-                            scope.atroObj.ddlFromMinutes = '';
-                            scope.atroObj.ddlFromSeconds = '';
                         }
                         scope.atroObj.ddlCountryOfBirthID = item.CountryOfBirthID;
                         scope.atroObj.ddlStateOfBirthID = item.StateOfBirthID;
