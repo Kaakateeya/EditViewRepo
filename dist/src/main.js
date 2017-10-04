@@ -790,7 +790,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 SelectBindServiceApp.getencrypt(custID).then(function(response) {
                     var encryptCustid = response.data;
                     scope.astropageload(custID);
-                    window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
+                    window.open('editview/horoDisplay?ID=' + encryptCustid, '_blank');
                 });
             });
 
