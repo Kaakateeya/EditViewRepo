@@ -3371,8 +3371,8 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
     'use strict';
 
     angular
-        .module('Kaakateeya')
-        .controller('controller', controller);
+        .module('KaakateeyaEdit')
+        .controller('horoDisplayCtrl', controller);
 
     controller.$inject = ['SelectBindServiceApp', '$location'];
 
