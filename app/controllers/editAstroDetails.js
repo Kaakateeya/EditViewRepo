@@ -127,8 +127,8 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                     var navamsaImgName = atob(navamsaNameData);
 
 
-                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
-                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
+                    scope.decodedString = scope.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
+                    scope.decodedString = scope.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
 
                     // debugger;
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: scope.decodedString })).then(function(response) {
@@ -335,6 +335,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
                     // window.open('' + response.data.AstroGeneration + '', '_blank');
+                    response.data.AstroGeneration = response.data.AstroGeneration.replace('<REPDMN>kaakateeya</REPDMN>', '<REPDMN>KKSTAGING</REPDMN>');
                     scope.createhoroHtml(response.data.AstroGeneration);
                     if (astrocity)
                         commonFactory.closepopup();
@@ -405,7 +406,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             astroServices.GenerateHoroS3(s3obj).then(function(response) {
 
                 SelectBindServiceApp.getencrypt(custID).then(function(response) {
-                    encryptCustid = response.data;
+                    var encryptCustid = response.data;
                     scope.astropageload(custID);
                     window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
                 });
