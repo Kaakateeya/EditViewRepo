@@ -1,6 +1,6 @@
 editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory',
-    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices',
-    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices) {
+    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices', 'SelectBindServiceApp',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices, SelectBindServiceApp) {
         scope.starLanguage = 'starLanguage';
         scope.Country = 'Country';
         scope.ZodaicSign = 'ZodaicSign';
@@ -108,6 +108,48 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
 
         };
+
+
+        scope.createhoroHtml = function(xmldata) {
+            http.get(xmldata).success(function(data) {
+                    var parser, xmlDoc;
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(data, "text/xml");
+
+                    var htmlData = xmlDoc.getElementsByTagName("HORO")[0].childNodes[0].nodeValue;
+                    var raasiNameData = xmlDoc.getElementsByTagName("RASI_FNAME")[0].childNodes[0].nodeValue;
+                    var navamsaNameData = xmlDoc.getElementsByTagName("NAVA_FNAME")[0].childNodes[0].nodeValue;
+                    var rasiSrcData = xmlDoc.getElementsByTagName("RASI")[0].childNodes[0].nodeValue;
+                    var navamsaSrcData = xmlDoc.getElementsByTagName("NAVAMSA")[0].childNodes[0].nodeValue;
+
+                    scope.decodedString = atob(htmlData);
+                    var raasiImgName = atob(raasiNameData);
+                    var navamsaImgName = atob(navamsaNameData);
+
+
+                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
+                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
+
+                    // debugger;
+                    http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: scope.decodedString })).then(function(response) {
+                        if (response.status === 200) {
+                            scope.generatedhoroS3Upload();
+                        }
+                    });
+
+
+                })
+                .error(function(error) {
+                    alert(error);
+                });
+        };
+
+
+
+
+
+
+
 
         scope.astropageload = function(custid) {
 
@@ -292,11 +334,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    window.open('' + response.data.AstroGeneration + '', '_blank');
+                    // window.open('' + response.data.AstroGeneration + '', '_blank');
+                    scope.createhoroHtml(response.data.AstroGeneration);
                     if (astrocity)
                         commonFactory.closepopup();
 
-                    commonFactory.open('RefreshPopup.html', scope, uibModal);
+                    // commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
@@ -360,10 +403,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log('s3obj');
             console.log(s3obj);
             astroServices.GenerateHoroS3(s3obj).then(function(response) {
-                console.log(response);
+
+                SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                    encryptCustid = response.data;
+                    scope.astropageload(custID);
+                    window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
+                });
             });
-            scope.astropageload(custID);
-            commonFactory.closepopup();
+
+            // commonFactory.closepopup();
         };
 
     }

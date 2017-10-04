@@ -41,6 +41,7 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
         { name: 'editview.editProperty', url: '/editProperty', templateUrl: editviewapp.templateroot + 'app/views/editPropertyDetails.html', controller: 'propertyCtrl', isloginrequired: true },
         { name: 'editview.editRelative', url: '/editRelative', templateUrl: editviewapp.templateroot + 'app/views/editRelativeDetails.html', controller: 'relativeCtrl', isloginrequired: true },
         { name: 'editview.editReferences', url: '/editReferences', templateUrl: editviewapp.templateroot + 'app/views/editReferenceDetails.html', controller: 'referenceCtrl', isloginrequired: true },
+        { name: 'editview.horoDisplay', url: '/horoDisplay', templateUrl: editviewapp.templateroot + 'app/views/horoDisplay.html', controller: 'horoDisplayCtrl', isloginrequired: false },
         // { name: 'editview.editSpouse', url: '/editSpouse', templateUrl: editviewapp.templateroot + 'app/views/editSpouseDetails.html', controller: 'Spousectrl', isloginrequired: true }
 
     ];
@@ -380,8 +381,8 @@ editviewapp.constant('arrayConstantsEdit', {
 
 });
 editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'commonFactory',
-    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices',
-    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices) {
+    'authSvc', 'fileUpload', '$http', 'route', 'sibblingServices', 'SelectBindServiceApp',
+    function(uibModal, scope, astroServices, commonFactory, authSvc, fileUpload, http, route, sibblingServices, SelectBindServiceApp) {
         scope.starLanguage = 'starLanguage';
         scope.Country = 'Country';
         scope.ZodaicSign = 'ZodaicSign';
@@ -489,6 +490,48 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             }
 
         };
+
+
+        scope.createhoroHtml = function(xmldata) {
+            http.get(xmldata).success(function(data) {
+                    var parser, xmlDoc;
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(data, "text/xml");
+
+                    var htmlData = xmlDoc.getElementsByTagName("HORO")[0].childNodes[0].nodeValue;
+                    var raasiNameData = xmlDoc.getElementsByTagName("RASI_FNAME")[0].childNodes[0].nodeValue;
+                    var navamsaNameData = xmlDoc.getElementsByTagName("NAVA_FNAME")[0].childNodes[0].nodeValue;
+                    var rasiSrcData = xmlDoc.getElementsByTagName("RASI")[0].childNodes[0].nodeValue;
+                    var navamsaSrcData = xmlDoc.getElementsByTagName("NAVAMSA")[0].childNodes[0].nodeValue;
+
+                    scope.decodedString = atob(htmlData);
+                    var raasiImgName = atob(raasiNameData);
+                    var navamsaImgName = atob(navamsaNameData);
+
+
+                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
+                    scope.decodedString = scope.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
+
+                    // debugger;
+                    http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: scope.decodedString })).then(function(response) {
+                        if (response.status === 200) {
+                            scope.generatedhoroS3Upload();
+                        }
+                    });
+
+
+                })
+                .error(function(error) {
+                    alert(error);
+                });
+        };
+
+
+
+
+
+
+
 
         scope.astropageload = function(custid) {
 
@@ -673,11 +716,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    window.open('' + response.data.AstroGeneration + '', '_blank');
+                    // window.open('' + response.data.AstroGeneration + '', '_blank');
+                    scope.createhoroHtml(response.data.AstroGeneration);
                     if (astrocity)
                         commonFactory.closepopup();
 
-                    commonFactory.open('RefreshPopup.html', scope, uibModal);
+                    // commonFactory.open('RefreshPopup.html', scope, uibModal);
                 } else {
                     scope.AstrocityArr = commonFactory.AstroCity(scope.AstroArr[0].CountryOfBirth, scope.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', scope, uibModal);
@@ -741,10 +785,15 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log('s3obj');
             console.log(s3obj);
             astroServices.GenerateHoroS3(s3obj).then(function(response) {
-                console.log(response);
+
+                SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                    encryptCustid = response.data;
+                    scope.astropageload(custID);
+                    window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
+                });
             });
-            scope.astropageload(custID);
-            commonFactory.closepopup();
+
+            // commonFactory.closepopup();
         };
 
     }
@@ -3318,6 +3367,32 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
 
     }
 ]);
+(function() {
+    'use strict';
+
+    angular
+        .module('Kaakateeya')
+        .controller('controller', controller);
+
+    controller.$inject = ['SelectBindServiceApp', '$location'];
+
+    function controller(SelectBindServiceApp, $location) {
+        /* jshint validthis:true */
+        var vm = this,
+            decryptCustid;
+        vm.searchObjectquery = $location.search();
+        var meKey = Object.getOwnPropertyNames(vm.searchObjectquery)[0];
+        var meKeyempid = Object.getOwnPropertyNames(vm.searchObjectquery)[1];
+        vm.selfProfileID = vm.searchObjectquery[meKey].replace(' ', '+');
+
+        vm.init = function() {
+            SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
+                document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
+            });
+        };
+        vm.init();
+    }
+})();
 editviewapp.controller('Spousectrl', ['$scope', function() {
 
 
@@ -14919,6 +14994,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "</style>\r" +
     "\n" +
     "<alert-directive></alert-directive>"
+  );
+
+
+  $templateCache.put('editview/app/views/horoDisplay.html',
+    "<div id=\"horodisplayID\">\r" +
+    "\n" +
+    "    <iframe id=\"iframe\" frameborder=\"no\" marginheight=\"0\" marginwidth=\"0\" width=\"100%\" style=\"height:800px;\"></iframe>\r" +
+    "\n" +
+    "</div>"
   );
 
 

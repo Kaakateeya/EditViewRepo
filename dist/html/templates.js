@@ -10747,6 +10747,15 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
   );
 
 
+  $templateCache.put('editview/app/views/horoDisplay.html',
+    "<div id=\"horodisplayID\">\r" +
+    "\n" +
+    "    <iframe id=\"iframe\" frameborder=\"no\" marginheight=\"0\" marginwidth=\"0\" width=\"100%\" style=\"height:800px;\"></iframe>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('editview/app/views/oldAlert.html',
     "<script type=\"text/ng-template\" id=\"oldAlert.html\">\r" +
     "\n" +
