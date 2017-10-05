@@ -393,7 +393,12 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
 
             if (scope.ImageUrl !== null && scope.ImageUrl !== '' && scope.ImageUrl !== undefined) {
                 if (scope.ImageUrl.indexOf('.html') !== -1) {
-                    window.open('' + scope.ImageUrl + '', '_blank');
+                    // window.open('' + scope.ImageUrl + '', '_blank');
+                    SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                        var encryptCustid = response.data;
+                        scope.astropageload(custID);
+                        window.open('horoDisplay?ID=' + encryptCustid, '_blank');
+                    });
                 } else {
                     commonFactory.open('AstroimagePopup.html', scope, uibModal);
                 }
