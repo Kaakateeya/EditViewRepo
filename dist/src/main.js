@@ -49,18 +49,29 @@ editviewapp.config(function($stateProvider, $urlRouterProvider, $locationProvide
     $urlRouterProvider.otherwise('editview');
 
     _.each(states, function(item) {
-        var innerView = {
-            "topbar@": {
-                templateUrl: editviewapp.templateroot + "masterView/header.html"
-            },
-            "content@": {
-                templateUrl: item.templateUrl,
-                controller: item.controller
-            },
-            "bottompanel@": {
-                templateUrl: editviewapp.templateroot + "masterView/footer.html"
-            }
-        };
+        if (item.name === 'editview.horoDisplay') {
+            var innerView = {
+                "content@": {
+                    templateUrl: item.templateUrl,
+                    controller: item.controller
+                }
+            };
+        } else {
+            var innerView = {
+                "topbar@": {
+                    templateUrl: editviewapp.templateroot + "masterView/header.html"
+                },
+                "content@": {
+                    templateUrl: item.templateUrl,
+                    controller: item.controller
+                },
+                "bottompanel@": {
+                    templateUrl: editviewapp.templateroot + "masterView/footer.html"
+                }
+            };
+        }
+
+
         $stateProvider.state(item.name, {
             url: item.url,
             views: innerView,
