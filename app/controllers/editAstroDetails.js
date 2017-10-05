@@ -404,12 +404,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log('s3obj');
             console.log(s3obj);
             astroServices.GenerateHoroS3(s3obj).then(function(response) {
-
-                SelectBindServiceApp.getencrypt(custID).then(function(response) {
-                    var encryptCustid = response.data;
-                    scope.astropageload(custID);
-                    window.open('editview/horoDisplay?ID=' + encryptCustid, '_blank');
-                });
+                // SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                //     var encryptCustid = response.data;
+                //     scope.astropageload(custID);
+                //     window.open('editview/horoDisplay?ID=' + encryptCustid, '_blank');
+                // });
             });
 
             // commonFactory.closepopup();

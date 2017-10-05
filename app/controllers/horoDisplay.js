@@ -17,9 +17,9 @@
         vm.selfProfileID = vm.searchObjectquery[meKey].replace(' ', '+');
 
         vm.init = function() {
-            SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
-                document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
-            });
+            // SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
+            //     document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
+            // });
         };
         vm.init();
     }
