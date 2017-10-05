@@ -7,11 +7,11 @@ var editviewapp = angular.module('KaakateeyaEdit', ['ui.router', 'ngAnimate', 'n
     'ngMaterial', 'ngMdIcons', 'jcs-autoValidate', 'angularPromiseButtons'
 ]);
 
-// editviewapp.apipath = 'http://183.82.0.58:8070/Api/';
+editviewapp.apipath = 'http://183.82.0.58:8070/Api/';
 // editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
 // editviewapp.apipath = 'http://54.169.133.223:8070/Api/';
 // editviewapp.apipath = '/webroot/Api/';
-editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
+// editviewapp.apipath = 'http://52.66.131.254:8010/Api/';
 
 editviewapp.templateroot = 'editview/';
 
@@ -786,11 +786,11 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
             console.log('s3obj');
             console.log(s3obj);
             astroServices.GenerateHoroS3(s3obj).then(function(response) {
-                // SelectBindServiceApp.getencrypt(custID).then(function(response) {
-                //     var encryptCustid = response.data;
-                //     scope.astropageload(custID);
-                //     window.open('editview/horoDisplay?ID=' + encryptCustid, '_blank');
-                // });
+                SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                    var encryptCustid = response.data;
+                    scope.astropageload(custID);
+                    window.open('editview/horoDisplay?ID=' + encryptCustid, '_blank');
+                });
             });
 
             // commonFactory.closepopup();
@@ -3386,9 +3386,9 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         vm.selfProfileID = vm.searchObjectquery[meKey].replace(' ', '+');
 
         vm.init = function() {
-            // SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
-            //     document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
-            // });
+            SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
+                document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
+            });
         };
         vm.init();
     }
