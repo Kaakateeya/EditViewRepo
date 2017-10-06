@@ -15121,6 +15121,8 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
+    "\r" +
+    "\n" +
     "<style>\r" +
     "\n" +
     "    .editAlertcls {\r" +
