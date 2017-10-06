@@ -231,7 +231,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 }
             };
             if (objitem.lstPreferredcountry.length > 5 || objitem.lstCaste.length > 2) {
-                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 4500);
+                // scope.$broadcast("showAlertPopupccc", 'alert-danger', '', 4500);
+                alert('Select only 5 country values and 2 caste values');
             } else {
                 scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
                     console.log(response);
