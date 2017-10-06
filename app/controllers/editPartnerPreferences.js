@@ -50,7 +50,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.restrictType = 'country';
                         commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
-                            scope.partnerObj.lstPreferredcountry = undefined;
+                            scope.partnerObj.lstPreferredcountry = [];
                             scope.partnerObj.lstPreferredcountry = countrytempval;
                         }, 500);
                     }
@@ -77,7 +77,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.restrictType = 'caste';
                         commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
-                            scope.partnerObj.lstCaste = undefined;
+                            scope.partnerObj.lstCaste = [];
                             scope.partnerObj.lstCaste = castetempval;
                         }, 500);
                     }
@@ -278,7 +278,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.castenobarChange = function(val) {
             if (val === 'caste') {
                 if (scope.partnerObj.rbtnCasteNobar) {
-                    scope.partnerObj.lstCaste = undefined;
+                    scope.partnerObj.lstCaste = [];
                     scope.partnerObj.lstCaste = [parseInt(scope.partnerObj.rbtnCasteNobar)];
                     scope.cancelnew();
                 } else {
@@ -287,7 +287,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 }
             } else {
                 if (scope.partnerObj.partnerDomacile) {
-                    scope.partnerObj.lstPreferredcountry = undefined;
+                    scope.partnerObj.lstPreferredcountry = [];
                     scope.partnerObj.rbtDomacile = scope.partnerObj.partnerDomacile;
                     scope.cancelnew();
 
