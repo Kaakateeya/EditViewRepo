@@ -44,7 +44,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         countrytempval = scope.partnerObj.lstPreferredcountry;
                         scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only five values are allowed to select', 1500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only five values are allowed to select', 3500);
                         timeout(function() {
                             scope.partnerObj.lstPreferredcountry = undefined;
                             scope.partnerObj.lstPreferredcountry = countrytempval;
@@ -70,7 +70,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
 
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only two values are allowed to select', 1500);
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only two values are allowed to select', 3500);
                         timeout(function() {
                             scope.partnerObj.lstCaste = undefined;
                             scope.partnerObj.lstCaste = castetempval;
@@ -226,7 +226,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     }
                 };
                 if (objitem.lstPreferredcountry.length > 5 || objitem.lstCaste.length > 2) {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 1500);
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 4500);
                 } else {
                     scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
                         console.log(response);

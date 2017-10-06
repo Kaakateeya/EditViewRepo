@@ -14,7 +14,8 @@ editviewapp.directive("alertDirective", ['commonFactory', '$uibModal', '$timeout
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
                         templateUrl: 'oldAlert.html',
-                        scope: scope
+                        scope: scope,
+                        windowClass: 'editAlertcls',
                     });
                     timeout(function() {
                         scope.close();

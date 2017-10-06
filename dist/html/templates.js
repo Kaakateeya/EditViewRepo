@@ -10815,7 +10815,19 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "    </div>\r" +
     "\n" +
-    "</script>"
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<style>\r" +
+    "\n" +
+    "    .editAlertcls {\r" +
+    "\n" +
+    "        z-index: 9999999999 !important;\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
   );
 
 
