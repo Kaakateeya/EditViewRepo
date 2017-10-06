@@ -1758,63 +1758,61 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             }
         };
         scope.partnerPrefSubmit = function(objitem) {
-
-            if (isSubmit) {
-                isSubmit = false;
-                scope.partnerPrefData = {
-                    GetDetails: {
-                        CustID: custID,
-                        AgeGapFrom: objitem.ddlFromAge,
-                        AgeGapTo: objitem.ddlToAge,
-                        HeightFrom: objitem.ddlFromheight,
-                        HeightTo: objitem.ddltoHeight,
-                        Religion: commonFactory.listSelectedVal(objitem.lstReligion),
-                        Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
-                        Caste: commonFactory.listSelectedVal(objitem.lstCaste),
-                        Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
-                        Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
-                        ManglikKujadosham: objitem.rbtManglikKujadosham,
-                        PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
-                        Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
-                        Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
-                        Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
-                        Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
-                        Diet: objitem.rbtDiet,
-                        Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
-                        Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
-                        Preferreddistrict: null,
-                        Preferredlocation: null,
-                        TypeofStar: objitem.rbtPreferredstars,
-                        PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
-                        GenderID: objitem.rbtlGender,
-                        Region: commonFactory.listSelectedVal(objitem.lstRegion),
-                        Branch: commonFactory.listSelectedVal(objitem.lstBranch),
-                        Domacile: commonFactory.checkvals(objitem.rbtDomacile) ? parseInt(objitem.rbtDomacile) : ''
-                    },
-                    customerpersonaldetails: {
-                        intCusID: custID,
-                        EmpID: null,
-                        Admin: null
-                    }
-                };
-                if (objitem.lstPreferredcountry.length > 5 || objitem.lstCaste.length > 2) {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 4500);
-                } else {
-                    scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
-                        console.log(response);
-                        commonFactory.closepopup();
-                        if (response.data === 1) {
-                            partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
-                                scope.partnerPrefArr = response.data;
-                                console.log(scope.partnerPrefArr);
-                            });
-                            scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                        } else {
-                            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                        }
-                    });
+            isSubmit = false;
+            scope.partnerPrefData = {
+                GetDetails: {
+                    CustID: custID,
+                    AgeGapFrom: objitem.ddlFromAge,
+                    AgeGapTo: objitem.ddlToAge,
+                    HeightFrom: objitem.ddlFromheight,
+                    HeightTo: objitem.ddltoHeight,
+                    Religion: commonFactory.listSelectedVal(objitem.lstReligion),
+                    Mothertongue: commonFactory.listSelectedVal(objitem.lstMothertongue),
+                    Caste: commonFactory.listSelectedVal(objitem.lstCaste),
+                    Subcaste: commonFactory.listSelectedVal(objitem.lstSubcaste),
+                    Maritalstatus: commonFactory.listSelectedVal(objitem.lstMaritalstatus),
+                    ManglikKujadosham: objitem.rbtManglikKujadosham,
+                    PreferredstarLanguage: objitem.rbtPreferredstarLanguage,
+                    Educationcategory: commonFactory.listSelectedVal(objitem.lstEducationcategory),
+                    Educationgroup: commonFactory.listSelectedVal(objitem.lstEducationgroup),
+                    Employedin: commonFactory.listSelectedVal(objitem.lstEmployedin),
+                    Professiongroup: commonFactory.listSelectedVal(objitem.lstProfessiongroup),
+                    Diet: objitem.rbtDiet,
+                    Preferredcountry: commonFactory.listSelectedVal(objitem.lstPreferredcountry),
+                    Preferredstate: commonFactory.listSelectedVal(objitem.lstPreferredstate),
+                    Preferreddistrict: null,
+                    Preferredlocation: null,
+                    TypeofStar: objitem.rbtPreferredstars,
+                    PrefredStars: commonFactory.listSelectedVal(objitem.lstpreferedstars),
+                    GenderID: objitem.rbtlGender,
+                    Region: commonFactory.listSelectedVal(objitem.lstRegion),
+                    Branch: commonFactory.listSelectedVal(objitem.lstBranch),
+                    Domacile: commonFactory.checkvals(objitem.rbtDomacile) ? parseInt(objitem.rbtDomacile) : ''
+                },
+                customerpersonaldetails: {
+                    intCusID: custID,
+                    EmpID: null,
+                    Admin: null
                 }
+            };
+            if (objitem.lstPreferredcountry.length > 5 || objitem.lstCaste.length > 2) {
+                scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 4500);
+            } else {
+                scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+                            scope.partnerPrefArr = response.data;
+                            console.log(scope.partnerPrefArr);
+                        });
+                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                    }
+                });
             }
+
         };
         scope.cancel = function() {
             commonFactory.closepopup();
