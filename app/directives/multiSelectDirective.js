@@ -7,7 +7,8 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
         scope: {
             ngModel: '=',
             typeofdata: "=",
-            parentVal: "="
+            parentVal: "=",
+            pagetype: '='
         },
         link: function(scope, element, attrs) {
             scope.options = [];
@@ -270,11 +271,12 @@ editviewapp.directive('multiselectdropdown', ['arrayConstantsEdit', 'SelectBindS
             scope.$watch(function() {
                 return element[0].length;
             }, function() {
+
                 scope.$applyAsync(element.multiselect('rebuild'));
                 element.multiselect('select', scope.ngModel);
             });
             // Watch for any changes from outside the directive and refresh
-            scope.$watch(attrs.ngModel, function() {
+            scope.$watch(scope.pagetype === 'search' ? 'ngModel' : attrs.ngModel, function() {
                 element.multiselect('refresh');
             });
         }

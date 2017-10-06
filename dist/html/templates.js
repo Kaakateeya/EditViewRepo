@@ -3929,13 +3929,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" id=\"partnercaste\">\r" +
     "\n" +
     "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstCaste\" ng-options=\"item.value as item.label for item in casteArr\" ng-change=\"changeBind('subCaste',partnerObj.lstCaste);\" required></select>\r" +
+    "                        <select multiselectdropdown pagetype=\"'search'\" multiple ng-model=\"partnerObj.lstCaste\" ng-options=\"item.value as item.label for item in casteArr\" ng-change=\"changeBind('subCaste',partnerObj.lstCaste);\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -4061,13 +4061,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" id=\"partnerCountryID\">\r" +
     "\n" +
     "                    <label for=\"lblPreferredcountry\" class=\"pop_label_left\">Preferred country 	</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstPreferredcountry\" typeofdata=Country ng-change=\"changeBind('Country',partnerObj.lstPreferredcountry);\"></select>\r" +
+    "                        <select multiselectdropdown pagetype=\"'search'\" multiple ng-model=\"partnerObj.lstPreferredcountry\" typeofdata=Country ng-change=\"changeBind('Country',partnerObj.lstPreferredcountry);\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -4293,7 +4293,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "<alert-directive></alert-directive>"
+    "<alert-directive></alert-directive>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<style>\r" +
+    "\n" +
+    "    #partnercaste li.multiselect-item.multiselect-all,\r" +
+    "\n" +
+    "    #partnerCountryID li.multiselect-item.multiselect-all {\r" +
+    "\n" +
+    "        display: none\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
   );
 
 

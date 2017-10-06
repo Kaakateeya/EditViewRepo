@@ -307,10 +307,10 @@
                         <select multiselectdropdown multiple ng-model="partnerObj.lstMothertongue" typeofdata=Mothertongue ng-change="changeBind('caste',partnerObj.lstReligion,partnerObj.lstMothertongue);" required></select>
                     </div>
                 </li>
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" id="partnercaste">
                     <label for="lblpartnerCaste" class="pop_label_left">Caste<span style="color: red; margin-left: 3px;">*</span></label>
                     <div class="pop_controls_right select-box-my input-group">
-                        <select multiselectdropdown multiple ng-model="partnerObj.lstCaste" ng-options="item.value as item.label for item in casteArr" ng-change="changeBind('subCaste',partnerObj.lstCaste);" required></select>
+                        <select multiselectdropdown pagetype="'search'" multiple ng-model="partnerObj.lstCaste" ng-options="item.value as item.label for item in casteArr" ng-change="changeBind('subCaste',partnerObj.lstCaste);" required></select>
                     </div>
 
                 </li>
@@ -373,10 +373,10 @@
                 </li>
 
 
-                <li class="clearfix form-group">
+                <li class="clearfix form-group" id="partnerCountryID">
                     <label for="lblPreferredcountry" class="pop_label_left">Preferred country 	</label>
                     <div class="pop_controls_right select-box-my">
-                        <select multiselectdropdown multiple ng-model="partnerObj.lstPreferredcountry" typeofdata=Country ng-change="changeBind('Country',partnerObj.lstPreferredcountry);"></select>
+                        <select multiselectdropdown pagetype="'search'" multiple ng-model="partnerObj.lstPreferredcountry" typeofdata=Country ng-change="changeBind('Country',partnerObj.lstPreferredcountry);"></select>
                     </div>
 
                 </li>
@@ -490,3 +490,12 @@
     </form>
 </script>
 <alert-directive></alert-directive>
+
+
+
+<style>
+    #partnercaste li.multiselect-item.multiselect-all,
+    #partnerCountryID li.multiselect-item.multiselect-all {
+        display: none
+    }
+</style>

@@ -696,8 +696,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 i_flag: 1
                             };
 
-
-
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
 
                                 commonFactory.closepopup();
@@ -1566,8 +1564,8 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
     }
 ]);
 editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$scope', '$uibModal',
-    'commonFactory', 'authSvc', 'sibblingServices',
-    function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc, sibblingServices) {
+    'commonFactory', 'authSvc', 'sibblingServices', '$timeout',
+    function(partnerPreferenceServices, scope, uibModal, commonFactory, authSvc, sibblingServices, timeout) {
         scope.partnerPrefArr = [];
         scope.partnerObj = {};
         scope.ageGapArr = [];
@@ -1600,11 +1598,24 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
             return data;
         };
+        var castetempval = [],
+            countrytempval = [];
+
         scope.changeBind = function(type, parentval, parentval2) {
 
             switch (type) {
                 case 'Country':
-                    scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
+                    if (parentval.length <= 5) {
+                        countrytempval = scope.partnerObj.lstPreferredcountry;
+                        scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only five values are allowed to select', 1500);
+                        timeout(function() {
+                            scope.partnerObj.lstPreferredcountry = undefined;
+                            scope.partnerObj.lstPreferredcountry = countrytempval;
+                        }, 500);
+                    }
+
                     break;
 
                 case 'EducationCatgory':
@@ -1613,10 +1624,24 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
 
                 case 'caste':
                     scope.casteArr = scope.removeSelect(commonFactory.casteDepedency(commonFactory.listSelectedVal(parentval), commonFactory.listSelectedVal(parentval2)));
+
                     break;
 
                 case 'subCaste':
-                    scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
+
+
+                    if (parentval.length <= 2) {
+                        castetempval = scope.partnerObj.lstCaste;
+                        scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
+
+                    } else {
+                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only two values are allowed to select', 1500);
+                        timeout(function() {
+                            scope.partnerObj.lstCaste = undefined;
+                            scope.partnerObj.lstCaste = castetempval;
+                        }, 500);
+                    }
+
                     break;
 
                 case 'star':
@@ -1628,6 +1653,16 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     break;
             }
         };
+
+
+        scope.changed = function(val) {
+            if (val && val.length > 2) {
+                scope.myModel = scope.prevModel;
+            } else {
+                scope.prevModel = val;
+            }
+        };
+
 
 
         scope.SplitstringintoArray = function(string) {
@@ -1755,22 +1790,23 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         Admin: null
                     }
                 };
-
-                console.log(JSON.stringify(scope.partnerPrefData));
-                scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
-                    console.log(response);
-                    commonFactory.closepopup();
-                    if (response.data === 1) {
-                        partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
-                            scope.partnerPrefArr = response.data;
-                            console.log(scope.partnerPrefArr);
-                        });
-                        scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
-                    } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
-                    }
-                });
-
+                if (objitem.lstPreferredcountry.length > 5 || objitem.lstCaste.length > 2) {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Select only 5 country values and 2 caste values', 1500);
+                } else {
+                    scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
+                        console.log(response);
+                        commonFactory.closepopup();
+                        if (response.data === 1) {
+                            partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
+                                scope.partnerPrefArr = response.data;
+                                console.log(scope.partnerPrefArr);
+                            });
+                            scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
+                        } else {
+                            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Updation failed', 1500);
+                        }
+                    });
+                }
             }
         };
         scope.cancel = function() {
@@ -8195,13 +8231,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                </li>\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" id=\"partnercaste\">\r" +
     "\n" +
     "                    <label for=\"lblpartnerCaste\" class=\"pop_label_left\">Caste<span style=\"color: red; margin-left: 3px;\">*</span></label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my input-group\">\r" +
     "\n" +
-    "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstCaste\" ng-options=\"item.value as item.label for item in casteArr\" ng-change=\"changeBind('subCaste',partnerObj.lstCaste);\" required></select>\r" +
+    "                        <select multiselectdropdown pagetype=\"'search'\" multiple ng-model=\"partnerObj.lstCaste\" ng-options=\"item.value as item.label for item in casteArr\" ng-change=\"changeBind('subCaste',partnerObj.lstCaste);\" required></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8327,13 +8363,13 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "                <li class=\"clearfix form-group\">\r" +
+    "                <li class=\"clearfix form-group\" id=\"partnerCountryID\">\r" +
     "\n" +
     "                    <label for=\"lblPreferredcountry\" class=\"pop_label_left\">Preferred country 	</label>\r" +
     "\n" +
     "                    <div class=\"pop_controls_right select-box-my\">\r" +
     "\n" +
-    "                        <select multiselectdropdown multiple ng-model=\"partnerObj.lstPreferredcountry\" typeofdata=Country ng-change=\"changeBind('Country',partnerObj.lstPreferredcountry);\"></select>\r" +
+    "                        <select multiselectdropdown pagetype=\"'search'\" multiple ng-model=\"partnerObj.lstPreferredcountry\" typeofdata=Country ng-change=\"changeBind('Country',partnerObj.lstPreferredcountry);\"></select>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -8559,7 +8595,25 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
-    "<alert-directive></alert-directive>"
+    "<alert-directive></alert-directive>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<style>\r" +
+    "\n" +
+    "    #partnercaste li.multiselect-item.multiselect-all,\r" +
+    "\n" +
+    "    #partnerCountryID li.multiselect-item.multiselect-all {\r" +
+    "\n" +
+    "        display: none\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "</style>"
   );
 
 

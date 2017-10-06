@@ -303,8 +303,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 i_flag: 1
                             };
 
-
-
                             astroServices.uploadDeleteAstroData(scope.uploadData).then(function(response) {
 
                                 commonFactory.closepopup();
