@@ -1848,7 +1848,8 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.partnerObj.lstCaste = [parseInt(scope.partnerObj.rbtnCasteNobar)];
                     scope.cancelnew();
                 } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Caste No Bar', 2500);
+                    alert('Please select Caste No Bar');
+
                 }
             } else {
                 if (scope.partnerObj.partnerDomacile) {
@@ -1857,7 +1858,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     scope.cancelnew();
 
                 } else {
-                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Domacile', 2500);
+                    alert('Please select Domacile');
                 }
             }
 
