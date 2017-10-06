@@ -1,7 +1,7 @@
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
-    var modalpopupopen;
+    var modalpopupopen, modalpopupopennew;
     return {
-        open: function(url, scope, uibModal, size) {
+        open: function(url, scope, uibModal, size, classp) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
@@ -9,11 +9,27 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
                 scope: scope,
                 size: size,
                 backdrop: 'static',
-                keyboard: false
+                keyboard: false,
+                windowClass: classp,
+            });
+        },
+        opennew: function(url, scope, uibModal, size, classp) {
+            modalpopupopennew = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: url,
+                scope: scope,
+                size: size,
+                backdrop: 'static',
+                keyboard: false,
+                windowClass: classp,
             });
         },
         closepopup: function() {
             modalpopupopen.close();
+        },
+        closepopupnew: function() {
+            modalpopupopennew.close();
         },
         listSelectedVal: function(val) {
             var str = null;

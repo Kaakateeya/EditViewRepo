@@ -4293,11 +4293,75 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"castepopup.html\">\r" +
+    "\n" +
+    "    <div class=\"modal-header alert alert-danger\">\r" +
+    "\n" +
+    "        <a href=\"javascript:void(0);\" ng-click=\"cancelnew();\">\r" +
+    "\n" +
+    "            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "        </a>\r" +
+    "\n" +
+    "        <h3 class=\"modal-title text-center\" id=\"modal-title\">Alert\r" +
+    "\n" +
+    "        </h3>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body clearfix pop_content_my\" id=\"modal-body\">\r" +
+    "\n" +
+    "        <ul>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                <label class=\"control-label\" style=\"font-size:15px;\">{{displayText}}    </label>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\" ng-if=\"restrictType==='caste'\">\r" +
+    "\n" +
+    "                <md-radio-group name=\"rbtnCasteNobar\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtnCasteNobar\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                    <md-radio-button value=\"488\" class=\"md-primary\">caste No Bar</md-radio-button>\r" +
+    "\n" +
+    "                </md-radio-group>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\" ng-if=\"restrictType==='country'\">\r" +
+    "\n" +
+    "                <md-radio-group name=\"rbtDomacile\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.partnerDomacile\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                    <md-radio-button value=\"0\" class=\"md-primary\">India</md-radio-button>\r" +
+    "\n" +
+    "                    <md-radio-button value=\"1\">Abroad </md-radio-button>\r" +
+    "\n" +
+    "                    <md-radio-button value=\"2\">Both</md-radio-button>\r" +
+    "\n" +
+    "                </md-radio-group>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "        </ul>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        <input type=\"button\" value=\"OK\" class=\"btn btn-success\" ng-click=\"castenobarChange(restrictType);\">\r" +
+    "\n" +
+    "        <input type=\"button\" value=\"Cancel\" class=\"btn btn-danger\" ng-click=\"cancelnew();\">\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<alert-directive></alert-directive>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -4308,6 +4372,14 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "    #partnerCountryID li.multiselect-item.multiselect-all {\r" +
     "\n" +
     "        display: none\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .castepopupcls {\r" +
+    "\n" +
+    "        z-index: 99999999 !important;\r" +
     "\n" +
     "    }\r" +
     "\n" +

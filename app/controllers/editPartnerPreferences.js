@@ -14,6 +14,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.ProfGroup = 'ProfGroup';
         scope.region = 'region';
 
+        scope.partnerObj.rbtnCasteNobar = '';
         scope.partnerDescObj = {};
         var isSubmit = true;
 
@@ -44,7 +45,10 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         countrytempval = scope.partnerObj.lstPreferredcountry;
                         scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only five values are allowed to select', 3500);
+                        scope.partnerObj.partnerDomacile = undefined;
+                        scope.displayText = 'You cannot select more than 5 countries . If interested in all countries,please select Abroad or Both';
+                        scope.restrictType = 'country';
+                        commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
                             scope.partnerObj.lstPreferredcountry = undefined;
                             scope.partnerObj.lstPreferredcountry = countrytempval;
@@ -63,14 +67,15 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     break;
 
                 case 'subCaste':
-
-
                     if (parentval.length <= 2) {
                         castetempval = scope.partnerObj.lstCaste;
                         scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
 
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only two values are allowed to select', 3500);
+                        scope.partnerObj.rbtnCasteNobar = undefined;
+                        scope.displayText = 'You cannot select more than 2 castes . Please select below caste No Bar , if you are interested';
+                        scope.restrictType = 'caste';
+                        commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
                             scope.partnerObj.lstCaste = undefined;
                             scope.partnerObj.lstCaste = castetempval;
@@ -139,6 +144,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
                         scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
                         scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
+                        castetempval = scope.partnerObj.lstCaste.length <= 2 ? scope.partnerObj.lstCaste : [];
                         scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
                         scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
                         scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
@@ -146,6 +152,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
                         scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
                         scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
+                        countrytempval = scope.partnerObj.lstPreferredcountry.length <= 5 ? scope.partnerObj.lstPreferredcountry : [];
                         scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
                         scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
                         scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(item.regionId)));
@@ -247,7 +254,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.cancel = function() {
             commonFactory.closepopup();
         };
-
+        scope.cancelnew = function() {
+            commonFactory.closepopupnew();
+        };
 
         scope.partnerDescriptionSubmit = function(obj) {
 
@@ -267,7 +276,27 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             }
         };
 
+        scope.castenobarChange = function(val) {
+            if (val === 'caste') {
+                if (scope.partnerObj.rbtnCasteNobar) {
+                    scope.partnerObj.lstCaste = undefined;
+                    scope.partnerObj.lstCaste = [parseInt(scope.partnerObj.rbtnCasteNobar)];
+                    scope.cancelnew();
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Caste No Bar', 2500);
+                }
+            } else {
+                if (scope.partnerObj.partnerDomacile) {
+                    scope.partnerObj.lstPreferredcountry = undefined;
+                    scope.partnerObj.rbtDomacile = scope.partnerObj.partnerDomacile;
+                    scope.cancelnew();
 
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Domacile', 2500);
+                }
+            }
+
+        };
 
     }
 ]);

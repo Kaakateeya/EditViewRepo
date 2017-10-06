@@ -1579,6 +1579,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.ProfGroup = 'ProfGroup';
         scope.region = 'region';
 
+        scope.partnerObj.rbtnCasteNobar = '';
         scope.partnerDescObj = {};
         var isSubmit = true;
 
@@ -1609,7 +1610,10 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         countrytempval = scope.partnerObj.lstPreferredcountry;
                         scope.stateArr = scope.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only five values are allowed to select', 3500);
+                        scope.partnerObj.partnerDomacile = undefined;
+                        scope.displayText = 'You cannot select more than 5 countries . If interested in all countries,please select Abroad or Both';
+                        scope.restrictType = 'country';
+                        commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
                             scope.partnerObj.lstPreferredcountry = undefined;
                             scope.partnerObj.lstPreferredcountry = countrytempval;
@@ -1628,14 +1632,15 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                     break;
 
                 case 'subCaste':
-
-
                     if (parentval.length <= 2) {
                         castetempval = scope.partnerObj.lstCaste;
                         scope.subCasteArr = scope.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
 
                     } else {
-                        scope.$broadcast("showAlertPopupccc", 'alert-danger', 'only two values are allowed to select', 3500);
+                        scope.partnerObj.rbtnCasteNobar = undefined;
+                        scope.displayText = 'You cannot select more than 2 castes . Please select below caste No Bar , if you are interested';
+                        scope.restrictType = 'caste';
+                        commonFactory.opennew('castepopup.html', scope, uibModal, 'md', 'castepopupcls');
                         timeout(function() {
                             scope.partnerObj.lstCaste = undefined;
                             scope.partnerObj.lstCaste = castetempval;
@@ -1704,6 +1709,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.lstReligion = scope.SplitstringintoArray(item.religionid);
                         scope.partnerObj.lstMothertongue = scope.SplitstringintoArray(item.MotherTongueID);
                         scope.partnerObj.lstCaste = scope.SplitstringintoArray(item.casteid);
+                        castetempval = scope.partnerObj.lstCaste.length <= 2 ? scope.partnerObj.lstCaste : [];
                         scope.partnerObj.lstSubcaste = scope.SplitstringintoArray(item.subcasteid);
                         scope.partnerObj.lstMaritalstatus = item.maritalstatusid;
                         scope.partnerObj.lstEducationcategory = scope.SplitstringintoArray(item.EducationCategoryID);
@@ -1711,6 +1717,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                         scope.partnerObj.lstEmployedin = scope.SplitstringintoArray(item.ProfessionCategoryID);
                         scope.partnerObj.lstProfessiongroup = scope.SplitstringintoArray(item.ProfessionGroupID);
                         scope.partnerObj.lstPreferredcountry = scope.SplitstringintoArray(item.CountryID);
+                        countrytempval = scope.partnerObj.lstPreferredcountry.length <= 5 ? scope.partnerObj.lstPreferredcountry : [];
                         scope.partnerObj.lstPreferredstate = scope.SplitstringintoArray(item.StateID);
                         scope.partnerObj.lstRegion = scope.SplitstringintoArray(item.regionId);
                         scope.branchArr = scope.removeSelect(commonFactory.branch(commonFactory.listSelectedVal(item.regionId)));
@@ -1812,7 +1819,9 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
         scope.cancel = function() {
             commonFactory.closepopup();
         };
-
+        scope.cancelnew = function() {
+            commonFactory.closepopupnew();
+        };
 
         scope.partnerDescriptionSubmit = function(obj) {
 
@@ -1832,7 +1841,27 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             }
         };
 
+        scope.castenobarChange = function(val) {
+            if (val === 'caste') {
+                if (scope.partnerObj.rbtnCasteNobar) {
+                    scope.partnerObj.lstCaste = undefined;
+                    scope.partnerObj.lstCaste = [parseInt(scope.partnerObj.rbtnCasteNobar)];
+                    scope.cancelnew();
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Caste No Bar', 2500);
+                }
+            } else {
+                if (scope.partnerObj.partnerDomacile) {
+                    scope.partnerObj.lstPreferredcountry = undefined;
+                    scope.partnerObj.rbtDomacile = scope.partnerObj.partnerDomacile;
+                    scope.cancelnew();
 
+                } else {
+                    scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please select Domacile', 2500);
+                }
+            }
+
+        };
 
     }
 ]);
@@ -3459,9 +3488,9 @@ editviewapp.controller("testcontroller", ['$scope', '$timeout', function(scope, 
 
 }]);
 editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindService) {
-    var modalpopupopen;
+    var modalpopupopen, modalpopupopennew;
     return {
-        open: function(url, scope, uibModal, size) {
+        open: function(url, scope, uibModal, size, classp) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
@@ -3469,11 +3498,27 @@ editviewapp.factory('commonFactory', ['SelectBindService', function(SelectBindSe
                 scope: scope,
                 size: size,
                 backdrop: 'static',
-                keyboard: false
+                keyboard: false,
+                windowClass: classp,
+            });
+        },
+        opennew: function(url, scope, uibModal, size, classp) {
+            modalpopupopennew = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: url,
+                scope: scope,
+                size: size,
+                backdrop: 'static',
+                keyboard: false,
+                windowClass: classp,
             });
         },
         closepopup: function() {
             modalpopupopen.close();
+        },
+        closepopupnew: function() {
+            modalpopupopennew.close();
         },
         listSelectedVal: function(val) {
             var str = null;
@@ -8595,11 +8640,75 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "</script>\r" +
     "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"castepopup.html\">\r" +
+    "\n" +
+    "    <div class=\"modal-header alert alert-danger\">\r" +
+    "\n" +
+    "        <a href=\"javascript:void(0);\" ng-click=\"cancelnew();\">\r" +
+    "\n" +
+    "            <ng-md-icon icon=\"close\" style=\"fill:#c73e5f\" class=\"pull-right\" size=\"20\"></ng-md-icon>\r" +
+    "\n" +
+    "        </a>\r" +
+    "\n" +
+    "        <h3 class=\"modal-title text-center\" id=\"modal-title\">Alert\r" +
+    "\n" +
+    "        </h3>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body clearfix pop_content_my\" id=\"modal-body\">\r" +
+    "\n" +
+    "        <ul>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\">\r" +
+    "\n" +
+    "                <label class=\"control-label\" style=\"font-size:15px;\">{{displayText}}    </label>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\" ng-if=\"restrictType==='caste'\">\r" +
+    "\n" +
+    "                <md-radio-group name=\"rbtnCasteNobar\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.rbtnCasteNobar\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                    <md-radio-button value=\"488\" class=\"md-primary\">caste No Bar</md-radio-button>\r" +
+    "\n" +
+    "                </md-radio-group>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "            <li class=\"clearfix form-group\" ng-if=\"restrictType==='country'\">\r" +
+    "\n" +
+    "                <md-radio-group name=\"rbtDomacile\" style=\"font-weight: 700;color:black;\" layout=\"row\" ng-model=\"partnerObj.partnerDomacile\" class=\"md-block\" flex-gt-sm ng-disabled=\"manageakerts\">\r" +
+    "\n" +
+    "                    <md-radio-button value=\"0\" class=\"md-primary\">India</md-radio-button>\r" +
+    "\n" +
+    "                    <md-radio-button value=\"1\">Abroad </md-radio-button>\r" +
+    "\n" +
+    "                    <md-radio-button value=\"2\">Both</md-radio-button>\r" +
+    "\n" +
+    "                </md-radio-group>\r" +
+    "\n" +
+    "            </li>\r" +
+    "\n" +
+    "        </ul>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        <input type=\"button\" value=\"OK\" class=\"btn btn-success\" ng-click=\"castenobarChange(restrictType);\">\r" +
+    "\n" +
+    "        <input type=\"button\" value=\"Cancel\" class=\"btn btn-danger\" ng-click=\"cancelnew();\">\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</script>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "<alert-directive></alert-directive>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -8610,6 +8719,14 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "    #partnerCountryID li.multiselect-item.multiselect-all {\r" +
     "\n" +
     "        display: none\r" +
+    "\n" +
+    "    }\r" +
+    "\n" +
+    "    \r" +
+    "\n" +
+    "    .castepopupcls {\r" +
+    "\n" +
+    "        z-index: 99999999 !important;\r" +
     "\n" +
     "    }\r" +
     "\n" +

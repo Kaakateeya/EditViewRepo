@@ -6,7 +6,6 @@ editviewapp.directive("alertDirective", ['commonFactory', '$uibModal', '$timeout
             restrict: "E",
             templateUrl: "app/views/oldAlert.html",
             link: function(scope, element, attrs) {
-
                 scope.$on('showAlertPopupccc', function(event, cls, msg, time) {
                     scope.typecls = cls;
                     scope.msgs = $sce.trustAsHtml(msg);
