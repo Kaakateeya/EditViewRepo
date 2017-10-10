@@ -191,18 +191,21 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
 
     scope.setPhotoPassword = function(obj) {
 
-        editmanagePhotoServices.linqSubmits(CustID, obj).then(function(response) {
-            console.log(response);
-            if (response.data === 1) {
+        if (obj === '1') {
+            scope.$broadcast("showAlertPopupccc", 'alert-danger', 'Please contact Your relation ship manager Team Head Mr.Shiva 91-9841282222', 4000);
+        } else {
+            editmanagePhotoServices.linqSubmits(CustID, obj).then(function(response) {
+                console.log(response);
+                if (response.data === 1) {
 
-                if (obj === '1') {
-                    alert('Protect with Password  Uploaded Successfully');
-                } else {
-                    alert('Protect with Password Removed Successfully');
+                    if (obj === '1') {
+                        alert('Protect with Password  Uploaded Successfully');
+                    } else {
+                        alert('Protect with Password Removed Successfully');
+                    }
                 }
-            }
-        });
-
+            });
+        }
     };
 
     scope.redirectPage = function(type) {

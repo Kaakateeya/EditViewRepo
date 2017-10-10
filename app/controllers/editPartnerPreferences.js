@@ -94,7 +94,6 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
             }
         };
 
-
         scope.changed = function(val) {
             if (val && val.length > 2) {
                 scope.myModel = scope.prevModel;
@@ -102,8 +101,6 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 scope.prevModel = val;
             }
         };
-
-
 
         scope.SplitstringintoArray = function(string) {
             var array = [];
