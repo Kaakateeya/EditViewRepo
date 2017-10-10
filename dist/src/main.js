@@ -426,9 +426,6 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
         //
         scope.loginpaidstatus = authSvc.getpaidstatus();
 
-
-
-
         scope.changeBind = function(type, parentval) {
 
             switch (type) {
@@ -563,7 +560,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 extension = "jpg";
                             }
 
-                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extension;
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                             if (extension === "html") {
                                 scope.iframeShow = true;
                                 $('#iframe').attr('src', scope.ImageUrl);
@@ -578,7 +575,7 @@ editviewapp.controller("astroCtrl", ['$uibModal', '$scope', 'astroServices', 'co
                                 scope.iframeShow = false;
                                 extensn = "jpg";
                             }
-                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custid + "_HaroscopeImage/" + custid + "_HaroscopeImage." + extensn;
+                            scope.ImageUrl = editviewapp.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                             if (extensn === "html") {
                                 scope.iframeShow = true;
                                 $('#iframe').attr('src', scope.ImageUrl);
