@@ -40,6 +40,19 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
         //     console.log(123);CountryCode
         // });
 
+
+
+        $http.post('/middlewareToken', JSON.stringify({ source: 'KaakateeyaAPP' }))
+            .then(function(response) {
+                if (response.data) {
+                    sessionStorage.setItem('token', response.data.token);
+                }
+
+            });
+
+
+
+
         scope.showpopup = function(type, item) {
             isSubmit = true;
             switch (type) {
