@@ -9,7 +9,6 @@
                 $rootScope.loading = true;
                 // }
                 config.headers = config.headers || {};
-
                 return config;
             },
             responseError: function(rejection) {
