@@ -9,6 +9,9 @@
                 $rootScope.loading = true;
                 // }
                 config.headers = config.headers || {};
+                config.headers['Content-Type'] = 'application/json';
+                config.headers['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+
                 return config;
             },
             responseError: function(rejection) {
