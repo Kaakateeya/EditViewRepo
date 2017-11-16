@@ -895,7 +895,7 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        <div class=\"clear\"></div>\r" +
     "\n" +
-    "                        <div class=\"edit_page_photo_manage_submit\">\r" +
+    "                        <!-- <div class=\"edit_page_photo_manage_submit\">\r" +
     "\n" +
     "                            <div class=\"edit_page_photo_manage_protect pull-left clearfix\" ng-show=\"loginpaidstatus==='1'\">\r" +
     "\n" +
@@ -921,27 +921,31 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "                        </div>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                    </div> -->\r" +
     "\n" +
-    "                    </br>\r" +
+    "                        </br>\r" +
     "\n" +
-    "                    <div class=\"photo_upload_instrctns_list clearfix\">\r" +
+    "                        <div class=\"photo_upload_instrctns_list clearfix\">\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                        <a ID=\"phtoguide\" href=\"javascript:void(0);\" ng-click=\"redirectPage('PhotoGuideLines');\">Photo guidelines\r" +
+    "                            <a ID=\"phtoguide\" href=\"javascript:void(0);\" ng-click=\"redirectPage('PhotoGuideLines');\">Photo guidelines\r" +
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "                        <a ID=\"photofaq\" href=\"javascript:void(0);\" ng-click=\"redirectPage('Faqs');\">Photo faq’s\r" +
+    "                            <a ID=\"photofaq\" href=\"javascript:void(0);\" ng-click=\"redirectPage('Faqs');\">Photo faq’s\r" +
     "\n" +
     "                        </a>\r" +
     "\n" +
-    "                        <a ID=\"photoupload\" href=\"javascript:void(0);\" ng-click=\"redirectPage('uploadTips');\">Photo upload tips\r" +
+    "                            <a ID=\"photoupload\" href=\"javascript:void(0);\" ng-click=\"redirectPage('uploadTips');\">Photo upload tips\r" +
     "\n" +
     "                        </a>\r" +
+    "\n" +
+    "                        </div>\r" +
     "\n" +
     "                    </div>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -951,227 +955,223 @@ angular.module('KaakateeyaEdit').run(['$templateCache', function($templateCache)
     "\n" +
     "\r" +
     "\n" +
-    "        </div>\r" +
+    "            <div class=\"my_photos_main_block2 clearfix\">\r" +
+    "\n" +
+    "                <div class=\"clearfix pics_incorrect_list\">\r" +
+    "\n" +
+    "                    <h3>Such Photos cannot be Uploaded</h3>\r" +
+    "\n" +
+    "                    <table id=\"DataList3\" class=\"clearfix\" style=\"border-collapse: collapse;\" cellspacing=\"0\">\r" +
+    "\n" +
+    "                        <tbody>\r" +
+    "\n" +
+    "                            <tr>\r" +
+    "\n" +
+    "                                <td>\r" +
+    "\n" +
+    "                                    <img id=\"DataList3_ctl00_images\" src=\"src\\images/Side-face.png\">\r" +
+    "\n" +
+    "                                    <p>\r" +
+    "\n" +
+    "                                        Side Face\r" +
+    "\n" +
+    "                                    </p>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "        <div class=\"my_photos_main_block2 clearfix\">\r" +
+    "                                </td>\r" +
     "\n" +
-    "            <div class=\"clearfix pics_incorrect_list\">\r" +
+    "                                <td>\r" +
     "\n" +
-    "                <h3>Such Photos cannot be Uploaded</h3>\r" +
+    "                                    <img id=\"DataList3_ctl01_images\" src=\"src\\images/Blir.png\">\r" +
     "\n" +
-    "                <table id=\"DataList3\" class=\"clearfix\" style=\"border-collapse: collapse;\" cellspacing=\"0\">\r" +
+    "                                    <p>\r" +
     "\n" +
-    "                    <tbody>\r" +
+    "                                        Blur\r" +
     "\n" +
-    "                        <tr>\r" +
-    "\n" +
-    "                            <td>\r" +
-    "\n" +
-    "                                <img id=\"DataList3_ctl00_images\" src=\"src\\images/Side-face.png\">\r" +
-    "\n" +
-    "                                <p>\r" +
-    "\n" +
-    "                                    Side Face\r" +
-    "\n" +
-    "                                </p>\r" +
+    "                                    </p>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                            </td>\r" +
+    "                                </td>\r" +
     "\n" +
-    "                            <td>\r" +
+    "                                <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl01_images\" src=\"src\\images/Blir.png\">\r" +
+    "                                    <img id=\"DataList3_ctl02_images\" src=\"src\\images/Group-photos.png\">\r" +
     "\n" +
-    "                                <p>\r" +
+    "                                    <p>\r" +
     "\n" +
-    "                                    Blur\r" +
+    "                                        Group Photo\r" +
     "\n" +
-    "                                </p>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            </td>\r" +
-    "\n" +
-    "                            <td>\r" +
-    "\n" +
-    "                                <img id=\"DataList3_ctl02_images\" src=\"src\\images/Group-photos.png\">\r" +
-    "\n" +
-    "                                <p>\r" +
-    "\n" +
-    "                                    Group Photo\r" +
-    "\n" +
-    "                                </p>\r" +
+    "                                    </p>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                            </td>\r" +
+    "                                </td>\r" +
     "\n" +
-    "                            <td>\r" +
+    "                                <td>\r" +
     "\n" +
-    "                                <img id=\"DataList3_ctl03_images\" src=\"src\\images/Water-mark.png\">\r" +
+    "                                    <img id=\"DataList3_ctl03_images\" src=\"src\\images/Water-mark.png\">\r" +
     "\n" +
-    "                                <p>\r" +
+    "                                    <p>\r" +
     "\n" +
-    "                                    Watermark\r" +
+    "                                        Watermark\r" +
     "\n" +
-    "                                </p>\r" +
+    "                                    </p>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "                            </td>\r" +
+    "                                </td>\r" +
     "\n" +
-    "                        </tr>\r" +
+    "                            </tr>\r" +
     "\n" +
-    "                    </tbody>\r" +
+    "                        </tbody>\r" +
     "\n" +
-    "                </table>\r" +
+    "                    </table>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                <div class=\"pics_selected_list_main_rt clearfix pics_correct_list\">\r" +
+    "\n" +
+    "                    <h3>Photos that can be uploaded</h3>\r" +
+    "\n" +
+    "                    <table id=\"DataList2\" class=\"clearfix\" style=\"border-collapse: collapse;\" cellspacing=\"0\">\r" +
+    "\n" +
+    "                        <tbody>\r" +
+    "\n" +
+    "                            <tr>\r" +
+    "\n" +
+    "                                <td>\r" +
+    "\n" +
+    "                                    <img id=\"DataList2_ctl00_images\" src=\"src\\images/Close-up.png\">\r" +
+    "\n" +
+    "                                    <p>\r" +
+    "\n" +
+    "                                        Close Up\r" +
+    "\n" +
+    "                                    </p>\r" +
+    "\n" +
+    "                                </td>\r" +
+    "\n" +
+    "                                <td>\r" +
+    "\n" +
+    "                                    <img id=\"DataList2_ctl01_images\" src=\"src\\images/Fulsize.png\">\r" +
+    "\n" +
+    "                                    <p>\r" +
+    "\n" +
+    "                                        Full Size\r" +
+    "\n" +
+    "                                    </p>\r" +
+    "\n" +
+    "                                </td>\r" +
+    "\n" +
+    "                            </tr>\r" +
+    "\n" +
+    "                        </tbody>\r" +
+    "\n" +
+    "                    </table>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"clear\">&nbsp;</div>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
+    "            <div class=\"my_photos_main_block3\">\r" +
+    "\n" +
     "\r" +
     "\n" +
-    "            <div class=\"pics_selected_list_main_rt clearfix pics_correct_list\">\r" +
+    "                <p>\r" +
     "\n" +
-    "                <h3>Photos that can be uploaded</h3>\r" +
+    "                    <img src=\"src/images/whatsup.png\" alt=\"Mail\" style=\"width: 50px; height: 40px;\">Whatsup your photos to\r" +
     "\n" +
-    "                <table id=\"DataList2\" class=\"clearfix\" style=\"border-collapse: collapse;\" cellspacing=\"0\">\r" +
+    "                    <span>91-9848535373</span> - Kindly mention your Profile ID and name\r" +
     "\n" +
-    "                    <tbody>\r" +
+    "                </p>\r" +
     "\n" +
-    "                        <tr>\r" +
+    "                <p>\r" +
     "\n" +
-    "                            <td>\r" +
+    "                    <img src=\"src/images/icon_email.png\" alt=\"Mail\">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name\r" +
     "\n" +
-    "                                <img id=\"DataList2_ctl00_images\" src=\"src\\images/Close-up.png\">\r" +
+    "                </p>\r" +
     "\n" +
-    "                                <p>\r" +
-    "\n" +
-    "                                    Close Up\r" +
-    "\n" +
-    "                                </p>\r" +
-    "\n" +
-    "                            </td>\r" +
-    "\n" +
-    "                            <td>\r" +
-    "\n" +
-    "                                <img id=\"DataList2_ctl01_images\" src=\"src\\images/Fulsize.png\">\r" +
-    "\n" +
-    "                                <p>\r" +
-    "\n" +
-    "                                    Full Size\r" +
-    "\n" +
-    "                                </p>\r" +
-    "\n" +
-    "                            </td>\r" +
-    "\n" +
-    "                        </tr>\r" +
-    "\n" +
-    "                    </tbody>\r" +
-    "\n" +
-    "                </table>\r" +
+    "\r" +
     "\n" +
     "            </div>\r" +
-    "\n" +
-    "            <div class=\"clear\">&nbsp;</div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "        <div class=\"my_photos_main_block3\">\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <p>\r" +
-    "\n" +
-    "                <img src=\"src/images/whatsup.png\" alt=\"Mail\" style=\"width: 50px; height: 40px;\">Whatsup your photos to\r" +
-    "\n" +
-    "                <span>91-9848535373</span> - Kindly mention your Profile ID and name\r" +
-    "\n" +
-    "            </p>\r" +
-    "\n" +
-    "            <p>\r" +
-    "\n" +
-    "                <img src=\"src/images/icon_email.png\" alt=\"Mail\">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name\r" +
-    "\n" +
-    "            </p>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
-    "</div>\r" +
-    "\n" +
     "\r" +
     "\n" +
     "\r" +
     "\n" +
-    "<script type=\"text/ng-template\" id=\"AddimagePopup.html\">\r" +
+    "    <script type=\"text/ng-template\" id=\"AddimagePopup.html\">\r" +
     "\n" +
-    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"upload(up);\">\r" +
+    "        <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"upload(up);\">\r" +
     "\n" +
-    "        <div class=\"modal-header\">\r" +
+    "            <div class=\"modal-header\">\r" +
     "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Photo </h3>\r" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Upload Photo </h3>\r" +
     "\n" +
-    "        </div>\r" +
+    "            </div>\r" +
     "\n" +
-    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "            <div class=\"modal-body\" id=\"modal-body\">\r" +
     "\n" +
-    "            <ul id=\"ulprofession\">\r" +
+    "                <ul id=\"ulprofession\">\r" +
     "\n" +
-    "                <input type=\"file\" file-model=\"up.myFile\" />\r" +
+    "                    <input type=\"file\" file-model=\"up.myFile\" />\r" +
     "\n" +
-    "            </ul>\r" +
+    "                </ul>\r" +
     "\n" +
-    "        </div>\r" +
+    "            </div>\r" +
     "\n" +
-    "        <div class=\"modal-footer\">\r" +
+    "            <div class=\"modal-footer\">\r" +
     "\n" +
-    "            <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "                <input value=\"Cancel\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
     "\n" +
-    "            <input value=\"Upload\" class=\"button_custom\" type=\"submit\">\r" +
+    "                <input value=\"Upload\" class=\"button_custom\" type=\"submit\">\r" +
     "\n" +
-    "        </div>\r" +
+    "            </div>\r" +
     "\n" +
-    "    </form>\r" +
+    "        </form>\r" +
     "\n" +
-    "</script>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "<script type=\"text/ng-template\" id=\"deleteimagePopup.html\">\r" +
-    "\n" +
-    "    <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"Delete(up);\">\r" +
-    "\n" +
-    "        <div class=\"modal-header\">\r" +
-    "\n" +
-    "            <h3 class=\"modal-title text-center\" id=\"modal-title\">Delete Photo </h3>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "        <div class=\"modal-body\" id=\"modal-body\">\r" +
-    "\n" +
-    "            <div class=\"text-center\">Are you sure to delete photo?</div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "        <div class=\"modal-footer\">\r" +
-    "\n" +
-    "            <input value=\"Close\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
-    "\n" +
-    "            <input value=\"Delete\" class=\"button_custom\" type=\"submit\">\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </form>\r" +
+    "    </script>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "</script>\r" +
+    "    <script type=\"text/ng-template\" id=\"deleteimagePopup.html\">\r" +
+    "\n" +
+    "        <form name=\"uploadForm\" novalidate role=\"form\" ng-submit=\"Delete(up);\">\r" +
+    "\n" +
+    "            <div class=\"modal-header\">\r" +
+    "\n" +
+    "                <h3 class=\"modal-title text-center\" id=\"modal-title\">Delete Photo </h3>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "                <div class=\"text-center\">Are you sure to delete photo?</div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"modal-footer\">\r" +
+    "\n" +
+    "                <input value=\"Close\" class=\"button_custom button_custom_reset\" ng-click=\"cancel();\" type=\"button\">\r" +
+    "\n" +
+    "                <input value=\"Delete\" class=\"button_custom\" type=\"submit\">\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </form>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    </script>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
