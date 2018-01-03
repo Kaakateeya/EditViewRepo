@@ -986,7 +986,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         });
 
         editmanagePhotoServices.linqSubmits(scope.DCust_Photos_ID, 3).then(function(response) {
-            if (response.data === 1) {
+            if (parseInt(response.data) === 1) {
                 commonFactory.closepopup();
                 scope.getData();
             }
@@ -997,7 +997,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         editmanagePhotoServices.linqSubmits(cust_photoID, 2).then(function(response) {
             console.log(response.data);
 
-            if (response.data === 1) {
+            if (parseInt(response.data) === 1) {
                 scope.getData();
             }
         });
@@ -1010,7 +1010,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         } else {
             editmanagePhotoServices.linqSubmits(CustID, obj).then(function(response) {
                 console.log(response);
-                if (response.data === 1) {
+                if (parseInt(response.data) === 1) {
 
                     if (obj === '1') {
                         alert('Protect with Password  Uploaded Successfully');
@@ -1405,7 +1405,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                         if (scope.datagetInStatus === 1) {
@@ -1454,7 +1454,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -1495,7 +1495,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -1515,7 +1515,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     console.log(response);
                     scope.lblaboutMyfamily = obj.txtAboutUs;
                     commonFactory.closepopup();
-                    if (response.data === '1') {
+                    if (parseInt(response.data) === '1') {
 
                         scope.AboutPageloadData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -1802,7 +1802,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
                             scope.partnerPrefArr = response.data;
                             console.log(scope.partnerPrefArr);
@@ -1931,7 +1931,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                 scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         propertyServices.getPropertyData(custID).then(function(response) {
                             scope.propertyArr = response.data;
@@ -2080,7 +2080,7 @@ editviewapp.controller('referenceCtrl', ['$uibModal', '$scope', 'referenceServic
                 scope.submitPromise = referenceServices.submitReferenceData(scope.referenceData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         referenceServices.getReferenceData(custID).then(function(response) {
                             scope.ReferenceArr = response.data;
                         });
@@ -2363,7 +2363,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -2413,7 +2413,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -2457,7 +2457,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -2506,7 +2506,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -2874,7 +2874,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.sibPageload(custID);
 
@@ -2957,7 +2957,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.sibPageload(custID);
 
@@ -3039,7 +3039,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
                         console.log(response);
                         commonFactory.closepopup();
-                        if (response.data === 1) {
+                        if (parseInt(response.data) === 1) {
 
                             scope.sibPageload(custID);
 
@@ -3346,7 +3346,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         editviewServices.getEducationData(custID).then(function(response) {
                             scope.educationSelectArray = response.data;
                         });
@@ -3401,7 +3401,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
 
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         editviewServices.getProfessionData(custID).then(function(response) {
                             scope.ProfessionSelectArray = response.data;

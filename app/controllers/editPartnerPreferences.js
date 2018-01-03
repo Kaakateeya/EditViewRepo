@@ -234,7 +234,7 @@ editviewapp.controller("partnerPreferenceCtrl", ['partnerPreferenceServices', '$
                 scope.submitPromise = partnerPreferenceServices.submitPartnerPrefData(scope.partnerPrefData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         partnerPreferenceServices.getPartnerPreferenceData(custID).then(function(response) {
                             scope.partnerPrefArr = response.data;
                             console.log(scope.partnerPrefArr);

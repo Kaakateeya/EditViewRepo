@@ -261,7 +261,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitFBData(scope.FBData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -311,7 +311,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitFSData(scope.FSData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -355,7 +355,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitMBData(scope.MBData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -404,7 +404,7 @@ editviewapp.controller("relativeCtrl", ['$uibModal', '$scope', 'relativeServices
                 scope.submitPromise = relativeServices.submitMSData(scope.MSData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.relativePageLoad(custid);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);

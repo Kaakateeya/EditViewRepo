@@ -348,7 +348,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 scope.submitPromise = sibblingServices.submitSibBroData(scope.sibBroData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.sibPageload(custID);
 
@@ -431,7 +431,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                 scope.submitPromise = sibblingServices.submitSibSisData(scope.sibSisData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.sibPageload(custID);
 
@@ -513,7 +513,7 @@ editviewapp.controller("sibblingCtrl", ['$scope', '$uibModal', 'sibblingServices
                     scope.submitPromise = sibblingServices.submitSibCountsData(objinput).then(function(response) {
                         console.log(response);
                         commonFactory.closepopup();
-                        if (response.data === 1) {
+                        if (parseInt(response.data) === 1) {
 
                             scope.sibPageload(custID);
 

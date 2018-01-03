@@ -64,7 +64,7 @@ editviewapp.controller('propertyCtrl', ['$uibModal', '$scope', 'propertyServices
                 scope.submitPromise = propertyServices.submitPropertyData(scope.propertyData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         propertyServices.getPropertyData(custID).then(function(response) {
                             scope.propertyArr = response.data;

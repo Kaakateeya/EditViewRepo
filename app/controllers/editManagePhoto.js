@@ -172,7 +172,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         });
 
         editmanagePhotoServices.linqSubmits(scope.DCust_Photos_ID, 3).then(function(response) {
-            if (response.data === 1) {
+            if (parseInt(response.data) === 1) {
                 commonFactory.closepopup();
                 scope.getData();
             }
@@ -183,7 +183,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         editmanagePhotoServices.linqSubmits(cust_photoID, 2).then(function(response) {
             console.log(response.data);
 
-            if (response.data === 1) {
+            if (parseInt(response.data) === 1) {
                 scope.getData();
             }
         });
@@ -196,7 +196,7 @@ editviewapp.controller("managePhotoCtrledit", ['$uibModal', '$scope', 'commonFac
         } else {
             editmanagePhotoServices.linqSubmits(CustID, obj).then(function(response) {
                 console.log(response);
-                if (response.data === 1) {
+                if (parseInt(response.data) === 1) {
 
                     if (obj === '1') {
                         alert('Protect with Password  Uploaded Successfully');

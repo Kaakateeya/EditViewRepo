@@ -364,7 +364,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitParentData(scope.myData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
                         if (scope.datagetInStatus === 1) {
@@ -413,7 +413,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitAddressData(scope.myAddrData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -454,7 +454,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                 scope.submitPromise = parentServices.submitPhysicalData(scope.myPhysicalData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         scope.parentBindData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);
@@ -474,7 +474,7 @@ editviewapp.controller("parentCtrl", ['$uibModal', '$scope', 'parentServices',
                     console.log(response);
                     scope.lblaboutMyfamily = obj.txtAboutUs;
                     commonFactory.closepopup();
-                    if (response.data === '1') {
+                    if (parseInt(response.data) === '1') {
 
                         scope.AboutPageloadData(custID);
                         scope.$broadcast("showAlertPopupccc", 'alert-success', 'submitted Succesfully', 1500);

@@ -222,7 +222,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 scope.submitPromise = editviewServices.submitEducationData(scope.myData).then(function(response) {
                     console.log(response);
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
                         editviewServices.getEducationData(custID).then(function(response) {
                             scope.educationSelectArray = response.data;
                         });
@@ -277,7 +277,7 @@ editviewapp.controller('eduAndProfCtrl', ['$uibModal', '$scope', 'editviewServic
                 scope.submitPromise = editviewServices.submitProfessionData(scope.myprofData).then(function(response) {
 
                     commonFactory.closepopup();
-                    if (response.data === 1) {
+                    if (parseInt(response.data) === 1) {
 
                         editviewServices.getProfessionData(custID).then(function(response) {
                             scope.ProfessionSelectArray = response.data;
